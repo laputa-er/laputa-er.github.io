@@ -52,4 +52,16 @@ $(document).ready(function() {
 
   $("article.post-container--single a[href^=http]").attr("target", "_blank");
   $("article.post-container--single a[href^=mailto]").attr("target", "_blank");
+
+  $('#toc .dropup-catelog>button').on('click', function (e) {
+    if ($(this).css('display') !== 'none') {
+        $('#tocShell').show();
+    }
+    $('#toc .catelog-content').fadeToggle();
+  });
+
+  $('#tocShell').on('click', function (e) {
+    $('#tocShell').hide();
+    $('#toc .catelog-content').fadeOut();
+  });
 });
