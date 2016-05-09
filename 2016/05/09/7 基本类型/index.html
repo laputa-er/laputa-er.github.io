@@ -1,0 +1,812 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    
+    <title>7 基本类型 | Laputa</title>
+    <meta name="renderer" content="webkit">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="MobileOptimized" content="320">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+    <meta name="description" content="do things for fun">
+
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="7 基本类型 | Laputa">
+    <meta name="twitter:description" content="do things for fun">
+
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="7 基本类型 | Laputa">
+    <meta property="og:description" content="do things for fun">
+
+    
+    <meta name="author" content="Sean">
+    
+    <link rel="stylesheet" href="/css/vno.css">
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css">
+
+    
+    <link rel="icon" href="/images/favicon.png">
+    
+
+    <meta name="generator" content="hexo"/>
+    
+    <link rel="alternate" type="application/rss+xml" title="Laputa" href="/atom.xml">
+    
+
+    <link rel="canonical" href="http://laputa-er.github.io/2016/05/09/7 基本类型/"/>
+
+    
+</head>
+
+<body class="home-template no-js">
+
+    <span class="mobile btn-mobile-menu">
+        <i class="fa fa-list btn-mobile-menu__icon"></i>
+        <i class="fa fa-angle-up btn-mobile-close__icon hidden"></i>
+    </span>
+
+    
+<header class="panel-cover panel-cover--collapsed" style="background-image: url(/images/background-cover.jpg)">
+  <div class="panel-main">
+    <div class="panel-main__inner panel-inverted">
+    <div class="panel-main__content">
+
+        <a href="/" title="前往 Laputa 的主页"><img src="/images/logo2.jpg" width="80" alt="Laputa logo" class="panel-cover__logo logo" /></a>
+        <h1 class="panel-cover__title panel-title"><a href="/" title="link to homepage for Laputa">Laputa</a></h1>
+        
+        <span class="panel-cover__subtitle panel-subtitle">已然在路上</span>
+        
+        <hr class="panel-cover__divider" />
+        <p class="panel-cover__description">If you can not act the way you want to live, you will one day live in accordance with the way to think about.</p>
+        <hr class="panel-cover__divider panel-cover__divider--secondary" />
+
+        <div class="navigation-wrapper">
+          <div>
+          <nav class="cover-navigation cover-navigation--primary">
+            <ul class="navigation">
+              <li class="navigation__item"><a href="/#blog" title="访问笔记" class="blog-button">笔记</a></li>
+            
+              <li class="navigation__item"><a href="/projects">项目作品</a></li>
+            
+              <li class="navigation__item"><a href="/aboutme">关于我</a></li>
+            
+            </ul>
+          </nav>
+          </div>
+          <div>
+          <nav class="cover-navigation navigation--social">
+  <ul class="navigation">
+
+  <!-- Weibo-->
+  
+
+  <!-- Github -->
+  
+  <li class="navigation__item">
+    <a href="https://github.com/laputa-er" title="查看我的GitHub主页" target="_blank">
+      <i class='social fa fa-github'></i>
+      <span class="label">Github</span>
+    </a>
+  </li>
+
+
+<!-- Stack Overflow -->
+        
+        <li class="navigation__item">
+            <a href="http://stackoverflow.com/users/6304138/laputa" title="Stack Overflow" target="_blank">
+                <i class='social fa fa-stack-overflow'></i>
+                <span class="label">Stack Overflow</span>
+            </a>
+        </li>
+        
+
+  <!-- Google Plus -->
+  
+
+<!-- Facebook -->
+
+  
+<!-- Twitter -->
+
+  
+
+  <li class="navigation__item">
+    <a href="/atom.xml" title="RSS" target="_blank">
+      <i class='social fa fa-rss'></i>
+      <span class="label">RSS</span>
+    </a>
+  </li>
+
+
+
+  </ul>
+</nav>
+
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+
+    <div class="panel-cover--overlay cover-blue"></div>
+  </div>
+</header>
+
+    <div class="content-wrapper">
+        <div class="content-wrapper__inner">
+            <article class="post-container post-container--single">
+
+  <header class="post-header">
+    <div class="post-meta">
+      <time datetime="2016-05-09T10:39:48.000Z" class="post-list__meta--date date">2016-05-09</time> &#8226; <span class="post-meta__tags tags">于&nbsp;
+  <a class="tag-link" href="/tags/c语言程序设计－现代方法/">c语言程序设计－现代方法</a>
+</span>
+    </div>
+    <h1 class="post-title">7 基本类型</h1>
+  </header>
+
+  <section class="post">
+    <!-- Table of Contents -->
+    
+    <div id="top-toc">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#7-1-整型"><span class="toc-number">1.</span> <span class="toc-text">7.1    整型</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#7-1-1-整型常量"><span class="toc-number">1.1.</span> <span class="toc-text">7.1.1    整型常量</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#进制"><span class="toc-number">1.1.1.</span> <span class="toc-text">进制</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#长整型和无符号整型"><span class="toc-number">1.1.2.</span> <span class="toc-text">长整型和无符号整型</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#7-1-2-读／写整数"><span class="toc-number">1.2.</span> <span class="toc-text">7.1.2    读／写整数</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#printf函数和scanf函数"><span class="toc-number">1.2.1.</span> <span class="toc-text">printf函数和scanf函数</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#7-1-3-程序：数列求和（改进版）"><span class="toc-number">1.3.</span> <span class="toc-text">7.1.3    程序：数列求和（改进版）</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#7-2-浮点数"><span class="toc-number">2.</span> <span class="toc-text">7.2    浮点数</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#7-2-1-浮点常量"><span class="toc-number">2.1.</span> <span class="toc-text">7.2.1    浮点常量</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#7-2-2-读-些浮点数"><span class="toc-number">2.2.</span> <span class="toc-text">7.2.2    读/些浮点数</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#7-3-字符型"><span class="toc-number">3.</span> <span class="toc-text">7.3    字符型</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#7-3-1-转义序列"><span class="toc-number">3.1.</span> <span class="toc-text">7.3.1    转义序列</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#7-3-2-字符处理函数"><span class="toc-number">3.2.</span> <span class="toc-text">7.3.2    字符处理函数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#7-3-3-读-写字符"><span class="toc-number">3.3.</span> <span class="toc-text">7.3.3    读/写字符</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#7-3-3-1-printf-和-scanf"><span class="toc-number">3.3.1.</span> <span class="toc-text">7.3.3.1    printf 和 scanf</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#7-3-3-2-getchar-和-putchar"><span class="toc-number">3.3.2.</span> <span class="toc-text">7.3.3.2    getchar 和 putchar</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#7-3-4-程序：确定消息的长度"><span class="toc-number">3.4.</span> <span class="toc-text">7.3.4    程序：确定消息的长度</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#7-4-sizeof运算符"><span class="toc-number">4.</span> <span class="toc-text">7.4    sizeof运算符</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#7-5-类型转换"><span class="toc-number">5.</span> <span class="toc-text">7.5    类型转换</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#7-5-1-隐式转换（implicit-conversion"><span class="toc-number">6.</span> <span class="toc-text">7.5.1    隐式转换（implicit conversion)</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#7-5-1-常用算数转换"><span class="toc-number">6.1.</span> <span class="toc-text">7.5.1    常用算数转换</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#7-5-2-赋值中的转换"><span class="toc-number">6.2.</span> <span class="toc-text">7.5.2    赋值中的转换</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#7-5-2-1-两边类型一样“宽”"><span class="toc-number">6.2.1.</span> <span class="toc-text">7.5.2.1    两边类型一样“宽”</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#7-5-2-2-浮点数赋值给整型"><span class="toc-number">6.2.2.</span> <span class="toc-text">7.5.2.2    浮点数赋值给整型</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#7-5-2-3-溢出"><span class="toc-number">6.2.3.</span> <span class="toc-text">7.5.2.3    溢出</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#7-5-3-强制类型转换"><span class="toc-number">6.3.</span> <span class="toc-text">7.5.3    强制类型转换</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#7-6-类型定义"><span class="toc-number">7.</span> <span class="toc-text">7.6    类型定义</span></a></li></ol>
+    </div>
+    <div id="tocShell"></div>
+    <div id="toc" class="toc-article">
+      <div class="btn-group drag-me">
+        <i class="social fa fa-ellipsis-v"></i>
+      </div>
+      <div class="btn-group dropup-catelog">
+        <button class="btn"><i class="social fa fa-list-ol"></i></button>
+        <div class="catelog-content">
+          <p class="toc-title-wrap">
+            <strong class="toc-title">文章目录</strong>
+          </p>
+          <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#7-1-整型"><span class="toc-number">1.</span> <span class="toc-text">7.1    整型</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#7-1-1-整型常量"><span class="toc-number">1.1.</span> <span class="toc-text">7.1.1    整型常量</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#进制"><span class="toc-number">1.1.1.</span> <span class="toc-text">进制</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#长整型和无符号整型"><span class="toc-number">1.1.2.</span> <span class="toc-text">长整型和无符号整型</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#7-1-2-读／写整数"><span class="toc-number">1.2.</span> <span class="toc-text">7.1.2    读／写整数</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#printf函数和scanf函数"><span class="toc-number">1.2.1.</span> <span class="toc-text">printf函数和scanf函数</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#7-1-3-程序：数列求和（改进版）"><span class="toc-number">1.3.</span> <span class="toc-text">7.1.3    程序：数列求和（改进版）</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#7-2-浮点数"><span class="toc-number">2.</span> <span class="toc-text">7.2    浮点数</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#7-2-1-浮点常量"><span class="toc-number">2.1.</span> <span class="toc-text">7.2.1    浮点常量</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#7-2-2-读-些浮点数"><span class="toc-number">2.2.</span> <span class="toc-text">7.2.2    读/些浮点数</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#7-3-字符型"><span class="toc-number">3.</span> <span class="toc-text">7.3    字符型</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#7-3-1-转义序列"><span class="toc-number">3.1.</span> <span class="toc-text">7.3.1    转义序列</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#7-3-2-字符处理函数"><span class="toc-number">3.2.</span> <span class="toc-text">7.3.2    字符处理函数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#7-3-3-读-写字符"><span class="toc-number">3.3.</span> <span class="toc-text">7.3.3    读/写字符</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#7-3-3-1-printf-和-scanf"><span class="toc-number">3.3.1.</span> <span class="toc-text">7.3.3.1    printf 和 scanf</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#7-3-3-2-getchar-和-putchar"><span class="toc-number">3.3.2.</span> <span class="toc-text">7.3.3.2    getchar 和 putchar</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#7-3-4-程序：确定消息的长度"><span class="toc-number">3.4.</span> <span class="toc-text">7.3.4    程序：确定消息的长度</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#7-4-sizeof运算符"><span class="toc-number">4.</span> <span class="toc-text">7.4    sizeof运算符</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#7-5-类型转换"><span class="toc-number">5.</span> <span class="toc-text">7.5    类型转换</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#7-5-1-隐式转换（implicit-conversion"><span class="toc-number">6.</span> <span class="toc-text">7.5.1    隐式转换（implicit conversion)</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#7-5-1-常用算数转换"><span class="toc-number">6.1.</span> <span class="toc-text">7.5.1    常用算数转换</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#7-5-2-赋值中的转换"><span class="toc-number">6.2.</span> <span class="toc-text">7.5.2    赋值中的转换</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#7-5-2-1-两边类型一样“宽”"><span class="toc-number">6.2.1.</span> <span class="toc-text">7.5.2.1    两边类型一样“宽”</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#7-5-2-2-浮点数赋值给整型"><span class="toc-number">6.2.2.</span> <span class="toc-text">7.5.2.2    浮点数赋值给整型</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#7-5-2-3-溢出"><span class="toc-number">6.2.3.</span> <span class="toc-text">7.5.2.3    溢出</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#7-5-3-强制类型转换"><span class="toc-number">6.3.</span> <span class="toc-text">7.5.3    强制类型转换</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#7-6-类型定义"><span class="toc-number">7.</span> <span class="toc-text">7.6    类型定义</span></a></li></ol>
+        </div>
+      </div>
+    </div>
+    
+    <h2 id="7-1-整型"><a href="#7-1-整型" class="headerlink" title="7.1    整型"></a>7.1    整型</h2><blockquote>
+<p><strong>可移植性技巧：</strong>对不超过32767的整数采用int或shaort int，其它情况下使用long int。<br><strong>注意：</strong>不要部分差别地使用长整型，因为长整型操作比较耗时。</p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>整数类型</th>
+<th>说明</th>
+<th>bit（16位机器）</th>
+<th>bit(32位机器)</th>
+<th>数值范围(16位机器)</th>
+<th>数值范围(32位机器)</th>
+<th>有无符号</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>short [signed] int</code></td>
+<td>短整型</td>
+<td>16</td>
+<td>16</td>
+<td>-2^15~2^15-1</td>
+<td>-2^15~2^15-1</td>
+<td>有</td>
+</tr>
+<tr>
+<td><code>short usigned int</code></td>
+<td>无符号短整型</td>
+<td>16</td>
+<td>16</td>
+<td>0~2^16-1</td>
+<td>0~2^16-1</td>
+<td>无</td>
+</tr>
+<tr>
+<td><code>int [signed]</code></td>
+<td>整型</td>
+<td>16</td>
+<td>32</td>
+<td>-2^15~2^15-1</td>
+<td>-2^31~2^31-1</td>
+<td>有</td>
+</tr>
+<tr>
+<td><code>int unsigned</code></td>
+<td>无符号整型</td>
+<td>16</td>
+<td>32</td>
+<td>0~2^16-1</td>
+<td>0~2^32-1</td>
+<td>无</td>
+</tr>
+<tr>
+<td><code>long [signed]</code></td>
+<td>长整型</td>
+<td>32</td>
+<td>32</td>
+<td>-2^31~2^31-1</td>
+<td>-2^31~2^31-1</td>
+<td>有</td>
+</tr>
+<tr>
+<td><code>long unsigned int</code></td>
+<td>无符号长整型</td>
+<td>32</td>
+<td>32</td>
+<td>0~2^32-1</td>
+<td>0~2^32-1</td>
+<td>无</td>
+</tr>
+</tbody>
+</table>
+<h3 id="7-1-1-整型常量"><a href="#7-1-1-整型常量" class="headerlink" title="7.1.1    整型常量"></a>7.1.1    整型常量</h3><h4 id="进制"><a href="#进制" class="headerlink" title="进制"></a>进制</h4><blockquote>
+<p><strong>注意：</strong></p>
+<ol>
+<li>整数都是以二进制形式存储的，不会考虑实际的书写方式</li>
+<li>任何时候都可以从一种书写方式切换到另一种，甚至可以混合使用</li>
+</ol>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>进制</th>
+<th>包含数字</th>
+<th>写法</th>
+<th>举例</th>
+<th>备注</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>十进制</td>
+<td>0~9</td>
+<td>不能以0开头</td>
+<td>15 255</td>
+<td></td>
+</tr>
+<tr>
+<td>八进制</td>
+<td>0~7</td>
+<td>必须以0开头</td>
+<td>017 0377</td>
+<td></td>
+</tr>
+<tr>
+<td>十六进制</td>
+<td>0~9和字母a~f</td>
+<td>字母部分大小写均可</td>
+<td>0xf</td>
+</tr>
+</tbody>
+</table>
+<h4 id="长整型和无符号整型"><a href="#长整型和无符号整型" class="headerlink" title="长整型和无符号整型"></a>长整型和无符号整型</h4><blockquote>
+<p><strong>注意：</strong>默认情况下编译器对处于int类型取值范围内的整数使用int类型，否则使用long int。</p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>后缀</th>
+<th>含义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>U(u)</td>
+<td>指定常量为无符号整型</td>
+</tr>
+<tr>
+<td>L(l)</td>
+<td>指定常量为长整型</td>
+</tr>
+</tbody>
+</table>
+<h3 id="7-1-2-读／写整数"><a href="#7-1-2-读／写整数" class="headerlink" title="7.1.2    读／写整数"></a>7.1.2    读／写整数</h3><blockquote>
+<p><strong>溢出：</strong>当程序付给变量的值太大以至于无法存储在int类型中时，这时值会被处理为不符合预期的值。</p>
+</blockquote>
+<h4 id="printf函数和scanf函数"><a href="#printf函数和scanf函数" class="headerlink" title="printf函数和scanf函数"></a><code>printf</code>函数和<code>scanf</code>函数</h4><p><strong>有符号整数</strong></p>
+<table>
+<thead>
+<tr>
+<th>转换说明符</th>
+<th>类型</th>
+<th>进制</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>%d</td>
+<td>int</td>
+<td>十进制</td>
+</tr>
+<tr>
+<td>%hd</td>
+<td>short signed int</td>
+<td>十进制</td>
+</tr>
+<tr>
+<td>%ld</td>
+<td>long signed int</td>
+<td>十进制</td>
+</tr>
+</tbody>
+</table>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="keyword">short</span> <span class="keyword">int</span> s;</span><br><span class="line"><span class="keyword">long</span> <span class="keyword">int</span> l;</span><br><span class="line"><span class="built_in">scanf</span>(<span class="string">"%hd"</span>, &amp;s);<span class="comment">//写：短整型</span></span><br><span class="line"><span class="built_in">scanf</span>(<span class="string">"%ld"</span>, &amp;l);<span class="comment">//写：长整型</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">printf</span>(<span class="string">"%hd"</span>, s);<span class="comment">//读：短整型</span></span><br><span class="line"><span class="built_in">printf</span>(<span class="string">"%ld"</span>, l);<span class="comment">//读：长整型</span></span><br></pre></td></tr></table></figure>
+<p><strong>无符号整数</strong></p>
+<table>
+<thead>
+<tr>
+<th>转换说明符</th>
+<th>类型</th>
+<th>进制</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>%u</td>
+<td>unsigned int</td>
+<td>十进制数字</td>
+</tr>
+<tr>
+<td>%o</td>
+<td>unsigned int</td>
+<td>八进制</td>
+</tr>
+<tr>
+<td>%x</td>
+<td>unsigned int</td>
+<td>十六进制</td>
+</tr>
+</tbody>
+</table>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="keyword">unsigned</span> <span class="keyword">int</span> u;</span><br><span class="line"><span class="built_in">scanf</span>(<span class="string">"%u"</span>, %u);<span class="comment">//写：无符号十进制</span></span><br><span class="line"><span class="built_in">printf</span>(<span class="string">"%u"</span>, u);<span class="comment">//读：无符号十进制</span></span><br></pre></td></tr></table></figure>
+<h3 id="7-1-3-程序：数列求和（改进版）"><a href="#7-1-3-程序：数列求和（改进版）" class="headerlink" title="7.1.3    程序：数列求和（改进版）"></a>7.1.3    程序：数列求和（改进版）</h3><figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="comment">/**</span><br><span class="line"> * Sums a series of numbers</span><br><span class="line"> */</span></span><br><span class="line"></span><br><span class="line"><span class="meta"># <span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">	<span class="keyword">int</span> n, sum = <span class="number">0</span>;</span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">"This program sums a series of intergers.\n"</span>);</span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">"Enter intergers (0 to terminate:)"</span>);</span><br><span class="line"></span><br><span class="line">	<span class="built_in">scanf</span>(<span class="string">"%d"</span>, &amp;n);</span><br><span class="line">	<span class="keyword">while</span>(n != <span class="number">0</span>)&#123;</span><br><span class="line">		sum += n;</span><br><span class="line">		<span class="built_in">scanf</span>(<span class="string">"%d"</span>, &amp;n);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">"The sun is:%d\n"</span>, sum);</span><br><span class="line">	return <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="7-2-浮点数"><a href="#7-2-浮点数" class="headerlink" title="7.2    浮点数"></a>7.2    浮点数</h2><blockquote>
+<p><strong>IEEE浮点标准：</strong></p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>类型</th>
+<th>bit</th>
+<th>最小正数</th>
+<th>最大值</th>
+<th>精度</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>float</td>
+<td>32</td>
+<td>1.17x10^-38</td>
+<td>3.40x10^38</td>
+<td>6个数字</td>
+</tr>
+<tr>
+<td>double</td>
+<td>64</td>
+<td>2.22x0^-308</td>
+<td>1.79x10^308</td>
+<td>15个数字</td>
+</tr>
+<tr>
+<td>long float</td>
+<td>>=43</td>
+<td>未说明</td>
+<td>未说明</td>
+<td>未说明</td>
+</tr>
+<tr>
+<td>long double</td>
+<td>>=79</td>
+<td>未说明</td>
+<td>未说明</td>
+<td>未说明</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p><strong>c语言浮点数：</strong></p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>浮点数</th>
+<th>说明</th>
+<th>适用</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>float</td>
+<td>单精度浮点数</td>
+<td>当精度要求不严格时，float类型是很适合的类型</td>
+</tr>
+<tr>
+<td>double</td>
+<td>双精度浮点数</td>
+<td>提供更高的精度，适合绝大多数</td>
+</tr>
+<tr>
+<td>long double</td>
+<td>扩展双精度浮点数</td>
+<td>支持极高精度的要求，很少会用到</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p><strong>注意：</strong></p>
+<ol>
+<li>long double类型没有出现在IEEE标准中，其长度随机器的不同而变化，最常通用的尺寸是80位和128位</li>
+</ol>
+</blockquote>
+<h3 id="7-2-1-浮点常量"><a href="#7-2-1-浮点常量" class="headerlink" title="7.2.1    浮点常量"></a>7.2.1    浮点常量</h3><blockquote>
+<p><strong>语法：</strong>必须包含小数点或指数<br><strong>举个栗子：</strong>57.0的多种写法</p>
+</blockquote>
+<p><code>57.0</code> <code>57.</code> <code>57.0e0</code> <code>57E0</code> <code>5.7e1</code> <code>5.7e+1</code> <code>.57e2</code> <code>570.e-1</code></p>
+<blockquote>
+<p><strong>存储方式：</strong></p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>情景</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>默认情况</td>
+<td><code>double</code></td>
+</tr>
+<tr>
+<td><code>浮点常量F(f)</code></td>
+<td><code>float</code></td>
+</tr>
+<tr>
+<td><code>浮点常量L(l)</code></td>
+<td><code>long double</code></td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p><strong>注意：</strong><code>double</code>类型的值在使用时，如果需要会自动转换为<code>float</code>类型的值。</p>
+</blockquote>
+<h3 id="7-2-2-读-些浮点数"><a href="#7-2-2-读-些浮点数" class="headerlink" title="7.2.2    读/些浮点数"></a>7.2.2    读/些浮点数</h3><table>
+<thead>
+<tr>
+<th>浮点类型</th>
+<th>读</th>
+<th>写</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>float</td>
+<td><code>%e</code> <code>%f</code> <code>%g</code></td>
+<td><code>%e</code> <code>%f</code> <code>%g</code></td>
+</tr>
+<tr>
+<td>double</td>
+<td><code>%e</code> <code>%f</code> <code>%g</code></td>
+<td><code>%le</code> <code>%lf</code> <code>%lg</code></td>
+</tr>
+<tr>
+<td>long double</td>
+<td><code>%Le</code> <code>%Lf</code> <code>%Lg</code></td>
+<td><code>%Le</code> <code>%Lf</code> <code>%Lg</code></td>
+</tr>
+</tbody>
+</table>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="keyword">double</span> d;</span><br><span class="line"><span class="built_in">scanf</span>(<span class="string">"%lf"</span>, &amp;d);</span><br><span class="line"></span><br><span class="line"><span class="keyword">long</span> <span class="keyword">double</span> ld;</span><br><span class="line"><span class="built_in">scanf</span>(<span class="string">"%Lf"</span>, &amp;ld);</span><br><span class="line"><span class="built_in">printf</span>(<span class="string">"%Lf"</span>, ld);</span><br></pre></td></tr></table></figure>
+<h2 id="7-3-字符型"><a href="#7-3-字符型" class="headerlink" title="7.3    字符型"></a>7.3    字符型</h2><blockquote>
+<p><strong>char：</strong><code>Q&amp;A</code> <code>char</code>类型的值可以根据计算机的不同而不同，因为不同的机器可能会有不同的字符集。<br><strong>ASCII字符集：</strong>用7位代码表示128个字符，一些计算机把ASCII码扩展为8位代码以便可以表示256个字符。<br><strong>字符常量：</strong>字符常量需要用单引号括起来，而不是双引号。<br><strong>将<code>char</code>当作整数：</strong>c语言会按小整数的方式处理字符，毕竟所有字符都是以二进制的形式进行编码的。在ASCII码中，字符的取值范围是0000000(0)~1111111(127)。</p>
+<blockquote>
+<p><strong>优点：</strong>利用字符和数相同的属性灵活处理字符，例如<code>for(ch = &#39;A&#39;; ch &lt;= &#39;Z&#39;; ch++) ...</code><br><strong>缺点：</strong></p>
+<ol>
+<li>导致编译器无法检查出的多种编程错误</li>
+<li>编写出诸如<code>&#39;a&#39; * &#39;b&#39; / &#39;c&#39;</code>这类无意义的表达式</li>
+<li>妨碍程序的可移植性（因为程序可能会基于一些对字符集的假设）</li>
+</ol>
+</blockquote>
+<p><strong>有符号和无符号</strong></p>
+<blockquote>
+<p><strong>编译器行为：</strong>一些编译器按照有符号数据(-128~127)处理<code>char</code>，另一些则为无符号(0~255)<code>char</code>。设置有些编译器允许程序员通过编译器选项选择<code>char</code>时有符号型还是无符号型<br><strong>可移植性技巧：</strong>用<code>signed char</code>或<code>unsigned char</code>代替<code>char</code>。</p>
+</blockquote>
+</blockquote>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="keyword">char</span> ch;</span><br><span class="line"><span class="keyword">int</span> i;</span><br><span class="line">i = <span class="string">'a'</span>;<span class="comment">//i is now 97</span></span><br><span class="line">ch = <span class="number">65</span>;<span class="comment">//ch is now 'A'</span></span><br><span class="line">ch = ch + <span class="number">1</span>;<span class="comment">//ch is now 'B'</span></span><br><span class="line">ch++;<span class="comment">//ch is now 'C'</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//如果ch时小写字母，转为大写字母</span></span><br><span class="line"><span class="keyword">if</span>(<span class="string">'a'</span> &lt;= ch &amp;&amp; ch &lt;= <span class="string">'z'</span>)&#123;</span><br><span class="line">	ch = ch - <span class="string">'a'</span> + <span class="string">'A'</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="7-3-1-转义序列"><a href="#7-3-1-转义序列" class="headerlink" title="7.3.1    转义序列"></a>7.3.1    转义序列</h3><blockquote>
+<p><strong>用途：</strong>c语言为了处理字符集中的每一个字符，提供了<code>转义字符</code>用来表示一些不可见或无法从键盘输入的字符。<br><strong>字符转义字符：</strong>没有包含所有无法打印的ASCII字符，只包含了最常用的字符。</p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>名称</th>
+<th>转移序列</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>警报（响铃）符</td>
+<td>\a</td>
+</tr>
+<tr>
+<td>回退符</td>
+<td><code>\b</code></td>
+</tr>
+<tr>
+<td>换页符</td>
+<td><code>\f</code></td>
+</tr>
+<tr>
+<td>换行符</td>
+<td><code>\n</code></td>
+</tr>
+<tr>
+<td>回车符</td>
+<td><code>\r</code></td>
+</tr>
+<tr>
+<td>横向制表符</td>
+<td><code>\t</code></td>
+</tr>
+<tr>
+<td>纵向制表符</td>
+<td><code>\v</code></td>
+</tr>
+<tr>
+<td>反斜杠</td>
+<td><code>\\</code></td>
+</tr>
+<tr>
+<td>问号</td>
+<td><code>\?</code></td>
+</tr>
+<tr>
+<td>单引号</td>
+<td><code>\&#39;</code></td>
+</tr>
+<tr>
+<td>双引号</td>
+<td><code>\&quot;</code></td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p><strong>数字转义字符：</strong>可以表示任何字符，突破<code>字符转义字符</code>的限制。<br><strong>转义字符常量：</strong>有8进制和16进制两种书写方式，需要用一对单引号括起来。</p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>进制</th>
+<th>书写方式</th>
+<th>特点</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>八进制转义序列</td>
+<td><code>\最多含有三位数字的八进制数</code></td>
+<td>必须表示为无符号字符型</td>
+</tr>
+<tr>
+<td>十六进制转义序列</td>
+<td><code>\x十六进制数</code></td>
+<td>标准c对于数字个数没有限制，<code>x</code>必须为小写，十六进制数无限制</td>
+</tr>
+</tbody>
+</table>
+<figure class="highlight"><table><tr><td class="code"><pre><span class="line"># define ESC '\33'	//用宏的方式定义数字转义字符常量</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p><strong>补充：</strong></p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>其它序列</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>三字符序列（trigraph sequence）</td>
+<td>一些特殊的ASCII字符的代码</td>
+</tr>
+<tr>
+<td>多字节字符（multibyte character）</td>
+<td></td>
+</tr>
+<tr>
+<td>宽字符（nultibyte character）</td>
+</tr>
+</tbody>
+</table>
+<h3 id="7-3-2-字符处理函数"><a href="#7-3-2-字符处理函数" class="headerlink" title="7.3.2    字符处理函数"></a>7.3.2    字符处理函数</h3><blockquote>
+<p><strong>toupper：</strong>c语言的toupper库函数，用来检测自身的参数是否是小写字母，如果是则将其转换成相应的大写字母。</p>
+</blockquote>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="meta"># <span class="meta-keyword">include</span> <span class="meta-string">&lt;ctype.h&gt;</span></span></span><br><span class="line"><span class="keyword">if</span>(<span class="built_in">toupper</span>(ch)) == <span class="string">'A'</span>) ...</span><br></pre></td></tr></table></figure>
+<h3 id="7-3-3-读-写字符"><a href="#7-3-3-读-写字符" class="headerlink" title="7.3.3    读/写字符"></a>7.3.3    读/写字符</h3><blockquote>
+<p><strong>两种方式：</strong><code>printf</code>/<code>scanf</code>和<code>getChar</code>/<code>putchar</code></p>
+</blockquote>
+<h4 id="7-3-3-1-printf-和-scanf"><a href="#7-3-3-1-printf-和-scanf" class="headerlink" title="7.3.3.1    printf 和 scanf"></a>7.3.3.1    printf 和 scanf</h4><blockquote>
+<p><strong>转换说明：</strong><code>%c</code><br><strong>技巧：</strong></p>
+<ul>
+<li>在格式串转换说明<code>%c</code>前面加一个空格，强制<code>scanf</code>函数在读入字符前跳过空白字符。</li>
+</ul>
+</blockquote>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="built_in">scanf</span>(<span class="string">" %c"</span>, &amp;ch);<span class="comment">//会跳过零个或多个空白字符</span></span><br></pre></td></tr></table></figure>
+<blockquote>
+<ul>
+<li>通常情况下scanf函数不会跳过空白，所以很容易检查到输入行的结尾</li>
+</ul>
+</blockquote>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="keyword">do</span>&#123;</span><br><span class="line">    <span class="built_in">scanf</span>(<span class="string">"%c"</span>, &amp;ch);</span><br><span class="line">&#125;<span class="keyword">while</span>(ch != <span class="string">'\n'</span>);</span><br></pre></td></tr></table></figure>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="keyword">char</span> ch;</span><br><span class="line"><span class="built_in">scanf</span>(<span class="string">"%c"</span>, &amp;hc);<span class="comment">//reads a single character</span></span><br><span class="line"><span class="built_in">printf</span>(<span class="string">"%c"</span>, ch);<span class="comment">//writes a single character</span></span><br></pre></td></tr></table></figure>
+<h4 id="7-3-3-2-getchar-和-putchar"><a href="#7-3-3-2-getchar-和-putchar" class="headerlink" title="7.3.3.2    getchar 和 putchar"></a>7.3.3.2    getchar 和 putchar</h4><blockquote>
+<p><strong>说明：</strong></p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>库方法</th>
+<th>说明</th>
+<th>备注</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>getchar</td>
+<td>读入一个字符并返回这个字符</td>
+<td>不会跳过空白字符</td>
+</tr>
+<tr>
+<td>putchar</td>
+<td>用来单独写一个字符</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p><strong>执行速度快：</strong>比 scanf 和 printf 节约时间。</p>
+<ol>
+<li>这两个函数比scanf和prinf简单，因为scanf和prinf是设计用来读/写多种不同格式类型数据的</li>
+<li>为了额外的速度提升，通常getchar函数和puchar函数是作为宏来实现的</li>
+</ol>
+<p><strong>可以应用多种不同的c语言惯用法：</strong>包括用循环搜索字符或跳过所有出现的统一字符。</p>
+</blockquote>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="comment">//循环搜索字符</span></span><br><span class="line"><span class="keyword">while</span>(getchar != <span class="string">'\n'</span>)</span><br><span class="line">;</span><br><span class="line"><span class="comment">//跳过所有出现的统一字符</span></span><br><span class="line"><span class="keyword">while</span>((ch = getchar()) == <span class="string">' '</span>)</span><br><span class="line">;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p><strong>避免混合使用<code>scanf</code>和<code>getchar</code>：</strong>scanf函数有一种留下后边字符的趋势，也就是说对于输入后面的字符只是看了一下，并没有读入。</p>
+</blockquote>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="built_in">printf</span>(<span class="string">"Enter an interger:"</span>);</span><br><span class="line"><span class="built_in">scanf</span>(<span class="string">"%d"</span>, &amp;i);<span class="comment">//读入i的同时，scanf函数调用将会留下后面没有消耗掉的人一字符，包括换行符</span></span><br><span class="line"><span class="built_in">printf</span>(<span class="string">"Enter a command:"</span>);</span><br><span class="line">command = getchar();<span class="comment">//getchar会取回第一个声誉字符</span></span><br></pre></td></tr></table></figure>
+<h3 id="7-3-4-程序：确定消息的长度"><a href="#7-3-4-程序：确定消息的长度" class="headerlink" title="7.3.4    程序：确定消息的长度"></a>7.3.4    程序：确定消息的长度</h3><figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="comment">/**</span><br><span class="line"> * Determines the length a message</span><br><span class="line"> */</span></span><br><span class="line"></span><br><span class="line"><span class="meta"># <span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"> <span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line"> 	<span class="keyword">int</span> len = <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line"> 	<span class="built_in">printf</span>(<span class="string">"Enter a message:"</span>);</span><br><span class="line"> 	<span class="keyword">while</span>(getchar() != <span class="string">'\n'</span>)&#123;</span><br><span class="line"> 		len ++;</span><br><span class="line"> 	&#125;</span><br><span class="line"> 	<span class="built_in">printf</span>(<span class="string">"Your message was %d character(s) long.\n"</span>, len);</span><br><span class="line"> 	return <span class="number">0</span>;</span><br><span class="line"> &#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">./length2 </span><br><span class="line"> Enter a message:1234567</span><br><span class="line"> Your message was 7 character(s) long.</span><br></pre></td></tr></table></figure>
+<h2 id="7-4-sizeof运算符"><a href="#7-4-sizeof运算符" class="headerlink" title="7.4    sizeof运算符"></a>7.4    sizeof运算符</h2><blockquote>
+<p><strong>说明：</strong>编译器本身就可以计算sizeof表达式的值，所以sizeof 是一种特殊的运算符（一元运算符）<br><strong>用途：</strong>用来计算制定类型值所需空间的大小。<br><strong>sizeof表达式：</strong><code>sizeof(类型名)</code><br><strong>参数：</strong>常量、变量或表达式<br><strong>优先级：</strong>高于二元运算符（比如+）<br><strong>返回值：</strong>字节数，类型由实现定义，通常是无符号整数<br><strong>圆括号：</strong>当应用于表示式时不需要圆括号，比如<code>sizeof i</code>，但是由于运算符优先级的问题，建议始终在sizeof表达式中采用圆括号。<br><strong>以<code>int</code>为例：</strong></p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>处理器架构</th>
+<th>字节数</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>16</td>
+<td>2(通常)</td>
+</tr>
+<tr>
+<td>32</td>
+<td>4(通常)</td>
+</tr>
+</tbody>
+</table>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="comment">//把sizeof表达式转换成`unsigned long`(最大的无符号类型)</span></span><br><span class="line"><span class="built_in">printf</span>(<span class="string">"Size of int:%lu\n"</span>, (unsigned long)<span class="keyword">sizeof</span>(int));</span><br></pre></td></tr></table></figure>
+<h2 id="7-5-类型转换"><a href="#7-5-类型转换" class="headerlink" title="7.5    类型转换"></a>7.5    类型转换</h2><blockquote>
+<p><strong>计算机执行算术运算的限制：</strong>要求操作数大小相同，存储方式也相同。</p>
+</blockquote>
+<h2 id="7-5-1-隐式转换（implicit-conversion"><a href="#7-5-1-隐式转换（implicit-conversion" class="headerlink" title="7.5.1    隐式转换（implicit conversion)"></a>7.5.1    隐式转换（implicit conversion)</h2><blockquote>
+<p><strong>说明：</strong>c语言允许在表达式中混合使用基本数据类型（整数、浮点数甚至是字符）。此时c语言编译器需要生成一些指令将某些操作数转换成不同类型，是的硬件可以对表达式进行计算。<br><strong>隐式转换情景：</strong></p>
+<ul>
+<li>当算术表达式或逻辑表达式中操作数的类型不相同时（常用算数转换）</li>
+<li>当赋值运算符右侧表达式的类型和左侧变量的类型不匹配时</li>
+<li>当函数调用中使用的参数类型与其对应的参数的类型不匹配时</li>
+<li>当 return语句中表达式的类型和函数返回值的类型不匹配时</li>
+</ul>
+</blockquote>
+<h3 id="7-5-1-常用算数转换"><a href="#7-5-1-常用算数转换" class="headerlink" title="7.5.1    常用算数转换"></a>7.5.1    常用算数转换</h3><blockquote>
+<p><strong>原理：</strong>为了统一操作数的类型，通常可以将相对狭小的操作数转换成另一个操作数的类型来实现（即提升）。<br><strong>整型提升（integral promition）：</strong>把<code>char</code>或<code>short int</code>转换成<code>int</code>（或<code>unsigned int</code>）。</p>
+<p><strong>两种情况：</strong></p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>情况</th>
+<th>提升方式</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>任一操作数的类型时浮点型的情况</td>
+<td><code>long double&lt;-double&lt;-float</code></td>
+</tr>
+<tr>
+<td>两个操作数都不是浮点型的情况</td>
+<td><code>unsigned long int&lt;-long int&lt;-usigned int&lt;-int</code></td>
+</tr>
+<tr>
+<td><code>long int</code>和<code>unsigned int</code></td>
+<td>两个操作数都会转换成<code>usigned long int</code></td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p><strong>注意：</strong>尽量避免使用<code>unsigned int</code>，特别不要把它和有符号整数混合使用。</p>
+</blockquote>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="keyword">int</span> i ,u;</span><br><span class="line">i = <span class="number">-10</span>;</span><br><span class="line">u = <span class="number">10</span>;</span><br><span class="line"><span class="comment">//int转换为usigned int时最高位的符号位不再是符号位</span></span><br><span class="line">i &lt; u;<span class="comment">//0，因为会进行隐式转换导致讲-10当作unsigned int</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="keyword">char</span> c;</span><br><span class="line"><span class="keyword">short</span> <span class="keyword">int</span> s;</span><br><span class="line"><span class="keyword">int</span> i;</span><br><span class="line"><span class="keyword">unsigned</span> <span class="keyword">int</span> u;</span><br><span class="line"><span class="keyword">long</span> <span class="keyword">int</span> <span class="number">1</span>;</span><br><span class="line"><span class="keyword">unsigned</span> <span class="keyword">long</span> <span class="keyword">int</span> ul;</span><br><span class="line"><span class="keyword">float</span> f;</span><br><span class="line"><span class="keyword">double</span> d;</span><br><span class="line"><span class="keyword">long</span> <span class="keyword">double</span> ld;</span><br><span class="line"></span><br><span class="line">i = i + c;<span class="comment">//c被转为int</span></span><br><span class="line">i = i + s;<span class="comment">//s被转为int</span></span><br><span class="line">u = u + i;<span class="comment">//i被转为unsigned int</span></span><br><span class="line">l = l + u;<span class="comment">//l被转为long int</span></span><br><span class="line">ul = ul + <span class="number">1</span>;<span class="comment">//l被转为unsigned long int</span></span><br><span class="line">f = f + ul;<span class="comment">//f被转为double</span></span><br><span class="line">d = d + f;<span class="comment">//f被转为double</span></span><br><span class="line">ld = ld + d;<span class="comment">//d被转为long double</span></span><br></pre></td></tr></table></figure>
+<h3 id="7-5-2-赋值中的转换"><a href="#7-5-2-赋值中的转换" class="headerlink" title="7.5.2    赋值中的转换"></a>7.5.2    赋值中的转换</h3><blockquote>
+<p><strong>转化规则：</strong>把赋值运算右边的表达式转换成左边变量的类型。</p>
+</blockquote>
+<h4 id="7-5-2-1-两边类型一样“宽”"><a href="#7-5-2-1-两边类型一样“宽”" class="headerlink" title="7.5.2.1    两边类型一样“宽”"></a>7.5.2.1    两边类型一样“宽”</h4><figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="keyword">char</span> c;</span><br><span class="line"><span class="keyword">int</span> i;</span><br><span class="line"><span class="keyword">float</span> f;</span><br><span class="line"><span class="keyword">double</span> d;</span><br><span class="line"></span><br><span class="line">i = c;<span class="comment">//c被转为int</span></span><br><span class="line">f = i;<span class="comment">//i被转为float</span></span><br><span class="line">d = f;<span class="comment">//f被转为double</span></span><br></pre></td></tr></table></figure>
+<h4 id="7-5-2-2-浮点数赋值给整型"><a href="#7-5-2-2-浮点数赋值给整型" class="headerlink" title="7.5.2.2    浮点数赋值给整型"></a>7.5.2.2    浮点数赋值给整型</h4><blockquote>
+<p><strong>规则：</strong>去掉小数部分。</p>
+</blockquote>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="keyword">int</span> i;</span><br><span class="line">i = <span class="number">842.97</span>;<span class="comment">//i为842</span></span><br><span class="line">i = <span class="number">-842.87</span>;<span class="comment">//i为-842</span></span><br></pre></td></tr></table></figure>
+<h4 id="7-5-2-3-溢出"><a href="#7-5-2-3-溢出" class="headerlink" title="7.5.2.3    溢出"></a>7.5.2.3    溢出</h4><blockquote>
+<p><strong>说明：</strong><code>Q&amp;A</code>如果取值在变量类型范围之外，那么把值赋给一个狭小类型的变量将会得到无意义的结果（设置更糟）。</p>
+</blockquote>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line">c = <span class="number">10000</span>;</span><br><span class="line">i = <span class="number">1.0e20</span>;</span><br><span class="line">f = <span class="number">1.0e100</span>;</span><br></pre></td></tr></table></figure>
+<h3 id="7-5-3-强制类型转换"><a href="#7-5-3-强制类型转换" class="headerlink" title="7.5.3    强制类型转换"></a>7.5.3    强制类型转换</h3><blockquote>
+<p><strong>强制转换表达式：</strong><code>（类型名）表达式</code><br><strong>优先级：</strong>被当作一元运算符，因此高于二元运算符</p>
+</blockquote>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="keyword">float</span> f, frac_part;</span><br><span class="line">frac_part = f - (int)f;<span class="comment">//获得浮点数f的小数部分</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">float</span> quotient;</span><br><span class="line"><span class="keyword">int</span> divided, divisor;</span><br><span class="line">quotient = (float)dividend / divisor;<span class="comment">//divisor会被迫使编译器把divisor也转换成为float类型。</span></span><br></pre></td></tr></table></figure>
+<h2 id="7-6-类型定义"><a href="#7-6-类型定义" class="headerlink" title="7.6    类型定义"></a>7.6    类型定义</h2><blockquote>
+<p><strong>语法：</strong><code>typedef 原本类型名 类型别名;</code><br><strong>说明：</strong>采用typedef定义类型别名会导致编译器将其加入到类型列表中。<br><strong>用途：</strong></p>
+<ol>
+<li>如果程序员使用有意义的类型名，会使程序更加易于理解</li>
+<li>使程序更加易于维护</li>
+<li>是编写可移植程序的一种重要工具</li>
+</ol>
+<p><strong>可移植性技巧：</strong>为了更大的可移植性，可以考虑使用<code>typedef</code>定义新的整型名。</p>
+</blockquote>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="comment">//在16位机器上</span></span><br><span class="line"><span class="keyword">typedef</span> <span class="keyword">int</span> Quantity;</span><br><span class="line">Quantity q;</span><br><span class="line"></span><br><span class="line"><span class="comment">//在32位机器上</span></span><br><span class="line"><span class="keyword">typedef</span> <span class="keyword">long</span> <span class="keyword">int</span> Quantity;</span><br><span class="line">Quantity q;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p><strong>编译器库中（可能）自带的类型定义：</strong></p>
+</blockquote>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="keyword">typedef</span> <span class="keyword">int</span> <span class="keyword">ptrdiff_t</span>;</span><br><span class="line"><span class="keyword">typedef</span> <span class="keyword">unsigned</span> <span class="keyword">size_t</span>;</span><br><span class="line"><span class="keyword">typedef</span> <span class="keyword">char</span> <span class="keyword">wchar_t</span>;</span><br></pre></td></tr></table></figure>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="keyword">typedef</span> <span class="keyword">float</span> Dollars;</span><br><span class="line">Dollars cash_in, cash_out;</span><br></pre></td></tr></table></figure>
+
+  </section>
+
+</article>
+
+
+
+
+            <footer class="footer">
+    <span class="footer__copyright">
+        本站点采用<a href="http://creativecommons.org/licenses/by-nc-sa/4.0/">知识共享署名-非商业性使用-相同方式共享 4.0 国际许可协议</a>
+    </span>
+    <span class="footer__copyright">
+        基于 <a href="http://hexo.io">Hexo</a> 搭建，感谢 <a href="https://pages.github.com/">GitHub Pages</a> 提供免费的托管服务
+    </span>
+    <span class="footer__copyright">
+        &copy; 2016 - 
+        本站修改自<a href="https://github.com/lenbo-ma/hexo-theme-vno" target="_blank">hexo-theme-vno</a>
+    </span>
+</footer>
+
+        </div>
+    </div>
+
+    <script src="http://cdn.bootcss.com/jquery/2.1.4/jquery.min.js"></script>
+    <script src="/js/main.js"></script>
+
+     
+</body>
+</html>
