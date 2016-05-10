@@ -64,4 +64,7 @@ $(document).ready(function() {
     $('#tocShell').hide();
     $('#toc .catelog-content').fadeOut();
   });
+
+  // 设置目录最大高度
+  $('#toc .catelog-content').css('max-height', $(window).height() * 0.6 + 'px');
 });
