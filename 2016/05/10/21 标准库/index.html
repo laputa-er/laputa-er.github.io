@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    
+    <title>21	标准库 | Laputa</title>
+    <meta name="renderer" content="webkit">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="MobileOptimized" content="320">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+    <meta name="description" content="do things for fun">
+
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="21	标准库 | Laputa">
+    <meta name="twitter:description" content="do things for fun">
+
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="21	标准库 | Laputa">
+    <meta property="og:description" content="do things for fun">
+
+    
+    <meta name="author" content="Sean">
+    
+    <link rel="stylesheet" href="/css/vno.css">
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css">
+
+    
+    <link rel="icon" href="/images/favicon.png">
+    
+
+    <meta name="generator" content="hexo"/>
+    
+    <link rel="alternate" type="application/rss+xml" title="Laputa" href="/atom.xml">
+    
+
+    <link rel="canonical" href="http://laputa-er.github.io/2016/05/10/21 标准库/"/>
+
+    
+</head>
+
+<body class="home-template no-js">
+
+    <span class="mobile btn-mobile-menu">
+        <i class="fa fa-list btn-mobile-menu__icon"></i>
+        <i class="fa fa-angle-up btn-mobile-close__icon hidden"></i>
+    </span>
+
+    
+<header class="panel-cover panel-cover--collapsed" style="background-image: url(/images/background-cover.jpg)">
+  <div class="panel-main">
+    <div class="panel-main__inner panel-inverted">
+    <div class="panel-main__content">
+
+        <a href="/" title="前往 Laputa 的主页"><img src="/images/logo2.jpg" width="80" alt="Laputa logo" class="panel-cover__logo logo" /></a>
+        <h1 class="panel-cover__title panel-title"><a href="/" title="link to homepage for Laputa">Laputa</a></h1>
+        
+        <span class="panel-cover__subtitle panel-subtitle">已然在路上</span>
+        
+        <hr class="panel-cover__divider" />
+        <p class="panel-cover__description">If you can not act the way you want to live, you will one day live in accordance with the way to think about.</p>
+        <hr class="panel-cover__divider panel-cover__divider--secondary" />
+
+        <div class="navigation-wrapper">
+          <div>
+          <nav class="cover-navigation cover-navigation--primary">
+            <ul class="navigation">
+              <li class="navigation__item"><a href="/#blog" title="访问笔记" class="blog-button">笔记</a></li>
+            
+              <li class="navigation__item"><a href="/projects">项目作品</a></li>
+            
+              <li class="navigation__item"><a href="/aboutme">关于我</a></li>
+            
+            </ul>
+          </nav>
+          </div>
+          <div>
+          <nav class="cover-navigation navigation--social">
+  <ul class="navigation">
+
+  <!-- Weibo-->
+  
+
+  <!-- Github -->
+  
+  <li class="navigation__item">
+    <a href="https://github.com/laputa-er" title="查看我的GitHub主页" target="_blank">
+      <i class='social fa fa-github'></i>
+      <span class="label">Github</span>
+    </a>
+  </li>
+
+
+<!-- Stack Overflow -->
+        
+        <li class="navigation__item">
+            <a href="http://stackoverflow.com/users/6304138/laputa" title="Stack Overflow" target="_blank">
+                <i class='social fa fa-stack-overflow'></i>
+                <span class="label">Stack Overflow</span>
+            </a>
+        </li>
+        
+
+  <!-- Google Plus -->
+  
+
+<!-- Facebook -->
+
+  
+<!-- Twitter -->
+
+  
+
+  <li class="navigation__item">
+    <a href="/atom.xml" title="RSS" target="_blank">
+      <i class='social fa fa-rss'></i>
+      <span class="label">RSS</span>
+    </a>
+  </li>
+
+
+
+  </ul>
+</nav>
+
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+
+    <div class="panel-cover--overlay cover-blue"></div>
+  </div>
+</header>
+
+    <div class="content-wrapper">
+        <div class="content-wrapper__inner">
+            <article class="post-container post-container--single">
+
+  <header class="post-header">
+    <div class="post-meta">
+      <time datetime="2016-05-10T14:33:07.000Z" class="post-list__meta--date date">2016-05-10</time> &#8226; <span class="post-meta__tags tags">于&nbsp;
+  <a class="tag-link" href="/tags/c语言程序设计－现代方法/">c语言程序设计－现代方法</a>
+</span>
+    </div>
+    <h1 class="post-title">21	标准库</h1>
+  </header>
+
+  <section class="post">
+    <!-- Table of Contents -->
+    
+    <div id="top-toc">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#21-1-标准库的使用"><span class="toc-number">1.</span> <span class="toc-text">21.1    标准库的使用</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#21-1-1-包含标准头的程序中使用的名字的一些限制"><span class="toc-number">1.1.</span> <span class="toc-text">21.1.1    包含标准头的程序中使用的名字的一些限制</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#必需遵守"><span class="toc-number">1.1.1.</span> <span class="toc-text">必需遵守</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#建议遵守（避开保留字）"><span class="toc-number">1.1.2.</span> <span class="toc-text">建议遵守（避开保留字）</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#21-1-2-使用宏隐藏函数"><span class="toc-number">1.2.</span> <span class="toc-text">21.1.2    使用宏隐藏函数</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#21-2-标准库概述"><span class="toc-number">2.</span> <span class="toc-text">21.2    标准库概述</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#21-3-：常用定义"><span class="toc-number">3.</span> <span class="toc-text">21.3    ：常用定义</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#21-3-1-定义的类型"><span class="toc-number">3.1.</span> <span class="toc-text">21.3.1    定义的类型</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#21-3-2-定义的宏"><span class="toc-number">3.2.</span> <span class="toc-text">21.3.2    定义的宏</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#21-3-2-1-offsetof"><span class="toc-number">3.2.1.</span> <span class="toc-text">21.3.2.1    offsetof</span></a></li></ol></li></ol></li></ol>
+    </div>
+    <div id="tocShell"></div>
+    <div id="toc" class="toc-article">
+      <div class="btn-group drag-me">
+        <i class="social fa fa-ellipsis-v"></i>
+      </div>
+      <div class="btn-group dropup-catelog">
+        <button class="btn"><i class="social fa fa-list-ol"></i></button>
+        <div class="catelog-content">
+          <p class="toc-title-wrap">
+            <strong class="toc-title">文章目录</strong>
+          </p>
+          <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#21-1-标准库的使用"><span class="toc-number">1.</span> <span class="toc-text">21.1    标准库的使用</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#21-1-1-包含标准头的程序中使用的名字的一些限制"><span class="toc-number">1.1.</span> <span class="toc-text">21.1.1    包含标准头的程序中使用的名字的一些限制</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#必需遵守"><span class="toc-number">1.1.1.</span> <span class="toc-text">必需遵守</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#建议遵守（避开保留字）"><span class="toc-number">1.1.2.</span> <span class="toc-text">建议遵守（避开保留字）</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#21-1-2-使用宏隐藏函数"><span class="toc-number">1.2.</span> <span class="toc-text">21.1.2    使用宏隐藏函数</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#21-2-标准库概述"><span class="toc-number">2.</span> <span class="toc-text">21.2    标准库概述</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#21-3-：常用定义"><span class="toc-number">3.</span> <span class="toc-text">21.3    ：常用定义</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#21-3-1-定义的类型"><span class="toc-number">3.1.</span> <span class="toc-text">21.3.1    定义的类型</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#21-3-2-定义的宏"><span class="toc-number">3.2.</span> <span class="toc-text">21.3.2    定义的宏</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#21-3-2-1-offsetof"><span class="toc-number">3.2.1.</span> <span class="toc-text">21.3.2.1    offsetof</span></a></li></ol></li></ol></li></ol>
+        </div>
+      </div>
+    </div>
+    
+    <h2 id="21-1-标准库的使用"><a href="#21-1-标准库的使用" class="headerlink" title="21.1    标准库的使用"></a>21.1    标准库的使用</h2><blockquote>
+<p><strong>标准头：</strong>依据C标准，一个“标准头”不需要一定是文件，有可能内置在编译器自身中。<br><strong>标准库：</strong>C语言的标准库总共划分成<code>15</code>个部分，每个部分用一个头描述。<br><strong>扩展：</strong>许多编译器会使用扩展后的库，这类库（头文件）通常提供一些针对特定畸形或特定操作系统的函数（比如更多对屏幕或键盘操作的函数，用于支持图形或窗口界面的头等）</p>
+</blockquote>
+<h3 id="21-1-1-包含标准头的程序中使用的名字的一些限制"><a href="#21-1-1-包含标准头的程序中使用的名字的一些限制" class="headerlink" title="21.1.1    包含标准头的程序中使用的名字的一些限制"></a>21.1.1    包含标准头的程序中使用的名字的一些限制</h3><blockquote>
+<p><strong>意义：</strong>虽然这些规则并不总是强制性的，但不遵守这些规则可能会导致程序的可移植性下降。</p>
+</blockquote>
+<h4 id="必需遵守"><a href="#必需遵守" class="headerlink" title="必需遵守"></a>必需遵守</h4><ul>
+<li><strong>宏的名字：</strong>不能再使用在头文件中定义过的宏的名字</li>
+<li><strong>类型名（<code>typedef</code>）：</strong>具有文件作用域的库名（包括类型名）不可以在文件层次重新定义</li>
+</ul>
+<h4 id="建议遵守（避开保留字）"><a href="#建议遵守（避开保留字）" class="headerlink" title="建议遵守（避开保留字）"></a>建议遵守（避开保留字）</h4><ul>
+<li>由<code>_大写字母</code>或<code>__</code>开头的标识符</li>
+<li>由<code>_</code>开头的标识符（除非仅声明在函数内部）</li>
+<li>标准库中所有具备外部链接的标识符，特别是所有标准库中的函数</li>
+</ul>
+<h3 id="21-1-2-使用宏隐藏函数"><a href="#21-1-2-使用宏隐藏函数" class="headerlink" title="21.1.2    使用宏隐藏函数"></a>21.1.2    使用宏隐藏函数</h3><blockquote>
+<p><strong>说明：</strong>标准库中经常会为小的实际函数定义同名的宏函数，这是允许的，目的是提高程序的运行速度。<br><strong>取消隐藏：</strong>如果需要尽量缩小可执行代码的大小，或者需要一个指向这个库函数的指针，可以使用<code>undef</code>取消相应的红定义即可。</p>
+</blockquote>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="meta"># <span class="meta-keyword">include</span> <span class="meta-string">&lt;ctype.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="meta"># <span class="meta-keyword">undef</span> isprint <span class="comment">// 即使isprint没定义过，也不会有负面影响</span></span></span><br></pre></td></tr></table></figure>
+<p><strong>绕过宏调用：</strong>可以通过为函数名加圆括号来屏蔽个别宏调用<br><figure class="highlight c"><table><tr><td class="code"><pre><span class="line">(isptint)(); <span class="comment">// 预处理器无法分辨出带圆括号的宏，而编译器仍可认出isprint函数</span></span><br></pre></td></tr></table></figure></p>
+<h2 id="21-2-标准库概述"><a href="#21-2-标准库概述" class="headerlink" title="21.2    标准库概述"></a>21.2    标准库概述</h2><table>
+<thead>
+<tr>
+<th>概述</th>
+<th>标准头（15个）</th>
+<th>提供的功能</th>
+<th>相关章节</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>诊断</td>
+<td>assert.h</td>
+<td>仅包含<code>assert</code>宏，检查程序的状态，一旦任何检查失败，程序终止</td>
+<td><a href="">24.1</a></td>
+</tr>
+<tr>
+<td>字符处理</td>
+<td>ctype.h</td>
+<td>包括用于字符分类及大小写转换的函数</td>
+<td><a href="">23.4</a></td>
+</tr>
+<tr>
+<td>错误</td>
+<td>errno.h</td>
+<td>提供了<code>errno(&quot;errno number&quot;)</code>，errno是一个左值，可以在调用特定苦函数后进行监测，来判断调用过程中是否有错误发生</td>
+<td><a href="">24.2</a></td>
+</tr>
+<tr>
+<td>浮点型的特点</td>
+<td>float.h</td>
+<td>提供了用于描述浮点型特点的宏，包括值的范围及精度</td>
+<td><a href="">23.1</a></td>
+</tr>
+<tr>
+<td>整型的大小</td>
+<td>limits.h</td>
+<td>提供了用于描述整数类型和字符类型的宏，包括它们的最大值和最小值</td>
+<td><a href="">23.2</a></td>
+</tr>
+<tr>
+<td>本地化</td>
+<td>locale.h</td>
+<td>与本地化相关的行为，包括小数点的字符、货币的格式、字符集一集日期和时间的显示</td>
+<td><a href="">25.1</a></td>
+</tr>
+<tr>
+<td>数学计算</td>
+<td>math.h</td>
+<td>大量用于数据计算的函数，大部分使用double类型的实参，并返回一个double类型的值</td>
+<td><a href="">23.3</a></td>
+</tr>
+<tr>
+<td>非本地条转</td>
+<td>setjmp.h</td>
+<td>setjmp函数和longjmp函数<a href="**setjmp函数和long函数：**会“标记”程序中的一个位置，随后可以用`longjmp`返回被标记的位置，这些函数可以用来从一个函数跳转到另一个（仍然活动中的）函数中绕过正常的函数返回机制。`setjmp`函数和`longjmp`函数主要用来处理程序执行过程中的重大问题。">^21-2-7</a></td>
+<td><a href="">24.4</a></td>
+</tr>
+<tr>
+<td>信号处理</td>
+<td>signal.h</td>
+<td>用于异常情况（信号）处理的函数，包括终端和运行时错误<a href="**sinal函数：**可以设置一个函数，使系统会在给定信号发生后自动调用改函数；`raise函数`用来产生一个信号。">^21-2-8-signal</a></td>
+<td><a href="">24.4</a></td>
+</tr>
+<tr>
+<td>可变实际参数</td>
+<td>stdarg.h</td>
+<td>提供给函数可以处理不定个参数的的工具，就像<code>printf</code>和<code>scanf</code>函数</td>
+<td><a href="">26.1</a></td>
+</tr>
+<tr>
+<td>常用定义</td>
+<td>stddef.h</td>
+<td>提供了经常使用的类型和宏的定义</td>
+<td><a href="">21.3</a></td>
+</tr>
+<tr>
+<td>输入／输出</td>
+<td>stdio.h</td>
+<td>提供了大量用于输入／输出的函数，包括对顺序读写和随机读写文件的操作</td>
+<td><a href="">22.1</a></td>
+<td></td>
+</tr>
+<tr>
+<td>常用实用程序</td>
+<td>stdlib.h</td>
+<td>包含了大量无法华贵其它头的函数[^stdlib]</td>
+<td><a href="">26.2</a></td>
+</tr>
+<tr>
+<td>字符串处理</td>
+<td>string.h</td>
+<td>提供了用于进行字符串操作的函数，包括肤质、拼接、比较以及搜索</td>
+<td><a href="">23.5</a></td>
+</tr>
+<tr>
+<td>日期与时间</td>
+<td>time.h</td>
+<td>提供相应的函数来获取日期和时间、操作时间和以多种方式显示时间等。</td>
+<td><a href="">26.3</a></td>
+</tr>
+</tbody>
+</table>
+<h2 id="21-3-：常用定义"><a href="#21-3-：常用定义" class="headerlink" title="21.3    ：常用定义"></a>21.3    <stddef.h>：常用定义</stddef.h></h2><blockquote>
+<p><strong>说明：</strong><code>stddef.h</code>提供了常用的类型和宏的定义，但没有声明任何函数。</p>
+</blockquote>
+<h3 id="21-3-1-定义的类型"><a href="#21-3-1-定义的类型" class="headerlink" title="21.3.1    定义的类型"></a>21.3.1    定义的类型</h3><table>
+<thead>
+<tr>
+<th>类型</th>
+<th>说明</th>
+<th>原始类型</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>ptrdiff_t</td>
+<td>当记性指针相减运算时，其结果的类型</td>
+<td>整数类型</td>
+</tr>
+<tr>
+<td>size_t</td>
+<td>运算符<code>sizeof</code>的返回值类型</td>
+<td>整数类型</td>
+</tr>
+<tr>
+<td>wchar_t</td>
+<td>一种足够大的、可以用于表示所有支持的地区的所有字符的类型</td>
+<td>整数类型</td>
+</tr>
+</tbody>
+</table>
+<h3 id="21-3-2-定义的宏"><a href="#21-3-2-定义的宏" class="headerlink" title="21.3.2    定义的宏"></a>21.3.2    定义的宏</h3><table>
+<thead>
+<tr>
+<th>宏</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>NULL</td>
+<td>空指针</td>
+</tr>
+<tr>
+<td>offsetof</td>
+<td>计算结构的起点到指定成员间的字节数</td>
+</tr>
+</tbody>
+</table>
+<h4 id="21-3-2-1-offsetof"><a href="#21-3-2-1-offsetof" class="headerlink" title="21.3.2.1    offsetof"></a>21.3.2.1    offsetof</h4><blockquote>
+<p><strong>说明：</strong>计算结构成员的偏移量（距结构起点的距离）<br><strong>用途：</strong>对人和编译器都会返回正确的偏移量，使我们可以编写一致性更好的程序。<br><strong>结构体成员的偏移量：</strong>一些编译器会在结构中留下一些空洞（无效字节），从而影响到<code>offsetof</code>产生的值。</p>
+</blockquote>
+<p><code>@param {struct}</code> 结构类型本身（不是实例）<br><code>@param {*}</code> 结构的成员<br><code>@return {int}</code> 结构的起点到指定成员的字节数</p>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="keyword">struct</span> s &#123;</span><br><span class="line">	<span class="keyword">char</span> a;</span><br><span class="line">	<span class="keyword">int</span> b[<span class="number">2</span>];</span><br><span class="line">	<span class="keyword">float</span> c;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line">offsetof(<span class="keyword">struct</span> s, a); <span class="comment">// 0，C语言确保结构的第一个成员的地址与结构自身地址相同</span></span><br><span class="line"></span><br><span class="line">offsetof(<span class="keyword">struct</span> s, b); <span class="comment">// 1（或2）</span></span><br><span class="line">offsetof(<span class="keyword">struct</span> s, c); <span class="comment">// 5（或6）</span></span><br></pre></td></tr></table></figure>
+<hr>
+<p>[^stdlib]:  包含在<code>&lt;stdlib.h&gt;</code>中的函数可以将字符串转换成数、产生随机值、执行内存管理任务、域操作系统通信、执行搜索与排序以及对多字节字符及字符串进行操作。</p>
+
+  </section>
+
+</article>
+
+
+
+
+            <footer class="footer">
+    <span class="footer__copyright">
+        本站点采用<a href="http://creativecommons.org/licenses/by-nc-sa/4.0/">知识共享署名-非商业性使用-相同方式共享 4.0 国际许可协议</a>
+    </span>
+    <span class="footer__copyright">
+        基于 <a href="http://hexo.io">Hexo</a> 搭建，感谢 <a href="https://pages.github.com/">GitHub Pages</a> 提供免费的托管服务
+    </span>
+    <span class="footer__copyright">
+        &copy; 2016 - 
+        本站修改自<a href="https://github.com/lenbo-ma/hexo-theme-vno" target="_blank">hexo-theme-vno</a>
+    </span>
+</footer>
+
+        </div>
+    </div>
+
+    <script src="http://cdn.bootcss.com/jquery/2.1.4/jquery.min.js"></script>
+    <script src="/js/main.js"></script>
+
+     
+</body>
+</html>
