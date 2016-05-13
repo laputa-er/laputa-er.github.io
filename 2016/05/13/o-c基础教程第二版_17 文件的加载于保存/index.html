@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    
+    <title>17 文件的加载与保存 | Laputa</title>
+    <meta name="renderer" content="webkit">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="MobileOptimized" content="320">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+    <meta name="description" content="do things for fun">
+
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="17 文件的加载与保存 | Laputa">
+    <meta name="twitter:description" content="do things for fun">
+
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="17 文件的加载与保存 | Laputa">
+    <meta property="og:description" content="do things for fun">
+
+    
+    <meta name="author" content="Sean">
+    
+    <link rel="stylesheet" href="/css/vno.css">
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css">
+
+    
+    <link rel="icon" href="/images/favicon.png">
+    
+
+    <meta name="generator" content="hexo"/>
+    
+    <link rel="alternate" type="application/rss+xml" title="Laputa" href="/atom.xml">
+    
+
+    <link rel="canonical" href="http://laputa-er.github.io/2016/05/13/o-c基础教程第二版_17 文件的加载于保存/"/>
+
+    
+</head>
+
+<body class="home-template no-js">
+
+    <span class="mobile btn-mobile-menu">
+        <i class="fa fa-list btn-mobile-menu__icon"></i>
+        <i class="fa fa-angle-up btn-mobile-close__icon hidden"></i>
+    </span>
+    
+<header class="panel-cover panel-cover--collapsed" style="background-image: url(/images/mengxiang.jpg)">
+  <div class="panel-main">
+    <div class="panel-main__inner panel-inverted">
+    <div class="panel-main__content">
+
+        <a href="/" title="前往 Laputa 的主页"><img src="/images/logo2.jpg" width="80" alt="Laputa logo" class="panel-cover__logo logo" /></a>
+        <h1 class="panel-cover__title panel-title"><a href="/" title="link to homepage for Laputa">Laputa</a></h1>
+        
+        <span class="panel-cover__subtitle panel-subtitle">已然在路上</span>
+        
+        <hr class="panel-cover__divider" />
+        <p class="panel-cover__description">If you can not act the way you want to live, you will one day live in accordance with the way to think about.</p>
+        <hr class="panel-cover__divider panel-cover__divider--secondary" />
+
+        <div class="navigation-wrapper">
+          <div>
+          <nav class="cover-navigation cover-navigation--primary">
+            <ul class="navigation">
+              <li class="navigation__item"><a href="/#blog" title="访问笔记" class="blog-button">笔记</a></li>
+            
+              <li class="navigation__item"><a href="/projects">项目作品</a></li>
+            
+              <li class="navigation__item"><a href="/aboutme">关于我</a></li>
+            
+            </ul>
+          </nav>
+          </div>
+          <div>
+          <nav class="cover-navigation navigation--social">
+  <ul class="navigation">
+
+  <!-- Weibo-->
+  
+
+  <!-- Github -->
+  
+  <li class="navigation__item">
+    <a href="https://github.com/laputa-er" title="查看我的GitHub主页" target="_blank">
+      <i class='social fa fa-github'></i>
+      <span class="label">Github</span>
+    </a>
+  </li>
+
+
+<!-- Stack Overflow -->
+        
+        <li class="navigation__item">
+            <a href="http://stackoverflow.com/users/6304138/laputa" title="Stack Overflow" target="_blank">
+                <i class='social fa fa-stack-overflow'></i>
+                <span class="label">Stack Overflow</span>
+            </a>
+        </li>
+        
+
+  <!-- Google Plus -->
+  
+
+<!-- Facebook -->
+
+  
+<!-- Twitter -->
+
+  
+
+  <li class="navigation__item">
+    <a href="/atom.xml" title="RSS" target="_blank">
+      <i class='social fa fa-rss'></i>
+      <span class="label">RSS</span>
+    </a>
+  </li>
+
+
+
+  </ul>
+</nav>
+
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+
+    <div class="panel-cover--overlay cover-blue"></div>
+  </div>
+</header>
+    
+    
+    <div class="content-wrapper">
+        <div class="content-wrapper__inner">
+            <article class="post-container post-container--single">
+
+  <header class="post-header">
+    <div class="post-meta">
+      <time datetime="2016-05-13T02:42:12.000Z" class="post-list__meta--date date">2016-05-13</time> &#8226; <span class="post-meta__tags tags">于&nbsp;
+  <a class="tag-link" href="/tags/Objective-C基础教程第二版/">Objective-C基础教程第二版</a>
+</span>
+    </div>
+    <h1 class="post-title">17 文件的加载与保存</h1>
+  </header>
+
+  <section class="post">
+    <!-- Table of Contents -->
+    
+    <div id="top-toc">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#17-1-属性列表"><span class="toc-number">1.</span> <span class="toc-text">17.1    属性列表</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#17-1-1-NSDate"><span class="toc-number">1.1.</span> <span class="toc-text">17.1.1    NSDate</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#date类方法"><span class="toc-number">1.1.1.</span> <span class="toc-text">date类方法</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#dateWithTimeIntervalSinceNow类方法"><span class="toc-number">1.1.2.</span> <span class="toc-text">dateWithTimeIntervalSinceNow类方法</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#17-1-2-NSData"><span class="toc-number">1.2.</span> <span class="toc-text">17.1.2    NSData</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#dataWithBytes类方法"><span class="toc-number">1.2.1.</span> <span class="toc-text">dataWithBytes类方法</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#17-1-3-写入和读取属性列表"><span class="toc-number">1.3.</span> <span class="toc-text">17.1.3    写入和读取属性列表</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#writeToFile实例方法"><span class="toc-number">1.3.1.</span> <span class="toc-text">writeToFile实例方法</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#arrayWithContentsOfFile类方法"><span class="toc-number">1.3.2.</span> <span class="toc-text">arrayWithContentsOfFile类方法</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#17-1-4-修改对象类型"><span class="toc-number">1.4.</span> <span class="toc-text">17.1.4    修改对象类型</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#dataFromPropertyList类方法"><span class="toc-number">1.4.1.</span> <span class="toc-text">dataFromPropertyList类方法</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#propertyListFromData实例方法"><span class="toc-number">1.4.2.</span> <span class="toc-text">propertyListFromData实例方法</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#17-2-编码对象"><span class="toc-number">2.</span> <span class="toc-text">17.2    编码对象</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#NSCoding协议"><span class="toc-number">2.1.</span> <span class="toc-text">NSCoding协议</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#archiveDataWithRootObject类方法"><span class="toc-number">2.2.</span> <span class="toc-text">archiveDataWithRootObject类方法</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#17-3-小结"><span class="toc-number">3.</span> <span class="toc-text">17.3    小结</span></a></li></ol>
+    </div>
+    <div id="tocShell"></div>
+    <div id="toc" class="toc-article">
+      <div class="btn-group drag-me">
+        <i class="social fa fa-ellipsis-v"></i>
+      </div>
+      <div class="btn-group dropup-catelog">
+        <button class="btn"><i class="social fa fa-list-ol"></i></button>
+        <div class="catelog-content">
+          <p class="toc-title-wrap">
+            <strong class="toc-title">文章目录</strong>
+          </p>
+          <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#17-1-属性列表"><span class="toc-number">1.</span> <span class="toc-text">17.1    属性列表</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#17-1-1-NSDate"><span class="toc-number">1.1.</span> <span class="toc-text">17.1.1    NSDate</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#date类方法"><span class="toc-number">1.1.1.</span> <span class="toc-text">date类方法</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#dateWithTimeIntervalSinceNow类方法"><span class="toc-number">1.1.2.</span> <span class="toc-text">dateWithTimeIntervalSinceNow类方法</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#17-1-2-NSData"><span class="toc-number">1.2.</span> <span class="toc-text">17.1.2    NSData</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#dataWithBytes类方法"><span class="toc-number">1.2.1.</span> <span class="toc-text">dataWithBytes类方法</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#17-1-3-写入和读取属性列表"><span class="toc-number">1.3.</span> <span class="toc-text">17.1.3    写入和读取属性列表</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#writeToFile实例方法"><span class="toc-number">1.3.1.</span> <span class="toc-text">writeToFile实例方法</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#arrayWithContentsOfFile类方法"><span class="toc-number">1.3.2.</span> <span class="toc-text">arrayWithContentsOfFile类方法</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#17-1-4-修改对象类型"><span class="toc-number">1.4.</span> <span class="toc-text">17.1.4    修改对象类型</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#dataFromPropertyList类方法"><span class="toc-number">1.4.1.</span> <span class="toc-text">dataFromPropertyList类方法</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#propertyListFromData实例方法"><span class="toc-number">1.4.2.</span> <span class="toc-text">propertyListFromData实例方法</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#17-2-编码对象"><span class="toc-number">2.</span> <span class="toc-text">17.2    编码对象</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#NSCoding协议"><span class="toc-number">2.1.</span> <span class="toc-text">NSCoding协议</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#archiveDataWithRootObject类方法"><span class="toc-number">2.2.</span> <span class="toc-text">archiveDataWithRootObject类方法</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#17-3-小结"><span class="toc-number">3.</span> <span class="toc-text">17.3    小结</span></a></li></ol>
+        </div>
+      </div>
+    </div>
+    
+    <h2 id="17-1-属性列表"><a href="#17-1-属性列表" class="headerlink" title="17.1    属性列表"></a>17.1    属性列表</h2><h3 id="17-1-1-NSDate"><a href="#17-1-1-NSDate" class="headerlink" title="17.1.1    NSDate"></a>17.1.1    NSDate</h3><h4 id="date类方法"><a href="#date类方法" class="headerlink" title="date类方法"></a>date类方法</h4><blockquote>
+<p><strong>说明：</strong>获取当前日期和时间。<br><strong>原型：</strong><code>NSDate</code></p>
+</blockquote>
+<figure class="highlight objectivec"><table><tr><td class="code"><pre><span class="line"><span class="comment">/**</span><br><span class="line">* @return &#123;instancetype&#125; NSDate类实例</span><br><span class="line">*/</span></span><br><span class="line">+ (instancetype)date;</span><br></pre></td></tr></table></figure>
+<h4 id="dateWithTimeIntervalSinceNow类方法"><a href="#dateWithTimeIntervalSinceNow类方法" class="headerlink" title="dateWithTimeIntervalSinceNow类方法"></a>dateWithTimeIntervalSinceNow类方法</h4><blockquote>
+<p><strong>说明：</strong>获取与当前时间相隔一定时差的日期<br><strong>原型：</strong><code>NSDate</code></p>
+</blockquote>
+<figure class="highlight objectivec"><table><tr><td class="code"><pre><span class="line"><span class="comment">/**</span><br><span class="line">*@return &#123;instancetype&#125; NSDate实例</span><br><span class="line">*/</span></span><br><span class="line">+ (instancetype)dateWithTimeIntervalSinceNow:(<span class="built_in">NSTimeInterval</span>)secs;</span><br></pre></td></tr></table></figure>
+<figure class="highlight objectivec"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 获取当前的日期和时间</span></span><br><span class="line"><span class="built_in">NSDate</span> *date = [<span class="built_in">NSDate</span> date];</span><br><span class="line"><span class="built_in">NSLog</span>(<span class="string">@"today is %@"</span>, date);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 获取24小时之前的时间</span></span><br><span class="line"><span class="built_in">NSDate</span> *yesterday = [<span class="built_in">NSDate</span> dateWithTimeIntervalSinceNow:-(<span class="number">24</span>* <span class="number">60</span> *<span class="number">60</span>)];</span><br><span class="line"><span class="built_in">NSLog</span>(<span class="string">@"yesterday is %@"</span>, yesterday);</span><br></pre></td></tr></table></figure>
+<h3 id="17-1-2-NSData"><a href="#17-1-2-NSData" class="headerlink" title="17.1.2    NSData"></a>17.1.2    NSData</h3><blockquote>
+<p><strong>说明：</strong>该类可以包含大量的字节，可以获得数据的长度和指向字节启示位置的指针<br><strong>用途：</strong>如果想将数据块传递给一个函数或方法，可以通过传递一个<code>NSData</code>来实现。<br>注意：<code>NSData</code>是一个对象，支持<code>自动释放</code>的，常规的内存管理对它是有效的，因而无需担心内存清理的问题。</p>
+</blockquote>
+<h4 id="dataWithBytes类方法"><a href="#dataWithBytes类方法" class="headerlink" title="dataWithBytes类方法"></a>dataWithBytes类方法</h4><blockquote>
+<p><strong>说明：</strong>创建一个保存一个普通C字符串（一个字节序列）的<code>NSData</code>对象。<br><strong>原型：</strong><code>NSData</code></p>
+</blockquote>
+<figure class="highlight objectivec"><table><tr><td class="code"><pre><span class="line"><span class="comment">/**</span><br><span class="line">* @param &#123;nullable const void *&#125; bytes 字符串</span><br><span class="line">* @param &#123;NSUInteger&#125; length 字符串的长度（包括尾部的`\0`）</span><br><span class="line">* @return &#123;instancetype&#125; NSData实例</span><br><span class="line">*/</span></span><br><span class="line">+ (instancetype)dataWithBytes:(nullable <span class="keyword">const</span> <span class="keyword">void</span> *)bytes length:(<span class="built_in">NSUInteger</span>)length;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p><strong>扩展：</strong><code>NSData</code>是不可变的，创建后不能改变其中的内容来；<code>NSMutableData</code>是可变的，可以在数据中添加和删除字节。</p>
+</blockquote>
+<figure class="highlight objectivec"><table><tr><td class="code"><pre><span class="line"><span class="comment">// c 语言字符串</span></span><br><span class="line"><span class="keyword">const</span> <span class="keyword">char</span> *string = <span class="string">"hi there, this is a C string!"</span>;</span><br><span class="line"><span class="comment">// 创建 NSData 对象</span></span><br><span class="line"><span class="built_in">NSData</span> *data = [<span class="built_in">NSData</span> dataWithBytes:string length:strlen(string) + <span class="number">1</span>];</span><br><span class="line"><span class="comment">// 操作 NSData 对象</span></span><br><span class="line"><span class="built_in">NSLog</span>(<span class="string">@"data is %@"</span>, data);</span><br><span class="line"><span class="built_in">NSLog</span>(<span class="string">@"%ld byte string is '%s'"</span>, [data length], [data bytes]);</span><br></pre></td></tr></table></figure>
+<h3 id="17-1-3-写入和读取属性列表"><a href="#17-1-3-写入和读取属性列表" class="headerlink" title="17.1.3    写入和读取属性列表"></a>17.1.3    写入和读取属性列表</h3><blockquote>
+<p><strong>说明：</strong>属性列表类可以存储到文件中，也可以从文件中读取出来。此外，<code>Xcode</code>包含一个属性列表编辑器，可以用来方便地查看<code>plist</code>文件。<br><strong>注意：</strong>如果出现问题，下面介绍的函数都不会返回具体的错误的原因。</p>
+</blockquote>
+<h4 id="writeToFile实例方法"><a href="#writeToFile实例方法" class="headerlink" title="writeToFile实例方法"></a>writeToFile实例方法</h4><blockquote>
+<p><strong>说明：</strong>将属性列表的内容写入到文件。<br><strong>技巧：</strong>应尽量使用<code>atomically</code>的方式保存文件，除非保存的文件容量非常大，会占用用户大量的磁盘空间。<br><strong>原型：</strong><code>NSArray</code></p>
+</blockquote>
+<figure class="highlight objectivec"><table><tr><td class="code"><pre><span class="line"><span class="comment">/**</span><br><span class="line">* @param &#123;NSString *&#125; 文件路径</span><br><span class="line">* @param &#123;BOOL&#125;useAuxiliaryFile 是否首先将文件内容保存到临时文件中（防止极端情况下原始文件被破坏）</span><br><span class="line">*/</span></span><br><span class="line">(<span class="built_in">BOOL</span>)writeToFile:(<span class="built_in">NSString</span> *)path atomically:(<span class="built_in">BOOL</span>)useAuxiliaryFile;</span><br></pre></td></tr></table></figure>
+<h4 id="arrayWithContentsOfFile类方法"><a href="#arrayWithContentsOfFile类方法" class="headerlink" title="arrayWithContentsOfFile类方法"></a>arrayWithContentsOfFile类方法</h4><blockquote>
+<p><strong>说明：</strong>读取文件中的数组信息并据此创建数组。<br><strong>原型：</strong><code>NSArray</code></p>
+</blockquote>
+<figure class="highlight objectivec"><table><tr><td class="code"><pre><span class="line"><span class="comment">/**</span><br><span class="line">* @param &#123;NSString *&#125; path 文件路径</span><br><span class="line">* @return &#123;NSArray&#125; 数组实例</span><br><span class="line">*/</span></span><br><span class="line">+ (nullable <span class="built_in">NSArray</span>&lt;ObjectType&gt; *)arrayWithContentsOfFile:(<span class="built_in">NSString</span> *)path;</span><br></pre></td></tr></table></figure>
+<figure class="highlight objectivec"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 创建 NSArray 实例</span></span><br><span class="line"><span class="built_in">NSArray</span> *phrase;</span><br><span class="line">phrase = [<span class="built_in">NSArray</span> arrayWithObjects:<span class="string">@"I"</span>, <span class="string">@"seem"</span>, <span class="string">@"to"</span>, <span class="string">@"be"</span>, <span class="string">@"a"</span>, <span class="string">@"verb"</span>, <span class="literal">nil</span>];</span><br><span class="line"><span class="comment">// 将 NSArray 对象写入文件</span></span><br><span class="line">[phrase writeToFile:<span class="string">@"/tmp/verbiage.txt"</span> atomically:<span class="literal">YES</span>];</span><br><span class="line"><span class="comment">// 通过文件创建 NSArray 实例</span></span><br><span class="line"><span class="built_in">NSArray</span> *phrase2 = [<span class="built_in">NSArray</span> arrayWithContentsOfFile:<span class="string">@"/tmp/veribage.txt"</span>];</span><br><span class="line"><span class="built_in">NSLog</span>(<span class="string">@"%@"</span>, phrase2);</span><br></pre></td></tr></table></figure>
+<p><em>/tmp/verbiage.txt</em></p>
+<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line">&lt;?xml version="1.0" encoding="UTF-8"?&gt;</span><br><span class="line"><span class="meta">&lt;!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd"&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">plist</span> <span class="attr">version</span>=<span class="string">"1.0"</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">array</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">string</span>&gt;</span>I<span class="tag">&lt;/<span class="name">string</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">string</span>&gt;</span>seem<span class="tag">&lt;/<span class="name">string</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">string</span>&gt;</span>to<span class="tag">&lt;/<span class="name">string</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">string</span>&gt;</span>be<span class="tag">&lt;/<span class="name">string</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">string</span>&gt;</span>a<span class="tag">&lt;/<span class="name">string</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">string</span>&gt;</span>verb<span class="tag">&lt;/<span class="name">string</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">array</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">plist</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<h3 id="17-1-4-修改对象类型"><a href="#17-1-4-修改对象类型" class="headerlink" title="17.1.4    修改对象类型"></a>17.1.4    修改对象类型</h3><blockquote>
+<p><strong>说明：</strong>存储或加载属性列表时可以使用<code>NSPropertyListSerialization</code>添加一些设定项。</p>
+</blockquote>
+<h4 id="dataFromPropertyList类方法"><a href="#dataFromPropertyList类方法" class="headerlink" title="dataFromPropertyList类方法"></a>dataFromPropertyList类方法</h4><blockquote>
+<p><strong>说明：</strong>存储到文件时指定设定项。已过时。<br><strong>原型：</strong><code>NSPropertyListSerialization</code></p>
+</blockquote>
+<figure class="highlight objectivec"><table><tr><td class="code"><pre><span class="line"><span class="comment">/**</span><br><span class="line">* @param &#123;id&#125; plist 属性列表类型对象</span><br><span class="line">* @param &#123;NSPropertyListFormat&#125; format 存储属性列表的方式</span><br><span class="line">* @param &#123;NSString *&#125; errorDescription 错误信息</span><br><span class="line">*/</span></span><br><span class="line">+ (nullable <span class="built_in">NSData</span> *)dataFromPropertyList:(<span class="keyword">id</span>)plist format:(<span class="built_in">NSPropertyListFormat</span>)format errorDescription:(<span class="keyword">out</span> __<span class="keyword">strong</span> <span class="built_in">NSString</span> * __nullable * __nullable)errorString <span class="built_in">NS_DEPRECATED</span>(<span class="number">10</span>_0, <span class="number">10</span>_10, <span class="number">2</span>_0, <span class="number">8</span>_0, <span class="string">"Use dataWithPropertyList:format:options:error: instead."</span>);</span><br></pre></td></tr></table></figure>
+<figure class="highlight objectivec"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 可变数组(首都集合)</span></span><br><span class="line"><span class="built_in">NSMutableArray</span> *capitols = [<span class="built_in">NSMutableArray</span> arrayWithCapacity:<span class="number">10</span>];</span><br><span class="line"><span class="comment">// 第一个国家</span></span><br><span class="line"><span class="built_in">NSMutableDictionary</span> *capitol = [<span class="built_in">NSMutableDictionary</span> dictionaryWithObject:<span class="string">@"Canada"</span> forKey:<span class="string">@"country"</span>];</span><br><span class="line">[capitol setObject:<span class="string">@"Ottawa"</span> forKey:<span class="string">@"capitol"</span>];</span><br><span class="line">[capitols addObject:capitol];</span><br><span class="line"><span class="comment">// 第二个国家</span></span><br><span class="line">capitol = [<span class="built_in">NSMutableDictionary</span> dictionaryWithObject:<span class="string">@"Norway"</span> forKey:<span class="string">@"country"</span>];</span><br><span class="line">[capitol setObject:<span class="string">@"Oslo"</span> forKey:<span class="string">@"capitol"</span>];</span><br><span class="line">[capitols addObject:capitol];</span><br><span class="line"></span><br><span class="line"><span class="built_in">NSString</span> *error = <span class="literal">nil</span>;</span><br><span class="line"><span class="comment">// 将 plist 数据内容以二进制形式写入文件</span></span><br><span class="line"><span class="built_in">NSData</span> *encodeArray = [<span class="built_in">NSPropertyListSerialization</span> dataFromPropertyList:capitols format:<span class="built_in">NSPropertyListXMLFormat_v1_0</span> errorDescription:&amp;error];</span><br><span class="line">[encodeArray writeToFile:<span class="string">@"/tmp/capitols.txt"</span> atomically:<span class="literal">YES</span>];</span><br></pre></td></tr></table></figure>
+<h4 id="propertyListFromData实例方法"><a href="#propertyListFromData实例方法" class="headerlink" title="propertyListFromData实例方法"></a>propertyListFromData实例方法</h4><blockquote>
+<p><strong>说明：</strong>以指定形式将文件读取到内存。<br><strong>原型：</strong><code>NSPropertyListSerialization</code></p>
+</blockquote>
+<figure class="highlight objectivec"><table><tr><td class="code"><pre><span class="line"><span class="comment">/**</span><br><span class="line">* @param &#123;NSData *&#125; data 从文件读取原始数据</span><br><span class="line">* @param &#123;NSPropertyListMutabilityOptions&#125; opt format 读取形式</span><br><span class="line">* @param &#123;NSString *&#125; errorString 可能的错误信息</span><br><span class="line">*/</span></span><br><span class="line">+ (nullable <span class="keyword">id</span>)propertyListFromData:(<span class="built_in">NSData</span> *)data mutabilityOption:(<span class="built_in">NSPropertyListMutabilityOptions</span>)opt format:(nullable <span class="built_in">NSPropertyListFormat</span> *)format errorDescription:(<span class="keyword">out</span> __<span class="keyword">strong</span> <span class="built_in">NSString</span> * __nullable * __nullable)errorString <span class="built_in">NS_DEPRECATED</span>(<span class="number">10</span>_0, <span class="number">10</span>_10, <span class="number">2</span>_0, <span class="number">8</span>_0, <span class="string">"Use propertyListWithData:options:format:error: instead."</span>);</span><br></pre></td></tr></table></figure>
+<figure class="highlight objectivec"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 从文件中读取属性列表数据</span></span><br><span class="line"><span class="built_in">NSData</span> *data = [<span class="built_in">NSData</span> dataWithContentsOfFile:<span class="string">@"/tmp/capitols.txt"</span>];</span><br><span class="line"></span><br><span class="line"><span class="comment">// 以指定的格式将文件中的内容读取到内存</span></span><br><span class="line"><span class="built_in">NSPropertyListFormat</span> properyListFormat = <span class="built_in">NSPropertyListXMLFormat_v1_0</span>;</span><br><span class="line"><span class="built_in">NSString</span> *error = <span class="literal">nil</span>;</span><br><span class="line"><span class="built_in">NSMutableArray</span> *capitols = [<span class="built_in">NSPropertyListSerialization</span> propertyListFromData:data mutabilityOption:<span class="built_in">NSPropertyListMutableContainersAndLeaves</span> format:&amp;properyListFormat errorDescription:&amp;error];</span><br><span class="line"><span class="built_in">NSLog</span>(<span class="string">@"capitols %@"</span>, capitols);</span><br></pre></td></tr></table></figure>
+<h2 id="17-2-编码对象"><a href="#17-2-编码对象" class="headerlink" title="17.2    编码对象"></a>17.2    编码对象</h2><blockquote>
+<p><strong>说明：</strong><code>Cocoa</code>具备一种将任意对象转换成某种格式并保存到磁盘中的机制。</p>
+<ul>
+<li><strong>序列化（编码）：</strong>将对象的实例变量和其他数据编码为数据块，然后保存到磁盘</li>
+<li><strong>反序列化（解码）：</strong>将数据块读回内存，并基于保存的数据创建新对象</li>
+</ul>
+</blockquote>
+<h3 id="NSCoding协议"><a href="#NSCoding协议" class="headerlink" title="NSCoding协议"></a>NSCoding协议</h3><blockquote>
+<p><strong>说明：</strong>通过采纳该协议，可以使对象具备<code>序列化和反序列化</code>的能力。<br><strong>原型：</strong></p>
+</blockquote>
+<figure class="highlight objectivec"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">@protocol</span> <span class="title">NSCoding</span></span></span><br><span class="line"><span class="comment">// 序列化</span></span><br><span class="line">- (<span class="keyword">void</span>) encodeWithCoder: (<span class="built_in">NSCoder</span> *) encoder;</span><br><span class="line"><span class="comment">// 反序列化</span></span><br><span class="line">- (<span class="keyword">id</span>) initWithCoder: (<span class="built_in">NSCoder</span> *) decoder;</span><br><span class="line">&gt;<span class="keyword">@end</span></span><br></pre></td></tr></table></figure>
+<h3 id="archiveDataWithRootObject类方法"><a href="#archiveDataWithRootObject类方法" class="headerlink" title="archiveDataWithRootObject类方法"></a>archiveDataWithRootObject类方法</h3><blockquote>
+<p><strong>说明：</strong>对对象进行编码。</p>
+<ol>
+<li>创建了一个<code>KSKeyedArchier</code>实例</li>
+<li>将上一步创建的实例传递给参数指定的对象的<code>encodeWithCoder</code>方法</li>
+<li>递归编码自身使用到的其它对象，比如字符串、数组及放入数组中的任何对象</li>
+<li>所有对象完成键值编码后，被放入一个<code>NSData</code>对象并返回</li>
+</ol>
+<p><strong>原型：</strong><code>KSKeyedArchiver</code></p>
+</blockquote>
+<figure class="highlight objectivec"><table><tr><td class="code"><pre><span class="line"><span class="comment">/**</span><br><span class="line">* @param &#123;id&#125; rootObject 要被序列化的对象</span><br><span class="line">* @return &#123;NSData *&#125; 序列化为 NSData 型数据</span><br><span class="line">*/</span></span><br><span class="line">+ (<span class="built_in">NSData</span> *)archivedDataWithRootObject:(<span class="keyword">id</span>)rootObject;</span><br></pre></td></tr></table></figure>
+<p><em>Thingie.h</em></p>
+<figure class="highlight objectivec"><table><tr><td class="code"><pre><span class="line"><span class="meta">#import <span class="meta-string">&lt;Foundation/Foundation.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">@interface</span> <span class="title">Thingie</span> : <span class="title">NSObject</span></span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="built_in">NSString</span> *name;</span><br><span class="line">    <span class="keyword">int</span> magicNumber;</span><br><span class="line">    <span class="keyword">float</span> shoeSize;</span><br><span class="line">    <span class="built_in">NSMutableArray</span> *subThingies;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">@property</span> (<span class="keyword">copy</span>) <span class="built_in">NSString</span> *name;</span><br><span class="line"><span class="keyword">@property</span> <span class="keyword">int</span> magicNumber;</span><br><span class="line"><span class="keyword">@property</span> <span class="keyword">float</span> shoeSize;</span><br><span class="line"><span class="keyword">@property</span> (retain) <span class="built_in">NSMutableArray</span> *subThingies;</span><br><span class="line"></span><br><span class="line">- (<span class="keyword">id</span>) initWithName: (<span class="built_in">NSString</span> *) n</span><br><span class="line">        magicNumber: (<span class="keyword">int</span>) mn</span><br><span class="line">           shoeSize: (<span class="keyword">float</span>) ss;</span><br><span class="line"></span><br><span class="line"><span class="keyword">@end</span></span><br></pre></td></tr></table></figure>
+<p><em>Thingie.m</em></p>
+<figure class="highlight objectivec"><table><tr><td class="code"><pre><span class="line"><span class="meta">#import <span class="meta-string">"Thingie.h"</span></span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">@implementation</span> <span class="title">Thingie</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">@synthesize</span> name;</span><br><span class="line"><span class="keyword">@synthesize</span> magicNumber;</span><br><span class="line"><span class="keyword">@synthesize</span> shoeSize;</span><br><span class="line"><span class="keyword">@synthesize</span> subThingies;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 便利构造函数：通过用户名</span></span><br><span class="line">- (<span class="keyword">id</span>) initWithName:(<span class="built_in">NSString</span> *)</span><br><span class="line">        magicNumber:(<span class="keyword">int</span>)mn</span><br><span class="line">        shoeSize:(<span class="keyword">float</span>)ss</span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">if</span> (<span class="keyword">self</span> = [<span class="keyword">super</span> init])</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">self</span>.name = n;</span><br><span class="line">        <span class="keyword">self</span>.magicNumber = mn;</span><br><span class="line">        <span class="keyword">self</span>.showSize = ss;</span><br><span class="line">        <span class="keyword">self</span>.subThingies = [<span class="built_in">NSMutableArray</span> array];</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> (<span class="keyword">self</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 采纳协议:反序列化</span></span><br><span class="line">- (<span class="keyword">id</span>) initWithCoder: (<span class="built_in">NSCoder</span> *) decoder</span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">if</span> (<span class="keyword">self</span> = [<span class="keyword">super</span> init])</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">self</span>.name = [decoder decodeObjectForKey:<span class="string">@"name"</span>];</span><br><span class="line">        <span class="keyword">self</span>.magicNumber = [decoder decodeIntForKey:<span class="string">@"magicNumber"</span>];</span><br><span class="line">        <span class="keyword">self</span>.shoeSize = [decoder decodeIntForKey:<span class="string">@"shoeSize"</span>];</span><br><span class="line">        <span class="keyword">self</span>.subThingies = [decoder decodeObjectForKey:<span class="string">@"subThingies"</span>];</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> (<span class="keyword">self</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 采纳协议：序列化</span></span><br><span class="line">- (<span class="keyword">void</span>) encodeWithCoder: (<span class="built_in">NSCoder</span> *) coder</span><br><span class="line">&#123;</span><br><span class="line">    [coder encodeObject:name</span><br><span class="line">                 forKey:<span class="string">@"name"</span>];</span><br><span class="line">    [coder encodeInt:magicNumber</span><br><span class="line">              forKey:<span class="string">@"magicNumber"</span>];</span><br><span class="line">    [coder encodeFloat:shoeSize</span><br><span class="line">                forKey:<span class="string">@"shoeSize"</span>];</span><br><span class="line">    [coder encodeObject:subThingies</span><br><span class="line">                 forKey:<span class="string">@"subThingies"</span>];</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">- (<span class="built_in">NSString</span> *) description&#123;</span><br><span class="line">    <span class="built_in">NSString</span> *description = [<span class="built_in">NSString</span> stringWithFormat:<span class="string">@"%@: %d/%.1f %@"</span>, name, magicNumber, shoeSize, subThingies];</span><br><span class="line">    <span class="keyword">return</span> (description);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">- (<span class="keyword">void</span>) dealloc</span><br><span class="line">&#123;</span><br><span class="line">    [name release];</span><br><span class="line">    [subThingies release];</span><br><span class="line">    [<span class="keyword">super</span> dealloc];</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">@end</span></span><br></pre></td></tr></table></figure>
+<p><em>main.m</em></p>
+<figure class="highlight objectivec"><table><tr><td class="code"><pre><span class="line"><span class="meta">#import <span class="meta-string">&lt;Foundation/Foundation.h&gt;</span></span></span><br><span class="line"><span class="meta">#import <span class="meta-string">"Thingie.h"</span></span></span><br><span class="line"><span class="keyword">int</span> main(<span class="keyword">int</span> argc, <span class="keyword">const</span> <span class="keyword">char</span> * argv[]) &#123;</span><br><span class="line">    <span class="keyword">@autoreleasepool</span> &#123;</span><br><span class="line">        <span class="comment">/** 简单情形 **/</span></span><br><span class="line">        <span class="comment">// 创建可序列化的对象</span></span><br><span class="line">        Thingie *thing1;</span><br><span class="line">        thing1 = [[Thingie alloc]</span><br><span class="line">                  initWithName:<span class="string">@"thing1"</span></span><br><span class="line">                  magicNumber:<span class="number">42</span></span><br><span class="line">                  shoeSize:<span class="number">10.5</span>];</span><br><span class="line">        <span class="built_in">NSLog</span>(<span class="string">@"some thing: @"</span>, thing1);</span><br><span class="line">        <span class="comment">// 序列化为 NSData 对象</span></span><br><span class="line">        <span class="built_in">NSData</span> *freezeDried;</span><br><span class="line">        freezeDried = [<span class="built_in">NSKeyedArchiver</span> archivedDataWithRootObject:thing1];</span><br><span class="line">        [thing1 release];</span><br><span class="line">        </span><br><span class="line">        <span class="comment">// 反序列化</span></span><br><span class="line">        thing1 = [<span class="built_in">NSKeyedUnarchiver</span> unarchiveObjectWithData:freezeDried];</span><br><span class="line">        <span class="built_in">NSLog</span>(<span class="string">@"reconstitued thing: %@"</span>, thing1);</span><br><span class="line">        </span><br><span class="line">        <span class="comment">/* 复杂情形：递归序列化 */</span></span><br><span class="line">        <span class="comment">// 初始化thing1.subThingies（数组）</span></span><br><span class="line">        Thingie *anotherThing;</span><br><span class="line">        anotherThing = [[[Thingle alloc]</span><br><span class="line">                         initWithName:<span class="string">@"thing2"</span></span><br><span class="line">                         magicNumber:<span class="number">23</span> shoeSize:<span class="number">13.0</span>]];</span><br><span class="line">        [thing1.subThingies addObject:anotherThing];</span><br><span class="line">        anotherThing = [[[Thingle alloc]</span><br><span class="line">                         initWithName:<span class="string">@"thing3"</span></span><br><span class="line">                         magicNumber:<span class="number">17</span> shoeSize:<span class="number">9.0</span>]];</span><br><span class="line">        [thing1.subThingies addObject:anotherThing];</span><br><span class="line">        <span class="built_in">NSLog</span>(<span class="string">@"reconstitued muthing: %@"</span>, thing1);</span><br><span class="line">        <span class="comment">// 序列化</span></span><br><span class="line">        [freezeDried = [<span class="built_in">NSKeyedArchiver</span> archivedDataWithRootObject:thing1];</span><br><span class="line">        <span class="comment">// 反序列化</span></span><br><span class="line">        thing1 = [<span class="built_in">NSKeyedUnarchiver</span> unarchiveObjectWithData:freezeDried];</span><br><span class="line">        <span class="built_in">NSLog</span>(<span class="string">@"reconstitued multiting: %@"</span>, thing1);</span><br><span class="line">         </span><br><span class="line">        <span class="comment">/* 复杂情形：设置一处引用自己的数据，序列化和反序列化仍能正常工作 */</span></span><br><span class="line">        [thing1.subThingies addObject:thing1];</span><br><span class="line">        <span class="comment">// 序列化</span></span><br><span class="line">        freezeDried = [<span class="built_in">NSKeyedArchiver</span> archivedDataWithRootObject:thing1];</span><br><span class="line">        <span class="comment">// 反序列化</span></span><br><span class="line">        thing1 = [<span class="built_in">NSKeyedUnarchiver</span> unarchiveObjectWithData:freezeDried];</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="17-3-小结"><a href="#17-3-小结" class="headerlink" title="17.3    小结"></a>17.3    小结</h2>
+  </section>
+
+</article>
+
+
+
+
+            <footer class="footer">
+    <span class="footer__copyright">
+        本站点采用<a href="http://creativecommons.org/licenses/by-nc-sa/4.0/">知识共享署名-非商业性使用-相同方式共享 4.0 国际许可协议</a>
+    </span>
+    <span class="footer__copyright">
+        基于 <a href="http://hexo.io">Hexo</a> 搭建，感谢 <a href="https://pages.github.com/">GitHub Pages</a> 提供免费的托管服务
+    </span>
+    <span class="footer__copyright">
+        &copy; 2016 - 
+        本站修改自<a href="https://github.com/lenbo-ma/hexo-theme-vno" target="_blank">hexo-theme-vno</a>
+    </span>
+</footer>
+
+        </div>
+    </div>
+
+    <script src="http://cdn.bootcss.com/jquery/2.1.4/jquery.min.js"></script>
+    <script src="/js/main.js"></script>
+
+     
+</body>
+</html>

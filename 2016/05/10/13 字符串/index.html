@@ -214,10 +214,10 @@
 <p><strong>说明：</strong>可以将字符串字面量赋值给<code>char *</code>指针。<br><strong>特点：</strong></p>
 <ul>
 <li><p>c语言允许指针添加下标，因此可以给字符串字面量添加下标</p>
-<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="keyword">char</span> ch;</span><br><span class="line">ch = <span class="string">"abc"</span>[<span class="number">1</span>];<span class="comment">//b</span></span><br><span class="line">&gt;</span><br></pre></td></tr></table></figure>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="keyword">char</span> ch;</span><br><span class="line">ch = <span class="string">"abc"</span>[<span class="number">1</span>];<span class="comment">//b</span></span><br></pre></td></tr></table></figure>
 </li>
 <li><p>允许改变字符串字面量的字符（不推荐）</p>
-<figure class="highlight c"><table><tr><td class="code"><pre><span class="line">&gt;<span class="comment">//一些编译器可能会出现异常</span></span><br><span class="line">&gt;<span class="keyword">char</span> *p = <span class="string">"abc"</span>;</span><br><span class="line">&gt;*p = <span class="string">'b'</span>;<span class="comment">//字符串字面量被修改为"bbc"</span></span><br><span class="line">&gt;</span><br></pre></td></tr></table></figure>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line">&gt;<span class="comment">//一些编译器可能会出现异常</span></span><br><span class="line">&gt;<span class="keyword">char</span> *p = <span class="string">"abc"</span>;</span><br><span class="line">&gt;*p = <span class="string">'b'</span>;<span class="comment">//字符串字面量被修改为"bbc"</span></span><br></pre></td></tr></table></figure>
 </li>
 </ul>
 </blockquote>
@@ -501,7 +501,7 @@
 </blockquote>
 <figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="keyword">size_t</span> <span class="built_in">strlen</span>(<span class="keyword">const</span> chat *s)&#123;</span><br><span class="line">	<span class="keyword">const</span> <span class="keyword">char</span> *p = s;</span><br><span class="line">	<span class="keyword">while</span>(*s)&#123;</span><br><span class="line">		*s++;</span><br><span class="line">	&#125;</span><br><span class="line">	return s - p;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <h3 id="13-6-2-复制字符串"><a href="#13-6-2-复制字符串" class="headerlink" title="13.6.2    复制字符串"></a>13.6.2    复制字符串</h3><blockquote>
-<p><strong>惯用法：</strong>字符串复制惯用法<br><figure class="highlight c"><table><tr><td class="code"><pre><span class="line">&gt;<span class="keyword">while</span>(*p++ = *s2++)</span><br><span class="line">&gt; ;</span><br><span class="line">&gt;</span><br></pre></td></tr></table></figure></p>
+<p><strong>惯用法：</strong>字符串复制惯用法<br><figure class="highlight c"><table><tr><td class="code"><pre><span class="line">&gt;<span class="keyword">while</span>(*p++ = *s2++)</span><br><span class="line">&gt; ;</span><br></pre></td></tr></table></figure></p>
 </blockquote>
 <h4 id="13-6-2-1-原版"><a href="#13-6-2-1-原版" class="headerlink" title="13.6.2.1    原版"></a>13.6.2.1    原版</h4><blockquote>
 <p><strong>说明：</strong>自定义实现<code>strcat</code>函数<br><strong>思路：</strong></p>

@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    
+    <title>6 源文件组织 | Laputa</title>
+    <meta name="renderer" content="webkit">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="MobileOptimized" content="320">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+    <meta name="description" content="do things for fun">
+
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="6 源文件组织 | Laputa">
+    <meta name="twitter:description" content="do things for fun">
+
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="6 源文件组织 | Laputa">
+    <meta property="og:description" content="do things for fun">
+
+    
+    <meta name="author" content="Sean">
+    
+    <link rel="stylesheet" href="/css/vno.css">
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css">
+
+    
+    <link rel="icon" href="/images/favicon.png">
+    
+
+    <meta name="generator" content="hexo"/>
+    
+    <link rel="alternate" type="application/rss+xml" title="Laputa" href="/atom.xml">
+    
+
+    <link rel="canonical" href="http://laputa-er.github.io/2016/05/13/o-c基础教程第二版_06  源文件组织/"/>
+
+    
+</head>
+
+<body class="home-template no-js">
+
+    <span class="mobile btn-mobile-menu">
+        <i class="fa fa-list btn-mobile-menu__icon"></i>
+        <i class="fa fa-angle-up btn-mobile-close__icon hidden"></i>
+    </span>
+    
+<header class="panel-cover panel-cover--collapsed" style="background-image: url(/images/mengxiang.jpg)">
+  <div class="panel-main">
+    <div class="panel-main__inner panel-inverted">
+    <div class="panel-main__content">
+
+        <a href="/" title="前往 Laputa 的主页"><img src="/images/logo2.jpg" width="80" alt="Laputa logo" class="panel-cover__logo logo" /></a>
+        <h1 class="panel-cover__title panel-title"><a href="/" title="link to homepage for Laputa">Laputa</a></h1>
+        
+        <span class="panel-cover__subtitle panel-subtitle">已然在路上</span>
+        
+        <hr class="panel-cover__divider" />
+        <p class="panel-cover__description">If you can not act the way you want to live, you will one day live in accordance with the way to think about.</p>
+        <hr class="panel-cover__divider panel-cover__divider--secondary" />
+
+        <div class="navigation-wrapper">
+          <div>
+          <nav class="cover-navigation cover-navigation--primary">
+            <ul class="navigation">
+              <li class="navigation__item"><a href="/#blog" title="访问笔记" class="blog-button">笔记</a></li>
+            
+              <li class="navigation__item"><a href="/projects">项目作品</a></li>
+            
+              <li class="navigation__item"><a href="/aboutme">关于我</a></li>
+            
+            </ul>
+          </nav>
+          </div>
+          <div>
+          <nav class="cover-navigation navigation--social">
+  <ul class="navigation">
+
+  <!-- Weibo-->
+  
+
+  <!-- Github -->
+  
+  <li class="navigation__item">
+    <a href="https://github.com/laputa-er" title="查看我的GitHub主页" target="_blank">
+      <i class='social fa fa-github'></i>
+      <span class="label">Github</span>
+    </a>
+  </li>
+
+
+<!-- Stack Overflow -->
+        
+        <li class="navigation__item">
+            <a href="http://stackoverflow.com/users/6304138/laputa" title="Stack Overflow" target="_blank">
+                <i class='social fa fa-stack-overflow'></i>
+                <span class="label">Stack Overflow</span>
+            </a>
+        </li>
+        
+
+  <!-- Google Plus -->
+  
+
+<!-- Facebook -->
+
+  
+<!-- Twitter -->
+
+  
+
+  <li class="navigation__item">
+    <a href="/atom.xml" title="RSS" target="_blank">
+      <i class='social fa fa-rss'></i>
+      <span class="label">RSS</span>
+    </a>
+  </li>
+
+
+
+  </ul>
+</nav>
+
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+
+    <div class="panel-cover--overlay cover-blue"></div>
+  </div>
+</header>
+    
+    
+    <div class="content-wrapper">
+        <div class="content-wrapper__inner">
+            <article class="post-container post-container--single">
+
+  <header class="post-header">
+    <div class="post-meta">
+      <time datetime="2016-05-13T02:38:06.000Z" class="post-list__meta--date date">2016-05-13</time> &#8226; <span class="post-meta__tags tags">于&nbsp;
+  <a class="tag-link" href="/tags/Objective-C基础教程第二版/">Objective-C基础教程第二版</a>
+</span>
+    </div>
+    <h1 class="post-title">6 源文件组织</h1>
+  </header>
+
+  <section class="post">
+    <!-- Table of Contents -->
+    
+    <div id="top-toc">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#6-1-拆分接口与实现"><span class="toc-number">1.</span> <span class="toc-text">6.1    拆分接口与实现</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#在Xcode中创建新文件"><span class="toc-number">1.1.</span> <span class="toc-text">在Xcode中创建新文件</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#6-2-拆分-Car-程序"><span class="toc-number">2.</span> <span class="toc-text">6.2    拆分 Car 程序</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#6-3-使用快文件依赖关系"><span class="toc-number">3.</span> <span class="toc-text">6.3    使用快文件依赖关系</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#6-3-1-重新编译须知"><span class="toc-number">3.1.</span> <span class="toc-text">6.3.1    重新编译须知</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#class"><span class="toc-number">3.1.1.</span> <span class="toc-text">@class</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#6-3-2-让汽车跑一会儿"><span class="toc-number">3.2.</span> <span class="toc-text">6.3.2    让汽车跑一会儿</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#6-3-3-导入和继承"><span class="toc-number">3.3.</span> <span class="toc-text">6.3.3    导入和继承</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#6-4-小结"><span class="toc-number">4.</span> <span class="toc-text">6.4    小结</span></a></li></ol>
+    </div>
+    <div id="tocShell"></div>
+    <div id="toc" class="toc-article">
+      <div class="btn-group drag-me">
+        <i class="social fa fa-ellipsis-v"></i>
+      </div>
+      <div class="btn-group dropup-catelog">
+        <button class="btn"><i class="social fa fa-list-ol"></i></button>
+        <div class="catelog-content">
+          <p class="toc-title-wrap">
+            <strong class="toc-title">文章目录</strong>
+          </p>
+          <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#6-1-拆分接口与实现"><span class="toc-number">1.</span> <span class="toc-text">6.1    拆分接口与实现</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#在Xcode中创建新文件"><span class="toc-number">1.1.</span> <span class="toc-text">在Xcode中创建新文件</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#6-2-拆分-Car-程序"><span class="toc-number">2.</span> <span class="toc-text">6.2    拆分 Car 程序</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#6-3-使用快文件依赖关系"><span class="toc-number">3.</span> <span class="toc-text">6.3    使用快文件依赖关系</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#6-3-1-重新编译须知"><span class="toc-number">3.1.</span> <span class="toc-text">6.3.1    重新编译须知</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#class"><span class="toc-number">3.1.1.</span> <span class="toc-text">@class</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#6-3-2-让汽车跑一会儿"><span class="toc-number">3.2.</span> <span class="toc-text">6.3.2    让汽车跑一会儿</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#6-3-3-导入和继承"><span class="toc-number">3.3.</span> <span class="toc-text">6.3.3    导入和继承</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#6-4-小结"><span class="toc-number">4.</span> <span class="toc-text">6.4    小结</span></a></li></ol>
+        </div>
+      </div>
+    </div>
+    
+    <blockquote>
+<p><strong>说明：</strong>将程序拆分为多个小文件有助于更快地找到重要的代码。</p>
+</blockquote>
+<h2 id="6-1-拆分接口与实现"><a href="#6-1-拆分接口与实现" class="headerlink" title="6.1    拆分接口与实现"></a>6.1    拆分接口与实现</h2><blockquote>
+<p><strong>说明：</strong>接口放在<code>.h</code>文件，实现放在<code>.m</code>文件。</p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>文件</th>
+<th>存放代码</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>头文件(.h)</td>
+<td>类的<code>@interface</code>指令、公共<code>struct</code>定义、<code>enum</code>常量、<code>#defines</code>和<code>extern</code>全局变量等</td>
+</tr>
+<tr>
+<td>和类同名的.m(或.mm)文件</td>
+<td>类的<code>@implementation</code>指令、全局变量的定义、私有struct等</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p><strong>注意：</strong>如果用<code>.mm</code>做文件扩展名，编译器就会认为你是用<code>Objective-C++</code>（同时使用<code>C++</code>和<code>Objective-C</code>）编写的代码</p>
+</blockquote>
+<h3 id="在Xcode中创建新文件"><a href="#在Xcode中创建新文件" class="headerlink" title="在Xcode中创建新文件"></a>在Xcode中创建新文件</h3><blockquote>
+<p><strong>说明：</strong>创建包含类的文件</p>
+<ol>
+<li>File（菜单）-&gt; New -&gt; File…</li>
+<li>选择模版：ios -&gt; Source -&gt; Cocoa Class</li>
+<li>填写类名</li>
+<li>选择父类（默认NSObject）</li>
+<li>选择群组和目标</li>
+<li>选择存储位置并保存</li>
+</ol>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>术语</th>
+<th>说明</th>
+<th>备注</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>群组（Group）</td>
+<td>文件都放在群组内的文件夹中，将代码分组存放可以帮助组织项目中的源文件</td>
+<td><code>1.</code> 设置群组时，Xcode并不会在硬盘上移动文件或者创建目录，群组关系仅仅是Xcode负责管理的一项奇妙的功能；<code>2.</code> 可以设置群组指向文件系统中某个特定的目录，Xcode会新建的文件放入该目录中</td>
+</tr>
+<tr>
+<td>目标（Target）</td>
+<td>复杂的项目可以拥有多个目标，它们源文件的配置各不相同，构建规则也不同</td>
+</tr>
+</tbody>
+</table>
+<h2 id="6-2-拆分-Car-程序"><a href="#6-2-拆分-Car-程序" class="headerlink" title="6.2    拆分 Car 程序"></a>6.2    拆分 Car 程序</h2><blockquote>
+<p><strong>说明：</strong>每个类都由头文件（<code>.h</code>）和实现文件（<code>.m</code>）组成，入口在<code>main.m</code></p>
+<ul>
+<li><strong>头文件（<code>.h</code>文件）：</strong>通过<code>import</code>引入模块的过程放在头文件</li>
+<li><strong>实现文件（<code>.m</code>文件）：</strong>文件中需要引入相应的头文件（<code>.h</code>）文件</li>
+</ul>
+<p><strong>技巧：</strong>复合的程序文件中使用了其它类，如果只是通过指针引用了相应的类实例，可以用<code>@class</code>声明引用的类而不需要<code>import</code>，从而提升重新编译时的性能。</p>
+<p><strong>导入文件：</strong><code>import</code>文件有两种方式</p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>导入</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>#import &quot;文件&quot;</code></td>
+<td>导入项目本地的头文件</td>
+</tr>
+<tr>
+<td><code>#import &lt;文件&gt;</code></td>
+<td>导入系统文件（只读）</td>
+</tr>
+</tbody>
+</table>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">.</span><br><span class="line">├── 6.2\ CarPaers-Split<span class="comment"># 存放代码的群组</span></span><br><span class="line">│   ├── AllWeatherRadial.h</span><br><span class="line">│   ├── AllWeatherRadial.m</span><br><span class="line">│   ├── Car.h</span><br><span class="line">│   ├── Car.m</span><br><span class="line">│   ├── Engine.h</span><br><span class="line">│   ├── Engine.m</span><br><span class="line">│   ├── Slant6.h</span><br><span class="line">│   ├── Slant6.m</span><br><span class="line">│   ├── Tire.h</span><br><span class="line">│   ├── Tire.m</span><br><span class="line">│   └── main.m<span class="comment"># 入口文件</span></span><br><span class="line">└── 6.2\ CarPaers-Split.xcodeproj</span><br><span class="line">    ├── project.pbxproj</span><br><span class="line">    └── xcuserdata</span><br><span class="line">        └── tonyearth.xcuserdatad</span><br></pre></td></tr></table></figure>
+<h2 id="6-3-使用快文件依赖关系"><a href="#6-3-使用快文件依赖关系" class="headerlink" title="6.3    使用快文件依赖关系"></a>6.3    使用快文件依赖关系</h2><blockquote>
+<p><strong>说明：</strong>依赖关系可以存在于两个或多个文件之间，并且具有传递性，如果其中一个文件发生变化，其它文件都会被重新编译。</p>
+</blockquote>
+<h3 id="6-3-1-重新编译须知"><a href="#6-3-1-重新编译须知" class="headerlink" title="6.3.1    重新编译须知"></a>6.3.1    重新编译须知</h3><blockquote>
+<p><strong>说明：</strong>文件导入过于混乱会延长编译时间，也会导致不必要的重复编译，可以通过<code>@class</code>减少必需导入的头文件的数量，从而可以缩短编译时间。</p>
+</blockquote>
+<h4 id="class"><a href="#class" class="headerlink" title="@class"></a>@class</h4><blockquote>
+<p><strong>说明：</strong>创建一个前向引导，用在程序不需要知道类的所有信息的场景（比如创建了相应的变量，但没有向变量发送消息）。<br><strong>技巧：</strong>如果试图通过<code>#import</code>语句让两个类相互引用，那么就会出现编译错误，可以用<code>@class</code>替代。</p>
+</blockquote>
+<figure class="highlight objectivec"><table><tr><td class="code"><pre><span class="line"><span class="meta">#import <span class="meta-string">&lt;Cocoa/Cocoa.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">@class</span> <span class="title">Tire</span>;</span></span><br><span class="line"><span class="class"><span class="keyword">@class</span> <span class="title">Engine</span>;</span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">@interface</span> <span class="title">Car</span> : <span class="title">NSObject</span></span></span><br><span class="line"></span><br><span class="line">- (<span class="keyword">void</span>) setEngine: (Engine *) newEngine;</span><br><span class="line"></span><br><span class="line">- (Engine *) engine;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">- (<span class="keyword">void</span>) setTire: (Tire *) tire</span><br><span class="line">         atIndex: (<span class="keyword">int</span>) index;</span><br><span class="line"></span><br><span class="line">- (Tire *) tireAtIndex: (<span class="keyword">int</span>) index;</span><br><span class="line"></span><br><span class="line">- (<span class="keyword">void</span>) print;</span><br><span class="line"></span><br><span class="line"><span class="keyword">@end</span> <span class="comment">// Car</span></span><br></pre></td></tr></table></figure>
+<h3 id="6-3-2-让汽车跑一会儿"><a href="#6-3-2-让汽车跑一会儿" class="headerlink" title="6.3.2    让汽车跑一会儿"></a>6.3.2    让汽车跑一会儿</h3><p><em>Car.m</em></p>
+<figure class="highlight objectivec"><table><tr><td class="code"><pre><span class="line"><span class="meta">#import <span class="meta-string">"Car.h"</span></span></span><br><span class="line"><span class="meta">#import <span class="meta-string">"Engine.h"</span></span></span><br><span class="line"><span class="meta">#import <span class="meta-string">"Tire.h"</span></span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">@implementation</span> <span class="title">Car</span></span></span><br><span class="line">&#123;</span><br><span class="line">    Tire *tires[<span class="number">4</span>];</span><br><span class="line">    Engine *engine;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">- (<span class="keyword">id</span>) init</span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">if</span> (<span class="keyword">self</span> = [<span class="keyword">super</span> init]) &#123;</span><br><span class="line">        engine = [Engine new];</span><br><span class="line"></span><br><span class="line">        tires[<span class="number">0</span>] = [Tire new];</span><br><span class="line">        tires[<span class="number">1</span>] = [Tire new];</span><br><span class="line">        tires[<span class="number">2</span>] = [Tire new];</span><br><span class="line">        tires[<span class="number">3</span>] = [Tire new];</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> (<span class="keyword">self</span>);</span><br><span class="line"></span><br><span class="line">&#125; <span class="comment">// init</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">- (Engine *) engine</span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">return</span> (engine);</span><br><span class="line">&#125; <span class="comment">// engine</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">- (<span class="keyword">void</span>) setEngine: (Engine *) newEngine</span><br><span class="line">&#123;</span><br><span class="line">    engine = newEngine;</span><br><span class="line">&#125; <span class="comment">// setEngine</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">- (<span class="keyword">void</span>) setTire: (Tire *) tire</span><br><span class="line">         atIndex: (<span class="keyword">int</span>) index</span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">if</span> (index &lt; <span class="number">0</span> || index &gt; <span class="number">3</span>) &#123;</span><br><span class="line">        <span class="built_in">NSLog</span> (<span class="string">@"bad index (%d) in setTire:atIndex:"</span>,</span><br><span class="line">               index);</span><br><span class="line">        exit (<span class="number">1</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    tires[index] = tire;</span><br><span class="line"></span><br><span class="line">&#125; <span class="comment">// setTire:atIndex:</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">- (Tire *) tireAtIndex: (<span class="keyword">int</span>) index</span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">if</span> (index &lt; <span class="number">0</span> || index &gt; <span class="number">3</span>) &#123;</span><br><span class="line">        <span class="built_in">NSLog</span> (<span class="string">@"bad index (%d) in tireAtIndex:"</span>,</span><br><span class="line">               index);</span><br><span class="line">        exit (<span class="number">1</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> (tires[index]);</span><br><span class="line"></span><br><span class="line">&#125; <span class="comment">// tireAtIndex:</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">- (<span class="keyword">void</span>) print</span><br><span class="line">&#123;</span><br><span class="line">    <span class="built_in">NSLog</span> (<span class="string">@"%@"</span>, engine);</span><br><span class="line"></span><br><span class="line">    <span class="built_in">NSLog</span> (<span class="string">@"%@"</span>, tires[<span class="number">0</span>]);</span><br><span class="line">    <span class="built_in">NSLog</span> (<span class="string">@"%@"</span>, tires[<span class="number">1</span>]);</span><br><span class="line">    <span class="built_in">NSLog</span> (<span class="string">@"%@"</span>, tires[<span class="number">2</span>]);</span><br><span class="line">    <span class="built_in">NSLog</span> (<span class="string">@"%@"</span>, tires[<span class="number">3</span>]);</span><br><span class="line"></span><br><span class="line">&#125; <span class="comment">// print</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">@end</span> <span class="comment">// Car</span></span><br></pre></td></tr></table></figure>
+<h3 id="6-3-3-导入和继承"><a href="#6-3-3-导入和继承" class="headerlink" title="6.3.3    导入和继承"></a>6.3.3    导入和继承</h3><blockquote>
+<p><strong>说明：</strong>如果当前的文件头文件中的类会<code>继承</code>要引入的类，则不能通过<code>@class</code>引入，因为编译器需要知道父类中实例变量的完整信息。</p>
+</blockquote>
+<p><em>Slant6.h</em></p>
+<figure class="highlight objectivec"><table><tr><td class="code"><pre><span class="line"><span class="meta">#import <span class="meta-string">"Engine.h"</span></span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">@interface</span> <span class="title">Slant6</span> : <span class="title">Engine</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">@end</span></span><br></pre></td></tr></table></figure>
+<h2 id="6-4-小结"><a href="#6-4-小结" class="headerlink" title="6.4    小结"></a>6.4    小结</h2>
+  </section>
+
+</article>
+
+
+
+
+            <footer class="footer">
+    <span class="footer__copyright">
+        本站点采用<a href="http://creativecommons.org/licenses/by-nc-sa/4.0/">知识共享署名-非商业性使用-相同方式共享 4.0 国际许可协议</a>
+    </span>
+    <span class="footer__copyright">
+        基于 <a href="http://hexo.io">Hexo</a> 搭建，感谢 <a href="https://pages.github.com/">GitHub Pages</a> 提供免费的托管服务
+    </span>
+    <span class="footer__copyright">
+        &copy; 2016 - 
+        本站修改自<a href="https://github.com/lenbo-ma/hexo-theme-vno" target="_blank">hexo-theme-vno</a>
+    </span>
+</footer>
+
+        </div>
+    </div>
+
+    <script src="http://cdn.bootcss.com/jquery/2.1.4/jquery.min.js"></script>
+    <script src="/js/main.js"></script>
+
+     
+</body>
+</html>

@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    
+    <title>16 UIKit简介 | Laputa</title>
+    <meta name="renderer" content="webkit">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="MobileOptimized" content="320">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+    <meta name="description" content="do things for fun">
+
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="16 UIKit简介 | Laputa">
+    <meta name="twitter:description" content="do things for fun">
+
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="16 UIKit简介 | Laputa">
+    <meta property="og:description" content="do things for fun">
+
+    
+    <meta name="author" content="Sean">
+    
+    <link rel="stylesheet" href="/css/vno.css">
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css">
+
+    
+    <link rel="icon" href="/images/favicon.png">
+    
+
+    <meta name="generator" content="hexo"/>
+    
+    <link rel="alternate" type="application/rss+xml" title="Laputa" href="/atom.xml">
+    
+
+    <link rel="canonical" href="http://laputa-er.github.io/2016/05/13/o-c基础教程第二版_16 UIKit简介/"/>
+
+    
+</head>
+
+<body class="home-template no-js">
+
+    <span class="mobile btn-mobile-menu">
+        <i class="fa fa-list btn-mobile-menu__icon"></i>
+        <i class="fa fa-angle-up btn-mobile-close__icon hidden"></i>
+    </span>
+    
+<header class="panel-cover panel-cover--collapsed" style="background-image: url(/images/mengxiang.jpg)">
+  <div class="panel-main">
+    <div class="panel-main__inner panel-inverted">
+    <div class="panel-main__content">
+
+        <a href="/" title="前往 Laputa 的主页"><img src="/images/logo2.jpg" width="80" alt="Laputa logo" class="panel-cover__logo logo" /></a>
+        <h1 class="panel-cover__title panel-title"><a href="/" title="link to homepage for Laputa">Laputa</a></h1>
+        
+        <span class="panel-cover__subtitle panel-subtitle">已然在路上</span>
+        
+        <hr class="panel-cover__divider" />
+        <p class="panel-cover__description">If you can not act the way you want to live, you will one day live in accordance with the way to think about.</p>
+        <hr class="panel-cover__divider panel-cover__divider--secondary" />
+
+        <div class="navigation-wrapper">
+          <div>
+          <nav class="cover-navigation cover-navigation--primary">
+            <ul class="navigation">
+              <li class="navigation__item"><a href="/#blog" title="访问笔记" class="blog-button">笔记</a></li>
+            
+              <li class="navigation__item"><a href="/projects">项目作品</a></li>
+            
+              <li class="navigation__item"><a href="/aboutme">关于我</a></li>
+            
+            </ul>
+          </nav>
+          </div>
+          <div>
+          <nav class="cover-navigation navigation--social">
+  <ul class="navigation">
+
+  <!-- Weibo-->
+  
+
+  <!-- Github -->
+  
+  <li class="navigation__item">
+    <a href="https://github.com/laputa-er" title="查看我的GitHub主页" target="_blank">
+      <i class='social fa fa-github'></i>
+      <span class="label">Github</span>
+    </a>
+  </li>
+
+
+<!-- Stack Overflow -->
+        
+        <li class="navigation__item">
+            <a href="http://stackoverflow.com/users/6304138/laputa" title="Stack Overflow" target="_blank">
+                <i class='social fa fa-stack-overflow'></i>
+                <span class="label">Stack Overflow</span>
+            </a>
+        </li>
+        
+
+  <!-- Google Plus -->
+  
+
+<!-- Facebook -->
+
+  
+<!-- Twitter -->
+
+  
+
+  <li class="navigation__item">
+    <a href="/atom.xml" title="RSS" target="_blank">
+      <i class='social fa fa-rss'></i>
+      <span class="label">RSS</span>
+    </a>
+  </li>
+
+
+
+  </ul>
+</nav>
+
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+
+    <div class="panel-cover--overlay cover-blue"></div>
+  </div>
+</header>
+    
+    
+    <div class="content-wrapper">
+        <div class="content-wrapper__inner">
+            <article class="post-container post-container--single">
+
+  <header class="post-header">
+    <div class="post-meta">
+      <time datetime="2016-05-13T02:41:48.000Z" class="post-list__meta--date date">2016-05-13</time> &#8226; <span class="post-meta__tags tags">于&nbsp;
+  <a class="tag-link" href="/tags/Objective-C基础教程第二版/">Objective-C基础教程第二版</a>
+</span>
+    </div>
+    <h1 class="post-title">16 UIKit简介</h1>
+  </header>
+
+  <section class="post">
+    <!-- Table of Contents -->
+    
+    <div id="top-toc">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#16-1-视图控制器"><span class="toc-number">1.</span> <span class="toc-text">16.1    视图控制器</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#16-1-1-在Nib文件中添加控件"><span class="toc-number">1.1.</span> <span class="toc-text">16.1.1    在Nib文件中添加控件</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#16-1-2-视图（Nib文件）和控制器建立连接"><span class="toc-number">1.2.</span> <span class="toc-text">16.1.2    视图（Nib文件）和控制器建立连接</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#16-1-3-完成代码的手动编写部分"><span class="toc-number">1.3.</span> <span class="toc-text">16.1.3    完成代码的手动编写部分</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#16-2-小结"><span class="toc-number">2.</span> <span class="toc-text">16.2    小结</span></a></li></ol>
+    </div>
+    <div id="tocShell"></div>
+    <div id="toc" class="toc-article">
+      <div class="btn-group drag-me">
+        <i class="social fa fa-ellipsis-v"></i>
+      </div>
+      <div class="btn-group dropup-catelog">
+        <button class="btn"><i class="social fa fa-list-ol"></i></button>
+        <div class="catelog-content">
+          <p class="toc-title-wrap">
+            <strong class="toc-title">文章目录</strong>
+          </p>
+          <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#16-1-视图控制器"><span class="toc-number">1.</span> <span class="toc-text">16.1    视图控制器</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#16-1-1-在Nib文件中添加控件"><span class="toc-number">1.1.</span> <span class="toc-text">16.1.1    在Nib文件中添加控件</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#16-1-2-视图（Nib文件）和控制器建立连接"><span class="toc-number">1.2.</span> <span class="toc-text">16.1.2    视图（Nib文件）和控制器建立连接</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#16-1-3-完成代码的手动编写部分"><span class="toc-number">1.3.</span> <span class="toc-text">16.1.3    完成代码的手动编写部分</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#16-2-小结"><span class="toc-number">2.</span> <span class="toc-text">16.2    小结</span></a></li></ol>
+        </div>
+      </div>
+    </div>
+    
+    <blockquote>
+<p><strong>说明：</strong><code>Mac</code>应用程序使用的是<code>AppKit</code>框架，而<code>iOS</code>应用程序使用的是<code>UIKit</code>框架，它包含了所有的<code>UI</code>组件和构成<code>iOS</code>应用程序的资源。<br><strong>注意：</strong><code>iOS</code>和<code>OS X</code>存在以下区别</p>
+<ul>
+<li>没有<code>shell</code>和控制台</li>
+<li>应用程序在<code>Mac</code>电脑的模拟器中运行</li>
+<li>无法支持一些无<code>UI</code>界面的<code>API</code></li>
+<li>大部分程序员都认为开发<code>iOS</code>应用更加轻松</li>
+</ul>
+<p><strong>项目创建：</strong>步骤如下</p>
+<ol>
+<li><code>File-&gt;New-&gt;New Project</code>(command + shift + n)</li>
+<li>选择应用程序模版：左边列表选择<code>iOS</code>下的<code>Application</code>，然后右边选择<code>Single View Application</code></li>
+</ol>
+<ul>
+<li><code>Master-Detail</code>：用一个导航控制器和一个表视图来显示项目列表遗迹项目的详细信息</li>
+<li><code>OpenGL Game</code>：游戏</li>
+<li><code>Page-Based</code>：创建电子书式的应用，拥有翻页动画效果（该效果支持ipad）</li>
+<li><code>Tabbed</code>：多视图应用程序，底部又一个标签栏并且每个标签都有一个视图香关联的那种应用程序</li>
+<li><code>Utility</code>：和<code>Single View Application</code>相似，但还多处一个翻转视图</li>
+<li><code>Empty</code>：是一个高级选项，如果没有合适的模版，或是你非常了解如何构建你的应用程序，那么刻意选择使用这个模版</li>
+</ul>
+<ol>
+<li>点击<code>Next</code>按钮，弹出询问程序名等信息的对话框</li>
+</ol>
+<ul>
+<li>复选框：不选择<code>Use Storyboard</code>和<code>Include Unit Tests</code>，选中<code>Use Automatic Reference Counting</code></li>
+<li><code>Device Family</code>：选择<code>Universal</code>（意味着可以同时运行在<code>iPhone</code>、<code>iPod</code>、<code>iPad</code>上）</li>
+</ul>
+</blockquote>
+<p><img src="http://o6ul1xz4z.bkt.clouddn.com/img/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202016-01-26%20%E4%B8%8B%E5%8D%8811.15.54.png" alt="Alt text"></p>
+<p><em>AppDelegate.h</em></p>
+<figure class="highlight objectivec"><table><tr><td class="code"><pre><span class="line"><span class="meta">#import <span class="meta-string">&lt;UIKit/UIKit.h&gt;</span></span></span><br><span class="line"><span class="class"><span class="keyword">@class</span> <span class="title">ViewController</span>;</span></span><br><span class="line"><span class="class"><span class="keyword">@interface</span> <span class="title">AppDelegate</span> : <span class="title">UIResponder</span> &lt;<span class="title">UIApplicationDelegate</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 窗口对象</span></span><br><span class="line"><span class="keyword">@property</span> (<span class="keyword">strong</span>, <span class="keyword">nonatomic</span>) <span class="built_in">UIWindow</span> *window;</span><br><span class="line"><span class="comment">// 视图控制器</span></span><br><span class="line"><span class="keyword">@property</span> (<span class="keyword">strong</span>, <span class="keyword">nonatomic</span>) ViewController *viewController;</span><br><span class="line"></span><br><span class="line"><span class="keyword">@end</span></span><br></pre></td></tr></table></figure>
+<p><em>AppDelegate.m</em></p>
+<figure class="highlight objectivec"><table><tr><td class="code"><pre><span class="line"><span class="meta">#import <span class="meta-string">"AppDelegate.h"</span></span></span><br><span class="line"><span class="meta">#import <span class="meta-string">"ViewController.h"</span></span></span><br><span class="line"><span class="class"><span class="keyword">@interface</span> <span class="title">AppDelegate</span> ()</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">@end</span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">@implementation</span> <span class="title">AppDelegate</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">@synthesize</span> window = _window;</span><br><span class="line"><span class="keyword">@synthesize</span> viewController = _viewController;</span><br><span class="line"><span class="comment">// 窗口被创建时回被调用</span></span><br><span class="line">- (<span class="built_in">BOOL</span>)application:(<span class="built_in">UIApplication</span> *)application didFinishLaunchingWithOptions:(<span class="built_in">NSDictionary</span> *)launchOptions &#123;</span><br><span class="line">    <span class="comment">/* 初始化窗口对象 */</span></span><br><span class="line">    <span class="keyword">self</span>.window = [[<span class="built_in">UIWindow</span> alloc] initWithFrame:[[<span class="built_in">UIScreen</span> mainScreen] bounds]];</span><br><span class="line">    </span><br><span class="line">    <span class="comment">/* 初始视图控制器 */</span></span><br><span class="line">    <span class="comment">// iPhone</span></span><br><span class="line">    <span class="keyword">if</span> ([[<span class="built_in">UIDevice</span> currentDevice] userInterfaceIdiom] == <span class="built_in">UIUserInterfaceIdiomPhone</span>) &#123;</span><br><span class="line">        <span class="keyword">self</span>.viewController = [[ViewController alloc] initWithNibName:<span class="string">@"ViewController_iPhone"</span> bundle:<span class="literal">nil</span>];</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">// iPad</span></span><br><span class="line">    <span class="keyword">else</span> &#123;</span><br><span class="line">        <span class="keyword">self</span>.viewController = [[ViewController alloc] initWithNibName:<span class="string">@"ViewController_iPad"</span> bundle:<span class="literal">nil</span>];</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">// 将视图控制器的视图添加到应用程序层级</span></span><br><span class="line">    <span class="keyword">self</span>.window.rootViewController = <span class="keyword">self</span>.viewController;</span><br><span class="line">    [<span class="keyword">self</span>.window makeKeyAndVisible];</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="literal">YES</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">- (<span class="keyword">void</span>)applicationWillResignActive:(<span class="built_in">UIApplication</span> *)application &#123;</span><br><span class="line">    <span class="comment">// Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.</span></span><br><span class="line">    <span class="comment">// Use this method to pause ongoing tasks, disable timers, and throttle down OpenGL ES frame rates. Games should use this method to pause the game.</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">- (<span class="keyword">void</span>)applicationDidEnterBackground:(<span class="built_in">UIApplication</span> *)application &#123;</span><br><span class="line">    <span class="comment">// Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later.</span></span><br><span class="line">    <span class="comment">// If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">- (<span class="keyword">void</span>)applicationWillEnterForeground:(<span class="built_in">UIApplication</span> *)application &#123;</span><br><span class="line">    <span class="comment">// Called as part of the transition from the background to the inactive state; here you can undo many of the changes made on entering the background.</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">- (<span class="keyword">void</span>)applicationDidBecomeActive:(<span class="built_in">UIApplication</span> *)application &#123;</span><br><span class="line">    <span class="comment">// Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">- (<span class="keyword">void</span>)applicationWillTerminate:(<span class="built_in">UIApplication</span> *)application &#123;</span><br><span class="line">    <span class="comment">// Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">@end</span></span><br></pre></td></tr></table></figure>
+<h2 id="16-1-视图控制器"><a href="#16-1-视图控制器" class="headerlink" title="16.1    视图控制器"></a>16.1    视图控制器</h2><blockquote>
+<p><strong>说明：</strong><code>Cocoa</code>主要使用的是<code>MVC</code>模式</p>
+<ul>
+<li><strong>视图：</strong>从<code>nib</code>文件中获取视图</li>
+<li><strong>模型：</strong>一组数据</li>
+<li><strong>控制器：</strong><code>UIViewController</code>的子类</li>
+</ul>
+</blockquote>
+<h3 id="16-1-1-在Nib文件中添加控件"><a href="#16-1-1-在Nib文件中添加控件" class="headerlink" title="16.1.1    在Nib文件中添加控件"></a>16.1.1    在Nib文件中添加控件</h3><blockquote>
+<p><strong>说明：</strong>完成视图的部分</p>
+<ul>
+<li>拖进一个<code>TextField</code>对象</li>
+<li>拖进一个<code>Label</code></li>
+<li>拖进两个<code>Button</code></li>
+</ul>
+</blockquote>
+<p><img src="./屏幕快照 2016-01-26 下午10.07.01.png" alt="Alt text"></p>
+<h3 id="16-1-2-视图（Nib文件）和控制器建立连接"><a href="#16-1-2-视图（Nib文件）和控制器建立连接" class="headerlink" title="16.1.2    视图（Nib文件）和控制器建立连接"></a>16.1.2    视图（Nib文件）和控制器建立连接</h3><blockquote>
+<p><strong>说明：</strong>打开辅助窗口，通过拖拽完成<code>视图</code>(<code>Nib</code>文件)和<code>控制器</code>(<code>ViewController.h</code>)之间的连接。</p>
+<ol>
+<li>代开辅助窗口：<code>Command+Option+Return</code>或<code>Editor</code>组中间的按钮</li>
+<li>为<code>Text Field</code>和<code>Label</code>创建输出口（<code>outlet</code>）：按住<code>control</code>键，将鼠标从视图中的图像元素一直拖到<code>ViewController.h</code>相应位置<br><img src="./屏幕快照 2016-01-26 下午10.01.24 2.png" alt="Alt text"><br><img src="./屏幕快照 2016-01-26 下午10.01.30 2.png" alt="Alt text"></li>
+<li>为两个按钮创建<code>操作</code>(Action)</li>
+</ol>
+<ul>
+<li>Name：操作的名称</li>
+<li>Type：操作方法参数的类型（默认为<code>id</code>）</li>
+<li>Event：事件类型</li>
+<li>Arguments：<code>None</code>、<code>Sender</code>和<code>Event</code>（包含一个<code>UIEvent</code>类型的参数）<br><img src="./屏幕快照 2016-01-26 下午10.23.36.png" alt="Alt text"></li>
+</ul>
+</blockquote>
+<h3 id="16-1-3-完成代码的手动编写部分"><a href="#16-1-3-完成代码的手动编写部分" class="headerlink" title="16.1.3    完成代码的手动编写部分"></a>16.1.3    完成代码的手动编写部分</h3><blockquote>
+<p><strong>说明：</strong>包括程序核心功能的实现以及一些事件的回调。</p>
+</blockquote>
+<p><em>ViewController.h</em></p>
+<figure class="highlight objectivec"><table><tr><td class="code"><pre><span class="line"><span class="meta">#import <span class="meta-string">&lt;UIKit/UIKit.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">@interface</span> <span class="title">ViewController</span> : <span class="title">UIViewController</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">@property</span> (<span class="keyword">weak</span>, <span class="keyword">nonatomic</span>) <span class="keyword">IBOutlet</span> <span class="built_in">UITextField</span> *textField;</span><br><span class="line"><span class="keyword">@property</span> (<span class="keyword">weak</span>, <span class="keyword">nonatomic</span>) <span class="keyword">IBOutlet</span> <span class="built_in">UILabel</span> *resultsField;</span><br><span class="line"></span><br><span class="line">- (<span class="keyword">IBAction</span>)uppercase;</span><br><span class="line">- (<span class="keyword">IBAction</span>)lowercase;</span><br><span class="line"></span><br><span class="line"><span class="keyword">@end</span></span><br></pre></td></tr></table></figure>
+<p><em>ViewController.m</em></p>
+<figure class="highlight objectivec"><table><tr><td class="code"><pre><span class="line"><span class="meta">#import <span class="meta-string">"ViewController.h"</span></span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">@interface</span> <span class="title">ViewController</span> ()</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">@end</span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">@implementation</span> <span class="title">ViewController</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">@synthesize</span> textField;</span><br><span class="line"><span class="keyword">@synthesize</span> resultsField;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span><br><span class="line"> *  重写父类的便利构造器：完成视图和控制器的绑定</span><br><span class="line"> */</span></span><br><span class="line">- (<span class="keyword">id</span>)initWithNibName:(<span class="built_in">NSString</span> *)nibNameOrNil bundle:(<span class="built_in">NSBundle</span> *)nibBundleOrNil &#123;</span><br><span class="line">    <span class="keyword">self</span> = [<span class="keyword">super</span> initWithNibName:nibNameOrNil bundle:nibBundleOrNil];</span><br><span class="line">    <span class="keyword">if</span> (<span class="literal">nil</span> != <span class="keyword">self</span>) &#123;</span><br><span class="line">        <span class="built_in">NSLog</span>(<span class="string">@"init: text %@ / result %@"</span>, textField, resultsField);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">self</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span><br><span class="line"> *  系统在nib文件加载和对象初始化完成后调用：从ios 5 不会再调用该方法了</span><br><span class="line"> */</span></span><br><span class="line">- (<span class="keyword">void</span>)awakeFromNib &#123;</span><br><span class="line">    <span class="built_in">NSLog</span>(<span class="string">@"awake: text %@ / result %@"</span>, textField, resultsField);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span><br><span class="line"> *  系统在nib文件加载和对象初始化完成后调用</span><br><span class="line"> */</span></span><br><span class="line">- (<span class="keyword">void</span>)viewDidLoad &#123;</span><br><span class="line">    [<span class="keyword">super</span> viewDidLoad];</span><br><span class="line">    <span class="comment">// Do any additional setup after loading the view, typically from a nib.</span></span><br><span class="line">    <span class="built_in">NSLog</span>(<span class="string">@"viewDidLoad: text %@ / results %@"</span>, textField, resultsField);</span><br><span class="line">    </span><br><span class="line">    <span class="comment">// 设置输入框的placeholder(占位符)</span></span><br><span class="line">    [textField setPlaceholder:<span class="string">@"Enter text here"</span>];</span><br><span class="line">    <span class="comment">// 设置Label的默认值</span></span><br><span class="line">    resultsField.text = <span class="string">@"Result"</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span><br><span class="line"> *  视图从视图层级中移除后会调用这个方法，可以在这里做一些内存清理的事情</span><br><span class="line"> *  该方法已过时</span><br><span class="line"> */</span></span><br><span class="line">- (<span class="keyword">void</span>)viewDidUnload &#123;</span><br><span class="line">    [<span class="keyword">self</span> setTextField:<span class="literal">nil</span>];</span><br><span class="line">    [<span class="keyword">self</span> setResultsField:<span class="literal">nil</span>];</span><br><span class="line">    [<span class="keyword">super</span> viewDidUnload];</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">- (<span class="keyword">void</span>)didReceiveMemoryWarning &#123;</span><br><span class="line">    [<span class="keyword">super</span> didReceiveMemoryWarning];</span><br><span class="line">    <span class="comment">// Dispose of any resources that can be recreated.</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 视图出现前调用</span></span><br><span class="line">- (<span class="keyword">void</span>)viewWillAppear:(<span class="built_in">BOOL</span>)animated</span><br><span class="line">&#123;</span><br><span class="line">    [<span class="keyword">super</span> viewWillAppear:animated];</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 视图出现后调用</span></span><br><span class="line">- (<span class="keyword">void</span>)viewDidAppear:(<span class="built_in">BOOL</span>)animated</span><br><span class="line">&#123;</span><br><span class="line">    [<span class="keyword">super</span> viewDidAppear:animated];</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 视图消失前调用</span></span><br><span class="line">- (<span class="keyword">void</span>)viewWillDisappear:(<span class="built_in">BOOL</span>)animated</span><br><span class="line">&#123;</span><br><span class="line">    [<span class="keyword">super</span> viewWillDisappear:animated];</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 视图消失后调用</span></span><br><span class="line">- (<span class="keyword">void</span>)viewDidDisappear:(<span class="built_in">BOOL</span>)animated</span><br><span class="line">&#123;</span><br><span class="line">    [<span class="keyword">super</span> viewDidDisappear:animated];</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">- (<span class="keyword">IBAction</span>)uppercase &#123;</span><br><span class="line">    <span class="built_in">NSString</span> *original = textField.text;</span><br><span class="line">    <span class="built_in">NSString</span> *uppercase = [original uppercaseString];</span><br><span class="line">    resultsField.text = uppercase;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">- (<span class="keyword">IBAction</span>)lowercase &#123;</span><br><span class="line">    <span class="built_in">NSString</span> *original = textField.text;</span><br><span class="line">    <span class="built_in">NSString</span> *lowercase = [original lowercaseString];</span><br><span class="line">    resultsField.text = lowercase;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">@end</span></span><br></pre></td></tr></table></figure>
+<h2 id="16-2-小结"><a href="#16-2-小结" class="headerlink" title="16.2    小结"></a>16.2    小结</h2>
+  </section>
+
+</article>
+
+
+
+
+            <footer class="footer">
+    <span class="footer__copyright">
+        本站点采用<a href="http://creativecommons.org/licenses/by-nc-sa/4.0/">知识共享署名-非商业性使用-相同方式共享 4.0 国际许可协议</a>
+    </span>
+    <span class="footer__copyright">
+        基于 <a href="http://hexo.io">Hexo</a> 搭建，感谢 <a href="https://pages.github.com/">GitHub Pages</a> 提供免费的托管服务
+    </span>
+    <span class="footer__copyright">
+        &copy; 2016 - 
+        本站修改自<a href="https://github.com/lenbo-ma/hexo-theme-vno" target="_blank">hexo-theme-vno</a>
+    </span>
+</footer>
+
+        </div>
+    </div>
+
+    <script src="http://cdn.bootcss.com/jquery/2.1.4/jquery.min.js"></script>
+    <script src="/js/main.js"></script>
+
+     
+</body>
+</html>

@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    
+    <title>4 继承 | Laputa</title>
+    <meta name="renderer" content="webkit">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="MobileOptimized" content="320">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+    <meta name="description" content="do things for fun">
+
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="4 继承 | Laputa">
+    <meta name="twitter:description" content="do things for fun">
+
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="4 继承 | Laputa">
+    <meta property="og:description" content="do things for fun">
+
+    
+    <meta name="author" content="Sean">
+    
+    <link rel="stylesheet" href="/css/vno.css">
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css">
+
+    
+    <link rel="icon" href="/images/favicon.png">
+    
+
+    <meta name="generator" content="hexo"/>
+    
+    <link rel="alternate" type="application/rss+xml" title="Laputa" href="/atom.xml">
+    
+
+    <link rel="canonical" href="http://laputa-er.github.io/2016/05/13/o-c基础教程第二版_04  继承/"/>
+
+    
+</head>
+
+<body class="home-template no-js">
+
+    <span class="mobile btn-mobile-menu">
+        <i class="fa fa-list btn-mobile-menu__icon"></i>
+        <i class="fa fa-angle-up btn-mobile-close__icon hidden"></i>
+    </span>
+    
+<header class="panel-cover panel-cover--collapsed" style="background-image: url(/images/mengxiang.jpg)">
+  <div class="panel-main">
+    <div class="panel-main__inner panel-inverted">
+    <div class="panel-main__content">
+
+        <a href="/" title="前往 Laputa 的主页"><img src="/images/logo2.jpg" width="80" alt="Laputa logo" class="panel-cover__logo logo" /></a>
+        <h1 class="panel-cover__title panel-title"><a href="/" title="link to homepage for Laputa">Laputa</a></h1>
+        
+        <span class="panel-cover__subtitle panel-subtitle">已然在路上</span>
+        
+        <hr class="panel-cover__divider" />
+        <p class="panel-cover__description">If you can not act the way you want to live, you will one day live in accordance with the way to think about.</p>
+        <hr class="panel-cover__divider panel-cover__divider--secondary" />
+
+        <div class="navigation-wrapper">
+          <div>
+          <nav class="cover-navigation cover-navigation--primary">
+            <ul class="navigation">
+              <li class="navigation__item"><a href="/#blog" title="访问笔记" class="blog-button">笔记</a></li>
+            
+              <li class="navigation__item"><a href="/projects">项目作品</a></li>
+            
+              <li class="navigation__item"><a href="/aboutme">关于我</a></li>
+            
+            </ul>
+          </nav>
+          </div>
+          <div>
+          <nav class="cover-navigation navigation--social">
+  <ul class="navigation">
+
+  <!-- Weibo-->
+  
+
+  <!-- Github -->
+  
+  <li class="navigation__item">
+    <a href="https://github.com/laputa-er" title="查看我的GitHub主页" target="_blank">
+      <i class='social fa fa-github'></i>
+      <span class="label">Github</span>
+    </a>
+  </li>
+
+
+<!-- Stack Overflow -->
+        
+        <li class="navigation__item">
+            <a href="http://stackoverflow.com/users/6304138/laputa" title="Stack Overflow" target="_blank">
+                <i class='social fa fa-stack-overflow'></i>
+                <span class="label">Stack Overflow</span>
+            </a>
+        </li>
+        
+
+  <!-- Google Plus -->
+  
+
+<!-- Facebook -->
+
+  
+<!-- Twitter -->
+
+  
+
+  <li class="navigation__item">
+    <a href="/atom.xml" title="RSS" target="_blank">
+      <i class='social fa fa-rss'></i>
+      <span class="label">RSS</span>
+    </a>
+  </li>
+
+
+
+  </ul>
+</nav>
+
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+
+    <div class="panel-cover--overlay cover-blue"></div>
+  </div>
+</header>
+    
+    
+    <div class="content-wrapper">
+        <div class="content-wrapper__inner">
+            <article class="post-container post-container--single">
+
+  <header class="post-header">
+    <div class="post-meta">
+      <time datetime="2016-05-13T02:36:44.000Z" class="post-list__meta--date date">2016-05-13</time> &#8226; <span class="post-meta__tags tags">于&nbsp;
+  <a class="tag-link" href="/tags/Objective-C基础教程第二版/">Objective-C基础教程第二版</a>
+</span>
+    </div>
+    <h1 class="post-title">4 继承</h1>
+  </header>
+
+  <section class="post">
+    <!-- Table of Contents -->
+    
+    <div id="top-toc">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#4-1-为何使用继承"><span class="toc-number">1.</span> <span class="toc-text">4.1    为何使用继承</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-2-继承的语法格式"><span class="toc-number">2.</span> <span class="toc-text">4.2    继承的语法格式</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-3-继承的工作机制"><span class="toc-number">3.</span> <span class="toc-text">4.3    继承的工作机制</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#4-3-1-方法调度"><span class="toc-number">3.1.</span> <span class="toc-text">4.3.1    方法调度</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-3-2-实例变量"><span class="toc-number">3.2.</span> <span class="toc-text">4.3.2    实例变量</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-4-重写方法"><span class="toc-number">4.</span> <span class="toc-text">4.4    重写方法</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#super关键字"><span class="toc-number">4.1.</span> <span class="toc-text">super关键字</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-5-小结"><span class="toc-number">5.</span> <span class="toc-text">4.5    小结</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-6-举个栗子"><span class="toc-number">6.</span> <span class="toc-text">4.6    举个栗子</span></a></li></ol>
+    </div>
+    <div id="tocShell"></div>
+    <div id="toc" class="toc-article">
+      <div class="btn-group drag-me">
+        <i class="social fa fa-ellipsis-v"></i>
+      </div>
+      <div class="btn-group dropup-catelog">
+        <button class="btn"><i class="social fa fa-list-ol"></i></button>
+        <div class="catelog-content">
+          <p class="toc-title-wrap">
+            <strong class="toc-title">文章目录</strong>
+          </p>
+          <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#4-1-为何使用继承"><span class="toc-number">1.</span> <span class="toc-text">4.1    为何使用继承</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-2-继承的语法格式"><span class="toc-number">2.</span> <span class="toc-text">4.2    继承的语法格式</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-3-继承的工作机制"><span class="toc-number">3.</span> <span class="toc-text">4.3    继承的工作机制</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#4-3-1-方法调度"><span class="toc-number">3.1.</span> <span class="toc-text">4.3.1    方法调度</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-3-2-实例变量"><span class="toc-number">3.2.</span> <span class="toc-text">4.3.2    实例变量</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-4-重写方法"><span class="toc-number">4.</span> <span class="toc-text">4.4    重写方法</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#super关键字"><span class="toc-number">4.1.</span> <span class="toc-text">super关键字</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-5-小结"><span class="toc-number">5.</span> <span class="toc-text">4.5    小结</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-6-举个栗子"><span class="toc-number">6.</span> <span class="toc-text">4.6    举个栗子</span></a></li></ol>
+        </div>
+      </div>
+    </div>
+    
+    <blockquote>
+<p><strong>说明：</strong>处理类和对象的关系时，要重视<code>OOP</code>的两个方面</p>
+<ul>
+<li><strong>继承：</strong>定义一个具有父类所有功能的新类</li>
+<li><strong>复合：</strong>在对象中引用其他对象</li>
+</ul>
+</blockquote>
+<h2 id="4-1-为何使用继承"><a href="#4-1-为何使用继承" class="headerlink" title="4.1    为何使用继承"></a>4.1    为何使用继承</h2><blockquote>
+<p><strong>说明：</strong>将所有重复的内容合并在一起，并在需要的地方拥有自定义的方法。<br><strong>不使用继承的架构</strong><br><img src="http://o6ul1xz4z.bkt.clouddn.com/img/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202016-01-02%20%E4%B8%8B%E5%8D%887.34.10.png" alt="Alt text"><br><strong>使用继承后的架构</strong><br><img src="http://o6ul1xz4z.bkt.clouddn.com/img/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202016-01-02%20%E4%B8%8B%E5%8D%887.35.04.png" alt="Alt text"></p>
+</blockquote>
+<h2 id="4-2-继承的语法格式"><a href="#4-2-继承的语法格式" class="headerlink" title="4.2    继承的语法格式"></a>4.2    继承的语法格式</h2><blockquote>
+<p><strong>说明：</strong><code>@interface 子类名: 父类名</code></p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>术语</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>超类（或父类）</td>
+<td>继承的类</td>
+</tr>
+<tr>
+<td>子类（或孩子类）</td>
+<td>执行继承的类</td>
+</tr>
+<tr>
+<td>重写</td>
+<td>如果想改变方法的实现，需要重写继承的方法</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p><strong>注意：</strong><code>O-C</code>不支持多继承（可以使用类别和协议模拟多继承效果）</p>
+</blockquote>
+<h2 id="4-3-继承的工作机制"><a href="#4-3-继承的工作机制" class="headerlink" title="4.3    继承的工作机制"></a>4.3    继承的工作机制</h2><h3 id="4-3-1-方法调度"><a href="#4-3-1-方法调度" class="headerlink" title="4.3.1    方法调度"></a>4.3.1    方法调度</h3><blockquote>
+<p><strong>说明：</strong>当发送消息时，<code>O-C</code>的方法调度机制将在当前的类中搜索相应的方法。如果无法在接收消息的对象的类文件中找到相应的方法，它就会在该对象的超类中进行查找。<br><strong>注意：</strong>如果在最顶层的<code>NSObject</code>类中也没有找到该方法，则会出现一个运行时错误。</p>
+</blockquote>
+<h3 id="4-3-2-实例变量"><a href="#4-3-2-实例变量" class="headerlink" title="4.3.2    实例变量"></a>4.3.2    实例变量</h3><blockquote>
+<p><strong>说明：</strong><code>O-C</code> 中图和访问实例变量</p>
+<ul>
+<li>子类会从父类继承实例变量</li>
+<li>子类根据自己的情况添加额外的自己的实例变量</li>
+<li>每个方法被调用时都获得了一个名为<code>self</code>的参数，<code>self</code>指向继承链中第一个类中的第一个实例变量。</li>
+</ul>
+<p><strong>多态性：</strong>使用更具体种类的对象来代替一般类型，这种能力被称为<code>多态性</code>。<br><strong>扩展：</strong>通过<code>对象基地址</code>（第一个实例变量的首个字节在内存中的位置）加上<code>偏移地址</code>，编译器就可以查找其他实例变量的位置。这个机制叫做<code>基地址加偏移</code>，通过硬编码实现，但存在<code>脆弱的基类问题</code>，<code>Leopard</code>系统中通过引入64位<code>Objective-C</code>运行时（使用间接寻址方式确定变量的位置）解决了这个问题。</p>
+</blockquote>
+<h2 id="4-4-重写方法"><a href="#4-4-重写方法" class="headerlink" title="4.4    重写方法"></a>4.4    重写方法</h2><h3 id="super关键字"><a href="#super关键字" class="headerlink" title="super关键字"></a>super关键字</h3><blockquote>
+<p><strong>说明：</strong>利用<code>super</code>，既可以重写方法的实现，又能调用超类中的实现方式。<br><strong>原理：</strong>既不是参数也不是实例变量，而是由<code>Objective-C</code>编译器提供的一种神奇的功能。当想<code>super</code>发送消息时，实际上是在请求<code>Obective-C</code>向该类的超类发送消息。如果超类中没有定义该消息，则向平常一样继续在<code>继承链</code>上一级中查找。</p>
+</blockquote>
+<h2 id="4-5-小结"><a href="#4-5-小结" class="headerlink" title="4.5    小结"></a>4.5    小结</h2><h2 id="4-6-举个栗子"><a href="#4-6-举个栗子" class="headerlink" title="4.6    举个栗子"></a>4.6    举个栗子</h2><figure class="highlight objectivec"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+  </section>
+
+</article>
+
+
+
+
+            <footer class="footer">
+    <span class="footer__copyright">
+        本站点采用<a href="http://creativecommons.org/licenses/by-nc-sa/4.0/">知识共享署名-非商业性使用-相同方式共享 4.0 国际许可协议</a>
+    </span>
+    <span class="footer__copyright">
+        基于 <a href="http://hexo.io">Hexo</a> 搭建，感谢 <a href="https://pages.github.com/">GitHub Pages</a> 提供免费的托管服务
+    </span>
+    <span class="footer__copyright">
+        &copy; 2016 - 
+        本站修改自<a href="https://github.com/lenbo-ma/hexo-theme-vno" target="_blank">hexo-theme-vno</a>
+    </span>
+</footer>
+
+        </div>
+    </div>
+
+    <script src="http://cdn.bootcss.com/jquery/2.1.4/jquery.min.js"></script>
+    <script src="/js/main.js"></script>
+
+     
+</body>
+</html>
