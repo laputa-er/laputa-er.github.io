@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    
+    <title>8 枚举类型 | Laputa</title>
+    <meta name="renderer" content="webkit">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="MobileOptimized" content="320">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+    <meta name="description" content="do things for fun">
+
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="8 枚举类型 | Laputa">
+    <meta name="twitter:description" content="do things for fun">
+
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="8 枚举类型 | Laputa">
+    <meta property="og:description" content="do things for fun">
+
+    
+    <meta name="author" content="Sean">
+    
+    <link rel="stylesheet" href="/css/vno.css">
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css">
+
+    
+    <link rel="icon" href="/images/favicon.png">
+    
+
+    <meta name="generator" content="hexo"/>
+    
+    <link rel="alternate" type="application/rss+xml" title="Laputa" href="/atom.xml">
+    
+
+    <link rel="canonical" href="http://laputa-er.github.io/2016/05/13/TSPL2_08  枚举类型/"/>
+
+    
+</head>
+
+<body class="home-template no-js">
+
+    <span class="mobile btn-mobile-menu">
+        <i class="fa fa-list btn-mobile-menu__icon"></i>
+        <i class="fa fa-angle-up btn-mobile-close__icon hidden"></i>
+    </span>
+    
+<header class="panel-cover panel-cover--collapsed" style="background-image: url(/images/mengxiang.jpg)">
+  <div class="panel-main">
+    <div class="panel-main__inner panel-inverted">
+    <div class="panel-main__content">
+
+        <a href="/" title="前往 Laputa 的主页"><img src="/images/logo2.jpg" width="80" alt="Laputa logo" class="panel-cover__logo logo" /></a>
+        <h1 class="panel-cover__title panel-title"><a href="/" title="link to homepage for Laputa">Laputa</a></h1>
+        
+        <span class="panel-cover__subtitle panel-subtitle">已然在路上</span>
+        
+        <hr class="panel-cover__divider" />
+        <p class="panel-cover__description">If you can not act the way you want to live, you will one day live in accordance with the way to think about.</p>
+        <hr class="panel-cover__divider panel-cover__divider--secondary" />
+
+        <div class="navigation-wrapper">
+          <div>
+          <nav class="cover-navigation cover-navigation--primary">
+            <ul class="navigation">
+              <li class="navigation__item"><a href="/#blog" title="访问笔记" class="blog-button">笔记</a></li>
+            
+              <li class="navigation__item"><a href="/projects">项目作品</a></li>
+            
+              <li class="navigation__item"><a href="/aboutme">关于我</a></li>
+            
+            </ul>
+          </nav>
+          </div>
+          <div>
+          <nav class="cover-navigation navigation--social">
+  <ul class="navigation">
+
+  <!-- Weibo-->
+  
+
+  <!-- Github -->
+  
+  <li class="navigation__item">
+    <a href="https://github.com/laputa-er" title="查看我的GitHub主页" target="_blank">
+      <i class='social fa fa-github'></i>
+      <span class="label">Github</span>
+    </a>
+  </li>
+
+
+<!-- Stack Overflow -->
+        
+        <li class="navigation__item">
+            <a href="http://stackoverflow.com/users/6304138/laputa" title="Stack Overflow" target="_blank">
+                <i class='social fa fa-stack-overflow'></i>
+                <span class="label">Stack Overflow</span>
+            </a>
+        </li>
+        
+
+  <!-- Google Plus -->
+  
+
+<!-- Facebook -->
+
+  
+<!-- Twitter -->
+
+  
+
+  <li class="navigation__item">
+    <a href="/atom.xml" title="RSS" target="_blank">
+      <i class='social fa fa-rss'></i>
+      <span class="label">RSS</span>
+    </a>
+  </li>
+
+
+
+  </ul>
+</nav>
+
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+
+    <div class="panel-cover--overlay cover-blue"></div>
+  </div>
+</header>
+    
+    
+    <div class="content-wrapper">
+        <div class="content-wrapper__inner">
+            <article class="post-container post-container--single">
+
+  <header class="post-header">
+    <div class="post-meta">
+      <time datetime="2016-05-13T11:44:27.000Z" class="post-list__meta--date date">2016-05-13</time> &#8226; <span class="post-meta__tags tags">于&nbsp;
+  <a class="tag-link" href="/tags/The-Swift-Program-Language-2/">The Swift Program Language 2</a>
+</span>
+    </div>
+    <h1 class="post-title">8 枚举类型</h1>
+  </header>
+
+  <section class="post">
+    <!-- Table of Contents -->
+    
+    <div id="top-toc">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#8-1-枚举语法"><span class="toc-number">1.</span> <span class="toc-text">8.1    枚举语法</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#8-2-使用switch语句匹配枚举值"><span class="toc-number">2.</span> <span class="toc-text">8.2    使用switch语句匹配枚举值</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#8-3-关联值"><span class="toc-number">3.</span> <span class="toc-text">8.3    关联值</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#提取关联值"><span class="toc-number">3.1.</span> <span class="toc-text">提取关联值</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#8-4-原始值"><span class="toc-number">4.</span> <span class="toc-text">8.4    原始值</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#8-4-1-原始值的隐式赋值"><span class="toc-number">4.1.</span> <span class="toc-text">8.4.1    原始值的隐式赋值</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#原始值为整数"><span class="toc-number">4.1.1.</span> <span class="toc-text">原始值为整数</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#原始值为字符串"><span class="toc-number">4.1.2.</span> <span class="toc-text">原始值为字符串</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#8-4-2-使用原始值初始化枚举实例"><span class="toc-number">4.2.</span> <span class="toc-text">8.4.2    使用原始值初始化枚举实例</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#8-5-递归枚举"><span class="toc-number">5.</span> <span class="toc-text">8.5    递归枚举</span></a></li></ol>
+    </div>
+    <div id="tocShell"></div>
+    <div id="toc" class="toc-article">
+      <div class="btn-group drag-me">
+        <i class="social fa fa-ellipsis-v"></i>
+      </div>
+      <div class="btn-group dropup-catelog">
+        <button class="btn"><i class="social fa fa-list-ol"></i></button>
+        <div class="catelog-content">
+          <p class="toc-title-wrap">
+            <strong class="toc-title">文章目录</strong>
+          </p>
+          <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#8-1-枚举语法"><span class="toc-number">1.</span> <span class="toc-text">8.1    枚举语法</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#8-2-使用switch语句匹配枚举值"><span class="toc-number">2.</span> <span class="toc-text">8.2    使用switch语句匹配枚举值</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#8-3-关联值"><span class="toc-number">3.</span> <span class="toc-text">8.3    关联值</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#提取关联值"><span class="toc-number">3.1.</span> <span class="toc-text">提取关联值</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#8-4-原始值"><span class="toc-number">4.</span> <span class="toc-text">8.4    原始值</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#8-4-1-原始值的隐式赋值"><span class="toc-number">4.1.</span> <span class="toc-text">8.4.1    原始值的隐式赋值</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#原始值为整数"><span class="toc-number">4.1.1.</span> <span class="toc-text">原始值为整数</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#原始值为字符串"><span class="toc-number">4.1.2.</span> <span class="toc-text">原始值为字符串</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#8-4-2-使用原始值初始化枚举实例"><span class="toc-number">4.2.</span> <span class="toc-text">8.4.2    使用原始值初始化枚举实例</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#8-5-递归枚举"><span class="toc-number">5.</span> <span class="toc-text">8.5    递归枚举</span></a></li></ol>
+        </div>
+      </div>
+    </div>
+    
+    <blockquote>
+<p><strong>说明：</strong>枚举为一组相关的值定义了一个共同的类型，使你可以在你的代码中以类型安全的方式来使用这些值。<br><strong>更加灵活：</strong></p>
+<ul>
+<li><strong>原始值不是必需的：</strong>不必给每一个枚举成员提供一个值（原始值）</li>
+<li><strong>原始值类型：</strong>原始值的类型可以是<code>字符串</code>、<code>字符</code>、<code>整型值</code>或<code>浮点数</code></li>
+<li><strong>关联值：</strong>枚举成员可以指定任意类型的关联值存储到枚举成员中</li>
+</ul>
+<p><strong>一等类型：</strong>采用了很多在传统上只被类（class）所支持的特性</p>
+<ul>
+<li><strong>计算型属性：</strong>用于提供枚举值的附加信息</li>
+<li><strong>实例方法：</strong>用于提供和枚举值相关联的功能</li>
+<li><strong>构造函数：</strong>来提供一个初始值</li>
+<li><strong>动态扩展：</strong>可以在原始实现的基础上扩展它们的功能</li>
+<li><strong>实现协议：</strong>还可以遵守协议（protocols）来提供标准的功能</li>
+</ul>
+</blockquote>
+<h2 id="8-1-枚举语法"><a href="#8-1-枚举语法" class="headerlink" title="8.1    枚举语法"></a>8.1    枚举语法</h2><blockquote>
+<p><strong>语法：</strong>使用<code>enum</code>关键词来创建枚举并且把它们的整个定义放在一对<code>{}</code>内，使用<code>case</code>关键字来定义一个新的枚举成员值。</p>
+<ul>
+<li><strong>没有默认原始值：</strong>枚举成员在被创建时<code>不会被赋予</code>一个<code>默认的整型值</code>(与 C 和 Objective-C 不同)</li>
+<li><strong><code>case</code>后多个成员值：</strong>多个成员值可以出现在同一行上，用<code>,</code>隔开</li>
+<li><strong>枚举类型名：</strong>每个枚举定义了一个全新的类型，它们的名字应该<code>以一个大写字母开头</code>（像 Swift 中其他类型一样）</li>
+<li><strong>省略类型名：</strong>当变量或常量的类型已知是某种枚举类型时时，再次为其赋值可以省略相应枚举类型名。</li>
+</ul>
+</blockquote>
+<figure class="highlight swift"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">enum</span> <span class="title">SomeEnumeration</span></span>&#123;</span><br><span class="line">    <span class="keyword">case</span> 成员<span class="number">1</span></span><br><span class="line">    <span class="keyword">case</span> 成员<span class="number">2</span></span><br><span class="line">    ...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight swift"><table><tr><td class="code"><pre><span class="line"><span class="comment">// case后一个成员值的情况</span></span><br><span class="line"><span class="class"><span class="keyword">enum</span> <span class="title">CompassPoint</span> </span>&#123;</span><br><span class="line">    <span class="keyword">case</span> <span class="type">North</span></span><br><span class="line">    <span class="keyword">case</span> <span class="type">South</span></span><br><span class="line">    <span class="keyword">case</span> <span class="type">East</span></span><br><span class="line">    <span class="keyword">case</span> <span class="type">West</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// case后多个成员值的情况</span></span><br><span class="line"><span class="class"><span class="keyword">enum</span> <span class="title">Planet</span> </span>&#123;</span><br><span class="line">    <span class="keyword">case</span> <span class="type">Mercury</span>, <span class="type">Venus</span>, <span class="type">Earth</span>, <span class="type">Mars</span>, <span class="type">Jupiter</span>, <span class="type">Saturn</span>, <span class="type">Uranus</span>, <span class="type">Neptune</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 枚举值的声明和赋值</span></span><br><span class="line"><span class="keyword">var</span> directionToHead = <span class="type">CompassPoint</span>.<span class="type">West</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 类型推断</span></span><br><span class="line">directionToHead = .<span class="type">East</span></span><br></pre></td></tr></table></figure>
+<h2 id="8-2-使用switch语句匹配枚举值"><a href="#8-2-使用switch语句匹配枚举值" class="headerlink" title="8.2    使用switch语句匹配枚举值"></a>8.2    使用switch语句匹配枚举值</h2><blockquote>
+<p><strong>注意：</strong>必须穷举所有枚举值的情况（<code>switch</code>的完备性）</p>
+</blockquote>
+<figure class="highlight swift"><table><tr><td class="code"><pre><span class="line">directionToHead = .<span class="type">South</span></span><br><span class="line"><span class="keyword">switch</span> directionToHead &#123;</span><br><span class="line">    <span class="keyword">case</span> .<span class="type">North</span>:</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">"Lots of planets have a north"</span>)</span><br><span class="line">    <span class="keyword">case</span> .<span class="type">South</span>:</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">"watch out for penguins"</span>)</span><br><span class="line">    <span class="keyword">case</span> .<span class="type">East</span>:</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">"Where the sun rises"</span>)</span><br><span class="line">    <span class="keyword">case</span> .<span class="type">West</span>:</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">"Where the skies are blue"</span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="8-3-关联值"><a href="#8-3-关联值" class="headerlink" title="8.3    关联值"></a>8.3    关联值</h2><blockquote>
+<p><strong>说明：</strong>连同成员值一起存储额外的自定义信息。</p>
+<ul>
+<li>每次在代码中使用该枚举成员时，还可以用不同的关联值</li>
+<li>可以定义 Swift 枚举来存储任意类型的关联值</li>
+</ul>
+<p><strong>语法：</strong><code>case 成员名(关联值1类型, 关联值1类型, ...)</code></p>
+</blockquote>
+<figure class="highlight swift"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 码</span></span><br><span class="line"><span class="class"><span class="keyword">enum</span> <span class="title">Barcode</span> </span>&#123;</span><br><span class="line">    <span class="comment">// 条形码</span></span><br><span class="line">    <span class="keyword">case</span> <span class="type">UPCA</span>(<span class="type">Int</span>, <span class="type">Int</span>, <span class="type">Int</span>, <span class="type">Int</span>)</span><br><span class="line">    <span class="comment">// 二维码</span></span><br><span class="line">    <span class="keyword">case</span> <span class="type">QRCode</span>(<span class="type">String</span>)</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 条形码</span></span><br><span class="line"><span class="keyword">var</span> productBarcode = <span class="type">Barcode</span>.<span class="type">UPCA</span>(<span class="number">8</span>, <span class="number">85909</span>, <span class="number">51226</span>, <span class="number">3</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment">// 二维码</span></span><br><span class="line">productBarcode = .<span class="type">QRCode</span>(<span class="string">"ABCDEFGHIJKLMNOP"</span>)</span><br></pre></td></tr></table></figure>
+<h3 id="提取关联值"><a href="#提取关联值" class="headerlink" title="提取关联值"></a>提取关联值</h3><blockquote>
+<p><strong>说明：</strong>可以在<code>switch</code>语句中提取一个枚举值的关联值。<br><strong>语法：</strong>需要声明提取关联值到常量（<code>let</code>）还是变量（<code>var</code>）</p>
+</blockquote>
+<figure class="highlight swift"><table><tr><td class="code"><pre><span class="line"><span class="keyword">switch</span> 枚举值 &#123;</span><br><span class="line">    <span class="keyword">case</span> .枚举成员<span class="number">1</span>(<span class="keyword">let</span> 关联值<span class="number">1</span>, ...)</span><br><span class="line">    ...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p><strong>技巧：</strong>当一个<code>enum</code>值关联的所有关联值都想提取为<code>let</code>或<code>var</code>时，为了简洁，可以只在成员名称前标注一个<code>let</code>或者<code>var</code></p>
+</blockquote>
+<figure class="highlight swift"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 通过switch提取关联值</span></span><br><span class="line"><span class="keyword">switch</span> productBarcode &#123;</span><br><span class="line">    <span class="keyword">case</span> .<span class="type">UPCA</span>(<span class="keyword">let</span> numberSystem, <span class="keyword">let</span> manufacturer, <span class="keyword">let</span> product, <span class="keyword">let</span> check):</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">"UPC-A:\(numberSystem), \(manufacturer), \(product), \(check)"</span>)</span><br><span class="line">    <span class="keyword">case</span> .<span class="type">QRCode</span>(<span class="keyword">let</span> productCode):</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">"QR code:\(productCode)."</span>)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 简写（仅用于所有关联值都要提取为为常量或变量时）:在成员名前标注一个let或var</span></span><br><span class="line"><span class="keyword">switch</span> productBarcode &#123;</span><br><span class="line">    <span class="keyword">case</span> <span class="keyword">let</span> .<span class="type">UPCA</span>(numberSystem, manufacturer, product, check):</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">"UPC-A: \(numberSystem), \(manufacturer), \(product), \(check)."</span>)</span><br><span class="line">    <span class="keyword">case</span> <span class="keyword">let</span> .<span class="type">QRCode</span>(productCode):</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">"QR code: \(productCode)."</span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="8-4-原始值"><a href="#8-4-原始值" class="headerlink" title="8.4    原始值"></a>8.4    原始值</h2><blockquote>
+<p><strong>说明：</strong>枚举成员都可以有一个默认值，也叫原始值</p>
+<ul>
+<li>原始值的类型必须相同</li>
+<li>原始值可以是<code>字符串</code>，<code>字符</code>，或者<code>任意整型值</code>或<code>浮点型值</code></li>
+</ul>
+<p><strong>注意：</strong><code>原始值</code>和<code>关联值</code>不要混淆</p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>区分对象</th>
+<th>设置的时间</th>
+<th>是否可以改变</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>关联值</td>
+<td>创建一个基于枚举成员的常量或变量时</td>
+<td>是</td>
+</tr>
+<tr>
+<td>原始值</td>
+<td>定义枚举类型时</td>
+<td>否</td>
+</tr>
+</tbody>
+</table>
+<figure class="highlight swift"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">enum</span> <span class="title">ASCIIControlCharacter</span>: <span class="title">Character</span> </span>&#123;</span><br><span class="line">    <span class="keyword">case</span> <span class="type">Tab</span> = <span class="string">"\t"</span></span><br><span class="line">    <span class="keyword">case</span> <span class="type">LineFeed</span> = <span class="string">"\n"</span></span><br><span class="line">    <span class="keyword">case</span> <span class="type">CarriageReturn</span> = <span class="string">"\r"</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="8-4-1-原始值的隐式赋值"><a href="#8-4-1-原始值的隐式赋值" class="headerlink" title="8.4.1    原始值的隐式赋值"></a>8.4.1    原始值的隐式赋值</h3><blockquote>
+<p><strong>说明：</strong>在使用原始值为<code>整数</code>或者<code>字符串类型</code>的枚举时，不需要显式地为每一个枚举成员设置原始值，Swift 将会自动为你赋值。</p>
+</blockquote>
+<h4 id="原始值为整数"><a href="#原始值为整数" class="headerlink" title="原始值为整数"></a>原始值为整数</h4><blockquote>
+<ul>
+<li>隐式赋值的值依次递增1</li>
+<li>如果第一个枚举成员没有设置原始值，其原始值将为0</li>
+</ul>
+</blockquote>
+<figure class="highlight swift"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 原始值的隐式赋值</span></span><br><span class="line"><span class="comment">// 星球（带有Int型原始值）</span></span><br><span class="line"><span class="class"><span class="keyword">enum</span> <span class="title">Planet</span>: <span class="title">Int</span> </span>&#123;</span><br><span class="line">    <span class="keyword">case</span> <span class="type">Mercury</span> = <span class="number">1</span>, <span class="type">Venus</span>, <span class="type">Earth</span>, <span class="type">Mars</span>, <span class="type">Jupiter</span>, <span class="type">Saturn</span>, <span class="type">Uranus</span>, <span class="type">Neptune</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 访问原始值</span></span><br><span class="line"><span class="keyword">let</span> earthsOrder = <span class="type">Planet</span>.<span class="type">Earth</span>.rawValue</span><br></pre></td></tr></table></figure>
+<h4 id="原始值为字符串"><a href="#原始值为字符串" class="headerlink" title="原始值为字符串"></a>原始值为字符串</h4><blockquote>
+<p><strong>说明：</strong>每个枚举成员的隐式原始值为该枚举成员的名称</p>
+</blockquote>
+<figure class="highlight swift"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 指南针（带有String类型）</span></span><br><span class="line"><span class="class"><span class="keyword">enum</span> <span class="title">CompassPoint</span>: <span class="title">String</span> </span>&#123;</span><br><span class="line">    <span class="keyword">case</span> <span class="type">North</span>, <span class="type">South</span>, <span class="type">East</span>, <span class="type">West</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">let</span> sunsetDirection = <span class="type">CompassPoint</span>.<span class="type">West</span>.rawValue</span><br></pre></td></tr></table></figure>
+<h3 id="8-4-2-使用原始值初始化枚举实例"><a href="#8-4-2-使用原始值初始化枚举实例" class="headerlink" title="8.4.2    使用原始值初始化枚举实例"></a>8.4.2    使用原始值初始化枚举实例</h3><blockquote>
+<p><strong>说明：</strong>在定义枚举类型的时候使用了<code>原始值</code>，那么将会自动获得一个初始化方法<br><strong>调用初始化方法：</strong><code>枚举类型名(rawValue: 原始值)</code></p>
+<ul>
+<li><strong>参数：</strong>接收一个叫做<code>rawValue</code>的参数，参数类型即为原始值类型</li>
+<li><strong>返回值（可选型）：</strong><code>枚举成员</code>或<code>nil</code></li>
+</ul>
+</blockquote>
+<figure class="highlight swift"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 星球（带有Int型原始值）</span></span><br><span class="line"><span class="class"><span class="keyword">enum</span> <span class="title">Planet</span>: <span class="title">Int</span> </span>&#123;</span><br><span class="line">    <span class="keyword">case</span> <span class="type">Mercury</span> = <span class="number">1</span>, <span class="type">Venus</span>, <span class="type">Earth</span>, <span class="type">Mars</span>, <span class="type">Jupiter</span>, <span class="type">Saturn</span>, <span class="type">Uranus</span>, <span class="type">Neptune</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 使用原始值初始化枚举实例</span></span><br><span class="line"><span class="keyword">let</span> passiblePlanet = <span class="type">Planet</span>(rawValue: <span class="number">7</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment">// 枚举的可失败构造器</span></span><br><span class="line"><span class="keyword">let</span> positionToFind = <span class="number">9</span></span><br><span class="line"><span class="keyword">if</span> <span class="keyword">let</span> somePlanet = <span class="type">Planet</span>(rawValue: positionToFind) &#123;</span><br><span class="line">    <span class="keyword">switch</span> somePlanet &#123;</span><br><span class="line">    <span class="keyword">case</span> .<span class="type">Earth</span>:</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">"Mostly harmless"</span>)</span><br><span class="line">    <span class="keyword">default</span>:</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">"Not a safe place for humans"</span>)</span><br><span class="line">    &#125;</span><br><span class="line">&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">"There isn't a planet at position \(positionToFind)"</span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="8-5-递归枚举"><a href="#8-5-递归枚举" class="headerlink" title="8.5    递归枚举"></a>8.5    递归枚举</h2><blockquote>
+<p><strong>说明：</strong>是一种特殊的枚举类型</p>
+<ul>
+<li>有一个或多个枚举成员<code>使用该枚举类型的实例作为关联值</code></li>
+<li>使用递归枚举时，编译器会插入一个间接层</li>
+<li>可以在枚举成员前加上<code>indirect</code>来表示该成员可递归</li>
+</ul>
+</blockquote>
+<figure class="highlight swift"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 表达式</span></span><br><span class="line"><span class="class"><span class="keyword">enum</span> <span class="title">ArithmeticExpression</span> </span>&#123;</span><br><span class="line">    <span class="comment">// 纯数字</span></span><br><span class="line">    <span class="keyword">case</span> <span class="type">Number</span>(<span class="type">Int</span>)</span><br><span class="line">    <span class="comment">// 两个表达式的和</span></span><br><span class="line">    <span class="keyword">indirect</span> <span class="keyword">case</span> <span class="type">Addition</span>(<span class="type">ArithmeticExpression</span>, <span class="type">ArithmeticExpression</span>)</span><br><span class="line">    <span class="comment">// 两个表达式的积</span></span><br><span class="line">    <span class="keyword">indirect</span> <span class="keyword">case</span> <span class="type">Multiplication</span>(<span class="type">ArithmeticExpression</span>, <span class="type">ArithmeticExpression</span>)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 对表达式进行处理的函数</span></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">evaluate</span><span class="params">(expression: ArithmeticExpression)</span></span> -&gt; <span class="type">Int</span> &#123;</span><br><span class="line">    <span class="keyword">switch</span> expression &#123;</span><br><span class="line">        <span class="keyword">case</span> .<span class="type">Number</span>(<span class="keyword">let</span> value):</span><br><span class="line">            <span class="keyword">return</span> value</span><br><span class="line">        <span class="keyword">case</span> .<span class="type">Addition</span>(<span class="keyword">let</span> <span class="keyword">left</span>, <span class="keyword">let</span> <span class="keyword">right</span>):</span><br><span class="line">            <span class="keyword">return</span> evaluate(<span class="keyword">left</span>) + evaluate(<span class="keyword">right</span>)</span><br><span class="line">        <span class="keyword">case</span> .<span class="type">Multiplication</span>(<span class="keyword">let</span> <span class="keyword">left</span>, <span class="keyword">let</span> <span class="keyword">right</span>):</span><br><span class="line">            <span class="keyword">return</span> evaluate(<span class="keyword">left</span>) * evaluate(<span class="keyword">right</span>)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 计算 (5 + 4) * 2</span></span><br><span class="line"><span class="keyword">let</span> five = <span class="type">ArithmeticExpression</span>.<span class="type">Number</span>(<span class="number">5</span>)</span><br><span class="line"><span class="keyword">let</span> four = <span class="type">ArithmeticExpression</span>.<span class="type">Number</span>(<span class="number">4</span>)</span><br><span class="line"><span class="keyword">let</span> sum = <span class="type">ArithmeticExpression</span>.<span class="type">Addition</span>(five, four)</span><br><span class="line"><span class="keyword">let</span> product = <span class="type">ArithmeticExpression</span>.<span class="type">Multiplication</span>(sum, <span class="type">ArithmeticExpression</span>.<span class="type">Number</span>(<span class="number">2</span>))</span><br><span class="line"><span class="built_in">print</span>(evaluate(product))</span><br></pre></td></tr></table></figure>
+  </section>
+
+</article>
+
+
+
+
+            <footer class="footer">
+    <span class="footer__copyright">
+        本站点采用<a href="http://creativecommons.org/licenses/by-nc-sa/4.0/">知识共享署名-非商业性使用-相同方式共享 4.0 国际许可协议</a>
+    </span>
+    <span class="footer__copyright">
+        基于 <a href="http://hexo.io">Hexo</a> 搭建，感谢 <a href="https://pages.github.com/">GitHub Pages</a> 提供免费的托管服务
+    </span>
+    <span class="footer__copyright">
+        &copy; 2016 - 
+        本站修改自<a href="https://github.com/lenbo-ma/hexo-theme-vno" target="_blank">hexo-theme-vno</a>
+    </span>
+</footer>
+
+        </div>
+    </div>
+
+    <script src="http://cdn.bootcss.com/jquery/2.1.4/jquery.min.js"></script>
+    <script src="/js/main.js"></script>
+
+     
+</body>
+</html>

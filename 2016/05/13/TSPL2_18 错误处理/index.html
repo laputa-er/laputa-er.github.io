@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    
+    <title>18 错误处理 | Laputa</title>
+    <meta name="renderer" content="webkit">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="MobileOptimized" content="320">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+    <meta name="description" content="do things for fun">
+
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="18 错误处理 | Laputa">
+    <meta name="twitter:description" content="do things for fun">
+
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="18 错误处理 | Laputa">
+    <meta property="og:description" content="do things for fun">
+
+    
+    <meta name="author" content="Sean">
+    
+    <link rel="stylesheet" href="/css/vno.css">
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css">
+
+    
+    <link rel="icon" href="/images/favicon.png">
+    
+
+    <meta name="generator" content="hexo"/>
+    
+    <link rel="alternate" type="application/rss+xml" title="Laputa" href="/atom.xml">
+    
+
+    <link rel="canonical" href="http://laputa-er.github.io/2016/05/13/TSPL2_18 错误处理/"/>
+
+    
+</head>
+
+<body class="home-template no-js">
+
+    <span class="mobile btn-mobile-menu">
+        <i class="fa fa-list btn-mobile-menu__icon"></i>
+        <i class="fa fa-angle-up btn-mobile-close__icon hidden"></i>
+    </span>
+    
+<header class="panel-cover panel-cover--collapsed" style="background-image: url(/images/mengxiang.jpg)">
+  <div class="panel-main">
+    <div class="panel-main__inner panel-inverted">
+    <div class="panel-main__content">
+
+        <a href="/" title="前往 Laputa 的主页"><img src="/images/logo2.jpg" width="80" alt="Laputa logo" class="panel-cover__logo logo" /></a>
+        <h1 class="panel-cover__title panel-title"><a href="/" title="link to homepage for Laputa">Laputa</a></h1>
+        
+        <span class="panel-cover__subtitle panel-subtitle">已然在路上</span>
+        
+        <hr class="panel-cover__divider" />
+        <p class="panel-cover__description">If you can not act the way you want to live, you will one day live in accordance with the way to think about.</p>
+        <hr class="panel-cover__divider panel-cover__divider--secondary" />
+
+        <div class="navigation-wrapper">
+          <div>
+          <nav class="cover-navigation cover-navigation--primary">
+            <ul class="navigation">
+              <li class="navigation__item"><a href="/#blog" title="访问笔记" class="blog-button">笔记</a></li>
+            
+              <li class="navigation__item"><a href="/projects">项目作品</a></li>
+            
+              <li class="navigation__item"><a href="/aboutme">关于我</a></li>
+            
+            </ul>
+          </nav>
+          </div>
+          <div>
+          <nav class="cover-navigation navigation--social">
+  <ul class="navigation">
+
+  <!-- Weibo-->
+  
+
+  <!-- Github -->
+  
+  <li class="navigation__item">
+    <a href="https://github.com/laputa-er" title="查看我的GitHub主页" target="_blank">
+      <i class='social fa fa-github'></i>
+      <span class="label">Github</span>
+    </a>
+  </li>
+
+
+<!-- Stack Overflow -->
+        
+        <li class="navigation__item">
+            <a href="http://stackoverflow.com/users/6304138/laputa" title="Stack Overflow" target="_blank">
+                <i class='social fa fa-stack-overflow'></i>
+                <span class="label">Stack Overflow</span>
+            </a>
+        </li>
+        
+
+  <!-- Google Plus -->
+  
+
+<!-- Facebook -->
+
+  
+<!-- Twitter -->
+
+  
+
+  <li class="navigation__item">
+    <a href="/atom.xml" title="RSS" target="_blank">
+      <i class='social fa fa-rss'></i>
+      <span class="label">RSS</span>
+    </a>
+  </li>
+
+
+
+  </ul>
+</nav>
+
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+
+    <div class="panel-cover--overlay cover-blue"></div>
+  </div>
+</header>
+    
+    
+    <div class="content-wrapper">
+        <div class="content-wrapper__inner">
+            <article class="post-container post-container--single">
+
+  <header class="post-header">
+    <div class="post-meta">
+      <time datetime="2016-05-13T11:56:39.000Z" class="post-list__meta--date date">2016-05-13</time> &#8226; <span class="post-meta__tags tags">于&nbsp;
+  <a class="tag-link" href="/tags/The-Swift-Program-Language-2/">The Swift Program Language 2</a>
+</span>
+    </div>
+    <h1 class="post-title">18 错误处理</h1>
+  </header>
+
+  <section class="post">
+    <!-- Table of Contents -->
+    
+    <div id="top-toc">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#18-1-表示并抛出错误"><span class="toc-number">1.</span> <span class="toc-text">18.1    表示并抛出错误</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#18-2-处理错误"><span class="toc-number">2.</span> <span class="toc-text">18.2    处理错误</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#18-2-1-用throwing函数传递错误"><span class="toc-number">2.1.</span> <span class="toc-text">18.2.1    用throwing函数传递错误</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#18-2-2-用Do-Catch处理错误"><span class="toc-number">2.2.</span> <span class="toc-text">18.2.2    用Do-Catch处理错误</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#18-2-3-将错误转换成可选值"><span class="toc-number">2.3.</span> <span class="toc-text">18.2.3    将错误转换成可选值</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#18-2-4-禁用错误传递"><span class="toc-number">2.4.</span> <span class="toc-text">18.2.4        禁用错误传递</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#18-3-指定清理操作"><span class="toc-number">3.</span> <span class="toc-text">18.3    指定清理操作</span></a></li></ol>
+    </div>
+    <div id="tocShell"></div>
+    <div id="toc" class="toc-article">
+      <div class="btn-group drag-me">
+        <i class="social fa fa-ellipsis-v"></i>
+      </div>
+      <div class="btn-group dropup-catelog">
+        <button class="btn"><i class="social fa fa-list-ol"></i></button>
+        <div class="catelog-content">
+          <p class="toc-title-wrap">
+            <strong class="toc-title">文章目录</strong>
+          </p>
+          <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#18-1-表示并抛出错误"><span class="toc-number">1.</span> <span class="toc-text">18.1    表示并抛出错误</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#18-2-处理错误"><span class="toc-number">2.</span> <span class="toc-text">18.2    处理错误</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#18-2-1-用throwing函数传递错误"><span class="toc-number">2.1.</span> <span class="toc-text">18.2.1    用throwing函数传递错误</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#18-2-2-用Do-Catch处理错误"><span class="toc-number">2.2.</span> <span class="toc-text">18.2.2    用Do-Catch处理错误</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#18-2-3-将错误转换成可选值"><span class="toc-number">2.3.</span> <span class="toc-text">18.2.3    将错误转换成可选值</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#18-2-4-禁用错误传递"><span class="toc-number">2.4.</span> <span class="toc-text">18.2.4        禁用错误传递</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#18-3-指定清理操作"><span class="toc-number">3.</span> <span class="toc-text">18.3    指定清理操作</span></a></li></ol>
+        </div>
+      </div>
+    </div>
+    
+    <blockquote>
+<p><strong>说明：</strong><code>错误处理</code>是响应错误以及从错误中恢复的过程。<code>可选类型</code>可用来表示值缺失，但是当某个操作失败时，最好能得知失败的原因，从而可以作出相应的应对。<br><strong>扩展：</strong><code>Swift</code> 中的错误处理涉及到错误处理模式，这会用到 <code>Cocoa</code> 和 <code>Objective-C</code> 中的<code>NSError</code></p>
+</blockquote>
+<h2 id="18-1-表示并抛出错误"><a href="#18-1-表示并抛出错误" class="headerlink" title="18.1    表示并抛出错误"></a>18.1    表示并抛出错误</h2><blockquote>
+<p><strong>说明：</strong>错误用符合<code>ErrorType</code>协议的类型的值来表示。这个空协议表明该类型可以用于错误处理。<br><strong>技巧：</strong>Swift 的<code>枚举</code>类型尤为适合构建一组相关的错误状态，枚举的关联值还可以提供错误状态的额外信息。</p>
+</blockquote>
+<figure class="highlight swift"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 自动贩卖机错误</span></span><br><span class="line"><span class="class"><span class="keyword">enum</span> <span class="title">VendingMachineError</span>: <span class="title">ErrorType</span> </span>&#123;</span><br><span class="line">    <span class="keyword">case</span> <span class="type">InvalidSelection</span><span class="comment">// 选择无效</span></span><br><span class="line">    <span class="keyword">case</span> <span class="type">InsufficientFunds</span>(coinsNeeded: <span class="type">Int</span>)<span class="comment">// 金额不足</span></span><br><span class="line">    <span class="keyword">case</span> <span class="type">OutOfStock</span><span class="comment">// 缺货</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 抛出“金额不足”的错误</span></span><br><span class="line"><span class="keyword">throw</span> <span class="type">VendingMachineError</span>.<span class="type">InsufficientFunds</span>(coinsNeeded: <span class="number">5</span>)</span><br></pre></td></tr></table></figure>
+<h2 id="18-2-处理错误"><a href="#18-2-处理错误" class="headerlink" title="18.2    处理错误"></a>18.2    处理错误</h2><blockquote>
+<p><strong>说明：</strong>某个错误被抛出时，附近的某部分代码必须负责处理这个错误。有<code>4</code>中给处理错误的方式</p>
+<ul>
+<li>把函数<code>抛出</code>的错误传递给调用此函数的代码</li>
+<li>用<code>do-catch</code>语句处理错误</li>
+<li>将错误作为<code>可选类型</code>处理</li>
+<li><code>断言</code>此错误根本不会发生</li>
+</ul>
+<p><strong>标识可能出错的地方：</strong>在调用一个能抛出错误的<code>函数</code>、<code>方法</code>或者<code>构造器</code>之前，加上<code>try</code>关键字，或者<code>try?</code>或<code>try!</code>这种变体</p>
+<p><strong>引伸：</strong>和其他语言中的异常处理不同的是，Swift 中的错误处理并不涉及解除调用栈，就此而言，<code>throw语句</code>的性能特性是可以和<code>return语句</code>相媲美的。</p>
+</blockquote>
+<h3 id="18-2-1-用throwing函数传递错误"><a href="#18-2-1-用throwing函数传递错误" class="headerlink" title="18.2.1    用throwing函数传递错误"></a>18.2.1    用throwing函数传递错误</h3><blockquote>
+<p><strong>说明：</strong>一个标有<code>throws</code>关键字的函数被称作<code>throwing 函数</code>。</p>
+<ul>
+<li>调用<code>throwing函数</code>必须使用<code>try</code></li>
+<li>调用<code>throwing函数</code>必须要么直接处理这些错误（使用<code>do-catch</code>语句，<code>try?</code>或<code>try!</code>）；要么继续将这些错误传递下去</li>
+</ul>
+<p><strong>用途：</strong>可以在其内部抛出错误，并将错误传递到函数<code>被调用时的作用域</code>。<br><strong>语法：</strong>在函数声明的<code>参数列表</code>和<code>-&gt;</code>之间加上<code>throws</code>关键字。</p>
+</blockquote>
+<figure class="highlight swift"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">canThrowErrors</span><span class="params">()</span></span> <span class="keyword">throws</span> -&gt; <span class="type">String</span></span><br></pre></td></tr></table></figure>
+<blockquote>
+<p><strong>注意：</strong>只有 <code>throwing函数</code>可以传递错误。任何在某个<code>非 throwing 函数</code>内部抛出的错误只能在函数内部处理。</p>
+</blockquote>
+<figure class="highlight swift"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 自动贩卖机错误</span></span><br><span class="line"><span class="class"><span class="keyword">enum</span> <span class="title">VendingMachineError</span>: <span class="title">ErrorType</span> </span>&#123;</span><br><span class="line">    <span class="keyword">case</span> <span class="type">InvalidSelection</span><span class="comment">// 选择无效</span></span><br><span class="line">    <span class="keyword">case</span> <span class="type">InsufficientFunds</span>(coinsNeeded: <span class="type">Int</span>)<span class="comment">// 金额不足</span></span><br><span class="line">    <span class="keyword">case</span> <span class="type">OutOfStock</span><span class="comment">// 缺货</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 商品</span></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">Item</span> </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> price: <span class="type">Int</span></span><br><span class="line">    <span class="keyword">var</span> <span class="built_in">count</span>: <span class="type">Int</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 自动贩卖机</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">VendingMachine</span> </span>&#123;</span><br><span class="line">    <span class="comment">// 食品清单</span></span><br><span class="line">    <span class="keyword">var</span> inventory = [</span><br><span class="line">        <span class="string">"Candy Bar"</span>: <span class="type">Item</span>(price: <span class="number">12</span>, <span class="built_in">count</span>: <span class="number">7</span>),</span><br><span class="line">        <span class="string">"Chips"</span>: <span class="type">Item</span>(price: <span class="number">10</span>, <span class="built_in">count</span>: <span class="number">4</span>),</span><br><span class="line">        <span class="string">"Pretzels"</span>: <span class="type">Item</span>(price: <span class="number">7</span>, <span class="built_in">count</span>: <span class="number">11</span>)</span><br><span class="line">    ]</span><br><span class="line">    <span class="comment">// 投币数量</span></span><br><span class="line">    <span class="keyword">var</span> coinsDeposited = <span class="number">0</span></span><br><span class="line">    <span class="comment">// 发放食品</span></span><br><span class="line">    <span class="function"><span class="keyword">func</span> <span class="title">dispenseSnack</span><span class="params">(snack: String)</span></span> &#123;</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">"Dispensing \(snack)"</span>)</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/*</span><br><span class="line">    * 出售</span><br><span class="line">    * throwing方法：会抛出相应错误（如果有的话）</span><br><span class="line">    */</span></span><br><span class="line">    <span class="function"><span class="keyword">func</span> <span class="title">vend</span><span class="params">(itemNamed name: String)</span></span> <span class="keyword">throws</span> &#123;</span><br><span class="line">        <span class="comment">// 是否有对应商品</span></span><br><span class="line">        <span class="keyword">guard</span> <span class="keyword">var</span> item = inventory[name] <span class="keyword">else</span> &#123;</span><br><span class="line">            <span class="keyword">throw</span> <span class="type">VendingMachineError</span>.<span class="type">InvalidSelection</span></span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">        <span class="comment">// 是否还有剩余</span></span><br><span class="line">        <span class="keyword">guard</span> item.<span class="built_in">count</span> &gt; <span class="number">0</span> <span class="keyword">else</span> &#123;</span><br><span class="line">            <span class="keyword">throw</span> <span class="type">VendingMachineError</span>.<span class="type">OutOfStock</span></span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">        <span class="comment">// 投币是否足够</span></span><br><span class="line">        <span class="keyword">guard</span> item.price &lt;= coinsDeposited <span class="keyword">else</span> &#123;</span><br><span class="line">            <span class="keyword">throw</span> <span class="type">VendingMachineError</span>.<span class="type">InsufficientFunds</span>(coinsNeeded: item.price - coinsDeposited)</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">        <span class="comment">// 没问题，进行交易</span></span><br><span class="line">        coinsDeposited -= item.price</span><br><span class="line">        --item.<span class="built_in">count</span></span><br><span class="line">        inventory[name] = item</span><br><span class="line">        dispenseSnack(name)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> favoriteSnacks = [</span><br><span class="line">    <span class="string">"Alice"</span>: <span class="string">"Chips"</span>,</span><br><span class="line">    <span class="string">"Bob"</span>: <span class="string">"Licorice"</span>,</span><br><span class="line">    <span class="string">"Eve"</span>: <span class="string">"Pretzels"</span>,</span><br><span class="line">]</span><br><span class="line"></span><br><span class="line"><span class="comment">/*</span><br><span class="line">* 买小吃</span><br><span class="line">*/</span></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">buyFavoriteSnack</span><span class="params">(person: String, vendingMachine: VendingMachine)</span></span> <span class="keyword">throws</span> &#123;</span><br><span class="line">    <span class="keyword">let</span> snackName = favoriteSnacks[person] ?? <span class="string">"Candy Bar"</span></span><br><span class="line">    <span class="comment">// 调用throwing方法必须使用try关键字</span></span><br><span class="line">    <span class="keyword">try</span> vendingMachine.vend(itemNamed: snackName)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="18-2-2-用Do-Catch处理错误"><a href="#18-2-2-用Do-Catch处理错误" class="headerlink" title="18.2.2    用Do-Catch处理错误"></a>18.2.2    用Do-Catch处理错误</h3><blockquote>
+<p><strong>说明：</strong>可以使用一个<code>do-catch</code>语句运行一段闭包代码来处理错误。如果在<code>do</code>子句中的代码抛出了一个错误，这个错误会与<code>catch</code>子句做匹配，从而决定哪条子句能处理它。</p>
+<ul>
+<li>在<code>catch</code>后面写一个匹配模式来表明这个子句能处理什么样的错误</li>
+<li>如果一条<code>catch</code>子句没有指定匹配模式，那么这条子句可以匹配任何错误，并且把错误绑定到一个名字为<code>error</code>的局部常量</li>
+<li><code>catch</code>子句不必将<code>do</code>子句中的代码所抛出的每一个可能的错误都作处理</li>
+<li>如果所有<code>catch</code>子句都未处理错误，错误就会传递到周围的作用域（要么是一个外围的<code>do-catch</code>错误处理语句，要么是一个<code>throwing</code> 函数的内部）</li>
+</ul>
+</blockquote>
+<figure class="highlight swift"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 创建一个售卖机实例</span></span><br><span class="line"><span class="keyword">var</span> vendingMachine = <span class="type">VendingMachine</span>()</span><br><span class="line"><span class="comment">// 投币</span></span><br><span class="line">vendingMachine.coinsDeposited = <span class="number">8</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">do</span> &#123;</span><br><span class="line">    <span class="comment">// 买最喜欢的零食</span></span><br><span class="line">    <span class="keyword">try</span> buyFavoriteSnack(<span class="string">"Alice"</span>, vendingMachine: vendingMachine)</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 没有该商品</span></span><br><span class="line"><span class="keyword">catch</span> <span class="type">VendingMachineError</span>.<span class="type">InvalidSelection</span> &#123;</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">"Invalid Selection"</span>)</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 卖完了</span></span><br><span class="line"><span class="keyword">catch</span> <span class="type">VendingMachineError</span>.<span class="type">OutOfStock</span> &#123;</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">"Out of Stock."</span>)</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 投币不足</span></span><br><span class="line"><span class="keyword">catch</span> <span class="type">VendingMachineError</span>.<span class="type">InsufficientFunds</span>(<span class="keyword">let</span> coinsNeeded) &#123;</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">"Insufficent funds. Please insert an additional \(coinsNeeded)"</span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="18-2-3-将错误转换成可选值"><a href="#18-2-3-将错误转换成可选值" class="headerlink" title="18.2.3    将错误转换成可选值"></a>18.2.3    将错误转换成可选值</h3><blockquote>
+<p><strong>语法：</strong><code>try?</code><br><strong>说明：</strong>使用<code>try?</code>调用表达式，返回相应表达式返回值的<code>可选类型</code>（如果表达式抛出错误，则表达式<code>nil</code>）<br><strong>技巧：</strong>如果你想对所有的错误都采用同样的方式来处理，用<code>try?</code>就可以让你写出简洁的错误处理代码</p>
+</blockquote>
+<figure class="highlight swift"><table><tr><td class="code"><pre><span class="line"><span class="comment">// throwing 函数</span></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">someThrowingFunction</span><span class="params">()</span></span> <span class="keyword">throws</span> -&gt; <span class="type">Int</span> &#123;</span><br><span class="line">    <span class="comment">// ...</span></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/* 调用 throwing 函数 */</span></span><br><span class="line"><span class="comment">// 方式一：使用 try? 调用</span></span><br><span class="line"><span class="keyword">let</span> x = <span class="keyword">try</span>? someThrowingFunction()</span><br><span class="line"></span><br><span class="line"><span class="comment">// 方式二：方式一的等价形式</span></span><br><span class="line"><span class="keyword">let</span> y: <span class="type">Int</span>?</span><br><span class="line"><span class="keyword">do</span> &#123;</span><br><span class="line">    y = <span class="keyword">try</span> someThrowingFunction()</span><br><span class="line">&#125; <span class="keyword">catch</span> &#123;</span><br><span class="line">    y = <span class="literal">nil</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight swift"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 从磁盘获取</span></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">fetchDataFromDisk</span><span class="params">()</span></span> -&gt; <span class="type">String</span>? &#123;</span><br><span class="line">    <span class="comment">// ...</span></span><br><span class="line">    <span class="keyword">return</span> <span class="literal">nil</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 从服务器获取</span></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">fetchDataFromServer</span><span class="params">()</span></span> -&gt; <span class="type">String</span>? &#123;</span><br><span class="line">    <span class="comment">// ...</span></span><br><span class="line">    <span class="keyword">return</span> <span class="literal">nil</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span><br><span class="line">* 获取数据</span><br><span class="line">*/</span></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">fetchData</span><span class="params">()</span></span> -&gt; <span class="type">String</span>? &#123;</span><br><span class="line">    <span class="keyword">if</span> <span class="keyword">let</span> data = <span class="keyword">try</span>? fetchDataFromDisk() &#123;</span><br><span class="line">        <span class="keyword">return</span> data</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span> <span class="keyword">let</span> data = <span class="keyword">try</span>? fetchDataFromServer() &#123;</span><br><span class="line">        <span class="keyword">return</span> data</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="literal">nil</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="18-2-4-禁用错误传递"><a href="#18-2-4-禁用错误传递" class="headerlink" title="18.2.4        禁用错误传递"></a>18.2.4        禁用错误传递</h3><blockquote>
+<p><strong>语法：</strong><code>try!</code><br><strong>说明：</strong>其实就是把<code>抛出错误</code>转变为<code>运行时断言</code><br><strong>应用：</strong>确定<code>throwing</code> 函数实际上在运行时<code>不会抛出错误</code>的才能使用。<br><strong>注意：</strong>如果实际上抛出了错误，你会得到一个运行时错误（而不会传递错误）</p>
+</blockquote>
+<figure class="highlight swift"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 确定图片资源是存在的</span></span><br><span class="line"><span class="keyword">let</span> photo = <span class="keyword">try</span>! loadImage(<span class="string">"./Resources/John Appleseed.jpg"</span>)</span><br></pre></td></tr></table></figure>
+<h2 id="18-3-指定清理操作"><a href="#18-3-指定清理操作" class="headerlink" title="18.3    指定清理操作"></a>18.3    指定清理操作</h2><blockquote>
+<p><strong>说明：</strong>使用<code>defer</code>语句指定在即将离开<code>当前代码块</code>时执行一系列语句。<br><strong>支持情景：</strong>不管是以何种方式离开当前代码块的</p>
+<ul>
+<li>由于抛出错误而离开</li>
+<li>诸如<code>return</code>或者<code>break</code>的语句</li>
+</ul>
+<p><strong>语法：</strong>由<code>defer</code>关键字和要被延迟执行的语句组成</p>
+<ul>
+<li>延迟执行的语句不能包含任何<code>控制转移语句</code>（<code>break</code>或是<code>return</code>语句，或是抛出一个错误）</li>
+<li>延迟执行的操作会按照它们被指定时的顺序的<code>相反顺序</code>执行</li>
+</ul>
+</blockquote>
+<figure class="highlight swift"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 处理文件</span></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">processFile</span><span class="params">(filename: String)</span></span> <span class="keyword">throws</span> &#123;</span><br><span class="line">    <span class="comment">// 如果文件存在</span></span><br><span class="line">    <span class="keyword">if</span> exists(filename) &#123;</span><br><span class="line">        <span class="comment">// 打开文件</span></span><br><span class="line">        <span class="keyword">let</span> file = open(filename)</span><br><span class="line">        </span><br><span class="line">        <span class="comment">// 当前代码块结束时执行</span></span><br><span class="line">        <span class="keyword">defer</span> &#123;</span><br><span class="line">            close(file)</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">        <span class="comment">// 处理打开的文件</span></span><br><span class="line">        <span class="keyword">while</span> <span class="keyword">let</span> line = <span class="keyword">try</span> file.readline() &#123;</span><br><span class="line">            <span class="comment">// 处理文件。</span></span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">// 根据 defer 语句的指定，close(file) 会在这里被隐式调用，即作用域的最后。</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+  </section>
+
+</article>
+
+
+
+
+            <footer class="footer">
+    <span class="footer__copyright">
+        本站点采用<a href="http://creativecommons.org/licenses/by-nc-sa/4.0/">知识共享署名-非商业性使用-相同方式共享 4.0 国际许可协议</a>
+    </span>
+    <span class="footer__copyright">
+        基于 <a href="http://hexo.io">Hexo</a> 搭建，感谢 <a href="https://pages.github.com/">GitHub Pages</a> 提供免费的托管服务
+    </span>
+    <span class="footer__copyright">
+        &copy; 2016 - 
+        本站修改自<a href="https://github.com/lenbo-ma/hexo-theme-vno" target="_blank">hexo-theme-vno</a>
+    </span>
+</footer>
+
+        </div>
+    </div>
+
+    <script src="http://cdn.bootcss.com/jquery/2.1.4/jquery.min.js"></script>
+    <script src="/js/main.js"></script>
+
+     
+</body>
+</html>

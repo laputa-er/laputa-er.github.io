@@ -1,0 +1,614 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    
+    <title>14 构造过程 | Laputa</title>
+    <meta name="renderer" content="webkit">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="MobileOptimized" content="320">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+    <meta name="description" content="do things for fun">
+
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="14 构造过程 | Laputa">
+    <meta name="twitter:description" content="do things for fun">
+
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="14 构造过程 | Laputa">
+    <meta property="og:description" content="do things for fun">
+
+    
+    <meta name="author" content="Sean">
+    
+    <link rel="stylesheet" href="/css/vno.css">
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css">
+
+    
+    <link rel="icon" href="/images/favicon.png">
+    
+
+    <meta name="generator" content="hexo"/>
+    
+    <link rel="alternate" type="application/rss+xml" title="Laputa" href="/atom.xml">
+    
+
+    <link rel="canonical" href="http://laputa-er.github.io/2016/05/13/TSPL2_14  构造过程/"/>
+
+    
+</head>
+
+<body class="home-template no-js">
+
+    <span class="mobile btn-mobile-menu">
+        <i class="fa fa-list btn-mobile-menu__icon"></i>
+        <i class="fa fa-angle-up btn-mobile-close__icon hidden"></i>
+    </span>
+    
+<header class="panel-cover panel-cover--collapsed" style="background-image: url(/images/mengxiang.jpg)">
+  <div class="panel-main">
+    <div class="panel-main__inner panel-inverted">
+    <div class="panel-main__content">
+
+        <a href="/" title="前往 Laputa 的主页"><img src="/images/logo2.jpg" width="80" alt="Laputa logo" class="panel-cover__logo logo" /></a>
+        <h1 class="panel-cover__title panel-title"><a href="/" title="link to homepage for Laputa">Laputa</a></h1>
+        
+        <span class="panel-cover__subtitle panel-subtitle">已然在路上</span>
+        
+        <hr class="panel-cover__divider" />
+        <p class="panel-cover__description">If you can not act the way you want to live, you will one day live in accordance with the way to think about.</p>
+        <hr class="panel-cover__divider panel-cover__divider--secondary" />
+
+        <div class="navigation-wrapper">
+          <div>
+          <nav class="cover-navigation cover-navigation--primary">
+            <ul class="navigation">
+              <li class="navigation__item"><a href="/#blog" title="访问笔记" class="blog-button">笔记</a></li>
+            
+              <li class="navigation__item"><a href="/projects">项目作品</a></li>
+            
+              <li class="navigation__item"><a href="/aboutme">关于我</a></li>
+            
+            </ul>
+          </nav>
+          </div>
+          <div>
+          <nav class="cover-navigation navigation--social">
+  <ul class="navigation">
+
+  <!-- Weibo-->
+  
+
+  <!-- Github -->
+  
+  <li class="navigation__item">
+    <a href="https://github.com/laputa-er" title="查看我的GitHub主页" target="_blank">
+      <i class='social fa fa-github'></i>
+      <span class="label">Github</span>
+    </a>
+  </li>
+
+
+<!-- Stack Overflow -->
+        
+        <li class="navigation__item">
+            <a href="http://stackoverflow.com/users/6304138/laputa" title="Stack Overflow" target="_blank">
+                <i class='social fa fa-stack-overflow'></i>
+                <span class="label">Stack Overflow</span>
+            </a>
+        </li>
+        
+
+  <!-- Google Plus -->
+  
+
+<!-- Facebook -->
+
+  
+<!-- Twitter -->
+
+  
+
+  <li class="navigation__item">
+    <a href="/atom.xml" title="RSS" target="_blank">
+      <i class='social fa fa-rss'></i>
+      <span class="label">RSS</span>
+    </a>
+  </li>
+
+
+
+  </ul>
+</nav>
+
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+
+    <div class="panel-cover--overlay cover-blue"></div>
+  </div>
+</header>
+    
+    
+    <div class="content-wrapper">
+        <div class="content-wrapper__inner">
+            <article class="post-container post-container--single">
+
+  <header class="post-header">
+    <div class="post-meta">
+      <time datetime="2016-05-13T11:46:54.000Z" class="post-list__meta--date date">2016-05-13</time> &#8226; <span class="post-meta__tags tags">于&nbsp;
+  <a class="tag-link" href="/tags/The-Swift-Program-Language-2/">The Swift Program Language 2</a>
+</span>
+    </div>
+    <h1 class="post-title">14 构造过程</h1>
+  </header>
+
+  <section class="post">
+    <!-- Table of Contents -->
+    
+    <div id="top-toc">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#14-1-存储型属性的初始赋值"><span class="toc-number">1.</span> <span class="toc-text">14.1    存储型属性的初始赋值</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#14-1-1-构造器"><span class="toc-number">1.1.</span> <span class="toc-text">14.1.1    构造器</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#14-1-2-默认属性值"><span class="toc-number">1.2.</span> <span class="toc-text">14.1.2        默认属性值</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#14-2-自定义构造过程"><span class="toc-number">2.</span> <span class="toc-text">14.2    自定义构造过程</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#14-2-1-构造参数"><span class="toc-number">2.1.</span> <span class="toc-text">14.2.1    构造参数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#14-2-2-内部和外部参数名"><span class="toc-number">2.2.</span> <span class="toc-text">14.2.2    内部和外部参数名</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#14-2-3-可选属性类型"><span class="toc-number">2.3.</span> <span class="toc-text">14.2.3    可选属性类型</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#14-2-4-构造过程中常量属性的修改"><span class="toc-number">2.4.</span> <span class="toc-text">14.2.4    构造过程中常量属性的修改</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#14-3-默认构造器"><span class="toc-number">3.</span> <span class="toc-text">14.3    默认构造器</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#14-3-1-结构体的逐一成员构造器"><span class="toc-number">3.1.</span> <span class="toc-text">14.3.1    结构体的逐一成员构造器</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#14-4-值类型的构造器代理"><span class="toc-number">4.</span> <span class="toc-text">14.4    值类型的构造器代理</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#14-5-类的继承和构造过程"><span class="toc-number">5.</span> <span class="toc-text">14.5    类的继承和构造过程</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#14-5-1-指定构造器和便利构造器"><span class="toc-number">5.1.</span> <span class="toc-text">14.5.1    指定构造器和便利构造器</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#14-5-2-构造器链"><span class="toc-number">5.2.</span> <span class="toc-text">14.5.2    构造器链</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#14-5-3-两段式构造过程"><span class="toc-number">5.3.</span> <span class="toc-text">14.5.3    两段式构造过程</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#14-5-3-1-两个阶段"><span class="toc-number">5.3.1.</span> <span class="toc-text">14.5.3.1     两个阶段</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#14-5-3-2-安全检查"><span class="toc-number">5.3.2.</span> <span class="toc-text">14.5.3.2        安全检查</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#14-5-4-构造器的继承和重写"><span class="toc-number">5.4.</span> <span class="toc-text">14.5.4    构造器的继承和重写</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#14-5-5-自动构造器的继承"><span class="toc-number">5.5.</span> <span class="toc-text">14.5.5    自动构造器的继承</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#14-5-5-1-指定构造器和便利构造器语法"><span class="toc-number">5.5.1.</span> <span class="toc-text">14.5.5.1        指定构造器和便利构造器语法</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#14-5-5-2-指定构造器和便利构造器实战"><span class="toc-number">5.5.2.</span> <span class="toc-text">14.5.5.2        指定构造器和便利构造器实战</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#14-6-可失败构造器"><span class="toc-number">6.</span> <span class="toc-text">14.6    可失败构造器</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#14-6-1-枚举类型的可失败构造器"><span class="toc-number">6.1.</span> <span class="toc-text">14.6.1        枚举类型的可失败构造器</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#14-6-2-带原始值的枚举类型的可失败构造器"><span class="toc-number">6.2.</span> <span class="toc-text">14.6.2        带原始值的枚举类型的可失败构造器</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#14-6-3-类的可失败构造器"><span class="toc-number">6.3.</span> <span class="toc-text">14.6.3        类的可失败构造器</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#14-6-4-构造失败的传递"><span class="toc-number">6.4.</span> <span class="toc-text">14.6.4        构造失败的传递</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#14-6-5-重写一个可失败构造器"><span class="toc-number">6.5.</span> <span class="toc-text">14.6.5        重写一个可失败构造器</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#14-6-6-可失败构造器init"><span class="toc-number">6.6.</span> <span class="toc-text">14.6.6        可失败构造器init!</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#14-7-必要构造器"><span class="toc-number">7.</span> <span class="toc-text">14.7    必要构造器</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#14-8-通过闭包和函数来设置属性的默认值"><span class="toc-number">8.</span> <span class="toc-text">14.8    通过闭包和函数来设置属性的默认值</span></a></li></ol>
+    </div>
+    <div id="tocShell"></div>
+    <div id="toc" class="toc-article">
+      <div class="btn-group drag-me">
+        <i class="social fa fa-ellipsis-v"></i>
+      </div>
+      <div class="btn-group dropup-catelog">
+        <button class="btn"><i class="social fa fa-list-ol"></i></button>
+        <div class="catelog-content">
+          <p class="toc-title-wrap">
+            <strong class="toc-title">文章目录</strong>
+          </p>
+          <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#14-1-存储型属性的初始赋值"><span class="toc-number">1.</span> <span class="toc-text">14.1    存储型属性的初始赋值</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#14-1-1-构造器"><span class="toc-number">1.1.</span> <span class="toc-text">14.1.1    构造器</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#14-1-2-默认属性值"><span class="toc-number">1.2.</span> <span class="toc-text">14.1.2        默认属性值</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#14-2-自定义构造过程"><span class="toc-number">2.</span> <span class="toc-text">14.2    自定义构造过程</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#14-2-1-构造参数"><span class="toc-number">2.1.</span> <span class="toc-text">14.2.1    构造参数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#14-2-2-内部和外部参数名"><span class="toc-number">2.2.</span> <span class="toc-text">14.2.2    内部和外部参数名</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#14-2-3-可选属性类型"><span class="toc-number">2.3.</span> <span class="toc-text">14.2.3    可选属性类型</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#14-2-4-构造过程中常量属性的修改"><span class="toc-number">2.4.</span> <span class="toc-text">14.2.4    构造过程中常量属性的修改</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#14-3-默认构造器"><span class="toc-number">3.</span> <span class="toc-text">14.3    默认构造器</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#14-3-1-结构体的逐一成员构造器"><span class="toc-number">3.1.</span> <span class="toc-text">14.3.1    结构体的逐一成员构造器</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#14-4-值类型的构造器代理"><span class="toc-number">4.</span> <span class="toc-text">14.4    值类型的构造器代理</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#14-5-类的继承和构造过程"><span class="toc-number">5.</span> <span class="toc-text">14.5    类的继承和构造过程</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#14-5-1-指定构造器和便利构造器"><span class="toc-number">5.1.</span> <span class="toc-text">14.5.1    指定构造器和便利构造器</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#14-5-2-构造器链"><span class="toc-number">5.2.</span> <span class="toc-text">14.5.2    构造器链</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#14-5-3-两段式构造过程"><span class="toc-number">5.3.</span> <span class="toc-text">14.5.3    两段式构造过程</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#14-5-3-1-两个阶段"><span class="toc-number">5.3.1.</span> <span class="toc-text">14.5.3.1     两个阶段</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#14-5-3-2-安全检查"><span class="toc-number">5.3.2.</span> <span class="toc-text">14.5.3.2        安全检查</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#14-5-4-构造器的继承和重写"><span class="toc-number">5.4.</span> <span class="toc-text">14.5.4    构造器的继承和重写</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#14-5-5-自动构造器的继承"><span class="toc-number">5.5.</span> <span class="toc-text">14.5.5    自动构造器的继承</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#14-5-5-1-指定构造器和便利构造器语法"><span class="toc-number">5.5.1.</span> <span class="toc-text">14.5.5.1        指定构造器和便利构造器语法</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#14-5-5-2-指定构造器和便利构造器实战"><span class="toc-number">5.5.2.</span> <span class="toc-text">14.5.5.2        指定构造器和便利构造器实战</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#14-6-可失败构造器"><span class="toc-number">6.</span> <span class="toc-text">14.6    可失败构造器</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#14-6-1-枚举类型的可失败构造器"><span class="toc-number">6.1.</span> <span class="toc-text">14.6.1        枚举类型的可失败构造器</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#14-6-2-带原始值的枚举类型的可失败构造器"><span class="toc-number">6.2.</span> <span class="toc-text">14.6.2        带原始值的枚举类型的可失败构造器</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#14-6-3-类的可失败构造器"><span class="toc-number">6.3.</span> <span class="toc-text">14.6.3        类的可失败构造器</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#14-6-4-构造失败的传递"><span class="toc-number">6.4.</span> <span class="toc-text">14.6.4        构造失败的传递</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#14-6-5-重写一个可失败构造器"><span class="toc-number">6.5.</span> <span class="toc-text">14.6.5        重写一个可失败构造器</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#14-6-6-可失败构造器init"><span class="toc-number">6.6.</span> <span class="toc-text">14.6.6        可失败构造器init!</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#14-7-必要构造器"><span class="toc-number">7.</span> <span class="toc-text">14.7    必要构造器</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#14-8-通过闭包和函数来设置属性的默认值"><span class="toc-number">8.</span> <span class="toc-text">14.8    通过闭包和函数来设置属性的默认值</span></a></li></ol>
+        </div>
+      </div>
+    </div>
+    
+    <blockquote>
+<p><strong>构造过程：</strong>为某个类、结构体或枚举的实例中的每个属性设置初始值和为其执行必要准备和初始化任务。<br><strong>构造器：</strong>用来创建特定类型实例的特殊方法，保证实例在第一次使用前完成正确的初始化。</p>
+</blockquote>
+<h2 id="14-1-存储型属性的初始赋值"><a href="#14-1-存储型属性的初始赋值" class="headerlink" title="14.1    存储型属性的初始赋值"></a>14.1    存储型属性的初始赋值</h2><blockquote>
+<p><strong>背景：</strong>类和结构体在创建实例时，必须为所有<code>存储型属性</code>设置合适的初始值。存储型属性的值不能处于一个未知的状态。<br><strong>说明：</strong>可以在<code>构造器中</code>为存储型属性赋初值，也可以在<code>定义属性时</code>为其设置默认值</p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>初始化时机</th>
+<th>初始化方式</th>
+<th>是否触发属性观察器</th>
+<th>是否自动推导类型</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>定义属性时</td>
+<td>设置默认值</td>
+<td>否</td>
+<td>是</td>
+</tr>
+<tr>
+<td>构造器中</td>
+<td>为存储型属性赋初始值</td>
+<td>否</td>
+<td>否</td>
+</tr>
+</tbody>
+</table>
+<h3 id="14-1-1-构造器"><a href="#14-1-1-构造器" class="headerlink" title="14.1.1    构造器"></a>14.1.1    构造器</h3><blockquote>
+<p><strong>说明：</strong>构造器在创建某个特定类型的新实例时被调用，以<code>init</code>关键字声明构造函数</p>
+</blockquote>
+<figure class="highlight swift"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">Fahrenheit</span> </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> temperature:<span class="type">Double</span></span><br><span class="line">    <span class="keyword">init</span>()&#123;</span><br><span class="line">        temperature = <span class="number">32.0</span><span class="comment">//在构造其中为存储型属性赋初值</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">var</span> f = <span class="type">Fahrenheit</span>()</span><br><span class="line"><span class="built_in">println</span>(<span class="string">"The default temperature is \(f.temperature) Fahrenheit"</span>)</span><br></pre></td></tr></table></figure>
+<h3 id="14-1-2-默认属性值"><a href="#14-1-2-默认属性值" class="headerlink" title="14.1.2        默认属性值"></a>14.1.2        默认属性值</h3><blockquote>
+<p><strong>说明：</strong>相比<code>在构造器中设置初始值</code>有如下优点</p>
+<ol>
+<li>将属性的声明和初始化结合得更紧密</li>
+<li>使构造器更加简洁、清晰</li>
+<li>能够自动推导出属性的类型（不需要声明属性的类型）</li>
+<li>充分利用默认构造器、构造器继承</li>
+</ol>
+</blockquote>
+<figure class="highlight swift"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">Fahrenheit</span> </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> temperature = <span class="number">32.0</span><span class="comment">//在构造其中为存储型属性赋初值</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="14-2-自定义构造过程"><a href="#14-2-自定义构造过程" class="headerlink" title="14.2    自定义构造过程"></a>14.2    自定义构造过程</h2><h3 id="14-2-1-构造参数"><a href="#14-2-1-构造参数" class="headerlink" title="14.2.1    构造参数"></a>14.2.1    构造参数</h3><blockquote>
+<p><strong>说明：</strong>构造器参数的功能和语法跟函数和方法参数相同。</p>
+</blockquote>
+<figure class="highlight swift"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">Celsius</span> </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> temperatureInCelsius:<span class="type">Double</span> = <span class="number">0.0</span></span><br><span class="line">    <span class="comment">/**</span><br><span class="line">    *第一个构造器：带有一个构造参数</span><br><span class="line">    *外部名：fromFahrenheit;内部名：fahreheit</span><br><span class="line">    */</span></span><br><span class="line">    <span class="keyword">init</span>(fromFshreheit fahreheit:<span class="type">Double</span>)&#123;</span><br><span class="line">        temperatureInCelsius = (fahreheit - <span class="number">32.0</span>) / <span class="number">1.8</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">/**</span><br><span class="line">    *第二个构造器：带有一个构造参数</span><br><span class="line">    *外部名：fromKelvin;内部名：kelvin</span><br><span class="line">    */</span></span><br><span class="line">    <span class="keyword">init</span>(fromKelvin kelvin:<span class="type">Double</span>)&#123;</span><br><span class="line">        temperatureInCelsius = kelvin - <span class="number">273.15</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> boilingPointOfWater = <span class="type">Celsius</span>(fromFshreheit: <span class="number">212.0</span>)</span><br><span class="line"><span class="keyword">let</span> freezingPointOfWater = <span class="type">Celsius</span>(fromFshreheit: <span class="number">273.15</span>)</span><br></pre></td></tr></table></figure>
+<h3 id="14-2-2-内部和外部参数名"><a href="#14-2-2-内部和外部参数名" class="headerlink" title="14.2.2    内部和外部参数名"></a>14.2.2    内部和外部参数名</h3><blockquote>
+<p><strong>说明：</strong>和<code>函数（方法）</code>不同点在于第一个参数也会有外部参数名（同后面的其它参数一样）。<br><strong>注意：</strong>如果构造起定义了某个外部参数名，就必须使用它。</p>
+</blockquote>
+<figure class="highlight swift"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">Color</span> </span>&#123;</span><br><span class="line">    <span class="keyword">let</span> red, green, blue: <span class="type">Double</span></span><br><span class="line">    <span class="comment">// 外部参数名默认同内部参数名</span></span><br><span class="line">    <span class="keyword">init</span>(red: <span class="type">Double</span>, green: <span class="type">Double</span>, blue: <span class="type">Double</span>) &#123;</span><br><span class="line">        <span class="keyword">self</span>.red   = red</span><br><span class="line">        <span class="keyword">self</span>.green = green</span><br><span class="line">        <span class="keyword">self</span>.blue  = blue</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">// 取消外部参数名</span></span><br><span class="line">    <span class="keyword">init</span>(<span class="number">_</span> white: <span class="type">Double</span>) &#123;</span><br><span class="line">        red   = white</span><br><span class="line">        green = white</span><br><span class="line">        blue  = white</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 如果你在定义构造器时没有提供参数的外部名字，Swift 会为每个构造器的参数自动生成一个跟内部名字相同的外部名。</span></span><br><span class="line"><span class="keyword">let</span> magenta = <span class="type">Color</span>(red: <span class="number">1.0</span>, green: <span class="number">0.0</span>, blue: <span class="number">1.0</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> halfGray = <span class="type">Color</span>(<span class="number">0.5</span>)</span><br></pre></td></tr></table></figure>
+<h3 id="14-2-3-可选属性类型"><a href="#14-2-3-可选属性类型" class="headerlink" title="14.2.3    可选属性类型"></a>14.2.3    可选属性类型</h3><blockquote>
+<p><strong>说明：</strong>如果你定制的类型包含一个逻辑上允许取值为空的存储型属性，需要将它定义为可选类型。</p>
+<ul>
+<li>可选类型的属性将自动初始化为<code>nil</code></li>
+</ul>
+<p><strong>使用场景</strong>：</p>
+<ol>
+<li>无法在初始化时赋值</li>
+<li>在之后某个时间点可以赋值为空</li>
+</ol>
+</blockquote>
+<figure class="highlight swift"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 问题调查</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">SurveryQuestion</span> </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> text:<span class="type">String</span></span><br><span class="line">    <span class="comment">// 回答可以为空</span></span><br><span class="line">    <span class="keyword">var</span> response:<span class="type">String</span>?<span class="comment">// nil</span></span><br><span class="line">    <span class="keyword">init</span>(text:<span class="type">String</span>)&#123;</span><br><span class="line">        <span class="keyword">self</span>.text = text</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">func</span> <span class="title">ask</span><span class="params">()</span></span>&#123;</span><br><span class="line">        <span class="built_in">println</span>(text)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">let</span> cheeseQuestion = <span class="type">SurveryQuestion</span>(text: <span class="string">"Do you like cheese?"</span>)</span><br><span class="line">cheeseQuestion.ask()</span><br><span class="line">cheeseQuestion.response = <span class="string">"Yes, I do like cheese."</span></span><br></pre></td></tr></table></figure>
+<h3 id="14-2-4-构造过程中常量属性的修改"><a href="#14-2-4-构造过程中常量属性的修改" class="headerlink" title="14.2.4    构造过程中常量属性的修改"></a>14.2.4    构造过程中常量属性的修改</h3><blockquote>
+<p><strong>说明：</strong>可以在构造过程中的任意时间点修改常量属性的值</p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>实例属性类型</th>
+<th>可修改时机</th>
+<th>是否可在子类中修改</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>常量属性</td>
+<td>构造过程结束前</td>
+<td>否</td>
+</tr>
+<tr>
+<td>变量属性</td>
+<td>实例的整个生命周期</td>
+<td>是</td>
+</tr>
+</tbody>
+</table>
+<figure class="highlight swift"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">SurveyQuestion</span> </span>&#123;</span><br><span class="line">	<span class="comment">// 常量属性</span></span><br><span class="line">    <span class="keyword">let</span> text: <span class="type">String</span></span><br><span class="line">    <span class="keyword">var</span> response: <span class="type">String</span>?</span><br><span class="line">    <span class="keyword">init</span>(text: <span class="type">String</span>) &#123;</span><br><span class="line">	    <span class="comment">// 在构造过程中修改常量</span></span><br><span class="line">        <span class="keyword">self</span>.text = text</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">func</span> <span class="title">ask</span><span class="params">()</span></span> &#123;</span><br><span class="line">        <span class="built_in">print</span>(text)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">let</span> beetsQuestion = <span class="type">SurveyQuestion</span>(text: <span class="string">"How about beets?"</span>)</span><br><span class="line">beetsQuestion.ask()</span><br><span class="line"><span class="comment">// 输出 "How about beets?"</span></span><br><span class="line">beetsQuestion.response = <span class="string">"I also like beets. (But not with cheese.)"</span></span><br></pre></td></tr></table></figure>
+<h2 id="14-3-默认构造器"><a href="#14-3-默认构造器" class="headerlink" title="14.3    默认构造器"></a>14.3    默认构造器</h2><blockquote>
+<p><strong>说明：</strong>满足以下条件的<code>结构体</code>或<code>类</code>会拥有一个默认的构造器。</p>
+<ol>
+<li>所有属性已提供默认值</li>
+<li>自身没有定义任何构造器</li>
+</ol>
+<p><strong>注意：</strong>类必须要没有父类的基类</p>
+</blockquote>
+<figure class="highlight swift"><table><tr><td class="code"><pre><span class="line"><span class="comment">//1:所有属性都有默认值；2:基类；3:没有定义构造器</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">ShoppingListItem</span> </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> name:<span class="type">String</span>?</span><br><span class="line">    <span class="keyword">var</span> quantity = <span class="number">1</span></span><br><span class="line">    <span class="keyword">var</span> purchased = <span class="literal">false</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">var</span> item = <span class="type">ShoppingListItem</span>()</span><br></pre></td></tr></table></figure>
+<h3 id="14-3-1-结构体的逐一成员构造器"><a href="#14-3-1-结构体的逐一成员构造器" class="headerlink" title="14.3.1    结构体的逐一成员构造器"></a>14.3.1    结构体的逐一成员构造器</h3><blockquote>
+<p><strong>说明：</strong>满足了以下条件的<code>结构体</code>将自动获得一个<code>逐一成员构造器</code>。</p>
+<ul>
+<li>没有自定义构造器</li>
+</ul>
+<p><strong>用途</strong>：用来初始化结构体新实例里成员属性的快捷方法<br><strong>语法</strong>：在调用逐一成员构造器时，通过与成员属性名相同的参数名进行传值来完成对成员属性的初始赋值。</p>
+</blockquote>
+<figure class="highlight swift"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">Size</span> </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> width = <span class="number">0.0</span>, height = <span class="number">0.0</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 通过逐一成员构造器创建结构体实例</span></span><br><span class="line"><span class="keyword">let</span> twoByTwo = <span class="type">Size</span>(width: <span class="number">2.0</span>, height: <span class="number">2.0</span>)</span><br></pre></td></tr></table></figure>
+<h2 id="14-4-值类型的构造器代理"><a href="#14-4-值类型的构造器代理" class="headerlink" title="14.4    值类型的构造器代理"></a>14.4    值类型的构造器代理</h2><blockquote>
+<p><strong>说明</strong>：<code>构造器代理</code>指在构造器中调用其它构造器完成构造过程</p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>类型</th>
+<th></th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>值类型</td>
+<td>结构体、枚举</td>
+<td>只能代理给本身提供的其它构造器，可以在构造器内部使用<code>self.init</code>调用其它构造器</td>
+</tr>
+<tr>
+<td>类类型</td>
+<td>类</td>
+<td>代理给本身的构造器或父类的构造器（完成父类的初始化）</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p><strong>注意：</strong>一旦在类型的原始定义中定义了构造器</p>
+<ul>
+<li><strong>结构体：</strong>无法访问<code>默认构造器</code>和<code>逐一成员构造器</code></li>
+<li><strong>类：</strong>无法访问<code>默认构造器</code></li>
+</ul>
+<p><strong>引伸：</strong>假如你希望<code>默认构造器</code>、<code>逐一成员构造器</code>以及你自己的<code>自定义构造器</code>都能用来创建实例，可以将自定义的构造器写到<code>扩展</code>中。</p>
+</blockquote>
+<figure class="highlight swift"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">Size</span> </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> width = <span class="number">0.0</span>, height = <span class="number">0.0</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">Point</span> </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> x = <span class="number">0.0</span>, y = <span class="number">0.0</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">Rect</span> </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> origin = <span class="type">Point</span>()</span><br><span class="line">    <span class="keyword">var</span> size = <span class="type">Size</span>()</span><br><span class="line">    <span class="comment">//充当默认构造器（原本的默认构造器不符合存在条件）:没有执行任何定制的构造过程，将返回一个Rect实例</span></span><br><span class="line">    <span class="keyword">init</span>()&#123;&#125;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">//充当逐一成员构造器（原本的默认成员逐一构造器不符合存在条件）</span></span><br><span class="line">    <span class="keyword">init</span>(origin:<span class="type">Point</span>, size:<span class="type">Size</span>)&#123;</span><br><span class="line">        <span class="keyword">self</span>.origin = origin</span><br><span class="line">        <span class="keyword">self</span>.size = size</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">//该构造器将部分构造过程代理给上面的第二个构造器</span></span><br><span class="line">    <span class="keyword">init</span>(center:<span class="type">Point</span>, size:<span class="type">Size</span>)&#123;</span><br><span class="line">        <span class="keyword">let</span> originX = center.x - (size.width / <span class="number">2</span>)</span><br><span class="line">        <span class="keyword">let</span> originY = center.y - (size.height / <span class="number">2</span>)</span><br><span class="line">        <span class="keyword">self</span>.<span class="keyword">init</span>(origin:<span class="type">Point</span>(x:originX, y:originY), size:size)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//使用第一个构造器</span></span><br><span class="line"><span class="keyword">let</span> basicRect = <span class="type">Rect</span>()<span class="comment">//basicRect的原点(0.0, 0.0)，尺寸是(5.0, 5.0)</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//使用第二个构造器</span></span><br><span class="line"><span class="keyword">let</span> originRect = <span class="type">Rect</span>(origin: <span class="type">Point</span>(x: <span class="number">2.0</span>, y: <span class="number">2.0</span>), size:<span class="type">Size</span>(width: <span class="number">3.0</span>, height: <span class="number">3.0</span>))<span class="comment">//originRect的原点是（2.0, 2.0）,尺寸是(5.0, 5.0)</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//使用第三个构造器</span></span><br><span class="line"><span class="keyword">let</span> centerRect = <span class="type">Rect</span>(center: <span class="type">Point</span>(x:<span class="number">4.0</span>, y:<span class="number">4.0</span>), size: <span class="type">Size</span>(width: <span class="number">3.0</span>, height: <span class="number">3.0</span>))<span class="comment">//centerRect的原点是（2.5, 2.5）,尺寸是(3.0, 3.0)</span></span><br></pre></td></tr></table></figure>
+<h2 id="14-5-类的继承和构造过程"><a href="#14-5-类的继承和构造过程" class="headerlink" title="14.5    类的继承和构造过程"></a>14.5    类的继承和构造过程</h2><blockquote>
+<p><strong>说明：</strong><code>类</code>里面的所有<code>存储型属性</code>（包括所有继承自父类的属性）都必须在构造过程中设置初始值。<code>Swift</code> 为类提供了两种构造器来确保实例中所有存储型属性都能获得初始值</p>
+<ul>
+<li>指定构造器</li>
+<li>便利构造器</li>
+</ul>
+</blockquote>
+<h3 id="14-5-1-指定构造器和便利构造器"><a href="#14-5-1-指定构造器和便利构造器" class="headerlink" title="14.5.1    指定构造器和便利构造器"></a>14.5.1    指定构造器和便利构造器</h3><blockquote>
+<p><strong>说明：</strong><code>指定构造器</code>是类中最主要的构造器，<code>便利构造器</code>是类中比较次要的、辅助型的构造器。</p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>特性</th>
+<th>指定构造器</th>
+<th>便利构造器</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>使用场景</strong></td>
+<td>必需</td>
+<td>必要时（快捷调用某个指定构造器来使类更加清晰）</td>
+</tr>
+<tr>
+<td><strong>数量</strong></td>
+<td>至少一个(可以从父类继承)</td>
+<td>至少零个</td>
+</tr>
+<tr>
+<td><strong>用途</strong></td>
+<td>初始化类中所有属性，初始化父类</td>
+<td>次要、辅助型构造器</td>
+</tr>
+<tr>
+<td><strong>使用</strong></td>
+<td>根据父类链往上调用父类的构造器</td>
+<td>调用同一个类中的指定构造器</td>
+</tr>
+<tr>
+<td><strong>构造器链规则</strong></td>
+<td>总是向上代理</td>
+<td>总是横向代理</td>
+</tr>
+</tbody>
+</table>
+<pre><code>&gt;**语法：**`指定构造器`和`便利构造器`
+</code></pre><figure class="highlight swift"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 指定构造器</span></span><br><span class="line"><span class="keyword">init</span>(parameters) &#123;</span><br><span class="line">    statements</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 便利构造器：init关键字之前放置convenience关键字</span></span><br><span class="line"><span class="keyword">convenience</span> <span class="keyword">init</span>(parameters) &#123;</span><br><span class="line">    statements</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="14-5-2-构造器链"><a href="#14-5-2-构造器链" class="headerlink" title="14.5.2    构造器链"></a>14.5.2    构造器链</h3><ul>
+<li><strong>指定构造器</strong></li>
+</ul>
+<ol>
+<li>必须调用直接父类的指定构造器</li>
+</ol>
+<ul>
+<li><strong>便利构造器</strong></li>
+</ul>
+<ol>
+<li>必须调用同一类中的其它构造器</li>
+<li>必须最终以调用一个指定构造器结束</li>
+</ol>
+<h3 id="14-5-3-两段式构造过程"><a href="#14-5-3-两段式构造过程" class="headerlink" title="14.5.3    两段式构造过程"></a>14.5.3    两段式构造过程</h3><h4 id="14-5-3-1-两个阶段"><a href="#14-5-3-1-两个阶段" class="headerlink" title="14.5.3.1     两个阶段"></a>14.5.3.1     两个阶段</h4><blockquote>
+<p><strong>阶段一：</strong>通过构造器设置初始值</p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>成员</th>
+<th>状态</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>实例方法</td>
+<td>不能调用</td>
+</tr>
+<tr>
+<td>实例属性</td>
+<td>不能读取</td>
+</tr>
+<tr>
+<td><code>self</code></td>
+<td>不能引用</td>
+</tr>
+</tbody>
+</table>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">st=&gt;start: 开始</span><br><span class="line">e=&gt;end: 结束</span><br><span class="line">op1=&gt;operation: 构造器被调用（某个指定构造器或便利构造器）</span><br><span class="line">op2=&gt;operation: 完成新实例内存的分配（内存并没有真的被初始化）</span><br><span class="line">op3=&gt;operation: 由指定构造器确保所在类中的所有存储属性完成赋值（内存完成初始化）</span><br><span class="line">op4=&gt;operation: 指定构造器沿着构造器链依次调用父类构造器（完成父类属性初始化）</span><br><span class="line">cond=&gt;condition: 是否有父类?</span><br><span class="line"></span><br><span class="line">st-&gt;op1-&gt;op2-&gt;op3-&gt;cond</span><br><span class="line">cond(yes)-&gt;op4-&gt;e</span><br><span class="line">cond(no)-&gt;e</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p><strong>阶段二：</strong>在新实例准备使用之前进一步定制它们的存储型属性(可以访问<code>self</code>，修改属性、调用实例方法)<br><strong>特点：</strong>沿构造器链从上往下</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">st=&gt;start: 开始</span><br><span class="line">e=&gt;end: 结束</span><br><span class="line">op1=&gt;operation: 构造器链上的每个类的指定构造器完成对父类的构造（代理方式）之后，进一步定制实例</span><br><span class="line"> </span><br><span class="line">st-&gt;op1-&gt;e</span><br></pre></td></tr></table></figure>
+<h4 id="14-5-3-2-安全检查"><a href="#14-5-3-2-安全检查" class="headerlink" title="14.5.3.2        安全检查"></a>14.5.3.2        安全检查</h4><ul>
+<li>指定构造器中的安全检查</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">st=&gt;start: 调用指定构造器</span><br><span class="line">e=&gt;end: 结束</span><br><span class="line">op1=&gt;operation: 所在类所有属性初始化完成</span><br><span class="line">op2=&gt;operation: 将其它构造任务向上代理给父类的构造器</span><br><span class="line">op3=&gt;operation: 为继承的属性设置新值</span><br><span class="line">op5=&gt;operation: 指定构造器赋予的新值将被父类中的构造器覆盖</span><br><span class="line">op4=&gt;operation: 对象内存初始化失败</span><br><span class="line">cond1=&gt;condition: 检查1：上一步是否完成？</span><br><span class="line">cond2=&gt;condition: 检查2：上一步是否执行？</span><br><span class="line">st-&gt;op1-&gt;cond1</span><br><span class="line">cond1(yes)-&gt;op2-&gt;cond2</span><br><span class="line">cond1(no)-&gt;op4-&gt;op2</span><br><span class="line">cond2(yes)-&gt;op3-&gt;e</span><br><span class="line">cond2(no)-&gt;op5-&gt;op3</span><br></pre></td></tr></table></figure>
+<ul>
+<li>便利构造器中的安全检查</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">st=&gt;start: 调用便利构造器</span><br><span class="line">e=&gt;end: 结束</span><br><span class="line">op1=&gt;operation: 代理调用所在类中的其它构造器</span><br><span class="line">op2=&gt;operation: 为继承的属性设置新值</span><br><span class="line">op3=&gt;operation: 便利构造器赋予的新值将被所在类中的其它指定构造器覆盖</span><br><span class="line">op4=&gt;operation: 不能调用方法、访问属性的值、调用self</span><br><span class="line">cond1=&gt;condition: 检查3：上一步是否完成？</span><br><span class="line">cond2=&gt;condition: 检查4：第一阶段是否构造完成？</span><br><span class="line"></span><br><span class="line">st-&gt;op1-&gt;cond1</span><br><span class="line">cond1(yes)-&gt;op2-&gt;cond2</span><br><span class="line">cond1(no)-&gt;op3-&gt;op2</span><br><span class="line">cond2(yes)-&gt;e</span><br><span class="line">cond2(no)-&gt;op4-&gt;e</span><br></pre></td></tr></table></figure>
+<h3 id="14-5-4-构造器的继承和重写"><a href="#14-5-4-构造器的继承和重写" class="headerlink" title="14.5.4    构造器的继承和重写"></a>14.5.4    构造器的继承和重写</h3><blockquote>
+<p><strong>说明：</strong>编写一个和父类中指定构造器相匹配的子类构造器时，你实际上是在重写父类的这个指定构造器。</p>
+<ul>
+<li>子类不会默认继承父类的构造器(除非满足一定条件)</li>
+<li>子类可以重载父类的构造器</li>
+<li>子类可以在初始化时修改继承来的<code>变量属性</code>，但是不能修改继承来的<code>常量属性</code></li>
+<li>重载构造器一定需要使用<code>override</code>（即使将父类的指定构造器重写为了便利构造器）</li>
+</ul>
+<p><strong>注意：</strong>子类中“重写”一个父类<code>便利构造器</code>时，不需要加<code>override</code>前缀（子类不能直接调用父类的<code>便利构造器</code>，因此并没有真的<code>重写</code>）</p>
+</blockquote>
+<figure class="highlight swift"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 基类（超类、父类）</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Vehicle</span> </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> numberOfWheels = <span class="number">0</span></span><br><span class="line">    <span class="keyword">var</span> description: <span class="type">String</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="string">"\(numberOfWheels) wheel(s)"</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">let</span> vehicle = <span class="type">Vehicle</span>()</span><br><span class="line"><span class="built_in">print</span>(<span class="string">"Vehicle:\(vehicle.description)"</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment">// 子类</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Bicycle</span>: <span class="title">Vehicle</span> </span>&#123;</span><br><span class="line">    <span class="comment">// 重写父类的默认构造器</span></span><br><span class="line">    <span class="keyword">override</span> <span class="keyword">init</span>() &#123;</span><br><span class="line">        <span class="comment">// 代理到父类的默认构造器</span></span><br><span class="line">        <span class="keyword">super</span>.<span class="keyword">init</span>()</span><br><span class="line">        numberOfWheels = <span class="number">2</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> bicycle = <span class="type">Bicycle</span>()</span><br><span class="line"><span class="built_in">print</span>(<span class="string">"Bicycle:\(bicycle.description)"</span>)</span><br></pre></td></tr></table></figure>
+<h3 id="14-5-5-自动构造器的继承"><a href="#14-5-5-自动构造器的继承" class="headerlink" title="14.5.5    自动构造器的继承"></a>14.5.5    自动构造器的继承</h3><blockquote>
+<p><strong>说明：</strong>子类在默认情况下不会继承父类的构造器。但是如果满足特定条件，父类构造器是可以被自动继承的。</p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>特定条件</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>子类没有定义任何指定构造器</td>
+<td>自动继承父类所有的指定构造器</td>
+</tr>
+<tr>
+<td>子类提供了所有父类构造器的实现（继承过来的也算）</td>
+<td>自动继承所有父类的便利构造器</td>
+</tr>
+</tbody>
+</table>
+<h4 id="14-5-5-1-指定构造器和便利构造器语法"><a href="#14-5-5-1-指定构造器和便利构造器语法" class="headerlink" title="14.5.5.1        指定构造器和便利构造器语法"></a>14.5.5.1        指定构造器和便利构造器语法</h4><blockquote>
+<ul>
+<li><strong>指定构造器</strong></li>
+</ul>
+</blockquote>
+<figure class="highlight swift"><table><tr><td class="code"><pre><span class="line"><span class="keyword">init</span>(parameters)&#123;</span><br><span class="line">	<span class="comment">//构造过程</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<ul>
+<li><strong>便利构造器</strong></li>
+</ul>
+</blockquote>
+<figure class="highlight swift"><table><tr><td class="code"><pre><span class="line"><span class="keyword">convenience</span> <span class="keyword">init</span>(paramaters)&#123;</span><br><span class="line">	<span class="comment">//构造过程</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="14-5-5-2-指定构造器和便利构造器实战"><a href="#14-5-5-2-指定构造器和便利构造器实战" class="headerlink" title="14.5.5.2        指定构造器和便利构造器实战"></a>14.5.5.2        指定构造器和便利构造器实战</h4><blockquote>
+<p>第一层：食品类</p>
+</blockquote>
+<figure class="highlight swift"><table><tr><td class="code"><pre><span class="line"><span class="comment">/**</span><br><span class="line">*父类</span><br><span class="line">*/</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Food</span> </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> name:<span class="type">String</span></span><br><span class="line">    <span class="comment">//指定构造器</span></span><br><span class="line">    <span class="keyword">init</span>(name:<span class="type">String</span>)&#123;</span><br><span class="line">        <span class="keyword">self</span>.name = name</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">//便利构造器</span></span><br><span class="line">    <span class="keyword">convenience</span> <span class="keyword">init</span>()&#123;</span><br><span class="line">        <span class="comment">//代理给指定构造器</span></span><br><span class="line">        <span class="keyword">self</span>.<span class="keyword">init</span>(name:<span class="string">"[Unnamed]"</span>)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//使用指定构造器</span></span><br><span class="line"><span class="keyword">let</span> namedMeat = <span class="type">Food</span>(name:<span class="string">"Bacon"</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment">//使用便利构造器</span></span><br><span class="line"><span class="keyword">let</span> mysteryMeat = <span class="type">Food</span>();</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>第二层：调味剂类</p>
+</blockquote>
+<figure class="highlight swift"><table><tr><td class="code"><pre><span class="line"><span class="comment">/**</span><br><span class="line">*子类(继承了父类的构造器)</span><br><span class="line">*/</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">RecipeIngredient</span>:<span class="title">Food</span></span>&#123;</span><br><span class="line">    <span class="keyword">var</span> quantity:<span class="type">Int</span></span><br><span class="line">    <span class="comment">//子类特制的构造器</span></span><br><span class="line">    <span class="keyword">init</span>(name:<span class="type">String</span>, quantity:<span class="type">Int</span>)&#123;</span><br><span class="line">        <span class="keyword">self</span>.quantity = quantity</span><br><span class="line">        <span class="keyword">super</span>.<span class="keyword">init</span>(name:name)</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">//重写父类的便利构造器</span></span><br><span class="line">    <span class="keyword">override</span> <span class="keyword">convenience</span> <span class="keyword">init</span>(name:<span class="type">String</span>)&#123;</span><br><span class="line">        <span class="keyword">self</span>.<span class="keyword">init</span>(name:name, quantity:<span class="number">1</span>)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//使用父类的便利构造器</span></span><br><span class="line"><span class="keyword">let</span> oneMysteryItem = <span class="type">RecipeIngredient</span>()</span><br><span class="line"></span><br><span class="line"><span class="comment">//使用子类的便利构造器（重写了父类的指定构造器）</span></span><br><span class="line"><span class="keyword">let</span> oneBacon = <span class="type">RecipeIngredient</span>(name:<span class="string">"Bacon"</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment">//使用子类自己的指定构造器</span></span><br><span class="line"><span class="keyword">let</span> sixEggs = <span class="type">RecipeIngredient</span>(name: <span class="string">"Eggs"</span>, quantity: <span class="number">6</span>)</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>第三层：购物清单类</p>
+</blockquote>
+<figure class="highlight swift"><table><tr><td class="code"><pre><span class="line"><span class="comment">/**</span><br><span class="line">*子类的子类</span><br><span class="line">*继承父类所有指定构造器和便利构造器（1.所有属性提供了默认值；2.自己没有定义任何构造器；）</span><br><span class="line">*/</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">ShoppingListItem</span>:<span class="title">RecipeIngredient</span> </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> purchased = <span class="literal">false</span></span><br><span class="line">    <span class="keyword">var</span> description:<span class="type">String</span>&#123;</span><br><span class="line">        <span class="keyword">var</span> output = <span class="string">"\(quantity) x \(name)"</span></span><br><span class="line">        output += purchased ? <span class="string">"√"</span> : <span class="string">"x"</span></span><br><span class="line">        <span class="keyword">return</span> output</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> breakfastList = [</span><br><span class="line">    <span class="type">ShoppingListItem</span>(),</span><br><span class="line">    <span class="type">ShoppingListItem</span>(name: <span class="string">"Bacon"</span>),</span><br><span class="line">    <span class="type">ShoppingListItem</span>(name: <span class="string">"Eggs"</span>, quantity: <span class="number">6</span>)</span><br><span class="line">]</span><br><span class="line">breakfastList[<span class="number">0</span>].name = <span class="string">"Orange juice"</span></span><br><span class="line">breakfastList[<span class="number">0</span>].purchased = <span class="literal">true</span></span><br><span class="line"><span class="keyword">for</span> item <span class="keyword">in</span> breakfastList&#123;</span><br><span class="line">    <span class="built_in">println</span>(item.description)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="14-6-可失败构造器"><a href="#14-6-可失败构造器" class="headerlink" title="14.6    可失败构造器"></a>14.6    可失败构造器</h2><blockquote>
+<p><strong>支持：</strong>类、结构体、枚举<br><strong>说明：</strong>在构造自身的过程中有可能失败的情况，可以定义一个（或多个）可失败的构造器，“失败”是指</p>
+<ol>
+<li>构造器传入无效的参数</li>
+<li>缺少某种需要的外部资源</li>
+<li>不满足某种必要条件等</li>
+</ol>
+<p><strong>语法：</strong><code>init?</code></p>
+</blockquote>
+<figure class="highlight swift"><table><tr><td class="code"><pre><span class="line"><span class="keyword">init</span>? (...) &#123;</span><br><span class="line">	...</span><br><span class="line">	<span class="keyword">return</span> <span class="literal">nil</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p><strong>注意：</strong>严格说来构造器并不支持返回值（失败构造器表明失败的<code>return</code>是个特例）</p>
+</blockquote>
+<figure class="highlight swift"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">Animal</span> </span>&#123;</span><br><span class="line">    <span class="keyword">let</span> species:<span class="type">String</span></span><br><span class="line">    <span class="keyword">init</span>?(species:<span class="type">String</span>)&#123;</span><br><span class="line">        <span class="keyword">if</span> species.isEmpty &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">nil</span></span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">self</span>.species = species</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//构造成功案例</span></span><br><span class="line"><span class="keyword">let</span> someCreature = <span class="type">Animal</span>(species: <span class="string">"Giraffe"</span>)<span class="comment">//Animal?类型</span></span><br><span class="line"><span class="keyword">if</span> <span class="keyword">let</span> giraffe = someCreature&#123;</span><br><span class="line">    <span class="built_in">println</span>(<span class="string">"An animal was initialzed with a species of \(giraffe.species)"</span>)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//构造失败案例</span></span><br><span class="line"><span class="keyword">let</span> anonymousCreature = <span class="type">Animal</span>(species: <span class="string">""</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> anonymousCreature == <span class="literal">nil</span> &#123;</span><br><span class="line">    <span class="built_in">println</span>(<span class="string">"The anonymous creature could not be initialized"</span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="14-6-1-枚举类型的可失败构造器"><a href="#14-6-1-枚举类型的可失败构造器" class="headerlink" title="14.6.1        枚举类型的可失败构造器"></a>14.6.1        枚举类型的可失败构造器</h3><figure class="highlight swift"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">enum</span> <span class="title">TemperatureUnit</span></span>&#123;</span><br><span class="line">    <span class="keyword">case</span> <span class="type">Kelvin</span>, <span class="type">Celsius</span>, <span class="type">Fahrenheit</span></span><br><span class="line">    <span class="comment">//可失败构造器：当没有匹配的项时构造失败</span></span><br><span class="line">    <span class="keyword">init</span>?(symbol:<span class="type">Character</span>)&#123;</span><br><span class="line">        <span class="keyword">switch</span> symbol &#123;</span><br><span class="line">            <span class="keyword">case</span> <span class="string">"K"</span>:</span><br><span class="line">                <span class="keyword">self</span> = .<span class="type">Kelvin</span></span><br><span class="line">            <span class="keyword">case</span> <span class="string">"C"</span>:</span><br><span class="line">                <span class="keyword">self</span> = .<span class="type">Celsius</span></span><br><span class="line">            <span class="keyword">case</span> <span class="string">"F"</span>:</span><br><span class="line">                <span class="keyword">self</span> = .<span class="type">Fahrenheit</span></span><br><span class="line">            <span class="keyword">default</span>:</span><br><span class="line">                <span class="keyword">return</span> <span class="literal">nil</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//构造成功例子</span></span><br><span class="line"><span class="keyword">let</span> fahrenheitUnit = <span class="type">TemperatureUnit</span>(symbol: <span class="string">"F"</span>)</span><br><span class="line"><span class="keyword">if</span> fahrenheitUnit != <span class="literal">nil</span> &#123;</span><br><span class="line">    <span class="built_in">println</span>(<span class="string">"This is a defined temperature unit , so initialization succeeded."</span>)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//构造失败例子</span></span><br><span class="line"><span class="keyword">let</span> unknowUnit = <span class="type">TemperatureUnit</span>(symbol:<span class="string">"F"</span>)</span><br><span class="line"><span class="keyword">if</span> unknowUnit == <span class="literal">nil</span> &#123;</span><br><span class="line">    <span class="built_in">println</span>(<span class="string">"This is a defined temperature unit, so initialization succeeded."</span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="14-6-2-带原始值的枚举类型的可失败构造器"><a href="#14-6-2-带原始值的枚举类型的可失败构造器" class="headerlink" title="14.6.2        带原始值的枚举类型的可失败构造器"></a>14.6.2        带原始值的枚举类型的可失败构造器</h3><blockquote>
+<p><strong>说明：</strong>带原始值的枚举类型会自带一个可失败构造器</p>
+<ul>
+<li>该可失败构造器有一个名为<code>rawValue</code>的参数，其类型和枚举类型的原始值类型一致</li>
+<li>如果该参数的值能够和某个枚举成员的原始值匹配，则该构造器会构造相应的枚举成员，否则构造失败</li>
+</ul>
+<p><strong>语法：</strong><code>init?(rawValue:)</code></p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>组成</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>参数名</td>
+<td><code>rawValue</code></td>
+</tr>
+<tr>
+<td>参数类型</td>
+<td>和case的原始值（绑定的值）类型一致</td>
+</tr>
+<tr>
+<td>返回值</td>
+<td>参数和某个成员的原始值匹配则返回该值；否则构造失败，返回<code>nil</code></td>
+</tr>
+</tbody>
+</table>
+<figure class="highlight swift"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">enum</span> <span class="title">TemperatureUnit</span>:<span class="title">Character</span></span>&#123;</span><br><span class="line">    <span class="keyword">case</span> <span class="type">Kelvin</span> = <span class="string">"K"</span>, <span class="type">Celsius</span> = <span class="string">"C"</span>, <span class="type">Fahrenheit</span> = <span class="string">"F"</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//构造成功例子</span></span><br><span class="line"><span class="keyword">let</span> fahrenheitUnit = <span class="type">TemperatureUnit</span>(rawValue: <span class="string">"F"</span>)</span><br><span class="line"><span class="keyword">if</span> fahrenheitUnit != <span class="literal">nil</span> &#123;</span><br><span class="line">    <span class="built_in">println</span>(<span class="string">"This is a defined temperature unit , so initialization succeeded."</span>)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//构造失败例子</span></span><br><span class="line"><span class="keyword">let</span> unknowUnit = <span class="type">TemperatureUnit</span>(rawValue:<span class="string">"F"</span>)</span><br><span class="line"><span class="keyword">if</span> unknowUnit == <span class="literal">nil</span> &#123;</span><br><span class="line">    <span class="built_in">println</span>(<span class="string">"This is a defined temperature unit, so initialization succeeded."</span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="14-6-3-类的可失败构造器"><a href="#14-6-3-类的可失败构造器" class="headerlink" title="14.6.3        类的可失败构造器"></a>14.6.3        类的可失败构造器</h3><blockquote>
+<p><strong>说明：</strong>类的所有属性被初始化完毕，以及构造器之间的代理调用都结束后才能触发败行为。</p>
+</blockquote>
+<figure class="highlight swift"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Product</span> </span>&#123;</span><br><span class="line">    <span class="comment">//隐式解析可选类型</span></span><br><span class="line">    <span class="keyword">let</span> name:<span class="type">String</span>!<span class="comment">//默认为nil</span></span><br><span class="line">    <span class="keyword">init</span>?(name:<span class="type">String</span>)&#123;</span><br><span class="line">        <span class="keyword">if</span> name.isEmpty &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">nil</span></span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">self</span>.name = name</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="14-6-4-构造失败的传递"><a href="#14-6-4-构造失败的传递" class="headerlink" title="14.6.4        构造失败的传递"></a>14.6.4        构造失败的传递</h3><blockquote>
+<p><strong>传递方式：</strong><code>横向代理</code>和<code>向上代理</code></p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>传递方式</th>
+<th>支持</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>横向代理</td>
+<td>结构体、枚举、类</td>
+<td>可失败构造器可以横向代理其它构造器（包括可失败构造器）</td>
+</tr>
+<tr>
+<td>向上代理</td>
+<td>类</td>
+<td>子类的可失败构造器可以向上代理父类的构造器（包括可失败构造器）</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p><strong>注意：</strong></p>
+<ol>
+<li>当代理可失败构造器触发构造失败时，整个构造过程将终止（无论横向代理还是向上代理）</li>
+<li>非可失败构造器不能代理失败构造器 (<code>init!</code>声明的除外，但会触发断言)</li>
+</ol>
+</blockquote>
+<figure class="highlight swift"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Product</span> </span>&#123;</span><br><span class="line">    <span class="comment">//隐式解析可选类型</span></span><br><span class="line">    <span class="keyword">let</span> name:<span class="type">String</span>!<span class="comment">//默认为nil</span></span><br><span class="line">    <span class="keyword">init</span>?(name:<span class="type">String</span>)&#123;</span><br><span class="line">        <span class="keyword">if</span> name.isEmpty &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">nil</span></span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">self</span>.name = name</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">CartItem</span>:<span class="title">Product</span> </span>&#123;</span><br><span class="line">    <span class="keyword">let</span> quantity:<span class="type">Int</span>!<span class="comment">//确保构造失败仍完成初始化</span></span><br><span class="line">    </span><br><span class="line">    <span class="comment">//可失败构造器</span></span><br><span class="line">    <span class="keyword">init</span>?(name:<span class="type">String</span>, quantity:<span class="type">Int</span>)&#123;</span><br><span class="line">        <span class="comment">//在可能触发构造失败的代理之前完成代理构造过程</span></span><br><span class="line">        <span class="keyword">super</span>.<span class="keyword">init</span>(name: name)</span><br><span class="line">        <span class="keyword">if</span> quantity &lt; <span class="number">1</span>&#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">nil</span></span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">self</span>.quantity = quantity</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//1.构造成功案例</span></span><br><span class="line"><span class="keyword">if</span> <span class="keyword">let</span> twoSocks = <span class="type">CartItem</span>(name: <span class="string">"sock"</span>, quantity: <span class="number">2</span>)&#123;</span><br><span class="line">    <span class="built_in">println</span>(<span class="string">"Item:\(twoSocks.name), quantity:\(twoSocks.quantity)"</span>)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//2.子类自身构造失败</span></span><br><span class="line"><span class="keyword">if</span> <span class="keyword">let</span> zeroShirts = <span class="type">CartItem</span>(name: <span class="string">"shirt"</span>, quantity: <span class="number">0</span>)&#123;</span><br><span class="line">    <span class="built_in">println</span>(<span class="string">"Item:\(zeroShirts.name), quantity:\(zeroShirts.quantity)"</span>)</span><br><span class="line">&#125;<span class="keyword">else</span>&#123;</span><br><span class="line">    <span class="built_in">println</span>(<span class="string">"Unable to initialize zero shirt"</span>)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//3.代理父类构造过程失败</span></span><br><span class="line"><span class="keyword">if</span> <span class="keyword">let</span> oneUnnamed = <span class="type">CartItem</span>(name: <span class="string">""</span>, quantity: <span class="number">1</span>)&#123;</span><br><span class="line">    <span class="built_in">println</span>(<span class="string">"Item:\(oneUnnamed.name),quantity:\(oneUnnamed.quantity)"</span>)</span><br><span class="line">&#125;<span class="keyword">else</span>&#123;</span><br><span class="line">    <span class="built_in">println</span>(<span class="string">"Unable to initialize one unnamed product"</span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="14-6-5-重写一个可失败构造器"><a href="#14-6-5-重写一个可失败构造器" class="headerlink" title="14.6.5        重写一个可失败构造器"></a>14.6.5        重写一个可失败构造器</h3><blockquote>
+<p><strong>说明：</strong>可以在子类中重写父类的<code>可失败构造器</code>（通过定义一个<code>可失败构造器</code>或<code>非可失败构造器</code>）<br><strong>用途：</strong>即使父类的构造器为可失败构造器，但当子类的构造器在构造过程不可能失败时，我们也可以把它修改过来。<br><strong>情景：</strong></p>
+<ol>
+<li>子类的<code>可失败构造器</code>覆盖父类的可失败构造器</li>
+<li>子类的<code>非可失败构造器</code>覆盖父类的可失败构造器</li>
+</ol>
+<p><strong>注意：</strong></p>
+<ul>
+<li>当你用子类的<code>非可失败构造器</code>重写父类的可失败构造器时，向上代理到父类的可失败构造器的唯一方式是对父类的可失败构造器的返回值进行<code>强制解包</code>。</li>
+<li>你可以用<code>非可失败构造器</code>重写可失败构造器，但反过来却不行</li>
+</ul>
+</blockquote>
+<figure class="highlight swift"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 父类</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Document</span> </span>&#123;</span><br><span class="line">    <span class="comment">// 该构造器创建了一个 name 属性的值为 nil 的 document 实例</span></span><br><span class="line">    <span class="keyword">var</span> name: <span class="type">String</span>?</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 非可失败构造器</span></span><br><span class="line">    <span class="keyword">init</span>() &#123;&#125;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">// 可失败构造器</span></span><br><span class="line">    <span class="keyword">init</span>?(name: <span class="type">String</span>) &#123;</span><br><span class="line">        <span class="keyword">self</span>.name = name</span><br><span class="line">        <span class="keyword">if</span> name.isEmpty &#123; <span class="keyword">return</span> <span class="literal">nil</span> &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 子类</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">AutomaticallyNamedDocument</span>: <span class="title">Document</span> </span>&#123;</span><br><span class="line">    <span class="comment">// 重写非可失败构造器</span></span><br><span class="line">    <span class="keyword">override</span> <span class="keyword">init</span>() &#123;</span><br><span class="line">        <span class="comment">// 代理到父类的可失败构造器</span></span><br><span class="line">        <span class="keyword">super</span>.<span class="keyword">init</span>()</span><br><span class="line">        <span class="keyword">self</span>.name = <span class="string">"[Untitled]"</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">// 重写失败构造器</span></span><br><span class="line">    <span class="keyword">override</span> <span class="keyword">init</span>(name: <span class="type">String</span>) &#123;</span><br><span class="line">        <span class="comment">// 代理到父类的非可失败构造器</span></span><br><span class="line">        <span class="keyword">super</span>.<span class="keyword">init</span>()</span><br><span class="line">        <span class="keyword">if</span> name.isEmpty &#123;</span><br><span class="line">            <span class="keyword">self</span>.name = <span class="string">"[Untitled]"</span></span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            <span class="keyword">self</span>.name = name</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 子类</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">UntitledDocument</span>: <span class="title">Document</span> </span>&#123;</span><br><span class="line">    <span class="comment">// 重写父类的非可失败构造器</span></span><br><span class="line">    <span class="keyword">override</span> <span class="keyword">init</span>() &#123;</span><br><span class="line">        <span class="comment">// 使用强制解包来调用父类的可失败构造器</span></span><br><span class="line">        <span class="keyword">super</span>.<span class="keyword">init</span>(name: <span class="string">"[Untitled]"</span>)!</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="14-6-6-可失败构造器init"><a href="#14-6-6-可失败构造器init" class="headerlink" title="14.6.6        可失败构造器init!"></a>14.6.6        可失败构造器<code>init!</code></h3><blockquote>
+<p><strong>说明：</strong>构造<code>可失败构造器</code>其实有两种方式，两种方式创建的构造器可以相互<code>代理调用</code>，也可以相互<code>重写</code>对方。</p>
+<ul>
+<li><code>init?</code></li>
+<li><code>init!</code>：会构建一个相应类型的隐式解包可选类型的对象。</li>
+</ul>
+<p><strong>描述：</strong>用<code>init!</code>声明的<code>可失败构造器</code><br><strong>注意：</strong>还可以用<code>init</code>代理到<code>init!</code>，不过，一旦<code>init!</code>构造失败，则会触发一个断言。</p>
+</blockquote>
+<h2 id="14-7-必要构造器"><a href="#14-7-必要构造器" class="headerlink" title="14.7    必要构造器"></a>14.7    必要构造器</h2><blockquote>
+<p><strong>说明：</strong>在类的构造器前添加<code>required</code>修饰符，称为<code>必要构造器</code>。所有该类的子类都必须实现该构造器。在子类重写父类的<code>必要构造器时</code>，必须在子类的构造器前也添加<code>required</code>修饰符。</p>
+</blockquote>
+<figure class="highlight swift"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 父类</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">SomeClass</span> </span>&#123;</span><br><span class="line">    <span class="keyword">required</span> <span class="keyword">init</span>()&#123;</span><br><span class="line">        <span class="comment">//</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 子类</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">SomeSubClass</span>:<span class="title">SomeClass</span> </span>&#123;</span><br><span class="line">    <span class="keyword">required</span> <span class="keyword">init</span>() &#123;</span><br><span class="line">        <span class="comment">//</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="14-8-通过闭包和函数来设置属性的默认值"><a href="#14-8-通过闭包和函数来设置属性的默认值" class="headerlink" title="14.8    通过闭包和函数来设置属性的默认值"></a>14.8    通过闭包和函数来设置属性的默认值</h2><blockquote>
+<p><strong>说明：</strong>如果某个<code>存储型属性的默认值</code>需要一些<code>定制或设置</code>，你可以使用<code>闭包</code>或<code>全局函数</code>为其提供定制的默认值。<br><strong>限制：</strong><code>立即执行闭包</code>执行时，实例的其他部分还没有初始化，因此</p>
+<ol>
+<li>不能够在闭包中访问其它属性</li>
+<li>不能使用<code>self</code>属性</li>
+<li>不能调用其它实例方法</li>
+</ol>
+</blockquote>
+<figure class="highlight swift"><table><tr><td class="code"><pre><span class="line">&gt;<span class="class"><span class="keyword">class</span> <span class="title">SomeClass</span>:<span class="title">SomeType</span> </span>&#123;</span><br><span class="line">    <span class="keyword">let</span> someProperty:<span class="type">SomeType</span> = &#123;</span><br><span class="line">        <span class="comment">//在这个必包中给someProperty创建一个默认值</span></span><br><span class="line">        <span class="comment">//someValue必须和SomeType类型相同</span></span><br><span class="line">        <span class="keyword">return</span> someValue</span><br><span class="line">    &#125;()<span class="comment">//立即执行此闭包（否则将会将必包本身赋值给属性）</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight swift"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">Checkedboard</span> </span>&#123;</span><br><span class="line">    <span class="keyword">let</span> boardColors:[<span class="type">Bool</span>] = &#123;</span><br><span class="line">        <span class="keyword">var</span> temporaryBoard = [<span class="type">Bool</span>]()</span><br><span class="line">        <span class="keyword">var</span> isBlack = <span class="literal">false</span></span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> <span class="number">1</span>...<span class="number">10</span>&#123;</span><br><span class="line">            <span class="keyword">for</span> j <span class="keyword">in</span> <span class="number">1</span>...<span class="number">10</span>&#123;</span><br><span class="line">                temporaryBoard.append(isBlack)</span><br><span class="line">                isBlack = !isBlack</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> temporaryBoard</span><br><span class="line">    &#125;()</span><br><span class="line">    <span class="function"><span class="keyword">func</span> <span class="title">squareIsBlackAtRow</span><span class="params">(row:Int, column:Int)</span></span>-&gt;<span class="type">Bool</span>&#123;</span><br><span class="line">        <span class="keyword">return</span> boardColors[(row * <span class="number">10</span>) + column]</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">let</span> board = <span class="type">Checkedboard</span>()</span><br><span class="line"><span class="built_in">println</span>(board.squareIsBlackAtRow(<span class="number">0</span>, column: <span class="number">1</span>))</span><br><span class="line"><span class="built_in">println</span>(board.squareIsBlackAtRow(<span class="number">9</span>, column: <span class="number">9</span>))</span><br></pre></td></tr></table></figure>
+  </section>
+
+</article>
+
+
+
+
+            <footer class="footer">
+    <span class="footer__copyright">
+        本站点采用<a href="http://creativecommons.org/licenses/by-nc-sa/4.0/">知识共享署名-非商业性使用-相同方式共享 4.0 国际许可协议</a>
+    </span>
+    <span class="footer__copyright">
+        基于 <a href="http://hexo.io">Hexo</a> 搭建，感谢 <a href="https://pages.github.com/">GitHub Pages</a> 提供免费的托管服务
+    </span>
+    <span class="footer__copyright">
+        &copy; 2016 - 
+        本站修改自<a href="https://github.com/lenbo-ma/hexo-theme-vno" target="_blank">hexo-theme-vno</a>
+    </span>
+</footer>
+
+        </div>
+    </div>
+
+    <script src="http://cdn.bootcss.com/jquery/2.1.4/jquery.min.js"></script>
+    <script src="/js/main.js"></script>
+
+     
+</body>
+</html>

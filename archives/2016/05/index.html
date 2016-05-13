@@ -144,6 +144,959 @@
   
     
     <li>
+      <h2 class="post-list__post-title post-title"><a href="/2016/05/13/TSPL2_25 高级运算符/" title="link to post.title">25 高级运算符</a></h2>
+      <p class="excerpt">
+    
+      25.1    位运算符
+说明：Swift 支持 C 语言中的全部位运算符
+
+
+
+
+符号
+名称
+返回值
+复合运算符
+
+
+
+
+~
+按位取反
+将每一个0替换成1，每一个1替换成0
+~=
+
+
+&amp;amp;
+按位与
+对两个操作数相应的位执行逻辑与运算
+&amp;amp;=
+
+
+^
+按位亦或
+对两个操作数相应的位执行逻辑或操作，都是1时产生0
+^=
+
+
+\
+按位或
+对两个操作数相应的位执行逻辑或操作，都是1时产生1
+\=
+
+
+&amp;lt;&amp;lt;
+按位左移
+左移n位的结果（左端溢出，右端补0）
+&amp;lt;&amp;lt;=
+
+
+
+    &hellip;
+      </p>
+      <div class="post-list__meta"><time datetime="2016-05-13T12:06:24.000Z" class="post-list__meta--date date">2016-05-13</time> &#8226; <span class="post-list__meta--tags tags">于&nbsp;
+  <a class="tag-link" href="/tags/The-Swift-Program-Language-2/">The Swift Program Language 2</a>
+</span><a class="btn-border-small" href="/2016/05/13/TSPL2_25 高级运算符/">继续阅读</a></div>
+      <hr class="post-list__divider" />
+    </li>
+  
+    
+    <li>
+      <h2 class="post-list__post-title post-title"><a href="/2016/05/13/TSPL2_24 访问控制/" title="link to post.title">24 访问控制</a></h2>
+      <p class="excerpt">
+    
+      
+说明：访问控制可以限定其他源文件或模块中的代码对你的代码的访问级别。用途：这个特性可以让我们隐藏代码的一些实现细节，并且可以为其他人可以访问和使用的代码提供接口。约定：为了简单起见，对于代码中可以设置访问级别的特性（属性、基本类型、函数等），在下面的章节中我们会称之为实体。
+
+24.1    模块和源代码
+说明：Swift 中的访问控制模型基于模块和源文件这两个概念。模块：模块指的是独立的代码单元，框架或应用程序
+
+作为一个独立的模块来构建和发布
+一个模块可以使用 import 关键字导入另外
+    &hellip;
+      </p>
+      <div class="post-list__meta"><time datetime="2016-05-13T12:06:04.000Z" class="post-list__meta--date date">2016-05-13</time> &#8226; <span class="post-list__meta--tags tags">于&nbsp;
+  <a class="tag-link" href="/tags/The-Swift-Program-Language-2/">The Swift Program Language 2</a>
+</span><a class="btn-border-small" href="/2016/05/13/TSPL2_24 访问控制/">继续阅读</a></div>
+      <hr class="post-list__divider" />
+    </li>
+  
+    
+    <li>
+      <h2 class="post-list__post-title post-title"><a href="/2016/05/13/TSPL2_23 范型/" title="link to post.title">23 范型</a></h2>
+      <p class="excerpt">
+    
+      
+说明：泛型代码可以让你编写适用自定义需求以及任意类型的灵活可重用的函数和类型。意义：它的可以让你避免重复的代码，用一种清晰和抽象的方式来表达代码的意图。
+
+23.1    泛型所解决的问题
+说明：有了泛型，就不必为各种不同类型重复创建类似的函数或类型。
+
+23.2    泛型函数
+说明：泛型函数可以适用于任何类型语法：func 函数名&amp;lt;T&amp;gt;(){...}
+
+函数名后面跟着&amp;lt;占位类型名&amp;gt;（比如字母 T）来代替实际类型名
+函数被调用时，T 所代表的类型都会由传入的值的类型推
+    &hellip;
+      </p>
+      <div class="post-list__meta"><time datetime="2016-05-13T12:05:48.000Z" class="post-list__meta--date date">2016-05-13</time> &#8226; <span class="post-list__meta--tags tags">于&nbsp;
+  <a class="tag-link" href="/tags/The-Swift-Program-Language-2/">The Swift Program Language 2</a>
+</span><a class="btn-border-small" href="/2016/05/13/TSPL2_23 范型/">继续阅读</a></div>
+      <hr class="post-list__divider" />
+    </li>
+  
+    
+    <li>
+      <h2 class="post-list__post-title post-title"><a href="/2016/05/13/TSPL2_22 协议/" title="link to post.title">22 协议</a></h2>
+      <p class="excerpt">
+    
+      22.1    协议的语法
+说明：协议的定义方式与类,结构体,枚举的定义非常相似。
+
+要使类遵循某个协议,需要在类型名称后加上协议名称,中间以: 分隔,作为类型定义的一部分
+遵循多个 协议时,各协议之间用逗号, 分隔
+如果类在遵循协议的同时拥有父类,应该将父类名放在协议名之前,以,分隔
+
+
+// 定义协议protocol SomeProtocol &amp;#123;	// 协议内容&amp;#125;// 实现协议struct SomeStructure: FirstProtocol, AnotherProt
+    &hellip;
+      </p>
+      <div class="post-list__meta"><time datetime="2016-05-13T12:05:28.000Z" class="post-list__meta--date date">2016-05-13</time> &#8226; <span class="post-list__meta--tags tags">于&nbsp;
+  <a class="tag-link" href="/tags/The-Swift-Program-Language-2/">The Swift Program Language 2</a>
+</span><a class="btn-border-small" href="/2016/05/13/TSPL2_22 协议/">继续阅读</a></div>
+      <hr class="post-list__divider" />
+    </li>
+  
+    
+    <li>
+      <h2 class="post-list__post-title post-title"><a href="/2016/05/13/TSPL2_21 扩展/" title="link to post.title">21 扩展</a></h2>
+      <p class="excerpt">
+    
+      
+说明：扩展就是为一个已有的类、结构体、枚举类型或者协议类型添加新功能(包括没有权限获取原始源代码的情况)。
+
+添加计算型属性和计算类型属性
+定义实例方法和类型方法
+提供新的构造器
+定义下标
+定义和使用新的嵌套类型
+是一个有类型符合某个协议
+
+注意：
+
+扩展可以为一个类型添加新的功能，但是不能重写已有的功能。
+如果你通过扩展为一个已有类型添加新功能，那么新功能对该类型的所有已有实例都是可用的，即使它们是在这个扩展定义之前创建的。
+
+
+21.1    扩展语法
+说明：使用extension声明扩展
+    &hellip;
+      </p>
+      <div class="post-list__meta"><time datetime="2016-05-13T11:57:35.000Z" class="post-list__meta--date date">2016-05-13</time> &#8226; <span class="post-list__meta--tags tags">于&nbsp;
+  <a class="tag-link" href="/tags/The-Swift-Program-Language-2/">The Swift Program Language 2</a>
+</span><a class="btn-border-small" href="/2016/05/13/TSPL2_21 扩展/">继续阅读</a></div>
+      <hr class="post-list__divider" />
+    </li>
+  
+    
+    <li>
+      <h2 class="post-list__post-title post-title"><a href="/2016/05/13/TSPL2_20 类型嵌套/" title="link to post.title">20 类型嵌套</a></h2>
+      <p class="excerpt">
+    
+      
+说明：Swift 允许你定义嵌套类型，可以在支持的类型中定义嵌套的枚举、类和结构体。可以根据需要定义多级嵌套。用途：方便地定义工具类或结构体来使用。
+
+20.1    嵌套类型实践/** 扑克牌* 没有自定义构造器的结构体：因此有默认的成员构造器*/struct BlackjackCard &amp;#123;    // 嵌套的 Suit 枚举    enum Suit: Character &amp;#123;        case Spades = &quot;♠&quot;, Hearts = &quot;♡&quot;, Diamond
+    &hellip;
+      </p>
+      <div class="post-list__meta"><time datetime="2016-05-13T11:57:17.000Z" class="post-list__meta--date date">2016-05-13</time> &#8226; <span class="post-list__meta--tags tags">于&nbsp;
+  <a class="tag-link" href="/tags/The-Swift-Program-Language-2/">The Swift Program Language 2</a>
+</span><a class="btn-border-small" href="/2016/05/13/TSPL2_20 类型嵌套/">继续阅读</a></div>
+      <hr class="post-list__divider" />
+    </li>
+  
+    
+    <li>
+      <h2 class="post-list__post-title post-title"><a href="/2016/05/13/TSPL2_19 类型转换（Type Casting）/" title="link to post.title">19 类型转换</a></h2>
+      <p class="excerpt">
+    
+      
+说明：类型转换可以判断实例的类型，也可以将实例看做是其父类或者子类的实例。操作符：is和as
+
+检查值的类型：is
+转换类型：as
+
+
+19.1    定义一个类层次作为例子//多媒体文件class MediaItem &amp;#123;    var name:String    init(name:String)&amp;#123;        self.name = name    &amp;#125;&amp;#125;//电影class Movie:MediaItem&amp;#123;    var director
+    &hellip;
+      </p>
+      <div class="post-list__meta"><time datetime="2016-05-13T11:56:57.000Z" class="post-list__meta--date date">2016-05-13</time> &#8226; <span class="post-list__meta--tags tags">于&nbsp;
+  <a class="tag-link" href="/tags/The-Swift-Program-Language-2/">The Swift Program Language 2</a>
+</span><a class="btn-border-small" href="/2016/05/13/TSPL2_19 类型转换（Type Casting）/">继续阅读</a></div>
+      <hr class="post-list__divider" />
+    </li>
+  
+    
+    <li>
+      <h2 class="post-list__post-title post-title"><a href="/2016/05/13/TSPL2_18 错误处理/" title="link to post.title">18 错误处理</a></h2>
+      <p class="excerpt">
+    
+      
+说明：错误处理是响应错误以及从错误中恢复的过程。可选类型可用来表示值缺失，但是当某个操作失败时，最好能得知失败的原因，从而可以作出相应的应对。扩展：Swift 中的错误处理涉及到错误处理模式，这会用到 Cocoa 和 Objective-C 中的NSError
+
+18.1    表示并抛出错误
+说明：错误用符合ErrorType协议的类型的值来表示。这个空协议表明该类型可以用于错误处理。技巧：Swift 的枚举类型尤为适合构建一组相关的错误状态，枚举的关联值还可以提供错误状态的额外信息。
+
+/
+    &hellip;
+      </p>
+      <div class="post-list__meta"><time datetime="2016-05-13T11:56:39.000Z" class="post-list__meta--date date">2016-05-13</time> &#8226; <span class="post-list__meta--tags tags">于&nbsp;
+  <a class="tag-link" href="/tags/The-Swift-Program-Language-2/">The Swift Program Language 2</a>
+</span><a class="btn-border-small" href="/2016/05/13/TSPL2_18 错误处理/">继续阅读</a></div>
+      <hr class="post-list__divider" />
+    </li>
+  
+    
+    <li>
+      <h2 class="post-list__post-title post-title"><a href="/2016/05/13/TSPL2_17 可选链式调用/" title="link to post.title">17 可选链式调用</a></h2>
+      <p class="excerpt">
+    
+      
+是什么：是一种可以在当前值可能为nil的可选值上调用属性、方法及下标脚本的过程使用场景：请求或调用的目标当前可能为空(nil)，这时使用!在一个连续调用的过程中有报错的可能。这时可以用作用域链的方式。特点：
+
+如果可选的目标有值，调用成功；否则一律返回nil。
+多次请求或调用可以被链接在一起形成一个链，如果任何一个节点为nil，将导致整个链实效。
+不论你调用的属性、方法、下标脚本等返回的值是不是可选值，返回结果都是一个可选值。
+
+适用类型：任意类型
+
+17.1    可选链可替代强制解析
+说明
+    &hellip;
+      </p>
+      <div class="post-list__meta"><time datetime="2016-05-13T11:56:10.000Z" class="post-list__meta--date date">2016-05-13</time> &#8226; <span class="post-list__meta--tags tags">于&nbsp;
+  <a class="tag-link" href="/tags/The-Swift-Program-Language-2/">The Swift Program Language 2</a>
+</span><a class="btn-border-small" href="/2016/05/13/TSPL2_17 可选链式调用/">继续阅读</a></div>
+      <hr class="post-list__divider" />
+    </li>
+  
+    
+    <li>
+      <h2 class="post-list__post-title post-title"><a href="/2016/05/13/TSPL2_16 自动引用计数(ARC)/" title="link to post.title">16 自动引用计数（ARC）</a></h2>
+      <p class="excerpt">
+    
+      
+说明：Swift 使用自动引用计数（ARC）机制来跟踪和管理你的应用程序的内存。适用类型：类(结构体和枚举是值类型)
+
+16.1        自动引用计数的工作机制
+说明：当你每次创建一个类的新的实例的时候，ARC 会分配一大块内存用来储存实例的信息。内存中会包含实例的类型信息，以及这个实例所有相关属性的值。
+强引用：无论将实例赋值给属性、常量还是变量，都会对此实例创建强引用。当一个实例的引用计数为0时，实例将被ARC销毁。
+
+16.2        自动引用计数实践//1.创建类class
+    &hellip;
+      </p>
+      <div class="post-list__meta"><time datetime="2016-05-13T11:47:34.000Z" class="post-list__meta--date date">2016-05-13</time> &#8226; <span class="post-list__meta--tags tags">于&nbsp;
+  <a class="tag-link" href="/tags/The-Swift-Program-Language-2/">The Swift Program Language 2</a>
+</span><a class="btn-border-small" href="/2016/05/13/TSPL2_16 自动引用计数(ARC)/">继续阅读</a></div>
+      <hr class="post-list__divider" />
+    </li>
+  
+    
+    <li>
+      <h2 class="post-list__post-title post-title"><a href="/2016/05/13/TSPL2_15 析构过程/" title="link to post.title">15 析构过程</a></h2>
+      <p class="excerpt">
+    
+      
+关键字：deinit支持：类数量：最多一个参数：无如何被调用：类的实例被释放之前自动调用（不允许主动调用）用途：当实例释放时进行一些额外的处理（比如关闭打开的文件）
+
+15.1        析构过程原理
+语法：不带()也不需要参数
+
+deinit&amp;#123;	// 手动释放一些资源&amp;#125;
+
+父类析构器的调用：
+
+
+
+
+子类是否定义了析构函数
+具体析构过程
+
+
+
+
+是
+子类析构函数实现的最后，父类的析构函数被调用
+
+
+否
+父类的析构函数被自动调用
+
+
+
+
+访问属性：可以访问所有请求实例的
+    &hellip;
+      </p>
+      <div class="post-list__meta"><time datetime="2016-05-13T11:47:13.000Z" class="post-list__meta--date date">2016-05-13</time> &#8226; <span class="post-list__meta--tags tags">于&nbsp;
+  <a class="tag-link" href="/tags/The-Swift-Program-Language-2/">The Swift Program Language 2</a>
+</span><a class="btn-border-small" href="/2016/05/13/TSPL2_15 析构过程/">继续阅读</a></div>
+      <hr class="post-list__divider" />
+    </li>
+  
+    
+    <li>
+      <h2 class="post-list__post-title post-title"><a href="/2016/05/13/TSPL2_14  构造过程/" title="link to post.title">14 构造过程</a></h2>
+      <p class="excerpt">
+    
+      
+构造过程：为某个类、结构体或枚举的实例中的每个属性设置初始值和为其执行必要准备和初始化任务。构造器：用来创建特定类型实例的特殊方法，保证实例在第一次使用前完成正确的初始化。
+
+14.1    存储型属性的初始赋值
+背景：类和结构体在创建实例时，必须为所有存储型属性设置合适的初始值。存储型属性的值不能处于一个未知的状态。说明：可以在构造器中为存储型属性赋初值，也可以在定义属性时为其设置默认值
+
+
+
+
+初始化时机
+初始化方式
+是否触发属性观察器
+是否自动推导类型
+
+
+
+
+定义属性时
+设置默认值
+否
+    &hellip;
+      </p>
+      <div class="post-list__meta"><time datetime="2016-05-13T11:46:54.000Z" class="post-list__meta--date date">2016-05-13</time> &#8226; <span class="post-list__meta--tags tags">于&nbsp;
+  <a class="tag-link" href="/tags/The-Swift-Program-Language-2/">The Swift Program Language 2</a>
+</span><a class="btn-border-small" href="/2016/05/13/TSPL2_14  构造过程/">继续阅读</a></div>
+      <hr class="post-list__divider" />
+    </li>
+  
+    
+    <li>
+      <h2 class="post-list__post-title post-title"><a href="/2016/05/13/TSPL2_13 继承/" title="link to post.title">13 继承</a></h2>
+      <p class="excerpt">
+    
+      
+说明：一个类可以继承另一个类的方法,属性和其它特性
+
+
+
+
+能力
+相关成员
+价值
+
+
+
+
+调用
+超类的方法、属性、下标脚本
+代码重用
+
+
+重写
+超类的方法、属性、下标脚本
+优化或修改它们的行为
+
+
+监视
+继承来的属性（通过添加属性(存储属性或计算属性)观察器）
+当值改变时，类就会被通知到
+
+
+
+
+注意：只有类能够继承
+
+13.1    定义一个基类
+基类：不继承其它类的类（swift的类并不是从一个通用的基类继承而来）
+
+//定义一个基类class Vehicle &amp;#123;    var 
+    &hellip;
+      </p>
+      <div class="post-list__meta"><time datetime="2016-05-13T11:46:35.000Z" class="post-list__meta--date date">2016-05-13</time> &#8226; <span class="post-list__meta--tags tags">于&nbsp;
+  <a class="tag-link" href="/tags/The-Swift-Program-Language-2/">The Swift Program Language 2</a>
+</span><a class="btn-border-small" href="/2016/05/13/TSPL2_13 继承/">继续阅读</a></div>
+      <hr class="post-list__divider" />
+    </li>
+  
+    
+    <li>
+      <h2 class="post-list__post-title post-title"><a href="/2016/05/13/TSPL2_12 下标脚本/" title="link to post.title">12 下标脚本</a></h2>
+      <p class="excerpt">
+    
+      
+用途：访问对象、集合、序列的快捷方式，可以使用下标脚本的索引设置和获取值，不需要再调用对应的存取方法支持：类、结构体、枚举特点:
+
+同一个目类型可以定义多个附属脚本
+可以通过索引值的类型进行重载
+语法类似实例方法和计算属性的混合
+
+
+12.1    语法
+关键字：subscript、set、get说明：语法类似于实例方法语法和计算型属性语法的混合。
+
+显式声明入参和返回值（类似实例方法）
+可以设定为读写或只读，由 getter 和setter 实现（类似计算属性）
+
+setter和getter
+    &hellip;
+      </p>
+      <div class="post-list__meta"><time datetime="2016-05-13T11:46:20.000Z" class="post-list__meta--date date">2016-05-13</time> &#8226; <span class="post-list__meta--tags tags">于&nbsp;
+  <a class="tag-link" href="/tags/The-Swift-Program-Language-2/">The Swift Program Language 2</a>
+</span><a class="btn-border-small" href="/2016/05/13/TSPL2_12 下标脚本/">继续阅读</a></div>
+      <hr class="post-list__divider" />
+    </li>
+  
+    
+    <li>
+      <h2 class="post-list__post-title post-title"><a href="/2016/05/13/TSPL2_11 方法/" title="link to post.title">11 方法</a></h2>
+      <p class="excerpt">
+    
+      
+定义：与某些特定类型相关联的函数。
+
+
+
+
+方法
+支持类型
+关联对象
+
+
+
+
+实例方法
+类、结构体、枚举
+实例
+
+
+类型方法
+类、结构体、枚举
+类型
+
+
+
+11.1    实例方法
+说明：写在它所属的类型的前后{}之间
+
+能够隐式访问它所属类型的所有的其他实例方法和属性
+只能被它所属的类的某个特定实例调用
+
+
+
+
+
+调用位置
+调用方式
+
+
+
+
+内部
+能够隐式访问它所属类型的所有其它实例方法和属性
+
+
+外部
+只能被它所属的类的某个特定实例调用
+
+
+
+class Counter &amp;#123;   
+    &hellip;
+      </p>
+      <div class="post-list__meta"><time datetime="2016-05-13T11:45:53.000Z" class="post-list__meta--date date">2016-05-13</time> &#8226; <span class="post-list__meta--tags tags">于&nbsp;
+  <a class="tag-link" href="/tags/The-Swift-Program-Language-2/">The Swift Program Language 2</a>
+</span><a class="btn-border-small" href="/2016/05/13/TSPL2_11 方法/">继续阅读</a></div>
+      <hr class="post-list__divider" />
+    </li>
+  
+    
+    <li>
+      <h2 class="post-list__post-title post-title"><a href="/2016/05/13/TSPL2_10  属性/" title="link to post.title">10 属性</a></h2>
+      <p class="excerpt">
+    
+      
+按从属区分
+
+
+
+
+属性类型
+特点
+
+
+
+
+类型属性
+类型本身的属性
+
+
+实例属性
+特定类型的实例的属性
+
+
+
+
+按存储数据的方式区分
+
+
+
+
+属性类型
+特点
+限制
+定义方式
+
+
+
+
+存储属性
+存储常量或变量作为实例的一部分
+类、结构体
+let、var
+
+
+计算属性
+通过计算获取值的，值是不固定的
+类、结构体、枚举
+var
+
+
+
+
+计算属性分类
+
+
+
+
+计算属性
+特点
+定义方式
+
+
+
+
+读写计算属性
+既可以获取值，也可以设置值
+只提供getter没有setter
+
+
+只读计算属性
+总是返回一个
+    &hellip;
+      </p>
+      <div class="post-list__meta"><time datetime="2016-05-13T11:45:28.000Z" class="post-list__meta--date date">2016-05-13</time> &#8226; <span class="post-list__meta--tags tags">于&nbsp;
+  <a class="tag-link" href="/tags/The-Swift-Program-Language-2/">The Swift Program Language 2</a>
+</span><a class="btn-border-small" href="/2016/05/13/TSPL2_10  属性/">继续阅读</a></div>
+      <hr class="post-list__divider" />
+    </li>
+  
+    
+    <li>
+      <h2 class="post-list__post-title post-title"><a href="/2016/05/13/TSPL2_09  类和结构体/" title="link to post.title">9 类和结构体</a></h2>
+      <p class="excerpt">
+    
+      9.1    类和结构体对比
+背景:
+
+不需要为自定义类和结构创建独立的接口和实现文件，系统会自动生成面向其它代码的外部接口  
+类和结构体的关系比其它语言更加紧密  
+结构体总是通过被复制的方式在代码中传递，因此请不要使用引用计数
+
+
+相同点
+定义属性用于存储值
+定义方法用于提供功能
+定义附属脚本用于访问值
+定义构造器用于生成初始化值
+通过扩展增加默认实现的功能
+实现协议以提供某种标准功能
+
+类比结构体多的附加功能
+继承允许一个类继承另一个类的特征
+类型转换允许在运行时检查和解释一个类实例的类
+    &hellip;
+      </p>
+      <div class="post-list__meta"><time datetime="2016-05-13T11:44:57.000Z" class="post-list__meta--date date">2016-05-13</time> &#8226; <span class="post-list__meta--tags tags">于&nbsp;
+  <a class="tag-link" href="/tags/The-Swift-Program-Language-2/">The Swift Program Language 2</a>
+</span><a class="btn-border-small" href="/2016/05/13/TSPL2_09  类和结构体/">继续阅读</a></div>
+      <hr class="post-list__divider" />
+    </li>
+  
+    
+    <li>
+      <h2 class="post-list__post-title post-title"><a href="/2016/05/13/TSPL2_08  枚举类型/" title="link to post.title">8 枚举类型</a></h2>
+      <p class="excerpt">
+    
+      
+说明：枚举为一组相关的值定义了一个共同的类型，使你可以在你的代码中以类型安全的方式来使用这些值。更加灵活：
+
+原始值不是必需的：不必给每一个枚举成员提供一个值（原始值）
+原始值类型：原始值的类型可以是字符串、字符、整型值或浮点数
+关联值：枚举成员可以指定任意类型的关联值存储到枚举成员中
+
+一等类型：采用了很多在传统上只被类（class）所支持的特性
+
+计算型属性：用于提供枚举值的附加信息
+实例方法：用于提供和枚举值相关联的功能
+构造函数：来提供一个初始值
+动态扩展：可以在原始实现的基础上扩展它
+    &hellip;
+      </p>
+      <div class="post-list__meta"><time datetime="2016-05-13T11:44:27.000Z" class="post-list__meta--date date">2016-05-13</time> &#8226; <span class="post-list__meta--tags tags">于&nbsp;
+  <a class="tag-link" href="/tags/The-Swift-Program-Language-2/">The Swift Program Language 2</a>
+</span><a class="btn-border-small" href="/2016/05/13/TSPL2_08  枚举类型/">继续阅读</a></div>
+      <hr class="post-list__divider" />
+    </li>
+  
+    
+    <li>
+      <h2 class="post-list__post-title post-title"><a href="/2016/05/13/TSPL2_07  闭包/" title="link to post.title">7 闭包</a></h2>
+      <p class="excerpt">
+    
+      
+描述：可以捕获和存储其所在上下文中任意常量或变量的引用的字包含的函数代码块。说明：由3种类型的闭包。
+
+
+
+
+分类
+是否有名字
+捕获内容
+适用
+
+
+
+
+全局函数
+是
+无
+严格说来不是闭包
+
+
+嵌套函数
+是
+其封闭函数域内的变量或常量的引用
+在较复杂函数中，需要命名和定义自包含代码模块的场景
+
+
+闭合表达式
+否
+其上下文中的变量或常量的引用
+处理一些函数并需要将另外一些函数作为该函数的参数时
+
+
+
+7.1    闭包表达式
+描述：闭包表达式是一种利用简洁语法构建内联闭包的方式说明：和全局函数或嵌
+    &hellip;
+      </p>
+      <div class="post-list__meta"><time datetime="2016-05-13T11:40:46.000Z" class="post-list__meta--date date">2016-05-13</time> &#8226; <span class="post-list__meta--tags tags">于&nbsp;
+  <a class="tag-link" href="/tags/The-Swift-Program-Language-2/">The Swift Program Language 2</a>
+</span><a class="btn-border-small" href="/2016/05/13/TSPL2_07  闭包/">继续阅读</a></div>
+      <hr class="post-list__divider" />
+    </li>
+  
+    
+    <li>
+      <h2 class="post-list__post-title post-title"><a href="/2016/05/13/TSPL2_06  函数/" title="link to post.title">6 函数</a></h2>
+      <p class="excerpt">
+    
+      
+说明：用来完成特定任务的独立的代码。
+
+从简单到复杂：既可以定义最简单的没有参数名字的 C 风格函数，也可以定义复杂的带局部和外部参数名的 Objective-C 风格函数
+默认参数值：参数可以提供默认值，以简化函数调用
+In-out参数：参数前加 &amp;amp; 符,表示这个值可以被函数修改（只能针对变量参数，类似传引用）
+当作普通变量：可以把函数类型当做任何其他普通变量类型一样处理
+嵌套：函数的定义可以写在在其他函数定义中
+
+
+6.1    定义
+定义：使用func关键字
+
+函数名：描述函数执
+    &hellip;
+      </p>
+      <div class="post-list__meta"><time datetime="2016-05-13T11:40:24.000Z" class="post-list__meta--date date">2016-05-13</time> &#8226; <span class="post-list__meta--tags tags">于&nbsp;
+  <a class="tag-link" href="/tags/The-Swift-Program-Language-2/">The Swift Program Language 2</a>
+</span><a class="btn-border-small" href="/2016/05/13/TSPL2_06  函数/">继续阅读</a></div>
+      <hr class="post-list__divider" />
+    </li>
+  
+    
+    <li>
+      <h2 class="post-list__post-title post-title"><a href="/2016/05/13/TSPL2_05  控制流/" title="link to post.title">5 控制流</a></h2>
+      <p class="excerpt">
+    
+      5.1    for循环
+说明：有两种形式
+
+for-in
+for initialization; condition; increment（c语言形式）
+
+
+5.1.1    for-in
+说明：可以遍历的集合包括区间、Array、Set、String中的字符。
+
+其中每次循环都会被赋值的常量不需要声明
+可以使用_忽略每个数据项中具体的值
+字典内部是无序的，不经处理不能保证遍历顺序
+
+
+// 区间for index in 1...5 &amp;#123;    print(&quot;\(index) time
+    &hellip;
+      </p>
+      <div class="post-list__meta"><time datetime="2016-05-13T11:38:49.000Z" class="post-list__meta--date date">2016-05-13</time> &#8226; <span class="post-list__meta--tags tags">于&nbsp;
+  <a class="tag-link" href="/tags/The-Swift-Program-Language-2/">The Swift Program Language 2</a>
+</span><a class="btn-border-small" href="/2016/05/13/TSPL2_05  控制流/">继续阅读</a></div>
+      <hr class="post-list__divider" />
+    </li>
+  
+    
+    <li>
+      <h2 class="post-list__post-title post-title"><a href="/2016/05/13/TSPL2_04  集合类型/" title="link to post.title">4 集合类型</a></h2>
+      <p class="excerpt">
+    
+      
+说明：Array、Sets、Dictionary(Swift将这3中类型使纤维范型集合)
+
+
+
+
+集合类型
+说明
+
+
+
+
+数组（Array）
+有序数据集合
+
+
+集合（Sets）
+无序无重复数据的集
+
+
+字典（Dictionaries）
+无序的键值对的值
+
+
+
+
+4.1    集合的可变性
+说明：集合的可变性依赖于声明为常量或变量。
+
+
+
+
+声明
+可变性
+
+
+
+
+常量（let）
+大小不可改变
+
+
+变量（var）
+可以添加或移除集合中的项
+
+
+
+
+技巧：不可变的集合性能更好。
+
+4.2 数组
+扩展
+    &hellip;
+      </p>
+      <div class="post-list__meta"><time datetime="2016-05-13T11:33:00.000Z" class="post-list__meta--date date">2016-05-13</time> &#8226; <span class="post-list__meta--tags tags">于&nbsp;
+  <a class="tag-link" href="/tags/The-Swift-Program-Language-2/">The Swift Program Language 2</a>
+</span><a class="btn-border-small" href="/2016/05/13/TSPL2_04  集合类型/">继续阅读</a></div>
+      <hr class="post-list__divider" />
+    </li>
+  
+    
+    <li>
+      <h2 class="post-list__post-title post-title"><a href="/2016/05/13/TSPL2_03  字符串和字符/" title="link to post.title">3 字符串和字符</a></h2>
+      <p class="excerpt">
+    
+      
+说明：有序的Character类型的值的集合，通过String类来表示。
+
+每一个字符串都是由编码无关的Unicide字符组成
+可以通过內插的方式将字符串插入到常量、变量、字面量表达式中
+
+扩展：和Cocoa中的Foundation框架中的NSString类进行了无缝对接
+
+可以将创建的任何字符串的值转换成NSString
+可以调用任意的NSStringAPI
+可以在任意要求传入NSString实例作为参数的API中用String类的值代替
+
+
+##3.1    字符串字面量
+
+格式：&amp;quo
+    &hellip;
+      </p>
+      <div class="post-list__meta"><time datetime="2016-05-13T11:32:42.000Z" class="post-list__meta--date date">2016-05-13</time> &#8226; <span class="post-list__meta--tags tags">于&nbsp;
+  <a class="tag-link" href="/tags/The-Swift-Program-Language-2/">The Swift Program Language 2</a>
+</span><a class="btn-border-small" href="/2016/05/13/TSPL2_03  字符串和字符/">继续阅读</a></div>
+      <hr class="post-list__divider" />
+    </li>
+  
+    
+    <li>
+      <h2 class="post-list__post-title post-title"><a href="/2016/05/13/TSPL2_02  基本运算符/" title="link to post.title">2 基本运算符</a></h2>
+      <p class="excerpt">
+    
+      
+
+
+基本运算
+正负
+自加/减
+自返运算
+
+
+
+
+a+b
++a
+a++/++a
+a+=b
+
+
+a-b
+-b
+b--/--b
+a-=b
+
+
+a*b
+
+
+a*=b
+
+
+a/b
+
+
+a/=b
+
+
+a%b
+
+
+a%=b
+
+
+
+[toc]
+2.1    术语
+运算符
+
+
+
+
+按照操作数数量分类
+说明
+举例
+
+
+
+
+一元运算符
+分为前值运算符和后值运算符
+!、++、--等
+
+
+二元运算符
+在两个操作数之间
+大部分运算符都属于二元运算符
+
+
+三元运算符
+和C语言一样只有一个三目运算符
+a ? b : c
+
+
+
+    &hellip;
+      </p>
+      <div class="post-list__meta"><time datetime="2016-05-13T11:32:24.000Z" class="post-list__meta--date date">2016-05-13</time> &#8226; <span class="post-list__meta--tags tags">于&nbsp;
+  <a class="tag-link" href="/tags/The-Swift-Program-Language-2/">The Swift Program Language 2</a>
+</span><a class="btn-border-small" href="/2016/05/13/TSPL2_02  基本运算符/">继续阅读</a></div>
+      <hr class="post-list__divider" />
+    </li>
+  
+    
+    <li>
+      <h2 class="post-list__post-title post-title"><a href="/2016/05/13/TSPL2_01  基础部分/" title="link to post.title">1 基础部分</a></h2>
+      <p class="excerpt">
+    
+      1.1    常量和变量
+描述：常量和变量把一个名字和一个指定类型的值关良起来。说明：两者的区别在于设定后是否还能修改
+
+常量：设定后不可能修改
+变量：可以随意更改
+
+
+1.1.1    声明常量和变量
+共同规则：
+
+可以在一行中声明多个，用,分隔
+
+关键字：
+
+let：常量
+var：变量
+
+
+// 常量声明let maximunNumberOfLoginAttemts = 10// 变量声明var currentLoginAttempts = 0var x = 0.0, y = 0.0, z 
+    &hellip;
+      </p>
+      <div class="post-list__meta"><time datetime="2016-05-13T11:31:53.000Z" class="post-list__meta--date date">2016-05-13</time> &#8226; <span class="post-list__meta--tags tags">于&nbsp;
+  <a class="tag-link" href="/tags/The-Swift-Program-Language-2/">The Swift Program Language 2</a>
+</span><a class="btn-border-small" href="/2016/05/13/TSPL2_01  基础部分/">继续阅读</a></div>
+      <hr class="post-list__divider" />
+    </li>
+  
+    
+    <li>
+      <h2 class="post-list__post-title post-title"><a href="/2016/05/13/TSPL2_0 简介/" title="link to post.title">简介</a></h2>
+      <p class="excerpt">
+    
+      0.1    关于Swift(About Swift)
+用途：编写IOS、OS X、watchOS应用程序特点归纳：
+
+基于Cocoa和Cocoa Touch框架
+自动垃圾回收（自动引用计数）
+采用了Object-C的命名参数和动态对象模型，兼容Object-C，可以无缝对接到现有的Cocoa框架
+支持过程式编程和面向对象编程
+支持代码预览（像脚本语言一样，可以实时查看结果）
+
+
+0.2    Swift初见（A Swift Tour）0.2.1    简单值（Simple Values）0.2
+    &hellip;
+      </p>
+      <div class="post-list__meta"><time datetime="2016-05-13T11:31:15.000Z" class="post-list__meta--date date">2016-05-13</time> &#8226; <span class="post-list__meta--tags tags">于&nbsp;
+  <a class="tag-link" href="/tags/The-Swift-Program-Language-2/">The Swift Program Language 2</a>
+</span><a class="btn-border-small" href="/2016/05/13/TSPL2_0 简介/">继续阅读</a></div>
+      <hr class="post-list__divider" />
+    </li>
+  
+    
+    <li>
       <h2 class="post-list__post-title post-title"><a href="/2016/05/13/o-c基础教程第二版_20 NSPredicate/" title="link to post.title">20 NSpredicate</a></h2>
       <p class="excerpt">
     
@@ -257,849 +1210,6 @@ dateWithTimeIntervalSinceNow类方法
       <div class="post-list__meta"><time datetime="2016-05-13T02:42:12.000Z" class="post-list__meta--date date">2016-05-13</time> &#8226; <span class="post-list__meta--tags tags">于&nbsp;
   <a class="tag-link" href="/tags/Objective-C基础教程第二版/">Objective-C基础教程第二版</a>
 </span><a class="btn-border-small" href="/2016/05/13/o-c基础教程第二版_17 文件的加载于保存/">继续阅读</a></div>
-      <hr class="post-list__divider" />
-    </li>
-  
-    
-    <li>
-      <h2 class="post-list__post-title post-title"><a href="/2016/05/13/o-c基础教程第二版_16 UIKit简介/" title="link to post.title">16 UIKit简介</a></h2>
-      <p class="excerpt">
-    
-      
-说明：Mac应用程序使用的是AppKit框架，而iOS应用程序使用的是UIKit框架，它包含了所有的UI组件和构成iOS应用程序的资源。注意：iOS和OS X存在以下区别
-
-没有shell和控制台
-应用程序在Mac电脑的模拟器中运行
-无法支持一些无UI界面的API
-大部分程序员都认为开发iOS应用更加轻松
-
-项目创建：步骤如下
-
-File-&amp;gt;New-&amp;gt;New Project(command + shift + n)
-选择应用程序模版：左边列表选择iOS下的Application，然
-    &hellip;
-      </p>
-      <div class="post-list__meta"><time datetime="2016-05-13T02:41:48.000Z" class="post-list__meta--date date">2016-05-13</time> &#8226; <span class="post-list__meta--tags tags">于&nbsp;
-  <a class="tag-link" href="/tags/Objective-C基础教程第二版/">Objective-C基础教程第二版</a>
-</span><a class="btn-border-small" href="/2016/05/13/o-c基础教程第二版_16 UIKit简介/">继续阅读</a></div>
-      <hr class="post-list__divider" />
-    </li>
-  
-    
-    <li>
-      <h2 class="post-list__post-title post-title"><a href="/2016/05/13/o-c基础教程第二版_15 AppKit简介/" title="link to post.title">15 AppKit简介</a></h2>
-      <p class="excerpt">
-    
-      
-说明：Application Kit中包含Cocoa中关于用户界面的大量资源。注意：学习这一章节时，Xcode的最新版本是7.2，部分知识已经过时。比如目前storyboard已经基本取代了xib。
-
-15.1    构建项目
-说明：下面是通过Xcode构建Cocoa应用程序项目的步骤。
-
-File-&amp;gt;New-&amp;gt;New Project（Create a New Xcode Project）
-左边列表Mac OS X下的Application选项-&amp;gt;Cocoa Applicat
-    &hellip;
-      </p>
-      <div class="post-list__meta"><time datetime="2016-05-13T02:41:28.000Z" class="post-list__meta--date date">2016-05-13</time> &#8226; <span class="post-list__meta--tags tags">于&nbsp;
-  <a class="tag-link" href="/tags/Objective-C基础教程第二版/">Objective-C基础教程第二版</a>
-</span><a class="btn-border-small" href="/2016/05/13/o-c基础教程第二版_15 AppKit简介/">继续阅读</a></div>
-      <hr class="post-list__divider" />
-    </li>
-  
-    
-    <li>
-      <h2 class="post-list__post-title post-title"><a href="/2016/05/13/o-c基础教程第二版_14 代码块和并发性/" title="link to post.title">14 代码块和并发行</a></h2>
-      <p class="excerpt">
-    
-      14.1    代码块
-说明：代码块是由C语言实现的，是对C语言中函数的扩展。支持的语言：Objective-C、C 、C++、Objective-C++用途：替代函数或实现闭包现状：代码块在Xcode的GCC和CLang工具中是有效的，但它不属于ANSI的C语言标准。关于代码块的提议已经提交给C语言标准团体。
-
-14.1.1    代码块和函数指针
-说明：代码块的语法借鉴了函数指针
-
-返回类型可以手动声明也可以由编译器通过代码块推导
-具有指定类型的参数列表
-拥有名称
-代码放在{}中
-
-语法：&amp;
-    &hellip;
-      </p>
-      <div class="post-list__meta"><time datetime="2016-05-13T02:41:10.000Z" class="post-list__meta--date date">2016-05-13</time> &#8226; <span class="post-list__meta--tags tags">于&nbsp;
-  <a class="tag-link" href="/tags/Objective-C基础教程第二版/">Objective-C基础教程第二版</a>
-</span><a class="btn-border-small" href="/2016/05/13/o-c基础教程第二版_14 代码块和并发性/">继续阅读</a></div>
-      <hr class="post-list__divider" />
-    </li>
-  
-    
-    <li>
-      <h2 class="post-list__post-title post-title"><a href="/2016/05/13/o-c基础教程第二版_13 协议/" title="link to post.title">13 协议</a></h2>
-      <p class="excerpt">
-    
-      13.1    正式协议
-说明：正式协议类似Java的接口。
-
-声明协议：通过@protocol创建协议的声明。
-采用协议：在类的@interface声明中列出协议的名称。
-遵守协议：在类的@implementation中实现协议的所有方法（否则编译器会生成警告）。
-
-
-13.1.1    声明协议
-说明：类似类或类别的声明
-
-可以继承父协议，类似继承父类
-内部是方法声明列表
-在协议中不会引入新的实例变量
-
-语法：
-
-@protocol 协议名 &amp;lt;父协议名// 方法列表@end
-Cocoa
-    &hellip;
-      </p>
-      <div class="post-list__meta"><time datetime="2016-05-13T02:40:50.000Z" class="post-list__meta--date date">2016-05-13</time> &#8226; <span class="post-list__meta--tags tags">于&nbsp;
-  <a class="tag-link" href="/tags/Objective-C基础教程第二版/">Objective-C基础教程第二版</a>
-</span><a class="btn-border-small" href="/2016/05/13/o-c基础教程第二版_13 协议/">继续阅读</a></div>
-      <hr class="post-list__divider" />
-    </li>
-  
-    
-    <li>
-      <h2 class="post-list__post-title post-title"><a href="/2016/05/13/o-c基础教程第二版_12 类别/" title="link to post.title">12 类别</a></h2>
-      <p class="excerpt">
-    
-      
-说明：利用Objective-C的动态运行时分配机制，你可以为现有的类添加方法或计算属性，这种机制称为类别(category)。
-
-可以在类中添加属性（@property），且只能是计算属性（不能添加实例变量）
-可以向一个类添加任意数量的类别
-类别可以访问其扩展的类的实例变量
-
-总结：我将类别分3种
-
-
-
-
-种类
-@interface
-@implementation
-
-
-
-
-类别
-@interface 类名(类别名)
-@implementation 类名(类别名)
-
-
-类扩展（匿名类别）
-@i
-    &hellip;
-      </p>
-      <div class="post-list__meta"><time datetime="2016-05-13T02:40:26.000Z" class="post-list__meta--date date">2016-05-13</time> &#8226; <span class="post-list__meta--tags tags">于&nbsp;
-  <a class="tag-link" href="/tags/Objective-C基础教程第二版/">Objective-C基础教程第二版</a>
-</span><a class="btn-border-small" href="/2016/05/13/o-c基础教程第二版_12 类别/">继续阅读</a></div>
-      <hr class="post-list__divider" />
-    </li>
-  
-    
-    <li>
-      <h2 class="post-list__post-title post-title"><a href="/2016/05/13/o-c基础教程第二版_11 属性/" title="link to post.title">11 属性</a></h2>
-      <p class="excerpt">
-    
-      
-说明：O-C 2.0引入了属性（property），即@property预编译指令，它组合了新的预编译指令和新的属性访问器语法。用途：除非自己定义了相关代码，否则@property会根据特性自动生成属性及其setter和getter的声明和实现。兼容性：10.5+语法：@property[(特性)] 实例变量类型 实例变量名;注意：还有一个编译指令@synthesize，用来配合@property生成getter和setter的实现，可以省略（XCode 4.4之后）。
-
-11.1    使用
-    &hellip;
-      </p>
-      <div class="post-list__meta"><time datetime="2016-05-13T02:40:03.000Z" class="post-list__meta--date date">2016-05-13</time> &#8226; <span class="post-list__meta--tags tags">于&nbsp;
-  <a class="tag-link" href="/tags/Objective-C基础教程第二版/">Objective-C基础教程第二版</a>
-</span><a class="btn-border-small" href="/2016/05/13/o-c基础教程第二版_11 属性/">继续阅读</a></div>
-      <hr class="post-list__divider" />
-    </li>
-  
-    
-    <li>
-      <h2 class="post-list__post-title post-title"><a href="/2016/05/13/o-c基础教程第二版_10 对象初始化/" title="link to post.title">10 对象初始化</a></h2>
-      <p class="excerpt">
-    
-      
-说明：创建对象有两种方式
-
-类名 new
-[[类名 alloc] init]
-
-技巧：Cocoa惯例是使用后一种方式
-
-10.1    分配对象
-说明：就是从操作系统获得一块内存，并将其指定为存放对象的实例变量的位置。语法：像某个类发送alloc消息
-
-alloc实例方法
-说明：为类实例分配一块足够大的内存，并将这块内存区域全部初始化为对应的0值
-
-
-
-
-实例变量类型
-0值
-
-
-
-
-BOOL
-NO
-
-
-int
-0
-
-
-float
-0.0
-
-
-指针
-nil
-
-
-
-
-注意：刚刚分配的对象不能立即使
-    &hellip;
-      </p>
-      <div class="post-list__meta"><time datetime="2016-05-13T02:39:41.000Z" class="post-list__meta--date date">2016-05-13</time> &#8226; <span class="post-list__meta--tags tags">于&nbsp;
-  <a class="tag-link" href="/tags/Objective-C基础教程第二版/">Objective-C基础教程第二版</a>
-</span><a class="btn-border-small" href="/2016/05/13/o-c基础教程第二版_10 对象初始化/">继续阅读</a></div>
-      <hr class="post-list__divider" />
-    </li>
-  
-    
-    <li>
-      <h2 class="post-list__post-title post-title"><a href="/2016/05/13/o-c基础教程第二版_09  内存管理/" title="link to post.title">9 内存管理</a></h2>
-      <p class="excerpt">
-    
-      9.1    对象生命周期
-说明：4个过程
-
-诞生：通过alloc或new方法实现
-生存：接收消息并执行操作
-交友：通过复合以及向方法传递参数
-死去：被释放掉
-
-
-9.1.1    引用计数
-说明：也叫保留计数，每个对象都有一个与之想关联的整数，被称作它的引用计数器或保留计数器。
-
-
-
-
-相关操作
-说明
-相关方法
-
-
-
-
-引用计数器初始化
-被设置为1
-alloc、new、copy
-
-
-引用计数器+1
-新增对象引用时
-retain
-
-
-引用计数器-1
-引用生命周期结束或引用被断开时
-release
-    &hellip;
-      </p>
-      <div class="post-list__meta"><time datetime="2016-05-13T02:39:18.000Z" class="post-list__meta--date date">2016-05-13</time> &#8226; <span class="post-list__meta--tags tags">于&nbsp;
-  <a class="tag-link" href="/tags/Objective-C基础教程第二版/">Objective-C基础教程第二版</a>
-</span><a class="btn-border-small" href="/2016/05/13/o-c基础教程第二版_09  内存管理/">继续阅读</a></div>
-      <hr class="post-list__divider" />
-    </li>
-  
-    
-    <li>
-      <h2 class="post-list__post-title post-title"><a href="/2016/05/13/o-c基础教程第二版_08  Foundation Kit介绍/" title="link to post.title">8 Foundation Kit介绍</a></h2>
-      <p class="excerpt">
-    
-      
-说明：Cocoa的几个重要框架
-
-
-
-
-框架
-说明
-兼容
-备注
-
-
-
-
-Foundation Kit
-两类UI框架的基础，包含很多有用的、面向数据的简单类和数据类型
-ios和OS X
-基于CoreFoundation框架
-
-
-Application Kit(Appkit)
-包含所有用户界面对象和高级类
-OS X
-16章
-
-
-User Interface Kit(UIKit)
-用户界面
-ios
-15章
-
-
-
-8.1    稳固的 Foundation
-说明：两类UI框架的基础，包含很多有用的、面
-    &hellip;
-      </p>
-      <div class="post-list__meta"><time datetime="2016-05-13T02:38:55.000Z" class="post-list__meta--date date">2016-05-13</time> &#8226; <span class="post-list__meta--tags tags">于&nbsp;
-  <a class="tag-link" href="/tags/Objective-C基础教程第二版/">Objective-C基础教程第二版</a>
-</span><a class="btn-border-small" href="/2016/05/13/o-c基础教程第二版_08  Foundation Kit介绍/">继续阅读</a></div>
-      <hr class="post-list__divider" />
-    </li>
-  
-    
-    <li>
-      <h2 class="post-list__post-title post-title"><a href="/2016/05/13/o-c基础教程第二版_07  深入了解Xcode/" title="link to post.title">7 深入了解Xcode</a></h2>
-      <p class="excerpt">
-    
-      7.1    窗口布局一览
-说明：窗口的组成部分
-
-
-
-
-组成
-说明
-相关功能
-
-
-
-
-工具栏
-位于窗口的最顶端
-上面由很多工具按钮
-
-
-导航器面板
-位于窗口的左边，通常用来显示项目中的文件列表，也可以浏览其他内容
-符号(symbol)、搜索(Search)、问题(Issue)、调试(Debug)、断点(BreakPoints)、和日志(Logs)
-
-
-编辑器面板
-卫浴中间偏右的位置
-大部分时间都在这里工作
-
-
-检查器面板
-位于窗口右边
-显示的是与上下文有关的信息，以及修改选中项属性值的按钮
-
-
-    &hellip;
-      </p>
-      <div class="post-list__meta"><time datetime="2016-05-13T02:38:28.000Z" class="post-list__meta--date date">2016-05-13</time> &#8226; <span class="post-list__meta--tags tags">于&nbsp;
-  <a class="tag-link" href="/tags/Objective-C基础教程第二版/">Objective-C基础教程第二版</a>
-</span><a class="btn-border-small" href="/2016/05/13/o-c基础教程第二版_07  深入了解Xcode/">继续阅读</a></div>
-      <hr class="post-list__divider" />
-    </li>
-  
-    
-    <li>
-      <h2 class="post-list__post-title post-title"><a href="/2016/05/13/o-c基础教程第二版_06  源文件组织/" title="link to post.title">6 源文件组织</a></h2>
-      <p class="excerpt">
-    
-      
-说明：将程序拆分为多个小文件有助于更快地找到重要的代码。
-
-6.1    拆分接口与实现
-说明：接口放在.h文件，实现放在.m文件。
-
-
-
-
-文件
-存放代码
-
-
-
-
-头文件(.h)
-类的@interface指令、公共struct定义、enum常量、#defines和extern全局变量等
-
-
-和类同名的.m(或.mm)文件
-类的@implementation指令、全局变量的定义、私有struct等
-
-
-
-
-注意：如果用.mm做文件扩展名，编译器就会认为你是用Objective-C++（同时使用
-    &hellip;
-      </p>
-      <div class="post-list__meta"><time datetime="2016-05-13T02:38:06.000Z" class="post-list__meta--date date">2016-05-13</time> &#8226; <span class="post-list__meta--tags tags">于&nbsp;
-  <a class="tag-link" href="/tags/Objective-C基础教程第二版/">Objective-C基础教程第二版</a>
-</span><a class="btn-border-small" href="/2016/05/13/o-c基础教程第二版_06  源文件组织/">继续阅读</a></div>
-      <hr class="post-list__divider" />
-    </li>
-  
-    
-    <li>
-      <h2 class="post-list__post-title post-title"><a href="/2016/05/13/o-c基础教程第二版_05  复合/" title="link to post.title">5 复合</a></h2>
-      <p class="excerpt">
-    
-      
-说明：建立类之间的关系除了继承还有复合
-
-5.1    什么是复合
-说明：使用复合可组合多个对象，让它们分工协作原理：在0-C 中，复合是通过包含作为实例变量的对象指针实现的。
-
-5.2    自定义NSLog()
-说明：在类中提供description方法就可以自定义NSLog()会如何输出对象。
-
-在init中初始化实例属性
-说明：使用new创建新对象时后台进行了两步
-
-为对象分配内存，用来存放实例变量（如果实例属性是对象，被初始化为nil）
-自动调用init方法，之后对象进入可用状态
-
-
-    &hellip;
-      </p>
-      <div class="post-list__meta"><time datetime="2016-05-13T02:37:38.000Z" class="post-list__meta--date date">2016-05-13</time> &#8226; <span class="post-list__meta--tags tags">于&nbsp;
-  <a class="tag-link" href="/tags/Objective-C基础教程第二版/">Objective-C基础教程第二版</a>
-</span><a class="btn-border-small" href="/2016/05/13/o-c基础教程第二版_05  复合/">继续阅读</a></div>
-      <hr class="post-list__divider" />
-    </li>
-  
-    
-    <li>
-      <h2 class="post-list__post-title post-title"><a href="/2016/05/13/o-c基础教程第二版_04  继承/" title="link to post.title">4 继承</a></h2>
-      <p class="excerpt">
-    
-      
-说明：处理类和对象的关系时，要重视OOP的两个方面
-
-继承：定义一个具有父类所有功能的新类
-复合：在对象中引用其他对象
-
-
-4.1    为何使用继承
-说明：将所有重复的内容合并在一起，并在需要的地方拥有自定义的方法。不使用继承的架构使用继承后的架构
-
-4.2    继承的语法格式
-说明：@interface 子类名: 父类名
-
-
-
-
-术语
-说明
-
-
-
-
-超类（或父类）
-继承的类
-
-
-子类（或孩子类）
-执行继承的类
-
-
-重写
-如果想改变方法的实现，需要重写继承的方法
-
-
-
-
-注意：O-C不支持
-    &hellip;
-      </p>
-      <div class="post-list__meta"><time datetime="2016-05-13T02:36:44.000Z" class="post-list__meta--date date">2016-05-13</time> &#8226; <span class="post-list__meta--tags tags">于&nbsp;
-  <a class="tag-link" href="/tags/Objective-C基础教程第二版/">Objective-C基础教程第二版</a>
-</span><a class="btn-border-small" href="/2016/05/13/o-c基础教程第二版_04  继承/">继续阅读</a></div>
-      <hr class="post-list__divider" />
-    </li>
-  
-    
-    <li>
-      <h2 class="post-list__post-title post-title"><a href="/2016/05/13/o-c基础教程第二版_03  面向对象编程的基础知识/" title="link to post.title">3 面向对象编程的基础知识</a></h2>
-      <p class="excerpt">
-    
-      
-OOP历史：演变自20世纪60年代的Simula、70年代的SmallTalk、80年代的Clascal以及其他相关语言。C++、Java、Python和Objective-C等现代编程语言都从这个早期的语言中获得了灵感。
-
-3.1    间接只要在多加一层间接，计算机科学中就没有解决不了的问题。
-
-说明：指的就是面向对象的多态性。原理：在程序运行期间，通过指针间接获取某个值，而不是直接获取（指针指向的变化对程序员不可见）。
-
-3.1.1    变量与间接
-说明：基本变量就是间接思想的一种实际
-    &hellip;
-      </p>
-      <div class="post-list__meta"><time datetime="2016-05-13T02:35:54.000Z" class="post-list__meta--date date">2016-05-13</time> &#8226; <span class="post-list__meta--tags tags">于&nbsp;
-  <a class="tag-link" href="/tags/Objective-C基础教程第二版/">Objective-C基础教程第二版</a>
-</span><a class="btn-border-small" href="/2016/05/13/o-c基础教程第二版_03  面向对象编程的基础知识/">继续阅读</a></div>
-      <hr class="post-list__divider" />
-    </li>
-  
-    
-    <li>
-      <h2 class="post-list__post-title post-title"><a href="/2016/05/12/o-c基础教程第二版_02  对C的扩展/" title="link to post.title">2 对c的扩展</a></h2>
-      <p class="excerpt">
-    
-      2.1   最简单的 Objective-C 程序
-说明：项目创建过程如下
-
-创建 workspace：File-New-Workspace
-创建 project：File-New-&amp;gt;Project
-
-
-选择模版：OS X-&amp;gt;Applicetion-&amp;gt; Command Line
-选择语言：Object-C
-选择 Workspace
-
-
-2.2   解构 Hello Objective-C 程序
-默认编译器： XCode 的默认编译器为LLVM，可以处理C（.c文件）、C++（.
-    &hellip;
-      </p>
-      <div class="post-list__meta"><time datetime="2016-05-12T14:36:43.000Z" class="post-list__meta--date date">2016-05-12</time> &#8226; <span class="post-list__meta--tags tags">于&nbsp;
-  <a class="tag-link" href="/tags/Objective-C基础教程第二版/">Objective-C基础教程第二版</a>
-</span><a class="btn-border-small" href="/2016/05/12/o-c基础教程第二版_02  对C的扩展/">继续阅读</a></div>
-      <hr class="post-list__divider" />
-    </li>
-  
-    
-    <li>
-      <h2 class="post-list__post-title post-title"><a href="/2016/05/12/o-c基础教程第二版_01 启程/" title="link to post.title">1 启程</a></h2>
-      <p class="excerpt">
-    
-      1.1 预备知识1.2 历史
-Objective-C：20世纪80年代，Brad Cox为了融合流行的、可移植的C语言和Smalltalk语言的优势，设计出了Objective-C语言。 NeXT公司：1985年，史蒂夫.乔布斯创建，致力于创建功能强大且经济实惠的工作站。NextSTEP：使用Object-C开发的一款功能强大的用户界面工具包。 Cocoa：1996年，苹果收购了NeXT,之后NextSTEP更名为Cocoa。
-
-1.3 内容简介1.4 准备工作
-    &hellip;
-      </p>
-      <div class="post-list__meta"><time datetime="2016-05-12T03:14:49.000Z" class="post-list__meta--date date">2016-05-12</time> &#8226; <span class="post-list__meta--tags tags">于&nbsp;
-  <a class="tag-link" href="/tags/Objective-C基础教程第二版/">Objective-C基础教程第二版</a>
-</span><a class="btn-border-small" href="/2016/05/12/o-c基础教程第二版_01 启程/">继续阅读</a></div>
-      <hr class="post-list__divider" />
-    </li>
-  
-    
-    <li>
-      <h2 class="post-list__post-title post-title"><a href="/2016/05/11/25 国际化特性/" title="link to post.title">25 国际化特性</a></h2>
-      <p class="excerpt">
-    
-      
-地区：可能是国家、洲或省活着一种特定的文化。扩展：1994年通过的ISO C标准修正草案1提供了编写额外国际化程序增加的额外库
-
-iso646.h
-wctype.h
-wchar.h
-
-
-25.1 locale.h：本地化
-标准库中依赖地区的部分：
-
-数值的格式：例如，一些地区小数点是一个圆点（297.48），而在另一些地方则是逗号（297,48）货币的格式：例如，不同国家的货币符号不同字符集：例如，亚洲国家通常比西方国家需要更大的字符集日期和时间的表示形式：例如，一些地方习惯在写日期时先写月（
-    &hellip;
-      </p>
-      <div class="post-list__meta"><time datetime="2016-05-11T13:30:56.000Z" class="post-list__meta--date date">2016-05-11</time> &#8226; <span class="post-list__meta--tags tags">于&nbsp;
-  <a class="tag-link" href="/tags/c语言程序设计－现代方法/">c语言程序设计－现代方法</a>
-</span><a class="btn-border-small" href="/2016/05/11/25 国际化特性/">继续阅读</a></div>
-      <hr class="post-list__divider" />
-    </li>
-  
-    
-    <li>
-      <h2 class="post-list__post-title post-title"><a href="/2016/05/11/26 其它库函数/" title="link to post.title">26 其他库函数</a></h2>
-      <p class="excerpt">
-    
-      26.1    stdarg.h：可变实参
-带有可变参数的函数：带有可变数量参数的函数必须至少有一个“正常的”形式参数，在最后一个正常参数的后边始终会有省略号出现在参数列表的末尾。可变部分实参提升：当调用带有可变实参列表的函数时，编译器会在匹配省略号的全部参数上执行默认的实参提升（9.3）
-
-char -&amp;gt; int
-short -&amp;gt; int
-float -&amp;gt; double
-
-
-va_arg宏（函数）
-
-说明：获得所在函数的可变参数中的下一个参数原型：stdarg.h
-
-/***
-    &hellip;
-      </p>
-      <div class="post-list__meta"><time datetime="2016-05-11T13:25:08.000Z" class="post-list__meta--date date">2016-05-11</time> &#8226; <span class="post-list__meta--tags tags">于&nbsp;
-  <a class="tag-link" href="/tags/c语言程序设计－现代方法/">c语言程序设计－现代方法</a>
-</span><a class="btn-border-small" href="/2016/05/11/26 其它库函数/">继续阅读</a></div>
-      <hr class="post-list__divider" />
-    </li>
-  
-    
-    <li>
-      <h2 class="post-list__post-title post-title"><a href="/2016/05/11/24 错误处理/" title="link to post.title">24 错误处理</a></h2>
-      <p class="excerpt">
-    
-      
-C语言的弱项：错误的检测和处理并不是c语言的强项
-
-C语言对运行时错误以多种形式表示，而没有提供一种统一的方式
-程序员必须将检测错误的代码编写在程序代码中，因此很容易忽略一些错误
-
-扩展：C++语言对C语言的这一弱点进行了改进，提供了一种新的错误错误的方式－异常处理（exception handling）。
-
-24.1    assert.h：诊断assert宏（函数）
-断言：一个我们认为在正常情况下一顶为真的表达式。错误信息：标准C要求在显示的消息中指明以下内容
-
-传递给assert函数的参
-    &hellip;
-      </p>
-      <div class="post-list__meta"><time datetime="2016-05-11T03:42:41.000Z" class="post-list__meta--date date">2016-05-11</time> &#8226; <span class="post-list__meta--tags tags">于&nbsp;
-  <a class="tag-link" href="/tags/c语言程序设计－现代方法/">c语言程序设计－现代方法</a>
-</span><a class="btn-border-small" href="/2016/05/11/24 错误处理/">继续阅读</a></div>
-      <hr class="post-list__divider" />
-    </li>
-  
-    
-    <li>
-      <h2 class="post-list__post-title post-title"><a href="/2016/05/10/23 库对数值和字符数据的支持/" title="link to post.title">23 库对数值和字符数据的支持</a></h2>
-      <p class="excerpt">
-    
-      23.1    float.h:浮点型的特性说明：提供了用来定义浮点型的范围和精度的宏（没有类型和函数的定义）。应用：由于只有进行数值分析的专家才会对上述float.h中定义的宏感兴趣，这可能是标砖哭中最不常用的宏。
-23.1.1    对浮点数通用的宏FLT_ROUND宏说明：浮点加法的舍入模式，存在5中可能
-FLT_RADIX宏说明：指定了基数的形式，最小值是2（二进制）
-23.1.2    其它宏说明：其他宏用来描述特定类型的特性。宏命名：根据宏是针对的浮点类型有不同的前缀
-
-
-
-宏前缀
-
-    &hellip;
-      </p>
-      <div class="post-list__meta"><time datetime="2016-05-10T15:31:50.000Z" class="post-list__meta--date date">2016-05-10</time> &#8226; <span class="post-list__meta--tags tags">于&nbsp;
-  <a class="tag-link" href="/tags/c语言程序设计－现代方法/">c语言程序设计－现代方法</a>
-</span><a class="btn-border-small" href="/2016/05/10/23 库对数值和字符数据的支持/">继续阅读</a></div>
-      <hr class="post-list__divider" />
-    </li>
-  
-    
-    <li>
-      <h2 class="post-list__post-title post-title"><a href="/2016/05/10/22 输入／输出/" title="link to post.title">22 输入/输出</a></h2>
-      <p class="excerpt">
-    
-      22.1    流
-说明：在C语言中，术语流意味着任意输入的源或人意输出的目的地。stdio.h中的许多函数不仅可以处理表示成文件的流，还可以处理所有其它形式的流。流：流常常表示为磁盘上的文件，但却可以和其它类型的设备相关联：调制解调器、网络端口、打印机、光盘驱动器等。
-
-22.1.1    文件指针
-文件指针（file pointer）：File *(File定义在stdio.h中)用途：C程序中流的访问是通过文件指针实现的限制：操作系统通常会限制在任意某时刻可以打开的流的数量（但是一个程序中
-    &hellip;
-      </p>
-      <div class="post-list__meta"><time datetime="2016-05-10T15:01:02.000Z" class="post-list__meta--date date">2016-05-10</time> &#8226; <span class="post-list__meta--tags tags">于&nbsp;
-  <a class="tag-link" href="/tags/c语言程序设计－现代方法/">c语言程序设计－现代方法</a>
-</span><a class="btn-border-small" href="/2016/05/10/22 输入／输出/">继续阅读</a></div>
-      <hr class="post-list__divider" />
-    </li>
-  
-    
-    <li>
-      <h2 class="post-list__post-title post-title"><a href="/2016/05/10/21 标准库/" title="link to post.title">21	标准库</a></h2>
-      <p class="excerpt">
-    
-      21.1    标准库的使用
-标准头：依据C标准，一个“标准头”不需要一定是文件，有可能内置在编译器自身中。标准库：C语言的标准库总共划分成15个部分，每个部分用一个头描述。扩展：许多编译器会使用扩展后的库，这类库（头文件）通常提供一些针对特定畸形或特定操作系统的函数（比如更多对屏幕或键盘操作的函数，用于支持图形或窗口界面的头等）
-
-21.1.1    包含标准头的程序中使用的名字的一些限制
-意义：虽然这些规则并不总是强制性的，但不遵守这些规则可能会导致程序的可移植性下降。
-
-必需遵守
-宏的名字
-    &hellip;
-      </p>
-      <div class="post-list__meta"><time datetime="2016-05-10T14:33:07.000Z" class="post-list__meta--date date">2016-05-10</time> &#8226; <span class="post-list__meta--tags tags">于&nbsp;
-  <a class="tag-link" href="/tags/c语言程序设计－现代方法/">c语言程序设计－现代方法</a>
-</span><a class="btn-border-small" href="/2016/05/10/21 标准库/">继续阅读</a></div>
-      <hr class="post-list__divider" />
-    </li>
-  
-    
-    <li>
-      <h2 class="post-list__post-title post-title"><a href="/2016/05/10/20 低级程序设计/" title="link to post.title">20 低级程序设计</a></h2>
-      <p class="excerpt">
-    
-      
-说明：位操作和其他一些低级运算在编写系统程序（包括编译器和操作系统）、加密程序、图形程序以及其他一些需要高执行速度或高效地使用空间的程序时非常有用。
-
-20.1    按位运算符
-说明：C语言一共提供了6个按位运算符。
-
-20.1.1    移位运算符
-说明：移位运算符可以改变数的二进制形式，将它的位向左或向右移动。优先级：低于算数运算符i&amp;lt;&amp;lt;2+1 &amp;lt;==&amp;gt; i&amp;lt;&amp;lt;(2+1)操作数类型要求：可以是任意整型或字符型的副作用：不存在（不会改变操作数本身）|运算
-    &hellip;
-      </p>
-      <div class="post-list__meta"><time datetime="2016-05-10T14:05:58.000Z" class="post-list__meta--date date">2016-05-10</time> &#8226; <span class="post-list__meta--tags tags">于&nbsp;
-  <a class="tag-link" href="/tags/c语言程序设计－现代方法/">c语言程序设计－现代方法</a>
-</span><a class="btn-border-small" href="/2016/05/10/20 低级程序设计/">继续阅读</a></div>
-      <hr class="post-list__divider" />
-    </li>
-  
-    
-    <li>
-      <h2 class="post-list__post-title post-title"><a href="/2016/05/10/19 程序设计/" title="link to post.title">19 程序设计</a></h2>
-      <p class="excerpt">
-    
-      19.1    模块
-说明：模块是一组功能（服务）的集合，其中一些功能可以被程序的其它部分（客户）使用。每个模块都有一个接口来描述所提供的功能。模块的细节，包括这些功能自身的源代码，都包含在模块的实现中。
-
-
-
-
-文件角色
-说明
-
-
-
-
-接口
-模块名.h(头文件)
-
-
-实现
-对应头文件模块名.c文件
-
-
-客户
-通过#include引入模块的文件
-
-
-
-
-优点：将程序分割成模块有一系列好处
-
-抽象：不必了解功能的实现细节，只需对模块的接口达成一致
-可复用：每个模块都可以在另一个程序中复用
-可维护性
-    &hellip;
-      </p>
-      <div class="post-list__meta"><time datetime="2016-05-10T14:00:04.000Z" class="post-list__meta--date date">2016-05-10</time> &#8226; <span class="post-list__meta--tags tags">于&nbsp;
-  <a class="tag-link" href="/tags/c语言程序设计－现代方法/">c语言程序设计－现代方法</a>
-</span><a class="btn-border-small" href="/2016/05/10/19 程序设计/">继续阅读</a></div>
-      <hr class="post-list__divider" />
-    </li>
-  
-    
-    <li>
-      <h2 class="post-list__post-title post-title"><a href="/2016/05/10/18 声明/" title="link to post.title">18 声明</a></h2>
-      <p class="excerpt">
-    
-      
-说明：通过声明变量和函数，可以再检查程序潜在的错误以及把程序翻译成目标代码两方面为编译器提供至关重要的信息。
-
-18.1    声明的语法
-语法：声明说明符 声明符;
-
-18.1.1    声明说明符
-分类：分3类（可组合）
-
-
-
-
-分类
-包括
-位置
-可多个
-
-
-
-
-存储类型
-auto static extern register
-声明中的首要位置
-否
-
-
-类型限定符
-const volatile
-存储类型的后边
-是
-
-
-类型说明符
-void char short int long float
-    &hellip;
-      </p>
-      <div class="post-list__meta"><time datetime="2016-05-10T12:29:30.000Z" class="post-list__meta--date date">2016-05-10</time> &#8226; <span class="post-list__meta--tags tags">于&nbsp;
-  <a class="tag-link" href="/tags/c语言程序设计－现代方法/">c语言程序设计－现代方法</a>
-</span><a class="btn-border-small" href="/2016/05/10/18 声明/">继续阅读</a></div>
-      <hr class="post-list__divider" />
-    </li>
-  
-    
-    <li>
-      <h2 class="post-list__post-title post-title"><a href="/2016/05/10/17 指针的高级应用/" title="link to post.title">17 指针的高级应用</a></h2>
-      <p class="excerpt">
-    
-      17.1    动态存储分配
-背景：c语言的数据结构通常是固定大小的，为了扩大数据结构的容量，必须修改程序并且再次编译。说明（行为）：在程序执行期间分配内存单元用途：可以根据需要设计可以扩大（和缩小）的数据结构
-
-
-
-
-适用类型
-说明
-
-
-
-
-字符串
-
-
-
-数组
-
-
-
-结构
-可以链接成表、树和其它数据结构
-
-
-
-17.1.1    内存分配函数
-
-
-函数
-说明
-库
-备注
-返回值
-
-
-
-
-malloc
-分配内存快，但是不对内存块进行初始化
-&amp;lt;stdlib.h&amp;gt;
-最常用，不需要对分配的内
-    &hellip;
-      </p>
-      <div class="post-list__meta"><time datetime="2016-05-10T11:38:12.000Z" class="post-list__meta--date date">2016-05-10</time> &#8226; <span class="post-list__meta--tags tags">于&nbsp;
-  <a class="tag-link" href="/tags/c语言程序设计－现代方法/">c语言程序设计－现代方法</a>
-</span><a class="btn-border-small" href="/2016/05/10/17 指针的高级应用/">继续阅读</a></div>
       <hr class="post-list__divider" />
     </li>
   

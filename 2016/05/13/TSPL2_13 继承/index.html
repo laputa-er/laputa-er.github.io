@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    
+    <title>13 继承 | Laputa</title>
+    <meta name="renderer" content="webkit">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="MobileOptimized" content="320">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+    <meta name="description" content="do things for fun">
+
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="13 继承 | Laputa">
+    <meta name="twitter:description" content="do things for fun">
+
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="13 继承 | Laputa">
+    <meta property="og:description" content="do things for fun">
+
+    
+    <meta name="author" content="Sean">
+    
+    <link rel="stylesheet" href="/css/vno.css">
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css">
+
+    
+    <link rel="icon" href="/images/favicon.png">
+    
+
+    <meta name="generator" content="hexo"/>
+    
+    <link rel="alternate" type="application/rss+xml" title="Laputa" href="/atom.xml">
+    
+
+    <link rel="canonical" href="http://laputa-er.github.io/2016/05/13/TSPL2_13 继承/"/>
+
+    
+</head>
+
+<body class="home-template no-js">
+
+    <span class="mobile btn-mobile-menu">
+        <i class="fa fa-list btn-mobile-menu__icon"></i>
+        <i class="fa fa-angle-up btn-mobile-close__icon hidden"></i>
+    </span>
+    
+<header class="panel-cover panel-cover--collapsed" style="background-image: url(/images/mengxiang.jpg)">
+  <div class="panel-main">
+    <div class="panel-main__inner panel-inverted">
+    <div class="panel-main__content">
+
+        <a href="/" title="前往 Laputa 的主页"><img src="/images/logo2.jpg" width="80" alt="Laputa logo" class="panel-cover__logo logo" /></a>
+        <h1 class="panel-cover__title panel-title"><a href="/" title="link to homepage for Laputa">Laputa</a></h1>
+        
+        <span class="panel-cover__subtitle panel-subtitle">已然在路上</span>
+        
+        <hr class="panel-cover__divider" />
+        <p class="panel-cover__description">If you can not act the way you want to live, you will one day live in accordance with the way to think about.</p>
+        <hr class="panel-cover__divider panel-cover__divider--secondary" />
+
+        <div class="navigation-wrapper">
+          <div>
+          <nav class="cover-navigation cover-navigation--primary">
+            <ul class="navigation">
+              <li class="navigation__item"><a href="/#blog" title="访问笔记" class="blog-button">笔记</a></li>
+            
+              <li class="navigation__item"><a href="/projects">项目作品</a></li>
+            
+              <li class="navigation__item"><a href="/aboutme">关于我</a></li>
+            
+            </ul>
+          </nav>
+          </div>
+          <div>
+          <nav class="cover-navigation navigation--social">
+  <ul class="navigation">
+
+  <!-- Weibo-->
+  
+
+  <!-- Github -->
+  
+  <li class="navigation__item">
+    <a href="https://github.com/laputa-er" title="查看我的GitHub主页" target="_blank">
+      <i class='social fa fa-github'></i>
+      <span class="label">Github</span>
+    </a>
+  </li>
+
+
+<!-- Stack Overflow -->
+        
+        <li class="navigation__item">
+            <a href="http://stackoverflow.com/users/6304138/laputa" title="Stack Overflow" target="_blank">
+                <i class='social fa fa-stack-overflow'></i>
+                <span class="label">Stack Overflow</span>
+            </a>
+        </li>
+        
+
+  <!-- Google Plus -->
+  
+
+<!-- Facebook -->
+
+  
+<!-- Twitter -->
+
+  
+
+  <li class="navigation__item">
+    <a href="/atom.xml" title="RSS" target="_blank">
+      <i class='social fa fa-rss'></i>
+      <span class="label">RSS</span>
+    </a>
+  </li>
+
+
+
+  </ul>
+</nav>
+
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+
+    <div class="panel-cover--overlay cover-blue"></div>
+  </div>
+</header>
+    
+    
+    <div class="content-wrapper">
+        <div class="content-wrapper__inner">
+            <article class="post-container post-container--single">
+
+  <header class="post-header">
+    <div class="post-meta">
+      <time datetime="2016-05-13T11:46:35.000Z" class="post-list__meta--date date">2016-05-13</time> &#8226; <span class="post-meta__tags tags">于&nbsp;
+  <a class="tag-link" href="/tags/The-Swift-Program-Language-2/">The Swift Program Language 2</a>
+</span>
+    </div>
+    <h1 class="post-title">13 继承</h1>
+  </header>
+
+  <section class="post">
+    <!-- Table of Contents -->
+    
+    <div id="top-toc">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#13-1-定义一个基类"><span class="toc-number">1.</span> <span class="toc-text">13.1    定义一个基类</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#13-2-子类生成"><span class="toc-number">2.</span> <span class="toc-text">13.2    子类生成</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#13-3-重写"><span class="toc-number">3.</span> <span class="toc-text">13.3    重写</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#13-3-1-访问超类的方法、属性及下标脚本"><span class="toc-number">3.1.</span> <span class="toc-text">13.3.1    访问超类的方法、属性及下标脚本</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#13-3-2-重写方法"><span class="toc-number">3.2.</span> <span class="toc-text">13.3.2    重写方法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#13-3-3-重写属性"><span class="toc-number">3.3.</span> <span class="toc-text">13.3.3     重写属性</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#13-4-防止重写"><span class="toc-number">4.</span> <span class="toc-text">13.4    防止重写</span></a></li></ol>
+    </div>
+    <div id="tocShell"></div>
+    <div id="toc" class="toc-article">
+      <div class="btn-group drag-me">
+        <i class="social fa fa-ellipsis-v"></i>
+      </div>
+      <div class="btn-group dropup-catelog">
+        <button class="btn"><i class="social fa fa-list-ol"></i></button>
+        <div class="catelog-content">
+          <p class="toc-title-wrap">
+            <strong class="toc-title">文章目录</strong>
+          </p>
+          <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#13-1-定义一个基类"><span class="toc-number">1.</span> <span class="toc-text">13.1    定义一个基类</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#13-2-子类生成"><span class="toc-number">2.</span> <span class="toc-text">13.2    子类生成</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#13-3-重写"><span class="toc-number">3.</span> <span class="toc-text">13.3    重写</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#13-3-1-访问超类的方法、属性及下标脚本"><span class="toc-number">3.1.</span> <span class="toc-text">13.3.1    访问超类的方法、属性及下标脚本</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#13-3-2-重写方法"><span class="toc-number">3.2.</span> <span class="toc-text">13.3.2    重写方法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#13-3-3-重写属性"><span class="toc-number">3.3.</span> <span class="toc-text">13.3.3     重写属性</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#13-4-防止重写"><span class="toc-number">4.</span> <span class="toc-text">13.4    防止重写</span></a></li></ol>
+        </div>
+      </div>
+    </div>
+    
+    <blockquote>
+<p><strong>说明</strong>：一个类可以继承另一个类的方法,属性和其它特性</p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>能力</th>
+<th>相关成员</th>
+<th>价值</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>调用</td>
+<td>超类的方法、属性、下标脚本</td>
+<td>代码重用</td>
+</tr>
+<tr>
+<td>重写</td>
+<td>超类的方法、属性、下标脚本</td>
+<td>优化或修改它们的行为</td>
+</tr>
+<tr>
+<td>监视</td>
+<td>继承来的属性（通过添加属性(存储属性或计算属性)观察器）</td>
+<td>当值改变时，类就会被通知到</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p><strong>注意：</strong>只有类能够继承</p>
+</blockquote>
+<h2 id="13-1-定义一个基类"><a href="#13-1-定义一个基类" class="headerlink" title="13.1    定义一个基类"></a>13.1    定义一个基类</h2><blockquote>
+<p><strong>基类：</strong>不继承其它类的类（swift的类并不是从一个通用的基类继承而来）</p>
+</blockquote>
+<figure class="highlight swift"><table><tr><td class="code"><pre><span class="line"><span class="comment">//定义一个基类</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Vehicle</span> </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> currentSpeed = <span class="number">0.0</span></span><br><span class="line">    <span class="keyword">var</span> description:<span class="type">String</span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="string">"traveling at \(currentSpeed) miles per hour"</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">func</span> <span class="title">makeNoise</span><span class="params">()</span></span>&#123;</span><br><span class="line">        <span class="comment">//什么也不做－因为车辆不一定有噪音</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> someVehicle = <span class="type">Vehicle</span>()</span><br><span class="line"><span class="built_in">println</span>(<span class="string">"Vehicle:\(someVehicle.description)"</span>)</span><br></pre></td></tr></table></figure>
+<h2 id="13-2-子类生成"><a href="#13-2-子类生成" class="headerlink" title="13.2    子类生成"></a>13.2    子类生成</h2><blockquote>
+<p><strong>说明</strong>：<code>class 子类:超类 ｛｝</code></p>
+</blockquote>
+<figure class="highlight swift"><table><tr><td class="code"><pre><span class="line"><span class="comment">//继承Vehicle</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Bicycle</span>:<span class="title">Vehicle</span> </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> hasBasket = <span class="literal">false</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">let</span> bicycle = <span class="type">Bicycle</span>()</span><br><span class="line"></span><br><span class="line"><span class="comment">//设置子类自己的实例属性</span></span><br><span class="line">bicycle.hasBasket = <span class="literal">true</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//修改继承来的属性</span></span><br><span class="line">bicycle.currentSpeed = <span class="number">15.0</span></span><br></pre></td></tr></table></figure>
+<h2 id="13-3-重写"><a href="#13-3-重写" class="headerlink" title="13.3    重写"></a>13.3    重写</h2><blockquote>
+<p><strong>关键字：</strong><code>override</code>(会提醒编译器检查该类是否有匹配重写版本的声明)</p>
+<p><strong>说明：</strong>子类可以为继承来的实例方法、类方法、实例属性、下标脚本提供自己定制的实现。</p>
+</blockquote>
+<h3 id="13-3-1-访问超类的方法、属性及下标脚本"><a href="#13-3-1-访问超类的方法、属性及下标脚本" class="headerlink" title="13.3.1    访问超类的方法、属性及下标脚本"></a>13.3.1    访问超类的方法、属性及下标脚本</h3><table>
+<thead>
+<tr>
+<th>成员</th>
+<th>访问方式</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>方法</td>
+<td><code>super.someMethod()</code></td>
+</tr>
+<tr>
+<td>属性</td>
+<td><code>super.someProperty</code></td>
+</tr>
+<tr>
+<td>下标脚本</td>
+<td><code>super[someIndex]</code></td>
+</tr>
+</tbody>
+</table>
+<h3 id="13-3-2-重写方法"><a href="#13-3-2-重写方法" class="headerlink" title="13.3.2    重写方法"></a>13.3.2    重写方法</h3><blockquote>
+<p><strong>关键字</strong>：<code>override</code></p>
+</blockquote>
+<figure class="highlight swift"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Train</span>:<span class="title">Vechicle</span> </span>&#123;</span><br><span class="line">    <span class="keyword">override</span> <span class="function"><span class="keyword">func</span> <span class="title">makeNoise</span><span class="params">()</span></span>&#123;</span><br><span class="line">        <span class="built_in">println</span>(<span class="string">"Choo Choo"</span>)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">let</span> train = <span class="type">Train</span>()</span><br><span class="line">train.makeNoise()</span><br></pre></td></tr></table></figure>
+<h3 id="13-3-3-重写属性"><a href="#13-3-3-重写属性" class="headerlink" title="13.3.3     重写属性"></a>13.3.3     重写属性</h3><blockquote>
+<p><strong>说明</strong>：重写什么？</p>
+<ol>
+<li>重写继承来的<code>实例属性</code>或<code>类属性</code></li>
+<li>提供自己定制的<code>getter</code>和<code>setter</code></li>
+<li>重写属性观察器观察被重写的属性的变化（非只读属性不可以设置）</li>
+</ol>
+<p><strong>注意</strong></p>
+<ol>
+<li>存储型或计算型属性都可以被重写（包括<code>getters</code>和<code>setters</code>）</li>
+<li>计算机会根据属性的名字和类型检查重写的属性是否与超累中同名同类型的属性相匹配</li>
+<li>可以将继承来的只读属性重写为一个读写属性（通过重写属性的<code>getters</code>和<code>setters</code>）</li>
+</ol>
+<ul>
+<li>如果重写属性提供了<code>setter</code>,也一定要提供<code>getter</code></li>
+<li><code>setter</code>中可以通过<code>super.someProperty</code>来返回继承来的值</li>
+</ul>
+</blockquote>
+<figure class="highlight swift"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Car</span>:<span class="title">Vehicle</span> </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> gear = <span class="number">1</span></span><br><span class="line">    <span class="keyword">override</span> <span class="keyword">var</span> description:<span class="type">String</span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">super</span>.description + <span class="string">" in gear \(gear)"</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> car = <span class="type">Car</span>()</span><br><span class="line">car.currentSpeed = <span class="number">25.0</span></span><br><span class="line">car.gear = <span class="number">3</span></span><br><span class="line"><span class="built_in">println</span>(<span class="string">"Car:\(car.description)"</span>)</span><br><span class="line">+ 重写属性观察器</span><br><span class="line"><span class="number">1</span>. 不可重写属性观察器的继承来的属性：常量存储属性、只读计算属性</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">AutomaticCar</span>:<span class="title">Car</span> </span>&#123;</span><br><span class="line">    <span class="comment">//重写属性及其属性观察器</span></span><br><span class="line">    <span class="keyword">override</span> <span class="keyword">var</span> currentSpeed:<span class="type">Double</span>&#123;</span><br><span class="line">        <span class="keyword">didSet</span>&#123;</span><br><span class="line">            gear = <span class="type">Int</span>(currentSpeed / <span class="number">10.0</span>) + <span class="number">1</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">let</span> automatic = <span class="type">AutomaticCar</span>()</span><br><span class="line">automatic.currentSpeed = <span class="number">35.0</span></span><br><span class="line"><span class="built_in">println</span>(<span class="string">"AutomaticCar:\(automatic.description)"</span>)</span><br></pre></td></tr></table></figure>
+<h2 id="13-4-防止重写"><a href="#13-4-防止重写" class="headerlink" title="13.4    防止重写"></a>13.4    防止重写</h2><blockquote>
+<p><strong>关键字：</strong><code>final</code><br><strong>说明：</strong>可以通过把方法,属性或下标脚本标记为 <code>final</code> 来防止它们被重写,只需要在声明关键字前加上 <code>final</code> 特性即<br>可</p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>类型</th>
+<th><code>final</code>声明方式</th>
+<th>用途</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>属性</td>
+<td><code>final var</code></td>
+<td>不可被重写</td>
+</tr>
+<tr>
+<td>实例方法</td>
+<td><code>final func</code></td>
+<td>不可被重写</td>
+</tr>
+<tr>
+<td>下标脚本</td>
+<td><code>final subscript</code></td>
+<td>不可被重写</td>
+</tr>
+<tr>
+<td>类方法</td>
+<td><code>final class func</code></td>
+<td>不可被重写</td>
+</tr>
+<tr>
+<td>类</td>
+<td><code>final class</code></td>
+<td>不可被继承</td>
+</tr>
+</tbody>
+</table>
+
+  </section>
+
+</article>
+
+
+
+
+            <footer class="footer">
+    <span class="footer__copyright">
+        本站点采用<a href="http://creativecommons.org/licenses/by-nc-sa/4.0/">知识共享署名-非商业性使用-相同方式共享 4.0 国际许可协议</a>
+    </span>
+    <span class="footer__copyright">
+        基于 <a href="http://hexo.io">Hexo</a> 搭建，感谢 <a href="https://pages.github.com/">GitHub Pages</a> 提供免费的托管服务
+    </span>
+    <span class="footer__copyright">
+        &copy; 2016 - 
+        本站修改自<a href="https://github.com/lenbo-ma/hexo-theme-vno" target="_blank">hexo-theme-vno</a>
+    </span>
+</footer>
+
+        </div>
+    </div>
+
+    <script src="http://cdn.bootcss.com/jquery/2.1.4/jquery.min.js"></script>
+    <script src="/js/main.js"></script>
+
+     
+</body>
+</html>

@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    
+    <title>7 闭包 | Laputa</title>
+    <meta name="renderer" content="webkit">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="MobileOptimized" content="320">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+    <meta name="description" content="do things for fun">
+
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="7 闭包 | Laputa">
+    <meta name="twitter:description" content="do things for fun">
+
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="7 闭包 | Laputa">
+    <meta property="og:description" content="do things for fun">
+
+    
+    <meta name="author" content="Sean">
+    
+    <link rel="stylesheet" href="/css/vno.css">
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css">
+
+    
+    <link rel="icon" href="/images/favicon.png">
+    
+
+    <meta name="generator" content="hexo"/>
+    
+    <link rel="alternate" type="application/rss+xml" title="Laputa" href="/atom.xml">
+    
+
+    <link rel="canonical" href="http://laputa-er.github.io/2016/05/13/TSPL2_07  闭包/"/>
+
+    
+</head>
+
+<body class="home-template no-js">
+
+    <span class="mobile btn-mobile-menu">
+        <i class="fa fa-list btn-mobile-menu__icon"></i>
+        <i class="fa fa-angle-up btn-mobile-close__icon hidden"></i>
+    </span>
+    
+<header class="panel-cover panel-cover--collapsed" style="background-image: url(/images/mengxiang.jpg)">
+  <div class="panel-main">
+    <div class="panel-main__inner panel-inverted">
+    <div class="panel-main__content">
+
+        <a href="/" title="前往 Laputa 的主页"><img src="/images/logo2.jpg" width="80" alt="Laputa logo" class="panel-cover__logo logo" /></a>
+        <h1 class="panel-cover__title panel-title"><a href="/" title="link to homepage for Laputa">Laputa</a></h1>
+        
+        <span class="panel-cover__subtitle panel-subtitle">已然在路上</span>
+        
+        <hr class="panel-cover__divider" />
+        <p class="panel-cover__description">If you can not act the way you want to live, you will one day live in accordance with the way to think about.</p>
+        <hr class="panel-cover__divider panel-cover__divider--secondary" />
+
+        <div class="navigation-wrapper">
+          <div>
+          <nav class="cover-navigation cover-navigation--primary">
+            <ul class="navigation">
+              <li class="navigation__item"><a href="/#blog" title="访问笔记" class="blog-button">笔记</a></li>
+            
+              <li class="navigation__item"><a href="/projects">项目作品</a></li>
+            
+              <li class="navigation__item"><a href="/aboutme">关于我</a></li>
+            
+            </ul>
+          </nav>
+          </div>
+          <div>
+          <nav class="cover-navigation navigation--social">
+  <ul class="navigation">
+
+  <!-- Weibo-->
+  
+
+  <!-- Github -->
+  
+  <li class="navigation__item">
+    <a href="https://github.com/laputa-er" title="查看我的GitHub主页" target="_blank">
+      <i class='social fa fa-github'></i>
+      <span class="label">Github</span>
+    </a>
+  </li>
+
+
+<!-- Stack Overflow -->
+        
+        <li class="navigation__item">
+            <a href="http://stackoverflow.com/users/6304138/laputa" title="Stack Overflow" target="_blank">
+                <i class='social fa fa-stack-overflow'></i>
+                <span class="label">Stack Overflow</span>
+            </a>
+        </li>
+        
+
+  <!-- Google Plus -->
+  
+
+<!-- Facebook -->
+
+  
+<!-- Twitter -->
+
+  
+
+  <li class="navigation__item">
+    <a href="/atom.xml" title="RSS" target="_blank">
+      <i class='social fa fa-rss'></i>
+      <span class="label">RSS</span>
+    </a>
+  </li>
+
+
+
+  </ul>
+</nav>
+
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+
+    <div class="panel-cover--overlay cover-blue"></div>
+  </div>
+</header>
+    
+    
+    <div class="content-wrapper">
+        <div class="content-wrapper__inner">
+            <article class="post-container post-container--single">
+
+  <header class="post-header">
+    <div class="post-meta">
+      <time datetime="2016-05-13T11:40:46.000Z" class="post-list__meta--date date">2016-05-13</time> &#8226; <span class="post-meta__tags tags">于&nbsp;
+  <a class="tag-link" href="/tags/The-Swift-Program-Language-2/">The Swift Program Language 2</a>
+</span>
+    </div>
+    <h1 class="post-title">7 闭包</h1>
+  </header>
+
+  <section class="post">
+    <!-- Table of Contents -->
+    
+    <div id="top-toc">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#7-1-闭包表达式"><span class="toc-number">1.</span> <span class="toc-text">7.1    闭包表达式</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#7-2-尾随闭包"><span class="toc-number">2.</span> <span class="toc-text">7.2    尾随闭包</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#7-3-捕获值"><span class="toc-number">3.</span> <span class="toc-text">7.3    捕获值</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#7-4-闭包是引用类型"><span class="toc-number">4.</span> <span class="toc-text">7.4    闭包是引用类型</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#7-5-逃逸闭包和非逃逸闭包"><span class="toc-number">5.</span> <span class="toc-text">7.5    逃逸闭包和非逃逸闭包</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#noescape"><span class="toc-number">5.1.</span> <span class="toc-text">@noescape</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#7-6-自动闭包"><span class="toc-number">6.</span> <span class="toc-text">7.6    自动闭包</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#7-6-1-通过普通闭包实现延迟执行"><span class="toc-number">6.1.</span> <span class="toc-text">7.6.1    通过普通闭包实现延迟执行</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#7-6-2-自动闭包实现延迟执行"><span class="toc-number">6.2.</span> <span class="toc-text">7.6.2    自动闭包实现延迟执行</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#autoclosure和-autoclosure-escaping"><span class="toc-number">6.2.1.</span> <span class="toc-text">@autoclosure和@autoclosure(escaping)</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#autoclosure"><span class="toc-number">6.2.1.1.</span> <span class="toc-text">@autoclosure</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#autoclosure-escaping"><span class="toc-number">6.2.1.2.</span> <span class="toc-text">@autoclosure(escaping)</span></a></li></ol></li></ol></li></ol></li></ol>
+    </div>
+    <div id="tocShell"></div>
+    <div id="toc" class="toc-article">
+      <div class="btn-group drag-me">
+        <i class="social fa fa-ellipsis-v"></i>
+      </div>
+      <div class="btn-group dropup-catelog">
+        <button class="btn"><i class="social fa fa-list-ol"></i></button>
+        <div class="catelog-content">
+          <p class="toc-title-wrap">
+            <strong class="toc-title">文章目录</strong>
+          </p>
+          <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#7-1-闭包表达式"><span class="toc-number">1.</span> <span class="toc-text">7.1    闭包表达式</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#7-2-尾随闭包"><span class="toc-number">2.</span> <span class="toc-text">7.2    尾随闭包</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#7-3-捕获值"><span class="toc-number">3.</span> <span class="toc-text">7.3    捕获值</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#7-4-闭包是引用类型"><span class="toc-number">4.</span> <span class="toc-text">7.4    闭包是引用类型</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#7-5-逃逸闭包和非逃逸闭包"><span class="toc-number">5.</span> <span class="toc-text">7.5    逃逸闭包和非逃逸闭包</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#noescape"><span class="toc-number">5.1.</span> <span class="toc-text">@noescape</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#7-6-自动闭包"><span class="toc-number">6.</span> <span class="toc-text">7.6    自动闭包</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#7-6-1-通过普通闭包实现延迟执行"><span class="toc-number">6.1.</span> <span class="toc-text">7.6.1    通过普通闭包实现延迟执行</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#7-6-2-自动闭包实现延迟执行"><span class="toc-number">6.2.</span> <span class="toc-text">7.6.2    自动闭包实现延迟执行</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#autoclosure和-autoclosure-escaping"><span class="toc-number">6.2.1.</span> <span class="toc-text">@autoclosure和@autoclosure(escaping)</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#autoclosure"><span class="toc-number">6.2.1.1.</span> <span class="toc-text">@autoclosure</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#autoclosure-escaping"><span class="toc-number">6.2.1.2.</span> <span class="toc-text">@autoclosure(escaping)</span></a></li></ol></li></ol></li></ol></li></ol>
+        </div>
+      </div>
+    </div>
+    
+    <blockquote>
+<p><strong>描述：</strong>可以捕获和存储其所在上下文中任意常量或变量的引用的字包含的函数代码块。<br><strong>说明：</strong>由<code>3</code>种类型的闭包。</p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>分类</th>
+<th>是否有名字</th>
+<th>捕获内容</th>
+<th>适用</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>全局函数</td>
+<td>是</td>
+<td>无</td>
+<td>严格说来不是闭包</td>
+</tr>
+<tr>
+<td>嵌套函数</td>
+<td>是</td>
+<td>其封闭函数域内的变量或常量的引用</td>
+<td>在较复杂函数中，需要命名和定义自包含代码模块的场景</td>
+</tr>
+<tr>
+<td>闭合表达式</td>
+<td>否</td>
+<td>其上下文中的变量或常量的引用</td>
+<td>处理一些函数并需要将另外一些函数作为该函数的参数时</td>
+</tr>
+</tbody>
+</table>
+<h2 id="7-1-闭包表达式"><a href="#7-1-闭包表达式" class="headerlink" title="7.1    闭包表达式"></a>7.1    闭包表达式</h2><blockquote>
+<p><strong>描述：</strong>闭包表达式是一种利用简洁语法构建内联闭包的方式<br><strong>说明：</strong>和<code>全局函数</code>或<code>嵌套函数</code>相比有如下特点</p>
+<ul>
+<li><strong>类型推断：</strong>利用上下文推断<code>参数</code>和<code>返回值</code>类型</li>
+<li><strong>隐式返回：</strong>隐式返回单表达式闭包，即单表达式闭包可以省略<code>return</code>语句。</li>
+<li><strong>参数名称缩写</strong></li>
+<li><strong>尾随闭包语法</strong></li>
+</ul>
+<p><strong>语法：</strong>一般形式</p>
+</blockquote>
+<figure class="highlight swift"><table><tr><td class="code"><pre><span class="line">&#123; (parameters) -&gt; returnType <span class="keyword">in</span></span><br><span class="line">    statements</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<ul>
+<li>可以使用<code>常量</code>、<code>变量</code>和<code>inout</code>类型作为参数</li>
+<li>参数不支持设置<code>默认值</code></li>
+<li>可以在参数列表的最后使用<code>可变参数</code></li>
+<li><code>元组</code>也可以作为参数和返回值</li>
+</ul>
+</blockquote>
+<figure class="highlight swift"><table><tr><td class="code"><pre><span class="line"><span class="keyword">let</span> names = [<span class="string">"Charis"</span>, <span class="string">"Alex"</span>, <span class="string">"Ewa"</span>, <span class="string">"Barry"</span>, <span class="string">"Daniella"</span>]</span><br><span class="line"></span><br><span class="line"><span class="comment">// 创建一个比较函数（按照字典顺序逆序排序）</span></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">backwards</span><span class="params">(s1: String, s2: String)</span></span> -&gt; <span class="type">Bool</span> &#123;</span><br><span class="line">    <span class="keyword">return</span> s1 &gt; s2</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// sort</span></span><br><span class="line"><span class="keyword">var</span> reversed = names.<span class="built_in">sort</span>(backwards)<span class="comment">// ["Ewa", "Daniella", "Chris", "Barry", "Alex"]</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 闭包表达式</span></span><br><span class="line">reversed = names.<span class="built_in">sort</span>(&#123;(s1: <span class="type">String</span>, s2: <span class="type">String</span>) -&gt; <span class="type">Bool</span> <span class="keyword">in</span></span><br><span class="line">    <span class="keyword">return</span> s1 &gt; s2</span><br><span class="line">&#125;)</span><br><span class="line"><span class="comment">// 闭包表达式：推断类型</span></span><br><span class="line">reversed = names.<span class="built_in">sort</span>(&#123;s1, s2 <span class="keyword">in</span> <span class="keyword">return</span> s1 &gt; s2&#125;)</span><br><span class="line"></span><br><span class="line"><span class="comment">// 闭合表达式：推断类型、隐式返回</span></span><br><span class="line">reversed = names.<span class="built_in">sort</span>(&#123;s1, s2 <span class="keyword">in</span> s1 &gt; s2&#125;)</span><br><span class="line"></span><br><span class="line"><span class="comment">// 闭合表达式：推断类型、隐式返回、参数名缩写</span></span><br><span class="line">reversed = names.<span class="built_in">sort</span>(&#123;$<span class="number">0</span> &gt; $<span class="number">1</span>&#125;)</span><br><span class="line"></span><br><span class="line"><span class="comment">// 闭合表达式：&gt;(一个字符串函数)</span></span><br><span class="line">reversed = names.<span class="built_in">sort</span>(&gt;)</span><br></pre></td></tr></table></figure>
+<h2 id="7-2-尾随闭包"><a href="#7-2-尾随闭包" class="headerlink" title="7.2    尾随闭包"></a>7.2    尾随闭包</h2><blockquote>
+<p><strong>条件：</strong>当将闭包作为最后一个参数传递给函数时<br><strong>用途：</strong>增强函数的<code>可读性</code>（其实就是一种特殊条件下的简写）<br><strong>语法：</strong>书写在函数<code>()</code>之后，用<code>{}</code>括起来。</p>
+</blockquote>
+<figure class="highlight swift"><table><tr><td class="code"><pre><span class="line"><span class="comment">/* 案例1：基本案例 */</span></span><br><span class="line"><span class="comment">/**</span><br><span class="line">* 用于展示尾随闭包的函数</span><br><span class="line">* @param &#123;() -&gt; Void&#125; closure 函数类型参数</span><br><span class="line">*/</span></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">someFunctionThatTakesAClosure</span><span class="params">(closure: <span class="params">()</span></span></span> -&gt; <span class="type">Void</span>) &#123;</span><br><span class="line">    <span class="comment">// 函数主体</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 调用：不使用尾随闭包</span></span><br><span class="line">someFunctionThatTakesAClosure(&#123;</span><br><span class="line">    <span class="comment">// 闭包主体</span></span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line"><span class="comment">// 调用：使用尾随闭包</span></span><br><span class="line">someFunctionThatTakesAClosure() &#123;</span><br><span class="line">    <span class="comment">// 闭包主体</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/* 案例2：sort */</span></span><br><span class="line"><span class="comment">// sort使用尾随闭包</span></span><br><span class="line">reversed = names.<span class="built_in">sort</span>() &#123;$<span class="number">0</span> &gt; $<span class="number">1</span>&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// sort使用尾随闭包：省略()</span></span><br><span class="line"></span><br><span class="line"><span class="comment">/* 案例3：map */</span></span><br><span class="line"><span class="keyword">let</span> digitNames = [</span><br><span class="line">    <span class="number">0</span>: <span class="string">"Zero"</span>,</span><br><span class="line">    <span class="number">1</span>: <span class="string">"One"</span>,</span><br><span class="line">    <span class="number">2</span>: <span class="string">"Two"</span>,</span><br><span class="line">    <span class="number">3</span>: <span class="string">"Three"</span>,</span><br><span class="line">    <span class="number">4</span>: <span class="string">"Four"</span>,</span><br><span class="line">    <span class="number">5</span>: <span class="string">"Five"</span>,</span><br><span class="line">    <span class="number">6</span>: <span class="string">"Six"</span>,</span><br><span class="line">    <span class="number">7</span>: <span class="string">"Seven"</span>,</span><br><span class="line">    <span class="number">8</span>: <span class="string">"Eight"</span>,</span><br><span class="line">    <span class="number">9</span>: <span class="string">"Nine"</span></span><br><span class="line">]</span><br><span class="line"><span class="keyword">let</span> numbers = [<span class="number">16</span>, <span class="number">58</span>, <span class="number">510</span>]</span><br><span class="line"></span><br><span class="line"><span class="comment">// 使用尾随闭包：["OneSix", "FiveEight", "FiveOneZero"]</span></span><br><span class="line"><span class="keyword">let</span> strings = numbers.<span class="built_in">map</span>&#123;</span><br><span class="line">    (<span class="keyword">var</span> number) -&gt; <span class="type">String</span> <span class="keyword">in</span></span><br><span class="line">    <span class="keyword">var</span> output = <span class="string">""</span></span><br><span class="line">    <span class="keyword">while</span> number &gt; <span class="number">0</span> &#123;</span><br><span class="line">        output = digitNames[number % <span class="number">10</span>]! + output</span><br><span class="line">        number /= <span class="number">10</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> output</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="7-3-捕获值"><a href="#7-3-捕获值" class="headerlink" title="7.3    捕获值"></a>7.3    捕获值</h2><blockquote>
+<p><strong>说明：</strong>能够捕获值的闭包有<code>2</code>种</p>
+<ul>
+<li><strong>嵌套函数：</strong>捕获其外部函数所有的参数以及定义的常量和变量</li>
+<li><strong>闭包表达式：</strong>闭包可以在其被定义的上下文中捕获常量或变量</li>
+</ul>
+<p><strong>注意：</strong></p>
+<ol>
+<li>如果一个值是不可变的，Swift 可能会改为捕获并保存一份对值的拷贝</li>
+<li>Swift 也会负责被捕获变量的所有内存管理工作，包括释放不再需要的变量</li>
+</ol>
+</blockquote>
+<figure class="highlight swift"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 捕获值</span></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">makeIncrementor</span><span class="params">(froIncrement amount: Int)</span></span> -&gt; () -&gt; <span class="type">Int</span> &#123;</span><br><span class="line">    <span class="keyword">var</span> runningTotal = <span class="number">0</span><span class="comment">// 被捕获</span></span><br><span class="line">    <span class="comment">// 嵌套函数</span></span><br><span class="line">    <span class="function"><span class="keyword">func</span> <span class="title">incrementor</span><span class="params">()</span></span> -&gt; <span class="type">Int</span> &#123;</span><br><span class="line">        runningTotal += amount</span><br><span class="line">        <span class="keyword">return</span> runningTotal</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> incrementor</span><br><span class="line">    </span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 获得闭包1</span></span><br><span class="line"><span class="keyword">let</span> incrementByTen = makeIncrementor(froIncrement: <span class="number">10</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment">// 调用闭包</span></span><br><span class="line">incrementByTen()<span class="comment">// 10</span></span><br><span class="line">incrementByTen()<span class="comment">// 20</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 获得闭包2</span></span><br><span class="line"><span class="keyword">let</span> incrementBySeven = makeIncrementor(froIncrement: <span class="number">7</span>)</span><br><span class="line">incrementBySeven()<span class="comment">// 7</span></span><br></pre></td></tr></table></figure>
+<h2 id="7-4-闭包是引用类型"><a href="#7-4-闭包是引用类型" class="headerlink" title="7.4    闭包是引用类型"></a>7.4    闭包是引用类型</h2><blockquote>
+<p><strong>说明：</strong>这意味着不同的变量或常量可以引用同一个闭包。</p>
+</blockquote>
+<h2 id="7-5-逃逸闭包和非逃逸闭包"><a href="#7-5-逃逸闭包和非逃逸闭包" class="headerlink" title="7.5    逃逸闭包和非逃逸闭包"></a>7.5    逃逸闭包和非逃逸闭包</h2><blockquote>
+<p><strong>逃逸：</strong>当一个闭包作为参数传到一个函数中，但是这个闭包在函数执行过程中没有执行，函数返回之后才被执行或者从来没有执行过，我们称该闭包从函数中逃逸。<br><strong>说明：</strong>通过标注传入闭包的闭包为<code>@noescape</code>，让编译器对<code>非逃逸闭包</code>进行优化。</p>
+</blockquote>
+<h3 id="noescape"><a href="#noescape" class="headerlink" title="@noescape"></a>@noescape</h3><blockquote>
+<p><strong>说明：</strong>告诉编译器，闭包必须在被传入到的函数体中执行。</p>
+<ul>
+<li>将闭包标注为<code>@noescape</code>使你能在闭包中隐式地引用<code>self</code>（因为<code>@noescape</code>保障了成员方法）</li>
+</ul>
+<p><strong>用途：</strong>使编译器能够进行一些更加激进的优化。<br><strong>注意：</strong>如果被标注了<code>@noescape</code>的闭包没有在函数体中执行，编译器讲报错。</p>
+</blockquote>
+<figure class="highlight swift"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line"><span class="comment">// 参数带有@noescape标注（闭包不可以逃逸）</span></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">someFunctionWithNoescapeClosure</span><span class="params">(@noescape closure: <span class="params">()</span></span></span> -&gt; <span class="type">Void</span>) &#123;</span><br><span class="line">    closure()</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 参数不带@noescape标注（闭包可以逃逸）</span></span><br><span class="line"><span class="keyword">var</span> completionHandlers: [() -&gt; <span class="type">Void</span>] = []</span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">someFunctionWithEscapingClosure</span><span class="params">(completionHandler: <span class="params">()</span></span></span> -&gt; <span class="type">Void</span>) &#123;</span><br><span class="line">    completionHandlers.append(completionHandler)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span><br><span class="line">* 掩饰@noescape标注的闭包中隐式使用self</span><br><span class="line">* 成员函数doSomething会调用上面两个函数</span><br><span class="line">*/</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">SomeClass</span> </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> x = <span class="number">10</span></span><br><span class="line">    <span class="function"><span class="keyword">func</span> <span class="title">doSomething</span><span class="params">()</span></span> &#123;</span><br><span class="line">        <span class="comment">// 传入闭包：必须使用self</span></span><br><span class="line">        someFunctionWithEscapingClosure &#123;<span class="keyword">self</span>.x = <span class="number">100</span>&#125;</span><br><span class="line">        <span class="comment">// 传入闭包：self可以省略</span></span><br><span class="line">        someFunctionWithNoescapeClosure &#123;x = <span class="number">200</span>&#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">let</span> instance = <span class="type">SomeClass</span>()</span><br><span class="line">instance.doSomething()</span><br><span class="line"><span class="built_in">print</span>(instance.x)<span class="comment">// 200(说明@noescape的闭包不使用self也成功调用了x)</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 调用前面通过someFunctionWithEscapingClosure逃逸的闭包</span></span><br><span class="line">completionHandlers.first?()</span><br><span class="line"><span class="built_in">print</span>(instance.x)<span class="comment">// 100</span></span><br></pre></td></tr></table></figure>
+<h2 id="7-6-自动闭包"><a href="#7-6-自动闭包" class="headerlink" title="7.6    自动闭包"></a>7.6    自动闭包</h2><blockquote>
+<p><strong>描述：</strong><code>自动闭包</code>是一种自动创建的闭包，用于包装传递给函数作为参数的表达式。<br><strong>限制：</strong><br><strong>用途：</strong>这种便利语法让你能够用一个普通的表达式来代替显式的闭包，从而省略闭包的<code>{}</code>。<br><strong>说明：</strong>有<code>2</code>种方式</p>
+<ul>
+<li>显式创建：<code>{语句}</code></li>
+<li></li>
+</ul>
+<p><strong>技巧：</strong>自动闭包让你能够<code>延迟求值</code>，因为代码段不会被执行直到你调用这个闭包。延迟求值对于那些有<code>副作用</code>和<code>代价昂贵</code>的代码来说是很有益处的，因为你能控制代码什么时候执行。</p>
+</blockquote>
+<h3 id="7-6-1-通过普通闭包实现延迟执行"><a href="#7-6-1-通过普通闭包实现延迟执行" class="headerlink" title="7.6.1    通过普通闭包实现延迟执行"></a>7.6.1    通过普通闭包实现延迟执行</h3><p><em>案例1：先创建闭包然后调用 </em></p>
+<figure class="highlight swift"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> customersInLine = [<span class="string">"Chris"</span>, <span class="string">"Aelx"</span>, <span class="string">"Ewa"</span>, <span class="string">"Barry"</span>, <span class="string">"Daniella"</span>]</span><br><span class="line"><span class="built_in">print</span>(customersInLine.<span class="built_in">count</span>)</span><br><span class="line"><span class="comment">// 创建自动闭包</span></span><br><span class="line"><span class="keyword">let</span> customerProvider = &#123;customersInLine.removeAtIndex(<span class="number">0</span>)&#125;</span><br><span class="line"><span class="comment">// 执行闭包</span></span><br><span class="line"><span class="built_in">print</span>(<span class="string">"Now serving\(customerProvider())!"</span>)</span><br></pre></td></tr></table></figure>
+<p><em>案例2：将闭包作为参数传递</em></p>
+<figure class="highlight swift"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">serveCustomer</span><span class="params">(customerProvider: <span class="params">()</span></span></span> -&gt; <span class="type">String</span>) &#123;</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">"Now serving \(customerProvider())!"</span>)</span><br><span class="line">&#125;</span><br><span class="line">serveCustomer( &#123; customersInLine.removeAtIndex(<span class="number">0</span>) &#125; )</span><br></pre></td></tr></table></figure>
+<h3 id="7-6-2-自动闭包实现延迟执行"><a href="#7-6-2-自动闭包实现延迟执行" class="headerlink" title="7.6.2    自动闭包实现延迟执行"></a>7.6.2    自动闭包实现延迟执行</h3><h4 id="autoclosure和-autoclosure-escaping"><a href="#autoclosure和-autoclosure-escaping" class="headerlink" title="@autoclosure和@autoclosure(escaping)"></a>@autoclosure和@autoclosure(escaping)</h4><blockquote>
+<p><strong>说明：</strong>通过将参数标记为<code>@autoclosure</code>来接收一个自动闭包。</p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>分类</th>
+<th>是否允许闭包逃逸</th>
+<th>备注</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>@autoclosure</td>
+<td>不</td>
+<td>暗含了<code>@noescape</code>特性</td>
+</tr>
+<tr>
+<td>@autoclosure(escaping)</td>
+<td>是</td>
+</tr>
+</tbody>
+</table>
+<h5 id="autoclosure"><a href="#autoclosure" class="headerlink" title="@autoclosure"></a>@autoclosure</h5><figure class="highlight swift"><table><tr><td class="code"><pre><span class="line"><span class="comment">/* 通过autoclosure标记，自动将传入的参数（语句）转换为闭包 */</span></span><br><span class="line"><span class="keyword">var</span> customersInLine = [<span class="string">"Barry"</span>, <span class="string">"Daniella"</span>]</span><br><span class="line"><span class="comment">/**</span><br><span class="line">* 包装（延迟执行）对顾客的服务</span><br><span class="line">* @param &#123;() -&gt; String&#125; @autoclosure customerProvider 将输参数（语句）自动转换为一个() -&gt; String的闭包</span><br><span class="line">*/</span></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">serveCustomer</span><span class="params">(@autoclosure customerProvider: <span class="params">()</span></span></span> -&gt; <span class="type">String</span>) &#123;</span><br><span class="line">    <span class="comment">// customerProvider是一个被自动封装好的闭包</span></span><br><span class="line">    <span class="built_in">print</span>(<span class="string">"Now serving \(customerProvider())"</span>)</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 调用：customersInLine.removeAtIndex(0)在serveCustomer中被调用（通过自动闭包）时才会执行</span></span><br><span class="line"></span><br><span class="line">serveCustomer(customersInLine.removeAtIndex(<span class="number">0</span>))</span><br></pre></td></tr></table></figure>
+<h5 id="autoclosure-escaping"><a href="#autoclosure-escaping" class="headerlink" title="@autoclosure(escaping)"></a>@autoclosure(escaping)</h5><figure class="highlight swift"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> customersInLine = [<span class="string">"Barry"</span>, <span class="string">"Daniella"</span>]</span><br><span class="line"><span class="comment">// 存储() -&gt; String类型闭包的数组</span></span><br><span class="line"><span class="keyword">var</span> customerProviders: [() -&gt; <span class="type">String</span>] = []</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span><br><span class="line">* 将闭包存入集合的工具函数</span><br><span class="line">* @param &#123;() -&gt; String&#125; @autoclosure(escaping) customerProvider 为语句自动创建() -&gt; String类型的封包</span><br><span class="line">*/</span></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">collectCustomerProvider</span><span class="params">(@autoclosure<span class="params">(escaping)</span></span></span> customerProvider: () -&gt; <span class="type">String</span>) &#123;</span><br><span class="line">    customerProviders.append(customerProvider)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 调用工具函数</span></span><br><span class="line">collectCustomerProvider(customersInLine.removeAtIndex(<span class="number">0</span>))</span><br><span class="line">collectCustomerProvider(customersInLine.removeAtIndex(<span class="number">0</span>))</span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(<span class="string">"Collected \(customersInLine.count)"</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment">// 执行集合中的闭包</span></span><br><span class="line"><span class="keyword">for</span> customerProvider <span class="keyword">in</span> customerProviders &#123;</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">"Now serving \(customerProviders)"</span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+  </section>
+
+</article>
+
+
+
+
+            <footer class="footer">
+    <span class="footer__copyright">
+        本站点采用<a href="http://creativecommons.org/licenses/by-nc-sa/4.0/">知识共享署名-非商业性使用-相同方式共享 4.0 国际许可协议</a>
+    </span>
+    <span class="footer__copyright">
+        基于 <a href="http://hexo.io">Hexo</a> 搭建，感谢 <a href="https://pages.github.com/">GitHub Pages</a> 提供免费的托管服务
+    </span>
+    <span class="footer__copyright">
+        &copy; 2016 - 
+        本站修改自<a href="https://github.com/lenbo-ma/hexo-theme-vno" target="_blank">hexo-theme-vno</a>
+    </span>
+</footer>
+
+        </div>
+    </div>
+
+    <script src="http://cdn.bootcss.com/jquery/2.1.4/jquery.min.js"></script>
+    <script src="/js/main.js"></script>
+
+     
+</body>
+</html>
