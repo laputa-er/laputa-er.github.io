@@ -67,4 +67,22 @@ $(document).ready(function() {
 
   // 设置目录最大高度
   $('#toc .catelog-content').css('max-height', $(window).height() * 0.6 + 'px');
+
+  // 面板左右切换
+  $('.panel-arrow').on('click', function(e) {
+    if ($(this).hasClass('disabled')) {
+      return;
+    }
+
+    $(this).addClass('disabled');
+    if ($(this).is('.panel-left-arrow')) {
+      $('.panel-animation-container').removeClass('on-tagcloud');
+      $('.panel-right-arrow').removeClass('disabled');
+    }
+    else {
+      $('.panel-left-arrow').removeClass('disabled');
+      $('.panel-animation-container').addClass('on-tagcloud');
+    }
+
+  });
 });

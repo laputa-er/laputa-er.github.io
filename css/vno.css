@@ -6252,7 +6252,6 @@ hr {
   width: 100%;
   max-width: none;
   height: 100%;
-  background: url("../images/background-cover.jpg") top left no-repeat #666;
   background-size: cover;
 }
 .panel-cover--collapsed {
@@ -6299,7 +6298,7 @@ hr {
   vertical-align: middle;
   position: relative;
   z-index: 800;
-  padding: 0 60px;
+  overflow: hidden;
 }
 .panel-main__content {
   max-width: 620px;
@@ -6886,4 +6885,72 @@ a.toc-link {
 }
 a.btn-border-small {
   white-space: nowrap;
+}
+.panel-tagcloud_content {
+  max-width: 620px;
+  margin: 0 auto;
+}
+.panel-content {
+  display: table-cell;
+  width: 50%;
+  box-sizing: border-box;
+}
+.panel-animation-container {
+  display: table;
+  vertical-align: middle;
+  overflow: hidden;
+  width: 200%;
+  transition: transform 0.5s ease-in-out;
+  -moz-transition: transform 0.5s ease-in-out;
+  -webkit-transition: transform 0.5s ease-in-out;
+  -o-transition: transform 0.5s ease-in-out;
+  transform: translateX(0);
+  -moz-transform: translateX(0);
+  -webkit-transform: translateX(0);
+  -o-transform: translateX(0);
+}
+.panel-animation-container.on-tagcloud {
+  transform: translateX(-50%);
+  -moz-transform: translateX(-50%);
+  -webkit-transform: translateX(-50%);
+  -o-transform: translateX(-50%);
+}
+.panel-arrow {
+  position: absolute;
+  z-index: 10;
+  top: 50%;
+  transform: translateY(-50%);
+  -webkit-transform: translateY(-50%);
+  -o-transform: translateY(-50%);
+  -moz-transform: translateY(-50%);
+}
+.panel-arrow i {
+  font-size: 50px;
+  font-weight: bold;
+  width: 30px;
+  opacity: 0;
+  transition: opacity 0.5s ease-in-out;
+  -moz-transition: opacity 0.5s ease-in-out;
+  -webkit-transition: opacity 0.5s ease-in-out;
+  -o-transition: opacity 0.5s ease-in-out;
+}
+.panel-left-arrow {
+  left: 0;
+}
+.panel-right-arrow {
+  right: 0;
+}
+.panel-main:hover .panel-arrow i {
+  opacity: 0.7;
+}
+.panel-main:hover .panel-arrow.disabled i {
+  opacity: 0.3;
+}
+.widget.tagcloud a {
+  display: block;
+  line-height: 2;
+}
+.widget .widget-title {
+  color: #ccc;
+  font-size: 1.2rem;
 }
