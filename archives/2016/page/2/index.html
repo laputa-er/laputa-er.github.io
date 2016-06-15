@@ -125,7 +125,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">笔记分类</h3>
     <div class="widget tagcloud">
-      <a href="/tags/Objective-C基础教程第二版/">Objective-C基础教程第二版</a> <a href="/tags/The-Swift-Program-Language-2/">The Swift Program Language 2</a> <a href="/tags/c语言程序设计－现代方法/">c语言程序设计－现代方法</a> <a href="/tags/极客学院-ios中级/">极客学院_ios中级</a> <a href="/tags/极客学院-ios初级/">极客学院_ios初级</a> <a href="/tags/极客学院-ios高级/">极客学院_ios高级</a>
+      <a href="/tags/Objective-C基础教程第二版/">Objective-C基础教程第二版</a> <a href="/tags/The-Swift-Program-Language-2/">The Swift Program Language 2</a> <a href="/tags/c语言程序设计－现代方法/">c语言程序设计－现代方法</a> <a href="/tags/iOS/">iOS</a> <a href="/tags/imooc/">imooc</a> <a href="/tags/pug/">pug</a> <a href="/tags/极客学院-ios中级/">极客学院_ios中级</a> <a href="/tags/极客学院-ios初级/">极客学院_ios初级</a> <a href="/tags/极客学院-ios高级/">极客学院_ios高级</a>
     </div>
   </div>
 
@@ -144,6 +144,62 @@
         <div class="content-wrapper__inner">
             <div class="main-post-list">
   <ol class="post-list">
+  
+    
+    <li>
+      <h2 class="post-list__post-title post-title"><a href="/2016/05/13/TSPL2_06  函数/" title="link to post.title">6 函数</a></h2>
+      <p class="excerpt">
+    
+      
+说明：用来完成特定任务的独立的代码。
+
+从简单到复杂：既可以定义最简单的没有参数名字的 C 风格函数，也可以定义复杂的带局部和外部参数名的 Objective-C 风格函数
+默认参数值：参数可以提供默认值，以简化函数调用
+In-out参数：参数前加 &amp;amp; 符,表示这个值可以被函数修改（只能针对变量参数，类似传引用）
+当作普通变量：可以把函数类型当做任何其他普通变量类型一样处理
+嵌套：函数的定义可以写在在其他函数定义中
+
+
+6.1    定义
+定义：使用func关键字
+
+函数名：描述函数执
+    &hellip;
+      </p>
+      <div class="post-list__meta"><time datetime="2016-05-13T11:40:24.000Z" class="post-list__meta--date date">2016-05-13</time> &#8226; <span class="post-list__meta--tags tags">于&nbsp;
+  <a class="tag-link" href="/tags/The-Swift-Program-Language-2/">The Swift Program Language 2</a>
+</span><a class="btn-border-small" href="/2016/05/13/TSPL2_06  函数/">继续阅读</a></div>
+      <hr class="post-list__divider" />
+    </li>
+  
+    
+    <li>
+      <h2 class="post-list__post-title post-title"><a href="/2016/05/13/TSPL2_05  控制流/" title="link to post.title">5 控制流</a></h2>
+      <p class="excerpt">
+    
+      5.1    for循环
+说明：有两种形式
+
+for-in
+for initialization; condition; increment（c语言形式）
+
+
+5.1.1    for-in
+说明：可以遍历的集合包括区间、Array、Set、String中的字符。
+
+其中每次循环都会被赋值的常量不需要声明
+可以使用_忽略每个数据项中具体的值
+字典内部是无序的，不经处理不能保证遍历顺序
+
+
+// 区间for index in 1...5 &amp;#123;    print(&quot;\(index) time
+    &hellip;
+      </p>
+      <div class="post-list__meta"><time datetime="2016-05-13T11:38:49.000Z" class="post-list__meta--date date">2016-05-13</time> &#8226; <span class="post-list__meta--tags tags">于&nbsp;
+  <a class="tag-link" href="/tags/The-Swift-Program-Language-2/">The Swift Program Language 2</a>
+</span><a class="btn-border-small" href="/2016/05/13/TSPL2_05  控制流/">继续阅读</a></div>
+      <hr class="post-list__divider" />
+    </li>
   
     
     <li>
@@ -1111,46 +1167,6 @@ C语言对运行时错误以多种形式表示，而没有提供一种统一的�
       <div class="post-list__meta"><time datetime="2016-05-11T03:42:41.000Z" class="post-list__meta--date date">2016-05-11</time> &#8226; <span class="post-list__meta--tags tags">于&nbsp;
   <a class="tag-link" href="/tags/c语言程序设计－现代方法/">c语言程序设计－现代方法</a>
 </span><a class="btn-border-small" href="/2016/05/11/24 错误处理/">继续阅读</a></div>
-      <hr class="post-list__divider" />
-    </li>
-  
-    
-    <li>
-      <h2 class="post-list__post-title post-title"><a href="/2016/05/10/23 库对数值和字符数据的支持/" title="link to post.title">23 库对数值和字符数据的支持</a></h2>
-      <p class="excerpt">
-    
-      23.1    float.h:浮点型的特性说明：提供了用来定义浮点型的范围和精度的宏（没有类型和函数的定义）。应用：由于只有进行数值分析的专家才会对上述float.h中定义的宏感兴趣，这可能是标砖哭中最不常用的宏。
-23.1.1    对浮点数通用的宏FLT_ROUND宏说明：浮点加法的舍入模式，存在5中可能
-FLT_RADIX宏说明：指定了基数的形式，最小值是2（二进制）
-23.1.2    其它宏说明：其他宏用来描述特定类型的特性。宏命名：根据宏是针对的浮点类型有不同的前缀
-
-
-
-宏前缀
-
-    &hellip;
-      </p>
-      <div class="post-list__meta"><time datetime="2016-05-10T15:31:50.000Z" class="post-list__meta--date date">2016-05-10</time> &#8226; <span class="post-list__meta--tags tags">于&nbsp;
-  <a class="tag-link" href="/tags/c语言程序设计－现代方法/">c语言程序设计－现代方法</a>
-</span><a class="btn-border-small" href="/2016/05/10/23 库对数值和字符数据的支持/">继续阅读</a></div>
-      <hr class="post-list__divider" />
-    </li>
-  
-    
-    <li>
-      <h2 class="post-list__post-title post-title"><a href="/2016/05/10/22 输入／输出/" title="link to post.title">22 输入/输出</a></h2>
-      <p class="excerpt">
-    
-      22.1    流
-说明：在C语言中，术语流意味着任意输入的源或人意输出的目的地。stdio.h中的许多函数不仅可以处理表示成文件的流，还可以处理所有其它形式的流。流：流常常表示为磁盘上的文件，但却可以和其它类型的设备相关联：调制解调器、网络端口、打印机、光盘驱动器等。
-
-22.1.1    文件指针
-文件指针（file pointer）：File *(File定义在stdio.h中)用途：C程序中流的访问是通过文件指针实现的限制：操作系统通常会限制在任意某时刻可以打开的流的数量（但是一个程序中
-    &hellip;
-      </p>
-      <div class="post-list__meta"><time datetime="2016-05-10T15:01:02.000Z" class="post-list__meta--date date">2016-05-10</time> &#8226; <span class="post-list__meta--tags tags">于&nbsp;
-  <a class="tag-link" href="/tags/c语言程序设计－现代方法/">c语言程序设计－现代方法</a>
-</span><a class="btn-border-small" href="/2016/05/10/22 输入／输出/">继续阅读</a></div>
       <hr class="post-list__divider" />
     </li>
   
