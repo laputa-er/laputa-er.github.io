@@ -1,978 +1,1150 @@
-<!DOCTYPE html>
-<html>
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion">
 <head>
-    <meta charset="utf-8"/>
-    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
     
-    <title>Sean | 笔记分享</title>
-    <meta name="renderer" content="webkit">
-    <meta name="HandheldFriendly" content="True">
-    <meta name="MobileOptimized" content="320">
-    <meta name="apple-mobile-web-app-capable" content="yes">
-    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-
-    <meta name="description" content="do things for fun">
-
-    <meta name="twitter:card" content="summary">
-    <meta name="twitter:title" content="Sean | 笔记分享">
-    <meta name="twitter:description" content="do things for fun">
-
-    <meta property="og:type" content="article">
-    <meta property="og:title" content="Sean | 笔记分享">
-    <meta property="og:description" content="do things for fun">
-
     
-    <meta name="author" content="Sean">
-    
-    <link rel="stylesheet" href="/css/vno.css">
-    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css">
+  
 
-    
-    <link rel="icon" href="/images/sean.png">
-    
+  
 
-    <meta name="generator" content="hexo"/>
-    
+  
 
-    <link rel="canonical" href="http://laputa-er.github.io"/>
+  
 
+  
+
+  
     
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1" />
+
+
+
+
+
+
+<meta name="description" content="整理了一批过去一段时间ios相关的笔记，其它的笔记也整理下？源码分享出来？再说吧...反正也只有自己会看吧...">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Sean">
+<meta property="og:url" content="http://laputa-er.github.io/tags/c语言程序设计－现代方法/index.html">
+<meta property="og:site_name" content="Sean">
+<meta property="og:description" content="整理了一批过去一段时间ios相关的笔记，其它的笔记也整理下？源码分享出来？再说吧...反正也只有自己会看吧...">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Sean">
+<meta name="twitter:description" content="整理了一批过去一段时间ios相关的笔记，其它的笔记也整理下？源码分享出来？再说吧...反正也只有自己会看吧...">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Muse',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 0,
+      author: '博主'
+    }
+  };
+</script>
+
+
+
+
+  <link rel="canonical" href="http://laputa-er.github.io/tags/c语言程序设计－现代方法/"/>
+
+  <title> 标签: c语言程序设计－现代方法 | Sean </title>
 </head>
 
-<body class="home-template no-js">
-
-    <span class="mobile btn-mobile-menu">
-        <i class="fa fa-list btn-mobile-menu__icon"></i>
-        <i class="fa fa-angle-up btn-mobile-close__icon hidden"></i>
-    </span>
-    
-<header class="panel-cover panel-cover--collapsed" style="background-image: url(/images/mengxiang.jpg)">
-  <div class="panel-main">
-    <div class="panel-main__inner panel-inverted">
-      <span class="panel-arrow panel-left-arrow disabled">
-        <i class="fa fa-angle-left"></i>
-      </span>
-      <span class="panel-arrow panel-right-arrow">
-        <i class="fa fa-angle-right"></i>
-      </span>
-
-      <div class="panel-animation-container">
-        <div class="panel-content panel-main__content">
-            <a href="/" title="前往 Sean 的主页"><img src="/images/sean.png" width="80" alt="Sean logo" class="panel-cover__logo logo" /></a>
-            <h1 class="panel-cover__title panel-title"><a href="/" title="link to homepage for Sean">Sean</a></h1>
-            
-            <span class="panel-cover__subtitle panel-subtitle">笔记分享</span>
-            
-            <hr class="panel-cover__divider" />
-            <p class="panel-cover__description">整理了一批过去一段时间ios相关的笔记，其它的笔记也整理下？源码分享出来？再说吧...反正也只有自己会看吧...</p>
-            <hr class="panel-cover__divider panel-cover__divider--secondary" />
-
-            <div class="navigation-wrapper">
-              <div>
-              <nav class="cover-navigation cover-navigation--primary">
-                <ul class="navigation">
-                  <li class="navigation__item"><a href="/#blog" title="访问笔记" class="blog-button">笔记</a></li>
-                  <li style="display: none;">
-                    <textarea>
-                      
-                        <li class="navigation__item"><a href="/projects">项目作品</a></li>
-                      
-                        <li class="navigation__item"><a href="/aboutme">关于我</a></li>
-                      
-                    </textarea>
-                  </li>
-                </ul>
-              </nav>
-              </div>
-              <div>
-              <nav class="cover-navigation navigation--social">
-  <ul class="navigation">
-
-  <!-- Weibo-->
-  
-
-  <!-- Github -->
-  
-
-<!-- Stack Overflow -->
-        
-
-  <!-- Google Plus -->
-  
-
-<!-- Facebook -->
-
-  
-<!-- Twitter -->
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
 
   
 
 
 
-  </ul>
-</nav>
 
-              </div>
-            </div>
 
-          </div>
-          <div class="panel-content panel-tagcloud_content">
-            
-              <aside id="sidebar">
+
+
+
+
+
+  
   
     
-  <div class="widget-wrap">
-    <h3 class="widget-title">笔记分类</h3>
-    <div class="widget tagcloud">
-      <a href="/tags/Objective-C基础教程第二版/">Objective-C基础教程第二版</a> <a href="/tags/The-Swift-Program-Language-2/">The Swift Program Language 2</a> <a href="/tags/c语言程序设计－现代方法/">c语言程序设计－现代方法</a> <a href="/tags/iOS/">iOS</a> <a href="/tags/imooc/">imooc</a> <a href="/tags/pug/">pug</a> <a href="/tags/极客学院-ios中级/">极客学院_ios中级</a> <a href="/tags/极客学院-ios初级/">极客学院_ios初级</a> <a href="/tags/极客学院-ios高级/">极客学院_ios高级</a>
-    </div>
+  
+
+  <div class="container one-collumn sidebar-position-left  ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">Sean</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
   </div>
-
-  
-</aside>
-            
-          </div>
-        </div>  
-
-      </div>
-      <div class="panel-cover--overlay cover-blue"></div>
-  </div>
-  </header>
-    
-    <div class="content-wrapper">
-        <div class="content-wrapper__inner">
-            <div class="main-post-list">
-  <ol class="post-list">
-  
-    
-    <li>
-      <h2 class="post-list__post-title post-title"><a href="/2016/05/11/25 国际化特性/" title="link to post.title">25 国际化特性</a></h2>
-      <p class="excerpt">
-    
-      
-地区：可能是国家、洲或省活着一种特定的文化。扩展：1994年通过的ISO C标准修正草案1提供了编写额外国际化程序增加的额外库
-
-iso646.h
-wctype.h
-wchar.h
-
-
-25.1 locale.h：本地化
-标准库中依赖地区的部分：
-
-数值的格式：例如，一些地区小数点是一个圆点（297.48），而在另一些地方则是逗号（297,48）货币的格式：例如，不同国家的货币符号不同字符集：例如，亚洲国家通常比西方国家需要更大的字符集日期和时间的表示形式：例如，一些地方习惯在写日期时先写月（
-    &hellip;
-      </p>
-      <div class="post-list__meta"><time datetime="2016-05-11T13:30:56.000Z" class="post-list__meta--date date">2016-05-11</time> &#8226; <span class="post-list__meta--tags tags">于&nbsp;
-  <a class="tag-link" href="/tags/c语言程序设计－现代方法/">c语言程序设计－现代方法</a>
-</span><a class="btn-border-small" href="/2016/05/11/25 国际化特性/">继续阅读</a></div>
-      <hr class="post-list__divider" />
-    </li>
-  
-    
-    <li>
-      <h2 class="post-list__post-title post-title"><a href="/2016/05/11/26 其它库函数/" title="link to post.title">26 其他库函数</a></h2>
-      <p class="excerpt">
-    
-      26.1    stdarg.h：可变实参
-带有可变参数的函数：带有可变数量参数的函数必须至少有一个“正常的”形式参数，在最后一个正常参数的后边始终会有省略号出现在参数列表的末尾。可变部分实参提升：当调用带有可变实参列表的函数时，编译器会在匹配省略号的全部参数上执行默认的实参提升（9.3）
-
-char -&amp;gt; int
-short -&amp;gt; int
-float -&amp;gt; double
-
-
-va_arg宏（函数）
-
-说明：获得所在函数的可变参数中的下一个参数原型：stdarg.h
-
-/***
-    &hellip;
-      </p>
-      <div class="post-list__meta"><time datetime="2016-05-11T13:25:08.000Z" class="post-list__meta--date date">2016-05-11</time> &#8226; <span class="post-list__meta--tags tags">于&nbsp;
-  <a class="tag-link" href="/tags/c语言程序设计－现代方法/">c语言程序设计－现代方法</a>
-</span><a class="btn-border-small" href="/2016/05/11/26 其它库函数/">继续阅读</a></div>
-      <hr class="post-list__divider" />
-    </li>
-  
-    
-    <li>
-      <h2 class="post-list__post-title post-title"><a href="/2016/05/11/24 错误处理/" title="link to post.title">24 错误处理</a></h2>
-      <p class="excerpt">
-    
-      
-C语言的弱项：错误的检测和处理并不是c语言的强项
-
-C语言对运行时错误以多种形式表示，而没有提供一种统一的方式
-程序员必须将检测错误的代码编写在程序代码中，因此很容易忽略一些错误
-
-扩展：C++语言对C语言的这一弱点进行了改进，提供了一种新的错误错误的方式－异常处理（exception handling）。
-
-24.1    assert.h：诊断assert宏（函数）
-断言：一个我们认为在正常情况下一顶为真的表达式。错误信息：标准C要求在显示的消息中指明以下内容
-
-传递给assert函数的参
-    &hellip;
-      </p>
-      <div class="post-list__meta"><time datetime="2016-05-11T03:42:41.000Z" class="post-list__meta--date date">2016-05-11</time> &#8226; <span class="post-list__meta--tags tags">于&nbsp;
-  <a class="tag-link" href="/tags/c语言程序设计－现代方法/">c语言程序设计－现代方法</a>
-</span><a class="btn-border-small" href="/2016/05/11/24 错误处理/">继续阅读</a></div>
-      <hr class="post-list__divider" />
-    </li>
-  
-    
-    <li>
-      <h2 class="post-list__post-title post-title"><a href="/2016/05/10/23 库对数值和字符数据的支持/" title="link to post.title">23 库对数值和字符数据的支持</a></h2>
-      <p class="excerpt">
-    
-      23.1    float.h:浮点型的特性说明：提供了用来定义浮点型的范围和精度的宏（没有类型和函数的定义）。应用：由于只有进行数值分析的专家才会对上述float.h中定义的宏感兴趣，这可能是标砖哭中最不常用的宏。
-23.1.1    对浮点数通用的宏FLT_ROUND宏说明：浮点加法的舍入模式，存在5中可能
-FLT_RADIX宏说明：指定了基数的形式，最小值是2（二进制）
-23.1.2    其它宏说明：其他宏用来描述特定类型的特性。宏命名：根据宏是针对的浮点类型有不同的前缀
-
-
-
-宏前缀
-
-    &hellip;
-      </p>
-      <div class="post-list__meta"><time datetime="2016-05-10T15:31:50.000Z" class="post-list__meta--date date">2016-05-10</time> &#8226; <span class="post-list__meta--tags tags">于&nbsp;
-  <a class="tag-link" href="/tags/c语言程序设计－现代方法/">c语言程序设计－现代方法</a>
-</span><a class="btn-border-small" href="/2016/05/10/23 库对数值和字符数据的支持/">继续阅读</a></div>
-      <hr class="post-list__divider" />
-    </li>
-  
-    
-    <li>
-      <h2 class="post-list__post-title post-title"><a href="/2016/05/10/22 输入／输出/" title="link to post.title">22 输入/输出</a></h2>
-      <p class="excerpt">
-    
-      22.1    流
-说明：在C语言中，术语流意味着任意输入的源或人意输出的目的地。stdio.h中的许多函数不仅可以处理表示成文件的流，还可以处理所有其它形式的流。流：流常常表示为磁盘上的文件，但却可以和其它类型的设备相关联：调制解调器、网络端口、打印机、光盘驱动器等。
-
-22.1.1    文件指针
-文件指针（file pointer）：File *(File定义在stdio.h中)用途：C程序中流的访问是通过文件指针实现的限制：操作系统通常会限制在任意某时刻可以打开的流的数量（但是一个程序中
-    &hellip;
-      </p>
-      <div class="post-list__meta"><time datetime="2016-05-10T15:01:02.000Z" class="post-list__meta--date date">2016-05-10</time> &#8226; <span class="post-list__meta--tags tags">于&nbsp;
-  <a class="tag-link" href="/tags/c语言程序设计－现代方法/">c语言程序设计－现代方法</a>
-</span><a class="btn-border-small" href="/2016/05/10/22 输入／输出/">继续阅读</a></div>
-      <hr class="post-list__divider" />
-    </li>
-  
-    
-    <li>
-      <h2 class="post-list__post-title post-title"><a href="/2016/05/10/21 标准库/" title="link to post.title">21	标准库</a></h2>
-      <p class="excerpt">
-    
-      21.1    标准库的使用
-标准头：依据C标准，一个“标准头”不需要一定是文件，有可能内置在编译器自身中。标准库：C语言的标准库总共划分成15个部分，每个部分用一个头描述。扩展：许多编译器会使用扩展后的库，这类库（头文件）通常提供一些针对特定畸形或特定操作系统的函数（比如更多对屏幕或键盘操作的函数，用于支持图形或窗口界面的头等）
-
-21.1.1    包含标准头的程序中使用的名字的一些限制
-意义：虽然这些规则并不总是强制性的，但不遵守这些规则可能会导致程序的可移植性下降。
-
-必需遵守
-宏的名字
-    &hellip;
-      </p>
-      <div class="post-list__meta"><time datetime="2016-05-10T14:33:07.000Z" class="post-list__meta--date date">2016-05-10</time> &#8226; <span class="post-list__meta--tags tags">于&nbsp;
-  <a class="tag-link" href="/tags/c语言程序设计－现代方法/">c语言程序设计－现代方法</a>
-</span><a class="btn-border-small" href="/2016/05/10/21 标准库/">继续阅读</a></div>
-      <hr class="post-list__divider" />
-    </li>
-  
-    
-    <li>
-      <h2 class="post-list__post-title post-title"><a href="/2016/05/10/20 低级程序设计/" title="link to post.title">20 低级程序设计</a></h2>
-      <p class="excerpt">
-    
-      
-说明：位操作和其他一些低级运算在编写系统程序（包括编译器和操作系统）、加密程序、图形程序以及其他一些需要高执行速度或高效地使用空间的程序时非常有用。
-
-20.1    按位运算符
-说明：C语言一共提供了6个按位运算符。
-
-20.1.1    移位运算符
-说明：移位运算符可以改变数的二进制形式，将它的位向左或向右移动。优先级：低于算数运算符i&amp;lt;&amp;lt;2+1 &amp;lt;==&amp;gt; i&amp;lt;&amp;lt;(2+1)操作数类型要求：可以是任意整型或字符型的副作用：不存在（不会改变操作数本身）|运算
-    &hellip;
-      </p>
-      <div class="post-list__meta"><time datetime="2016-05-10T14:05:58.000Z" class="post-list__meta--date date">2016-05-10</time> &#8226; <span class="post-list__meta--tags tags">于&nbsp;
-  <a class="tag-link" href="/tags/c语言程序设计－现代方法/">c语言程序设计－现代方法</a>
-</span><a class="btn-border-small" href="/2016/05/10/20 低级程序设计/">继续阅读</a></div>
-      <hr class="post-list__divider" />
-    </li>
-  
-    
-    <li>
-      <h2 class="post-list__post-title post-title"><a href="/2016/05/10/19 程序设计/" title="link to post.title">19 程序设计</a></h2>
-      <p class="excerpt">
-    
-      19.1    模块
-说明：模块是一组功能（服务）的集合，其中一些功能可以被程序的其它部分（客户）使用。每个模块都有一个接口来描述所提供的功能。模块的细节，包括这些功能自身的源代码，都包含在模块的实现中。
-
-
-
-
-文件角色
-说明
-
-
-
-
-接口
-模块名.h(头文件)
-
-
-实现
-对应头文件模块名.c文件
-
-
-客户
-通过#include引入模块的文件
-
-
-
-
-优点：将程序分割成模块有一系列好处
-
-抽象：不必了解功能的实现细节，只需对模块的接口达成一致
-可复用：每个模块都可以在另一个程序中复用
-可维护性
-    &hellip;
-      </p>
-      <div class="post-list__meta"><time datetime="2016-05-10T14:00:04.000Z" class="post-list__meta--date date">2016-05-10</time> &#8226; <span class="post-list__meta--tags tags">于&nbsp;
-  <a class="tag-link" href="/tags/c语言程序设计－现代方法/">c语言程序设计－现代方法</a>
-</span><a class="btn-border-small" href="/2016/05/10/19 程序设计/">继续阅读</a></div>
-      <hr class="post-list__divider" />
-    </li>
-  
-    
-    <li>
-      <h2 class="post-list__post-title post-title"><a href="/2016/05/10/18 声明/" title="link to post.title">18 声明</a></h2>
-      <p class="excerpt">
-    
-      
-说明：通过声明变量和函数，可以再检查程序潜在的错误以及把程序翻译成目标代码两方面为编译器提供至关重要的信息。
-
-18.1    声明的语法
-语法：声明说明符 声明符;
-
-18.1.1    声明说明符
-分类：分3类（可组合）
-
-
-
-
-分类
-包括
-位置
-可多个
-
-
-
-
-存储类型
-auto static extern register
-声明中的首要位置
-否
-
-
-类型限定符
-const volatile
-存储类型的后边
-是
-
-
-类型说明符
-void char short int long float
-    &hellip;
-      </p>
-      <div class="post-list__meta"><time datetime="2016-05-10T12:29:30.000Z" class="post-list__meta--date date">2016-05-10</time> &#8226; <span class="post-list__meta--tags tags">于&nbsp;
-  <a class="tag-link" href="/tags/c语言程序设计－现代方法/">c语言程序设计－现代方法</a>
-</span><a class="btn-border-small" href="/2016/05/10/18 声明/">继续阅读</a></div>
-      <hr class="post-list__divider" />
-    </li>
-  
-    
-    <li>
-      <h2 class="post-list__post-title post-title"><a href="/2016/05/10/17 指针的高级应用/" title="link to post.title">17 指针的高级应用</a></h2>
-      <p class="excerpt">
-    
-      17.1    动态存储分配
-背景：c语言的数据结构通常是固定大小的，为了扩大数据结构的容量，必须修改程序并且再次编译。说明（行为）：在程序执行期间分配内存单元用途：可以根据需要设计可以扩大（和缩小）的数据结构
-
-
-
-
-适用类型
-说明
-
-
-
-
-字符串
-
-
-
-数组
-
-
-
-结构
-可以链接成表、树和其它数据结构
-
-
-
-17.1.1    内存分配函数
-
-
-函数
-说明
-库
-备注
-返回值
-
-
-
-
-malloc
-分配内存快，但是不对内存块进行初始化
-&amp;lt;stdlib.h&amp;gt;
-最常用，不需要对分配的内
-    &hellip;
-      </p>
-      <div class="post-list__meta"><time datetime="2016-05-10T11:38:12.000Z" class="post-list__meta--date date">2016-05-10</time> &#8226; <span class="post-list__meta--tags tags">于&nbsp;
-  <a class="tag-link" href="/tags/c语言程序设计－现代方法/">c语言程序设计－现代方法</a>
-</span><a class="btn-border-small" href="/2016/05/10/17 指针的高级应用/">继续阅读</a></div>
-      <hr class="post-list__divider" />
-    </li>
-  
-    
-    <li>
-      <h2 class="post-list__post-title post-title"><a href="/2016/05/10/16 结构、联合和枚举/" title="link to post.title">16 结构、联合和枚举</a></h2>
-      <p class="excerpt">
-    
-      16.1    结构变量
-结构：结构的特性与数组很不相同。
-
-结构的元素（成员）可能具有不同的类型
-每个结构成员都有名字
-为了选择特殊的结构成员需要知名结构成员的名字而不是它的位置
-
-扩展：大多数语言都提供类似的特性，所以结构可能听起来很舒需。再其它语言中，经常把结构称为纪录（record），把结构的成员称为字段（field）。
-
-16.1.1    结构变量的声明语法：只声明不初始化（会非配内存但成员不会初始化）
-struct&amp;#123;    成员类型 成员名称;    ...&amp;#125;实
-    &hellip;
-      </p>
-      <div class="post-list__meta"><time datetime="2016-05-10T02:49:46.000Z" class="post-list__meta--date date">2016-05-10</time> &#8226; <span class="post-list__meta--tags tags">于&nbsp;
-  <a class="tag-link" href="/tags/c语言程序设计－现代方法/">c语言程序设计－现代方法</a>
-</span><a class="btn-border-small" href="/2016/05/10/16 结构、联合和枚举/">继续阅读</a></div>
-      <hr class="post-list__divider" />
-    </li>
-  
-    
-    <li>
-      <h2 class="post-list__post-title post-title"><a href="/2016/05/10/15 编写大规模程序/" title="link to post.title">15 编写大规模程序</a></h2>
-      <p class="excerpt">
-    
-      15.1    源文件
-说明：可以把程序分割成一定数量的源文件(.c文件和.h文件)。
-
-原文件的扩展名为.c，每个原文件包含程序的部分内容，主要是函数的定义和变量
-一个原文件必须包含名为main的函数，次函数作为程序的起始点
-
-优点：把程序分裂成多个源文件有许多显著的优点。
-
-（易读）把相关的函数和变量集合在单独一个文件中可以帮助明了程序的结构
-（易维护）可以单独对每一个文件进行编译。
-（易复用）当把函数集合在单独的源文件中时，会更容易在其他程序中重新使用这些函数。
-
-
-案例－计算器：
-逆波兰
-    &hellip;
-      </p>
-      <div class="post-list__meta"><time datetime="2016-05-10T02:39:04.000Z" class="post-list__meta--date date">2016-05-10</time> &#8226; <span class="post-list__meta--tags tags">于&nbsp;
-  <a class="tag-link" href="/tags/c语言程序设计－现代方法/">c语言程序设计－现代方法</a>
-</span><a class="btn-border-small" href="/2016/05/10/15 编写大规模程序/">继续阅读</a></div>
-      <hr class="post-list__divider" />
-    </li>
-  
-    
-    <li>
-      <h2 class="post-list__post-title post-title"><a href="/2016/05/10/14 预处理器/" title="link to post.title">14 预处理器</a></h2>
-      <p class="excerpt">
-    
-      
-说明：预处理器是一个小软件，它可以在编译前编辑c程序弊端：
-
-造成那一发现的错误的根源
-经常被错误地用来编写一些几乎不可能读懂的程序
-
-技巧：适度使用预处理功能，减少对于处理器的依赖。扩展：c++中可以进一步限制预处理器的使用。
-
-14.1    预处理器的工作方式
-说明：预处理器的输入是一个c语言程序，程序中可能会包含指令。预处理器会执行这些指令，并在处理过程中删除这些指令。
-
-
-
-特点：
-
-不检查错误
-不删除包含指令的行，而是简单地将它们替换为空
-将每一处注视替换为空格字符（有些与编译器会
-    &hellip;
-      </p>
-      <div class="post-list__meta"><time datetime="2016-05-10T02:28:50.000Z" class="post-list__meta--date date">2016-05-10</time> &#8226; <span class="post-list__meta--tags tags">于&nbsp;
-  <a class="tag-link" href="/tags/c语言程序设计－现代方法/">c语言程序设计－现代方法</a>
-</span><a class="btn-border-small" href="/2016/05/10/14 预处理器/">继续阅读</a></div>
-      <hr class="post-list__divider" />
-    </li>
-  
-    
-    <li>
-      <h2 class="post-list__post-title post-title"><a href="/2016/05/10/13 字符串/" title="link to post.title">13 字符串</a></h2>
-      <p class="excerpt">
-    
-      13.1    字符串字面量
-说明：用一对双括号括起来的字符序列。
-13.1.1    字符串字面量中的转义序列说明：char型字面量中能够使用的转义字符字符串字面量中都可以使用。注意：数字转义字符并不常用，但使用时会需要注意一些char中不会遇到的问题
-
-
-
-
-数字转义字符
-格式
-字符串字面量额外规则
-
-
-
-
-八进制转义字符
-\最多含有3位数字的八进制数字
-在3个数字之后结束，或者在第一个非八进制数字符处结束。
-
-
-十六进制转义字符
-\x十六进制数
-没有字数限制，直到第一个非十六机制数字符截止
-    &hellip;
-      </p>
-      <div class="post-list__meta"><time datetime="2016-05-10T02:11:36.000Z" class="post-list__meta--date date">2016-05-10</time> &#8226; <span class="post-list__meta--tags tags">于&nbsp;
-  <a class="tag-link" href="/tags/c语言程序设计－现代方法/">c语言程序设计－现代方法</a>
-</span><a class="btn-border-small" href="/2016/05/10/13 字符串/">继续阅读</a></div>
-      <hr class="post-list__divider" />
-    </li>
-  
-    
-    <li>
-      <h2 class="post-list__post-title post-title"><a href="/2016/05/09/12 指针和数组/" title="link to post.title">12 指针和数组</a></h2>
-      <p class="excerpt">
-    
-      12.1    指针的算术运算
-说明：指针不仅可以指向普通变量，还可以指向数组元素。
-
-int a[10], *p;p = &amp;amp;a[0];*p = 5;//a[0]值变为5
-3种格式：
-
-指针加上整数
-指针减去整数
-两个指针相减
-
-12.1.1    指针加上整数
-说明：指针p加上整数j产生指向p元素后j个位置的指针。
-
-p = &amp;amp;a[2];q = p + 3;//p指向了数组下标为5的位置
-12.1.2    指针减去整数
-说明：如果p指向数组元素a[i]，那么p-j指向a[i-
-    &hellip;
-      </p>
-      <div class="post-list__meta"><time datetime="2016-05-09T15:24:07.000Z" class="post-list__meta--date date">2016-05-09</time> &#8226; <span class="post-list__meta--tags tags">于&nbsp;
-  <a class="tag-link" href="/tags/c语言程序设计－现代方法/">c语言程序设计－现代方法</a>
-</span><a class="btn-border-small" href="/2016/05/09/12 指针和数组/">继续阅读</a></div>
-      <hr class="post-list__divider" />
-    </li>
-  
-    
-    <li>
-      <h2 class="post-list__post-title post-title"><a href="/2016/05/09/11 指针/" title="link to post.title">11 指针</a></h2>
-      <p class="excerpt">
-    
-      字节(byte)：大多数现代计算机用字节来分割内存，每个字节可以存储8位信息。每个字节都有唯一的地址，用来和内存中的其他字节进行区别。变量在内存中的地址：程序中的每个变量占有一个或多个内存字节，把第一个字节的地址称为变量的地址。指针变量：（pointer variable）虽然可以用整数表示地址，但是其取值单位可能不同于整数的范围，所以一定不能用普通整型变量存储地址。但是，可以用热熟的指针变量存储地址。指针：在用指针变量p存储变量i的地址时，我们说成是p“指向”i。换句话说，指针就是地址，而且指
-    &hellip;
-      </p>
-      <div class="post-list__meta"><time datetime="2016-05-09T15:05:35.000Z" class="post-list__meta--date date">2016-05-09</time> &#8226; <span class="post-list__meta--tags tags">于&nbsp;
-  <a class="tag-link" href="/tags/c语言程序设计－现代方法/">c语言程序设计－现代方法</a>
-</span><a class="btn-border-small" href="/2016/05/09/11 指针/">继续阅读</a></div>
-      <hr class="post-list__divider" />
-    </li>
-  
-    
-    <li>
-      <h2 class="post-list__post-title post-title"><a href="/2016/05/09/10 程序结构/" title="link to post.title">10 程序结构</a></h2>
-      <p class="excerpt">
-    
-      10.1    局部变量局部：在函数体内声明的变量称为相对于函数的局部。存储期限（storage duration）：调用闭合函数时“自动”分配局部变量的存储单元，函数返回时收回分配。特点：
-
-自动存储期限：调用闭合函数时“自动”分配局部变量的存储单元，函数返回时收回分配。在闭合函数返回时收回分配。
-程序快作用域：变量的作用域是可以参考变量的程序文本的部分。从变量声明的点开始一直到闭合函数的末尾。局部变量拥有程序块作用域。
-
-int log2(int n)&amp;#123;   int log = 0
-    &hellip;
-      </p>
-      <div class="post-list__meta"><time datetime="2016-05-09T14:53:52.000Z" class="post-list__meta--date date">2016-05-09</time> &#8226; <span class="post-list__meta--tags tags">于&nbsp;
-  <a class="tag-link" href="/tags/c语言程序设计－现代方法/">c语言程序设计－现代方法</a>
-</span><a class="btn-border-small" href="/2016/05/09/10 程序结构/">继续阅读</a></div>
-      <hr class="post-list__divider" />
-    </li>
-  
-    
-    <li>
-      <h2 class="post-list__post-title post-title"><a href="/2016/05/09/9 函数/" title="link to post.title">9 函数</a></h2>
-      <p class="excerpt">
-    
-      9.1    函数的定义和调用
-语法
-
-返回类型 函数名(形式参数)&amp;#123;  函数体&amp;#125;
-
-简析
-
-
-
-
-组成
-说明
-
-
-
-
-返回类型（return type）
-每次调用函数返回数据的类型，当不需要返回值时使用void
-
-
-形式参数（parameter）
-每一个参数都必须有类型，没有行参使用void
-
-
-函数体（body）
-用{}括起来的执行部分
-
-
-实际参数（argument）
-为了激活（即调用（call））函数，需要写出函数名及跟随其后的实际参数列表
-
-
-
-9.1.1    程
-    &hellip;
-      </p>
-      <div class="post-list__meta"><time datetime="2016-05-09T11:06:38.000Z" class="post-list__meta--date date">2016-05-09</time> &#8226; <span class="post-list__meta--tags tags">于&nbsp;
-  <a class="tag-link" href="/tags/c语言程序设计－现代方法/">c语言程序设计－现代方法</a>
-</span><a class="btn-border-small" href="/2016/05/09/9 函数/">继续阅读</a></div>
-      <hr class="post-list__divider" />
-    </li>
-  
-    
-    <li>
-      <h2 class="post-list__post-title post-title"><a href="/2016/05/09/8 数组/" title="link to post.title">8 数组</a></h2>
-      <p class="excerpt">
-    
-      
-变量：变量分为两种
-
-
-
-
-分类
-说明
-
-
-
-
-标量（scalar）
-标亮具有保存单一数据项的能力
-
-
-聚合（aggregate）
-存储数值的集合（数组(array)和结构(structure)）
-
-
-
-8.1    一维数组
-说明：数组是含有多个数据值的数据结构，并且每个数据之具有相同的数据类型。这些数据类型的值被称为元素（element）。声明数组：需要说明数组元素的类型(任何类型)和数量（任何整数常量表达式）。
-
-int a[10];
-
-技巧：因为程序后面变化时可能需要调整数组的长度，所
-    &hellip;
-      </p>
-      <div class="post-list__meta"><time datetime="2016-05-09T10:48:30.000Z" class="post-list__meta--date date">2016-05-09</time> &#8226; <span class="post-list__meta--tags tags">于&nbsp;
-  <a class="tag-link" href="/tags/c语言程序设计－现代方法/">c语言程序设计－现代方法</a>
-</span><a class="btn-border-small" href="/2016/05/09/8 数组/">继续阅读</a></div>
-      <hr class="post-list__divider" />
-    </li>
-  
-    
-    <li>
-      <h2 class="post-list__post-title post-title"><a href="/2016/05/09/7 基本类型/" title="link to post.title">7 基本类型</a></h2>
-      <p class="excerpt">
-    
-      7.1    整型
-可移植性技巧：对不超过32767的整数采用int或shaort int，其它情况下使用long int。注意：不要部分差别地使用长整型，因为长整型操作比较耗时。
-
-
-
-
-整数类型
-说明
-bit（16位机器）
-bit(32位机器)
-数值范围(16位机器)
-数值范围(32位机器)
-有无符号
-
-
-
-
-short [signed] int
-短整型
-16
-16
--2^15~2^15-1
--2^15~2^15-1
-有
-
-
-short usigned int
-无符号短整型
-16
-16
-0~
-    &hellip;
-      </p>
-      <div class="post-list__meta"><time datetime="2016-05-09T10:39:48.000Z" class="post-list__meta--date date">2016-05-09</time> &#8226; <span class="post-list__meta--tags tags">于&nbsp;
-  <a class="tag-link" href="/tags/c语言程序设计－现代方法/">c语言程序设计－现代方法</a>
-</span><a class="btn-border-small" href="/2016/05/09/7 基本类型/">继续阅读</a></div>
-      <hr class="post-list__divider" />
-    </li>
-  
-    
-    <li>
-      <h2 class="post-list__post-title post-title"><a href="/2016/05/09/6 循环/" title="link to post.title">6 循环</a></h2>
-      <p class="excerpt">
-    
-      6.1    while语句
-语法：while(表达式)语句
-
-圆括号强制要求，循环体外面的大括号不强制要求使用（多个语句除外）
-
-
-i = 10;while(i &amp;gt; 0)&amp;#123;	printf(&quot;T minus %d and counting\n&quot;, i);&amp;#125;
-6.1.1    无限循环
-说明：如果控制表达式的值始终是非零值的话，while语句将无法终止。技巧：c语言程序员有时故意用非零常量作为控制表达式来构造无限循环。
-
-while(1) ...
-6.1.2    程序：
-    &hellip;
-      </p>
-      <div class="post-list__meta"><time datetime="2016-05-09T10:09:39.000Z" class="post-list__meta--date date">2016-05-09</time> &#8226; <span class="post-list__meta--tags tags">于&nbsp;
-  <a class="tag-link" href="/tags/c语言程序设计－现代方法/">c语言程序设计－现代方法</a>
-</span><a class="btn-border-small" href="/2016/05/09/6 循环/">继续阅读</a></div>
-      <hr class="post-list__divider" />
-    </li>
-  
-    
-    <li>
-      <h2 class="post-list__post-title post-title"><a href="/2016/05/09/5 选择语句/" title="link to post.title">5 选择语句</a></h2>
-      <p class="excerpt">
-    
-      
-c语言语句：
-
-
-
-
-分类
-语句
-
-
-
-
-return语句
-return
-
-
-表达式语句
-表达式;
-
-
-选择语句
-if switch
-
-
-循环语句
-while do for
-
-
-跳转语句
-break continue goto
-
-
-复合语句
-几条语句组合成一个
-
-
-空语句
-不执行任何操作
-
-
-
-5.1    逻辑表达式
-注意：c语言没有Boolean类型，表达式的真假依赖于其结果是0或非0。
-
-5.1.1    关系运算符&amp;gt; &amp;lt; &amp;gt;= &amp;lt;=
-
-操作数类型：可以用关系运算
-    &hellip;
-      </p>
-      <div class="post-list__meta"><time datetime="2016-05-09T09:51:28.000Z" class="post-list__meta--date date">2016-05-09</time> &#8226; <span class="post-list__meta--tags tags">于&nbsp;
-  <a class="tag-link" href="/tags/c语言程序设计－现代方法/">c语言程序设计－现代方法</a>
-</span><a class="btn-border-small" href="/2016/05/09/5 选择语句/">继续阅读</a></div>
-      <hr class="post-list__divider" />
-    </li>
-  
-    
-    <li>
-      <h2 class="post-list__post-title post-title"><a href="/2016/05/09/4 表达式/" title="link to post.title">4	表达式</a></h2>
-      <p class="excerpt">
-    
-      4.1    算数运算符一元运算符
-
-
-运算符
-说明
-备注
-
-
-
-
-+
-一元正号运算符
-在经典c中不存在这种运算符，它主要用于强调某数值常量是正数
-
-
--
-一元负号号运算符
-
-
-
-二元运算符
-注意：
-
-除%外，二元运算符允许操作数既可以是整数也可以是浮点数，或者是两者混合
-int类型的操作数和float型操作数混合在一起时，运算结果为float型
-当/和%用于负操作数时，其结果与具体实现有关
-
-由实现定义(implementtion-defined)：软件在特定的平台上编译、链接和执行，行为可能
-    &hellip;
-      </p>
-      <div class="post-list__meta"><time datetime="2016-05-09T08:41:12.000Z" class="post-list__meta--date date">2016-05-09</time> &#8226; <span class="post-list__meta--tags tags">于&nbsp;
-  <a class="tag-link" href="/tags/c语言程序设计－现代方法/">c语言程序设计－现代方法</a>
-</span><a class="btn-border-small" href="/2016/05/09/4 表达式/">继续阅读</a></div>
-      <hr class="post-list__divider" />
-    </li>
-  
-    
-    <li>
-      <h2 class="post-list__post-title post-title"><a href="/2016/05/08/3 格式化输入／输出/" title="link to post.title">3 格式化输入／输出</a></h2>
-      <p class="excerpt">
-    
-      3.1    printf函数
-语法：printf(格式串,表达式1,表达式2,...)转换说明（conversion specification）：以字符%开头，用来表示打印过程中填充了值的占位符。%后面的信息指定了把数值从内部（二进制）形式转换成打印（字符）形式的方法。注意：
-
-单独调用一次prinf函数时可以打印的值的个数没有限制
-c语言编译器不会检测格式串中转换说明的数据是否和输出项的数量相匹配
-也不检测转换说明是否适合要显示项的数据类型
-
-
-3.1.1    转换说明
-格式：%m.pX
-    &hellip;
-      </p>
-      <div class="post-list__meta"><time datetime="2016-05-08T14:48:34.000Z" class="post-list__meta--date date">2016-05-08</time> &#8226; <span class="post-list__meta--tags tags">于&nbsp;
-  <a class="tag-link" href="/tags/c语言程序设计－现代方法/">c语言程序设计－现代方法</a>
-</span><a class="btn-border-small" href="/2016/05/08/3 格式化输入／输出/">继续阅读</a></div>
-      <hr class="post-list__divider" />
-    </li>
-  
-    
-    <li>
-      <h2 class="post-list__post-title post-title"><a href="/2016/05/08/2 c语言基本概念/" title="link to post.title">2 c语言基本概念</a></h2>
-      <p class="excerpt">
-    
-      2    c语言基本概念
-2.1    编写一个简单地c程序2.1.1    程序：显示双关语
-注意：编译器往往要求文件的扩展名为.c
-
-# include &amp;lt;stdio.h&amp;gt;int main()&amp;#123;	printf(&quot;To c, or not to c:that is the question.\n&quot;);&amp;#125;
-2.1.2    编译和链接
-预处理器（processor）：优点类似编辑器，它可以给程序添加内容，也可以对程序进行修改。指令（directive）：以#开头的
-    &hellip;
-      </p>
-      <div class="post-list__meta"><time datetime="2016-05-08T14:24:08.000Z" class="post-list__meta--date date">2016-05-08</time> &#8226; <span class="post-list__meta--tags tags">于&nbsp;
-  <a class="tag-link" href="/tags/c语言程序设计－现代方法/">c语言程序设计－现代方法</a>
-</span><a class="btn-border-small" href="/2016/05/08/2 c语言基本概念/">继续阅读</a></div>
-      <hr class="post-list__divider" />
-    </li>
-  
-    
-    <li>
-      <h2 class="post-list__post-title post-title"><a href="/2016/05/08/1 c语言概述/" title="link to post.title">1 c语言概述</a></h2>
-      <p class="excerpt">
-    
-      1.1    c语言的历史1.1.1    起源
-简介：c语言是在贝尔实验室由Ken Thompson Dennis Ritchie及其同事在开发UNIX操作系统的过程中的副产品。
-
-st=&amp;gt;start: 1969e=&amp;gt;end: 1973op1=&amp;gt;operation: Thompson独自动手使用汇编语言编写了UNIX操作系统的最初版本op2=&amp;gt;operation: Thompson在BCPL语言（基于ALGOL 60）的基础上开发B语言op3=&amp;gt;operation
-    &hellip;
-      </p>
-      <div class="post-list__meta"><time datetime="2016-05-08T13:47:27.000Z" class="post-list__meta--date date">2016-05-08</time> &#8226; <span class="post-list__meta--tags tags">于&nbsp;
-  <a class="tag-link" href="/tags/c语言程序设计－现代方法/">c语言程序设计－现代方法</a>
-</span><a class="btn-border-small" href="/2016/05/08/1 c语言概述/">继续阅读</a></div>
-      <hr class="post-list__divider" />
-    </li>
-  
-    
-  </ol>
-
-
-
+  <p class="site-subtitle">笔记分享</p>
 </div>
 
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
 
+<nav class="site-nav">
+  
 
-            <footer class="footer">
-    <span class="footer__copyright">
-        本站点采用<a href="http://creativecommons.org/licenses/by-nc-sa/4.0/">知识共享署名-非商业性使用-相同方式共享 4.0 国际许可协议</a>
-    </span>
-    <span class="footer__copyright">
-        基于 <a href="http://hexo.io">Hexo</a> 搭建，感谢 <a href="https://pages.github.com/">GitHub Pages</a> 提供免费的托管服务
-    </span>
-    <span class="footer__copyright">
-        &copy; 2016 - 
-        本站修改自<a href="https://github.com/lenbo-ma/hexo-theme-vno" target="_blank">hexo-theme-vno</a>
-    </span>
-</footer>
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
 
-        </div>
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-collapse">
+    <div class="collection-title">
+      <h2 >
+        c语言程序设计－现代方法
+        <small>标签</small>
+      </h2>
     </div>
 
-    <script src="http://cdn.bootcss.com/jquery/2.1.4/jquery.min.js"></script>
-    <script src="/js/main.js"></script>
+    
+      
 
-     
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+    <header class="post-header">
+
+      <h1 class="post-title">
+        
+            <a class="post-title-link" href="/2016/05/11/25 国际化特性/" itemprop="url">
+              
+                <span itemprop="name">25 国际化特性</span>
+              
+            </a>
+        
+      </h1>
+
+      <div class="post-meta">
+        <time class="post-time" itemprop="dateCreated"
+              datetime="2016-05-11T21:30:56+08:00"
+              content="2016-05-11" >
+          05-11
+        </time>
+      </div>
+
+    </header>
+  </article>
+
+
+    
+      
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+    <header class="post-header">
+
+      <h1 class="post-title">
+        
+            <a class="post-title-link" href="/2016/05/11/26 其它库函数/" itemprop="url">
+              
+                <span itemprop="name">26 其他库函数</span>
+              
+            </a>
+        
+      </h1>
+
+      <div class="post-meta">
+        <time class="post-time" itemprop="dateCreated"
+              datetime="2016-05-11T21:25:08+08:00"
+              content="2016-05-11" >
+          05-11
+        </time>
+      </div>
+
+    </header>
+  </article>
+
+
+    
+      
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+    <header class="post-header">
+
+      <h1 class="post-title">
+        
+            <a class="post-title-link" href="/2016/05/11/24 错误处理/" itemprop="url">
+              
+                <span itemprop="name">24 错误处理</span>
+              
+            </a>
+        
+      </h1>
+
+      <div class="post-meta">
+        <time class="post-time" itemprop="dateCreated"
+              datetime="2016-05-11T11:42:41+08:00"
+              content="2016-05-11" >
+          05-11
+        </time>
+      </div>
+
+    </header>
+  </article>
+
+
+    
+      
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+    <header class="post-header">
+
+      <h1 class="post-title">
+        
+            <a class="post-title-link" href="/2016/05/10/23 库对数值和字符数据的支持/" itemprop="url">
+              
+                <span itemprop="name">23 库对数值和字符数据的支持</span>
+              
+            </a>
+        
+      </h1>
+
+      <div class="post-meta">
+        <time class="post-time" itemprop="dateCreated"
+              datetime="2016-05-10T23:31:50+08:00"
+              content="2016-05-10" >
+          05-10
+        </time>
+      </div>
+
+    </header>
+  </article>
+
+
+    
+      
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+    <header class="post-header">
+
+      <h1 class="post-title">
+        
+            <a class="post-title-link" href="/2016/05/10/22 输入／输出/" itemprop="url">
+              
+                <span itemprop="name">22 输入/输出</span>
+              
+            </a>
+        
+      </h1>
+
+      <div class="post-meta">
+        <time class="post-time" itemprop="dateCreated"
+              datetime="2016-05-10T23:01:02+08:00"
+              content="2016-05-10" >
+          05-10
+        </time>
+      </div>
+
+    </header>
+  </article>
+
+
+    
+      
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+    <header class="post-header">
+
+      <h1 class="post-title">
+        
+            <a class="post-title-link" href="/2016/05/10/21 标准库/" itemprop="url">
+              
+                <span itemprop="name">21	标准库</span>
+              
+            </a>
+        
+      </h1>
+
+      <div class="post-meta">
+        <time class="post-time" itemprop="dateCreated"
+              datetime="2016-05-10T22:33:07+08:00"
+              content="2016-05-10" >
+          05-10
+        </time>
+      </div>
+
+    </header>
+  </article>
+
+
+    
+      
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+    <header class="post-header">
+
+      <h1 class="post-title">
+        
+            <a class="post-title-link" href="/2016/05/10/20 低级程序设计/" itemprop="url">
+              
+                <span itemprop="name">20 低级程序设计</span>
+              
+            </a>
+        
+      </h1>
+
+      <div class="post-meta">
+        <time class="post-time" itemprop="dateCreated"
+              datetime="2016-05-10T22:05:58+08:00"
+              content="2016-05-10" >
+          05-10
+        </time>
+      </div>
+
+    </header>
+  </article>
+
+
+    
+      
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+    <header class="post-header">
+
+      <h1 class="post-title">
+        
+            <a class="post-title-link" href="/2016/05/10/19 程序设计/" itemprop="url">
+              
+                <span itemprop="name">19 程序设计</span>
+              
+            </a>
+        
+      </h1>
+
+      <div class="post-meta">
+        <time class="post-time" itemprop="dateCreated"
+              datetime="2016-05-10T22:00:04+08:00"
+              content="2016-05-10" >
+          05-10
+        </time>
+      </div>
+
+    </header>
+  </article>
+
+
+    
+      
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+    <header class="post-header">
+
+      <h1 class="post-title">
+        
+            <a class="post-title-link" href="/2016/05/10/18 声明/" itemprop="url">
+              
+                <span itemprop="name">18 声明</span>
+              
+            </a>
+        
+      </h1>
+
+      <div class="post-meta">
+        <time class="post-time" itemprop="dateCreated"
+              datetime="2016-05-10T20:29:30+08:00"
+              content="2016-05-10" >
+          05-10
+        </time>
+      </div>
+
+    </header>
+  </article>
+
+
+    
+      
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+    <header class="post-header">
+
+      <h1 class="post-title">
+        
+            <a class="post-title-link" href="/2016/05/10/17 指针的高级应用/" itemprop="url">
+              
+                <span itemprop="name">17 指针的高级应用</span>
+              
+            </a>
+        
+      </h1>
+
+      <div class="post-meta">
+        <time class="post-time" itemprop="dateCreated"
+              datetime="2016-05-10T19:38:12+08:00"
+              content="2016-05-10" >
+          05-10
+        </time>
+      </div>
+
+    </header>
+  </article>
+
+
+    
+      
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+    <header class="post-header">
+
+      <h1 class="post-title">
+        
+            <a class="post-title-link" href="/2016/05/10/16 结构、联合和枚举/" itemprop="url">
+              
+                <span itemprop="name">16 结构、联合和枚举</span>
+              
+            </a>
+        
+      </h1>
+
+      <div class="post-meta">
+        <time class="post-time" itemprop="dateCreated"
+              datetime="2016-05-10T10:49:46+08:00"
+              content="2016-05-10" >
+          05-10
+        </time>
+      </div>
+
+    </header>
+  </article>
+
+
+    
+      
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+    <header class="post-header">
+
+      <h1 class="post-title">
+        
+            <a class="post-title-link" href="/2016/05/10/15 编写大规模程序/" itemprop="url">
+              
+                <span itemprop="name">15 编写大规模程序</span>
+              
+            </a>
+        
+      </h1>
+
+      <div class="post-meta">
+        <time class="post-time" itemprop="dateCreated"
+              datetime="2016-05-10T10:39:04+08:00"
+              content="2016-05-10" >
+          05-10
+        </time>
+      </div>
+
+    </header>
+  </article>
+
+
+    
+      
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+    <header class="post-header">
+
+      <h1 class="post-title">
+        
+            <a class="post-title-link" href="/2016/05/10/14 预处理器/" itemprop="url">
+              
+                <span itemprop="name">14 预处理器</span>
+              
+            </a>
+        
+      </h1>
+
+      <div class="post-meta">
+        <time class="post-time" itemprop="dateCreated"
+              datetime="2016-05-10T10:28:50+08:00"
+              content="2016-05-10" >
+          05-10
+        </time>
+      </div>
+
+    </header>
+  </article>
+
+
+    
+      
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+    <header class="post-header">
+
+      <h1 class="post-title">
+        
+            <a class="post-title-link" href="/2016/05/10/13 字符串/" itemprop="url">
+              
+                <span itemprop="name">13 字符串</span>
+              
+            </a>
+        
+      </h1>
+
+      <div class="post-meta">
+        <time class="post-time" itemprop="dateCreated"
+              datetime="2016-05-10T10:11:36+08:00"
+              content="2016-05-10" >
+          05-10
+        </time>
+      </div>
+
+    </header>
+  </article>
+
+
+    
+      
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+    <header class="post-header">
+
+      <h1 class="post-title">
+        
+            <a class="post-title-link" href="/2016/05/09/12 指针和数组/" itemprop="url">
+              
+                <span itemprop="name">12 指针和数组</span>
+              
+            </a>
+        
+      </h1>
+
+      <div class="post-meta">
+        <time class="post-time" itemprop="dateCreated"
+              datetime="2016-05-09T23:24:07+08:00"
+              content="2016-05-09" >
+          05-09
+        </time>
+      </div>
+
+    </header>
+  </article>
+
+
+    
+      
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+    <header class="post-header">
+
+      <h1 class="post-title">
+        
+            <a class="post-title-link" href="/2016/05/09/11 指针/" itemprop="url">
+              
+                <span itemprop="name">11 指针</span>
+              
+            </a>
+        
+      </h1>
+
+      <div class="post-meta">
+        <time class="post-time" itemprop="dateCreated"
+              datetime="2016-05-09T23:05:35+08:00"
+              content="2016-05-09" >
+          05-09
+        </time>
+      </div>
+
+    </header>
+  </article>
+
+
+    
+      
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+    <header class="post-header">
+
+      <h1 class="post-title">
+        
+            <a class="post-title-link" href="/2016/05/09/10 程序结构/" itemprop="url">
+              
+                <span itemprop="name">10 程序结构</span>
+              
+            </a>
+        
+      </h1>
+
+      <div class="post-meta">
+        <time class="post-time" itemprop="dateCreated"
+              datetime="2016-05-09T22:53:52+08:00"
+              content="2016-05-09" >
+          05-09
+        </time>
+      </div>
+
+    </header>
+  </article>
+
+
+    
+      
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+    <header class="post-header">
+
+      <h1 class="post-title">
+        
+            <a class="post-title-link" href="/2016/05/09/9 函数/" itemprop="url">
+              
+                <span itemprop="name">9 函数</span>
+              
+            </a>
+        
+      </h1>
+
+      <div class="post-meta">
+        <time class="post-time" itemprop="dateCreated"
+              datetime="2016-05-09T19:06:38+08:00"
+              content="2016-05-09" >
+          05-09
+        </time>
+      </div>
+
+    </header>
+  </article>
+
+
+    
+      
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+    <header class="post-header">
+
+      <h1 class="post-title">
+        
+            <a class="post-title-link" href="/2016/05/09/8 数组/" itemprop="url">
+              
+                <span itemprop="name">8 数组</span>
+              
+            </a>
+        
+      </h1>
+
+      <div class="post-meta">
+        <time class="post-time" itemprop="dateCreated"
+              datetime="2016-05-09T18:48:30+08:00"
+              content="2016-05-09" >
+          05-09
+        </time>
+      </div>
+
+    </header>
+  </article>
+
+
+    
+      
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+    <header class="post-header">
+
+      <h1 class="post-title">
+        
+            <a class="post-title-link" href="/2016/05/09/7 基本类型/" itemprop="url">
+              
+                <span itemprop="name">7 基本类型</span>
+              
+            </a>
+        
+      </h1>
+
+      <div class="post-meta">
+        <time class="post-time" itemprop="dateCreated"
+              datetime="2016-05-09T18:39:48+08:00"
+              content="2016-05-09" >
+          05-09
+        </time>
+      </div>
+
+    </header>
+  </article>
+
+
+    
+      
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+    <header class="post-header">
+
+      <h1 class="post-title">
+        
+            <a class="post-title-link" href="/2016/05/09/6 循环/" itemprop="url">
+              
+                <span itemprop="name">6 循环</span>
+              
+            </a>
+        
+      </h1>
+
+      <div class="post-meta">
+        <time class="post-time" itemprop="dateCreated"
+              datetime="2016-05-09T18:09:39+08:00"
+              content="2016-05-09" >
+          05-09
+        </time>
+      </div>
+
+    </header>
+  </article>
+
+
+    
+      
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+    <header class="post-header">
+
+      <h1 class="post-title">
+        
+            <a class="post-title-link" href="/2016/05/09/5 选择语句/" itemprop="url">
+              
+                <span itemprop="name">5 选择语句</span>
+              
+            </a>
+        
+      </h1>
+
+      <div class="post-meta">
+        <time class="post-time" itemprop="dateCreated"
+              datetime="2016-05-09T17:51:28+08:00"
+              content="2016-05-09" >
+          05-09
+        </time>
+      </div>
+
+    </header>
+  </article>
+
+
+    
+      
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+    <header class="post-header">
+
+      <h1 class="post-title">
+        
+            <a class="post-title-link" href="/2016/05/09/4 表达式/" itemprop="url">
+              
+                <span itemprop="name">4	表达式</span>
+              
+            </a>
+        
+      </h1>
+
+      <div class="post-meta">
+        <time class="post-time" itemprop="dateCreated"
+              datetime="2016-05-09T16:41:12+08:00"
+              content="2016-05-09" >
+          05-09
+        </time>
+      </div>
+
+    </header>
+  </article>
+
+
+    
+      
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+    <header class="post-header">
+
+      <h1 class="post-title">
+        
+            <a class="post-title-link" href="/2016/05/08/3 格式化输入／输出/" itemprop="url">
+              
+                <span itemprop="name">3 格式化输入／输出</span>
+              
+            </a>
+        
+      </h1>
+
+      <div class="post-meta">
+        <time class="post-time" itemprop="dateCreated"
+              datetime="2016-05-08T22:48:34+08:00"
+              content="2016-05-08" >
+          05-08
+        </time>
+      </div>
+
+    </header>
+  </article>
+
+
+    
+      
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+    <header class="post-header">
+
+      <h1 class="post-title">
+        
+            <a class="post-title-link" href="/2016/05/08/2 c语言基本概念/" itemprop="url">
+              
+                <span itemprop="name">2 c语言基本概念</span>
+              
+            </a>
+        
+      </h1>
+
+      <div class="post-meta">
+        <time class="post-time" itemprop="dateCreated"
+              datetime="2016-05-08T22:24:08+08:00"
+              content="2016-05-08" >
+          05-08
+        </time>
+      </div>
+
+    </header>
+  </article>
+
+
+    
+      
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+    <header class="post-header">
+
+      <h1 class="post-title">
+        
+            <a class="post-title-link" href="/2016/05/08/1 c语言概述/" itemprop="url">
+              
+                <span itemprop="name">1 c语言概述</span>
+              
+            </a>
+        
+      </h1>
+
+      <div class="post-meta">
+        <time class="post-time" itemprop="dateCreated"
+              datetime="2016-05-08T21:47:27+08:00"
+              content="2016-05-08" >
+          05-08
+        </time>
+      </div>
+
+    </header>
+  </article>
+
+
+    
+  </div>
+
+  
+
+
+          </div>
+          
+
+
+          
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+
+      <section class="site-overview sidebar-panel  sidebar-panel-active ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.gif"
+               alt="Sean" />
+          <p class="site-author-name" itemprop="name">Sean</p>
+          <p class="site-description motion-element" itemprop="description">整理了一批过去一段时间ios相关的笔记，其它的笔记也整理下？源码分享出来？再说吧...反正也只有自己会看吧...</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">85</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">10</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+      </section>
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Sean</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Muse
+  </a>
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+  
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+  
+  
+
+  
+
+  
+
+  
+
 </body>
 </html>

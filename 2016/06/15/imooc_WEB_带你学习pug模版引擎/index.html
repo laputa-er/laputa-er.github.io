@@ -1,181 +1,360 @@
-<!DOCTYPE html>
-<html>
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion">
 <head>
-    <meta charset="utf-8"/>
-    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
     
-    <title>带你学习pug模版引擎 | Sean</title>
-    <meta name="renderer" content="webkit">
-    <meta name="HandheldFriendly" content="True">
-    <meta name="MobileOptimized" content="320">
-    <meta name="apple-mobile-web-app-capable" content="yes">
-    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-
-    <meta name="description" content="do things for fun">
-
-    <meta name="twitter:card" content="summary">
-    <meta name="twitter:title" content="带你学习pug模版引擎 | Sean">
-    <meta name="twitter:description" content="do things for fun">
-
-    <meta property="og:type" content="article">
-    <meta property="og:title" content="带你学习pug模版引擎 | Sean">
-    <meta property="og:description" content="do things for fun">
-
     
-    <meta name="author" content="Sean">
-    
-    <link rel="stylesheet" href="/css/vno.css">
-    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css">
+  
 
-    
-    <link rel="icon" href="/images/sean.png">
-    
+  
 
-    <meta name="generator" content="hexo"/>
-    
+  
 
-    <link rel="canonical" href="http://laputa-er.github.io/2016/06/15/imooc_WEB_带你学习pug模版引擎/"/>
+  
 
+  
+
+  
     
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="imooc,pug," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1" />
+
+
+
+
+
+
+<meta name="description" content="1    课程简介
+模版引擎：将动态的数据和静态的页面糅合在一起的实现机制或技术流行的模版：
+
+
+
+
+实现语言
+模版引擎例子
+
+
+
+
+PHP
+Smarty、SimpleTemplate、 Xtemplate、 Savant
+
+
+Java
+Velocity、 FreeMarker、 Jbyte
+
+
+C#
+Dotliquid、 SharpDom、 Razor
+
+
+JavaScript
+Mustache">
+<meta property="og:type" content="article">
+<meta property="og:title" content="带你学习pug模版引擎">
+<meta property="og:url" content="http://laputa-er.github.io/2016/06/15/imooc_WEB_带你学习pug模版引擎/index.html">
+<meta property="og:site_name" content="Sean">
+<meta property="og:description" content="1    课程简介
+模版引擎：将动态的数据和静态的页面糅合在一起的实现机制或技术流行的模版：
+
+
+
+
+实现语言
+模版引擎例子
+
+
+
+
+PHP
+Smarty、SimpleTemplate、 Xtemplate、 Savant
+
+
+Java
+Velocity、 FreeMarker、 Jbyte
+
+
+C#
+Dotliquid、 SharpDom、 Razor
+
+
+JavaScript
+Mustache">
+<meta property="og:image" content="http://o6ul1xz4z.bkt.clouddn.com/img/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202016-04-18%20%E4%B8%8B%E5%8D%8810.40.40.png">
+<meta property="og:image" content="http://o6ul1xz4z.bkt.clouddn.com/img/1461486682614.png">
+<meta property="og:updated_time" content="2016-06-15T14:52:07.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="带你学习pug模版引擎">
+<meta name="twitter:description" content="1    课程简介
+模版引擎：将动态的数据和静态的页面糅合在一起的实现机制或技术流行的模版：
+
+
+
+
+实现语言
+模版引擎例子
+
+
+
+
+PHP
+Smarty、SimpleTemplate、 Xtemplate、 Savant
+
+
+Java
+Velocity、 FreeMarker、 Jbyte
+
+
+C#
+Dotliquid、 SharpDom、 Razor
+
+
+JavaScript
+Mustache">
+<meta name="twitter:image" content="http://o6ul1xz4z.bkt.clouddn.com/img/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202016-04-18%20%E4%B8%8B%E5%8D%8810.40.40.png">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Muse',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 0,
+      author: '博主'
+    }
+  };
+</script>
+
+
+
+
+  <link rel="canonical" href="http://laputa-er.github.io/2016/06/15/imooc_WEB_带你学习pug模版引擎/"/>
+
+  <title> 带你学习pug模版引擎 | Sean </title>
 </head>
 
-<body class="home-template no-js">
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
 
-    <span class="mobile btn-mobile-menu">
-        <i class="fa fa-list btn-mobile-menu__icon"></i>
-        <i class="fa fa-angle-up btn-mobile-close__icon hidden"></i>
-    </span>
+  
+
+
+
+
+
+
+
+
+
+
+  
+  
     
-<header class="panel-cover panel-cover--collapsed" style="background-image: url(/images/mengxiang.jpg)">
-  <div class="panel-main">
-    <div class="panel-main__inner panel-inverted">
-      <span class="panel-arrow panel-left-arrow disabled">
-        <i class="fa fa-angle-left"></i>
-      </span>
-      <span class="panel-arrow panel-right-arrow">
-        <i class="fa fa-angle-right"></i>
-      </span>
-
-      <div class="panel-animation-container">
-        <div class="panel-content panel-main__content">
-            <a href="/" title="前往 Sean 的主页"><img src="/images/sean.png" width="80" alt="Sean logo" class="panel-cover__logo logo" /></a>
-            <h1 class="panel-cover__title panel-title"><a href="/" title="link to homepage for Sean">Sean</a></h1>
-            
-            <span class="panel-cover__subtitle panel-subtitle">笔记分享</span>
-            
-            <hr class="panel-cover__divider" />
-            <p class="panel-cover__description">整理了一批过去一段时间ios相关的笔记，其它的笔记也整理下？源码分享出来？再说吧...反正也只有自己会看吧...</p>
-            <hr class="panel-cover__divider panel-cover__divider--secondary" />
-
-            <div class="navigation-wrapper">
-              <div>
-              <nav class="cover-navigation cover-navigation--primary">
-                <ul class="navigation">
-                  <li class="navigation__item"><a href="/#blog" title="访问笔记" class="blog-button">笔记</a></li>
-                  <li style="display: none;">
-                    <textarea>
-                      
-                        <li class="navigation__item"><a href="/projects">项目作品</a></li>
-                      
-                        <li class="navigation__item"><a href="/aboutme">关于我</a></li>
-                      
-                    </textarea>
-                  </li>
-                </ul>
-              </nav>
-              </div>
-              <div>
-              <nav class="cover-navigation navigation--social">
-  <ul class="navigation">
-
-  <!-- Weibo-->
   
 
-  <!-- Github -->
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
   
 
-<!-- Stack Overflow -->
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">Sean</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">笔记分享</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
         
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
 
-  <!-- Google Plus -->
+      
+    </ul>
   
 
-<!-- Facebook -->
-
   
-<!-- Twitter -->
-
-  
-
-
-
-  </ul>
 </nav>
 
-              </div>
-            </div>
+ </div>
+    </header>
 
-          </div>
-          <div class="panel-content panel-tagcloud_content">
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
             
-              <aside id="sidebar">
-  
+
+  <div id="posts" class="posts-expand">
     
-  <div class="widget-wrap">
-    <h3 class="widget-title">笔记分类</h3>
-    <div class="widget tagcloud">
-      <a href="/tags/Objective-C基础教程第二版/">Objective-C基础教程第二版</a> <a href="/tags/The-Swift-Program-Language-2/">The Swift Program Language 2</a> <a href="/tags/c语言程序设计－现代方法/">c语言程序设计－现代方法</a> <a href="/tags/iOS/">iOS</a> <a href="/tags/imooc/">imooc</a> <a href="/tags/pug/">pug</a> <a href="/tags/极客学院-ios中级/">极客学院_ios中级</a> <a href="/tags/极客学院-ios初级/">极客学院_ios初级</a> <a href="/tags/极客学院-ios高级/">极客学院_ios高级</a>
-    </div>
-  </div>
 
   
-</aside>
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
             
-          </div>
-        </div>  
+            
+              
+                带你学习pug模版引擎
+              
+            
+          </h1>
+        
 
-      </div>
-      <div class="panel-cover--overlay cover-blue"></div>
-  </div>
-  </header>
-    
-    <div class="content-wrapper">
-        <div class="content-wrapper__inner">
-            <article class="post-container post-container--single">
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-06-15T22:23:30+08:00" content="2016-06-15">
+              2016-06-15
+            </time>
+          </span>
 
-  <header class="post-header">
-    <div class="post-meta">
-      <time datetime="2016-06-15T14:23:30.000Z" class="post-list__meta--date date">2016-06-15</time> &#8226; <span class="post-meta__tags tags">于&nbsp;
-  <a class="tag-link" href="/tags/imooc/">imooc</a>, <a class="tag-link" href="/tags/pug/">pug</a>
-</span>
-    </div>
-    <h1 class="post-title">带你学习pug模版引擎</h1>
-  </header>
+          
 
-  <section class="post">
-    <!-- Table of Contents -->
-    
-    <div id="top-toc">
-      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#1-课程简介"><span class="toc-number">1.</span> <span class="toc-text">1    课程简介</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-1-pug环境配置"><span class="toc-number">1.1.</span> <span class="toc-text">1.1    pug环境配置</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Mac"><span class="toc-number">1.1.1.</span> <span class="toc-text">Mac</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Windows"><span class="toc-number">1.1.2.</span> <span class="toc-text">Windows</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-2-pug特点"><span class="toc-number">1.2.</span> <span class="toc-text">1.2    pug特点</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-3-pug的诞生"><span class="toc-number">1.3.</span> <span class="toc-text">1.3    pug的诞生</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-4-命令行中的-pug"><span class="toc-number">1.3.1.</span> <span class="toc-text">1.4    命令行中的 pug</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#2-pug基础语法知识"><span class="toc-number">2.</span> <span class="toc-text">2    pug基础语法知识</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#2-1-文档声明和头尾标签"><span class="toc-number">2.1.</span> <span class="toc-text">2.1    文档声明和头尾标签</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-2-实现命令行实时编译"><span class="toc-number">2.2.</span> <span class="toc-text">2.2    实现命令行实时编译</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-3-标签语法"><span class="toc-number">2.3.</span> <span class="toc-text">2.3    标签语法</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-4-属性文本和值"><span class="toc-number">2.4.</span> <span class="toc-text">2.4    属性文本和值</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#2-5-混合的成段文本和标签"><span class="toc-number">3.</span> <span class="toc-text">2.5        混合的成段文本和标签</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#2-6-注释和条件注释"><span class="toc-number">3.1.</span> <span class="toc-text">2.6    注释和条件注释</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#2-6-1-注释"><span class="toc-number">3.1.1.</span> <span class="toc-text">2.6.1    注释</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-6-2-条件注释"><span class="toc-number">3.1.2.</span> <span class="toc-text">2.6.2    条件注释</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-7-变量声明与数据传递"><span class="toc-number">3.2.</span> <span class="toc-text">2.7    变量声明与数据传递</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#2-7-1-变量声明与使用"><span class="toc-number">3.2.1.</span> <span class="toc-text">2.7.1        变量声明与使用</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-7-2-数据传递"><span class="toc-number">3.2.2.</span> <span class="toc-text">2.7.2    数据传递</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-8-安全转义与非转义"><span class="toc-number">3.3.</span> <span class="toc-text">2.8    安全转义与非转义</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-9-流程代码for-in-each-in-while"><span class="toc-number">3.4.</span> <span class="toc-text">2.9    流程代码for-in /each-in / while</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#2-9-1-for-in"><span class="toc-number">3.4.1.</span> <span class="toc-text">2.9.1    for-in</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-9-2-each-in"><span class="toc-number">3.4.2.</span> <span class="toc-text">2.9.2    each-in</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-9-3-while"><span class="toc-number">3.4.3.</span> <span class="toc-text">2.9.3    while</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-10-流程代码-if-else-unless"><span class="toc-number">3.5.</span> <span class="toc-text">2.10    流程代码 if - else/unless</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#2-10-1-if-else"><span class="toc-number">3.5.1.</span> <span class="toc-text">2.10.1    if-else</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-10-2-unless"><span class="toc-number">3.5.2.</span> <span class="toc-text">2.10.2    unless</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-10-3-case-when"><span class="toc-number">3.5.3.</span> <span class="toc-text">2.10.3    case-when</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-11-神奇的mixins"><span class="toc-number">3.6.</span> <span class="toc-text">2.11    神奇的mixins</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#2-11-1-参数"><span class="toc-number">3.6.1.</span> <span class="toc-text">2.11.1    参数</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#2-11-1-1-无参数"><span class="toc-number">3.6.1.1.</span> <span class="toc-text">2.11.1.1    无参数</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-22-1-2-有参数"><span class="toc-number">3.6.1.2.</span> <span class="toc-text">2.22.1.2    有参数</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-22-1-3-可变参数"><span class="toc-number">3.6.1.3.</span> <span class="toc-text">2.22.1.3    可变参数</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-11-2-嵌套"><span class="toc-number">3.6.2.</span> <span class="toc-text">2.11.2    嵌套</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-11-3-块包含"><span class="toc-number">3.6.3.</span> <span class="toc-text">2.11.3    块包含</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-11-4-传递属性"><span class="toc-number">3.6.4.</span> <span class="toc-text">2.11.4    传递属性</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#3-pug进级"><span class="toc-number">4.</span> <span class="toc-text">3    pug进级</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#3-1-模版的继承"><span class="toc-number">4.1.</span> <span class="toc-text">3.1    模版的继承</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#3-1-1-案例源码"><span class="toc-number">4.1.1.</span> <span class="toc-text">3.1.1    案例源码</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-1-2-编译后"><span class="toc-number">4.1.2.</span> <span class="toc-text">3.1.2    编译后</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-2-模版的包含"><span class="toc-number">4.2.</span> <span class="toc-text">3.2    模版的包含</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#3-2-1-包含其它-pug-文件"><span class="toc-number">4.2.1.</span> <span class="toc-text">3.2.1    包含其它 pug 文件</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-2-2-包含-html-文件"><span class="toc-number">4.2.2.</span> <span class="toc-text">3.2.2    包含 html 文件</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#原文件"><span class="toc-number">4.2.2.1.</span> <span class="toc-text">原文件</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#编译后"><span class="toc-number">4.2.2.2.</span> <span class="toc-text">编译后</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-3-render及renderFile方法"><span class="toc-number">4.3.</span> <span class="toc-text">3.3    render及renderFile方法</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#3-3-1-pug-API"><span class="toc-number">4.3.1.</span> <span class="toc-text">3.3.1    pug API</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-3-2-compile、render、renderFile"><span class="toc-number">4.3.2.</span> <span class="toc-text">3.3.2    compile、render、renderFile</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-4-过滤器-filters"><span class="toc-number">4.4.</span> <span class="toc-text">3.4    过滤器 filters</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#3-4-1-markdown"><span class="toc-number">4.4.1.</span> <span class="toc-text">3.4.1    markdown</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-4-2-less"><span class="toc-number">4.4.2.</span> <span class="toc-text">3.4.2    less</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-4-3-coffee-script"><span class="toc-number">4.4.3.</span> <span class="toc-text">3.4.3    coffee-script</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-5-runtime环境下使用pug"><span class="toc-number">4.5.</span> <span class="toc-text">3.5    runtime环境下使用pug</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-6-利用html2pug反编译"><span class="toc-number">4.6.</span> <span class="toc-text">3.6    利用html2pug反编译</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#命令行中使用"><span class="toc-number">4.6.1.</span> <span class="toc-text">命令行中使用</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#node端使用"><span class="toc-number">4.6.2.</span> <span class="toc-text">node端使用</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#4-pug缺点及如何取舍"><span class="toc-number">5.</span> <span class="toc-text">4    pug缺点及如何取舍</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#4-1-Pug-的缺点"><span class="toc-number">5.1.</span> <span class="toc-text">4.1    Pug 的缺点</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-2-选择的因素"><span class="toc-number">5.2.</span> <span class="toc-text">4.2    选择的因素</span></a></li></ol></li></ol>
-    </div>
-    <div id="tocShell"></div>
-    <div id="toc" class="toc-article">
-      <div class="btn-group drag-me">
-        <i class="social fa fa-ellipsis-v"></i>
-      </div>
-      <div class="btn-group dropup-catelog">
-        <button class="btn"><i class="social fa fa-list-ol"></i></button>
-        <div class="catelog-content">
-          <p class="toc-title-wrap">
-            <strong class="toc-title">文章目录</strong>
-          </p>
-          <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#1-课程简介"><span class="toc-number">1.</span> <span class="toc-text">1    课程简介</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-1-pug环境配置"><span class="toc-number">1.1.</span> <span class="toc-text">1.1    pug环境配置</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Mac"><span class="toc-number">1.1.1.</span> <span class="toc-text">Mac</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Windows"><span class="toc-number">1.1.2.</span> <span class="toc-text">Windows</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-2-pug特点"><span class="toc-number">1.2.</span> <span class="toc-text">1.2    pug特点</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-3-pug的诞生"><span class="toc-number">1.3.</span> <span class="toc-text">1.3    pug的诞生</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-4-命令行中的-pug"><span class="toc-number">1.3.1.</span> <span class="toc-text">1.4    命令行中的 pug</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#2-pug基础语法知识"><span class="toc-number">2.</span> <span class="toc-text">2    pug基础语法知识</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#2-1-文档声明和头尾标签"><span class="toc-number">2.1.</span> <span class="toc-text">2.1    文档声明和头尾标签</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-2-实现命令行实时编译"><span class="toc-number">2.2.</span> <span class="toc-text">2.2    实现命令行实时编译</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-3-标签语法"><span class="toc-number">2.3.</span> <span class="toc-text">2.3    标签语法</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-4-属性文本和值"><span class="toc-number">2.4.</span> <span class="toc-text">2.4    属性文本和值</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#2-5-混合的成段文本和标签"><span class="toc-number">3.</span> <span class="toc-text">2.5        混合的成段文本和标签</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#2-6-注释和条件注释"><span class="toc-number">3.1.</span> <span class="toc-text">2.6    注释和条件注释</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#2-6-1-注释"><span class="toc-number">3.1.1.</span> <span class="toc-text">2.6.1    注释</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-6-2-条件注释"><span class="toc-number">3.1.2.</span> <span class="toc-text">2.6.2    条件注释</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-7-变量声明与数据传递"><span class="toc-number">3.2.</span> <span class="toc-text">2.7    变量声明与数据传递</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#2-7-1-变量声明与使用"><span class="toc-number">3.2.1.</span> <span class="toc-text">2.7.1        变量声明与使用</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-7-2-数据传递"><span class="toc-number">3.2.2.</span> <span class="toc-text">2.7.2    数据传递</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-8-安全转义与非转义"><span class="toc-number">3.3.</span> <span class="toc-text">2.8    安全转义与非转义</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-9-流程代码for-in-each-in-while"><span class="toc-number">3.4.</span> <span class="toc-text">2.9    流程代码for-in /each-in / while</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#2-9-1-for-in"><span class="toc-number">3.4.1.</span> <span class="toc-text">2.9.1    for-in</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-9-2-each-in"><span class="toc-number">3.4.2.</span> <span class="toc-text">2.9.2    each-in</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-9-3-while"><span class="toc-number">3.4.3.</span> <span class="toc-text">2.9.3    while</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-10-流程代码-if-else-unless"><span class="toc-number">3.5.</span> <span class="toc-text">2.10    流程代码 if - else/unless</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#2-10-1-if-else"><span class="toc-number">3.5.1.</span> <span class="toc-text">2.10.1    if-else</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-10-2-unless"><span class="toc-number">3.5.2.</span> <span class="toc-text">2.10.2    unless</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-10-3-case-when"><span class="toc-number">3.5.3.</span> <span class="toc-text">2.10.3    case-when</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-11-神奇的mixins"><span class="toc-number">3.6.</span> <span class="toc-text">2.11    神奇的mixins</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#2-11-1-参数"><span class="toc-number">3.6.1.</span> <span class="toc-text">2.11.1    参数</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#2-11-1-1-无参数"><span class="toc-number">3.6.1.1.</span> <span class="toc-text">2.11.1.1    无参数</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-22-1-2-有参数"><span class="toc-number">3.6.1.2.</span> <span class="toc-text">2.22.1.2    有参数</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-22-1-3-可变参数"><span class="toc-number">3.6.1.3.</span> <span class="toc-text">2.22.1.3    可变参数</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-11-2-嵌套"><span class="toc-number">3.6.2.</span> <span class="toc-text">2.11.2    嵌套</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-11-3-块包含"><span class="toc-number">3.6.3.</span> <span class="toc-text">2.11.3    块包含</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-11-4-传递属性"><span class="toc-number">3.6.4.</span> <span class="toc-text">2.11.4    传递属性</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#3-pug进级"><span class="toc-number">4.</span> <span class="toc-text">3    pug进级</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#3-1-模版的继承"><span class="toc-number">4.1.</span> <span class="toc-text">3.1    模版的继承</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#3-1-1-案例源码"><span class="toc-number">4.1.1.</span> <span class="toc-text">3.1.1    案例源码</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-1-2-编译后"><span class="toc-number">4.1.2.</span> <span class="toc-text">3.1.2    编译后</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-2-模版的包含"><span class="toc-number">4.2.</span> <span class="toc-text">3.2    模版的包含</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#3-2-1-包含其它-pug-文件"><span class="toc-number">4.2.1.</span> <span class="toc-text">3.2.1    包含其它 pug 文件</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-2-2-包含-html-文件"><span class="toc-number">4.2.2.</span> <span class="toc-text">3.2.2    包含 html 文件</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#原文件"><span class="toc-number">4.2.2.1.</span> <span class="toc-text">原文件</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#编译后"><span class="toc-number">4.2.2.2.</span> <span class="toc-text">编译后</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-3-render及renderFile方法"><span class="toc-number">4.3.</span> <span class="toc-text">3.3    render及renderFile方法</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#3-3-1-pug-API"><span class="toc-number">4.3.1.</span> <span class="toc-text">3.3.1    pug API</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-3-2-compile、render、renderFile"><span class="toc-number">4.3.2.</span> <span class="toc-text">3.3.2    compile、render、renderFile</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-4-过滤器-filters"><span class="toc-number">4.4.</span> <span class="toc-text">3.4    过滤器 filters</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#3-4-1-markdown"><span class="toc-number">4.4.1.</span> <span class="toc-text">3.4.1    markdown</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-4-2-less"><span class="toc-number">4.4.2.</span> <span class="toc-text">3.4.2    less</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-4-3-coffee-script"><span class="toc-number">4.4.3.</span> <span class="toc-text">3.4.3    coffee-script</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-5-runtime环境下使用pug"><span class="toc-number">4.5.</span> <span class="toc-text">3.5    runtime环境下使用pug</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-6-利用html2pug反编译"><span class="toc-number">4.6.</span> <span class="toc-text">3.6    利用html2pug反编译</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#命令行中使用"><span class="toc-number">4.6.1.</span> <span class="toc-text">命令行中使用</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#node端使用"><span class="toc-number">4.6.2.</span> <span class="toc-text">node端使用</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#4-pug缺点及如何取舍"><span class="toc-number">5.</span> <span class="toc-text">4    pug缺点及如何取舍</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#4-1-Pug-的缺点"><span class="toc-number">5.1.</span> <span class="toc-text">4.1    Pug 的缺点</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-2-选择的因素"><span class="toc-number">5.2.</span> <span class="toc-text">4.2    选择的因素</span></a></li></ol></li></ol>
+          
+            
+          
+
+          
+
+          
+          
+
+          
         </div>
-      </div>
-    </div>
+      </header>
     
-    <h1 id="1-课程简介"><a href="#1-课程简介" class="headerlink" title="1    课程简介"></a>1    课程简介</h1><blockquote>
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="1-课程简介"><a href="#1-课程简介" class="headerlink" title="1    课程简介"></a>1    课程简介</h1><blockquote>
 <p><strong>模版引擎：</strong>将动态的数据和静态的页面糅合在一起的实现机制或技术<br><strong>流行的模版：</strong></p>
 </blockquote>
 <table>
@@ -275,7 +454,7 @@
 <p><strong>注意：</strong>当注释放在标签下部时，表示块注释</p>
 <h3 id="2-6-2-条件注释"><a href="#2-6-2-条件注释" class="headerlink" title="2.6.2    条件注释"></a>2.6.2    条件注释</h3><p><strong>注意：</strong>当使用条件注释时，html需要使用标签，且需要闭合。</p>
 <figure class="highlight html"><table><tr><td class="code"><pre><span class="line">doctype html</span><br><span class="line">//- html</span><br><span class="line"><span class="comment">&lt;!--[if IE 7]&gt;&lt;html class='ie7'&gt;&lt;![end if]--&gt;</span></span><br><span class="line"><span class="comment">&lt;!--[if IE 8]&gt;&lt;html class='ie8'&gt;&lt;![end if]--&gt;</span></span><br><span class="line"><span class="comment">&lt;!--[if IE 9]&gt;&lt;html class='ie9'&gt;&lt;![end if]--&gt;</span></span><br><span class="line">head</span><br><span class="line">	meta(charset='utf-8')</span><br><span class="line">	title imooc pug study</span><br><span class="line">body</span><br><span class="line">	style.</span><br><span class="line">		</span><br><span class="line">		body&#123;color:# ff6600&#125;</span><br><span class="line">	script.</span><br><span class="line">		var imoocCourse = 'pug'</span><br><span class="line">	</span><br><span class="line">	h1# title.title1.title2(class='title3') imooc pug study</span><br><span class="line">	h2 注释</span><br><span class="line">	//h3 单行注释</span><br><span class="line">	//-h4 非缓冲注释</span><br><span class="line">	</span><br><span class="line">	# id.classname</span><br><span class="line">	//-块注释</span><br><span class="line">		a(href='http://imooc.com',title='imooc pug',data-uid='1000') link</span><br><span class="line">		input(value='course',type="text",name="course")</span><br><span class="line">		input(name='type',type='checkbox',checked)</span><br><span class="line">		p </span><br><span class="line">			|	a </span><br><span class="line">			|	b </span><br><span class="line">			|	c </span><br><span class="line">			|	d</span><br><span class="line">		//接下来的东西是个完整代码块</span><br><span class="line">		p.</span><br><span class="line">			a</span><br><span class="line">			<span class="tag">&lt;<span class="name">strong</span>&gt;</span>strong<span class="tag">&lt;/<span class="name">strong</span>&gt;</span></span><br><span class="line">			b</span><br><span class="line">			c</span><br><span class="line">			d</span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE html&gt;</span><span class="comment">&lt;!--[if IE 7]&gt;&lt;html class='ie7'&gt;&lt;![end if]--&gt;</span></span><br><span class="line"><span class="comment">&lt;!--[if IE 8]&gt;&lt;html class='ie8'&gt;&lt;![end if]--&gt;</span></span><br><span class="line"><span class="comment">&lt;!--[if IE 9]&gt;&lt;html class='ie9'&gt;&lt;![end if]--&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">"utf-8"</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">title</span>&gt;</span>imooc pug study<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">  </span><br><span class="line">  <span class="tag">&lt;<span class="name">style</span>&gt;</span><span class="undefined">body&#123;color:# ff6600&#125;</span><span class="tag">&lt;/<span class="name">style</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="undefined">var imoocCourse = 'pug'</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">h1</span> <span class="attr">id</span>=<span class="string">"title"</span> <span class="attr">class</span>=<span class="string">"title1 title2 title3"</span>&gt;</span>imooc pug study<span class="tag">&lt;/<span class="name">h1</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">h2</span>&gt;</span>注释<span class="tag">&lt;/<span class="name">h2</span>&gt;</span></span><br><span class="line">  <span class="comment">&lt;!--h3 单行注释--&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"id"</span> <span class="attr">class</span>=<span class="string">"classname"</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE html&gt;</span><span class="comment">&lt;!--[if IE 7]&gt;&lt;html class='ie7'&gt;&lt;![end if]--&gt;</span></span><br><span class="line"><span class="comment">&lt;!--[if IE 8]&gt;&lt;html class='ie8'&gt;&lt;![end if]--&gt;</span></span><br><span class="line"><span class="comment">&lt;!--[if IE 9]&gt;&lt;html class='ie9'&gt;&lt;![end if]--&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">"utf-8"</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">title</span>&gt;</span>imooc pug study<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">  </span><br><span class="line">  <span class="tag">&lt;<span class="name">style</span>&gt;</span><span class="css"><span class="selector-tag">body</span>&#123;<span class="attribute">color</span>:# ff6600&#125;</span><span class="tag">&lt;/<span class="name">style</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="javascript"><span class="keyword">var</span> imoocCourse = <span class="string">'pug'</span></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">h1</span> <span class="attr">id</span>=<span class="string">"title"</span> <span class="attr">class</span>=<span class="string">"title1 title2 title3"</span>&gt;</span>imooc pug study<span class="tag">&lt;/<span class="name">h1</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">h2</span>&gt;</span>注释<span class="tag">&lt;/<span class="name">h2</span>&gt;</span></span><br><span class="line">  <span class="comment">&lt;!--h3 单行注释--&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"id"</span> <span class="attr">class</span>=<span class="string">"classname"</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
 <h2 id="2-7-变量声明与数据传递"><a href="#2-7-变量声明与数据传递" class="headerlink" title="2.7    变量声明与数据传递"></a>2.7    变量声明与数据传递</h2><h3 id="2-7-1-变量声明与使用"><a href="#2-7-1-变量声明与使用" class="headerlink" title="2.7.1        变量声明与使用"></a>2.7.1        变量声明与使用</h3><ul>
 <li><p>声明：<code>- var variableName</code></p>
 </li>
@@ -417,52 +596,284 @@
 <li>稳定阶段（性能和协作成本）</li>
 </ol>
 
-  </section>
-
-</article>
-
-
-<section class="post-comments">
-  <!-- 多说评论框 start -->
-  <div id="ds-thread" class="ds-thread" data-thread-key="http://laputa-er.github.io/2016/06/15/imooc_WEB_带你学习pug模版引擎/" data-title="带你学习pug模版引擎" data-url="http://laputa-er.github.io/2016/06/15/imooc_WEB_带你学习pug模版引擎/"></div>
-  <!-- 多说评论框 end -->
-  <!-- 多说公共JS代码 start (一个网页只需插入一次) -->
-  <script type="text/javascript">
-  var duoshuoQuery = {short_name:"lapuda-er"};
-  (function() {
-    var ds = document.createElement('script');
-    ds.type = 'text/javascript';ds.async = true;
-    ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
-    ds.charset = 'UTF-8';
-    (document.getElementsByTagName('head')[0] 
-     || document.getElementsByTagName('body')[0]).appendChild(ds);
-  })();
-  </script>
-<!-- 多说公共JS代码 end -->
-</section>
-
-
-
-
-            <footer class="footer">
-    <span class="footer__copyright">
-        本站点采用<a href="http://creativecommons.org/licenses/by-nc-sa/4.0/">知识共享署名-非商业性使用-相同方式共享 4.0 国际许可协议</a>
-    </span>
-    <span class="footer__copyright">
-        基于 <a href="http://hexo.io">Hexo</a> 搭建，感谢 <a href="https://pages.github.com/">GitHub Pages</a> 提供免费的托管服务
-    </span>
-    <span class="footer__copyright">
-        &copy; 2016 - 
-        本站修改自<a href="https://github.com/lenbo-ma/hexo-theme-vno" target="_blank">hexo-theme-vno</a>
-    </span>
-</footer>
-
-        </div>
+      
     </div>
 
-    <script src="http://cdn.bootcss.com/jquery/2.1.4/jquery.min.js"></script>
-    <script src="/js/main.js"></script>
+    <div>
+      
+        
 
-     
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/imooc/" rel="tag">#imooc</a>
+          
+            <a href="/tags/pug/" rel="tag">#pug</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/06/15/imooc_iOS_When iOS loves JS/" rel="next" title="When iOS loves JS">
+                <i class="fa fa-chevron-left"></i> When iOS loves JS
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/06/16/imooc_iOS_iOS9新特性之UIStackView/" rel="prev" title="iOS9新特性之UIStackView">
+                iOS9新特性之UIStackView <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.gif"
+               alt="Sean" />
+          <p class="site-author-name" itemprop="name">Sean</p>
+          <p class="site-description motion-element" itemprop="description">整理了一批过去一段时间ios相关的笔记，其它的笔记也整理下？源码分享出来？再说吧...反正也只有自己会看吧...</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">85</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">10</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#1-课程简介"><span class="nav-number">1.</span> <span class="nav-text">1    课程简介</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-1-pug环境配置"><span class="nav-number">1.1.</span> <span class="nav-text">1.1    pug环境配置</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Mac"><span class="nav-number">1.1.1.</span> <span class="nav-text">Mac</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Windows"><span class="nav-number">1.1.2.</span> <span class="nav-text">Windows</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-2-pug特点"><span class="nav-number">1.2.</span> <span class="nav-text">1.2    pug特点</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-3-pug的诞生"><span class="nav-number">1.3.</span> <span class="nav-text">1.3    pug的诞生</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-4-命令行中的-pug"><span class="nav-number">1.3.1.</span> <span class="nav-text">1.4    命令行中的 pug</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#2-pug基础语法知识"><span class="nav-number">2.</span> <span class="nav-text">2    pug基础语法知识</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#2-1-文档声明和头尾标签"><span class="nav-number">2.1.</span> <span class="nav-text">2.1    文档声明和头尾标签</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-2-实现命令行实时编译"><span class="nav-number">2.2.</span> <span class="nav-text">2.2    实现命令行实时编译</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-3-标签语法"><span class="nav-number">2.3.</span> <span class="nav-text">2.3    标签语法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-4-属性文本和值"><span class="nav-number">2.4.</span> <span class="nav-text">2.4    属性文本和值</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#2-5-混合的成段文本和标签"><span class="nav-number">3.</span> <span class="nav-text">2.5        混合的成段文本和标签</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#2-6-注释和条件注释"><span class="nav-number">3.1.</span> <span class="nav-text">2.6    注释和条件注释</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#2-6-1-注释"><span class="nav-number">3.1.1.</span> <span class="nav-text">2.6.1    注释</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-6-2-条件注释"><span class="nav-number">3.1.2.</span> <span class="nav-text">2.6.2    条件注释</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-7-变量声明与数据传递"><span class="nav-number">3.2.</span> <span class="nav-text">2.7    变量声明与数据传递</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#2-7-1-变量声明与使用"><span class="nav-number">3.2.1.</span> <span class="nav-text">2.7.1        变量声明与使用</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-7-2-数据传递"><span class="nav-number">3.2.2.</span> <span class="nav-text">2.7.2    数据传递</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-8-安全转义与非转义"><span class="nav-number">3.3.</span> <span class="nav-text">2.8    安全转义与非转义</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-9-流程代码for-in-each-in-while"><span class="nav-number">3.4.</span> <span class="nav-text">2.9    流程代码for-in /each-in / while</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#2-9-1-for-in"><span class="nav-number">3.4.1.</span> <span class="nav-text">2.9.1    for-in</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-9-2-each-in"><span class="nav-number">3.4.2.</span> <span class="nav-text">2.9.2    each-in</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-9-3-while"><span class="nav-number">3.4.3.</span> <span class="nav-text">2.9.3    while</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-10-流程代码-if-else-unless"><span class="nav-number">3.5.</span> <span class="nav-text">2.10    流程代码 if - else/unless</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#2-10-1-if-else"><span class="nav-number">3.5.1.</span> <span class="nav-text">2.10.1    if-else</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-10-2-unless"><span class="nav-number">3.5.2.</span> <span class="nav-text">2.10.2    unless</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-10-3-case-when"><span class="nav-number">3.5.3.</span> <span class="nav-text">2.10.3    case-when</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-11-神奇的mixins"><span class="nav-number">3.6.</span> <span class="nav-text">2.11    神奇的mixins</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#2-11-1-参数"><span class="nav-number">3.6.1.</span> <span class="nav-text">2.11.1    参数</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#2-11-1-1-无参数"><span class="nav-number">3.6.1.1.</span> <span class="nav-text">2.11.1.1    无参数</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-22-1-2-有参数"><span class="nav-number">3.6.1.2.</span> <span class="nav-text">2.22.1.2    有参数</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-22-1-3-可变参数"><span class="nav-number">3.6.1.3.</span> <span class="nav-text">2.22.1.3    可变参数</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-11-2-嵌套"><span class="nav-number">3.6.2.</span> <span class="nav-text">2.11.2    嵌套</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-11-3-块包含"><span class="nav-number">3.6.3.</span> <span class="nav-text">2.11.3    块包含</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-11-4-传递属性"><span class="nav-number">3.6.4.</span> <span class="nav-text">2.11.4    传递属性</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#3-pug进级"><span class="nav-number">4.</span> <span class="nav-text">3    pug进级</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#3-1-模版的继承"><span class="nav-number">4.1.</span> <span class="nav-text">3.1    模版的继承</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#3-1-1-案例源码"><span class="nav-number">4.1.1.</span> <span class="nav-text">3.1.1    案例源码</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-1-2-编译后"><span class="nav-number">4.1.2.</span> <span class="nav-text">3.1.2    编译后</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-2-模版的包含"><span class="nav-number">4.2.</span> <span class="nav-text">3.2    模版的包含</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#3-2-1-包含其它-pug-文件"><span class="nav-number">4.2.1.</span> <span class="nav-text">3.2.1    包含其它 pug 文件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-2-2-包含-html-文件"><span class="nav-number">4.2.2.</span> <span class="nav-text">3.2.2    包含 html 文件</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#原文件"><span class="nav-number">4.2.2.1.</span> <span class="nav-text">原文件</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#编译后"><span class="nav-number">4.2.2.2.</span> <span class="nav-text">编译后</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-3-render及renderFile方法"><span class="nav-number">4.3.</span> <span class="nav-text">3.3    render及renderFile方法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#3-3-1-pug-API"><span class="nav-number">4.3.1.</span> <span class="nav-text">3.3.1    pug API</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-3-2-compile、render、renderFile"><span class="nav-number">4.3.2.</span> <span class="nav-text">3.3.2    compile、render、renderFile</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-4-过滤器-filters"><span class="nav-number">4.4.</span> <span class="nav-text">3.4    过滤器 filters</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#3-4-1-markdown"><span class="nav-number">4.4.1.</span> <span class="nav-text">3.4.1    markdown</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-4-2-less"><span class="nav-number">4.4.2.</span> <span class="nav-text">3.4.2    less</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-4-3-coffee-script"><span class="nav-number">4.4.3.</span> <span class="nav-text">3.4.3    coffee-script</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-5-runtime环境下使用pug"><span class="nav-number">4.5.</span> <span class="nav-text">3.5    runtime环境下使用pug</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-6-利用html2pug反编译"><span class="nav-number">4.6.</span> <span class="nav-text">3.6    利用html2pug反编译</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#命令行中使用"><span class="nav-number">4.6.1.</span> <span class="nav-text">命令行中使用</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#node端使用"><span class="nav-number">4.6.2.</span> <span class="nav-text">node端使用</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#4-pug缺点及如何取舍"><span class="nav-number">5.</span> <span class="nav-text">4    pug缺点及如何取舍</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#4-1-Pug-的缺点"><span class="nav-number">5.1.</span> <span class="nav-text">4.1    Pug 的缺点</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-2-选择的因素"><span class="nav-number">5.2.</span> <span class="nav-text">4.2    选择的因素</span></a></li></ol></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Sean</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Muse
+  </a>
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+  
+  
+
+  
+
+  
+
+  
+
 </body>
 </html>

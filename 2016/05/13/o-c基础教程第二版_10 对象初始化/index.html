@@ -1,181 +1,351 @@
-<!DOCTYPE html>
-<html>
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion">
 <head>
-    <meta charset="utf-8"/>
-    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
     
-    <title>10 对象初始化 | Sean</title>
-    <meta name="renderer" content="webkit">
-    <meta name="HandheldFriendly" content="True">
-    <meta name="MobileOptimized" content="320">
-    <meta name="apple-mobile-web-app-capable" content="yes">
-    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-
-    <meta name="description" content="do things for fun">
-
-    <meta name="twitter:card" content="summary">
-    <meta name="twitter:title" content="10 对象初始化 | Sean">
-    <meta name="twitter:description" content="do things for fun">
-
-    <meta property="og:type" content="article">
-    <meta property="og:title" content="10 对象初始化 | Sean">
-    <meta property="og:description" content="do things for fun">
-
     
-    <meta name="author" content="Sean">
-    
-    <link rel="stylesheet" href="/css/vno.css">
-    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css">
+  
 
-    
-    <link rel="icon" href="/images/sean.png">
-    
+  
 
-    <meta name="generator" content="hexo"/>
-    
+  
 
-    <link rel="canonical" href="http://laputa-er.github.io/2016/05/13/o-c基础教程第二版_10 对象初始化/"/>
+  
 
+  
+
+  
     
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Objective-C基础教程第二版," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1" />
+
+
+
+
+
+
+<meta name="description" content="说明：创建对象有两种方式
+
+类名 new
+[[类名 alloc] init]
+
+技巧：Cocoa惯例是使用后一种方式
+
+10.1    分配对象
+说明：就是从操作系统获得一块内存，并将其指定为存放对象的实例变量的位置。语法：像某个类发送alloc消息
+
+alloc实例方法
+说明：为类实例分配一块足够大的内存，并将这块内存区域全部初始化为对应的0值
+
+
+
+
+实例变量类型
+0值
+
+
+
+
+BOOL
+N">
+<meta property="og:type" content="article">
+<meta property="og:title" content="10 对象初始化">
+<meta property="og:url" content="http://laputa-er.github.io/2016/05/13/o-c基础教程第二版_10 对象初始化/index.html">
+<meta property="og:site_name" content="Sean">
+<meta property="og:description" content="说明：创建对象有两种方式
+
+类名 new
+[[类名 alloc] init]
+
+技巧：Cocoa惯例是使用后一种方式
+
+10.1    分配对象
+说明：就是从操作系统获得一块内存，并将其指定为存放对象的实例变量的位置。语法：像某个类发送alloc消息
+
+alloc实例方法
+说明：为类实例分配一块足够大的内存，并将这块内存区域全部初始化为对应的0值
+
+
+
+
+实例变量类型
+0值
+
+
+
+
+BOOL
+N">
+<meta property="og:updated_time" content="2016-05-13T10:24:32.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="10 对象初始化">
+<meta name="twitter:description" content="说明：创建对象有两种方式
+
+类名 new
+[[类名 alloc] init]
+
+技巧：Cocoa惯例是使用后一种方式
+
+10.1    分配对象
+说明：就是从操作系统获得一块内存，并将其指定为存放对象的实例变量的位置。语法：像某个类发送alloc消息
+
+alloc实例方法
+说明：为类实例分配一块足够大的内存，并将这块内存区域全部初始化为对应的0值
+
+
+
+
+实例变量类型
+0值
+
+
+
+
+BOOL
+N">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Muse',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 0,
+      author: '博主'
+    }
+  };
+</script>
+
+
+
+
+  <link rel="canonical" href="http://laputa-er.github.io/2016/05/13/o-c基础教程第二版_10 对象初始化/"/>
+
+  <title> 10 对象初始化 | Sean </title>
 </head>
 
-<body class="home-template no-js">
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
 
-    <span class="mobile btn-mobile-menu">
-        <i class="fa fa-list btn-mobile-menu__icon"></i>
-        <i class="fa fa-angle-up btn-mobile-close__icon hidden"></i>
-    </span>
+  
+
+
+
+
+
+
+
+
+
+
+  
+  
     
-<header class="panel-cover panel-cover--collapsed" style="background-image: url(/images/mengxiang.jpg)">
-  <div class="panel-main">
-    <div class="panel-main__inner panel-inverted">
-      <span class="panel-arrow panel-left-arrow disabled">
-        <i class="fa fa-angle-left"></i>
-      </span>
-      <span class="panel-arrow panel-right-arrow">
-        <i class="fa fa-angle-right"></i>
-      </span>
-
-      <div class="panel-animation-container">
-        <div class="panel-content panel-main__content">
-            <a href="/" title="前往 Sean 的主页"><img src="/images/sean.png" width="80" alt="Sean logo" class="panel-cover__logo logo" /></a>
-            <h1 class="panel-cover__title panel-title"><a href="/" title="link to homepage for Sean">Sean</a></h1>
-            
-            <span class="panel-cover__subtitle panel-subtitle">笔记分享</span>
-            
-            <hr class="panel-cover__divider" />
-            <p class="panel-cover__description">整理了一批过去一段时间ios相关的笔记，其它的笔记也整理下？源码分享出来？再说吧...反正也只有自己会看吧...</p>
-            <hr class="panel-cover__divider panel-cover__divider--secondary" />
-
-            <div class="navigation-wrapper">
-              <div>
-              <nav class="cover-navigation cover-navigation--primary">
-                <ul class="navigation">
-                  <li class="navigation__item"><a href="/#blog" title="访问笔记" class="blog-button">笔记</a></li>
-                  <li style="display: none;">
-                    <textarea>
-                      
-                        <li class="navigation__item"><a href="/projects">项目作品</a></li>
-                      
-                        <li class="navigation__item"><a href="/aboutme">关于我</a></li>
-                      
-                    </textarea>
-                  </li>
-                </ul>
-              </nav>
-              </div>
-              <div>
-              <nav class="cover-navigation navigation--social">
-  <ul class="navigation">
-
-  <!-- Weibo-->
   
 
-  <!-- Github -->
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
   
 
-<!-- Stack Overflow -->
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">Sean</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">笔记分享</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
         
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
 
-  <!-- Google Plus -->
+      
+    </ul>
   
 
-<!-- Facebook -->
-
   
-<!-- Twitter -->
-
-  
-
-
-
-  </ul>
 </nav>
 
-              </div>
-            </div>
+ </div>
+    </header>
 
-          </div>
-          <div class="panel-content panel-tagcloud_content">
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
             
-              <aside id="sidebar">
-  
+
+  <div id="posts" class="posts-expand">
     
-  <div class="widget-wrap">
-    <h3 class="widget-title">笔记分类</h3>
-    <div class="widget tagcloud">
-      <a href="/tags/Objective-C基础教程第二版/">Objective-C基础教程第二版</a> <a href="/tags/The-Swift-Program-Language-2/">The Swift Program Language 2</a> <a href="/tags/c语言程序设计－现代方法/">c语言程序设计－现代方法</a> <a href="/tags/iOS/">iOS</a> <a href="/tags/imooc/">imooc</a> <a href="/tags/pug/">pug</a> <a href="/tags/极客学院-ios中级/">极客学院_ios中级</a> <a href="/tags/极客学院-ios初级/">极客学院_ios初级</a> <a href="/tags/极客学院-ios高级/">极客学院_ios高级</a>
-    </div>
-  </div>
 
   
-</aside>
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
             
-          </div>
-        </div>  
+            
+              
+                10 对象初始化
+              
+            
+          </h1>
+        
 
-      </div>
-      <div class="panel-cover--overlay cover-blue"></div>
-  </div>
-  </header>
-    
-    <div class="content-wrapper">
-        <div class="content-wrapper__inner">
-            <article class="post-container post-container--single">
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-05-13T10:39:41+08:00" content="2016-05-13">
+              2016-05-13
+            </time>
+          </span>
 
-  <header class="post-header">
-    <div class="post-meta">
-      <time datetime="2016-05-13T02:39:41.000Z" class="post-list__meta--date date">2016-05-13</time> &#8226; <span class="post-meta__tags tags">于&nbsp;
-  <a class="tag-link" href="/tags/Objective-C基础教程第二版/">Objective-C基础教程第二版</a>
-</span>
-    </div>
-    <h1 class="post-title">10 对象初始化</h1>
-  </header>
+          
 
-  <section class="post">
-    <!-- Table of Contents -->
-    
-    <div id="top-toc">
-      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#10-1-分配对象"><span class="toc-number">1.</span> <span class="toc-text">10.1    分配对象</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#alloc实例方法"><span class="toc-number">1.0.1.</span> <span class="toc-text">alloc实例方法</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#10-1-1-初始化对象"><span class="toc-number">1.1.</span> <span class="toc-text">10.1.1    初始化对象</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#10-1-2-编写初始化方法"><span class="toc-number">1.2.</span> <span class="toc-text">10.1.2    编写初始化方法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#10-1-3-初始化时要做些什么"><span class="toc-number">1.3.</span> <span class="toc-text">10.1.3    初始化时要做些什么</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#10-2-便利初始化函数"><span class="toc-number">2.</span> <span class="toc-text">10.2    便利初始化函数</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#initWithContentsofFile便利初始化方法"><span class="toc-number">2.1.</span> <span class="toc-text">initWithContentsofFile便利初始化方法</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#10-3-更多部件改进"><span class="toc-number">3.</span> <span class="toc-text">10.3    更多部件改进</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#10-3-1-Tire类的初始化"><span class="toc-number">3.1.</span> <span class="toc-text">10.3.1    Tire类的初始化</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#10-3-2-更新main-函数"><span class="toc-number">3.2.</span> <span class="toc-text">10.3.2    更新main()函数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#10-3-3-清理Car类"><span class="toc-number">3.3.</span> <span class="toc-text">10.3.3    清理Car类</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#10-4-Car-类的内存清理（垃圾回收方式和ARC方式）"><span class="toc-number">4.</span> <span class="toc-text">10.4    Car 类的内存清理（垃圾回收方式和ARC方式）</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#构造便利初始化函数"><span class="toc-number">4.1.</span> <span class="toc-text">构造便利初始化函数</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#10-5-指定初始化函数"><span class="toc-number">5.</span> <span class="toc-text">10.5    指定初始化函数</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#10-5-1-子类化问题"><span class="toc-number">5.1.</span> <span class="toc-text">10.5.1    子类化问题</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#问题描述"><span class="toc-number">5.1.1.</span> <span class="toc-text">问题描述</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#10-5-2-Tire-类的初始化函数改进后的版本"><span class="toc-number">5.2.</span> <span class="toc-text">10.5.2    Tire 类的初始化函数改进后的版本</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#10-5-3-添加AllWeatherPressure类的初始化函数"><span class="toc-number">5.3.</span> <span class="toc-text">10.5.3    添加AllWeatherPressure类的初始化函数</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#10-6-初始化函数规则"><span class="toc-number">6.</span> <span class="toc-text">10.6    初始化函数规则</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#10-7-小结"><span class="toc-number">7.</span> <span class="toc-text">10.7    小结</span></a></li></ol>
-    </div>
-    <div id="tocShell"></div>
-    <div id="toc" class="toc-article">
-      <div class="btn-group drag-me">
-        <i class="social fa fa-ellipsis-v"></i>
-      </div>
-      <div class="btn-group dropup-catelog">
-        <button class="btn"><i class="social fa fa-list-ol"></i></button>
-        <div class="catelog-content">
-          <p class="toc-title-wrap">
-            <strong class="toc-title">文章目录</strong>
-          </p>
-          <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#10-1-分配对象"><span class="toc-number">1.</span> <span class="toc-text">10.1    分配对象</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#alloc实例方法"><span class="toc-number">1.0.1.</span> <span class="toc-text">alloc实例方法</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#10-1-1-初始化对象"><span class="toc-number">1.1.</span> <span class="toc-text">10.1.1    初始化对象</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#10-1-2-编写初始化方法"><span class="toc-number">1.2.</span> <span class="toc-text">10.1.2    编写初始化方法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#10-1-3-初始化时要做些什么"><span class="toc-number">1.3.</span> <span class="toc-text">10.1.3    初始化时要做些什么</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#10-2-便利初始化函数"><span class="toc-number">2.</span> <span class="toc-text">10.2    便利初始化函数</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#initWithContentsofFile便利初始化方法"><span class="toc-number">2.1.</span> <span class="toc-text">initWithContentsofFile便利初始化方法</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#10-3-更多部件改进"><span class="toc-number">3.</span> <span class="toc-text">10.3    更多部件改进</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#10-3-1-Tire类的初始化"><span class="toc-number">3.1.</span> <span class="toc-text">10.3.1    Tire类的初始化</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#10-3-2-更新main-函数"><span class="toc-number">3.2.</span> <span class="toc-text">10.3.2    更新main()函数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#10-3-3-清理Car类"><span class="toc-number">3.3.</span> <span class="toc-text">10.3.3    清理Car类</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#10-4-Car-类的内存清理（垃圾回收方式和ARC方式）"><span class="toc-number">4.</span> <span class="toc-text">10.4    Car 类的内存清理（垃圾回收方式和ARC方式）</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#构造便利初始化函数"><span class="toc-number">4.1.</span> <span class="toc-text">构造便利初始化函数</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#10-5-指定初始化函数"><span class="toc-number">5.</span> <span class="toc-text">10.5    指定初始化函数</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#10-5-1-子类化问题"><span class="toc-number">5.1.</span> <span class="toc-text">10.5.1    子类化问题</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#问题描述"><span class="toc-number">5.1.1.</span> <span class="toc-text">问题描述</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#10-5-2-Tire-类的初始化函数改进后的版本"><span class="toc-number">5.2.</span> <span class="toc-text">10.5.2    Tire 类的初始化函数改进后的版本</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#10-5-3-添加AllWeatherPressure类的初始化函数"><span class="toc-number">5.3.</span> <span class="toc-text">10.5.3    添加AllWeatherPressure类的初始化函数</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#10-6-初始化函数规则"><span class="toc-number">6.</span> <span class="toc-text">10.6    初始化函数规则</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#10-7-小结"><span class="toc-number">7.</span> <span class="toc-text">10.7    小结</span></a></li></ol>
+          
+            
+          
+
+          
+
+          
+          
+
+          
         </div>
-      </div>
-    </div>
+      </header>
     
-    <blockquote>
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <blockquote>
 <p><strong>说明：</strong>创建对象有两种方式</p>
 <ul>
 <li><code>类名 new</code></li>
@@ -328,52 +498,282 @@
 </ul>
 </blockquote>
 <h2 id="10-7-小结"><a href="#10-7-小结" class="headerlink" title="10.7    小结"></a>10.7    小结</h2>
-  </section>
-
-</article>
-
-
-<section class="post-comments">
-  <!-- 多说评论框 start -->
-  <div id="ds-thread" class="ds-thread" data-thread-key="http://laputa-er.github.io/2016/05/13/o-c基础教程第二版_10 对象初始化/" data-title="10 对象初始化" data-url="http://laputa-er.github.io/2016/05/13/o-c基础教程第二版_10 对象初始化/"></div>
-  <!-- 多说评论框 end -->
-  <!-- 多说公共JS代码 start (一个网页只需插入一次) -->
-  <script type="text/javascript">
-  var duoshuoQuery = {short_name:"lapuda-er"};
-  (function() {
-    var ds = document.createElement('script');
-    ds.type = 'text/javascript';ds.async = true;
-    ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
-    ds.charset = 'UTF-8';
-    (document.getElementsByTagName('head')[0] 
-     || document.getElementsByTagName('body')[0]).appendChild(ds);
-  })();
-  </script>
-<!-- 多说公共JS代码 end -->
-</section>
-
-
-
-
-            <footer class="footer">
-    <span class="footer__copyright">
-        本站点采用<a href="http://creativecommons.org/licenses/by-nc-sa/4.0/">知识共享署名-非商业性使用-相同方式共享 4.0 国际许可协议</a>
-    </span>
-    <span class="footer__copyright">
-        基于 <a href="http://hexo.io">Hexo</a> 搭建，感谢 <a href="https://pages.github.com/">GitHub Pages</a> 提供免费的托管服务
-    </span>
-    <span class="footer__copyright">
-        &copy; 2016 - 
-        本站修改自<a href="https://github.com/lenbo-ma/hexo-theme-vno" target="_blank">hexo-theme-vno</a>
-    </span>
-</footer>
-
-        </div>
+      
     </div>
 
-    <script src="http://cdn.bootcss.com/jquery/2.1.4/jquery.min.js"></script>
-    <script src="/js/main.js"></script>
+    <div>
+      
+        
 
-     
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Objective-C基础教程第二版/" rel="tag">#Objective-C基础教程第二版</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/05/13/o-c基础教程第二版_09  内存管理/" rel="next" title="9 内存管理">
+                <i class="fa fa-chevron-left"></i> 9 内存管理
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/05/13/o-c基础教程第二版_11 属性/" rel="prev" title="11 属性">
+                11 属性 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.gif"
+               alt="Sean" />
+          <p class="site-author-name" itemprop="name">Sean</p>
+          <p class="site-description motion-element" itemprop="description">整理了一批过去一段时间ios相关的笔记，其它的笔记也整理下？源码分享出来？再说吧...反正也只有自己会看吧...</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">85</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">10</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#10-1-分配对象"><span class="nav-number">1.</span> <span class="nav-text">10.1    分配对象</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#alloc实例方法"><span class="nav-number">1.0.1.</span> <span class="nav-text">alloc实例方法</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#10-1-1-初始化对象"><span class="nav-number">1.1.</span> <span class="nav-text">10.1.1    初始化对象</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#10-1-2-编写初始化方法"><span class="nav-number">1.2.</span> <span class="nav-text">10.1.2    编写初始化方法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#10-1-3-初始化时要做些什么"><span class="nav-number">1.3.</span> <span class="nav-text">10.1.3    初始化时要做些什么</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#10-2-便利初始化函数"><span class="nav-number">2.</span> <span class="nav-text">10.2    便利初始化函数</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#initWithContentsofFile便利初始化方法"><span class="nav-number">2.1.</span> <span class="nav-text">initWithContentsofFile便利初始化方法</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#10-3-更多部件改进"><span class="nav-number">3.</span> <span class="nav-text">10.3    更多部件改进</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#10-3-1-Tire类的初始化"><span class="nav-number">3.1.</span> <span class="nav-text">10.3.1    Tire类的初始化</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#10-3-2-更新main-函数"><span class="nav-number">3.2.</span> <span class="nav-text">10.3.2    更新main()函数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#10-3-3-清理Car类"><span class="nav-number">3.3.</span> <span class="nav-text">10.3.3    清理Car类</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#10-4-Car-类的内存清理（垃圾回收方式和ARC方式）"><span class="nav-number">4.</span> <span class="nav-text">10.4    Car 类的内存清理（垃圾回收方式和ARC方式）</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#构造便利初始化函数"><span class="nav-number">4.1.</span> <span class="nav-text">构造便利初始化函数</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#10-5-指定初始化函数"><span class="nav-number">5.</span> <span class="nav-text">10.5    指定初始化函数</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#10-5-1-子类化问题"><span class="nav-number">5.1.</span> <span class="nav-text">10.5.1    子类化问题</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#问题描述"><span class="nav-number">5.1.1.</span> <span class="nav-text">问题描述</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#10-5-2-Tire-类的初始化函数改进后的版本"><span class="nav-number">5.2.</span> <span class="nav-text">10.5.2    Tire 类的初始化函数改进后的版本</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#10-5-3-添加AllWeatherPressure类的初始化函数"><span class="nav-number">5.3.</span> <span class="nav-text">10.5.3    添加AllWeatherPressure类的初始化函数</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#10-6-初始化函数规则"><span class="nav-number">6.</span> <span class="nav-text">10.6    初始化函数规则</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#10-7-小结"><span class="nav-number">7.</span> <span class="nav-text">10.7    小结</span></a></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Sean</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Muse
+  </a>
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+  
+  
+
+  
+
+  
+
+  
+
 </body>
 </html>

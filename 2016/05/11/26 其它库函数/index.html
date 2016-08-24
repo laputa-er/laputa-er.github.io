@@ -1,181 +1,315 @@
-<!DOCTYPE html>
-<html>
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion">
 <head>
-    <meta charset="utf-8"/>
-    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
     
-    <title>26 其他库函数 | Sean</title>
-    <meta name="renderer" content="webkit">
-    <meta name="HandheldFriendly" content="True">
-    <meta name="MobileOptimized" content="320">
-    <meta name="apple-mobile-web-app-capable" content="yes">
-    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-
-    <meta name="description" content="do things for fun">
-
-    <meta name="twitter:card" content="summary">
-    <meta name="twitter:title" content="26 其他库函数 | Sean">
-    <meta name="twitter:description" content="do things for fun">
-
-    <meta property="og:type" content="article">
-    <meta property="og:title" content="26 其他库函数 | Sean">
-    <meta property="og:description" content="do things for fun">
-
     
-    <meta name="author" content="Sean">
-    
-    <link rel="stylesheet" href="/css/vno.css">
-    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css">
+  
 
-    
-    <link rel="icon" href="/images/sean.png">
-    
+  
 
-    <meta name="generator" content="hexo"/>
-    
+  
 
-    <link rel="canonical" href="http://laputa-er.github.io/2016/05/11/26 其它库函数/"/>
+  
 
+  
+
+  
     
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="c语言程序设计－现代方法," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1" />
+
+
+
+
+
+
+<meta name="description" content="26.1    stdarg.h：可变实参
+带有可变参数的函数：带有可变数量参数的函数必须至少有一个“正常的”形式参数，在最后一个正常参数的后边始终会有省略号出现在参数列表的末尾。可变部分实参提升：当调用带有可变实参列表的函数时，编译器会在匹配省略号的全部参数上执行默认的实参提升（9.3）
+
+char -&amp;gt; int
+short -&amp;gt; int
+float -&amp;gt; double
+
+
+v">
+<meta property="og:type" content="article">
+<meta property="og:title" content="26 其他库函数">
+<meta property="og:url" content="http://laputa-er.github.io/2016/05/11/26 其它库函数/index.html">
+<meta property="og:site_name" content="Sean">
+<meta property="og:description" content="26.1    stdarg.h：可变实参
+带有可变参数的函数：带有可变数量参数的函数必须至少有一个“正常的”形式参数，在最后一个正常参数的后边始终会有省略号出现在参数列表的末尾。可变部分实参提升：当调用带有可变实参列表的函数时，编译器会在匹配省略号的全部参数上执行默认的实参提升（9.3）
+
+char -&amp;gt; int
+short -&amp;gt; int
+float -&amp;gt; double
+
+
+v">
+<meta property="og:image" content="http://o6ul1xz4z.bkt.clouddn.com/img/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202015-10-24%20%E4%B8%8A%E5%8D%8810.36.50.png">
+<meta property="og:image" content="http://o6ul1xz4z.bkt.clouddn.com/img/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202015-11-02%20%E4%B8%8B%E5%8D%889.40.49.png">
+<meta property="og:image" content="http://o6ul1xz4z.bkt.clouddn.com/img/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202015-11-03%20%E4%B8%8B%E5%8D%886.42.02.png">
+<meta property="og:image" content="http://o6ul1xz4z.bkt.clouddn.com/img/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202015-11-03%20%E4%B8%8B%E5%8D%886.44.39.png">
+<meta property="og:image" content="http://o6ul1xz4z.bkt.clouddn.com/img/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202015-11-03%20%E4%B8%8B%E5%8D%8810.54.27.png">
+<meta property="og:image" content="http://o6ul1xz4z.bkt.clouddn.com/img/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202015-11-03%20%E4%B8%8B%E5%8D%8810.55.24.png">
+<meta property="og:image" content="http://o6ul1xz4z.bkt.clouddn.com/img/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202015-11-03%20%E4%B8%8B%E5%8D%8810.58.53.png">
+<meta property="og:image" content="http://o6ul1xz4z.bkt.clouddn.com/img/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202015-11-03%20%E4%B8%8B%E5%8D%8811.04.15.png">
+<meta property="og:updated_time" content="2016-05-11T13:25:08.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="26 其他库函数">
+<meta name="twitter:description" content="26.1    stdarg.h：可变实参
+带有可变参数的函数：带有可变数量参数的函数必须至少有一个“正常的”形式参数，在最后一个正常参数的后边始终会有省略号出现在参数列表的末尾。可变部分实参提升：当调用带有可变实参列表的函数时，编译器会在匹配省略号的全部参数上执行默认的实参提升（9.3）
+
+char -&amp;gt; int
+short -&amp;gt; int
+float -&amp;gt; double
+
+
+v">
+<meta name="twitter:image" content="http://o6ul1xz4z.bkt.clouddn.com/img/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202015-10-24%20%E4%B8%8A%E5%8D%8810.36.50.png">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Muse',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 0,
+      author: '博主'
+    }
+  };
+</script>
+
+
+
+
+  <link rel="canonical" href="http://laputa-er.github.io/2016/05/11/26 其它库函数/"/>
+
+  <title> 26 其他库函数 | Sean </title>
 </head>
 
-<body class="home-template no-js">
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
 
-    <span class="mobile btn-mobile-menu">
-        <i class="fa fa-list btn-mobile-menu__icon"></i>
-        <i class="fa fa-angle-up btn-mobile-close__icon hidden"></i>
-    </span>
+  
+
+
+
+
+
+
+
+
+
+
+  
+  
     
-<header class="panel-cover panel-cover--collapsed" style="background-image: url(/images/mengxiang.jpg)">
-  <div class="panel-main">
-    <div class="panel-main__inner panel-inverted">
-      <span class="panel-arrow panel-left-arrow disabled">
-        <i class="fa fa-angle-left"></i>
-      </span>
-      <span class="panel-arrow panel-right-arrow">
-        <i class="fa fa-angle-right"></i>
-      </span>
-
-      <div class="panel-animation-container">
-        <div class="panel-content panel-main__content">
-            <a href="/" title="前往 Sean 的主页"><img src="/images/sean.png" width="80" alt="Sean logo" class="panel-cover__logo logo" /></a>
-            <h1 class="panel-cover__title panel-title"><a href="/" title="link to homepage for Sean">Sean</a></h1>
-            
-            <span class="panel-cover__subtitle panel-subtitle">笔记分享</span>
-            
-            <hr class="panel-cover__divider" />
-            <p class="panel-cover__description">整理了一批过去一段时间ios相关的笔记，其它的笔记也整理下？源码分享出来？再说吧...反正也只有自己会看吧...</p>
-            <hr class="panel-cover__divider panel-cover__divider--secondary" />
-
-            <div class="navigation-wrapper">
-              <div>
-              <nav class="cover-navigation cover-navigation--primary">
-                <ul class="navigation">
-                  <li class="navigation__item"><a href="/#blog" title="访问笔记" class="blog-button">笔记</a></li>
-                  <li style="display: none;">
-                    <textarea>
-                      
-                        <li class="navigation__item"><a href="/projects">项目作品</a></li>
-                      
-                        <li class="navigation__item"><a href="/aboutme">关于我</a></li>
-                      
-                    </textarea>
-                  </li>
-                </ul>
-              </nav>
-              </div>
-              <div>
-              <nav class="cover-navigation navigation--social">
-  <ul class="navigation">
-
-  <!-- Weibo-->
   
 
-  <!-- Github -->
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
   
 
-<!-- Stack Overflow -->
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">Sean</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">笔记分享</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
         
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
 
-  <!-- Google Plus -->
+      
+    </ul>
   
 
-<!-- Facebook -->
-
   
-<!-- Twitter -->
-
-  
-
-
-
-  </ul>
 </nav>
 
-              </div>
-            </div>
+ </div>
+    </header>
 
-          </div>
-          <div class="panel-content panel-tagcloud_content">
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
             
-              <aside id="sidebar">
-  
+
+  <div id="posts" class="posts-expand">
     
-  <div class="widget-wrap">
-    <h3 class="widget-title">笔记分类</h3>
-    <div class="widget tagcloud">
-      <a href="/tags/Objective-C基础教程第二版/">Objective-C基础教程第二版</a> <a href="/tags/The-Swift-Program-Language-2/">The Swift Program Language 2</a> <a href="/tags/c语言程序设计－现代方法/">c语言程序设计－现代方法</a> <a href="/tags/iOS/">iOS</a> <a href="/tags/imooc/">imooc</a> <a href="/tags/pug/">pug</a> <a href="/tags/极客学院-ios中级/">极客学院_ios中级</a> <a href="/tags/极客学院-ios初级/">极客学院_ios初级</a> <a href="/tags/极客学院-ios高级/">极客学院_ios高级</a>
-    </div>
-  </div>
 
   
-</aside>
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
             
-          </div>
-        </div>  
+            
+              
+                26 其他库函数
+              
+            
+          </h1>
+        
 
-      </div>
-      <div class="panel-cover--overlay cover-blue"></div>
-  </div>
-  </header>
-    
-    <div class="content-wrapper">
-        <div class="content-wrapper__inner">
-            <article class="post-container post-container--single">
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-05-11T21:25:08+08:00" content="2016-05-11">
+              2016-05-11
+            </time>
+          </span>
 
-  <header class="post-header">
-    <div class="post-meta">
-      <time datetime="2016-05-11T13:25:08.000Z" class="post-list__meta--date date">2016-05-11</time> &#8226; <span class="post-meta__tags tags">于&nbsp;
-  <a class="tag-link" href="/tags/c语言程序设计－现代方法/">c语言程序设计－现代方法</a>
-</span>
-    </div>
-    <h1 class="post-title">26 其他库函数</h1>
-  </header>
+          
 
-  <section class="post">
-    <!-- Table of Contents -->
-    
-    <div id="top-toc">
-      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#26-1-stdarg-h：可变实参"><span class="toc-number">1.</span> <span class="toc-text">26.1    stdarg.h：可变实参</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#va-arg宏（函数）"><span class="toc-number">1.0.1.</span> <span class="toc-text">va_arg宏（函数）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#va-start宏（函数）"><span class="toc-number">1.0.2.</span> <span class="toc-text">va_start宏（函数）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#va-end宏（函数）"><span class="toc-number">1.0.3.</span> <span class="toc-text">va_end宏（函数）</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#26-1-1-调用可变实参列表的函数"><span class="toc-number">1.1.</span> <span class="toc-text">26.1.1    调用可变实参列表的函数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#26-1-2-v…printf类函数"><span class="toc-number">1.2.</span> <span class="toc-text">26.1.2    v…printf类函数</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#vfprintf函数"><span class="toc-number">1.2.1.</span> <span class="toc-text">vfprintf函数</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#vprintf函数"><span class="toc-number">1.2.2.</span> <span class="toc-text">vprintf函数</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#vsprintf函数"><span class="toc-number">1.2.3.</span> <span class="toc-text">vsprintf函数</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#26-2-stdlib-h-通用的使用工具"><span class="toc-number">2.</span> <span class="toc-text">26.2    stdlib.h:    通用的使用工具</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#26-2-1-字符串转换函数"><span class="toc-number">2.1.</span> <span class="toc-text">26.2.1    字符串转换函数</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#atof函数（c89之前）"><span class="toc-number">2.1.1.</span> <span class="toc-text">atof函数（c89之前）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#atoi函数（c89之前）"><span class="toc-number">2.1.2.</span> <span class="toc-text">atoi函数（c89之前）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#atol函数（c89之前）"><span class="toc-number">2.1.3.</span> <span class="toc-text">atol函数（c89之前）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#strtod函数（c89）"><span class="toc-number">2.1.4.</span> <span class="toc-text">strtod函数（c89）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#strtol函数（c89）"><span class="toc-number">2.1.5.</span> <span class="toc-text">strtol函数（c89）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#strtoul函数（c89）"><span class="toc-number">2.1.6.</span> <span class="toc-text">strtoul函数（c89）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#strtold函数-C99"><span class="toc-number">2.1.7.</span> <span class="toc-text">strtold函数(C99)</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#atoll函数-c99"><span class="toc-number">2.1.8.</span> <span class="toc-text">atoll函数(c99)</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#strtof函数-C99"><span class="toc-number">2.1.9.</span> <span class="toc-text">strtof函数(C99)</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#strtoll函数-C99"><span class="toc-number">2.1.10.</span> <span class="toc-text">strtoll函数(C99)</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#strtoull函数-C99"><span class="toc-number">2.1.11.</span> <span class="toc-text">strtoull函数(C99)</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#程序：测试数值转换函数"><span class="toc-number">2.2.</span> <span class="toc-text">程序：测试数值转换函数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#26-2-3-伪随机序列生成函数"><span class="toc-number">2.3.</span> <span class="toc-text">26.2.3    伪随机序列生成函数</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#rand函数"><span class="toc-number">2.3.1.</span> <span class="toc-text">rand函数</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#srand函数"><span class="toc-number">2.3.2.</span> <span class="toc-text">srand函数</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#26-2-3-与环境的通信"><span class="toc-number">2.4.</span> <span class="toc-text">26.2.3    与环境的通信</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#exit函数"><span class="toc-number">2.4.1.</span> <span class="toc-text">exit函数</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#atexit函数"><span class="toc-number">2.4.2.</span> <span class="toc-text">atexit函数</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Exit函数（c99）"><span class="toc-number">2.4.3.</span> <span class="toc-text">_Exit函数（c99）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#abort函数"><span class="toc-number">2.4.4.</span> <span class="toc-text">abort函数</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#getenv函数"><span class="toc-number">2.4.5.</span> <span class="toc-text">getenv函数</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#system函数"><span class="toc-number">2.4.6.</span> <span class="toc-text">system函数</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#26-2-4-搜索和排序使用工具"><span class="toc-number">2.5.</span> <span class="toc-text">26.2.4    搜索和排序使用工具</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#bsearch函数"><span class="toc-number">2.5.1.</span> <span class="toc-text">bsearch函数</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#qsort函数"><span class="toc-number">2.5.2.</span> <span class="toc-text">qsort函数</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#程序：确定航空里程"><span class="toc-number">2.6.</span> <span class="toc-text">程序：确定航空里程</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#26-2-5-整数运算函数"><span class="toc-number">2.7.</span> <span class="toc-text">26.2.5    整数运算函数</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#abs函数"><span class="toc-number">2.7.1.</span> <span class="toc-text">abs函数</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#labs函数"><span class="toc-number">2.7.2.</span> <span class="toc-text">labs函数</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#llabs函数"><span class="toc-number">2.7.3.</span> <span class="toc-text">llabs函数</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#div函数"><span class="toc-number">2.7.4.</span> <span class="toc-text">div函数</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#ldiv函数（c99）"><span class="toc-number">2.7.5.</span> <span class="toc-text">ldiv函数（c99）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#lldiv函数（c99）"><span class="toc-number">2.7.6.</span> <span class="toc-text">lldiv函数（c99）</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#26-3-time-h：日期和时间"><span class="toc-number">3.</span> <span class="toc-text">26.3    time.h：日期和时间</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#26-3-1-时间处理函数"><span class="toc-number">3.1.</span> <span class="toc-text">26.3.1    时间处理函数</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#clock函数"><span class="toc-number">3.1.1.</span> <span class="toc-text">clock函数</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#time函数"><span class="toc-number">3.1.2.</span> <span class="toc-text">time函数</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#difftime函数"><span class="toc-number">3.1.3.</span> <span class="toc-text">difftime函数</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#mktime函数"><span class="toc-number">3.1.4.</span> <span class="toc-text">mktime函数</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#26-3-2-时间转换函数"><span class="toc-number">3.2.</span> <span class="toc-text">26.3.2    时间转换函数</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#gmtime函数"><span class="toc-number">3.2.1.</span> <span class="toc-text">gmtime函数</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#localtime函数"><span class="toc-number">3.2.2.</span> <span class="toc-text">localtime函数</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#asctime函数"><span class="toc-number">3.2.3.</span> <span class="toc-text">asctime函数</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#ctime函数"><span class="toc-number">3.2.4.</span> <span class="toc-text">ctime函数</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#strftime函数"><span class="toc-number">3.2.5.</span> <span class="toc-text">strftime函数</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#程序：显示日期和时间"><span class="toc-number">3.3.</span> <span class="toc-text">程序：显示日期和时间</span></a></li></ol></li></ol>
-    </div>
-    <div id="tocShell"></div>
-    <div id="toc" class="toc-article">
-      <div class="btn-group drag-me">
-        <i class="social fa fa-ellipsis-v"></i>
-      </div>
-      <div class="btn-group dropup-catelog">
-        <button class="btn"><i class="social fa fa-list-ol"></i></button>
-        <div class="catelog-content">
-          <p class="toc-title-wrap">
-            <strong class="toc-title">文章目录</strong>
-          </p>
-          <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#26-1-stdarg-h：可变实参"><span class="toc-number">1.</span> <span class="toc-text">26.1    stdarg.h：可变实参</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#va-arg宏（函数）"><span class="toc-number">1.0.1.</span> <span class="toc-text">va_arg宏（函数）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#va-start宏（函数）"><span class="toc-number">1.0.2.</span> <span class="toc-text">va_start宏（函数）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#va-end宏（函数）"><span class="toc-number">1.0.3.</span> <span class="toc-text">va_end宏（函数）</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#26-1-1-调用可变实参列表的函数"><span class="toc-number">1.1.</span> <span class="toc-text">26.1.1    调用可变实参列表的函数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#26-1-2-v…printf类函数"><span class="toc-number">1.2.</span> <span class="toc-text">26.1.2    v…printf类函数</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#vfprintf函数"><span class="toc-number">1.2.1.</span> <span class="toc-text">vfprintf函数</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#vprintf函数"><span class="toc-number">1.2.2.</span> <span class="toc-text">vprintf函数</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#vsprintf函数"><span class="toc-number">1.2.3.</span> <span class="toc-text">vsprintf函数</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#26-2-stdlib-h-通用的使用工具"><span class="toc-number">2.</span> <span class="toc-text">26.2    stdlib.h:    通用的使用工具</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#26-2-1-字符串转换函数"><span class="toc-number">2.1.</span> <span class="toc-text">26.2.1    字符串转换函数</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#atof函数（c89之前）"><span class="toc-number">2.1.1.</span> <span class="toc-text">atof函数（c89之前）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#atoi函数（c89之前）"><span class="toc-number">2.1.2.</span> <span class="toc-text">atoi函数（c89之前）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#atol函数（c89之前）"><span class="toc-number">2.1.3.</span> <span class="toc-text">atol函数（c89之前）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#strtod函数（c89）"><span class="toc-number">2.1.4.</span> <span class="toc-text">strtod函数（c89）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#strtol函数（c89）"><span class="toc-number">2.1.5.</span> <span class="toc-text">strtol函数（c89）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#strtoul函数（c89）"><span class="toc-number">2.1.6.</span> <span class="toc-text">strtoul函数（c89）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#strtold函数-C99"><span class="toc-number">2.1.7.</span> <span class="toc-text">strtold函数(C99)</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#atoll函数-c99"><span class="toc-number">2.1.8.</span> <span class="toc-text">atoll函数(c99)</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#strtof函数-C99"><span class="toc-number">2.1.9.</span> <span class="toc-text">strtof函数(C99)</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#strtoll函数-C99"><span class="toc-number">2.1.10.</span> <span class="toc-text">strtoll函数(C99)</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#strtoull函数-C99"><span class="toc-number">2.1.11.</span> <span class="toc-text">strtoull函数(C99)</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#程序：测试数值转换函数"><span class="toc-number">2.2.</span> <span class="toc-text">程序：测试数值转换函数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#26-2-3-伪随机序列生成函数"><span class="toc-number">2.3.</span> <span class="toc-text">26.2.3    伪随机序列生成函数</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#rand函数"><span class="toc-number">2.3.1.</span> <span class="toc-text">rand函数</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#srand函数"><span class="toc-number">2.3.2.</span> <span class="toc-text">srand函数</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#26-2-3-与环境的通信"><span class="toc-number">2.4.</span> <span class="toc-text">26.2.3    与环境的通信</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#exit函数"><span class="toc-number">2.4.1.</span> <span class="toc-text">exit函数</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#atexit函数"><span class="toc-number">2.4.2.</span> <span class="toc-text">atexit函数</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Exit函数（c99）"><span class="toc-number">2.4.3.</span> <span class="toc-text">_Exit函数（c99）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#abort函数"><span class="toc-number">2.4.4.</span> <span class="toc-text">abort函数</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#getenv函数"><span class="toc-number">2.4.5.</span> <span class="toc-text">getenv函数</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#system函数"><span class="toc-number">2.4.6.</span> <span class="toc-text">system函数</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#26-2-4-搜索和排序使用工具"><span class="toc-number">2.5.</span> <span class="toc-text">26.2.4    搜索和排序使用工具</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#bsearch函数"><span class="toc-number">2.5.1.</span> <span class="toc-text">bsearch函数</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#qsort函数"><span class="toc-number">2.5.2.</span> <span class="toc-text">qsort函数</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#程序：确定航空里程"><span class="toc-number">2.6.</span> <span class="toc-text">程序：确定航空里程</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#26-2-5-整数运算函数"><span class="toc-number">2.7.</span> <span class="toc-text">26.2.5    整数运算函数</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#abs函数"><span class="toc-number">2.7.1.</span> <span class="toc-text">abs函数</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#labs函数"><span class="toc-number">2.7.2.</span> <span class="toc-text">labs函数</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#llabs函数"><span class="toc-number">2.7.3.</span> <span class="toc-text">llabs函数</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#div函数"><span class="toc-number">2.7.4.</span> <span class="toc-text">div函数</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#ldiv函数（c99）"><span class="toc-number">2.7.5.</span> <span class="toc-text">ldiv函数（c99）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#lldiv函数（c99）"><span class="toc-number">2.7.6.</span> <span class="toc-text">lldiv函数（c99）</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#26-3-time-h：日期和时间"><span class="toc-number">3.</span> <span class="toc-text">26.3    time.h：日期和时间</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#26-3-1-时间处理函数"><span class="toc-number">3.1.</span> <span class="toc-text">26.3.1    时间处理函数</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#clock函数"><span class="toc-number">3.1.1.</span> <span class="toc-text">clock函数</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#time函数"><span class="toc-number">3.1.2.</span> <span class="toc-text">time函数</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#difftime函数"><span class="toc-number">3.1.3.</span> <span class="toc-text">difftime函数</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#mktime函数"><span class="toc-number">3.1.4.</span> <span class="toc-text">mktime函数</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#26-3-2-时间转换函数"><span class="toc-number">3.2.</span> <span class="toc-text">26.3.2    时间转换函数</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#gmtime函数"><span class="toc-number">3.2.1.</span> <span class="toc-text">gmtime函数</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#localtime函数"><span class="toc-number">3.2.2.</span> <span class="toc-text">localtime函数</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#asctime函数"><span class="toc-number">3.2.3.</span> <span class="toc-text">asctime函数</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#ctime函数"><span class="toc-number">3.2.4.</span> <span class="toc-text">ctime函数</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#strftime函数"><span class="toc-number">3.2.5.</span> <span class="toc-text">strftime函数</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#程序：显示日期和时间"><span class="toc-number">3.3.</span> <span class="toc-text">程序：显示日期和时间</span></a></li></ol></li></ol>
+          
+            
+          
+
+          
+
+          
+          
+
+          
         </div>
-      </div>
-    </div>
+      </header>
     
-    <h2 id="26-1-stdarg-h：可变实参"><a href="#26-1-stdarg-h：可变实参" class="headerlink" title="26.1    stdarg.h：可变实参"></a>26.1    stdarg.h：可变实参</h2><blockquote>
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="26-1-stdarg-h：可变实参"><a href="#26-1-stdarg-h：可变实参" class="headerlink" title="26.1    stdarg.h：可变实参"></a>26.1    stdarg.h：可变实参</h2><blockquote>
 <p><strong>带有可变参数的函数：</strong>带有可变数量参数的函数必须至少有一个“正常的”形式参数，在最后一个正常参数的后边始终会有省略号出现在参数列表的末尾。<br><strong>可变部分实参提升：</strong>当调用带有可变实参列表的函数时，编译器会在匹配省略号的全部参数上执行默认的<code>实参提升</code>（<a href="">9.3</a>）</p>
 <ul>
 <li>char -&gt; int</li>
@@ -658,52 +792,282 @@
 <h3 id="程序：显示日期和时间"><a href="#程序：显示日期和时间" class="headerlink" title="程序：显示日期和时间"></a>程序：显示日期和时间</h3><figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="comment">/**</span><br><span class="line"> * Display the current date and time in three formats</span><br><span class="line"> */</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;time.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">(<span class="keyword">int</span> argc, <span class="keyword">char</span> <span class="keyword">const</span> *argv[])</span> </span>&#123;</span><br><span class="line">	<span class="comment">/* 1. 获得日历时间 */</span></span><br><span class="line">	<span class="keyword">time_t</span> current = time(NULL);</span><br><span class="line">	<span class="keyword">struct</span> tm *ptr;</span><br><span class="line">	<span class="keyword">char</span> date_time[<span class="number">21</span>];</span><br><span class="line">	<span class="keyword">int</span> hour;</span><br><span class="line">	<span class="keyword">char</span> am_or_pm;</span><br><span class="line"></span><br><span class="line">	<span class="comment">/* 2. 打印日期时间：ctime默认的的字符串形式 */</span></span><br><span class="line">	<span class="built_in">puts</span>(ctime(&amp;current));</span><br><span class="line"></span><br><span class="line">	<span class="comment">/* 2. 打印日期时间：strftime默认的字符串形式 */</span></span><br><span class="line">	strftime(date_time, <span class="keyword">sizeof</span>(date_time), <span class="string">"%m-%d-%Y %I:%M%p\n"</span>, localtime(&amp;current));</span><br><span class="line">	<span class="built_in">puts</span>(date_time);</span><br><span class="line"></span><br><span class="line">	<span class="comment">/* 2. 打印日期和时间：使用printf结合分解时间 */</span></span><br><span class="line">	ptr = localtime(&amp;current);</span><br><span class="line">	hour = ptr-&gt;tm_hour;</span><br><span class="line">	<span class="keyword">if</span> (hour &lt;= <span class="number">11</span>) &#123;</span><br><span class="line">		am_or_pm = <span class="string">'a'</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">else</span> &#123;</span><br><span class="line">		hour -= <span class="number">12</span>;</span><br><span class="line">		am_or_pm = <span class="string">'p'</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">if</span> (hour == <span class="number">0</span>) &#123;</span><br><span class="line">		hour = <span class="number">12</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">"%.2d-%.2d-%.2d %2d:%.2d%c\n"</span>, ptr-&gt;tm_mon + <span class="number">1</span>, ptr-&gt;tm_mday, ptr-&gt;tm_year + <span class="number">1900</span>, hour, ptr-&gt;tm_min, am_or_pm);</span><br><span class="line">	return <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ ./datetime</span><br><span class="line"> Wed Nov  4 10:41:12  2015</span><br><span class="line"></span><br><span class="line"> 11-04-2015 10:41AM</span><br><span class="line"></span><br><span class="line"> 11-04-2015 10:41a</span><br></pre></td></tr></table></figure>
 
-  </section>
-
-</article>
-
-
-<section class="post-comments">
-  <!-- 多说评论框 start -->
-  <div id="ds-thread" class="ds-thread" data-thread-key="http://laputa-er.github.io/2016/05/11/26 其它库函数/" data-title="26 其他库函数" data-url="http://laputa-er.github.io/2016/05/11/26 其它库函数/"></div>
-  <!-- 多说评论框 end -->
-  <!-- 多说公共JS代码 start (一个网页只需插入一次) -->
-  <script type="text/javascript">
-  var duoshuoQuery = {short_name:"lapuda-er"};
-  (function() {
-    var ds = document.createElement('script');
-    ds.type = 'text/javascript';ds.async = true;
-    ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
-    ds.charset = 'UTF-8';
-    (document.getElementsByTagName('head')[0] 
-     || document.getElementsByTagName('body')[0]).appendChild(ds);
-  })();
-  </script>
-<!-- 多说公共JS代码 end -->
-</section>
-
-
-
-
-            <footer class="footer">
-    <span class="footer__copyright">
-        本站点采用<a href="http://creativecommons.org/licenses/by-nc-sa/4.0/">知识共享署名-非商业性使用-相同方式共享 4.0 国际许可协议</a>
-    </span>
-    <span class="footer__copyright">
-        基于 <a href="http://hexo.io">Hexo</a> 搭建，感谢 <a href="https://pages.github.com/">GitHub Pages</a> 提供免费的托管服务
-    </span>
-    <span class="footer__copyright">
-        &copy; 2016 - 
-        本站修改自<a href="https://github.com/lenbo-ma/hexo-theme-vno" target="_blank">hexo-theme-vno</a>
-    </span>
-</footer>
-
-        </div>
+      
     </div>
 
-    <script src="http://cdn.bootcss.com/jquery/2.1.4/jquery.min.js"></script>
-    <script src="/js/main.js"></script>
+    <div>
+      
+        
 
-     
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/c语言程序设计－现代方法/" rel="tag">#c语言程序设计－现代方法</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/05/11/24 错误处理/" rel="next" title="24 错误处理">
+                <i class="fa fa-chevron-left"></i> 24 错误处理
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/05/11/25 国际化特性/" rel="prev" title="25 国际化特性">
+                25 国际化特性 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.gif"
+               alt="Sean" />
+          <p class="site-author-name" itemprop="name">Sean</p>
+          <p class="site-description motion-element" itemprop="description">整理了一批过去一段时间ios相关的笔记，其它的笔记也整理下？源码分享出来？再说吧...反正也只有自己会看吧...</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">85</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">10</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#26-1-stdarg-h：可变实参"><span class="nav-number">1.</span> <span class="nav-text">26.1    stdarg.h：可变实参</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#va-arg宏（函数）"><span class="nav-number">1.0.1.</span> <span class="nav-text">va_arg宏（函数）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#va-start宏（函数）"><span class="nav-number">1.0.2.</span> <span class="nav-text">va_start宏（函数）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#va-end宏（函数）"><span class="nav-number">1.0.3.</span> <span class="nav-text">va_end宏（函数）</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#26-1-1-调用可变实参列表的函数"><span class="nav-number">1.1.</span> <span class="nav-text">26.1.1    调用可变实参列表的函数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#26-1-2-v…printf类函数"><span class="nav-number">1.2.</span> <span class="nav-text">26.1.2    v…printf类函数</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#vfprintf函数"><span class="nav-number">1.2.1.</span> <span class="nav-text">vfprintf函数</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#vprintf函数"><span class="nav-number">1.2.2.</span> <span class="nav-text">vprintf函数</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#vsprintf函数"><span class="nav-number">1.2.3.</span> <span class="nav-text">vsprintf函数</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#26-2-stdlib-h-通用的使用工具"><span class="nav-number">2.</span> <span class="nav-text">26.2    stdlib.h:    通用的使用工具</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#26-2-1-字符串转换函数"><span class="nav-number">2.1.</span> <span class="nav-text">26.2.1    字符串转换函数</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#atof函数（c89之前）"><span class="nav-number">2.1.1.</span> <span class="nav-text">atof函数（c89之前）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#atoi函数（c89之前）"><span class="nav-number">2.1.2.</span> <span class="nav-text">atoi函数（c89之前）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#atol函数（c89之前）"><span class="nav-number">2.1.3.</span> <span class="nav-text">atol函数（c89之前）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#strtod函数（c89）"><span class="nav-number">2.1.4.</span> <span class="nav-text">strtod函数（c89）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#strtol函数（c89）"><span class="nav-number">2.1.5.</span> <span class="nav-text">strtol函数（c89）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#strtoul函数（c89）"><span class="nav-number">2.1.6.</span> <span class="nav-text">strtoul函数（c89）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#strtold函数-C99"><span class="nav-number">2.1.7.</span> <span class="nav-text">strtold函数(C99)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#atoll函数-c99"><span class="nav-number">2.1.8.</span> <span class="nav-text">atoll函数(c99)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#strtof函数-C99"><span class="nav-number">2.1.9.</span> <span class="nav-text">strtof函数(C99)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#strtoll函数-C99"><span class="nav-number">2.1.10.</span> <span class="nav-text">strtoll函数(C99)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#strtoull函数-C99"><span class="nav-number">2.1.11.</span> <span class="nav-text">strtoull函数(C99)</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#程序：测试数值转换函数"><span class="nav-number">2.2.</span> <span class="nav-text">程序：测试数值转换函数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#26-2-3-伪随机序列生成函数"><span class="nav-number">2.3.</span> <span class="nav-text">26.2.3    伪随机序列生成函数</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#rand函数"><span class="nav-number">2.3.1.</span> <span class="nav-text">rand函数</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#srand函数"><span class="nav-number">2.3.2.</span> <span class="nav-text">srand函数</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#26-2-3-与环境的通信"><span class="nav-number">2.4.</span> <span class="nav-text">26.2.3    与环境的通信</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#exit函数"><span class="nav-number">2.4.1.</span> <span class="nav-text">exit函数</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#atexit函数"><span class="nav-number">2.4.2.</span> <span class="nav-text">atexit函数</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Exit函数（c99）"><span class="nav-number">2.4.3.</span> <span class="nav-text">_Exit函数（c99）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#abort函数"><span class="nav-number">2.4.4.</span> <span class="nav-text">abort函数</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#getenv函数"><span class="nav-number">2.4.5.</span> <span class="nav-text">getenv函数</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#system函数"><span class="nav-number">2.4.6.</span> <span class="nav-text">system函数</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#26-2-4-搜索和排序使用工具"><span class="nav-number">2.5.</span> <span class="nav-text">26.2.4    搜索和排序使用工具</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#bsearch函数"><span class="nav-number">2.5.1.</span> <span class="nav-text">bsearch函数</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#qsort函数"><span class="nav-number">2.5.2.</span> <span class="nav-text">qsort函数</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#程序：确定航空里程"><span class="nav-number">2.6.</span> <span class="nav-text">程序：确定航空里程</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#26-2-5-整数运算函数"><span class="nav-number">2.7.</span> <span class="nav-text">26.2.5    整数运算函数</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#abs函数"><span class="nav-number">2.7.1.</span> <span class="nav-text">abs函数</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#labs函数"><span class="nav-number">2.7.2.</span> <span class="nav-text">labs函数</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#llabs函数"><span class="nav-number">2.7.3.</span> <span class="nav-text">llabs函数</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#div函数"><span class="nav-number">2.7.4.</span> <span class="nav-text">div函数</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#ldiv函数（c99）"><span class="nav-number">2.7.5.</span> <span class="nav-text">ldiv函数（c99）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#lldiv函数（c99）"><span class="nav-number">2.7.6.</span> <span class="nav-text">lldiv函数（c99）</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#26-3-time-h：日期和时间"><span class="nav-number">3.</span> <span class="nav-text">26.3    time.h：日期和时间</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#26-3-1-时间处理函数"><span class="nav-number">3.1.</span> <span class="nav-text">26.3.1    时间处理函数</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#clock函数"><span class="nav-number">3.1.1.</span> <span class="nav-text">clock函数</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#time函数"><span class="nav-number">3.1.2.</span> <span class="nav-text">time函数</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#difftime函数"><span class="nav-number">3.1.3.</span> <span class="nav-text">difftime函数</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#mktime函数"><span class="nav-number">3.1.4.</span> <span class="nav-text">mktime函数</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#26-3-2-时间转换函数"><span class="nav-number">3.2.</span> <span class="nav-text">26.3.2    时间转换函数</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#gmtime函数"><span class="nav-number">3.2.1.</span> <span class="nav-text">gmtime函数</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#localtime函数"><span class="nav-number">3.2.2.</span> <span class="nav-text">localtime函数</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#asctime函数"><span class="nav-number">3.2.3.</span> <span class="nav-text">asctime函数</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#ctime函数"><span class="nav-number">3.2.4.</span> <span class="nav-text">ctime函数</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#strftime函数"><span class="nav-number">3.2.5.</span> <span class="nav-text">strftime函数</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#程序：显示日期和时间"><span class="nav-number">3.3.</span> <span class="nav-text">程序：显示日期和时间</span></a></li></ol></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Sean</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Muse
+  </a>
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+  
+  
+
+  
+
+  
+
+  
+
 </body>
 </html>

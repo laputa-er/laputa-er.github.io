@@ -1,181 +1,303 @@
-<!DOCTYPE html>
-<html>
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion">
 <head>
-    <meta charset="utf-8"/>
-    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
     
-    <title>22 输入/输出 | Sean</title>
-    <meta name="renderer" content="webkit">
-    <meta name="HandheldFriendly" content="True">
-    <meta name="MobileOptimized" content="320">
-    <meta name="apple-mobile-web-app-capable" content="yes">
-    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-
-    <meta name="description" content="do things for fun">
-
-    <meta name="twitter:card" content="summary">
-    <meta name="twitter:title" content="22 输入/输出 | Sean">
-    <meta name="twitter:description" content="do things for fun">
-
-    <meta property="og:type" content="article">
-    <meta property="og:title" content="22 输入/输出 | Sean">
-    <meta property="og:description" content="do things for fun">
-
     
-    <meta name="author" content="Sean">
-    
-    <link rel="stylesheet" href="/css/vno.css">
-    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css">
+  
 
-    
-    <link rel="icon" href="/images/sean.png">
-    
+  
 
-    <meta name="generator" content="hexo"/>
-    
+  
 
-    <link rel="canonical" href="http://laputa-er.github.io/2016/05/10/22 输入／输出/"/>
+  
 
+  
+
+  
     
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="c语言程序设计－现代方法," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1" />
+
+
+
+
+
+
+<meta name="description" content="22.1    流
+说明：在C语言中，术语流意味着任意输入的源或人意输出的目的地。stdio.h中的许多函数不仅可以处理表示成文件的流，还可以处理所有其它形式的流。流：流常常表示为磁盘上的文件，但却可以和其它类型的设备相关联：调制解调器、网络端口、打印机、光盘驱动器等。
+
+22.1.1    文件指针
+文件指针（file pointer）：File *(File定义在stdio.h中)用途：C程序">
+<meta property="og:type" content="article">
+<meta property="og:title" content="22 输入/输出">
+<meta property="og:url" content="http://laputa-er.github.io/2016/05/10/22 输入／输出/index.html">
+<meta property="og:site_name" content="Sean">
+<meta property="og:description" content="22.1    流
+说明：在C语言中，术语流意味着任意输入的源或人意输出的目的地。stdio.h中的许多函数不仅可以处理表示成文件的流，还可以处理所有其它形式的流。流：流常常表示为磁盘上的文件，但却可以和其它类型的设备相关联：调制解调器、网络端口、打印机、光盘驱动器等。
+
+22.1.1    文件指针
+文件指针（file pointer）：File *(File定义在stdio.h中)用途：C程序">
+<meta property="og:image" content="http://o6ul1xz4z.bkt.clouddn.com/img/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202015-10-05%20%E4%B8%8B%E5%8D%8811.04.07.png">
+<meta property="og:image" content="http://o6ul1xz4z.bkt.clouddn.com/img/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202015-10-05%20%E4%B8%8B%E5%8D%8811.04.22.png">
+<meta property="og:image" content="http://o6ul1xz4z.bkt.clouddn.com/img/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202015-10-05%20%E4%B8%8B%E5%8D%8811.04.29.png">
+<meta property="og:image" content="http://o6ul1xz4z.bkt.clouddn.com/img/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202015-10-05%20%E4%B8%8B%E5%8D%8811.08.42.png">
+<meta property="og:image" content="http://o6ul1xz4z.bkt.clouddn.com/img/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202015-10-05%20%E4%B8%8B%E5%8D%8811.04.45.png">
+<meta property="og:image" content="http://o6ul1xz4z.bkt.clouddn.com/img/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202015-10-06%20%E4%B8%8B%E5%8D%888.07.10.png">
+<meta property="og:image" content="http://o6ul1xz4z.bkt.clouddn.com/img/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202015-10-06%20%E4%B8%8B%E5%8D%888.07.25.png">
+<meta property="og:image" content="http://o6ul1xz4z.bkt.clouddn.com/img/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202015-10-06%20%E4%B8%8B%E5%8D%888.07.38.png">
+<meta property="og:updated_time" content="2016-05-13T09:33:17.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="22 输入/输出">
+<meta name="twitter:description" content="22.1    流
+说明：在C语言中，术语流意味着任意输入的源或人意输出的目的地。stdio.h中的许多函数不仅可以处理表示成文件的流，还可以处理所有其它形式的流。流：流常常表示为磁盘上的文件，但却可以和其它类型的设备相关联：调制解调器、网络端口、打印机、光盘驱动器等。
+
+22.1.1    文件指针
+文件指针（file pointer）：File *(File定义在stdio.h中)用途：C程序">
+<meta name="twitter:image" content="http://o6ul1xz4z.bkt.clouddn.com/img/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202015-10-05%20%E4%B8%8B%E5%8D%8811.04.07.png">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Muse',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 0,
+      author: '博主'
+    }
+  };
+</script>
+
+
+
+
+  <link rel="canonical" href="http://laputa-er.github.io/2016/05/10/22 输入／输出/"/>
+
+  <title> 22 输入/输出 | Sean </title>
 </head>
 
-<body class="home-template no-js">
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
 
-    <span class="mobile btn-mobile-menu">
-        <i class="fa fa-list btn-mobile-menu__icon"></i>
-        <i class="fa fa-angle-up btn-mobile-close__icon hidden"></i>
-    </span>
+  
+
+
+
+
+
+
+
+
+
+
+  
+  
     
-<header class="panel-cover panel-cover--collapsed" style="background-image: url(/images/mengxiang.jpg)">
-  <div class="panel-main">
-    <div class="panel-main__inner panel-inverted">
-      <span class="panel-arrow panel-left-arrow disabled">
-        <i class="fa fa-angle-left"></i>
-      </span>
-      <span class="panel-arrow panel-right-arrow">
-        <i class="fa fa-angle-right"></i>
-      </span>
-
-      <div class="panel-animation-container">
-        <div class="panel-content panel-main__content">
-            <a href="/" title="前往 Sean 的主页"><img src="/images/sean.png" width="80" alt="Sean logo" class="panel-cover__logo logo" /></a>
-            <h1 class="panel-cover__title panel-title"><a href="/" title="link to homepage for Sean">Sean</a></h1>
-            
-            <span class="panel-cover__subtitle panel-subtitle">笔记分享</span>
-            
-            <hr class="panel-cover__divider" />
-            <p class="panel-cover__description">整理了一批过去一段时间ios相关的笔记，其它的笔记也整理下？源码分享出来？再说吧...反正也只有自己会看吧...</p>
-            <hr class="panel-cover__divider panel-cover__divider--secondary" />
-
-            <div class="navigation-wrapper">
-              <div>
-              <nav class="cover-navigation cover-navigation--primary">
-                <ul class="navigation">
-                  <li class="navigation__item"><a href="/#blog" title="访问笔记" class="blog-button">笔记</a></li>
-                  <li style="display: none;">
-                    <textarea>
-                      
-                        <li class="navigation__item"><a href="/projects">项目作品</a></li>
-                      
-                        <li class="navigation__item"><a href="/aboutme">关于我</a></li>
-                      
-                    </textarea>
-                  </li>
-                </ul>
-              </nav>
-              </div>
-              <div>
-              <nav class="cover-navigation navigation--social">
-  <ul class="navigation">
-
-  <!-- Weibo-->
   
 
-  <!-- Github -->
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
   
 
-<!-- Stack Overflow -->
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">Sean</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">笔记分享</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
         
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
 
-  <!-- Google Plus -->
+      
+    </ul>
   
 
-<!-- Facebook -->
-
   
-<!-- Twitter -->
-
-  
-
-
-
-  </ul>
 </nav>
 
-              </div>
-            </div>
+ </div>
+    </header>
 
-          </div>
-          <div class="panel-content panel-tagcloud_content">
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
             
-              <aside id="sidebar">
-  
+
+  <div id="posts" class="posts-expand">
     
-  <div class="widget-wrap">
-    <h3 class="widget-title">笔记分类</h3>
-    <div class="widget tagcloud">
-      <a href="/tags/Objective-C基础教程第二版/">Objective-C基础教程第二版</a> <a href="/tags/The-Swift-Program-Language-2/">The Swift Program Language 2</a> <a href="/tags/c语言程序设计－现代方法/">c语言程序设计－现代方法</a> <a href="/tags/iOS/">iOS</a> <a href="/tags/imooc/">imooc</a> <a href="/tags/pug/">pug</a> <a href="/tags/极客学院-ios中级/">极客学院_ios中级</a> <a href="/tags/极客学院-ios初级/">极客学院_ios初级</a> <a href="/tags/极客学院-ios高级/">极客学院_ios高级</a>
-    </div>
-  </div>
 
   
-</aside>
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
             
-          </div>
-        </div>  
+            
+              
+                22 输入/输出
+              
+            
+          </h1>
+        
 
-      </div>
-      <div class="panel-cover--overlay cover-blue"></div>
-  </div>
-  </header>
-    
-    <div class="content-wrapper">
-        <div class="content-wrapper__inner">
-            <article class="post-container post-container--single">
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-05-10T23:01:02+08:00" content="2016-05-10">
+              2016-05-10
+            </time>
+          </span>
 
-  <header class="post-header">
-    <div class="post-meta">
-      <time datetime="2016-05-10T15:01:02.000Z" class="post-list__meta--date date">2016-05-10</time> &#8226; <span class="post-meta__tags tags">于&nbsp;
-  <a class="tag-link" href="/tags/c语言程序设计－现代方法/">c语言程序设计－现代方法</a>
-</span>
-    </div>
-    <h1 class="post-title">22 输入/输出</h1>
-  </header>
+          
 
-  <section class="post">
-    <!-- Table of Contents -->
-    
-    <div id="top-toc">
-      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#22-1-流"><span class="toc-number">1.</span> <span class="toc-text">22.1    流</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#22-1-1-文件指针"><span class="toc-number">1.1.</span> <span class="toc-text">22.1.1    文件指针</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#22-1-2-标准流和重定向"><span class="toc-number">1.2.</span> <span class="toc-text">22.1.2    标准流和重定向</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#标准流"><span class="toc-number">1.2.1.</span> <span class="toc-text">标准流</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#重定向"><span class="toc-number">1.2.2.</span> <span class="toc-text">重定向</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#22-1-3-文本文件与二进制文件"><span class="toc-number">1.3.</span> <span class="toc-text">22.1.3    文本文件与二进制文件</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#22-2-文件操作"><span class="toc-number">2.</span> <span class="toc-text">22.2    文件操作</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#22-2-1-打开文件"><span class="toc-number">2.1.</span> <span class="toc-text">22.2.1    打开文件</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#fopen函数"><span class="toc-number">2.1.1.</span> <span class="toc-text">fopen函数</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#22-2-2-模式"><span class="toc-number">2.2.</span> <span class="toc-text">22.2.2    模式</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#文本文件"><span class="toc-number">2.2.1.</span> <span class="toc-text">文本文件</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#二进制文件"><span class="toc-number">2.2.2.</span> <span class="toc-text">二进制文件</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#22-2-3-关闭文件"><span class="toc-number">2.3.</span> <span class="toc-text">22.2.3    关闭文件</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#fclose函数"><span class="toc-number">2.3.1.</span> <span class="toc-text">fclose函数</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#22-2-4-为流附加文件"><span class="toc-number">2.4.</span> <span class="toc-text">22.2.4    为流附加文件</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#freopen函数"><span class="toc-number">2.4.1.</span> <span class="toc-text">freopen函数</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#22-2-5-从命令行获取文件名"><span class="toc-number">2.5.</span> <span class="toc-text">22.2.5    从命令行获取文件名</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#22-2-6-程序：检查文件是否可以打开"><span class="toc-number">2.6.</span> <span class="toc-text">22.2.6    程序：检查文件是否可以打开</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#22-2-7-临时文件"><span class="toc-number">2.7.</span> <span class="toc-text">22.2.7    临时文件</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#tmpfile函数"><span class="toc-number">2.7.1.</span> <span class="toc-text">tmpfile函数</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#tmpfile函数-1"><span class="toc-number">2.7.2.</span> <span class="toc-text">tmpfile函数</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#22-2-8-文件缓冲"><span class="toc-number">2.8.</span> <span class="toc-text">22.2.8    文件缓冲</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#fflush函数"><span class="toc-number">2.8.1.</span> <span class="toc-text">fflush函数</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#setvbuf函数"><span class="toc-number">2.8.2.</span> <span class="toc-text">setvbuf函数</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#22-2-9-其他文件操作"><span class="toc-number">2.9.</span> <span class="toc-text">22.2.9    其他文件操作</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#remove函数"><span class="toc-number">2.9.1.</span> <span class="toc-text">remove函数</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#rename函数"><span class="toc-number">2.9.2.</span> <span class="toc-text">rename函数</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#22-3-格式化的输入／输出"><span class="toc-number">3.</span> <span class="toc-text">22.3    格式化的输入／输出</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#22-3-1-…printf类函数"><span class="toc-number">3.1.</span> <span class="toc-text">22.3.1    …printf类函数</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#printf函数"><span class="toc-number">3.1.1.</span> <span class="toc-text">printf函数</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#fprintf函数"><span class="toc-number">3.1.2.</span> <span class="toc-text">fprintf函数</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#22-3-2-…printf类函数的转换说明"><span class="toc-number">3.2.</span> <span class="toc-text">22.3.2    …printf类函数的转换说明</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#转换说明：-012-5Lg"><span class="toc-number">3.2.1.</span> <span class="toc-text">转换说明：%# 012.5Lg</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#22-3-3-…printf类函数的转换说明示例"><span class="toc-number">3.3.</span> <span class="toc-text">22.3.3    …printf类函数的转换说明示例</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#标志➊"><span class="toc-number">3.3.1.</span> <span class="toc-text">标志➊</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#最小字段宽度➋-精度➌"><span class="toc-number">3.3.2.</span> <span class="toc-text">最小字段宽度➋ + 精度➌</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#转换说明➎"><span class="toc-number">3.3.3.</span> <span class="toc-text">转换说明➎</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#最小字符宽度❷和精度❸中"><span class="toc-number">3.3.4.</span> <span class="toc-text">最小字符宽度❷和精度❸中*</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#转换说明p和n"><span class="toc-number">3.3.5.</span> <span class="toc-text">转换说明p和n</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#22-3-4-…scanf类函数"><span class="toc-number">3.4.</span> <span class="toc-text">22.3.4    …scanf类函数</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#scanf函数"><span class="toc-number">3.4.1.</span> <span class="toc-text">scanf函数</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#fscanf函数"><span class="toc-number">3.4.2.</span> <span class="toc-text">fscanf函数</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#22-3-5-…scanf类函数的格式化字符串"><span class="toc-number">3.5.</span> <span class="toc-text">22.3.5    …scanf类函数的格式化字符串</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#格式串"><span class="toc-number">3.5.1.</span> <span class="toc-text">格式串</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#转换说明"><span class="toc-number">3.5.1.1.</span> <span class="toc-text">转换说明</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#空白字符"><span class="toc-number">3.5.1.2.</span> <span class="toc-text">空白字符</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#非空白字符"><span class="toc-number">3.5.1.3.</span> <span class="toc-text">非空白字符</span></a></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#22-3-6-…scanf类函数的转换说明"><span class="toc-number">3.6.</span> <span class="toc-text">22.3.6    …scanf类函数的转换说明</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#转换说明：-12Ld"><span class="toc-number">3.6.1.</span> <span class="toc-text">转换说明：%*12Ld</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#strtol函数-26-2-1"><span class="toc-number">3.6.2.</span> <span class="toc-text">strtol函数(26.2.1)</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#22-3-7-…scanf函数的示例"><span class="toc-number">3.7.</span> <span class="toc-text">22.3.7    …scanf函数的示例</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#转换说明、空白字符、非空白字符组合效果"><span class="toc-number">3.7.1.</span> <span class="toc-text">转换说明、空白字符、非空白字符组合效果</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#赋值屏蔽和指定字段宽度效果"><span class="toc-number">3.7.2.</span> <span class="toc-text">赋值屏蔽和指定字段宽度效果</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#难懂的转换说明：i、-、n"><span class="toc-number">3.7.3.</span> <span class="toc-text">难懂的转换说明：i、[、n</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#22-3-8-检测文件末尾和错误条件"><span class="toc-number">3.8.</span> <span class="toc-text">22.3.8    检测文件末尾和错误条件</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#clearerr函数"><span class="toc-number">3.8.1.</span> <span class="toc-text">clearerr函数</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#feof函数"><span class="toc-number">3.8.2.</span> <span class="toc-text">feof函数</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#ferror函数"><span class="toc-number">3.8.3.</span> <span class="toc-text">ferror函数</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#22-4-字符的输入／输出"><span class="toc-number">4.</span> <span class="toc-text">22.4    字符的输入／输出</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#22-4-1-输出函数"><span class="toc-number">4.1.</span> <span class="toc-text">22.4.1    输出函数</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#fputc函数"><span class="toc-number">4.1.1.</span> <span class="toc-text">fputc函数</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#putc宏"><span class="toc-number">4.1.2.</span> <span class="toc-text">putc宏</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#putchar宏"><span class="toc-number">4.1.3.</span> <span class="toc-text">putchar宏</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#22-4-2-输入函数"><span class="toc-number">4.2.</span> <span class="toc-text">22.4.2    输入函数</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#getc宏"><span class="toc-number">4.2.1.</span> <span class="toc-text">getc宏</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#fgetc函数"><span class="toc-number">4.2.2.</span> <span class="toc-text">fgetc函数</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#getchar（宏）"><span class="toc-number">4.2.3.</span> <span class="toc-text">getchar（宏）</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#22-4-3-程序：复制文件"><span class="toc-number">4.3.</span> <span class="toc-text">22.4.3    程序：复制文件</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#22-5-行的输入／输出"><span class="toc-number">5.</span> <span class="toc-text">22.5    行的输入／输出</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#22-5-1-输出函数"><span class="toc-number">5.1.</span> <span class="toc-text">22.5.1    输出函数</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#puts函数-13-3"><span class="toc-number">5.1.1.</span> <span class="toc-text">puts函数(13.3)</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#fputs函数"><span class="toc-number">5.1.2.</span> <span class="toc-text">fputs函数</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#22-5-2-输入函数"><span class="toc-number">5.2.</span> <span class="toc-text">22.5.2    输入函数</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#gets函数（13-3）"><span class="toc-number">5.2.1.</span> <span class="toc-text">gets函数（13.3）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#fgets函数"><span class="toc-number">5.2.2.</span> <span class="toc-text">fgets函数</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#22-6-块的输入／输出"><span class="toc-number">6.</span> <span class="toc-text">22.6    块的输入／输出</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#fread函数"><span class="toc-number">6.0.1.</span> <span class="toc-text">fread函数</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#fwrite函数"><span class="toc-number">6.0.2.</span> <span class="toc-text">fwrite函数</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#22-7-文件的定位"><span class="toc-number">7.</span> <span class="toc-text">22.7    文件的定位</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#fseek函数"><span class="toc-number">7.0.1.</span> <span class="toc-text">fseek函数</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#ftell函数"><span class="toc-number">7.0.2.</span> <span class="toc-text">ftell函数</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#rewind函数"><span class="toc-number">7.0.3.</span> <span class="toc-text">rewind函数</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#fgetpos函数"><span class="toc-number">7.0.4.</span> <span class="toc-text">fgetpos函数</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#fsetpos函数"><span class="toc-number">7.0.5.</span> <span class="toc-text">fsetpos函数</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#程序：修改零件记录文件"><span class="toc-number">7.1.</span> <span class="toc-text">程序：修改零件记录文件</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#22-8-字符串的输入／输出"><span class="toc-number">8.</span> <span class="toc-text">22.8    字符串的输入／输出</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#sprintf函数"><span class="toc-number">8.0.1.</span> <span class="toc-text">sprintf函数</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#sscanf函数"><span class="toc-number">8.0.2.</span> <span class="toc-text">sscanf函数</span></a></li></ol></li></ol></li></ol>
-    </div>
-    <div id="tocShell"></div>
-    <div id="toc" class="toc-article">
-      <div class="btn-group drag-me">
-        <i class="social fa fa-ellipsis-v"></i>
-      </div>
-      <div class="btn-group dropup-catelog">
-        <button class="btn"><i class="social fa fa-list-ol"></i></button>
-        <div class="catelog-content">
-          <p class="toc-title-wrap">
-            <strong class="toc-title">文章目录</strong>
-          </p>
-          <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#22-1-流"><span class="toc-number">1.</span> <span class="toc-text">22.1    流</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#22-1-1-文件指针"><span class="toc-number">1.1.</span> <span class="toc-text">22.1.1    文件指针</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#22-1-2-标准流和重定向"><span class="toc-number">1.2.</span> <span class="toc-text">22.1.2    标准流和重定向</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#标准流"><span class="toc-number">1.2.1.</span> <span class="toc-text">标准流</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#重定向"><span class="toc-number">1.2.2.</span> <span class="toc-text">重定向</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#22-1-3-文本文件与二进制文件"><span class="toc-number">1.3.</span> <span class="toc-text">22.1.3    文本文件与二进制文件</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#22-2-文件操作"><span class="toc-number">2.</span> <span class="toc-text">22.2    文件操作</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#22-2-1-打开文件"><span class="toc-number">2.1.</span> <span class="toc-text">22.2.1    打开文件</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#fopen函数"><span class="toc-number">2.1.1.</span> <span class="toc-text">fopen函数</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#22-2-2-模式"><span class="toc-number">2.2.</span> <span class="toc-text">22.2.2    模式</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#文本文件"><span class="toc-number">2.2.1.</span> <span class="toc-text">文本文件</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#二进制文件"><span class="toc-number">2.2.2.</span> <span class="toc-text">二进制文件</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#22-2-3-关闭文件"><span class="toc-number">2.3.</span> <span class="toc-text">22.2.3    关闭文件</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#fclose函数"><span class="toc-number">2.3.1.</span> <span class="toc-text">fclose函数</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#22-2-4-为流附加文件"><span class="toc-number">2.4.</span> <span class="toc-text">22.2.4    为流附加文件</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#freopen函数"><span class="toc-number">2.4.1.</span> <span class="toc-text">freopen函数</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#22-2-5-从命令行获取文件名"><span class="toc-number">2.5.</span> <span class="toc-text">22.2.5    从命令行获取文件名</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#22-2-6-程序：检查文件是否可以打开"><span class="toc-number">2.6.</span> <span class="toc-text">22.2.6    程序：检查文件是否可以打开</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#22-2-7-临时文件"><span class="toc-number">2.7.</span> <span class="toc-text">22.2.7    临时文件</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#tmpfile函数"><span class="toc-number">2.7.1.</span> <span class="toc-text">tmpfile函数</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#tmpfile函数-1"><span class="toc-number">2.7.2.</span> <span class="toc-text">tmpfile函数</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#22-2-8-文件缓冲"><span class="toc-number">2.8.</span> <span class="toc-text">22.2.8    文件缓冲</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#fflush函数"><span class="toc-number">2.8.1.</span> <span class="toc-text">fflush函数</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#setvbuf函数"><span class="toc-number">2.8.2.</span> <span class="toc-text">setvbuf函数</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#22-2-9-其他文件操作"><span class="toc-number">2.9.</span> <span class="toc-text">22.2.9    其他文件操作</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#remove函数"><span class="toc-number">2.9.1.</span> <span class="toc-text">remove函数</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#rename函数"><span class="toc-number">2.9.2.</span> <span class="toc-text">rename函数</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#22-3-格式化的输入／输出"><span class="toc-number">3.</span> <span class="toc-text">22.3    格式化的输入／输出</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#22-3-1-…printf类函数"><span class="toc-number">3.1.</span> <span class="toc-text">22.3.1    …printf类函数</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#printf函数"><span class="toc-number">3.1.1.</span> <span class="toc-text">printf函数</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#fprintf函数"><span class="toc-number">3.1.2.</span> <span class="toc-text">fprintf函数</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#22-3-2-…printf类函数的转换说明"><span class="toc-number">3.2.</span> <span class="toc-text">22.3.2    …printf类函数的转换说明</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#转换说明：-012-5Lg"><span class="toc-number">3.2.1.</span> <span class="toc-text">转换说明：%# 012.5Lg</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#22-3-3-…printf类函数的转换说明示例"><span class="toc-number">3.3.</span> <span class="toc-text">22.3.3    …printf类函数的转换说明示例</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#标志➊"><span class="toc-number">3.3.1.</span> <span class="toc-text">标志➊</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#最小字段宽度➋-精度➌"><span class="toc-number">3.3.2.</span> <span class="toc-text">最小字段宽度➋ + 精度➌</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#转换说明➎"><span class="toc-number">3.3.3.</span> <span class="toc-text">转换说明➎</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#最小字符宽度❷和精度❸中"><span class="toc-number">3.3.4.</span> <span class="toc-text">最小字符宽度❷和精度❸中*</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#转换说明p和n"><span class="toc-number">3.3.5.</span> <span class="toc-text">转换说明p和n</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#22-3-4-…scanf类函数"><span class="toc-number">3.4.</span> <span class="toc-text">22.3.4    …scanf类函数</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#scanf函数"><span class="toc-number">3.4.1.</span> <span class="toc-text">scanf函数</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#fscanf函数"><span class="toc-number">3.4.2.</span> <span class="toc-text">fscanf函数</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#22-3-5-…scanf类函数的格式化字符串"><span class="toc-number">3.5.</span> <span class="toc-text">22.3.5    …scanf类函数的格式化字符串</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#格式串"><span class="toc-number">3.5.1.</span> <span class="toc-text">格式串</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#转换说明"><span class="toc-number">3.5.1.1.</span> <span class="toc-text">转换说明</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#空白字符"><span class="toc-number">3.5.1.2.</span> <span class="toc-text">空白字符</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#非空白字符"><span class="toc-number">3.5.1.3.</span> <span class="toc-text">非空白字符</span></a></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#22-3-6-…scanf类函数的转换说明"><span class="toc-number">3.6.</span> <span class="toc-text">22.3.6    …scanf类函数的转换说明</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#转换说明：-12Ld"><span class="toc-number">3.6.1.</span> <span class="toc-text">转换说明：%*12Ld</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#strtol函数-26-2-1"><span class="toc-number">3.6.2.</span> <span class="toc-text">strtol函数(26.2.1)</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#22-3-7-…scanf函数的示例"><span class="toc-number">3.7.</span> <span class="toc-text">22.3.7    …scanf函数的示例</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#转换说明、空白字符、非空白字符组合效果"><span class="toc-number">3.7.1.</span> <span class="toc-text">转换说明、空白字符、非空白字符组合效果</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#赋值屏蔽和指定字段宽度效果"><span class="toc-number">3.7.2.</span> <span class="toc-text">赋值屏蔽和指定字段宽度效果</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#难懂的转换说明：i、-、n"><span class="toc-number">3.7.3.</span> <span class="toc-text">难懂的转换说明：i、[、n</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#22-3-8-检测文件末尾和错误条件"><span class="toc-number">3.8.</span> <span class="toc-text">22.3.8    检测文件末尾和错误条件</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#clearerr函数"><span class="toc-number">3.8.1.</span> <span class="toc-text">clearerr函数</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#feof函数"><span class="toc-number">3.8.2.</span> <span class="toc-text">feof函数</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#ferror函数"><span class="toc-number">3.8.3.</span> <span class="toc-text">ferror函数</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#22-4-字符的输入／输出"><span class="toc-number">4.</span> <span class="toc-text">22.4    字符的输入／输出</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#22-4-1-输出函数"><span class="toc-number">4.1.</span> <span class="toc-text">22.4.1    输出函数</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#fputc函数"><span class="toc-number">4.1.1.</span> <span class="toc-text">fputc函数</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#putc宏"><span class="toc-number">4.1.2.</span> <span class="toc-text">putc宏</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#putchar宏"><span class="toc-number">4.1.3.</span> <span class="toc-text">putchar宏</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#22-4-2-输入函数"><span class="toc-number">4.2.</span> <span class="toc-text">22.4.2    输入函数</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#getc宏"><span class="toc-number">4.2.1.</span> <span class="toc-text">getc宏</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#fgetc函数"><span class="toc-number">4.2.2.</span> <span class="toc-text">fgetc函数</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#getchar（宏）"><span class="toc-number">4.2.3.</span> <span class="toc-text">getchar（宏）</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#22-4-3-程序：复制文件"><span class="toc-number">4.3.</span> <span class="toc-text">22.4.3    程序：复制文件</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#22-5-行的输入／输出"><span class="toc-number">5.</span> <span class="toc-text">22.5    行的输入／输出</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#22-5-1-输出函数"><span class="toc-number">5.1.</span> <span class="toc-text">22.5.1    输出函数</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#puts函数-13-3"><span class="toc-number">5.1.1.</span> <span class="toc-text">puts函数(13.3)</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#fputs函数"><span class="toc-number">5.1.2.</span> <span class="toc-text">fputs函数</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#22-5-2-输入函数"><span class="toc-number">5.2.</span> <span class="toc-text">22.5.2    输入函数</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#gets函数（13-3）"><span class="toc-number">5.2.1.</span> <span class="toc-text">gets函数（13.3）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#fgets函数"><span class="toc-number">5.2.2.</span> <span class="toc-text">fgets函数</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#22-6-块的输入／输出"><span class="toc-number">6.</span> <span class="toc-text">22.6    块的输入／输出</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#fread函数"><span class="toc-number">6.0.1.</span> <span class="toc-text">fread函数</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#fwrite函数"><span class="toc-number">6.0.2.</span> <span class="toc-text">fwrite函数</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#22-7-文件的定位"><span class="toc-number">7.</span> <span class="toc-text">22.7    文件的定位</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#fseek函数"><span class="toc-number">7.0.1.</span> <span class="toc-text">fseek函数</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#ftell函数"><span class="toc-number">7.0.2.</span> <span class="toc-text">ftell函数</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#rewind函数"><span class="toc-number">7.0.3.</span> <span class="toc-text">rewind函数</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#fgetpos函数"><span class="toc-number">7.0.4.</span> <span class="toc-text">fgetpos函数</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#fsetpos函数"><span class="toc-number">7.0.5.</span> <span class="toc-text">fsetpos函数</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#程序：修改零件记录文件"><span class="toc-number">7.1.</span> <span class="toc-text">程序：修改零件记录文件</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#22-8-字符串的输入／输出"><span class="toc-number">8.</span> <span class="toc-text">22.8    字符串的输入／输出</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#sprintf函数"><span class="toc-number">8.0.1.</span> <span class="toc-text">sprintf函数</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#sscanf函数"><span class="toc-number">8.0.2.</span> <span class="toc-text">sscanf函数</span></a></li></ol></li></ol></li></ol>
+          
+            
+          
+
+          
+
+          
+          
+
+          
         </div>
-      </div>
-    </div>
+      </header>
     
-    <h2 id="22-1-流"><a href="#22-1-流" class="headerlink" title="22.1    流"></a>22.1    流</h2><blockquote>
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="22-1-流"><a href="#22-1-流" class="headerlink" title="22.1    流"></a>22.1    流</h2><blockquote>
 <p><strong>说明：</strong>在C语言中，术语流意味着任意输入的源或人意输出的目的地。<code>stdio.h</code>中的许多函数不仅可以处理表示成文件的流，还可以处理所有其它形式的流。<br><strong>流：</strong>流常常表示为磁盘上的文件，但却可以和其它类型的设备相关联：调制解调器、网络端口、打印机、光盘驱动器等。</p>
 </blockquote>
 <h3 id="22-1-1-文件指针"><a href="#22-1-1-文件指针" class="headerlink" title="22.1.1    文件指针"></a>22.1.1    文件指针</h3><blockquote>
@@ -1235,52 +1357,282 @@
 <figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 使用fgets函数来获取一行输入，然后把此行数据传递给scanf函数进一步处理</span></span><br><span class="line">fgets(str, <span class="keyword">sizeof</span>(str));</span><br><span class="line"><span class="built_in">sscanf</span>(str, <span class="string">"%d%d"</span>, &amp;i, &amp;j);</span><br></pre></td></tr></table></figure>
 <figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 从字符串中读取日期</span></span><br><span class="line"><span class="keyword">if</span> (<span class="built_in">sscanf</span>(str, <span class="string">"%d/%d/%d"</span>, &amp;month, &amp;day, &amp;year) == <span class="number">3</span>) &#123;</span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">"Month: %d, day: %d, year: %d\n"</span>, month, day, year);</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">else</span> <span class="keyword">if</span> (sscanf(str, <span class="string">"%d-%d-%d"</span>, &amp;month, &amp;day, &amp;year) == <span class="number">3</span>) &#123;</span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">"Month: %d, day: %d, year: %d\n"</span>, month, day, year);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-  </section>
-
-</article>
-
-
-<section class="post-comments">
-  <!-- 多说评论框 start -->
-  <div id="ds-thread" class="ds-thread" data-thread-key="http://laputa-er.github.io/2016/05/10/22 输入／输出/" data-title="22 输入/输出" data-url="http://laputa-er.github.io/2016/05/10/22 输入／输出/"></div>
-  <!-- 多说评论框 end -->
-  <!-- 多说公共JS代码 start (一个网页只需插入一次) -->
-  <script type="text/javascript">
-  var duoshuoQuery = {short_name:"lapuda-er"};
-  (function() {
-    var ds = document.createElement('script');
-    ds.type = 'text/javascript';ds.async = true;
-    ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
-    ds.charset = 'UTF-8';
-    (document.getElementsByTagName('head')[0] 
-     || document.getElementsByTagName('body')[0]).appendChild(ds);
-  })();
-  </script>
-<!-- 多说公共JS代码 end -->
-</section>
-
-
-
-
-            <footer class="footer">
-    <span class="footer__copyright">
-        本站点采用<a href="http://creativecommons.org/licenses/by-nc-sa/4.0/">知识共享署名-非商业性使用-相同方式共享 4.0 国际许可协议</a>
-    </span>
-    <span class="footer__copyright">
-        基于 <a href="http://hexo.io">Hexo</a> 搭建，感谢 <a href="https://pages.github.com/">GitHub Pages</a> 提供免费的托管服务
-    </span>
-    <span class="footer__copyright">
-        &copy; 2016 - 
-        本站修改自<a href="https://github.com/lenbo-ma/hexo-theme-vno" target="_blank">hexo-theme-vno</a>
-    </span>
-</footer>
-
-        </div>
+      
     </div>
 
-    <script src="http://cdn.bootcss.com/jquery/2.1.4/jquery.min.js"></script>
-    <script src="/js/main.js"></script>
+    <div>
+      
+        
 
-     
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/c语言程序设计－现代方法/" rel="tag">#c语言程序设计－现代方法</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/05/10/21 标准库/" rel="next" title="21	标准库">
+                <i class="fa fa-chevron-left"></i> 21	标准库
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/05/10/23 库对数值和字符数据的支持/" rel="prev" title="23 库对数值和字符数据的支持">
+                23 库对数值和字符数据的支持 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.gif"
+               alt="Sean" />
+          <p class="site-author-name" itemprop="name">Sean</p>
+          <p class="site-description motion-element" itemprop="description">整理了一批过去一段时间ios相关的笔记，其它的笔记也整理下？源码分享出来？再说吧...反正也只有自己会看吧...</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">85</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">10</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#22-1-流"><span class="nav-number">1.</span> <span class="nav-text">22.1    流</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#22-1-1-文件指针"><span class="nav-number">1.1.</span> <span class="nav-text">22.1.1    文件指针</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#22-1-2-标准流和重定向"><span class="nav-number">1.2.</span> <span class="nav-text">22.1.2    标准流和重定向</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#标准流"><span class="nav-number">1.2.1.</span> <span class="nav-text">标准流</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#重定向"><span class="nav-number">1.2.2.</span> <span class="nav-text">重定向</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#22-1-3-文本文件与二进制文件"><span class="nav-number">1.3.</span> <span class="nav-text">22.1.3    文本文件与二进制文件</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#22-2-文件操作"><span class="nav-number">2.</span> <span class="nav-text">22.2    文件操作</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#22-2-1-打开文件"><span class="nav-number">2.1.</span> <span class="nav-text">22.2.1    打开文件</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#fopen函数"><span class="nav-number">2.1.1.</span> <span class="nav-text">fopen函数</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#22-2-2-模式"><span class="nav-number">2.2.</span> <span class="nav-text">22.2.2    模式</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#文本文件"><span class="nav-number">2.2.1.</span> <span class="nav-text">文本文件</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#二进制文件"><span class="nav-number">2.2.2.</span> <span class="nav-text">二进制文件</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#22-2-3-关闭文件"><span class="nav-number">2.3.</span> <span class="nav-text">22.2.3    关闭文件</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#fclose函数"><span class="nav-number">2.3.1.</span> <span class="nav-text">fclose函数</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#22-2-4-为流附加文件"><span class="nav-number">2.4.</span> <span class="nav-text">22.2.4    为流附加文件</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#freopen函数"><span class="nav-number">2.4.1.</span> <span class="nav-text">freopen函数</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#22-2-5-从命令行获取文件名"><span class="nav-number">2.5.</span> <span class="nav-text">22.2.5    从命令行获取文件名</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#22-2-6-程序：检查文件是否可以打开"><span class="nav-number">2.6.</span> <span class="nav-text">22.2.6    程序：检查文件是否可以打开</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#22-2-7-临时文件"><span class="nav-number">2.7.</span> <span class="nav-text">22.2.7    临时文件</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#tmpfile函数"><span class="nav-number">2.7.1.</span> <span class="nav-text">tmpfile函数</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#tmpfile函数-1"><span class="nav-number">2.7.2.</span> <span class="nav-text">tmpfile函数</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#22-2-8-文件缓冲"><span class="nav-number">2.8.</span> <span class="nav-text">22.2.8    文件缓冲</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#fflush函数"><span class="nav-number">2.8.1.</span> <span class="nav-text">fflush函数</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#setvbuf函数"><span class="nav-number">2.8.2.</span> <span class="nav-text">setvbuf函数</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#22-2-9-其他文件操作"><span class="nav-number">2.9.</span> <span class="nav-text">22.2.9    其他文件操作</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#remove函数"><span class="nav-number">2.9.1.</span> <span class="nav-text">remove函数</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#rename函数"><span class="nav-number">2.9.2.</span> <span class="nav-text">rename函数</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#22-3-格式化的输入／输出"><span class="nav-number">3.</span> <span class="nav-text">22.3    格式化的输入／输出</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#22-3-1-…printf类函数"><span class="nav-number">3.1.</span> <span class="nav-text">22.3.1    …printf类函数</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#printf函数"><span class="nav-number">3.1.1.</span> <span class="nav-text">printf函数</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#fprintf函数"><span class="nav-number">3.1.2.</span> <span class="nav-text">fprintf函数</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#22-3-2-…printf类函数的转换说明"><span class="nav-number">3.2.</span> <span class="nav-text">22.3.2    …printf类函数的转换说明</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#转换说明：-012-5Lg"><span class="nav-number">3.2.1.</span> <span class="nav-text">转换说明：%# 012.5Lg</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#22-3-3-…printf类函数的转换说明示例"><span class="nav-number">3.3.</span> <span class="nav-text">22.3.3    …printf类函数的转换说明示例</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#标志➊"><span class="nav-number">3.3.1.</span> <span class="nav-text">标志➊</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#最小字段宽度➋-精度➌"><span class="nav-number">3.3.2.</span> <span class="nav-text">最小字段宽度➋ + 精度➌</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#转换说明➎"><span class="nav-number">3.3.3.</span> <span class="nav-text">转换说明➎</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#最小字符宽度❷和精度❸中"><span class="nav-number">3.3.4.</span> <span class="nav-text">最小字符宽度❷和精度❸中*</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#转换说明p和n"><span class="nav-number">3.3.5.</span> <span class="nav-text">转换说明p和n</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#22-3-4-…scanf类函数"><span class="nav-number">3.4.</span> <span class="nav-text">22.3.4    …scanf类函数</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#scanf函数"><span class="nav-number">3.4.1.</span> <span class="nav-text">scanf函数</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#fscanf函数"><span class="nav-number">3.4.2.</span> <span class="nav-text">fscanf函数</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#22-3-5-…scanf类函数的格式化字符串"><span class="nav-number">3.5.</span> <span class="nav-text">22.3.5    …scanf类函数的格式化字符串</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#格式串"><span class="nav-number">3.5.1.</span> <span class="nav-text">格式串</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#转换说明"><span class="nav-number">3.5.1.1.</span> <span class="nav-text">转换说明</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#空白字符"><span class="nav-number">3.5.1.2.</span> <span class="nav-text">空白字符</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#非空白字符"><span class="nav-number">3.5.1.3.</span> <span class="nav-text">非空白字符</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#22-3-6-…scanf类函数的转换说明"><span class="nav-number">3.6.</span> <span class="nav-text">22.3.6    …scanf类函数的转换说明</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#转换说明：-12Ld"><span class="nav-number">3.6.1.</span> <span class="nav-text">转换说明：%*12Ld</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#strtol函数-26-2-1"><span class="nav-number">3.6.2.</span> <span class="nav-text">strtol函数(26.2.1)</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#22-3-7-…scanf函数的示例"><span class="nav-number">3.7.</span> <span class="nav-text">22.3.7    …scanf函数的示例</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#转换说明、空白字符、非空白字符组合效果"><span class="nav-number">3.7.1.</span> <span class="nav-text">转换说明、空白字符、非空白字符组合效果</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#赋值屏蔽和指定字段宽度效果"><span class="nav-number">3.7.2.</span> <span class="nav-text">赋值屏蔽和指定字段宽度效果</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#难懂的转换说明：i、-、n"><span class="nav-number">3.7.3.</span> <span class="nav-text">难懂的转换说明：i、[、n</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#22-3-8-检测文件末尾和错误条件"><span class="nav-number">3.8.</span> <span class="nav-text">22.3.8    检测文件末尾和错误条件</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#clearerr函数"><span class="nav-number">3.8.1.</span> <span class="nav-text">clearerr函数</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#feof函数"><span class="nav-number">3.8.2.</span> <span class="nav-text">feof函数</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#ferror函数"><span class="nav-number">3.8.3.</span> <span class="nav-text">ferror函数</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#22-4-字符的输入／输出"><span class="nav-number">4.</span> <span class="nav-text">22.4    字符的输入／输出</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#22-4-1-输出函数"><span class="nav-number">4.1.</span> <span class="nav-text">22.4.1    输出函数</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#fputc函数"><span class="nav-number">4.1.1.</span> <span class="nav-text">fputc函数</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#putc宏"><span class="nav-number">4.1.2.</span> <span class="nav-text">putc宏</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#putchar宏"><span class="nav-number">4.1.3.</span> <span class="nav-text">putchar宏</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#22-4-2-输入函数"><span class="nav-number">4.2.</span> <span class="nav-text">22.4.2    输入函数</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#getc宏"><span class="nav-number">4.2.1.</span> <span class="nav-text">getc宏</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#fgetc函数"><span class="nav-number">4.2.2.</span> <span class="nav-text">fgetc函数</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#getchar（宏）"><span class="nav-number">4.2.3.</span> <span class="nav-text">getchar（宏）</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#22-4-3-程序：复制文件"><span class="nav-number">4.3.</span> <span class="nav-text">22.4.3    程序：复制文件</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#22-5-行的输入／输出"><span class="nav-number">5.</span> <span class="nav-text">22.5    行的输入／输出</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#22-5-1-输出函数"><span class="nav-number">5.1.</span> <span class="nav-text">22.5.1    输出函数</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#puts函数-13-3"><span class="nav-number">5.1.1.</span> <span class="nav-text">puts函数(13.3)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#fputs函数"><span class="nav-number">5.1.2.</span> <span class="nav-text">fputs函数</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#22-5-2-输入函数"><span class="nav-number">5.2.</span> <span class="nav-text">22.5.2    输入函数</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#gets函数（13-3）"><span class="nav-number">5.2.1.</span> <span class="nav-text">gets函数（13.3）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#fgets函数"><span class="nav-number">5.2.2.</span> <span class="nav-text">fgets函数</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#22-6-块的输入／输出"><span class="nav-number">6.</span> <span class="nav-text">22.6    块的输入／输出</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#fread函数"><span class="nav-number">6.0.1.</span> <span class="nav-text">fread函数</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#fwrite函数"><span class="nav-number">6.0.2.</span> <span class="nav-text">fwrite函数</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#22-7-文件的定位"><span class="nav-number">7.</span> <span class="nav-text">22.7    文件的定位</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#fseek函数"><span class="nav-number">7.0.1.</span> <span class="nav-text">fseek函数</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#ftell函数"><span class="nav-number">7.0.2.</span> <span class="nav-text">ftell函数</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#rewind函数"><span class="nav-number">7.0.3.</span> <span class="nav-text">rewind函数</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#fgetpos函数"><span class="nav-number">7.0.4.</span> <span class="nav-text">fgetpos函数</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#fsetpos函数"><span class="nav-number">7.0.5.</span> <span class="nav-text">fsetpos函数</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#程序：修改零件记录文件"><span class="nav-number">7.1.</span> <span class="nav-text">程序：修改零件记录文件</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#22-8-字符串的输入／输出"><span class="nav-number">8.</span> <span class="nav-text">22.8    字符串的输入／输出</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#sprintf函数"><span class="nav-number">8.0.1.</span> <span class="nav-text">sprintf函数</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#sscanf函数"><span class="nav-number">8.0.2.</span> <span class="nav-text">sscanf函数</span></a></li></ol></li></ol></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Sean</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Muse
+  </a>
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+  
+  
+
+  
+
+  
+
+  
+
 </body>
 </html>

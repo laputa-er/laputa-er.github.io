@@ -1,836 +1,982 @@
-<!DOCTYPE html>
-<html>
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion">
 <head>
-    <meta charset="utf-8"/>
-    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
     
-    <title>Sean | 笔记分享</title>
-    <meta name="renderer" content="webkit">
-    <meta name="HandheldFriendly" content="True">
-    <meta name="MobileOptimized" content="320">
-    <meta name="apple-mobile-web-app-capable" content="yes">
-    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-
-    <meta name="description" content="do things for fun">
-
-    <meta name="twitter:card" content="summary">
-    <meta name="twitter:title" content="Sean | 笔记分享">
-    <meta name="twitter:description" content="do things for fun">
-
-    <meta property="og:type" content="article">
-    <meta property="og:title" content="Sean | 笔记分享">
-    <meta property="og:description" content="do things for fun">
-
     
-    <meta name="author" content="Sean">
-    
-    <link rel="stylesheet" href="/css/vno.css">
-    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css">
+  
 
-    
-    <link rel="icon" href="/images/sean.png">
-    
+  
 
-    <meta name="generator" content="hexo"/>
-    
+  
 
-    <link rel="canonical" href="http://laputa-er.github.io"/>
+  
 
+  
+
+  
     
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1" />
+
+
+
+
+
+
+<meta name="description" content="整理了一批过去一段时间ios相关的笔记，其它的笔记也整理下？源码分享出来？再说吧...反正也只有自己会看吧...">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Sean">
+<meta property="og:url" content="http://laputa-er.github.io/tags/Objective-C基础教程第二版/index.html">
+<meta property="og:site_name" content="Sean">
+<meta property="og:description" content="整理了一批过去一段时间ios相关的笔记，其它的笔记也整理下？源码分享出来？再说吧...反正也只有自己会看吧...">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Sean">
+<meta name="twitter:description" content="整理了一批过去一段时间ios相关的笔记，其它的笔记也整理下？源码分享出来？再说吧...反正也只有自己会看吧...">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Muse',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 0,
+      author: '博主'
+    }
+  };
+</script>
+
+
+
+
+  <link rel="canonical" href="http://laputa-er.github.io/tags/Objective-C基础教程第二版/"/>
+
+  <title> 标签: Objective-C基础教程第二版 | Sean </title>
 </head>
 
-<body class="home-template no-js">
-
-    <span class="mobile btn-mobile-menu">
-        <i class="fa fa-list btn-mobile-menu__icon"></i>
-        <i class="fa fa-angle-up btn-mobile-close__icon hidden"></i>
-    </span>
-    
-<header class="panel-cover panel-cover--collapsed" style="background-image: url(/images/mengxiang.jpg)">
-  <div class="panel-main">
-    <div class="panel-main__inner panel-inverted">
-      <span class="panel-arrow panel-left-arrow disabled">
-        <i class="fa fa-angle-left"></i>
-      </span>
-      <span class="panel-arrow panel-right-arrow">
-        <i class="fa fa-angle-right"></i>
-      </span>
-
-      <div class="panel-animation-container">
-        <div class="panel-content panel-main__content">
-            <a href="/" title="前往 Sean 的主页"><img src="/images/sean.png" width="80" alt="Sean logo" class="panel-cover__logo logo" /></a>
-            <h1 class="panel-cover__title panel-title"><a href="/" title="link to homepage for Sean">Sean</a></h1>
-            
-            <span class="panel-cover__subtitle panel-subtitle">笔记分享</span>
-            
-            <hr class="panel-cover__divider" />
-            <p class="panel-cover__description">整理了一批过去一段时间ios相关的笔记，其它的笔记也整理下？源码分享出来？再说吧...反正也只有自己会看吧...</p>
-            <hr class="panel-cover__divider panel-cover__divider--secondary" />
-
-            <div class="navigation-wrapper">
-              <div>
-              <nav class="cover-navigation cover-navigation--primary">
-                <ul class="navigation">
-                  <li class="navigation__item"><a href="/#blog" title="访问笔记" class="blog-button">笔记</a></li>
-                  <li style="display: none;">
-                    <textarea>
-                      
-                        <li class="navigation__item"><a href="/projects">项目作品</a></li>
-                      
-                        <li class="navigation__item"><a href="/aboutme">关于我</a></li>
-                      
-                    </textarea>
-                  </li>
-                </ul>
-              </nav>
-              </div>
-              <div>
-              <nav class="cover-navigation navigation--social">
-  <ul class="navigation">
-
-  <!-- Weibo-->
-  
-
-  <!-- Github -->
-  
-
-<!-- Stack Overflow -->
-        
-
-  <!-- Google Plus -->
-  
-
-<!-- Facebook -->
-
-  
-<!-- Twitter -->
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
 
   
 
 
 
-  </ul>
-</nav>
 
-              </div>
-            </div>
 
-          </div>
-          <div class="panel-content panel-tagcloud_content">
-            
-              <aside id="sidebar">
+
+
+
+
+
+  
   
     
-  <div class="widget-wrap">
-    <h3 class="widget-title">笔记分类</h3>
-    <div class="widget tagcloud">
-      <a href="/tags/Objective-C基础教程第二版/">Objective-C基础教程第二版</a> <a href="/tags/The-Swift-Program-Language-2/">The Swift Program Language 2</a> <a href="/tags/c语言程序设计－现代方法/">c语言程序设计－现代方法</a> <a href="/tags/iOS/">iOS</a> <a href="/tags/imooc/">imooc</a> <a href="/tags/pug/">pug</a> <a href="/tags/极客学院-ios中级/">极客学院_ios中级</a> <a href="/tags/极客学院-ios初级/">极客学院_ios初级</a> <a href="/tags/极客学院-ios高级/">极客学院_ios高级</a>
-    </div>
+  
+
+  <div class="container one-collumn sidebar-position-left  ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">Sean</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
   </div>
-
-  
-</aside>
-            
-          </div>
-        </div>  
-
-      </div>
-      <div class="panel-cover--overlay cover-blue"></div>
-  </div>
-  </header>
-    
-    <div class="content-wrapper">
-        <div class="content-wrapper__inner">
-            <div class="main-post-list">
-  <ol class="post-list">
-  
-    
-    <li>
-      <h2 class="post-list__post-title post-title"><a href="/2016/05/13/o-c基础教程第二版_20 NSPredicate/" title="link to post.title">20 NSpredicate</a></h2>
-      <p class="excerpt">
-    
-      
-说明：Cocoa提供了一个名为NSPredicate的类，用于指定过滤器的条件。原理：可以创建NSPredicate对象，通过它准确描述所需的条件，通过谓词(计算真值和假值的函数)筛选每个对象，判断它们是否与条件相匹配。
-
-20.1    创建谓词
-说明：使用谓词有两种方式
-
-
-
-
-方式
-适用
-
-
-
-
-创建许多NSPredicate对象，组合使用
-构建通用用户界面来指定查询的场景
-
-
-谓词字符串
-适用于初学者使用，比较简单
-
-
-
-
-建议：通常将以使用面向字符串的API，尤其是在缺少编译器的错误
-    &hellip;
-      </p>
-      <div class="post-list__meta"><time datetime="2016-05-13T02:43:10.000Z" class="post-list__meta--date date">2016-05-13</time> &#8226; <span class="post-list__meta--tags tags">于&nbsp;
-  <a class="tag-link" href="/tags/Objective-C基础教程第二版/">Objective-C基础教程第二版</a>
-</span><a class="btn-border-small" href="/2016/05/13/o-c基础教程第二版_20 NSPredicate/">继续阅读</a></div>
-      <hr class="post-list__divider" />
-    </li>
-  
-    
-    <li>
-      <h2 class="post-list__post-title post-title"><a href="/2016/05/13/o-c基础教程第二版_19 使用静态分析器/" title="link to post.title">19 使用静态分析器</a></h2>
-      <p class="excerpt">
-    
-      
-说明：从Xcode 3.2开始加入的新功能，不需要运行程序就可以从逻辑上检测代码的工具，它可以寻找会演变成bug的错误。
-
-19.1    静态工作
-说明：静态分析器可以识别以下几种错误
-
-安全问题：比如内存泄漏和缓冲区溢出
-并发性问题：比如静态条件（也就是依赖时间的两个或多个任务失效）
-逻辑问题：包括废代码和不好的编码习惯
-
-注意：静态分析器存在以下不足
-
-拖慢构建程序的过程：因为需要消耗时间来进行分析
-有时会误报错误
-需要适应：因为改变了熟悉的工作流程
-
-
-19.1.1    开始分析
-运
-    &hellip;
-      </p>
-      <div class="post-list__meta"><time datetime="2016-05-13T02:42:52.000Z" class="post-list__meta--date date">2016-05-13</time> &#8226; <span class="post-list__meta--tags tags">于&nbsp;
-  <a class="tag-link" href="/tags/Objective-C基础教程第二版/">Objective-C基础教程第二版</a>
-</span><a class="btn-border-small" href="/2016/05/13/o-c基础教程第二版_19 使用静态分析器/">继续阅读</a></div>
-      <hr class="post-list__divider" />
-    </li>
-  
-    
-    <li>
-      <h2 class="post-list__post-title post-title"><a href="/2016/05/13/o-c基础教程第二版_18 键／值编码/" title="link to post.title">18 键/值编码</a></h2>
-      <p class="excerpt">
-    
-      18.1    入门项目
-说明：
-
-18.2    KVC简介
-说明：通过键／值编码（KVC），没有相应getter方法也能获取属性值，没有相应setter方法也能设置属性值。自动开箱和装箱：仅KVC具有这种功能，常规方法调用和属性语法不具备该功能。
-
-valueForKey实例方法
-说明：将属性名作为键获取属性的值。原理：在Objective-C的运行中使用元数据打开对象并进入其中查找需要的信息，查找顺序为
-
-以参数命名(key或isKey)的getter
-名称为_key或key的实例变量
-
-
-    &hellip;
-      </p>
-      <div class="post-list__meta"><time datetime="2016-05-13T02:42:32.000Z" class="post-list__meta--date date">2016-05-13</time> &#8226; <span class="post-list__meta--tags tags">于&nbsp;
-  <a class="tag-link" href="/tags/Objective-C基础教程第二版/">Objective-C基础教程第二版</a>
-</span><a class="btn-border-small" href="/2016/05/13/o-c基础教程第二版_18 键／值编码/">继续阅读</a></div>
-      <hr class="post-list__divider" />
-    </li>
-  
-    
-    <li>
-      <h2 class="post-list__post-title post-title"><a href="/2016/05/13/o-c基础教程第二版_17 文件的加载于保存/" title="link to post.title">17 文件的加载与保存</a></h2>
-      <p class="excerpt">
-    
-      17.1    属性列表17.1.1    NSDatedate类方法
-说明：获取当前日期和时间。原型：NSDate
-
-/*** @return &amp;#123;instancetype&amp;#125; NSDate类实例*/+ (instancetype)date;
-dateWithTimeIntervalSinceNow类方法
-说明：获取与当前时间相隔一定时差的日期原型：NSDate
-
-/***@return &amp;#123;instancetype&amp;#125; NSDate实例*/+ (instanc
-    &hellip;
-      </p>
-      <div class="post-list__meta"><time datetime="2016-05-13T02:42:12.000Z" class="post-list__meta--date date">2016-05-13</time> &#8226; <span class="post-list__meta--tags tags">于&nbsp;
-  <a class="tag-link" href="/tags/Objective-C基础教程第二版/">Objective-C基础教程第二版</a>
-</span><a class="btn-border-small" href="/2016/05/13/o-c基础教程第二版_17 文件的加载于保存/">继续阅读</a></div>
-      <hr class="post-list__divider" />
-    </li>
-  
-    
-    <li>
-      <h2 class="post-list__post-title post-title"><a href="/2016/05/13/o-c基础教程第二版_16 UIKit简介/" title="link to post.title">16 UIKit简介</a></h2>
-      <p class="excerpt">
-    
-      
-说明：Mac应用程序使用的是AppKit框架，而iOS应用程序使用的是UIKit框架，它包含了所有的UI组件和构成iOS应用程序的资源。注意：iOS和OS X存在以下区别
-
-没有shell和控制台
-应用程序在Mac电脑的模拟器中运行
-无法支持一些无UI界面的API
-大部分程序员都认为开发iOS应用更加轻松
-
-项目创建：步骤如下
-
-File-&amp;gt;New-&amp;gt;New Project(command + shift + n)
-选择应用程序模版：左边列表选择iOS下的Application，然
-    &hellip;
-      </p>
-      <div class="post-list__meta"><time datetime="2016-05-13T02:41:48.000Z" class="post-list__meta--date date">2016-05-13</time> &#8226; <span class="post-list__meta--tags tags">于&nbsp;
-  <a class="tag-link" href="/tags/Objective-C基础教程第二版/">Objective-C基础教程第二版</a>
-</span><a class="btn-border-small" href="/2016/05/13/o-c基础教程第二版_16 UIKit简介/">继续阅读</a></div>
-      <hr class="post-list__divider" />
-    </li>
-  
-    
-    <li>
-      <h2 class="post-list__post-title post-title"><a href="/2016/05/13/o-c基础教程第二版_15 AppKit简介/" title="link to post.title">15 AppKit简介</a></h2>
-      <p class="excerpt">
-    
-      
-说明：Application Kit中包含Cocoa中关于用户界面的大量资源。注意：学习这一章节时，Xcode的最新版本是7.2，部分知识已经过时。比如目前storyboard已经基本取代了xib。
-
-15.1    构建项目
-说明：下面是通过Xcode构建Cocoa应用程序项目的步骤。
-
-File-&amp;gt;New-&amp;gt;New Project（Create a New Xcode Project）
-左边列表Mac OS X下的Application选项-&amp;gt;Cocoa Applicat
-    &hellip;
-      </p>
-      <div class="post-list__meta"><time datetime="2016-05-13T02:41:28.000Z" class="post-list__meta--date date">2016-05-13</time> &#8226; <span class="post-list__meta--tags tags">于&nbsp;
-  <a class="tag-link" href="/tags/Objective-C基础教程第二版/">Objective-C基础教程第二版</a>
-</span><a class="btn-border-small" href="/2016/05/13/o-c基础教程第二版_15 AppKit简介/">继续阅读</a></div>
-      <hr class="post-list__divider" />
-    </li>
-  
-    
-    <li>
-      <h2 class="post-list__post-title post-title"><a href="/2016/05/13/o-c基础教程第二版_14 代码块和并发性/" title="link to post.title">14 代码块和并发行</a></h2>
-      <p class="excerpt">
-    
-      14.1    代码块
-说明：代码块是由C语言实现的，是对C语言中函数的扩展。支持的语言：Objective-C、C 、C++、Objective-C++用途：替代函数或实现闭包现状：代码块在Xcode的GCC和CLang工具中是有效的，但它不属于ANSI的C语言标准。关于代码块的提议已经提交给C语言标准团体。
-
-14.1.1    代码块和函数指针
-说明：代码块的语法借鉴了函数指针
-
-返回类型可以手动声明也可以由编译器通过代码块推导
-具有指定类型的参数列表
-拥有名称
-代码放在{}中
-
-语法：&amp;
-    &hellip;
-      </p>
-      <div class="post-list__meta"><time datetime="2016-05-13T02:41:10.000Z" class="post-list__meta--date date">2016-05-13</time> &#8226; <span class="post-list__meta--tags tags">于&nbsp;
-  <a class="tag-link" href="/tags/Objective-C基础教程第二版/">Objective-C基础教程第二版</a>
-</span><a class="btn-border-small" href="/2016/05/13/o-c基础教程第二版_14 代码块和并发性/">继续阅读</a></div>
-      <hr class="post-list__divider" />
-    </li>
-  
-    
-    <li>
-      <h2 class="post-list__post-title post-title"><a href="/2016/05/13/o-c基础教程第二版_13 协议/" title="link to post.title">13 协议</a></h2>
-      <p class="excerpt">
-    
-      13.1    正式协议
-说明：正式协议类似Java的接口。
-
-声明协议：通过@protocol创建协议的声明。
-采用协议：在类的@interface声明中列出协议的名称。
-遵守协议：在类的@implementation中实现协议的所有方法（否则编译器会生成警告）。
-
-
-13.1.1    声明协议
-说明：类似类或类别的声明
-
-可以继承父协议，类似继承父类
-内部是方法声明列表
-在协议中不会引入新的实例变量
-
-语法：
-
-@protocol 协议名 &amp;lt;父协议名// 方法列表@end
-Cocoa
-    &hellip;
-      </p>
-      <div class="post-list__meta"><time datetime="2016-05-13T02:40:50.000Z" class="post-list__meta--date date">2016-05-13</time> &#8226; <span class="post-list__meta--tags tags">于&nbsp;
-  <a class="tag-link" href="/tags/Objective-C基础教程第二版/">Objective-C基础教程第二版</a>
-</span><a class="btn-border-small" href="/2016/05/13/o-c基础教程第二版_13 协议/">继续阅读</a></div>
-      <hr class="post-list__divider" />
-    </li>
-  
-    
-    <li>
-      <h2 class="post-list__post-title post-title"><a href="/2016/05/13/o-c基础教程第二版_12 类别/" title="link to post.title">12 类别</a></h2>
-      <p class="excerpt">
-    
-      
-说明：利用Objective-C的动态运行时分配机制，你可以为现有的类添加方法或计算属性，这种机制称为类别(category)。
-
-可以在类中添加属性（@property），且只能是计算属性（不能添加实例变量）
-可以向一个类添加任意数量的类别
-类别可以访问其扩展的类的实例变量
-
-总结：我将类别分3种
-
-
-
-
-种类
-@interface
-@implementation
-
-
-
-
-类别
-@interface 类名(类别名)
-@implementation 类名(类别名)
-
-
-类扩展（匿名类别）
-@i
-    &hellip;
-      </p>
-      <div class="post-list__meta"><time datetime="2016-05-13T02:40:26.000Z" class="post-list__meta--date date">2016-05-13</time> &#8226; <span class="post-list__meta--tags tags">于&nbsp;
-  <a class="tag-link" href="/tags/Objective-C基础教程第二版/">Objective-C基础教程第二版</a>
-</span><a class="btn-border-small" href="/2016/05/13/o-c基础教程第二版_12 类别/">继续阅读</a></div>
-      <hr class="post-list__divider" />
-    </li>
-  
-    
-    <li>
-      <h2 class="post-list__post-title post-title"><a href="/2016/05/13/o-c基础教程第二版_11 属性/" title="link to post.title">11 属性</a></h2>
-      <p class="excerpt">
-    
-      
-说明：O-C 2.0引入了属性（property），即@property预编译指令，它组合了新的预编译指令和新的属性访问器语法。用途：除非自己定义了相关代码，否则@property会根据特性自动生成属性及其setter和getter的声明和实现。兼容性：10.5+语法：@property[(特性)] 实例变量类型 实例变量名;注意：还有一个编译指令@synthesize，用来配合@property生成getter和setter的实现，可以省略（XCode 4.4之后）。
-
-11.1    使用
-    &hellip;
-      </p>
-      <div class="post-list__meta"><time datetime="2016-05-13T02:40:03.000Z" class="post-list__meta--date date">2016-05-13</time> &#8226; <span class="post-list__meta--tags tags">于&nbsp;
-  <a class="tag-link" href="/tags/Objective-C基础教程第二版/">Objective-C基础教程第二版</a>
-</span><a class="btn-border-small" href="/2016/05/13/o-c基础教程第二版_11 属性/">继续阅读</a></div>
-      <hr class="post-list__divider" />
-    </li>
-  
-    
-    <li>
-      <h2 class="post-list__post-title post-title"><a href="/2016/05/13/o-c基础教程第二版_10 对象初始化/" title="link to post.title">10 对象初始化</a></h2>
-      <p class="excerpt">
-    
-      
-说明：创建对象有两种方式
-
-类名 new
-[[类名 alloc] init]
-
-技巧：Cocoa惯例是使用后一种方式
-
-10.1    分配对象
-说明：就是从操作系统获得一块内存，并将其指定为存放对象的实例变量的位置。语法：像某个类发送alloc消息
-
-alloc实例方法
-说明：为类实例分配一块足够大的内存，并将这块内存区域全部初始化为对应的0值
-
-
-
-
-实例变量类型
-0值
-
-
-
-
-BOOL
-NO
-
-
-int
-0
-
-
-float
-0.0
-
-
-指针
-nil
-
-
-
-
-注意：刚刚分配的对象不能立即使
-    &hellip;
-      </p>
-      <div class="post-list__meta"><time datetime="2016-05-13T02:39:41.000Z" class="post-list__meta--date date">2016-05-13</time> &#8226; <span class="post-list__meta--tags tags">于&nbsp;
-  <a class="tag-link" href="/tags/Objective-C基础教程第二版/">Objective-C基础教程第二版</a>
-</span><a class="btn-border-small" href="/2016/05/13/o-c基础教程第二版_10 对象初始化/">继续阅读</a></div>
-      <hr class="post-list__divider" />
-    </li>
-  
-    
-    <li>
-      <h2 class="post-list__post-title post-title"><a href="/2016/05/13/o-c基础教程第二版_09  内存管理/" title="link to post.title">9 内存管理</a></h2>
-      <p class="excerpt">
-    
-      9.1    对象生命周期
-说明：4个过程
-
-诞生：通过alloc或new方法实现
-生存：接收消息并执行操作
-交友：通过复合以及向方法传递参数
-死去：被释放掉
-
-
-9.1.1    引用计数
-说明：也叫保留计数，每个对象都有一个与之想关联的整数，被称作它的引用计数器或保留计数器。
-
-
-
-
-相关操作
-说明
-相关方法
-
-
-
-
-引用计数器初始化
-被设置为1
-alloc、new、copy
-
-
-引用计数器+1
-新增对象引用时
-retain
-
-
-引用计数器-1
-引用生命周期结束或引用被断开时
-release
-    &hellip;
-      </p>
-      <div class="post-list__meta"><time datetime="2016-05-13T02:39:18.000Z" class="post-list__meta--date date">2016-05-13</time> &#8226; <span class="post-list__meta--tags tags">于&nbsp;
-  <a class="tag-link" href="/tags/Objective-C基础教程第二版/">Objective-C基础教程第二版</a>
-</span><a class="btn-border-small" href="/2016/05/13/o-c基础教程第二版_09  内存管理/">继续阅读</a></div>
-      <hr class="post-list__divider" />
-    </li>
-  
-    
-    <li>
-      <h2 class="post-list__post-title post-title"><a href="/2016/05/13/o-c基础教程第二版_08  Foundation Kit介绍/" title="link to post.title">8 Foundation Kit介绍</a></h2>
-      <p class="excerpt">
-    
-      
-说明：Cocoa的几个重要框架
-
-
-
-
-框架
-说明
-兼容
-备注
-
-
-
-
-Foundation Kit
-两类UI框架的基础，包含很多有用的、面向数据的简单类和数据类型
-ios和OS X
-基于CoreFoundation框架
-
-
-Application Kit(Appkit)
-包含所有用户界面对象和高级类
-OS X
-16章
-
-
-User Interface Kit(UIKit)
-用户界面
-ios
-15章
-
-
-
-8.1    稳固的 Foundation
-说明：两类UI框架的基础，包含很多有用的、面
-    &hellip;
-      </p>
-      <div class="post-list__meta"><time datetime="2016-05-13T02:38:55.000Z" class="post-list__meta--date date">2016-05-13</time> &#8226; <span class="post-list__meta--tags tags">于&nbsp;
-  <a class="tag-link" href="/tags/Objective-C基础教程第二版/">Objective-C基础教程第二版</a>
-</span><a class="btn-border-small" href="/2016/05/13/o-c基础教程第二版_08  Foundation Kit介绍/">继续阅读</a></div>
-      <hr class="post-list__divider" />
-    </li>
-  
-    
-    <li>
-      <h2 class="post-list__post-title post-title"><a href="/2016/05/13/o-c基础教程第二版_07  深入了解Xcode/" title="link to post.title">7 深入了解Xcode</a></h2>
-      <p class="excerpt">
-    
-      7.1    窗口布局一览
-说明：窗口的组成部分
-
-
-
-
-组成
-说明
-相关功能
-
-
-
-
-工具栏
-位于窗口的最顶端
-上面由很多工具按钮
-
-
-导航器面板
-位于窗口的左边，通常用来显示项目中的文件列表，也可以浏览其他内容
-符号(symbol)、搜索(Search)、问题(Issue)、调试(Debug)、断点(BreakPoints)、和日志(Logs)
-
-
-编辑器面板
-卫浴中间偏右的位置
-大部分时间都在这里工作
-
-
-检查器面板
-位于窗口右边
-显示的是与上下文有关的信息，以及修改选中项属性值的按钮
-
-
-    &hellip;
-      </p>
-      <div class="post-list__meta"><time datetime="2016-05-13T02:38:28.000Z" class="post-list__meta--date date">2016-05-13</time> &#8226; <span class="post-list__meta--tags tags">于&nbsp;
-  <a class="tag-link" href="/tags/Objective-C基础教程第二版/">Objective-C基础教程第二版</a>
-</span><a class="btn-border-small" href="/2016/05/13/o-c基础教程第二版_07  深入了解Xcode/">继续阅读</a></div>
-      <hr class="post-list__divider" />
-    </li>
-  
-    
-    <li>
-      <h2 class="post-list__post-title post-title"><a href="/2016/05/13/o-c基础教程第二版_06  源文件组织/" title="link to post.title">6 源文件组织</a></h2>
-      <p class="excerpt">
-    
-      
-说明：将程序拆分为多个小文件有助于更快地找到重要的代码。
-
-6.1    拆分接口与实现
-说明：接口放在.h文件，实现放在.m文件。
-
-
-
-
-文件
-存放代码
-
-
-
-
-头文件(.h)
-类的@interface指令、公共struct定义、enum常量、#defines和extern全局变量等
-
-
-和类同名的.m(或.mm)文件
-类的@implementation指令、全局变量的定义、私有struct等
-
-
-
-
-注意：如果用.mm做文件扩展名，编译器就会认为你是用Objective-C++（同时使用
-    &hellip;
-      </p>
-      <div class="post-list__meta"><time datetime="2016-05-13T02:38:06.000Z" class="post-list__meta--date date">2016-05-13</time> &#8226; <span class="post-list__meta--tags tags">于&nbsp;
-  <a class="tag-link" href="/tags/Objective-C基础教程第二版/">Objective-C基础教程第二版</a>
-</span><a class="btn-border-small" href="/2016/05/13/o-c基础教程第二版_06  源文件组织/">继续阅读</a></div>
-      <hr class="post-list__divider" />
-    </li>
-  
-    
-    <li>
-      <h2 class="post-list__post-title post-title"><a href="/2016/05/13/o-c基础教程第二版_05  复合/" title="link to post.title">5 复合</a></h2>
-      <p class="excerpt">
-    
-      
-说明：建立类之间的关系除了继承还有复合
-
-5.1    什么是复合
-说明：使用复合可组合多个对象，让它们分工协作原理：在0-C 中，复合是通过包含作为实例变量的对象指针实现的。
-
-5.2    自定义NSLog()
-说明：在类中提供description方法就可以自定义NSLog()会如何输出对象。
-
-在init中初始化实例属性
-说明：使用new创建新对象时后台进行了两步
-
-为对象分配内存，用来存放实例变量（如果实例属性是对象，被初始化为nil）
-自动调用init方法，之后对象进入可用状态
-
-
-    &hellip;
-      </p>
-      <div class="post-list__meta"><time datetime="2016-05-13T02:37:38.000Z" class="post-list__meta--date date">2016-05-13</time> &#8226; <span class="post-list__meta--tags tags">于&nbsp;
-  <a class="tag-link" href="/tags/Objective-C基础教程第二版/">Objective-C基础教程第二版</a>
-</span><a class="btn-border-small" href="/2016/05/13/o-c基础教程第二版_05  复合/">继续阅读</a></div>
-      <hr class="post-list__divider" />
-    </li>
-  
-    
-    <li>
-      <h2 class="post-list__post-title post-title"><a href="/2016/05/13/o-c基础教程第二版_04  继承/" title="link to post.title">4 继承</a></h2>
-      <p class="excerpt">
-    
-      
-说明：处理类和对象的关系时，要重视OOP的两个方面
-
-继承：定义一个具有父类所有功能的新类
-复合：在对象中引用其他对象
-
-
-4.1    为何使用继承
-说明：将所有重复的内容合并在一起，并在需要的地方拥有自定义的方法。不使用继承的架构使用继承后的架构
-
-4.2    继承的语法格式
-说明：@interface 子类名: 父类名
-
-
-
-
-术语
-说明
-
-
-
-
-超类（或父类）
-继承的类
-
-
-子类（或孩子类）
-执行继承的类
-
-
-重写
-如果想改变方法的实现，需要重写继承的方法
-
-
-
-
-注意：O-C不支持
-    &hellip;
-      </p>
-      <div class="post-list__meta"><time datetime="2016-05-13T02:36:44.000Z" class="post-list__meta--date date">2016-05-13</time> &#8226; <span class="post-list__meta--tags tags">于&nbsp;
-  <a class="tag-link" href="/tags/Objective-C基础教程第二版/">Objective-C基础教程第二版</a>
-</span><a class="btn-border-small" href="/2016/05/13/o-c基础教程第二版_04  继承/">继续阅读</a></div>
-      <hr class="post-list__divider" />
-    </li>
-  
-    
-    <li>
-      <h2 class="post-list__post-title post-title"><a href="/2016/05/13/o-c基础教程第二版_03  面向对象编程的基础知识/" title="link to post.title">3 面向对象编程的基础知识</a></h2>
-      <p class="excerpt">
-    
-      
-OOP历史：演变自20世纪60年代的Simula、70年代的SmallTalk、80年代的Clascal以及其他相关语言。C++、Java、Python和Objective-C等现代编程语言都从这个早期的语言中获得了灵感。
-
-3.1    间接只要在多加一层间接，计算机科学中就没有解决不了的问题。
-
-说明：指的就是面向对象的多态性。原理：在程序运行期间，通过指针间接获取某个值，而不是直接获取（指针指向的变化对程序员不可见）。
-
-3.1.1    变量与间接
-说明：基本变量就是间接思想的一种实际
-    &hellip;
-      </p>
-      <div class="post-list__meta"><time datetime="2016-05-13T02:35:54.000Z" class="post-list__meta--date date">2016-05-13</time> &#8226; <span class="post-list__meta--tags tags">于&nbsp;
-  <a class="tag-link" href="/tags/Objective-C基础教程第二版/">Objective-C基础教程第二版</a>
-</span><a class="btn-border-small" href="/2016/05/13/o-c基础教程第二版_03  面向对象编程的基础知识/">继续阅读</a></div>
-      <hr class="post-list__divider" />
-    </li>
-  
-    
-    <li>
-      <h2 class="post-list__post-title post-title"><a href="/2016/05/12/o-c基础教程第二版_02  对C的扩展/" title="link to post.title">2 对c的扩展</a></h2>
-      <p class="excerpt">
-    
-      2.1   最简单的 Objective-C 程序
-说明：项目创建过程如下
-
-创建 workspace：File-New-Workspace
-创建 project：File-New-&amp;gt;Project
-
-
-选择模版：OS X-&amp;gt;Applicetion-&amp;gt; Command Line
-选择语言：Object-C
-选择 Workspace
-
-
-2.2   解构 Hello Objective-C 程序
-默认编译器： XCode 的默认编译器为LLVM，可以处理C（.c文件）、C++（.
-    &hellip;
-      </p>
-      <div class="post-list__meta"><time datetime="2016-05-12T14:36:43.000Z" class="post-list__meta--date date">2016-05-12</time> &#8226; <span class="post-list__meta--tags tags">于&nbsp;
-  <a class="tag-link" href="/tags/Objective-C基础教程第二版/">Objective-C基础教程第二版</a>
-</span><a class="btn-border-small" href="/2016/05/12/o-c基础教程第二版_02  对C的扩展/">继续阅读</a></div>
-      <hr class="post-list__divider" />
-    </li>
-  
-    
-    <li>
-      <h2 class="post-list__post-title post-title"><a href="/2016/05/12/o-c基础教程第二版_01 启程/" title="link to post.title">1 启程</a></h2>
-      <p class="excerpt">
-    
-      1.1 预备知识1.2 历史
-Objective-C：20世纪80年代，Brad Cox为了融合流行的、可移植的C语言和Smalltalk语言的优势，设计出了Objective-C语言。 NeXT公司：1985年，史蒂夫.乔布斯创建，致力于创建功能强大且经济实惠的工作站。NextSTEP：使用Object-C开发的一款功能强大的用户界面工具包。 Cocoa：1996年，苹果收购了NeXT,之后NextSTEP更名为Cocoa。
-
-1.3 内容简介1.4 准备工作
-    &hellip;
-      </p>
-      <div class="post-list__meta"><time datetime="2016-05-12T03:14:49.000Z" class="post-list__meta--date date">2016-05-12</time> &#8226; <span class="post-list__meta--tags tags">于&nbsp;
-  <a class="tag-link" href="/tags/Objective-C基础教程第二版/">Objective-C基础教程第二版</a>
-</span><a class="btn-border-small" href="/2016/05/12/o-c基础教程第二版_01 启程/">继续阅读</a></div>
-      <hr class="post-list__divider" />
-    </li>
-  
-    
-  </ol>
-
-
-
+  <p class="site-subtitle">笔记分享</p>
 </div>
 
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
 
+<nav class="site-nav">
+  
 
-            <footer class="footer">
-    <span class="footer__copyright">
-        本站点采用<a href="http://creativecommons.org/licenses/by-nc-sa/4.0/">知识共享署名-非商业性使用-相同方式共享 4.0 国际许可协议</a>
-    </span>
-    <span class="footer__copyright">
-        基于 <a href="http://hexo.io">Hexo</a> 搭建，感谢 <a href="https://pages.github.com/">GitHub Pages</a> 提供免费的托管服务
-    </span>
-    <span class="footer__copyright">
-        &copy; 2016 - 
-        本站修改自<a href="https://github.com/lenbo-ma/hexo-theme-vno" target="_blank">hexo-theme-vno</a>
-    </span>
-</footer>
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
 
-        </div>
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-collapse">
+    <div class="collection-title">
+      <h2 >
+        Objective-C基础教程第二版
+        <small>标签</small>
+      </h2>
     </div>
 
-    <script src="http://cdn.bootcss.com/jquery/2.1.4/jquery.min.js"></script>
-    <script src="/js/main.js"></script>
+    
+      
 
-     
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+    <header class="post-header">
+
+      <h1 class="post-title">
+        
+            <a class="post-title-link" href="/2016/05/13/o-c基础教程第二版_20 NSPredicate/" itemprop="url">
+              
+                <span itemprop="name">20 NSpredicate</span>
+              
+            </a>
+        
+      </h1>
+
+      <div class="post-meta">
+        <time class="post-time" itemprop="dateCreated"
+              datetime="2016-05-13T10:43:10+08:00"
+              content="2016-05-13" >
+          05-13
+        </time>
+      </div>
+
+    </header>
+  </article>
+
+
+    
+      
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+    <header class="post-header">
+
+      <h1 class="post-title">
+        
+            <a class="post-title-link" href="/2016/05/13/o-c基础教程第二版_19 使用静态分析器/" itemprop="url">
+              
+                <span itemprop="name">19 使用静态分析器</span>
+              
+            </a>
+        
+      </h1>
+
+      <div class="post-meta">
+        <time class="post-time" itemprop="dateCreated"
+              datetime="2016-05-13T10:42:52+08:00"
+              content="2016-05-13" >
+          05-13
+        </time>
+      </div>
+
+    </header>
+  </article>
+
+
+    
+      
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+    <header class="post-header">
+
+      <h1 class="post-title">
+        
+            <a class="post-title-link" href="/2016/05/13/o-c基础教程第二版_18 键／值编码/" itemprop="url">
+              
+                <span itemprop="name">18 键/值编码</span>
+              
+            </a>
+        
+      </h1>
+
+      <div class="post-meta">
+        <time class="post-time" itemprop="dateCreated"
+              datetime="2016-05-13T10:42:32+08:00"
+              content="2016-05-13" >
+          05-13
+        </time>
+      </div>
+
+    </header>
+  </article>
+
+
+    
+      
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+    <header class="post-header">
+
+      <h1 class="post-title">
+        
+            <a class="post-title-link" href="/2016/05/13/o-c基础教程第二版_17 文件的加载于保存/" itemprop="url">
+              
+                <span itemprop="name">17 文件的加载与保存</span>
+              
+            </a>
+        
+      </h1>
+
+      <div class="post-meta">
+        <time class="post-time" itemprop="dateCreated"
+              datetime="2016-05-13T10:42:12+08:00"
+              content="2016-05-13" >
+          05-13
+        </time>
+      </div>
+
+    </header>
+  </article>
+
+
+    
+      
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+    <header class="post-header">
+
+      <h1 class="post-title">
+        
+            <a class="post-title-link" href="/2016/05/13/o-c基础教程第二版_16 UIKit简介/" itemprop="url">
+              
+                <span itemprop="name">16 UIKit简介</span>
+              
+            </a>
+        
+      </h1>
+
+      <div class="post-meta">
+        <time class="post-time" itemprop="dateCreated"
+              datetime="2016-05-13T10:41:48+08:00"
+              content="2016-05-13" >
+          05-13
+        </time>
+      </div>
+
+    </header>
+  </article>
+
+
+    
+      
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+    <header class="post-header">
+
+      <h1 class="post-title">
+        
+            <a class="post-title-link" href="/2016/05/13/o-c基础教程第二版_15 AppKit简介/" itemprop="url">
+              
+                <span itemprop="name">15 AppKit简介</span>
+              
+            </a>
+        
+      </h1>
+
+      <div class="post-meta">
+        <time class="post-time" itemprop="dateCreated"
+              datetime="2016-05-13T10:41:28+08:00"
+              content="2016-05-13" >
+          05-13
+        </time>
+      </div>
+
+    </header>
+  </article>
+
+
+    
+      
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+    <header class="post-header">
+
+      <h1 class="post-title">
+        
+            <a class="post-title-link" href="/2016/05/13/o-c基础教程第二版_14 代码块和并发性/" itemprop="url">
+              
+                <span itemprop="name">14 代码块和并发行</span>
+              
+            </a>
+        
+      </h1>
+
+      <div class="post-meta">
+        <time class="post-time" itemprop="dateCreated"
+              datetime="2016-05-13T10:41:10+08:00"
+              content="2016-05-13" >
+          05-13
+        </time>
+      </div>
+
+    </header>
+  </article>
+
+
+    
+      
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+    <header class="post-header">
+
+      <h1 class="post-title">
+        
+            <a class="post-title-link" href="/2016/05/13/o-c基础教程第二版_13 协议/" itemprop="url">
+              
+                <span itemprop="name">13 协议</span>
+              
+            </a>
+        
+      </h1>
+
+      <div class="post-meta">
+        <time class="post-time" itemprop="dateCreated"
+              datetime="2016-05-13T10:40:50+08:00"
+              content="2016-05-13" >
+          05-13
+        </time>
+      </div>
+
+    </header>
+  </article>
+
+
+    
+      
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+    <header class="post-header">
+
+      <h1 class="post-title">
+        
+            <a class="post-title-link" href="/2016/05/13/o-c基础教程第二版_12 类别/" itemprop="url">
+              
+                <span itemprop="name">12 类别</span>
+              
+            </a>
+        
+      </h1>
+
+      <div class="post-meta">
+        <time class="post-time" itemprop="dateCreated"
+              datetime="2016-05-13T10:40:26+08:00"
+              content="2016-05-13" >
+          05-13
+        </time>
+      </div>
+
+    </header>
+  </article>
+
+
+    
+      
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+    <header class="post-header">
+
+      <h1 class="post-title">
+        
+            <a class="post-title-link" href="/2016/05/13/o-c基础教程第二版_11 属性/" itemprop="url">
+              
+                <span itemprop="name">11 属性</span>
+              
+            </a>
+        
+      </h1>
+
+      <div class="post-meta">
+        <time class="post-time" itemprop="dateCreated"
+              datetime="2016-05-13T10:40:03+08:00"
+              content="2016-05-13" >
+          05-13
+        </time>
+      </div>
+
+    </header>
+  </article>
+
+
+    
+      
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+    <header class="post-header">
+
+      <h1 class="post-title">
+        
+            <a class="post-title-link" href="/2016/05/13/o-c基础教程第二版_10 对象初始化/" itemprop="url">
+              
+                <span itemprop="name">10 对象初始化</span>
+              
+            </a>
+        
+      </h1>
+
+      <div class="post-meta">
+        <time class="post-time" itemprop="dateCreated"
+              datetime="2016-05-13T10:39:41+08:00"
+              content="2016-05-13" >
+          05-13
+        </time>
+      </div>
+
+    </header>
+  </article>
+
+
+    
+      
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+    <header class="post-header">
+
+      <h1 class="post-title">
+        
+            <a class="post-title-link" href="/2016/05/13/o-c基础教程第二版_09  内存管理/" itemprop="url">
+              
+                <span itemprop="name">9 内存管理</span>
+              
+            </a>
+        
+      </h1>
+
+      <div class="post-meta">
+        <time class="post-time" itemprop="dateCreated"
+              datetime="2016-05-13T10:39:18+08:00"
+              content="2016-05-13" >
+          05-13
+        </time>
+      </div>
+
+    </header>
+  </article>
+
+
+    
+      
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+    <header class="post-header">
+
+      <h1 class="post-title">
+        
+            <a class="post-title-link" href="/2016/05/13/o-c基础教程第二版_08  Foundation Kit介绍/" itemprop="url">
+              
+                <span itemprop="name">8 Foundation Kit介绍</span>
+              
+            </a>
+        
+      </h1>
+
+      <div class="post-meta">
+        <time class="post-time" itemprop="dateCreated"
+              datetime="2016-05-13T10:38:55+08:00"
+              content="2016-05-13" >
+          05-13
+        </time>
+      </div>
+
+    </header>
+  </article>
+
+
+    
+      
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+    <header class="post-header">
+
+      <h1 class="post-title">
+        
+            <a class="post-title-link" href="/2016/05/13/o-c基础教程第二版_07  深入了解Xcode/" itemprop="url">
+              
+                <span itemprop="name">7 深入了解Xcode</span>
+              
+            </a>
+        
+      </h1>
+
+      <div class="post-meta">
+        <time class="post-time" itemprop="dateCreated"
+              datetime="2016-05-13T10:38:28+08:00"
+              content="2016-05-13" >
+          05-13
+        </time>
+      </div>
+
+    </header>
+  </article>
+
+
+    
+      
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+    <header class="post-header">
+
+      <h1 class="post-title">
+        
+            <a class="post-title-link" href="/2016/05/13/o-c基础教程第二版_06  源文件组织/" itemprop="url">
+              
+                <span itemprop="name">6 源文件组织</span>
+              
+            </a>
+        
+      </h1>
+
+      <div class="post-meta">
+        <time class="post-time" itemprop="dateCreated"
+              datetime="2016-05-13T10:38:06+08:00"
+              content="2016-05-13" >
+          05-13
+        </time>
+      </div>
+
+    </header>
+  </article>
+
+
+    
+      
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+    <header class="post-header">
+
+      <h1 class="post-title">
+        
+            <a class="post-title-link" href="/2016/05/13/o-c基础教程第二版_05  复合/" itemprop="url">
+              
+                <span itemprop="name">5 复合</span>
+              
+            </a>
+        
+      </h1>
+
+      <div class="post-meta">
+        <time class="post-time" itemprop="dateCreated"
+              datetime="2016-05-13T10:37:38+08:00"
+              content="2016-05-13" >
+          05-13
+        </time>
+      </div>
+
+    </header>
+  </article>
+
+
+    
+      
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+    <header class="post-header">
+
+      <h1 class="post-title">
+        
+            <a class="post-title-link" href="/2016/05/13/o-c基础教程第二版_04  继承/" itemprop="url">
+              
+                <span itemprop="name">4 继承</span>
+              
+            </a>
+        
+      </h1>
+
+      <div class="post-meta">
+        <time class="post-time" itemprop="dateCreated"
+              datetime="2016-05-13T10:36:44+08:00"
+              content="2016-05-13" >
+          05-13
+        </time>
+      </div>
+
+    </header>
+  </article>
+
+
+    
+      
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+    <header class="post-header">
+
+      <h1 class="post-title">
+        
+            <a class="post-title-link" href="/2016/05/13/o-c基础教程第二版_03  面向对象编程的基础知识/" itemprop="url">
+              
+                <span itemprop="name">3 面向对象编程的基础知识</span>
+              
+            </a>
+        
+      </h1>
+
+      <div class="post-meta">
+        <time class="post-time" itemprop="dateCreated"
+              datetime="2016-05-13T10:35:54+08:00"
+              content="2016-05-13" >
+          05-13
+        </time>
+      </div>
+
+    </header>
+  </article>
+
+
+    
+      
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+    <header class="post-header">
+
+      <h1 class="post-title">
+        
+            <a class="post-title-link" href="/2016/05/12/o-c基础教程第二版_02  对C的扩展/" itemprop="url">
+              
+                <span itemprop="name">2 对c的扩展</span>
+              
+            </a>
+        
+      </h1>
+
+      <div class="post-meta">
+        <time class="post-time" itemprop="dateCreated"
+              datetime="2016-05-12T22:36:43+08:00"
+              content="2016-05-12" >
+          05-12
+        </time>
+      </div>
+
+    </header>
+  </article>
+
+
+    
+      
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+    <header class="post-header">
+
+      <h1 class="post-title">
+        
+            <a class="post-title-link" href="/2016/05/12/o-c基础教程第二版_01 启程/" itemprop="url">
+              
+                <span itemprop="name">1 启程</span>
+              
+            </a>
+        
+      </h1>
+
+      <div class="post-meta">
+        <time class="post-time" itemprop="dateCreated"
+              datetime="2016-05-12T11:14:49+08:00"
+              content="2016-05-12" >
+          05-12
+        </time>
+      </div>
+
+    </header>
+  </article>
+
+
+    
+  </div>
+
+  
+
+
+          </div>
+          
+
+
+          
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+
+      <section class="site-overview sidebar-panel  sidebar-panel-active ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.gif"
+               alt="Sean" />
+          <p class="site-author-name" itemprop="name">Sean</p>
+          <p class="site-description motion-element" itemprop="description">整理了一批过去一段时间ios相关的笔记，其它的笔记也整理下？源码分享出来？再说吧...反正也只有自己会看吧...</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">85</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">10</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+      </section>
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Sean</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Muse
+  </a>
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+  
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+  
+  
+
+  
+
+  
+
+  
+
 </body>
 </html>

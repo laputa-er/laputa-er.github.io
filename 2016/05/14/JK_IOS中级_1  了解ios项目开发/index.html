@@ -1,181 +1,338 @@
-<!DOCTYPE html>
-<html>
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion">
 <head>
-    <meta charset="utf-8"/>
-    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
     
-    <title>1 了解ios项目开发 | Sean</title>
-    <meta name="renderer" content="webkit">
-    <meta name="HandheldFriendly" content="True">
-    <meta name="MobileOptimized" content="320">
-    <meta name="apple-mobile-web-app-capable" content="yes">
-    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-
-    <meta name="description" content="do things for fun">
-
-    <meta name="twitter:card" content="summary">
-    <meta name="twitter:title" content="1 了解ios项目开发 | Sean">
-    <meta name="twitter:description" content="do things for fun">
-
-    <meta property="og:type" content="article">
-    <meta property="og:title" content="1 了解ios项目开发 | Sean">
-    <meta property="og:description" content="do things for fun">
-
     
-    <meta name="author" content="Sean">
-    
-    <link rel="stylesheet" href="/css/vno.css">
-    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css">
+  
 
-    
-    <link rel="icon" href="/images/sean.png">
-    
+  
 
-    <meta name="generator" content="hexo"/>
-    
+  
 
-    <link rel="canonical" href="http://laputa-er.github.io/2016/05/14/JK_IOS中级_1  了解ios项目开发/"/>
+  
 
+  
+
+  
     
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="极客学院_ios中级," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1" />
+
+
+
+
+
+
+<meta name="description" content="1.1    ios开发前准备1.1​    苹果公司介绍
+重要事件1976年创立1976年推出Apple 11977年推出Apple 21980年推出Apple 31983年推出Apple Lisa1984年推出Macintosh1991年推出PowerBook，2006年被MacBook系列取代1993年推出Apple Newton掌上电脑（已死）
+苹果电脑1998年推出iMac2005年推出">
+<meta property="og:type" content="article">
+<meta property="og:title" content="1 了解ios项目开发">
+<meta property="og:url" content="http://laputa-er.github.io/2016/05/14/JK_IOS中级_1  了解ios项目开发/index.html">
+<meta property="og:site_name" content="Sean">
+<meta property="og:description" content="1.1    ios开发前准备1.1​    苹果公司介绍
+重要事件1976年创立1976年推出Apple 11977年推出Apple 21980年推出Apple 31983年推出Apple Lisa1984年推出Macintosh1991年推出PowerBook，2006年被MacBook系列取代1993年推出Apple Newton掌上电脑（已死）
+苹果电脑1998年推出iMac2005年推出">
+<meta property="og:image" content="http://o6ul1xz4z.bkt.clouddn.com/img/1451260954919.png">
+<meta property="og:image" content="http://o6ul1xz4z.bkt.clouddn.com/img/1451260989517.png">
+<meta property="og:image" content="http://o6ul1xz4z.bkt.clouddn.com/img/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202015-12-28%20%E4%B8%8A%E5%8D%888.26.53.png">
+<meta property="og:image" content="http://o6ul1xz4z.bkt.clouddn.com/img/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202015-12-28%20%E4%B8%8A%E5%8D%888.38.45.png">
+<meta property="og:image" content="http://o6ul1xz4z.bkt.clouddn.com/img/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202015-12-28%20%E4%B8%8A%E5%8D%888.56.30.png">
+<meta property="og:image" content="http://o6ul1xz4z.bkt.clouddn.com/img/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202016-02-04%20%E4%B8%8B%E5%8D%885.08.53.png">
+<meta property="og:image" content="http://o6ul1xz4z.bkt.clouddn.com/img/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202016-02-06%20%E4%B8%8B%E5%8D%8810.48.12.png">
+<meta property="og:image" content="http://o6ul1xz4z.bkt.clouddn.com/img/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202016-02-06%20%E4%B8%8B%E5%8D%8811.42.10.png">
+<meta property="og:image" content="http://o6ul1xz4z.bkt.clouddn.com/img/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202016-02-06%20%E4%B8%8B%E5%8D%8811.48.33.png">
+<meta property="og:image" content="http://o6ul1xz4z.bkt.clouddn.com/img/JK_IOS_S1_xcode-storyboard-1.gif">
+<meta property="og:image" content="http://o6ul1xz4z.bkt.clouddn.com/img/JK_IOS_S1_xcode-img.gif">
+<meta property="og:image" content="http://o6ul1xz4z.bkt.clouddn.com/img/JK_IOS_S1_xcode-img-02.gif">
+<meta property="og:image" content="http://o6ul1xz4z.bkt.clouddn.com/img/JK_IOS_S1_xcode-bind.gif">
+<meta property="og:image" content="http://o6ul1xz4z.bkt.clouddn.com/img/JK_IOS_S1_xcode-bond2.gif">
+<meta property="og:image" content="http://o6ul1xz4z.bkt.clouddn.com/img/JK_IOS_S1_xcode-event.gif">
+<meta property="og:image" content="http://o6ul1xz4z.bkt.clouddn.com/img/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202016-02-09%20%E4%B8%8B%E5%8D%8811.53.07.png">
+<meta property="og:image" content="http://o6ul1xz4z.bkt.clouddn.com/img/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202016-02-10%20%E4%B8%8A%E5%8D%881.55.08.png">
+<meta property="og:image" content="http://o6ul1xz4z.bkt.clouddn.com/img/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202016-02-10%20%E4%B8%8A%E5%8D%881.54.48.png">
+<meta property="og:image" content="http://laputa-er.github.io/./屏幕快照 2016-02-10 上午1.59.15.png">
+<meta property="og:image" content="http://o6ul1xz4z.bkt.clouddn.com/img/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202016-02-10%20%E4%B8%8B%E5%8D%886.02.15.png">
+<meta property="og:image" content="http://o6ul1xz4z.bkt.clouddn.com/img/JK_IOS_S1_xcode-button.gif">
+<meta property="og:image" content="http://o6ul1xz4z.bkt.clouddn.com/img/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202016-02-10%20%E4%B8%8B%E5%8D%8811.38.03.png">
+<meta property="og:image" content="http://o6ul1xz4z.bkt.clouddn.com/img/JK_IOS_S1_xcode-progress.gif">
+<meta property="og:image" content="http://o6ul1xz4z.bkt.clouddn.com/img/JK_IOS_S1_xcode-custom.gif">
+<meta property="og:image" content="http://o6ul1xz4z.bkt.clouddn.com/img/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202016-02-12%20%E4%B8%8A%E5%8D%8812.13.21.png">
+<meta property="og:image" content="http://o6ul1xz4z.bkt.clouddn.com/img/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202016-02-12%20%E4%B8%8A%E5%8D%8812.04.07.png">
+<meta property="og:image" content="http://o6ul1xz4z.bkt.clouddn.com/img/JK_IOS_S1_switch.gif">
+<meta property="og:image" content="http://o6ul1xz4z.bkt.clouddn.com/img/JK_IOS_S1_next.gif">
+<meta property="og:image" content="http://o6ul1xz4z.bkt.clouddn.com/img/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202016-02-12%20%E4%B8%8B%E5%8D%885.22.14.png">
+<meta property="og:image" content="http://o6ul1xz4z.bkt.clouddn.com/img/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202016-02-13%20%E4%B8%8B%E5%8D%8810.47.13.png">
+<meta property="og:image" content="http://o6ul1xz4z.bkt.clouddn.com/img/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202016-02-13%20%E4%B8%8B%E5%8D%8810.58.26.png">
+<meta property="og:image" content="http://o6ul1xz4z.bkt.clouddn.com/img/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202016-02-13%20%E4%B8%8B%E5%8D%8810.59.55.png">
+<meta property="og:image" content="http://o6ul1xz4z.bkt.clouddn.com/img/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202016-02-13%20%E4%B8%8B%E5%8D%8811.16.29.png">
+<meta property="og:image" content="http://o6ul1xz4z.bkt.clouddn.com/img/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202016-02-13%20%E4%B8%8B%E5%8D%8811.56.36.png">
+<meta property="og:image" content="http://o6ul1xz4z.bkt.clouddn.com/img/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202016-02-14%20%E4%B8%8A%E5%8D%8812.00.37.png">
+<meta property="og:image" content="http://o6ul1xz4z.bkt.clouddn.com/img/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202016-02-20%20%E4%B8%8B%E5%8D%887.47.12.png">
+<meta property="og:image" content="http://o6ul1xz4z.bkt.clouddn.com/img/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202016-02-20%20%E4%B8%8B%E5%8D%888.00.01.png">
+<meta property="og:image" content="http://o6ul1xz4z.bkt.clouddn.com/img/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202016-02-22%20%E4%B8%8A%E5%8D%889.51.01.png">
+<meta property="og:image" content="http://laputa-er.github.io/./http://o6ul1xz4z.bkt.clouddn.com/img/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202016-02-20%20%E4%B8%8B%E5%8D%887.47.27.png">
+<meta property="og:image" content="http://o6ul1xz4z.bkt.clouddn.com/img/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202016-02-22%20%E4%B8%8B%E5%8D%888.53.19.png">
+<meta property="og:image" content="http://o6ul1xz4z.bkt.clouddn.com/img/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202016-02-22%20%E4%B8%8B%E5%8D%886.05.43.png">
+<meta property="og:image" content="http://o6ul1xz4z.bkt.clouddn.com/img/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202016-02-22%20%E4%B8%8B%E5%8D%888.58.22.png">
+<meta property="og:image" content="http://o6ul1xz4z.bkt.clouddn.com/img/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202016-02-22%20%E4%B8%8B%E5%8D%889.41.32.png">
+<meta property="og:image" content="http://o6ul1xz4z.bkt.clouddn.com/img/JK_IOS_S1_touch.gif">
+<meta property="og:image" content="http://o6ul1xz4z.bkt.clouddn.com/img/JK_IOS_S_call.gif">
+<meta property="og:image" content="http://o6ul1xz4z.bkt.clouddn.com/img/JK_IOS_S1_handler.gif">
+<meta property="og:image" content="http://o6ul1xz4z.bkt.clouddn.com/img/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202016-02-25%20%E4%B8%8B%E5%8D%889.42.43.png">
+<meta property="og:image" content="http://o6ul1xz4z.bkt.clouddn.com/img/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202016-02-26%20%E4%B8%8A%E5%8D%889.55.25.png">
+<meta property="og:image" content="http://o6ul1xz4z.bkt.clouddn.com/img/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202016-02-26%20%E4%B8%8A%E5%8D%889.58.00.png">
+<meta property="og:updated_time" content="2016-05-16T14:24:10.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="1 了解ios项目开发">
+<meta name="twitter:description" content="1.1    ios开发前准备1.1​    苹果公司介绍
+重要事件1976年创立1976年推出Apple 11977年推出Apple 21980年推出Apple 31983年推出Apple Lisa1984年推出Macintosh1991年推出PowerBook，2006年被MacBook系列取代1993年推出Apple Newton掌上电脑（已死）
+苹果电脑1998年推出iMac2005年推出">
+<meta name="twitter:image" content="http://o6ul1xz4z.bkt.clouddn.com/img/1451260954919.png">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Muse',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 0,
+      author: '博主'
+    }
+  };
+</script>
+
+
+
+
+  <link rel="canonical" href="http://laputa-er.github.io/2016/05/14/JK_IOS中级_1  了解ios项目开发/"/>
+
+  <title> 1 了解ios项目开发 | Sean </title>
 </head>
 
-<body class="home-template no-js">
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
 
-    <span class="mobile btn-mobile-menu">
-        <i class="fa fa-list btn-mobile-menu__icon"></i>
-        <i class="fa fa-angle-up btn-mobile-close__icon hidden"></i>
-    </span>
+  
+
+
+
+
+
+
+
+
+
+
+  
+  
     
-<header class="panel-cover panel-cover--collapsed" style="background-image: url(/images/mengxiang.jpg)">
-  <div class="panel-main">
-    <div class="panel-main__inner panel-inverted">
-      <span class="panel-arrow panel-left-arrow disabled">
-        <i class="fa fa-angle-left"></i>
-      </span>
-      <span class="panel-arrow panel-right-arrow">
-        <i class="fa fa-angle-right"></i>
-      </span>
-
-      <div class="panel-animation-container">
-        <div class="panel-content panel-main__content">
-            <a href="/" title="前往 Sean 的主页"><img src="/images/sean.png" width="80" alt="Sean logo" class="panel-cover__logo logo" /></a>
-            <h1 class="panel-cover__title panel-title"><a href="/" title="link to homepage for Sean">Sean</a></h1>
-            
-            <span class="panel-cover__subtitle panel-subtitle">笔记分享</span>
-            
-            <hr class="panel-cover__divider" />
-            <p class="panel-cover__description">整理了一批过去一段时间ios相关的笔记，其它的笔记也整理下？源码分享出来？再说吧...反正也只有自己会看吧...</p>
-            <hr class="panel-cover__divider panel-cover__divider--secondary" />
-
-            <div class="navigation-wrapper">
-              <div>
-              <nav class="cover-navigation cover-navigation--primary">
-                <ul class="navigation">
-                  <li class="navigation__item"><a href="/#blog" title="访问笔记" class="blog-button">笔记</a></li>
-                  <li style="display: none;">
-                    <textarea>
-                      
-                        <li class="navigation__item"><a href="/projects">项目作品</a></li>
-                      
-                        <li class="navigation__item"><a href="/aboutme">关于我</a></li>
-                      
-                    </textarea>
-                  </li>
-                </ul>
-              </nav>
-              </div>
-              <div>
-              <nav class="cover-navigation navigation--social">
-  <ul class="navigation">
-
-  <!-- Weibo-->
   
 
-  <!-- Github -->
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
   
 
-<!-- Stack Overflow -->
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">Sean</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">笔记分享</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
         
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
 
-  <!-- Google Plus -->
+      
+    </ul>
   
 
-<!-- Facebook -->
-
   
-<!-- Twitter -->
-
-  
-
-
-
-  </ul>
 </nav>
 
-              </div>
-            </div>
+ </div>
+    </header>
 
-          </div>
-          <div class="panel-content panel-tagcloud_content">
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
             
-              <aside id="sidebar">
-  
+
+  <div id="posts" class="posts-expand">
     
-  <div class="widget-wrap">
-    <h3 class="widget-title">笔记分类</h3>
-    <div class="widget tagcloud">
-      <a href="/tags/Objective-C基础教程第二版/">Objective-C基础教程第二版</a> <a href="/tags/The-Swift-Program-Language-2/">The Swift Program Language 2</a> <a href="/tags/c语言程序设计－现代方法/">c语言程序设计－现代方法</a> <a href="/tags/iOS/">iOS</a> <a href="/tags/imooc/">imooc</a> <a href="/tags/pug/">pug</a> <a href="/tags/极客学院-ios中级/">极客学院_ios中级</a> <a href="/tags/极客学院-ios初级/">极客学院_ios初级</a> <a href="/tags/极客学院-ios高级/">极客学院_ios高级</a>
-    </div>
-  </div>
 
   
-</aside>
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
             
-          </div>
-        </div>  
+            
+              
+                1 了解ios项目开发
+              
+            
+          </h1>
+        
 
-      </div>
-      <div class="panel-cover--overlay cover-blue"></div>
-  </div>
-  </header>
-    
-    <div class="content-wrapper">
-        <div class="content-wrapper__inner">
-            <article class="post-container post-container--single">
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-05-14T08:54:40+08:00" content="2016-05-14">
+              2016-05-14
+            </time>
+          </span>
 
-  <header class="post-header">
-    <div class="post-meta">
-      <time datetime="2016-05-14T00:54:40.000Z" class="post-list__meta--date date">2016-05-14</time> &#8226; <span class="post-meta__tags tags">于&nbsp;
-  <a class="tag-link" href="/tags/极客学院-ios中级/">极客学院_ios中级</a>
-</span>
-    </div>
-    <h1 class="post-title">1 了解ios项目开发</h1>
-  </header>
+          
 
-  <section class="post">
-    <!-- Table of Contents -->
-    
-    <div id="top-toc">
-      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-1-ios开发前准备"><span class="toc-number">1.</span> <span class="toc-text">1.1    ios开发前准备</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-1​-苹果公司介绍"><span class="toc-number">1.1.</span> <span class="toc-text">1.1​    苹果公司介绍</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-1-2-苹果Mac-OX-操作系统介绍"><span class="toc-number">1.2.</span> <span class="toc-text">1.1.2  苹果Mac OX 操作系统介绍</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-1-3-苹果ios操作系统"><span class="toc-number">1.3.</span> <span class="toc-text">1.1.3    苹果ios操作系统</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-1-4-软硬件开发环境要求"><span class="toc-number">1.4.</span> <span class="toc-text">1.1.4    软硬件开发环境要求</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-2-Xcode继承开发环境的安装使用与项目建立流程"><span class="toc-number">2.</span> <span class="toc-text">1.2    Xcode继承开发环境的安装使用与项目建立流程</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-2-1-xcode的下载和安装"><span class="toc-number">2.1.</span> <span class="toc-text">1.2.1    xcode的下载和安装</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-2-2-xcode创建ios-single-view项目"><span class="toc-number">2.2.</span> <span class="toc-text">1.2.2    xcode创建ios single view项目</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-2-3-工作空间创建和使用"><span class="toc-number">2.3.</span> <span class="toc-text">1.2.3    工作空间创建和使用</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-2-4-xcode快捷键及常用功能"><span class="toc-number">2.4.</span> <span class="toc-text">1.2.4    xcode快捷键及常用功能</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-2-5-xcode中创建os-x命令行控制台项目"><span class="toc-number">2.5.</span> <span class="toc-text">1.2.5    xcode中创建os x命令行控制台项目</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-2-6-xcode中创建os-x窗体程序项目"><span class="toc-number">2.6.</span> <span class="toc-text">1.2.6    xcode中创建os x窗体程序项目</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-2-7-xcode中创建os-x游戏项目"><span class="toc-number">2.7.</span> <span class="toc-text">1.2.7    xcode中创建os x游戏项目</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-2-8-xcode中创建ios游戏项目"><span class="toc-number">2.8.</span> <span class="toc-text">1.2.8    xcode中创建ios游戏项目</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-3-Xcode常用项目模版"><span class="toc-number">3.</span> <span class="toc-text">1.3    Xcode常用项目模版</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-3-1-Master-Detail-Application"><span class="toc-number">3.1.</span> <span class="toc-text">1.3.1    Master-Detail Application</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-3-2-Page-Based-Application"><span class="toc-number">3.2.</span> <span class="toc-text">1.3.2    Page-Based Application</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-3-3-Tabbed-Application"><span class="toc-number">3.3.</span> <span class="toc-text">1.3.3    Tabbed Application</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-4-ios用户界面开发基本流程"><span class="toc-number">4.</span> <span class="toc-text">1.4    ios用户界面开发基本流程</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-4-1-StoryBoard的基本使用方法"><span class="toc-number">4.1.</span> <span class="toc-text">1.4.1    StoryBoard的基本使用方法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-4-2-图片控件"><span class="toc-number">4.2.</span> <span class="toc-text">1.4.2    图片控件</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-4-3-ios-UI界面设计中传统方法和Assistant-editor绑定代码"><span class="toc-number">4.3.</span> <span class="toc-text">1.4.3    ios UI界面设计中传统方法和Assistant editor绑定代码</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#方式1：ios-UI界面设计中传统方法"><span class="toc-number">4.3.1.</span> <span class="toc-text">方式1：ios UI界面设计中传统方法</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#方式2：借助Assistant-editor绑定代码"><span class="toc-number">4.3.2.</span> <span class="toc-text">方式2：借助Assistant editor绑定代码</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-4-4-ios-Story-Board控制事件绑定"><span class="toc-number">4.4.</span> <span class="toc-text">1.4.4    ios Story Board控制事件绑定</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-4-5-iOS-Storyboard控件与Swift类绑定"><span class="toc-number">4.5.</span> <span class="toc-text">1.4.5    iOS Storyboard控件与Swift类绑定</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-4-6-ios源代码添加控件"><span class="toc-number">4.6.</span> <span class="toc-text">1.4.6    ios源代码添加控件</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-4-7-ios浏览器开发制作"><span class="toc-number">4.7.</span> <span class="toc-text">1.4.7    ios浏览器开发制作</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-5-ios自定义控件实例"><span class="toc-number">5.</span> <span class="toc-text">1.5    ios自定义控件实例</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-5-1-配置iOS自定义控件属性"><span class="toc-number">5.1.</span> <span class="toc-text">1.5.1    配置iOS自定义控件属性</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-5-2-自定义原型进度指示控件实例"><span class="toc-number">5.2.</span> <span class="toc-text">1.5.2    自定义原型进度指示控件实例</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-5-3-实时预览自定义控件效果"><span class="toc-number">5.3.</span> <span class="toc-text">1.5.3    实时预览自定义控件效果</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-6-使用StoryBoard做ios-UI界面跳转"><span class="toc-number">6.</span> <span class="toc-text">1.6    使用StoryBoard做ios UI界面跳转</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-6-1-用iOS-Storyboard做界面跳转"><span class="toc-number">6.1.</span> <span class="toc-text">1.6.1    用iOS Storyboard做界面跳转</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-6-1-2-跳转到下一页"><span class="toc-number">6.1.1.</span> <span class="toc-text">1.6.1.2    跳转到下一页</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#1-6-1-3-返回"><span class="toc-number">6.1.2.</span> <span class="toc-text">1.6.1.3    返回</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-6-2-使用nib文件做iOS界面设计"><span class="toc-number">6.2.</span> <span class="toc-text">1.6.2    使用nib文件做iOS界面设计</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-6-3-在iOS界面间传递数据"><span class="toc-number">6.3.</span> <span class="toc-text">1.6.3    在iOS界面间传递数据</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-7-屏幕适配"><span class="toc-number">7.</span> <span class="toc-text">1.7    屏幕适配</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-7-1-匹配父级容器"><span class="toc-number">7.1.</span> <span class="toc-text">1.7.1    匹配父级容器</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-7-2-分割父级容器"><span class="toc-number">7.2.</span> <span class="toc-text">1.7.2    分割父级容器</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-7-2-1-左边固定，右边自适应"><span class="toc-number">7.2.1.</span> <span class="toc-text">1.7.2.1    左边固定，右边自适应</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#1-7-2-2-多个View按比例"><span class="toc-number">7.2.2.</span> <span class="toc-text">1.7.2.2    多个View按比例</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-7-3-复杂布局适配"><span class="toc-number">7.3.</span> <span class="toc-text">1.7.3    复杂布局适配</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-8-iOS平台常用传感器"><span class="toc-number">8.</span> <span class="toc-text">1.8    iOS平台常用传感器</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#CMMotionManager类"><span class="toc-number">8.0.1.</span> <span class="toc-text">CMMotionManager类</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-8-1-iOS平台加速度传感器的使用方式"><span class="toc-number">8.1.</span> <span class="toc-text">1.8.1    iOS平台加速度传感器的使用方式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-8-2-iOS平台陀螺仪的使用方式"><span class="toc-number">8.2.</span> <span class="toc-text">1.8.2    iOS平台陀螺仪的使用方式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-8-3-iOS平台距离传感器的使用方式"><span class="toc-number">8.3.</span> <span class="toc-text">1.8.3    iOS平台距离传感器的使用方式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-8-4-iOS平台电源传感器的使用方式"><span class="toc-number">8.4.</span> <span class="toc-text">1.8.4    iOS平台电源传感器的使用方式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-8-5-iOS平台磁场传感器的使用方式"><span class="toc-number">8.5.</span> <span class="toc-text">1.8.5    iOS平台磁场传感器的使用方式</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#CLLocationManager类"><span class="toc-number">8.5.1.</span> <span class="toc-text">CLLocationManager类</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-8-6-使用磁场传感器制作指南针实例"><span class="toc-number">8.6.</span> <span class="toc-text">1.8.6    使用磁场传感器制作指南针实例</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-9-多点触控"><span class="toc-number">9.</span> <span class="toc-text">1.9    多点触控</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-9-1-触摸事件处理"><span class="toc-number">9.1.</span> <span class="toc-text">1.9.1    触摸事件处理</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-9-2-处理多个触摸点"><span class="toc-number">9.2.</span> <span class="toc-text">1.9.2    处理多个触摸点</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-9-3-缩放图片实例"><span class="toc-number">9.3.</span> <span class="toc-text">1.9.3    缩放图片实例</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-10-常用其它功能"><span class="toc-number">10.</span> <span class="toc-text">1.10    常用其它功能</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-10-1-打开网页"><span class="toc-number">10.1.</span> <span class="toc-text">1.10.1    打开网页</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-10-2-常用打开操作（发邮件、打电话、发短信）"><span class="toc-number">10.2.</span> <span class="toc-text">1.10.2    常用打开操作（发邮件、打电话、发短信）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-10-3-自定义打开协议"><span class="toc-number">10.3.</span> <span class="toc-text">1.10.3    自定义打开协议</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-10-3-1-注册协议的app"><span class="toc-number">10.3.1.</span> <span class="toc-text">1.10.3.1    注册协议的app</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#1-10-3-2-通过协议打开app"><span class="toc-number">10.3.2.</span> <span class="toc-text">1.10.3.2    通过协议打开app</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-10-4-获取photo"><span class="toc-number">10.4.</span> <span class="toc-text">1.10.4    获取photo</span></a></li></ol></li></ol>
-    </div>
-    <div id="tocShell"></div>
-    <div id="toc" class="toc-article">
-      <div class="btn-group drag-me">
-        <i class="social fa fa-ellipsis-v"></i>
-      </div>
-      <div class="btn-group dropup-catelog">
-        <button class="btn"><i class="social fa fa-list-ol"></i></button>
-        <div class="catelog-content">
-          <p class="toc-title-wrap">
-            <strong class="toc-title">文章目录</strong>
-          </p>
-          <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-1-ios开发前准备"><span class="toc-number">1.</span> <span class="toc-text">1.1    ios开发前准备</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-1​-苹果公司介绍"><span class="toc-number">1.1.</span> <span class="toc-text">1.1​    苹果公司介绍</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-1-2-苹果Mac-OX-操作系统介绍"><span class="toc-number">1.2.</span> <span class="toc-text">1.1.2  苹果Mac OX 操作系统介绍</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-1-3-苹果ios操作系统"><span class="toc-number">1.3.</span> <span class="toc-text">1.1.3    苹果ios操作系统</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-1-4-软硬件开发环境要求"><span class="toc-number">1.4.</span> <span class="toc-text">1.1.4    软硬件开发环境要求</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-2-Xcode继承开发环境的安装使用与项目建立流程"><span class="toc-number">2.</span> <span class="toc-text">1.2    Xcode继承开发环境的安装使用与项目建立流程</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-2-1-xcode的下载和安装"><span class="toc-number">2.1.</span> <span class="toc-text">1.2.1    xcode的下载和安装</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-2-2-xcode创建ios-single-view项目"><span class="toc-number">2.2.</span> <span class="toc-text">1.2.2    xcode创建ios single view项目</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-2-3-工作空间创建和使用"><span class="toc-number">2.3.</span> <span class="toc-text">1.2.3    工作空间创建和使用</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-2-4-xcode快捷键及常用功能"><span class="toc-number">2.4.</span> <span class="toc-text">1.2.4    xcode快捷键及常用功能</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-2-5-xcode中创建os-x命令行控制台项目"><span class="toc-number">2.5.</span> <span class="toc-text">1.2.5    xcode中创建os x命令行控制台项目</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-2-6-xcode中创建os-x窗体程序项目"><span class="toc-number">2.6.</span> <span class="toc-text">1.2.6    xcode中创建os x窗体程序项目</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-2-7-xcode中创建os-x游戏项目"><span class="toc-number">2.7.</span> <span class="toc-text">1.2.7    xcode中创建os x游戏项目</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-2-8-xcode中创建ios游戏项目"><span class="toc-number">2.8.</span> <span class="toc-text">1.2.8    xcode中创建ios游戏项目</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-3-Xcode常用项目模版"><span class="toc-number">3.</span> <span class="toc-text">1.3    Xcode常用项目模版</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-3-1-Master-Detail-Application"><span class="toc-number">3.1.</span> <span class="toc-text">1.3.1    Master-Detail Application</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-3-2-Page-Based-Application"><span class="toc-number">3.2.</span> <span class="toc-text">1.3.2    Page-Based Application</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-3-3-Tabbed-Application"><span class="toc-number">3.3.</span> <span class="toc-text">1.3.3    Tabbed Application</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-4-ios用户界面开发基本流程"><span class="toc-number">4.</span> <span class="toc-text">1.4    ios用户界面开发基本流程</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-4-1-StoryBoard的基本使用方法"><span class="toc-number">4.1.</span> <span class="toc-text">1.4.1    StoryBoard的基本使用方法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-4-2-图片控件"><span class="toc-number">4.2.</span> <span class="toc-text">1.4.2    图片控件</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-4-3-ios-UI界面设计中传统方法和Assistant-editor绑定代码"><span class="toc-number">4.3.</span> <span class="toc-text">1.4.3    ios UI界面设计中传统方法和Assistant editor绑定代码</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#方式1：ios-UI界面设计中传统方法"><span class="toc-number">4.3.1.</span> <span class="toc-text">方式1：ios UI界面设计中传统方法</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#方式2：借助Assistant-editor绑定代码"><span class="toc-number">4.3.2.</span> <span class="toc-text">方式2：借助Assistant editor绑定代码</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-4-4-ios-Story-Board控制事件绑定"><span class="toc-number">4.4.</span> <span class="toc-text">1.4.4    ios Story Board控制事件绑定</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-4-5-iOS-Storyboard控件与Swift类绑定"><span class="toc-number">4.5.</span> <span class="toc-text">1.4.5    iOS Storyboard控件与Swift类绑定</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-4-6-ios源代码添加控件"><span class="toc-number">4.6.</span> <span class="toc-text">1.4.6    ios源代码添加控件</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-4-7-ios浏览器开发制作"><span class="toc-number">4.7.</span> <span class="toc-text">1.4.7    ios浏览器开发制作</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-5-ios自定义控件实例"><span class="toc-number">5.</span> <span class="toc-text">1.5    ios自定义控件实例</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-5-1-配置iOS自定义控件属性"><span class="toc-number">5.1.</span> <span class="toc-text">1.5.1    配置iOS自定义控件属性</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-5-2-自定义原型进度指示控件实例"><span class="toc-number">5.2.</span> <span class="toc-text">1.5.2    自定义原型进度指示控件实例</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-5-3-实时预览自定义控件效果"><span class="toc-number">5.3.</span> <span class="toc-text">1.5.3    实时预览自定义控件效果</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-6-使用StoryBoard做ios-UI界面跳转"><span class="toc-number">6.</span> <span class="toc-text">1.6    使用StoryBoard做ios UI界面跳转</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-6-1-用iOS-Storyboard做界面跳转"><span class="toc-number">6.1.</span> <span class="toc-text">1.6.1    用iOS Storyboard做界面跳转</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-6-1-2-跳转到下一页"><span class="toc-number">6.1.1.</span> <span class="toc-text">1.6.1.2    跳转到下一页</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#1-6-1-3-返回"><span class="toc-number">6.1.2.</span> <span class="toc-text">1.6.1.3    返回</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-6-2-使用nib文件做iOS界面设计"><span class="toc-number">6.2.</span> <span class="toc-text">1.6.2    使用nib文件做iOS界面设计</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-6-3-在iOS界面间传递数据"><span class="toc-number">6.3.</span> <span class="toc-text">1.6.3    在iOS界面间传递数据</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-7-屏幕适配"><span class="toc-number">7.</span> <span class="toc-text">1.7    屏幕适配</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-7-1-匹配父级容器"><span class="toc-number">7.1.</span> <span class="toc-text">1.7.1    匹配父级容器</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-7-2-分割父级容器"><span class="toc-number">7.2.</span> <span class="toc-text">1.7.2    分割父级容器</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-7-2-1-左边固定，右边自适应"><span class="toc-number">7.2.1.</span> <span class="toc-text">1.7.2.1    左边固定，右边自适应</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#1-7-2-2-多个View按比例"><span class="toc-number">7.2.2.</span> <span class="toc-text">1.7.2.2    多个View按比例</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-7-3-复杂布局适配"><span class="toc-number">7.3.</span> <span class="toc-text">1.7.3    复杂布局适配</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-8-iOS平台常用传感器"><span class="toc-number">8.</span> <span class="toc-text">1.8    iOS平台常用传感器</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#CMMotionManager类"><span class="toc-number">8.0.1.</span> <span class="toc-text">CMMotionManager类</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-8-1-iOS平台加速度传感器的使用方式"><span class="toc-number">8.1.</span> <span class="toc-text">1.8.1    iOS平台加速度传感器的使用方式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-8-2-iOS平台陀螺仪的使用方式"><span class="toc-number">8.2.</span> <span class="toc-text">1.8.2    iOS平台陀螺仪的使用方式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-8-3-iOS平台距离传感器的使用方式"><span class="toc-number">8.3.</span> <span class="toc-text">1.8.3    iOS平台距离传感器的使用方式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-8-4-iOS平台电源传感器的使用方式"><span class="toc-number">8.4.</span> <span class="toc-text">1.8.4    iOS平台电源传感器的使用方式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-8-5-iOS平台磁场传感器的使用方式"><span class="toc-number">8.5.</span> <span class="toc-text">1.8.5    iOS平台磁场传感器的使用方式</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#CLLocationManager类"><span class="toc-number">8.5.1.</span> <span class="toc-text">CLLocationManager类</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-8-6-使用磁场传感器制作指南针实例"><span class="toc-number">8.6.</span> <span class="toc-text">1.8.6    使用磁场传感器制作指南针实例</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-9-多点触控"><span class="toc-number">9.</span> <span class="toc-text">1.9    多点触控</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-9-1-触摸事件处理"><span class="toc-number">9.1.</span> <span class="toc-text">1.9.1    触摸事件处理</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-9-2-处理多个触摸点"><span class="toc-number">9.2.</span> <span class="toc-text">1.9.2    处理多个触摸点</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-9-3-缩放图片实例"><span class="toc-number">9.3.</span> <span class="toc-text">1.9.3    缩放图片实例</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-10-常用其它功能"><span class="toc-number">10.</span> <span class="toc-text">1.10    常用其它功能</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-10-1-打开网页"><span class="toc-number">10.1.</span> <span class="toc-text">1.10.1    打开网页</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-10-2-常用打开操作（发邮件、打电话、发短信）"><span class="toc-number">10.2.</span> <span class="toc-text">1.10.2    常用打开操作（发邮件、打电话、发短信）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-10-3-自定义打开协议"><span class="toc-number">10.3.</span> <span class="toc-text">1.10.3    自定义打开协议</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-10-3-1-注册协议的app"><span class="toc-number">10.3.1.</span> <span class="toc-text">1.10.3.1    注册协议的app</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#1-10-3-2-通过协议打开app"><span class="toc-number">10.3.2.</span> <span class="toc-text">1.10.3.2    通过协议打开app</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-10-4-获取photo"><span class="toc-number">10.4.</span> <span class="toc-text">1.10.4    获取photo</span></a></li></ol></li></ol>
+          
+            
+          
+
+          
+
+          
+          
+
+          
         </div>
-      </div>
-    </div>
+      </header>
     
-    <h2 id="1-1-ios开发前准备"><a href="#1-1-ios开发前准备" class="headerlink" title="1.1    ios开发前准备"></a>1.1    ios开发前准备</h2><h3 id="1-1​-苹果公司介绍"><a href="#1-1​-苹果公司介绍" class="headerlink" title="1.1​    苹果公司介绍"></a>1.1​    苹果公司介绍</h3><blockquote>
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="1-1-ios开发前准备"><a href="#1-1-ios开发前准备" class="headerlink" title="1.1    ios开发前准备"></a>1.1    ios开发前准备</h2><h3 id="1-1​-苹果公司介绍"><a href="#1-1​-苹果公司介绍" class="headerlink" title="1.1​    苹果公司介绍"></a>1.1​    苹果公司介绍</h3><blockquote>
 <p><strong>重要事件</strong><br>1976年创立<br>1976年推出Apple 1<br>1977年推出Apple 2<br>1980年推出Apple 3<br>1983年推出Apple Lisa<br>1984年推出Macintosh<br>1991年推出PowerBook，2006年被MacBook系列取代<br>1993年推出Apple Newton掌上电脑（已死）</p>
 <p><strong>苹果电脑</strong><br>1998年推出iMac<br>2005年推出Mac mini<br>2006年推出Mac Pro<br>2006年推出MacBook（已死）<br>2008年推出MacBook air</p>
 <p><strong>苹果音乐播放器</strong><br>2001年推出ipod<br>2004年推出iPod Mini<br>2005年推出iPod nano、iPod Shuffle<br>2007年推出iPod Classic、iPod Touch</p>
@@ -712,52 +869,282 @@
 <figure class="highlight swift"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> UIKit</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">ViewController</span>: <span class="title">UIViewController</span> </span>&#123;</span><br><span class="line">    <span class="comment">// ime</span></span><br><span class="line">    <span class="meta">@IBAction</span> <span class="function"><span class="keyword">func</span> <span class="title">callImePressed</span><span class="params">(sender: AnyObject)</span></span> &#123;</span><br><span class="line">        <span class="type">UIApplication</span>.sharedApplication().openURL(<span class="type">NSURL</span>(string: <span class="string">"ime://i.loce.you?h=Hello&amp;b=world"</span>)!)</span><br><span class="line">    &#125;</span><br><span class="line">    ...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <h3 id="1-10-4-获取photo"><a href="#1-10-4-获取photo" class="headerlink" title="1.10.4    获取photo"></a>1.10.4    获取photo</h3><p><em>ViewController.swift</em></p>
 <figure class="highlight swift"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
-  </section>
-
-</article>
-
-
-<section class="post-comments">
-  <!-- 多说评论框 start -->
-  <div id="ds-thread" class="ds-thread" data-thread-key="http://laputa-er.github.io/2016/05/14/JK_IOS中级_1  了解ios项目开发/" data-title="1 了解ios项目开发" data-url="http://laputa-er.github.io/2016/05/14/JK_IOS中级_1  了解ios项目开发/"></div>
-  <!-- 多说评论框 end -->
-  <!-- 多说公共JS代码 start (一个网页只需插入一次) -->
-  <script type="text/javascript">
-  var duoshuoQuery = {short_name:"lapuda-er"};
-  (function() {
-    var ds = document.createElement('script');
-    ds.type = 'text/javascript';ds.async = true;
-    ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
-    ds.charset = 'UTF-8';
-    (document.getElementsByTagName('head')[0] 
-     || document.getElementsByTagName('body')[0]).appendChild(ds);
-  })();
-  </script>
-<!-- 多说公共JS代码 end -->
-</section>
-
-
-
-
-            <footer class="footer">
-    <span class="footer__copyright">
-        本站点采用<a href="http://creativecommons.org/licenses/by-nc-sa/4.0/">知识共享署名-非商业性使用-相同方式共享 4.0 国际许可协议</a>
-    </span>
-    <span class="footer__copyright">
-        基于 <a href="http://hexo.io">Hexo</a> 搭建，感谢 <a href="https://pages.github.com/">GitHub Pages</a> 提供免费的托管服务
-    </span>
-    <span class="footer__copyright">
-        &copy; 2016 - 
-        本站修改自<a href="https://github.com/lenbo-ma/hexo-theme-vno" target="_blank">hexo-theme-vno</a>
-    </span>
-</footer>
-
-        </div>
+      
     </div>
 
-    <script src="http://cdn.bootcss.com/jquery/2.1.4/jquery.min.js"></script>
-    <script src="/js/main.js"></script>
+    <div>
+      
+        
 
-     
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/极客学院-ios中级/" rel="tag">#极客学院_ios中级</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/05/14/JK_IOS初级_4  初级ios开发工程师面试题/" rel="next" title="4 初级ios开发工程师面试题">
+                <i class="fa fa-chevron-left"></i> 4 初级ios开发工程师面试题
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/05/14/JK_IOS中级_2  UI部分/" rel="prev" title="2 UI部分">
+                2 UI部分 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.gif"
+               alt="Sean" />
+          <p class="site-author-name" itemprop="name">Sean</p>
+          <p class="site-description motion-element" itemprop="description">整理了一批过去一段时间ios相关的笔记，其它的笔记也整理下？源码分享出来？再说吧...反正也只有自己会看吧...</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">85</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">10</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-1-ios开发前准备"><span class="nav-number">1.</span> <span class="nav-text">1.1    ios开发前准备</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-1​-苹果公司介绍"><span class="nav-number">1.1.</span> <span class="nav-text">1.1​    苹果公司介绍</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-1-2-苹果Mac-OX-操作系统介绍"><span class="nav-number">1.2.</span> <span class="nav-text">1.1.2  苹果Mac OX 操作系统介绍</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-1-3-苹果ios操作系统"><span class="nav-number">1.3.</span> <span class="nav-text">1.1.3    苹果ios操作系统</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-1-4-软硬件开发环境要求"><span class="nav-number">1.4.</span> <span class="nav-text">1.1.4    软硬件开发环境要求</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-2-Xcode继承开发环境的安装使用与项目建立流程"><span class="nav-number">2.</span> <span class="nav-text">1.2    Xcode继承开发环境的安装使用与项目建立流程</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-2-1-xcode的下载和安装"><span class="nav-number">2.1.</span> <span class="nav-text">1.2.1    xcode的下载和安装</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-2-2-xcode创建ios-single-view项目"><span class="nav-number">2.2.</span> <span class="nav-text">1.2.2    xcode创建ios single view项目</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-2-3-工作空间创建和使用"><span class="nav-number">2.3.</span> <span class="nav-text">1.2.3    工作空间创建和使用</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-2-4-xcode快捷键及常用功能"><span class="nav-number">2.4.</span> <span class="nav-text">1.2.4    xcode快捷键及常用功能</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-2-5-xcode中创建os-x命令行控制台项目"><span class="nav-number">2.5.</span> <span class="nav-text">1.2.5    xcode中创建os x命令行控制台项目</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-2-6-xcode中创建os-x窗体程序项目"><span class="nav-number">2.6.</span> <span class="nav-text">1.2.6    xcode中创建os x窗体程序项目</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-2-7-xcode中创建os-x游戏项目"><span class="nav-number">2.7.</span> <span class="nav-text">1.2.7    xcode中创建os x游戏项目</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-2-8-xcode中创建ios游戏项目"><span class="nav-number">2.8.</span> <span class="nav-text">1.2.8    xcode中创建ios游戏项目</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-3-Xcode常用项目模版"><span class="nav-number">3.</span> <span class="nav-text">1.3    Xcode常用项目模版</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-3-1-Master-Detail-Application"><span class="nav-number">3.1.</span> <span class="nav-text">1.3.1    Master-Detail Application</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-3-2-Page-Based-Application"><span class="nav-number">3.2.</span> <span class="nav-text">1.3.2    Page-Based Application</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-3-3-Tabbed-Application"><span class="nav-number">3.3.</span> <span class="nav-text">1.3.3    Tabbed Application</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-4-ios用户界面开发基本流程"><span class="nav-number">4.</span> <span class="nav-text">1.4    ios用户界面开发基本流程</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-4-1-StoryBoard的基本使用方法"><span class="nav-number">4.1.</span> <span class="nav-text">1.4.1    StoryBoard的基本使用方法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-4-2-图片控件"><span class="nav-number">4.2.</span> <span class="nav-text">1.4.2    图片控件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-4-3-ios-UI界面设计中传统方法和Assistant-editor绑定代码"><span class="nav-number">4.3.</span> <span class="nav-text">1.4.3    ios UI界面设计中传统方法和Assistant editor绑定代码</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#方式1：ios-UI界面设计中传统方法"><span class="nav-number">4.3.1.</span> <span class="nav-text">方式1：ios UI界面设计中传统方法</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#方式2：借助Assistant-editor绑定代码"><span class="nav-number">4.3.2.</span> <span class="nav-text">方式2：借助Assistant editor绑定代码</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-4-4-ios-Story-Board控制事件绑定"><span class="nav-number">4.4.</span> <span class="nav-text">1.4.4    ios Story Board控制事件绑定</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-4-5-iOS-Storyboard控件与Swift类绑定"><span class="nav-number">4.5.</span> <span class="nav-text">1.4.5    iOS Storyboard控件与Swift类绑定</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-4-6-ios源代码添加控件"><span class="nav-number">4.6.</span> <span class="nav-text">1.4.6    ios源代码添加控件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-4-7-ios浏览器开发制作"><span class="nav-number">4.7.</span> <span class="nav-text">1.4.7    ios浏览器开发制作</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-5-ios自定义控件实例"><span class="nav-number">5.</span> <span class="nav-text">1.5    ios自定义控件实例</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-5-1-配置iOS自定义控件属性"><span class="nav-number">5.1.</span> <span class="nav-text">1.5.1    配置iOS自定义控件属性</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-5-2-自定义原型进度指示控件实例"><span class="nav-number">5.2.</span> <span class="nav-text">1.5.2    自定义原型进度指示控件实例</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-5-3-实时预览自定义控件效果"><span class="nav-number">5.3.</span> <span class="nav-text">1.5.3    实时预览自定义控件效果</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-6-使用StoryBoard做ios-UI界面跳转"><span class="nav-number">6.</span> <span class="nav-text">1.6    使用StoryBoard做ios UI界面跳转</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-6-1-用iOS-Storyboard做界面跳转"><span class="nav-number">6.1.</span> <span class="nav-text">1.6.1    用iOS Storyboard做界面跳转</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-6-1-2-跳转到下一页"><span class="nav-number">6.1.1.</span> <span class="nav-text">1.6.1.2    跳转到下一页</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#1-6-1-3-返回"><span class="nav-number">6.1.2.</span> <span class="nav-text">1.6.1.3    返回</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-6-2-使用nib文件做iOS界面设计"><span class="nav-number">6.2.</span> <span class="nav-text">1.6.2    使用nib文件做iOS界面设计</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-6-3-在iOS界面间传递数据"><span class="nav-number">6.3.</span> <span class="nav-text">1.6.3    在iOS界面间传递数据</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-7-屏幕适配"><span class="nav-number">7.</span> <span class="nav-text">1.7    屏幕适配</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-7-1-匹配父级容器"><span class="nav-number">7.1.</span> <span class="nav-text">1.7.1    匹配父级容器</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-7-2-分割父级容器"><span class="nav-number">7.2.</span> <span class="nav-text">1.7.2    分割父级容器</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-7-2-1-左边固定，右边自适应"><span class="nav-number">7.2.1.</span> <span class="nav-text">1.7.2.1    左边固定，右边自适应</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#1-7-2-2-多个View按比例"><span class="nav-number">7.2.2.</span> <span class="nav-text">1.7.2.2    多个View按比例</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-7-3-复杂布局适配"><span class="nav-number">7.3.</span> <span class="nav-text">1.7.3    复杂布局适配</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-8-iOS平台常用传感器"><span class="nav-number">8.</span> <span class="nav-text">1.8    iOS平台常用传感器</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#CMMotionManager类"><span class="nav-number">8.0.1.</span> <span class="nav-text">CMMotionManager类</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-8-1-iOS平台加速度传感器的使用方式"><span class="nav-number">8.1.</span> <span class="nav-text">1.8.1    iOS平台加速度传感器的使用方式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-8-2-iOS平台陀螺仪的使用方式"><span class="nav-number">8.2.</span> <span class="nav-text">1.8.2    iOS平台陀螺仪的使用方式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-8-3-iOS平台距离传感器的使用方式"><span class="nav-number">8.3.</span> <span class="nav-text">1.8.3    iOS平台距离传感器的使用方式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-8-4-iOS平台电源传感器的使用方式"><span class="nav-number">8.4.</span> <span class="nav-text">1.8.4    iOS平台电源传感器的使用方式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-8-5-iOS平台磁场传感器的使用方式"><span class="nav-number">8.5.</span> <span class="nav-text">1.8.5    iOS平台磁场传感器的使用方式</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#CLLocationManager类"><span class="nav-number">8.5.1.</span> <span class="nav-text">CLLocationManager类</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-8-6-使用磁场传感器制作指南针实例"><span class="nav-number">8.6.</span> <span class="nav-text">1.8.6    使用磁场传感器制作指南针实例</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-9-多点触控"><span class="nav-number">9.</span> <span class="nav-text">1.9    多点触控</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-9-1-触摸事件处理"><span class="nav-number">9.1.</span> <span class="nav-text">1.9.1    触摸事件处理</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-9-2-处理多个触摸点"><span class="nav-number">9.2.</span> <span class="nav-text">1.9.2    处理多个触摸点</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-9-3-缩放图片实例"><span class="nav-number">9.3.</span> <span class="nav-text">1.9.3    缩放图片实例</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-10-常用其它功能"><span class="nav-number">10.</span> <span class="nav-text">1.10    常用其它功能</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-10-1-打开网页"><span class="nav-number">10.1.</span> <span class="nav-text">1.10.1    打开网页</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-10-2-常用打开操作（发邮件、打电话、发短信）"><span class="nav-number">10.2.</span> <span class="nav-text">1.10.2    常用打开操作（发邮件、打电话、发短信）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-10-3-自定义打开协议"><span class="nav-number">10.3.</span> <span class="nav-text">1.10.3    自定义打开协议</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-10-3-1-注册协议的app"><span class="nav-number">10.3.1.</span> <span class="nav-text">1.10.3.1    注册协议的app</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#1-10-3-2-通过协议打开app"><span class="nav-number">10.3.2.</span> <span class="nav-text">1.10.3.2    通过协议打开app</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-10-4-获取photo"><span class="nav-number">10.4.</span> <span class="nav-text">1.10.4    获取photo</span></a></li></ol></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Sean</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Muse
+  </a>
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+  
+  
+
+  
+
+  
+
+  
+
 </body>
 </html>

@@ -1,181 +1,333 @@
-<!DOCTYPE html>
-<html>
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion">
 <head>
-    <meta charset="utf-8"/>
-    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
     
-    <title>2 UI部分 | Sean</title>
-    <meta name="renderer" content="webkit">
-    <meta name="HandheldFriendly" content="True">
-    <meta name="MobileOptimized" content="320">
-    <meta name="apple-mobile-web-app-capable" content="yes">
-    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-
-    <meta name="description" content="do things for fun">
-
-    <meta name="twitter:card" content="summary">
-    <meta name="twitter:title" content="2 UI部分 | Sean">
-    <meta name="twitter:description" content="do things for fun">
-
-    <meta property="og:type" content="article">
-    <meta property="og:title" content="2 UI部分 | Sean">
-    <meta property="og:description" content="do things for fun">
-
     
-    <meta name="author" content="Sean">
-    
-    <link rel="stylesheet" href="/css/vno.css">
-    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css">
+  
 
-    
-    <link rel="icon" href="/images/sean.png">
-    
+  
 
-    <meta name="generator" content="hexo"/>
-    
+  
 
-    <link rel="canonical" href="http://laputa-er.github.io/2016/05/14/JK_IOS中级_2  UI部分/"/>
+  
 
+  
+
+  
     
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="极客学院_ios中级," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1" />
+
+
+
+
+
+
+<meta name="description" content="说明：iOS实战项目
+
+2.1    汤姆猫小游戏（投诉下线）2.2    加法计算器
+说明：本课时讲解 storyboard 中利用 UITextField、UILabel、UIButton 快速搭建器计算器UI界面，并在 viewController 中用代码完成计算的业务逻辑以及排除部分隐含的 bug，让大家学会自制计算器。
+
+设置Text Field使用数字键盘
+点击“计算”后，使Tex">
+<meta property="og:type" content="article">
+<meta property="og:title" content="2 UI部分">
+<meta property="og:url" content="http://laputa-er.github.io/2016/05/14/JK_IOS中级_2  UI部分/index.html">
+<meta property="og:site_name" content="Sean">
+<meta property="og:description" content="说明：iOS实战项目
+
+2.1    汤姆猫小游戏（投诉下线）2.2    加法计算器
+说明：本课时讲解 storyboard 中利用 UITextField、UILabel、UIButton 快速搭建器计算器UI界面，并在 viewController 中用代码完成计算的业务逻辑以及排除部分隐含的 bug，让大家学会自制计算器。
+
+设置Text Field使用数字键盘
+点击“计算”后，使Tex">
+<meta property="og:image" content="http://o6ul1xz4z.bkt.clouddn.com/img/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202016-02-27%20%E4%B8%8B%E5%8D%8810.16.26.png">
+<meta property="og:image" content="http://o6ul1xz4z.bkt.clouddn.com/img/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202016-02-28%20%E4%B8%8B%E5%8D%888.59.20.png">
+<meta property="og:image" content="http://o6ul1xz4z.bkt.clouddn.com/img/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202016-02-28%20%E4%B8%8B%E5%8D%889.29.01.png">
+<meta property="og:image" content="http://o6ul1xz4z.bkt.clouddn.com/img/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202016-02-28%20%E4%B8%8B%E5%8D%8810.43.32.png">
+<meta property="og:image" content="http://o6ul1xz4z.bkt.clouddn.com/img/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202016-03-02%20%E4%B8%8A%E5%8D%8812.11.15.png">
+<meta property="og:image" content="http://o6ul1xz4z.bkt.clouddn.com/img/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202016-03-04%2012.15.01.png">
+<meta property="og:image" content="http://o6ul1xz4z.bkt.clouddn.com/img/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202016-03-05%20%E4%B8%8B%E5%8D%883.20.24.png">
+<meta property="og:image" content="http://o6ul1xz4z.bkt.clouddn.com/img/JK_IOS_S2_more.gif">
+<meta property="og:image" content="http://o6ul1xz4z.bkt.clouddn.com/img/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202016-03-12%20%E4%B8%8B%E5%8D%884.29.09.png">
+<meta property="og:image" content="http://o6ul1xz4z.bkt.clouddn.com/img/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202016-03-12%20%E4%B8%8B%E5%8D%884.24.35.png">
+<meta property="og:image" content="http://o6ul1xz4z.bkt.clouddn.com/img/JK_IOS_S2_qq.gif">
+<meta property="og:image" content="http://o6ul1xz4z.bkt.clouddn.com/img/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202016-03-16%20%E4%B8%8A%E5%8D%889.34.22.png">
+<meta property="og:image" content="http://o6ul1xz4z.bkt.clouddn.com/img/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202016-03-21%20%E4%B8%8B%E5%8D%887.09.10.png">
+<meta property="og:image" content="http://o6ul1xz4z.bkt.clouddn.com/img/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202016-03-21%20%E4%B8%8B%E5%8D%887.06.44.png">
+<meta property="og:image" content="http://o6ul1xz4z.bkt.clouddn.com/img/JK_IOS_S2_contact.gif">
+<meta property="og:image" content="http://o6ul1xz4z.bkt.clouddn.com/img/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202016-03-21%20%E4%B8%8B%E5%8D%8810.17.31.png">
+<meta property="og:image" content="http://o6ul1xz4z.bkt.clouddn.com/img/JK_IOS_S2_show.gif">
+<meta property="og:image" content="http://o6ul1xz4z.bkt.clouddn.com/img/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202016-03-22%20%E4%B8%8A%E5%8D%8812.23.35.png">
+<meta property="og:image" content="http://laputa-er.github.io/./show2.gif">
+<meta property="og:image" content="http://o6ul1xz4z.bkt.clouddn.com/img/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202016-03-22%20%E4%B8%8B%E5%8D%888.43.58.png">
+<meta property="og:image" content="http://o6ul1xz4z.bkt.clouddn.com/img/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202016-03-22%20%E4%B8%8B%E5%8D%888.44.32.png">
+<meta property="og:image" content="http://laputa-er.github.io/./屏幕快照 2016-03-23 10.14.46.png">
+<meta property="og:image" content="http://o6ul1xz4z.bkt.clouddn.com/img/JK_IOS_S2_section.gif">
+<meta property="og:image" content="http://o6ul1xz4z.bkt.clouddn.com/img/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202016-03-23%2010.35.09.png">
+<meta property="og:image" content="http://o6ul1xz4z.bkt.clouddn.com/img/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202016-03-24%20%E4%B8%8B%E5%8D%889.51.15.png">
+<meta property="og:image" content="http://o6ul1xz4z.bkt.clouddn.com/img/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202016-03-24%20%E4%B8%8B%E5%8D%8810.25.47.png">
+<meta property="og:image" content="http://o6ul1xz4z.bkt.clouddn.com/img/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202016-03-25%20%E4%B8%8A%E5%8D%8812.28.25.png">
+<meta property="og:image" content="http://o6ul1xz4z.bkt.clouddn.com/img/JK_IOS_S2_gesture.gif">
+<meta property="og:image" content="http://o6ul1xz4z.bkt.clouddn.com/img/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202016-03-29%2013.11.53.png">
+<meta property="og:image" content="http://o6ul1xz4z.bkt.clouddn.com/img/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202016-03-29%2013.26.12.png">
+<meta property="og:image" content="http://o6ul1xz4z.bkt.clouddn.com/img/JK_IOS_S2_animation.gif">
+<meta property="og:image" content="http://o6ul1xz4z.bkt.clouddn.com/img/JK_IOS_S2_wheel.gif">
+<meta property="og:updated_time" content="2016-05-14T08:18:02.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="2 UI部分">
+<meta name="twitter:description" content="说明：iOS实战项目
+
+2.1    汤姆猫小游戏（投诉下线）2.2    加法计算器
+说明：本课时讲解 storyboard 中利用 UITextField、UILabel、UIButton 快速搭建器计算器UI界面，并在 viewController 中用代码完成计算的业务逻辑以及排除部分隐含的 bug，让大家学会自制计算器。
+
+设置Text Field使用数字键盘
+点击“计算”后，使Tex">
+<meta name="twitter:image" content="http://o6ul1xz4z.bkt.clouddn.com/img/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202016-02-27%20%E4%B8%8B%E5%8D%8810.16.26.png">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Muse',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 0,
+      author: '博主'
+    }
+  };
+</script>
+
+
+
+
+  <link rel="canonical" href="http://laputa-er.github.io/2016/05/14/JK_IOS中级_2  UI部分/"/>
+
+  <title> 2 UI部分 | Sean </title>
 </head>
 
-<body class="home-template no-js">
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
 
-    <span class="mobile btn-mobile-menu">
-        <i class="fa fa-list btn-mobile-menu__icon"></i>
-        <i class="fa fa-angle-up btn-mobile-close__icon hidden"></i>
-    </span>
+  
+
+
+
+
+
+
+
+
+
+
+  
+  
     
-<header class="panel-cover panel-cover--collapsed" style="background-image: url(/images/mengxiang.jpg)">
-  <div class="panel-main">
-    <div class="panel-main__inner panel-inverted">
-      <span class="panel-arrow panel-left-arrow disabled">
-        <i class="fa fa-angle-left"></i>
-      </span>
-      <span class="panel-arrow panel-right-arrow">
-        <i class="fa fa-angle-right"></i>
-      </span>
-
-      <div class="panel-animation-container">
-        <div class="panel-content panel-main__content">
-            <a href="/" title="前往 Sean 的主页"><img src="/images/sean.png" width="80" alt="Sean logo" class="panel-cover__logo logo" /></a>
-            <h1 class="panel-cover__title panel-title"><a href="/" title="link to homepage for Sean">Sean</a></h1>
-            
-            <span class="panel-cover__subtitle panel-subtitle">笔记分享</span>
-            
-            <hr class="panel-cover__divider" />
-            <p class="panel-cover__description">整理了一批过去一段时间ios相关的笔记，其它的笔记也整理下？源码分享出来？再说吧...反正也只有自己会看吧...</p>
-            <hr class="panel-cover__divider panel-cover__divider--secondary" />
-
-            <div class="navigation-wrapper">
-              <div>
-              <nav class="cover-navigation cover-navigation--primary">
-                <ul class="navigation">
-                  <li class="navigation__item"><a href="/#blog" title="访问笔记" class="blog-button">笔记</a></li>
-                  <li style="display: none;">
-                    <textarea>
-                      
-                        <li class="navigation__item"><a href="/projects">项目作品</a></li>
-                      
-                        <li class="navigation__item"><a href="/aboutme">关于我</a></li>
-                      
-                    </textarea>
-                  </li>
-                </ul>
-              </nav>
-              </div>
-              <div>
-              <nav class="cover-navigation navigation--social">
-  <ul class="navigation">
-
-  <!-- Weibo-->
   
 
-  <!-- Github -->
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
   
 
-<!-- Stack Overflow -->
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">Sean</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">笔记分享</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
         
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
 
-  <!-- Google Plus -->
+      
+    </ul>
   
 
-<!-- Facebook -->
-
   
-<!-- Twitter -->
-
-  
-
-
-
-  </ul>
 </nav>
 
-              </div>
-            </div>
+ </div>
+    </header>
 
-          </div>
-          <div class="panel-content panel-tagcloud_content">
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
             
-              <aside id="sidebar">
-  
+
+  <div id="posts" class="posts-expand">
     
-  <div class="widget-wrap">
-    <h3 class="widget-title">笔记分类</h3>
-    <div class="widget tagcloud">
-      <a href="/tags/Objective-C基础教程第二版/">Objective-C基础教程第二版</a> <a href="/tags/The-Swift-Program-Language-2/">The Swift Program Language 2</a> <a href="/tags/c语言程序设计－现代方法/">c语言程序设计－现代方法</a> <a href="/tags/iOS/">iOS</a> <a href="/tags/imooc/">imooc</a> <a href="/tags/pug/">pug</a> <a href="/tags/极客学院-ios中级/">极客学院_ios中级</a> <a href="/tags/极客学院-ios初级/">极客学院_ios初级</a> <a href="/tags/极客学院-ios高级/">极客学院_ios高级</a>
-    </div>
-  </div>
 
   
-</aside>
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
             
-          </div>
-        </div>  
+            
+              
+                2 UI部分
+              
+            
+          </h1>
+        
 
-      </div>
-      <div class="panel-cover--overlay cover-blue"></div>
-  </div>
-  </header>
-    
-    <div class="content-wrapper">
-        <div class="content-wrapper__inner">
-            <article class="post-container post-container--single">
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-05-14T08:56:56+08:00" content="2016-05-14">
+              2016-05-14
+            </time>
+          </span>
 
-  <header class="post-header">
-    <div class="post-meta">
-      <time datetime="2016-05-14T00:56:56.000Z" class="post-list__meta--date date">2016-05-14</time> &#8226; <span class="post-meta__tags tags">于&nbsp;
-  <a class="tag-link" href="/tags/极客学院-ios中级/">极客学院_ios中级</a>
-</span>
-    </div>
-    <h1 class="post-title">2 UI部分</h1>
-  </header>
+          
 
-  <section class="post">
-    <!-- Table of Contents -->
-    
-    <div id="top-toc">
-      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#2-1-汤姆猫小游戏（投诉下线）"><span class="toc-number">1.</span> <span class="toc-text">2.1    汤姆猫小游戏（投诉下线）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-2-加法计算器"><span class="toc-number">2.</span> <span class="toc-text">2.2    加法计算器</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-3-制作图片浏览器"><span class="toc-number">3.</span> <span class="toc-text">2.3    制作图片浏览器</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-4-LOL英雄展示"><span class="toc-number">4.</span> <span class="toc-text">2.4    LOL英雄展示</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#2-4-1-数据模版"><span class="toc-number">4.1.</span> <span class="toc-text">2.4.1    数据模版</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-4-2-采纳协议"><span class="toc-number">4.2.</span> <span class="toc-text">2.4.2    采纳协议</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-5-Face-人脸识别技术入门"><span class="toc-number">5.</span> <span class="toc-text">2.5    Face++人脸识别技术入门</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#2-5-1-本课概要"><span class="toc-number">5.1.</span> <span class="toc-text">2.5.1    本课概要</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#2-5-1-1-Face-公司简介"><span class="toc-number">5.1.1.</span> <span class="toc-text">2.5.1.1    Face++公司简介</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-5-1-2-Face-核心技术简介"><span class="toc-number">5.1.2.</span> <span class="toc-text">2.5.1.2 Face++核心技术简介</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#人脸检测和追踪"><span class="toc-number">5.1.2.1.</span> <span class="toc-text">人脸检测和追踪</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#Face-人脸关键点定位"><span class="toc-number">5.1.2.2.</span> <span class="toc-text">Face++人脸关键点定位</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#Face-人脸属性分析"><span class="toc-number">5.1.2.3.</span> <span class="toc-text">Face++人脸属性分析</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#Face-人脸1-1识别技术"><span class="toc-number">5.1.2.4.</span> <span class="toc-text">Face++人脸1:1识别技术</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#Face-人脸1-N识别技术"><span class="toc-number">5.1.2.5.</span> <span class="toc-text">Face++人脸1:N识别技术</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#Face-人脸大规模搜索"><span class="toc-number">5.1.2.6.</span> <span class="toc-text">Face++人脸大规模搜索</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-5-1-3-Face-技术使用场景介绍"><span class="toc-number">5.1.3.</span> <span class="toc-text">2.5.1.3    Face++技术使用场景介绍</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#相机和广告"><span class="toc-number">5.1.3.1.</span> <span class="toc-text">相机和广告</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#游戏"><span class="toc-number">5.1.3.2.</span> <span class="toc-text">游戏</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#人脸搜索和人脸登录"><span class="toc-number">5.1.3.3.</span> <span class="toc-text">人脸搜索和人脸登录</span></a></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-5-2-Face-介绍"><span class="toc-number">5.2.</span> <span class="toc-text">2.5.2    Face++介绍</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-5-3-线上API分析"><span class="toc-number">5.3.</span> <span class="toc-text">2.5.3    线上API分析</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-5-4-离线API的下载和配置"><span class="toc-number">5.4.</span> <span class="toc-text">2.5.4    离线API的下载和配置</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-5-5-Face-实例编写"><span class="toc-number">5.5.</span> <span class="toc-text">2.5.5    Face++实例编写</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-5-6-Face-人脸识别总结语"><span class="toc-number">5.6.</span> <span class="toc-text">2.5.6    Face++人脸识别总结语</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-6-应用管理"><span class="toc-number">6.</span> <span class="toc-text">2.6    应用管理</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#2-6-1-项目讲解和模型搭建"><span class="toc-number">6.1.</span> <span class="toc-text">2.6.1    项目讲解和模型搭建</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#数据模型"><span class="toc-number">6.1.1.</span> <span class="toc-text">数据模型</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-6-2-Xib自定义视图"><span class="toc-number">6.2.</span> <span class="toc-text">2.6.2    Xib自定义视图</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#2-6-2-1-xib视图文件"><span class="toc-number">6.2.1.</span> <span class="toc-text">2.6.2.1    xib视图文件</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-6-2-2-绑定的类-UIView"><span class="toc-number">6.2.2.</span> <span class="toc-text">2.6.2.2    绑定的类(UIView)</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-6-3-创建自定义视图数组"><span class="toc-number">6.3.</span> <span class="toc-text">2.6.3    创建自定义视图数组</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-6-4-九宫格布局展示"><span class="toc-number">6.4.</span> <span class="toc-text">2.6.4    九宫格布局展示</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-6-5-点击效果分析与bug排除"><span class="toc-number">6.5.</span> <span class="toc-text">2.6.5    点击效果分析与bug排除</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-6-6-延时操作与块动画"><span class="toc-number">6.6.</span> <span class="toc-text">2.6.6    延时操作与块动画</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-7-超级猜图"><span class="toc-number">7.</span> <span class="toc-text">2.7    超级猜图</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#2-7-1-效果展示与业务逻辑分析"><span class="toc-number">7.1.</span> <span class="toc-text">2.7.1    效果展示与业务逻辑分析</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-7-2-模型搭建"><span class="toc-number">7.2.</span> <span class="toc-text">2.7.2    模型搭建</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-7-3-Storyboard-布局-UI"><span class="toc-number">7.3.</span> <span class="toc-text">2.7.3    Storyboard 布局 UI</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-7-4-拖线与注释"><span class="toc-number">7.4.</span> <span class="toc-text">2.7.4    拖线与注释</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-7-5-创建模型数组与遮罩"><span class="toc-number">7.5.</span> <span class="toc-text">2.7.5    创建模型数组与遮罩</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-7-6-实现图片缩放"><span class="toc-number">7.6.</span> <span class="toc-text">2.7.6    实现图片缩放</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-7-7-下一题方法实现"><span class="toc-number">7.7.</span> <span class="toc-text">2.7.7    下一题方法实现</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-7-8-创建答案按钮"><span class="toc-number">7.8.</span> <span class="toc-text">2.7.8    创建答案按钮</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-7-9-创建备选答案按钮"><span class="toc-number">7.9.</span> <span class="toc-text">2.7.9    创建备选答案按钮</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-7-10-答案按钮点击"><span class="toc-number">7.10.</span> <span class="toc-text">2.7.10    答案按钮点击</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-7-11-备选按钮点击"><span class="toc-number">7.11.</span> <span class="toc-text">2.7.11    备选按钮点击</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-7-12-提示点击方法的实现"><span class="toc-number">7.12.</span> <span class="toc-text">2.7.12    提示点击方法的实现</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-8-国家选择"><span class="toc-number">8.</span> <span class="toc-text">2.8    国家选择</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#2-8-1-UIPickerView与数据模型的创建"><span class="toc-number">8.1.</span> <span class="toc-text">2.8.1    UIPickerView与数据模型的创建</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#2-8-1-1-UIPickerView"><span class="toc-number">8.1.1.</span> <span class="toc-text">2.8.1.1    UIPickerView</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-8-1-2-数据模型的创建"><span class="toc-number">8.1.2.</span> <span class="toc-text">2.8.1.2     数据模型的创建</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-8-2-自定义视图完善实例"><span class="toc-number">8.2.</span> <span class="toc-text">2.8.2    自定义视图完善实例</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#2-8-2-1-创建xib文件"><span class="toc-number">8.2.1.</span> <span class="toc-text">2.8.2.1    创建xib文件</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-8-2-2-创建JKCountryFlagView类"><span class="toc-number">8.2.2.</span> <span class="toc-text">2.8.2.2    创建JKCountryFlagView类</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-8-2-3-完善ViewController"><span class="toc-number">8.2.3.</span> <span class="toc-text">2.8.2.3    完善ViewController</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-9-图片自动播放"><span class="toc-number">9.</span> <span class="toc-text">2.9    图片自动播放</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#2-9-1-创建UIScrollView和UIPageControl"><span class="toc-number">9.1.</span> <span class="toc-text">2.9.1    创建UIScrollView和UIPageControl</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-9-2-定时器与代理方法调用"><span class="toc-number">9.2.</span> <span class="toc-text">2.9.2    定时器与代理方法调用</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-9-3-代码摘要"><span class="toc-number">9.3.</span> <span class="toc-text">2.9.3    代码摘要</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-10-QQ列表展示"><span class="toc-number">10.</span> <span class="toc-text">2.10    QQ列表展示</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#2-10-1-模型搭建"><span class="toc-number">10.1.</span> <span class="toc-text">2.10.1    模型搭建</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#2-10-1-1-JKGroupModel"><span class="toc-number">10.1.1.</span> <span class="toc-text">2.10.1.1    JKGroupModel</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-10-1-2-JKFriendsModel"><span class="toc-number">10.1.2.</span> <span class="toc-text">2.10.1.2    JKFriendsModel</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-10-2-创建UITableView"><span class="toc-number">10.2.</span> <span class="toc-text">2.10.2    创建UITableView</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-10-3-自定义头视图"><span class="toc-number">10.3.</span> <span class="toc-text">2.10.3    自定义头视图</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#2-10-3-1-View部分"><span class="toc-number">10.3.1.</span> <span class="toc-text">2.10.3.1    View部分</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-10-3-2-Controller部分"><span class="toc-number">10.3.2.</span> <span class="toc-text">2.10.3.2    Controller部分</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-10-4-点击效果的实现"><span class="toc-number">10.4.</span> <span class="toc-text">2.10.4    点击效果的实现</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-11-三级控制器"><span class="toc-number">11.</span> <span class="toc-text">2.11    三级控制器</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#2-11-1-初始化视图控制器"><span class="toc-number">11.1.</span> <span class="toc-text">2.11.1    初始化视图控制器</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-11-2-自定义标签工具栏"><span class="toc-number">11.2.</span> <span class="toc-text">2.11.2    自定义标签工具栏</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-11-3-页面跳转的两种方式"><span class="toc-number">11.3.</span> <span class="toc-text">2.11.3    页面跳转的两种方式</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#2-11-3-1-RootViewController"><span class="toc-number">11.3.1.</span> <span class="toc-text">2.11.3.1    RootViewController</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-11-3-2-ProfileViewController"><span class="toc-number">11.3.2.</span> <span class="toc-text">2.11.3.2    ProfileViewController</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-11-3-3-PushViewController"><span class="toc-number">11.3.3.</span> <span class="toc-text">2.11.3.3    PushViewController</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-11-3-4-ModalViewController"><span class="toc-number">11.3.4.</span> <span class="toc-text">2.11.3.4    ModalViewController</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-12-通讯录"><span class="toc-number">12.</span> <span class="toc-text">2.12    通讯录</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#2-12-1-Storyboard实现布局和跳转"><span class="toc-number">12.1.</span> <span class="toc-text">2.12.1    Storyboard实现布局和跳转</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#API"><span class="toc-number">12.2.</span> <span class="toc-text">API</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#2-12-1-1-布局"><span class="toc-number">12.2.1.</span> <span class="toc-text">2.12.1.1    布局</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-12-1-2-跳转"><span class="toc-number">12.2.2.</span> <span class="toc-text">2.12.1.2    跳转</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-12-2-UIAlertController与添加页面布局"><span class="toc-number">12.3.</span> <span class="toc-text">2.12.2    UIAlertController与添加页面布局</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-12-3-添加功能与传值"><span class="toc-number">12.4.</span> <span class="toc-text">2.12.3    添加功能与传值</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-12-4-编辑页面功能完善"><span class="toc-number">12.5.</span> <span class="toc-text">2.12.4    编辑页面功能完善</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-12-5-数据存储"><span class="toc-number">12.6.</span> <span class="toc-text">2.12.5    数据存储</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#2-12-5-1-便好设置"><span class="toc-number">12.6.1.</span> <span class="toc-text">2.12.5.1    便好设置</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-12-5-2-对象归档"><span class="toc-number">12.6.2.</span> <span class="toc-text">2.12.5.2    对象归档</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-13-绘制小黄人"><span class="toc-number">13.</span> <span class="toc-text">2.13    绘制小黄人</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Quartz-2D"><span class="toc-number">13.1.</span> <span class="toc-text">Quartz 2D</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-13-1-Quartz-2D基本图形"><span class="toc-number">13.2.</span> <span class="toc-text">2.13.1    Quartz 2D基本图形</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-13-2-绘制圆、图片与文字"><span class="toc-number">13.3.</span> <span class="toc-text">2.13.2    绘制圆、图片与文字</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-13-3-绘制小黄人雏形"><span class="toc-number">13.4.</span> <span class="toc-text">2.13.3    绘制小黄人雏形</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-14-手势密码锁"><span class="toc-number">14.</span> <span class="toc-text">2.14    手势密码锁</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#UIGestureRecognizer"><span class="toc-number">14.1.</span> <span class="toc-text">UIGestureRecognizer</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-14-1-点击、捏合、轻扫"><span class="toc-number">14.2.</span> <span class="toc-text">2.14.1    点击、捏合、轻扫</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-14-2-拖移、旋转、长按"><span class="toc-number">14.3.</span> <span class="toc-text">2.14.2    拖移、旋转、长按</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-14-3-九宫格布局按钮"><span class="toc-number">14.4.</span> <span class="toc-text">2.14.3    九宫格布局按钮</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-14-4-手势连线与代理"><span class="toc-number">14.5.</span> <span class="toc-text">2.14.4    手势连线与代理</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-15-抽奖转盘动画"><span class="toc-number">15.</span> <span class="toc-text">2.15    抽奖转盘动画</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#2-15-1-CALayer图层介绍"><span class="toc-number">15.1.</span> <span class="toc-text">2.15.1    CALayer图层介绍</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#CALayer"><span class="toc-number">15.1.1.</span> <span class="toc-text">CALayer</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-15-1-1-原生控件使用CALayer"><span class="toc-number">15.1.2.</span> <span class="toc-text">2.15.1.1    原生控件使用CALayer</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-15-1-2-自定义CALayer"><span class="toc-number">15.1.3.</span> <span class="toc-text">2.15.1.2    自定义CALayer</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#方式一：继承CALayer"><span class="toc-number">15.1.3.1.</span> <span class="toc-text">方式一：继承CALayer</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#方式二：实现代理当法"><span class="toc-number">15.1.3.2.</span> <span class="toc-text">方式二：实现代理当法</span></a></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-15-2-CAAnimation-动画"><span class="toc-number">15.2.</span> <span class="toc-text">2.15.2    CAAnimation 动画</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-15-3-转场动画"><span class="toc-number">15.3.</span> <span class="toc-text">2.15.3    转场动画</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-15-4-实例动画按钮布局"><span class="toc-number">15.4.</span> <span class="toc-text">2.15.4    实例动画按钮布局</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-15-5-CADisplayLink实现动画效果"><span class="toc-number">15.5.</span> <span class="toc-text">2.15.5    CADisplayLink实现动画效果</span></a></li></ol></li></ol>
-    </div>
-    <div id="tocShell"></div>
-    <div id="toc" class="toc-article">
-      <div class="btn-group drag-me">
-        <i class="social fa fa-ellipsis-v"></i>
-      </div>
-      <div class="btn-group dropup-catelog">
-        <button class="btn"><i class="social fa fa-list-ol"></i></button>
-        <div class="catelog-content">
-          <p class="toc-title-wrap">
-            <strong class="toc-title">文章目录</strong>
-          </p>
-          <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#2-1-汤姆猫小游戏（投诉下线）"><span class="toc-number">1.</span> <span class="toc-text">2.1    汤姆猫小游戏（投诉下线）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-2-加法计算器"><span class="toc-number">2.</span> <span class="toc-text">2.2    加法计算器</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-3-制作图片浏览器"><span class="toc-number">3.</span> <span class="toc-text">2.3    制作图片浏览器</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-4-LOL英雄展示"><span class="toc-number">4.</span> <span class="toc-text">2.4    LOL英雄展示</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#2-4-1-数据模版"><span class="toc-number">4.1.</span> <span class="toc-text">2.4.1    数据模版</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-4-2-采纳协议"><span class="toc-number">4.2.</span> <span class="toc-text">2.4.2    采纳协议</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-5-Face-人脸识别技术入门"><span class="toc-number">5.</span> <span class="toc-text">2.5    Face++人脸识别技术入门</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#2-5-1-本课概要"><span class="toc-number">5.1.</span> <span class="toc-text">2.5.1    本课概要</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#2-5-1-1-Face-公司简介"><span class="toc-number">5.1.1.</span> <span class="toc-text">2.5.1.1    Face++公司简介</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-5-1-2-Face-核心技术简介"><span class="toc-number">5.1.2.</span> <span class="toc-text">2.5.1.2 Face++核心技术简介</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#人脸检测和追踪"><span class="toc-number">5.1.2.1.</span> <span class="toc-text">人脸检测和追踪</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#Face-人脸关键点定位"><span class="toc-number">5.1.2.2.</span> <span class="toc-text">Face++人脸关键点定位</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#Face-人脸属性分析"><span class="toc-number">5.1.2.3.</span> <span class="toc-text">Face++人脸属性分析</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#Face-人脸1-1识别技术"><span class="toc-number">5.1.2.4.</span> <span class="toc-text">Face++人脸1:1识别技术</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#Face-人脸1-N识别技术"><span class="toc-number">5.1.2.5.</span> <span class="toc-text">Face++人脸1:N识别技术</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#Face-人脸大规模搜索"><span class="toc-number">5.1.2.6.</span> <span class="toc-text">Face++人脸大规模搜索</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-5-1-3-Face-技术使用场景介绍"><span class="toc-number">5.1.3.</span> <span class="toc-text">2.5.1.3    Face++技术使用场景介绍</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#相机和广告"><span class="toc-number">5.1.3.1.</span> <span class="toc-text">相机和广告</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#游戏"><span class="toc-number">5.1.3.2.</span> <span class="toc-text">游戏</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#人脸搜索和人脸登录"><span class="toc-number">5.1.3.3.</span> <span class="toc-text">人脸搜索和人脸登录</span></a></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-5-2-Face-介绍"><span class="toc-number">5.2.</span> <span class="toc-text">2.5.2    Face++介绍</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-5-3-线上API分析"><span class="toc-number">5.3.</span> <span class="toc-text">2.5.3    线上API分析</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-5-4-离线API的下载和配置"><span class="toc-number">5.4.</span> <span class="toc-text">2.5.4    离线API的下载和配置</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-5-5-Face-实例编写"><span class="toc-number">5.5.</span> <span class="toc-text">2.5.5    Face++实例编写</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-5-6-Face-人脸识别总结语"><span class="toc-number">5.6.</span> <span class="toc-text">2.5.6    Face++人脸识别总结语</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-6-应用管理"><span class="toc-number">6.</span> <span class="toc-text">2.6    应用管理</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#2-6-1-项目讲解和模型搭建"><span class="toc-number">6.1.</span> <span class="toc-text">2.6.1    项目讲解和模型搭建</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#数据模型"><span class="toc-number">6.1.1.</span> <span class="toc-text">数据模型</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-6-2-Xib自定义视图"><span class="toc-number">6.2.</span> <span class="toc-text">2.6.2    Xib自定义视图</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#2-6-2-1-xib视图文件"><span class="toc-number">6.2.1.</span> <span class="toc-text">2.6.2.1    xib视图文件</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-6-2-2-绑定的类-UIView"><span class="toc-number">6.2.2.</span> <span class="toc-text">2.6.2.2    绑定的类(UIView)</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-6-3-创建自定义视图数组"><span class="toc-number">6.3.</span> <span class="toc-text">2.6.3    创建自定义视图数组</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-6-4-九宫格布局展示"><span class="toc-number">6.4.</span> <span class="toc-text">2.6.4    九宫格布局展示</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-6-5-点击效果分析与bug排除"><span class="toc-number">6.5.</span> <span class="toc-text">2.6.5    点击效果分析与bug排除</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-6-6-延时操作与块动画"><span class="toc-number">6.6.</span> <span class="toc-text">2.6.6    延时操作与块动画</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-7-超级猜图"><span class="toc-number">7.</span> <span class="toc-text">2.7    超级猜图</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#2-7-1-效果展示与业务逻辑分析"><span class="toc-number">7.1.</span> <span class="toc-text">2.7.1    效果展示与业务逻辑分析</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-7-2-模型搭建"><span class="toc-number">7.2.</span> <span class="toc-text">2.7.2    模型搭建</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-7-3-Storyboard-布局-UI"><span class="toc-number">7.3.</span> <span class="toc-text">2.7.3    Storyboard 布局 UI</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-7-4-拖线与注释"><span class="toc-number">7.4.</span> <span class="toc-text">2.7.4    拖线与注释</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-7-5-创建模型数组与遮罩"><span class="toc-number">7.5.</span> <span class="toc-text">2.7.5    创建模型数组与遮罩</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-7-6-实现图片缩放"><span class="toc-number">7.6.</span> <span class="toc-text">2.7.6    实现图片缩放</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-7-7-下一题方法实现"><span class="toc-number">7.7.</span> <span class="toc-text">2.7.7    下一题方法实现</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-7-8-创建答案按钮"><span class="toc-number">7.8.</span> <span class="toc-text">2.7.8    创建答案按钮</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-7-9-创建备选答案按钮"><span class="toc-number">7.9.</span> <span class="toc-text">2.7.9    创建备选答案按钮</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-7-10-答案按钮点击"><span class="toc-number">7.10.</span> <span class="toc-text">2.7.10    答案按钮点击</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-7-11-备选按钮点击"><span class="toc-number">7.11.</span> <span class="toc-text">2.7.11    备选按钮点击</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-7-12-提示点击方法的实现"><span class="toc-number">7.12.</span> <span class="toc-text">2.7.12    提示点击方法的实现</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-8-国家选择"><span class="toc-number">8.</span> <span class="toc-text">2.8    国家选择</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#2-8-1-UIPickerView与数据模型的创建"><span class="toc-number">8.1.</span> <span class="toc-text">2.8.1    UIPickerView与数据模型的创建</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#2-8-1-1-UIPickerView"><span class="toc-number">8.1.1.</span> <span class="toc-text">2.8.1.1    UIPickerView</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-8-1-2-数据模型的创建"><span class="toc-number">8.1.2.</span> <span class="toc-text">2.8.1.2     数据模型的创建</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-8-2-自定义视图完善实例"><span class="toc-number">8.2.</span> <span class="toc-text">2.8.2    自定义视图完善实例</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#2-8-2-1-创建xib文件"><span class="toc-number">8.2.1.</span> <span class="toc-text">2.8.2.1    创建xib文件</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-8-2-2-创建JKCountryFlagView类"><span class="toc-number">8.2.2.</span> <span class="toc-text">2.8.2.2    创建JKCountryFlagView类</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-8-2-3-完善ViewController"><span class="toc-number">8.2.3.</span> <span class="toc-text">2.8.2.3    完善ViewController</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-9-图片自动播放"><span class="toc-number">9.</span> <span class="toc-text">2.9    图片自动播放</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#2-9-1-创建UIScrollView和UIPageControl"><span class="toc-number">9.1.</span> <span class="toc-text">2.9.1    创建UIScrollView和UIPageControl</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-9-2-定时器与代理方法调用"><span class="toc-number">9.2.</span> <span class="toc-text">2.9.2    定时器与代理方法调用</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-9-3-代码摘要"><span class="toc-number">9.3.</span> <span class="toc-text">2.9.3    代码摘要</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-10-QQ列表展示"><span class="toc-number">10.</span> <span class="toc-text">2.10    QQ列表展示</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#2-10-1-模型搭建"><span class="toc-number">10.1.</span> <span class="toc-text">2.10.1    模型搭建</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#2-10-1-1-JKGroupModel"><span class="toc-number">10.1.1.</span> <span class="toc-text">2.10.1.1    JKGroupModel</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-10-1-2-JKFriendsModel"><span class="toc-number">10.1.2.</span> <span class="toc-text">2.10.1.2    JKFriendsModel</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-10-2-创建UITableView"><span class="toc-number">10.2.</span> <span class="toc-text">2.10.2    创建UITableView</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-10-3-自定义头视图"><span class="toc-number">10.3.</span> <span class="toc-text">2.10.3    自定义头视图</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#2-10-3-1-View部分"><span class="toc-number">10.3.1.</span> <span class="toc-text">2.10.3.1    View部分</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-10-3-2-Controller部分"><span class="toc-number">10.3.2.</span> <span class="toc-text">2.10.3.2    Controller部分</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-10-4-点击效果的实现"><span class="toc-number">10.4.</span> <span class="toc-text">2.10.4    点击效果的实现</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-11-三级控制器"><span class="toc-number">11.</span> <span class="toc-text">2.11    三级控制器</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#2-11-1-初始化视图控制器"><span class="toc-number">11.1.</span> <span class="toc-text">2.11.1    初始化视图控制器</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-11-2-自定义标签工具栏"><span class="toc-number">11.2.</span> <span class="toc-text">2.11.2    自定义标签工具栏</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-11-3-页面跳转的两种方式"><span class="toc-number">11.3.</span> <span class="toc-text">2.11.3    页面跳转的两种方式</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#2-11-3-1-RootViewController"><span class="toc-number">11.3.1.</span> <span class="toc-text">2.11.3.1    RootViewController</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-11-3-2-ProfileViewController"><span class="toc-number">11.3.2.</span> <span class="toc-text">2.11.3.2    ProfileViewController</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-11-3-3-PushViewController"><span class="toc-number">11.3.3.</span> <span class="toc-text">2.11.3.3    PushViewController</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-11-3-4-ModalViewController"><span class="toc-number">11.3.4.</span> <span class="toc-text">2.11.3.4    ModalViewController</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-12-通讯录"><span class="toc-number">12.</span> <span class="toc-text">2.12    通讯录</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#2-12-1-Storyboard实现布局和跳转"><span class="toc-number">12.1.</span> <span class="toc-text">2.12.1    Storyboard实现布局和跳转</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#API"><span class="toc-number">12.2.</span> <span class="toc-text">API</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#2-12-1-1-布局"><span class="toc-number">12.2.1.</span> <span class="toc-text">2.12.1.1    布局</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-12-1-2-跳转"><span class="toc-number">12.2.2.</span> <span class="toc-text">2.12.1.2    跳转</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-12-2-UIAlertController与添加页面布局"><span class="toc-number">12.3.</span> <span class="toc-text">2.12.2    UIAlertController与添加页面布局</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-12-3-添加功能与传值"><span class="toc-number">12.4.</span> <span class="toc-text">2.12.3    添加功能与传值</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-12-4-编辑页面功能完善"><span class="toc-number">12.5.</span> <span class="toc-text">2.12.4    编辑页面功能完善</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-12-5-数据存储"><span class="toc-number">12.6.</span> <span class="toc-text">2.12.5    数据存储</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#2-12-5-1-便好设置"><span class="toc-number">12.6.1.</span> <span class="toc-text">2.12.5.1    便好设置</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-12-5-2-对象归档"><span class="toc-number">12.6.2.</span> <span class="toc-text">2.12.5.2    对象归档</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-13-绘制小黄人"><span class="toc-number">13.</span> <span class="toc-text">2.13    绘制小黄人</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Quartz-2D"><span class="toc-number">13.1.</span> <span class="toc-text">Quartz 2D</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-13-1-Quartz-2D基本图形"><span class="toc-number">13.2.</span> <span class="toc-text">2.13.1    Quartz 2D基本图形</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-13-2-绘制圆、图片与文字"><span class="toc-number">13.3.</span> <span class="toc-text">2.13.2    绘制圆、图片与文字</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-13-3-绘制小黄人雏形"><span class="toc-number">13.4.</span> <span class="toc-text">2.13.3    绘制小黄人雏形</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-14-手势密码锁"><span class="toc-number">14.</span> <span class="toc-text">2.14    手势密码锁</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#UIGestureRecognizer"><span class="toc-number">14.1.</span> <span class="toc-text">UIGestureRecognizer</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-14-1-点击、捏合、轻扫"><span class="toc-number">14.2.</span> <span class="toc-text">2.14.1    点击、捏合、轻扫</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-14-2-拖移、旋转、长按"><span class="toc-number">14.3.</span> <span class="toc-text">2.14.2    拖移、旋转、长按</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-14-3-九宫格布局按钮"><span class="toc-number">14.4.</span> <span class="toc-text">2.14.3    九宫格布局按钮</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-14-4-手势连线与代理"><span class="toc-number">14.5.</span> <span class="toc-text">2.14.4    手势连线与代理</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-15-抽奖转盘动画"><span class="toc-number">15.</span> <span class="toc-text">2.15    抽奖转盘动画</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#2-15-1-CALayer图层介绍"><span class="toc-number">15.1.</span> <span class="toc-text">2.15.1    CALayer图层介绍</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#CALayer"><span class="toc-number">15.1.1.</span> <span class="toc-text">CALayer</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-15-1-1-原生控件使用CALayer"><span class="toc-number">15.1.2.</span> <span class="toc-text">2.15.1.1    原生控件使用CALayer</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-15-1-2-自定义CALayer"><span class="toc-number">15.1.3.</span> <span class="toc-text">2.15.1.2    自定义CALayer</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#方式一：继承CALayer"><span class="toc-number">15.1.3.1.</span> <span class="toc-text">方式一：继承CALayer</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#方式二：实现代理当法"><span class="toc-number">15.1.3.2.</span> <span class="toc-text">方式二：实现代理当法</span></a></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-15-2-CAAnimation-动画"><span class="toc-number">15.2.</span> <span class="toc-text">2.15.2    CAAnimation 动画</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-15-3-转场动画"><span class="toc-number">15.3.</span> <span class="toc-text">2.15.3    转场动画</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-15-4-实例动画按钮布局"><span class="toc-number">15.4.</span> <span class="toc-text">2.15.4    实例动画按钮布局</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-15-5-CADisplayLink实现动画效果"><span class="toc-number">15.5.</span> <span class="toc-text">2.15.5    CADisplayLink实现动画效果</span></a></li></ol></li></ol>
+          
+            
+          
+
+          
+
+          
+          
+
+          
         </div>
-      </div>
-    </div>
+      </header>
     
-    <blockquote>
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <blockquote>
 <p><strong>说明：</strong><code>iOS</code>实战项目</p>
 </blockquote>
 <h2 id="2-1-汤姆猫小游戏（投诉下线）"><a href="#2-1-汤姆猫小游戏（投诉下线）" class="headerlink" title="2.1    汤姆猫小游戏（投诉下线）"></a>2.1    汤姆猫小游戏（投诉下线）</h2><h2 id="2-2-加法计算器"><a href="#2-2-加法计算器" class="headerlink" title="2.2    加法计算器"></a>2.2    加法计算器</h2><blockquote>
@@ -1055,52 +1207,282 @@
 <p><strong>要点：</strong>使用<code>CADisplayLink</code>通过刷新实现动画，<br><strong>注意：</strong>这里没有使用核心动画，因为它们在动画过程中响应点击的位置并没有真的发生变化。<code>CADisplayLink</code>就可以做到。<br><img src="http://o6ul1xz4z.bkt.clouddn.com/img/JK_IOS_S2_wheel.gif" alt="Alt text"></p>
 </blockquote>
 
-  </section>
-
-</article>
-
-
-<section class="post-comments">
-  <!-- 多说评论框 start -->
-  <div id="ds-thread" class="ds-thread" data-thread-key="http://laputa-er.github.io/2016/05/14/JK_IOS中级_2  UI部分/" data-title="2 UI部分" data-url="http://laputa-er.github.io/2016/05/14/JK_IOS中级_2  UI部分/"></div>
-  <!-- 多说评论框 end -->
-  <!-- 多说公共JS代码 start (一个网页只需插入一次) -->
-  <script type="text/javascript">
-  var duoshuoQuery = {short_name:"lapuda-er"};
-  (function() {
-    var ds = document.createElement('script');
-    ds.type = 'text/javascript';ds.async = true;
-    ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
-    ds.charset = 'UTF-8';
-    (document.getElementsByTagName('head')[0] 
-     || document.getElementsByTagName('body')[0]).appendChild(ds);
-  })();
-  </script>
-<!-- 多说公共JS代码 end -->
-</section>
-
-
-
-
-            <footer class="footer">
-    <span class="footer__copyright">
-        本站点采用<a href="http://creativecommons.org/licenses/by-nc-sa/4.0/">知识共享署名-非商业性使用-相同方式共享 4.0 国际许可协议</a>
-    </span>
-    <span class="footer__copyright">
-        基于 <a href="http://hexo.io">Hexo</a> 搭建，感谢 <a href="https://pages.github.com/">GitHub Pages</a> 提供免费的托管服务
-    </span>
-    <span class="footer__copyright">
-        &copy; 2016 - 
-        本站修改自<a href="https://github.com/lenbo-ma/hexo-theme-vno" target="_blank">hexo-theme-vno</a>
-    </span>
-</footer>
-
-        </div>
+      
     </div>
 
-    <script src="http://cdn.bootcss.com/jquery/2.1.4/jquery.min.js"></script>
-    <script src="/js/main.js"></script>
+    <div>
+      
+        
 
-     
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/极客学院-ios中级/" rel="tag">#极客学院_ios中级</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/05/14/JK_IOS中级_1  了解ios项目开发/" rel="next" title="1 了解ios项目开发">
+                <i class="fa fa-chevron-left"></i> 1 了解ios项目开发
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/05/14/JK_IOS中级_3  动画图层部分/" rel="prev" title="3 动画图层部分">
+                3 动画图层部分 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.gif"
+               alt="Sean" />
+          <p class="site-author-name" itemprop="name">Sean</p>
+          <p class="site-description motion-element" itemprop="description">整理了一批过去一段时间ios相关的笔记，其它的笔记也整理下？源码分享出来？再说吧...反正也只有自己会看吧...</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">85</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">10</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#2-1-汤姆猫小游戏（投诉下线）"><span class="nav-number">1.</span> <span class="nav-text">2.1    汤姆猫小游戏（投诉下线）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-2-加法计算器"><span class="nav-number">2.</span> <span class="nav-text">2.2    加法计算器</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-3-制作图片浏览器"><span class="nav-number">3.</span> <span class="nav-text">2.3    制作图片浏览器</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-4-LOL英雄展示"><span class="nav-number">4.</span> <span class="nav-text">2.4    LOL英雄展示</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#2-4-1-数据模版"><span class="nav-number">4.1.</span> <span class="nav-text">2.4.1    数据模版</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-4-2-采纳协议"><span class="nav-number">4.2.</span> <span class="nav-text">2.4.2    采纳协议</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-5-Face-人脸识别技术入门"><span class="nav-number">5.</span> <span class="nav-text">2.5    Face++人脸识别技术入门</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#2-5-1-本课概要"><span class="nav-number">5.1.</span> <span class="nav-text">2.5.1    本课概要</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#2-5-1-1-Face-公司简介"><span class="nav-number">5.1.1.</span> <span class="nav-text">2.5.1.1    Face++公司简介</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-5-1-2-Face-核心技术简介"><span class="nav-number">5.1.2.</span> <span class="nav-text">2.5.1.2 Face++核心技术简介</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#人脸检测和追踪"><span class="nav-number">5.1.2.1.</span> <span class="nav-text">人脸检测和追踪</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Face-人脸关键点定位"><span class="nav-number">5.1.2.2.</span> <span class="nav-text">Face++人脸关键点定位</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Face-人脸属性分析"><span class="nav-number">5.1.2.3.</span> <span class="nav-text">Face++人脸属性分析</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Face-人脸1-1识别技术"><span class="nav-number">5.1.2.4.</span> <span class="nav-text">Face++人脸1:1识别技术</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Face-人脸1-N识别技术"><span class="nav-number">5.1.2.5.</span> <span class="nav-text">Face++人脸1:N识别技术</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Face-人脸大规模搜索"><span class="nav-number">5.1.2.6.</span> <span class="nav-text">Face++人脸大规模搜索</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-5-1-3-Face-技术使用场景介绍"><span class="nav-number">5.1.3.</span> <span class="nav-text">2.5.1.3    Face++技术使用场景介绍</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#相机和广告"><span class="nav-number">5.1.3.1.</span> <span class="nav-text">相机和广告</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#游戏"><span class="nav-number">5.1.3.2.</span> <span class="nav-text">游戏</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#人脸搜索和人脸登录"><span class="nav-number">5.1.3.3.</span> <span class="nav-text">人脸搜索和人脸登录</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-5-2-Face-介绍"><span class="nav-number">5.2.</span> <span class="nav-text">2.5.2    Face++介绍</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-5-3-线上API分析"><span class="nav-number">5.3.</span> <span class="nav-text">2.5.3    线上API分析</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-5-4-离线API的下载和配置"><span class="nav-number">5.4.</span> <span class="nav-text">2.5.4    离线API的下载和配置</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-5-5-Face-实例编写"><span class="nav-number">5.5.</span> <span class="nav-text">2.5.5    Face++实例编写</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-5-6-Face-人脸识别总结语"><span class="nav-number">5.6.</span> <span class="nav-text">2.5.6    Face++人脸识别总结语</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-6-应用管理"><span class="nav-number">6.</span> <span class="nav-text">2.6    应用管理</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#2-6-1-项目讲解和模型搭建"><span class="nav-number">6.1.</span> <span class="nav-text">2.6.1    项目讲解和模型搭建</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#数据模型"><span class="nav-number">6.1.1.</span> <span class="nav-text">数据模型</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-6-2-Xib自定义视图"><span class="nav-number">6.2.</span> <span class="nav-text">2.6.2    Xib自定义视图</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#2-6-2-1-xib视图文件"><span class="nav-number">6.2.1.</span> <span class="nav-text">2.6.2.1    xib视图文件</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-6-2-2-绑定的类-UIView"><span class="nav-number">6.2.2.</span> <span class="nav-text">2.6.2.2    绑定的类(UIView)</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-6-3-创建自定义视图数组"><span class="nav-number">6.3.</span> <span class="nav-text">2.6.3    创建自定义视图数组</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-6-4-九宫格布局展示"><span class="nav-number">6.4.</span> <span class="nav-text">2.6.4    九宫格布局展示</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-6-5-点击效果分析与bug排除"><span class="nav-number">6.5.</span> <span class="nav-text">2.6.5    点击效果分析与bug排除</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-6-6-延时操作与块动画"><span class="nav-number">6.6.</span> <span class="nav-text">2.6.6    延时操作与块动画</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-7-超级猜图"><span class="nav-number">7.</span> <span class="nav-text">2.7    超级猜图</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#2-7-1-效果展示与业务逻辑分析"><span class="nav-number">7.1.</span> <span class="nav-text">2.7.1    效果展示与业务逻辑分析</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-7-2-模型搭建"><span class="nav-number">7.2.</span> <span class="nav-text">2.7.2    模型搭建</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-7-3-Storyboard-布局-UI"><span class="nav-number">7.3.</span> <span class="nav-text">2.7.3    Storyboard 布局 UI</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-7-4-拖线与注释"><span class="nav-number">7.4.</span> <span class="nav-text">2.7.4    拖线与注释</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-7-5-创建模型数组与遮罩"><span class="nav-number">7.5.</span> <span class="nav-text">2.7.5    创建模型数组与遮罩</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-7-6-实现图片缩放"><span class="nav-number">7.6.</span> <span class="nav-text">2.7.6    实现图片缩放</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-7-7-下一题方法实现"><span class="nav-number">7.7.</span> <span class="nav-text">2.7.7    下一题方法实现</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-7-8-创建答案按钮"><span class="nav-number">7.8.</span> <span class="nav-text">2.7.8    创建答案按钮</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-7-9-创建备选答案按钮"><span class="nav-number">7.9.</span> <span class="nav-text">2.7.9    创建备选答案按钮</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-7-10-答案按钮点击"><span class="nav-number">7.10.</span> <span class="nav-text">2.7.10    答案按钮点击</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-7-11-备选按钮点击"><span class="nav-number">7.11.</span> <span class="nav-text">2.7.11    备选按钮点击</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-7-12-提示点击方法的实现"><span class="nav-number">7.12.</span> <span class="nav-text">2.7.12    提示点击方法的实现</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-8-国家选择"><span class="nav-number">8.</span> <span class="nav-text">2.8    国家选择</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#2-8-1-UIPickerView与数据模型的创建"><span class="nav-number">8.1.</span> <span class="nav-text">2.8.1    UIPickerView与数据模型的创建</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#2-8-1-1-UIPickerView"><span class="nav-number">8.1.1.</span> <span class="nav-text">2.8.1.1    UIPickerView</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-8-1-2-数据模型的创建"><span class="nav-number">8.1.2.</span> <span class="nav-text">2.8.1.2     数据模型的创建</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-8-2-自定义视图完善实例"><span class="nav-number">8.2.</span> <span class="nav-text">2.8.2    自定义视图完善实例</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#2-8-2-1-创建xib文件"><span class="nav-number">8.2.1.</span> <span class="nav-text">2.8.2.1    创建xib文件</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-8-2-2-创建JKCountryFlagView类"><span class="nav-number">8.2.2.</span> <span class="nav-text">2.8.2.2    创建JKCountryFlagView类</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-8-2-3-完善ViewController"><span class="nav-number">8.2.3.</span> <span class="nav-text">2.8.2.3    完善ViewController</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-9-图片自动播放"><span class="nav-number">9.</span> <span class="nav-text">2.9    图片自动播放</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#2-9-1-创建UIScrollView和UIPageControl"><span class="nav-number">9.1.</span> <span class="nav-text">2.9.1    创建UIScrollView和UIPageControl</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-9-2-定时器与代理方法调用"><span class="nav-number">9.2.</span> <span class="nav-text">2.9.2    定时器与代理方法调用</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-9-3-代码摘要"><span class="nav-number">9.3.</span> <span class="nav-text">2.9.3    代码摘要</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-10-QQ列表展示"><span class="nav-number">10.</span> <span class="nav-text">2.10    QQ列表展示</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#2-10-1-模型搭建"><span class="nav-number">10.1.</span> <span class="nav-text">2.10.1    模型搭建</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#2-10-1-1-JKGroupModel"><span class="nav-number">10.1.1.</span> <span class="nav-text">2.10.1.1    JKGroupModel</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-10-1-2-JKFriendsModel"><span class="nav-number">10.1.2.</span> <span class="nav-text">2.10.1.2    JKFriendsModel</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-10-2-创建UITableView"><span class="nav-number">10.2.</span> <span class="nav-text">2.10.2    创建UITableView</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-10-3-自定义头视图"><span class="nav-number">10.3.</span> <span class="nav-text">2.10.3    自定义头视图</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#2-10-3-1-View部分"><span class="nav-number">10.3.1.</span> <span class="nav-text">2.10.3.1    View部分</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-10-3-2-Controller部分"><span class="nav-number">10.3.2.</span> <span class="nav-text">2.10.3.2    Controller部分</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-10-4-点击效果的实现"><span class="nav-number">10.4.</span> <span class="nav-text">2.10.4    点击效果的实现</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-11-三级控制器"><span class="nav-number">11.</span> <span class="nav-text">2.11    三级控制器</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#2-11-1-初始化视图控制器"><span class="nav-number">11.1.</span> <span class="nav-text">2.11.1    初始化视图控制器</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-11-2-自定义标签工具栏"><span class="nav-number">11.2.</span> <span class="nav-text">2.11.2    自定义标签工具栏</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-11-3-页面跳转的两种方式"><span class="nav-number">11.3.</span> <span class="nav-text">2.11.3    页面跳转的两种方式</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#2-11-3-1-RootViewController"><span class="nav-number">11.3.1.</span> <span class="nav-text">2.11.3.1    RootViewController</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-11-3-2-ProfileViewController"><span class="nav-number">11.3.2.</span> <span class="nav-text">2.11.3.2    ProfileViewController</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-11-3-3-PushViewController"><span class="nav-number">11.3.3.</span> <span class="nav-text">2.11.3.3    PushViewController</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-11-3-4-ModalViewController"><span class="nav-number">11.3.4.</span> <span class="nav-text">2.11.3.4    ModalViewController</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-12-通讯录"><span class="nav-number">12.</span> <span class="nav-text">2.12    通讯录</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#2-12-1-Storyboard实现布局和跳转"><span class="nav-number">12.1.</span> <span class="nav-text">2.12.1    Storyboard实现布局和跳转</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#API"><span class="nav-number">12.2.</span> <span class="nav-text">API</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#2-12-1-1-布局"><span class="nav-number">12.2.1.</span> <span class="nav-text">2.12.1.1    布局</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-12-1-2-跳转"><span class="nav-number">12.2.2.</span> <span class="nav-text">2.12.1.2    跳转</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-12-2-UIAlertController与添加页面布局"><span class="nav-number">12.3.</span> <span class="nav-text">2.12.2    UIAlertController与添加页面布局</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-12-3-添加功能与传值"><span class="nav-number">12.4.</span> <span class="nav-text">2.12.3    添加功能与传值</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-12-4-编辑页面功能完善"><span class="nav-number">12.5.</span> <span class="nav-text">2.12.4    编辑页面功能完善</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-12-5-数据存储"><span class="nav-number">12.6.</span> <span class="nav-text">2.12.5    数据存储</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#2-12-5-1-便好设置"><span class="nav-number">12.6.1.</span> <span class="nav-text">2.12.5.1    便好设置</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-12-5-2-对象归档"><span class="nav-number">12.6.2.</span> <span class="nav-text">2.12.5.2    对象归档</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-13-绘制小黄人"><span class="nav-number">13.</span> <span class="nav-text">2.13    绘制小黄人</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Quartz-2D"><span class="nav-number">13.1.</span> <span class="nav-text">Quartz 2D</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-13-1-Quartz-2D基本图形"><span class="nav-number">13.2.</span> <span class="nav-text">2.13.1    Quartz 2D基本图形</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-13-2-绘制圆、图片与文字"><span class="nav-number">13.3.</span> <span class="nav-text">2.13.2    绘制圆、图片与文字</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-13-3-绘制小黄人雏形"><span class="nav-number">13.4.</span> <span class="nav-text">2.13.3    绘制小黄人雏形</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-14-手势密码锁"><span class="nav-number">14.</span> <span class="nav-text">2.14    手势密码锁</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#UIGestureRecognizer"><span class="nav-number">14.1.</span> <span class="nav-text">UIGestureRecognizer</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-14-1-点击、捏合、轻扫"><span class="nav-number">14.2.</span> <span class="nav-text">2.14.1    点击、捏合、轻扫</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-14-2-拖移、旋转、长按"><span class="nav-number">14.3.</span> <span class="nav-text">2.14.2    拖移、旋转、长按</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-14-3-九宫格布局按钮"><span class="nav-number">14.4.</span> <span class="nav-text">2.14.3    九宫格布局按钮</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-14-4-手势连线与代理"><span class="nav-number">14.5.</span> <span class="nav-text">2.14.4    手势连线与代理</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-15-抽奖转盘动画"><span class="nav-number">15.</span> <span class="nav-text">2.15    抽奖转盘动画</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#2-15-1-CALayer图层介绍"><span class="nav-number">15.1.</span> <span class="nav-text">2.15.1    CALayer图层介绍</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#CALayer"><span class="nav-number">15.1.1.</span> <span class="nav-text">CALayer</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-15-1-1-原生控件使用CALayer"><span class="nav-number">15.1.2.</span> <span class="nav-text">2.15.1.1    原生控件使用CALayer</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-15-1-2-自定义CALayer"><span class="nav-number">15.1.3.</span> <span class="nav-text">2.15.1.2    自定义CALayer</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#方式一：继承CALayer"><span class="nav-number">15.1.3.1.</span> <span class="nav-text">方式一：继承CALayer</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#方式二：实现代理当法"><span class="nav-number">15.1.3.2.</span> <span class="nav-text">方式二：实现代理当法</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-15-2-CAAnimation-动画"><span class="nav-number">15.2.</span> <span class="nav-text">2.15.2    CAAnimation 动画</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-15-3-转场动画"><span class="nav-number">15.3.</span> <span class="nav-text">2.15.3    转场动画</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-15-4-实例动画按钮布局"><span class="nav-number">15.4.</span> <span class="nav-text">2.15.4    实例动画按钮布局</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-15-5-CADisplayLink实现动画效果"><span class="nav-number">15.5.</span> <span class="nav-text">2.15.5    CADisplayLink实现动画效果</span></a></li></ol></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Sean</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Muse
+  </a>
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+  
+  
+
+  
+
+  
+
+  
+
 </body>
 </html>

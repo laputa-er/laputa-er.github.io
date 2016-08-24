@@ -1,181 +1,356 @@
-<!DOCTYPE html>
-<html>
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion">
 <head>
-    <meta charset="utf-8"/>
-    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
     
-    <title>4 设计模式 | Sean</title>
-    <meta name="renderer" content="webkit">
-    <meta name="HandheldFriendly" content="True">
-    <meta name="MobileOptimized" content="320">
-    <meta name="apple-mobile-web-app-capable" content="yes">
-    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-
-    <meta name="description" content="do things for fun">
-
-    <meta name="twitter:card" content="summary">
-    <meta name="twitter:title" content="4 设计模式 | Sean">
-    <meta name="twitter:description" content="do things for fun">
-
-    <meta property="og:type" content="article">
-    <meta property="og:title" content="4 设计模式 | Sean">
-    <meta property="og:description" content="do things for fun">
-
     
-    <meta name="author" content="Sean">
-    
-    <link rel="stylesheet" href="/css/vno.css">
-    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css">
+  
 
-    
-    <link rel="icon" href="/images/sean.png">
-    
+  
 
-    <meta name="generator" content="hexo"/>
-    
+  
 
-    <link rel="canonical" href="http://laputa-er.github.io/2016/06/03/JK_IOS高级_4 设计模式/"/>
+  
 
+  
+
+  
     
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="极客学院_ios高级," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1" />
+
+
+
+
+
+
+<meta name="description" content="4.1    iOS设计模式简介4.1.1    编码是门艺术4.1.2    设计模式的基本原则
+开闭原则：一个模块的修改应该对扩展开发，对修改关闭
+里氏代换原则：子类、父类可以替换使用
+依赖倒转原则：抽象比依赖细节，细节依赖抽象
+接口隔离原则：只做和接口相关的必要的事情，不做和接口不相关的事情
+合成／聚合复用：从一个类扩展出新的方法时，尽量不要通过继承实现，而是在新的类中的方法中将原来的类作为">
+<meta property="og:type" content="article">
+<meta property="og:title" content="4 设计模式">
+<meta property="og:url" content="http://laputa-er.github.io/2016/06/03/JK_IOS高级_4 设计模式/index.html">
+<meta property="og:site_name" content="Sean">
+<meta property="og:description" content="4.1    iOS设计模式简介4.1.1    编码是门艺术4.1.2    设计模式的基本原则
+开闭原则：一个模块的修改应该对扩展开发，对修改关闭
+里氏代换原则：子类、父类可以替换使用
+依赖倒转原则：抽象比依赖细节，细节依赖抽象
+接口隔离原则：只做和接口相关的必要的事情，不做和接口不相关的事情
+合成／聚合复用：从一个类扩展出新的方法时，尽量不要通过继承实现，而是在新的类中的方法中将原来的类作为">
+<meta property="og:image" content="http://o6ul1xz4z.bkt.clouddn.com/img/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202016-05-01%20%E4%B8%8A%E5%8D%8811.48.25.png">
+<meta property="og:image" content="http://o6ul1xz4z.bkt.clouddn.com/img/1462074739914.png">
+<meta property="og:image" content="http://o6ul1xz4z.bkt.clouddn.com/img/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202016-05-01%20%E4%B8%8A%E5%8D%8811.30.25.png">
+<meta property="og:image" content="http://o6ul1xz4z.bkt.clouddn.com/img/1462073700393.png">
+<meta property="og:image" content="http://o6ul1xz4z.bkt.clouddn.com/img/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202016-05-01%20%E4%B8%8A%E5%8D%8811.31.00.png">
+<meta property="og:image" content="http://o6ul1xz4z.bkt.clouddn.com/img/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202016-05-01%20%E4%B8%8A%E5%8D%8811.38.40.png">
+<meta property="og:image" content="http://o6ul1xz4z.bkt.clouddn.com/img/1462093482279.png">
+<meta property="og:image" content="http://o6ul1xz4z.bkt.clouddn.com/img/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202016-05-01%20%E4%B8%8B%E5%8D%889.41.29.png">
+<meta property="og:image" content="http://o6ul1xz4z.bkt.clouddn.com/img/1462113251890.png">
+<meta property="og:image" content="http://o6ul1xz4z.bkt.clouddn.com/img/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202016-05-01%20%E4%B8%8B%E5%8D%8811.30.22.png">
+<meta property="og:image" content="http://laputa-er.github.io/./屏幕快照 2016-05-02 下午2.57.40.png">
+<meta property="og:image" content="http://o6ul1xz4z.bkt.clouddn.com/img/1462191691369.png">
+<meta property="og:image" content="http://o6ul1xz4z.bkt.clouddn.com/img/1462192387967.png">
+<meta property="og:image" content="http://o6ul1xz4z.bkt.clouddn.com/img/1462199219485.png">
+<meta property="og:image" content="http://o6ul1xz4z.bkt.clouddn.com/img/1462186013642.png">
+<meta property="og:image" content="http://o6ul1xz4z.bkt.clouddn.com/img/1462201625961.png">
+<meta property="og:image" content="http://o6ul1xz4z.bkt.clouddn.com/img/1463410189425.png">
+<meta property="og:image" content="http://o6ul1xz4z.bkt.clouddn.com/img/1463410420677.png">
+<meta property="og:image" content="http://o6ul1xz4z.bkt.clouddn.com/img/1463490224877.png">
+<meta property="og:image" content="http://o6ul1xz4z.bkt.clouddn.com/img/1463495040772.png">
+<meta property="og:image" content="http://o6ul1xz4z.bkt.clouddn.com/img/1463587653123.png">
+<meta property="og:image" content="http://o6ul1xz4z.bkt.clouddn.com/img/1463799288205.png">
+<meta property="og:image" content="http://o6ul1xz4z.bkt.clouddn.com/img/1463798863229.png">
+<meta property="og:image" content="http://o6ul1xz4z.bkt.clouddn.com/img/1463743818102.png">
+<meta property="og:image" content="http://o6ul1xz4z.bkt.clouddn.com/img/1463715567130.png">
+<meta property="og:image" content="http://o6ul1xz4z.bkt.clouddn.com/img/1463816866737.png">
+<meta property="og:image" content="http://o6ul1xz4z.bkt.clouddn.com/img/1463816799001.png">
+<meta property="og:image" content="http://o6ul1xz4z.bkt.clouddn.com/img/1463818469080.png">
+<meta property="og:image" content="http://o6ul1xz4z.bkt.clouddn.com/img/1463839147515.png">
+<meta property="og:image" content="http://o6ul1xz4z.bkt.clouddn.com/img/1463839248044.png">
+<meta property="og:image" content="http://o6ul1xz4z.bkt.clouddn.com/img/1463845234221.png">
+<meta property="og:image" content="http://o6ul1xz4z.bkt.clouddn.com/img/1464019108656.png">
+<meta property="og:image" content="http://o6ul1xz4z.bkt.clouddn.com/img/1463899846934.png">
+<meta property="og:image" content="http://o6ul1xz4z.bkt.clouddn.com/img/1463922342138.png">
+<meta property="og:image" content="http://o6ul1xz4z.bkt.clouddn.com/img/1464018921308.png">
+<meta property="og:image" content="http://o6ul1xz4z.bkt.clouddn.com/img/1464186654392.png">
+<meta property="og:image" content="http://o6ul1xz4z.bkt.clouddn.com/img/1464361708327.png">
+<meta property="og:image" content="http://o6ul1xz4z.bkt.clouddn.com/img/1464362026510.png">
+<meta property="og:image" content="http://o6ul1xz4z.bkt.clouddn.com/img/1464364328834.png">
+<meta property="og:image" content="http://o6ul1xz4z.bkt.clouddn.com/img/1464447294270.png">
+<meta property="og:image" content="http://o6ul1xz4z.bkt.clouddn.com/img/1464417280472.png">
+<meta property="og:image" content="http://o6ul1xz4z.bkt.clouddn.com/img/1464445381861.png">
+<meta property="og:image" content="http://o6ul1xz4z.bkt.clouddn.com/img/1464934489331%E7%94%9F%E6%88%90%E5%99%A8%E6%A8%A1%E5%BC%8F.png">
+<meta property="og:image" content="http://o6ul1xz4z.bkt.clouddn.com/img/1464447882554.png">
+<meta property="og:image" content="http://o6ul1xz4z.bkt.clouddn.com/img/1464500610532.png">
+<meta property="og:image" content="http://o6ul1xz4z.bkt.clouddn.com/img/1464500840393.png">
+<meta property="og:image" content="http://o6ul1xz4z.bkt.clouddn.com/img/1464934489331%E5%85%B3%E7%B3%BB%E5%9B%BE.png">
+<meta property="og:image" content="http://o6ul1xz4z.bkt.clouddn.com/img/1464515129490.png">
+<meta property="og:image" content="http://o6ul1xz4z.bkt.clouddn.com/img/1464934489331xcode.gif">
+<meta property="og:image" content="http://o6ul1xz4z.bkt.clouddn.com/img/1464531258992.png">
+<meta property="og:image" content="http://o6ul1xz4z.bkt.clouddn.com/img/1464533251952.png">
+<meta property="og:image" content="http://o6ul1xz4z.bkt.clouddn.com/img/1464611058484.png">
+<meta property="og:image" content="http://o6ul1xz4z.bkt.clouddn.com/img/1464616045947.png">
+<meta property="og:image" content="http://o6ul1xz4z.bkt.clouddn.com/img/1464676034326.png">
+<meta property="og:image" content="http://o6ul1xz4z.bkt.clouddn.com/img/1464700648380.png">
+<meta property="og:image" content="http://o6ul1xz4z.bkt.clouddn.com/img/1464700681237.png">
+<meta property="og:image" content="http://o6ul1xz4z.bkt.clouddn.com/img/1464708309582.png">
+<meta property="og:image" content="http://o6ul1xz4z.bkt.clouddn.com/img/1464751736763.png">
+<meta property="og:updated_time" content="2016-06-03T06:49:42.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="4 设计模式">
+<meta name="twitter:description" content="4.1    iOS设计模式简介4.1.1    编码是门艺术4.1.2    设计模式的基本原则
+开闭原则：一个模块的修改应该对扩展开发，对修改关闭
+里氏代换原则：子类、父类可以替换使用
+依赖倒转原则：抽象比依赖细节，细节依赖抽象
+接口隔离原则：只做和接口相关的必要的事情，不做和接口不相关的事情
+合成／聚合复用：从一个类扩展出新的方法时，尽量不要通过继承实现，而是在新的类中的方法中将原来的类作为">
+<meta name="twitter:image" content="http://o6ul1xz4z.bkt.clouddn.com/img/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202016-05-01%20%E4%B8%8A%E5%8D%8811.48.25.png">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Muse',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 0,
+      author: '博主'
+    }
+  };
+</script>
+
+
+
+
+  <link rel="canonical" href="http://laputa-er.github.io/2016/06/03/JK_IOS高级_4 设计模式/"/>
+
+  <title> 4 设计模式 | Sean </title>
 </head>
 
-<body class="home-template no-js">
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
 
-    <span class="mobile btn-mobile-menu">
-        <i class="fa fa-list btn-mobile-menu__icon"></i>
-        <i class="fa fa-angle-up btn-mobile-close__icon hidden"></i>
-    </span>
+  
+
+
+
+
+
+
+
+
+
+
+  
+  
     
-<header class="panel-cover panel-cover--collapsed" style="background-image: url(/images/mengxiang.jpg)">
-  <div class="panel-main">
-    <div class="panel-main__inner panel-inverted">
-      <span class="panel-arrow panel-left-arrow disabled">
-        <i class="fa fa-angle-left"></i>
-      </span>
-      <span class="panel-arrow panel-right-arrow">
-        <i class="fa fa-angle-right"></i>
-      </span>
-
-      <div class="panel-animation-container">
-        <div class="panel-content panel-main__content">
-            <a href="/" title="前往 Sean 的主页"><img src="/images/sean.png" width="80" alt="Sean logo" class="panel-cover__logo logo" /></a>
-            <h1 class="panel-cover__title panel-title"><a href="/" title="link to homepage for Sean">Sean</a></h1>
-            
-            <span class="panel-cover__subtitle panel-subtitle">笔记分享</span>
-            
-            <hr class="panel-cover__divider" />
-            <p class="panel-cover__description">整理了一批过去一段时间ios相关的笔记，其它的笔记也整理下？源码分享出来？再说吧...反正也只有自己会看吧...</p>
-            <hr class="panel-cover__divider panel-cover__divider--secondary" />
-
-            <div class="navigation-wrapper">
-              <div>
-              <nav class="cover-navigation cover-navigation--primary">
-                <ul class="navigation">
-                  <li class="navigation__item"><a href="/#blog" title="访问笔记" class="blog-button">笔记</a></li>
-                  <li style="display: none;">
-                    <textarea>
-                      
-                        <li class="navigation__item"><a href="/projects">项目作品</a></li>
-                      
-                        <li class="navigation__item"><a href="/aboutme">关于我</a></li>
-                      
-                    </textarea>
-                  </li>
-                </ul>
-              </nav>
-              </div>
-              <div>
-              <nav class="cover-navigation navigation--social">
-  <ul class="navigation">
-
-  <!-- Weibo-->
   
 
-  <!-- Github -->
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
   
 
-<!-- Stack Overflow -->
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">Sean</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">笔记分享</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
         
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
 
-  <!-- Google Plus -->
+      
+    </ul>
   
 
-<!-- Facebook -->
-
   
-<!-- Twitter -->
-
-  
-
-
-
-  </ul>
 </nav>
 
-              </div>
-            </div>
+ </div>
+    </header>
 
-          </div>
-          <div class="panel-content panel-tagcloud_content">
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
             
-              <aside id="sidebar">
-  
+
+  <div id="posts" class="posts-expand">
     
-  <div class="widget-wrap">
-    <h3 class="widget-title">笔记分类</h3>
-    <div class="widget tagcloud">
-      <a href="/tags/Objective-C基础教程第二版/">Objective-C基础教程第二版</a> <a href="/tags/The-Swift-Program-Language-2/">The Swift Program Language 2</a> <a href="/tags/c语言程序设计－现代方法/">c语言程序设计－现代方法</a> <a href="/tags/iOS/">iOS</a> <a href="/tags/imooc/">imooc</a> <a href="/tags/pug/">pug</a> <a href="/tags/极客学院-ios中级/">极客学院_ios中级</a> <a href="/tags/极客学院-ios初级/">极客学院_ios初级</a> <a href="/tags/极客学院-ios高级/">极客学院_ios高级</a>
-    </div>
-  </div>
 
   
-</aside>
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
             
-          </div>
-        </div>  
+            
+              
+                4 设计模式
+              
+            
+          </h1>
+        
 
-      </div>
-      <div class="panel-cover--overlay cover-blue"></div>
-  </div>
-  </header>
-    
-    <div class="content-wrapper">
-        <div class="content-wrapper__inner">
-            <article class="post-container post-container--single">
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-06-03T14:11:18+08:00" content="2016-06-03">
+              2016-06-03
+            </time>
+          </span>
 
-  <header class="post-header">
-    <div class="post-meta">
-      <time datetime="2016-06-03T06:11:18.000Z" class="post-list__meta--date date">2016-06-03</time> &#8226; <span class="post-meta__tags tags">于&nbsp;
-  <a class="tag-link" href="/tags/极客学院-ios高级/">极客学院_ios高级</a>
-</span>
-    </div>
-    <h1 class="post-title">4 设计模式</h1>
-  </header>
+          
 
-  <section class="post">
-    <!-- Table of Contents -->
-    
-    <div id="top-toc">
-      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#4-1-iOS设计模式简介"><span class="toc-number">1.</span> <span class="toc-text">4.1    iOS设计模式简介</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#4-1-1-编码是门艺术"><span class="toc-number">1.1.</span> <span class="toc-text">4.1.1    编码是门艺术</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-1-2-设计模式的基本原则"><span class="toc-number">1.2.</span> <span class="toc-text">4.1.2    设计模式的基本原则</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-1-3-设计模式的类型"><span class="toc-number">1.3.</span> <span class="toc-text">4.1.3    设计模式的类型</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-2-适配器"><span class="toc-number">2.</span> <span class="toc-text">4.2    适配器</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#4-2-1-何为适配器模式"><span class="toc-number">2.1.</span> <span class="toc-text">4.2.1    何为适配器模式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-2-2-数据直接适配带来的困境"><span class="toc-number">2.2.</span> <span class="toc-text">4.2.2    数据直接适配带来的困境</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-2-3-使用适配器模式"><span class="toc-number">2.3.</span> <span class="toc-text">4.2.3    使用适配器模式</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#4-2-3-1-类适配器"><span class="toc-number">2.3.1.</span> <span class="toc-text">4.2.3.1    类适配器</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-2-3-2-对象适配器"><span class="toc-number">2.3.2.</span> <span class="toc-text">4.2.3.2        对象适配器</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-2-4-适配器模式的优缺点"><span class="toc-number">2.4.</span> <span class="toc-text">4.2.4    适配器模式的优缺点</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-3-策略"><span class="toc-number">3.</span> <span class="toc-text">4.3    策略</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#4-3-1-if-else-的问题"><span class="toc-number">3.1.</span> <span class="toc-text">4.3.1    if - else 的问题</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-3-2-策略模式的原理"><span class="toc-number">3.2.</span> <span class="toc-text">4.3.2    策略模式的原理</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-3-3-策略模式的使用"><span class="toc-number">3.3.</span> <span class="toc-text">4.3.3    策略模式的使用</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-3-4-策略模式的优缺点"><span class="toc-number">3.4.</span> <span class="toc-text">4.3.4    策略模式的优缺点</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-4-观察者"><span class="toc-number">4.</span> <span class="toc-text">4.4    观察者</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#4-4-1-如何订阅一本杂志"><span class="toc-number">4.1.</span> <span class="toc-text">4.4.1    如何订阅一本杂志</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#4-4-1-1-如何订阅一本杂志"><span class="toc-number">4.1.1.</span> <span class="toc-text">4.4.1.1    如何订阅一本杂志</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-4-2-通知中心的抽象设计"><span class="toc-number">4.2.</span> <span class="toc-text">4.4.2    通知中心的抽象设计</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-4-3-实现通知中心"><span class="toc-number">4.3.</span> <span class="toc-text">4.4.3    实现通知中心</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#4-4-3-1-实现通知中心类"><span class="toc-number">4.3.1.</span> <span class="toc-text">4.4.3.1    实现通知中心类</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-4-3-2-使用通知中心"><span class="toc-number">4.3.2.</span> <span class="toc-text">4.4.3.2    使用通知中心</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-4-4-KVO与通知中心"><span class="toc-number">4.4.</span> <span class="toc-text">4.4.4    KVO与通知中心</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#4-4-4-1-Cocoa框架的通知中心"><span class="toc-number">4.4.1.</span> <span class="toc-text">4.4.4.1    Cocoa框架的通知中心</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-4-4-2-KVO机制的观察者模式"><span class="toc-number">4.4.2.</span> <span class="toc-text">4.4.4.2    KVO机制的观察者模式</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#通知中心"><span class="toc-number">4.4.2.1.</span> <span class="toc-text">通知中心</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#演示"><span class="toc-number">4.4.2.2.</span> <span class="toc-text">演示</span></a></li></ol></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-5-原型模式和外观模式"><span class="toc-number">5.</span> <span class="toc-text">4.5    原型模式和外观模式</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#4-5-1-原型模式"><span class="toc-number">5.1.</span> <span class="toc-text">4.5.1    原型模式</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#4-5-1-1-模版的用处"><span class="toc-number">5.1.1.</span> <span class="toc-text">4.5.1.1    模版的用处</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-5-1-2-原型模式的原理"><span class="toc-number">5.1.2.</span> <span class="toc-text">4.5.1.2    原型模式的原理</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#案例"><span class="toc-number">5.1.2.1.</span> <span class="toc-text">案例</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-5-1-3-NSCoping协议的使用细节"><span class="toc-number">5.1.3.</span> <span class="toc-text">4.5.1.3    NSCoping协议的使用细节</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-5-2-外观模式"><span class="toc-number">5.2.</span> <span class="toc-text">4.5.2    外观模式</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#4-5-2-1-如何去一个指定的地方"><span class="toc-number">5.2.1.</span> <span class="toc-text">4.5.2.1    如何去一个指定的地方</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-5-2-2-外观模式的原理"><span class="toc-number">5.2.2.</span> <span class="toc-text">4.5.2.2    外观模式的原理</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-5-2-3-如何绘制复杂的图形"><span class="toc-number">5.2.3.</span> <span class="toc-text">4.5.2.3    如何绘制复杂的图形</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-6-装饰"><span class="toc-number">6.</span> <span class="toc-text">4.6    装饰</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#4-6-1-照片与相框"><span class="toc-number">6.1.</span> <span class="toc-text">4.6.1    照片与相框</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-6-2-装饰模式的原理"><span class="toc-number">6.2.</span> <span class="toc-text">4.6.2    装饰模式的原理</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-6-3-实现装饰模式"><span class="toc-number">6.3.</span> <span class="toc-text">4.6.3    实现装饰模式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-6-4-category的使用"><span class="toc-number">6.4.</span> <span class="toc-text">4.6.4    category的使用</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-7-工厂"><span class="toc-number">7.</span> <span class="toc-text">4.7    工厂</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#4-7-1-制造手机与使用手机"><span class="toc-number">7.1.</span> <span class="toc-text">4.7.1    制造手机与使用手机</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-7-2-简单工厂"><span class="toc-number">7.2.</span> <span class="toc-text">4.7.2    简单工厂</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#案例：通过简单工厂获取手机实例"><span class="toc-number">7.2.1.</span> <span class="toc-text">案例：通过简单工厂获取手机实例</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-7-3-抽象工厂"><span class="toc-number">7.3.</span> <span class="toc-text">4.7.3    抽象工厂</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#案例：通过工厂管理器获取定制的具体工厂，并通过具体的工厂获取产品"><span class="toc-number">7.3.1.</span> <span class="toc-text">案例：通过工厂管理器获取定制的具体工厂，并通过具体的工厂获取产品</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-7-4-Cocoa-框架中的-NSNumber"><span class="toc-number">7.4.</span> <span class="toc-text">4.7.4    Cocoa 框架中的 NSNumber</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-8-桥接"><span class="toc-number">8.</span> <span class="toc-text">4.8    桥接</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#4-8-1-遥控器与电视机"><span class="toc-number">8.1.</span> <span class="toc-text">4.8.1 遥控器与电视机</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-8-2-桥接模式原理"><span class="toc-number">8.2.</span> <span class="toc-text">4.8.2 桥接模式原理</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-8-3-设计游戏机模拟器"><span class="toc-number">8.3.</span> <span class="toc-text">4.8.3 设计游戏机模拟器</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#案例-1"><span class="toc-number">8.3.1.</span> <span class="toc-text">案例</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-9-代理"><span class="toc-number">9.</span> <span class="toc-text">4.9    代理</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#4-9-1-代理模式"><span class="toc-number">9.1.</span> <span class="toc-text">4.9.1 代理模式</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#案例：顾客和经销商"><span class="toc-number">9.1.1.</span> <span class="toc-text">案例：顾客和经销商</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#使用"><span class="toc-number">9.1.2.</span> <span class="toc-text">使用</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-9-2-代理与协议"><span class="toc-number">9.2.</span> <span class="toc-text">4.9.2 代理与协议</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#案例：单纯使用协议"><span class="toc-number">9.2.1.</span> <span class="toc-text">案例：单纯使用协议</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-9-3-用NSProxy-实现的代理模式"><span class="toc-number">9.3.</span> <span class="toc-text">4.9.3 用NSProxy 实现的代理模式</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#案例-2"><span class="toc-number">9.3.1.</span> <span class="toc-text">案例</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-10-单例"><span class="toc-number">10.</span> <span class="toc-text">4.10    单例</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#4-10-1-单例模式"><span class="toc-number">10.1.</span> <span class="toc-text">4.10.1 单例模式</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#单例模式的基本原理"><span class="toc-number">10.1.1.</span> <span class="toc-text">单例模式的基本原理</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#单例模式用以解决何种问题"><span class="toc-number">10.1.2.</span> <span class="toc-text">单例模式用以解决何种问题</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#单例模式的优缺点"><span class="toc-number">10.1.3.</span> <span class="toc-text">单例模式的优缺点</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#案例：存储用户信息的单例类"><span class="toc-number">10.1.4.</span> <span class="toc-text">案例：存储用户信息的单例类</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-10-2-编写严格的单例"><span class="toc-number">10.2.</span> <span class="toc-text">4.10.2 编写严格的单例</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-10-3-优化本地存储"><span class="toc-number">10.3.</span> <span class="toc-text">4.10.3 优化本地存储</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-11-备忘录"><span class="toc-number">11.</span> <span class="toc-text">4.11    备忘录</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#4-11-1-如何存储记录"><span class="toc-number">11.1.</span> <span class="toc-text">4.11.1    如何存储记录</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-11-2-备忘录模式"><span class="toc-number">11.2.</span> <span class="toc-text">4.11.2 备忘录模式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-11-3-优化存储方案"><span class="toc-number">11.3.</span> <span class="toc-text">4.11.3    优化存储方案</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-11-4-恢复-UIView-的状态"><span class="toc-number">11.4.</span> <span class="toc-text">4.11.4    恢复 UIView 的状态</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#存储UIView的问题"><span class="toc-number">11.4.1.</span> <span class="toc-text">存储UIView的问题</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#使用备忘录模式"><span class="toc-number">11.4.2.</span> <span class="toc-text">使用备忘录模式</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-12-生成器"><span class="toc-number">12.</span> <span class="toc-text">4.12    生成器</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#4-12-1-建造房子的承包商"><span class="toc-number">12.1.</span> <span class="toc-text">4.12.1 建造房子的承包商</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-12-2-生成器模式"><span class="toc-number">12.2.</span> <span class="toc-text">4.12.2 生成器模式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-12-3-制造汽车的流程"><span class="toc-number">12.3.</span> <span class="toc-text">4.12.3 制造汽车的流程</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-13-命令"><span class="toc-number">13.</span> <span class="toc-text">4.13    命令</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#4-13-1-电视机、遥控器与接收器之间的关系"><span class="toc-number">13.1.</span> <span class="toc-text">4.13.1 电视机、遥控器与接收器之间的关系</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-13-2-命令模式"><span class="toc-number">13.2.</span> <span class="toc-text">4.13.2 命令模式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-13-3-改变一个视图的明暗程度"><span class="toc-number">13.3.</span> <span class="toc-text">4.13.3 改变一个视图的明暗程度</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-14-组合"><span class="toc-number">14.</span> <span class="toc-text">4.14    组合</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#4-14-1-树形结构"><span class="toc-number">14.1.</span> <span class="toc-text">4.14.1    树形结构</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-14-2-组合模式"><span class="toc-number">14.2.</span> <span class="toc-text">4.14.2    组合模式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-14-3-编写文件夹系统"><span class="toc-number">14.3.</span> <span class="toc-text">4.14.3 编写文件夹系统</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-15-迭代器"><span class="toc-number">15.</span> <span class="toc-text">4.15    迭代器</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#4-15-1-线性表"><span class="toc-number">15.1.</span> <span class="toc-text">4.15.1 线性表</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-15-2-迭代器模式"><span class="toc-number">15.2.</span> <span class="toc-text">4.15.2 迭代器模式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-15-3-实现组合对象的迭代器"><span class="toc-number">15.3.</span> <span class="toc-text">4.15.3 实现组合对象的迭代器</span></a></li></ol></li></ol>
-    </div>
-    <div id="tocShell"></div>
-    <div id="toc" class="toc-article">
-      <div class="btn-group drag-me">
-        <i class="social fa fa-ellipsis-v"></i>
-      </div>
-      <div class="btn-group dropup-catelog">
-        <button class="btn"><i class="social fa fa-list-ol"></i></button>
-        <div class="catelog-content">
-          <p class="toc-title-wrap">
-            <strong class="toc-title">文章目录</strong>
-          </p>
-          <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#4-1-iOS设计模式简介"><span class="toc-number">1.</span> <span class="toc-text">4.1    iOS设计模式简介</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#4-1-1-编码是门艺术"><span class="toc-number">1.1.</span> <span class="toc-text">4.1.1    编码是门艺术</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-1-2-设计模式的基本原则"><span class="toc-number">1.2.</span> <span class="toc-text">4.1.2    设计模式的基本原则</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-1-3-设计模式的类型"><span class="toc-number">1.3.</span> <span class="toc-text">4.1.3    设计模式的类型</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-2-适配器"><span class="toc-number">2.</span> <span class="toc-text">4.2    适配器</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#4-2-1-何为适配器模式"><span class="toc-number">2.1.</span> <span class="toc-text">4.2.1    何为适配器模式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-2-2-数据直接适配带来的困境"><span class="toc-number">2.2.</span> <span class="toc-text">4.2.2    数据直接适配带来的困境</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-2-3-使用适配器模式"><span class="toc-number">2.3.</span> <span class="toc-text">4.2.3    使用适配器模式</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#4-2-3-1-类适配器"><span class="toc-number">2.3.1.</span> <span class="toc-text">4.2.3.1    类适配器</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-2-3-2-对象适配器"><span class="toc-number">2.3.2.</span> <span class="toc-text">4.2.3.2        对象适配器</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-2-4-适配器模式的优缺点"><span class="toc-number">2.4.</span> <span class="toc-text">4.2.4    适配器模式的优缺点</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-3-策略"><span class="toc-number">3.</span> <span class="toc-text">4.3    策略</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#4-3-1-if-else-的问题"><span class="toc-number">3.1.</span> <span class="toc-text">4.3.1    if - else 的问题</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-3-2-策略模式的原理"><span class="toc-number">3.2.</span> <span class="toc-text">4.3.2    策略模式的原理</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-3-3-策略模式的使用"><span class="toc-number">3.3.</span> <span class="toc-text">4.3.3    策略模式的使用</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-3-4-策略模式的优缺点"><span class="toc-number">3.4.</span> <span class="toc-text">4.3.4    策略模式的优缺点</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-4-观察者"><span class="toc-number">4.</span> <span class="toc-text">4.4    观察者</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#4-4-1-如何订阅一本杂志"><span class="toc-number">4.1.</span> <span class="toc-text">4.4.1    如何订阅一本杂志</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#4-4-1-1-如何订阅一本杂志"><span class="toc-number">4.1.1.</span> <span class="toc-text">4.4.1.1    如何订阅一本杂志</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-4-2-通知中心的抽象设计"><span class="toc-number">4.2.</span> <span class="toc-text">4.4.2    通知中心的抽象设计</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-4-3-实现通知中心"><span class="toc-number">4.3.</span> <span class="toc-text">4.4.3    实现通知中心</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#4-4-3-1-实现通知中心类"><span class="toc-number">4.3.1.</span> <span class="toc-text">4.4.3.1    实现通知中心类</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-4-3-2-使用通知中心"><span class="toc-number">4.3.2.</span> <span class="toc-text">4.4.3.2    使用通知中心</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-4-4-KVO与通知中心"><span class="toc-number">4.4.</span> <span class="toc-text">4.4.4    KVO与通知中心</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#4-4-4-1-Cocoa框架的通知中心"><span class="toc-number">4.4.1.</span> <span class="toc-text">4.4.4.1    Cocoa框架的通知中心</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-4-4-2-KVO机制的观察者模式"><span class="toc-number">4.4.2.</span> <span class="toc-text">4.4.4.2    KVO机制的观察者模式</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#通知中心"><span class="toc-number">4.4.2.1.</span> <span class="toc-text">通知中心</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#演示"><span class="toc-number">4.4.2.2.</span> <span class="toc-text">演示</span></a></li></ol></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-5-原型模式和外观模式"><span class="toc-number">5.</span> <span class="toc-text">4.5    原型模式和外观模式</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#4-5-1-原型模式"><span class="toc-number">5.1.</span> <span class="toc-text">4.5.1    原型模式</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#4-5-1-1-模版的用处"><span class="toc-number">5.1.1.</span> <span class="toc-text">4.5.1.1    模版的用处</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-5-1-2-原型模式的原理"><span class="toc-number">5.1.2.</span> <span class="toc-text">4.5.1.2    原型模式的原理</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#案例"><span class="toc-number">5.1.2.1.</span> <span class="toc-text">案例</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-5-1-3-NSCoping协议的使用细节"><span class="toc-number">5.1.3.</span> <span class="toc-text">4.5.1.3    NSCoping协议的使用细节</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-5-2-外观模式"><span class="toc-number">5.2.</span> <span class="toc-text">4.5.2    外观模式</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#4-5-2-1-如何去一个指定的地方"><span class="toc-number">5.2.1.</span> <span class="toc-text">4.5.2.1    如何去一个指定的地方</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-5-2-2-外观模式的原理"><span class="toc-number">5.2.2.</span> <span class="toc-text">4.5.2.2    外观模式的原理</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-5-2-3-如何绘制复杂的图形"><span class="toc-number">5.2.3.</span> <span class="toc-text">4.5.2.3    如何绘制复杂的图形</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-6-装饰"><span class="toc-number">6.</span> <span class="toc-text">4.6    装饰</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#4-6-1-照片与相框"><span class="toc-number">6.1.</span> <span class="toc-text">4.6.1    照片与相框</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-6-2-装饰模式的原理"><span class="toc-number">6.2.</span> <span class="toc-text">4.6.2    装饰模式的原理</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-6-3-实现装饰模式"><span class="toc-number">6.3.</span> <span class="toc-text">4.6.3    实现装饰模式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-6-4-category的使用"><span class="toc-number">6.4.</span> <span class="toc-text">4.6.4    category的使用</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-7-工厂"><span class="toc-number">7.</span> <span class="toc-text">4.7    工厂</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#4-7-1-制造手机与使用手机"><span class="toc-number">7.1.</span> <span class="toc-text">4.7.1    制造手机与使用手机</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-7-2-简单工厂"><span class="toc-number">7.2.</span> <span class="toc-text">4.7.2    简单工厂</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#案例：通过简单工厂获取手机实例"><span class="toc-number">7.2.1.</span> <span class="toc-text">案例：通过简单工厂获取手机实例</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-7-3-抽象工厂"><span class="toc-number">7.3.</span> <span class="toc-text">4.7.3    抽象工厂</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#案例：通过工厂管理器获取定制的具体工厂，并通过具体的工厂获取产品"><span class="toc-number">7.3.1.</span> <span class="toc-text">案例：通过工厂管理器获取定制的具体工厂，并通过具体的工厂获取产品</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-7-4-Cocoa-框架中的-NSNumber"><span class="toc-number">7.4.</span> <span class="toc-text">4.7.4    Cocoa 框架中的 NSNumber</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-8-桥接"><span class="toc-number">8.</span> <span class="toc-text">4.8    桥接</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#4-8-1-遥控器与电视机"><span class="toc-number">8.1.</span> <span class="toc-text">4.8.1 遥控器与电视机</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-8-2-桥接模式原理"><span class="toc-number">8.2.</span> <span class="toc-text">4.8.2 桥接模式原理</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-8-3-设计游戏机模拟器"><span class="toc-number">8.3.</span> <span class="toc-text">4.8.3 设计游戏机模拟器</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#案例-1"><span class="toc-number">8.3.1.</span> <span class="toc-text">案例</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-9-代理"><span class="toc-number">9.</span> <span class="toc-text">4.9    代理</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#4-9-1-代理模式"><span class="toc-number">9.1.</span> <span class="toc-text">4.9.1 代理模式</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#案例：顾客和经销商"><span class="toc-number">9.1.1.</span> <span class="toc-text">案例：顾客和经销商</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#使用"><span class="toc-number">9.1.2.</span> <span class="toc-text">使用</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-9-2-代理与协议"><span class="toc-number">9.2.</span> <span class="toc-text">4.9.2 代理与协议</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#案例：单纯使用协议"><span class="toc-number">9.2.1.</span> <span class="toc-text">案例：单纯使用协议</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-9-3-用NSProxy-实现的代理模式"><span class="toc-number">9.3.</span> <span class="toc-text">4.9.3 用NSProxy 实现的代理模式</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#案例-2"><span class="toc-number">9.3.1.</span> <span class="toc-text">案例</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-10-单例"><span class="toc-number">10.</span> <span class="toc-text">4.10    单例</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#4-10-1-单例模式"><span class="toc-number">10.1.</span> <span class="toc-text">4.10.1 单例模式</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#单例模式的基本原理"><span class="toc-number">10.1.1.</span> <span class="toc-text">单例模式的基本原理</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#单例模式用以解决何种问题"><span class="toc-number">10.1.2.</span> <span class="toc-text">单例模式用以解决何种问题</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#单例模式的优缺点"><span class="toc-number">10.1.3.</span> <span class="toc-text">单例模式的优缺点</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#案例：存储用户信息的单例类"><span class="toc-number">10.1.4.</span> <span class="toc-text">案例：存储用户信息的单例类</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-10-2-编写严格的单例"><span class="toc-number">10.2.</span> <span class="toc-text">4.10.2 编写严格的单例</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-10-3-优化本地存储"><span class="toc-number">10.3.</span> <span class="toc-text">4.10.3 优化本地存储</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-11-备忘录"><span class="toc-number">11.</span> <span class="toc-text">4.11    备忘录</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#4-11-1-如何存储记录"><span class="toc-number">11.1.</span> <span class="toc-text">4.11.1    如何存储记录</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-11-2-备忘录模式"><span class="toc-number">11.2.</span> <span class="toc-text">4.11.2 备忘录模式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-11-3-优化存储方案"><span class="toc-number">11.3.</span> <span class="toc-text">4.11.3    优化存储方案</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-11-4-恢复-UIView-的状态"><span class="toc-number">11.4.</span> <span class="toc-text">4.11.4    恢复 UIView 的状态</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#存储UIView的问题"><span class="toc-number">11.4.1.</span> <span class="toc-text">存储UIView的问题</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#使用备忘录模式"><span class="toc-number">11.4.2.</span> <span class="toc-text">使用备忘录模式</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-12-生成器"><span class="toc-number">12.</span> <span class="toc-text">4.12    生成器</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#4-12-1-建造房子的承包商"><span class="toc-number">12.1.</span> <span class="toc-text">4.12.1 建造房子的承包商</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-12-2-生成器模式"><span class="toc-number">12.2.</span> <span class="toc-text">4.12.2 生成器模式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-12-3-制造汽车的流程"><span class="toc-number">12.3.</span> <span class="toc-text">4.12.3 制造汽车的流程</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-13-命令"><span class="toc-number">13.</span> <span class="toc-text">4.13    命令</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#4-13-1-电视机、遥控器与接收器之间的关系"><span class="toc-number">13.1.</span> <span class="toc-text">4.13.1 电视机、遥控器与接收器之间的关系</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-13-2-命令模式"><span class="toc-number">13.2.</span> <span class="toc-text">4.13.2 命令模式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-13-3-改变一个视图的明暗程度"><span class="toc-number">13.3.</span> <span class="toc-text">4.13.3 改变一个视图的明暗程度</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-14-组合"><span class="toc-number">14.</span> <span class="toc-text">4.14    组合</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#4-14-1-树形结构"><span class="toc-number">14.1.</span> <span class="toc-text">4.14.1    树形结构</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-14-2-组合模式"><span class="toc-number">14.2.</span> <span class="toc-text">4.14.2    组合模式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-14-3-编写文件夹系统"><span class="toc-number">14.3.</span> <span class="toc-text">4.14.3 编写文件夹系统</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-15-迭代器"><span class="toc-number">15.</span> <span class="toc-text">4.15    迭代器</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#4-15-1-线性表"><span class="toc-number">15.1.</span> <span class="toc-text">4.15.1 线性表</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-15-2-迭代器模式"><span class="toc-number">15.2.</span> <span class="toc-text">4.15.2 迭代器模式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-15-3-实现组合对象的迭代器"><span class="toc-number">15.3.</span> <span class="toc-text">4.15.3 实现组合对象的迭代器</span></a></li></ol></li></ol>
+          
+            
+          
+
+          
+
+          
+          
+
+          
         </div>
-      </div>
-    </div>
+      </header>
     
-    <h2 id="4-1-iOS设计模式简介"><a href="#4-1-iOS设计模式简介" class="headerlink" title="4.1    iOS设计模式简介"></a>4.1    iOS设计模式简介</h2><h3 id="4-1-1-编码是门艺术"><a href="#4-1-1-编码是门艺术" class="headerlink" title="4.1.1    编码是门艺术"></a>4.1.1    编码是门艺术</h3><h3 id="4-1-2-设计模式的基本原则"><a href="#4-1-2-设计模式的基本原则" class="headerlink" title="4.1.2    设计模式的基本原则"></a>4.1.2    设计模式的基本原则</h3><ul>
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="4-1-iOS设计模式简介"><a href="#4-1-iOS设计模式简介" class="headerlink" title="4.1    iOS设计模式简介"></a>4.1    iOS设计模式简介</h2><h3 id="4-1-1-编码是门艺术"><a href="#4-1-1-编码是门艺术" class="headerlink" title="4.1.1    编码是门艺术"></a>4.1.1    编码是门艺术</h3><h3 id="4-1-2-设计模式的基本原则"><a href="#4-1-2-设计模式的基本原则" class="headerlink" title="4.1.2    设计模式的基本原则"></a>4.1.2    设计模式的基本原则</h3><ul>
 <li><strong>开闭原则</strong>：一个模块的修改应该对扩展开发，对修改关闭</li>
 <li><strong>里氏代换原则</strong>：子类、父类可以替换使用</li>
 <li><strong>依赖倒转原则</strong>：抽象比依赖细节，细节依赖抽象</li>
@@ -600,52 +775,282 @@
 </blockquote>
 <figure class="highlight objectivec"><table><tr><td class="code"><pre><span class="line">Custom<span class="built_in">UIView</span> *custom<span class="built_in">UIView</span> = [[Custom<span class="built_in">UIView</span> alloc] initWithFrame:<span class="keyword">self</span>.view.bounds];</span><br><span class="line">Node *node = <span class="literal">nil</span>;</span><br><span class="line"></span><br><span class="line">[custom<span class="built_in">UIView</span> resetIterator];</span><br><span class="line"><span class="keyword">while</span> (node = [custom<span class="built_in">UIView</span> nextObject]) &#123;</span><br><span class="line">    <span class="built_in">NSLog</span>(<span class="string">@"%@"</span>, node.item);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-  </section>
-
-</article>
-
-
-<section class="post-comments">
-  <!-- 多说评论框 start -->
-  <div id="ds-thread" class="ds-thread" data-thread-key="http://laputa-er.github.io/2016/06/03/JK_IOS高级_4 设计模式/" data-title="4 设计模式" data-url="http://laputa-er.github.io/2016/06/03/JK_IOS高级_4 设计模式/"></div>
-  <!-- 多说评论框 end -->
-  <!-- 多说公共JS代码 start (一个网页只需插入一次) -->
-  <script type="text/javascript">
-  var duoshuoQuery = {short_name:"lapuda-er"};
-  (function() {
-    var ds = document.createElement('script');
-    ds.type = 'text/javascript';ds.async = true;
-    ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
-    ds.charset = 'UTF-8';
-    (document.getElementsByTagName('head')[0] 
-     || document.getElementsByTagName('body')[0]).appendChild(ds);
-  })();
-  </script>
-<!-- 多说公共JS代码 end -->
-</section>
-
-
-
-
-            <footer class="footer">
-    <span class="footer__copyright">
-        本站点采用<a href="http://creativecommons.org/licenses/by-nc-sa/4.0/">知识共享署名-非商业性使用-相同方式共享 4.0 国际许可协议</a>
-    </span>
-    <span class="footer__copyright">
-        基于 <a href="http://hexo.io">Hexo</a> 搭建，感谢 <a href="https://pages.github.com/">GitHub Pages</a> 提供免费的托管服务
-    </span>
-    <span class="footer__copyright">
-        &copy; 2016 - 
-        本站修改自<a href="https://github.com/lenbo-ma/hexo-theme-vno" target="_blank">hexo-theme-vno</a>
-    </span>
-</footer>
-
-        </div>
+      
     </div>
 
-    <script src="http://cdn.bootcss.com/jquery/2.1.4/jquery.min.js"></script>
-    <script src="/js/main.js"></script>
+    <div>
+      
+        
 
-     
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/极客学院-ios高级/" rel="tag">#极客学院_ios高级</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/05/14/JK_IOS高级_3  音频视频处理/" rel="next" title="3 音频视频处理">
+                <i class="fa fa-chevron-left"></i> 3 音频视频处理
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/06/15/imooc_iOS_When iOS loves JS/" rel="prev" title="When iOS loves JS">
+                When iOS loves JS <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.gif"
+               alt="Sean" />
+          <p class="site-author-name" itemprop="name">Sean</p>
+          <p class="site-description motion-element" itemprop="description">整理了一批过去一段时间ios相关的笔记，其它的笔记也整理下？源码分享出来？再说吧...反正也只有自己会看吧...</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">85</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">10</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#4-1-iOS设计模式简介"><span class="nav-number">1.</span> <span class="nav-text">4.1    iOS设计模式简介</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#4-1-1-编码是门艺术"><span class="nav-number">1.1.</span> <span class="nav-text">4.1.1    编码是门艺术</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-1-2-设计模式的基本原则"><span class="nav-number">1.2.</span> <span class="nav-text">4.1.2    设计模式的基本原则</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-1-3-设计模式的类型"><span class="nav-number">1.3.</span> <span class="nav-text">4.1.3    设计模式的类型</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-2-适配器"><span class="nav-number">2.</span> <span class="nav-text">4.2    适配器</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#4-2-1-何为适配器模式"><span class="nav-number">2.1.</span> <span class="nav-text">4.2.1    何为适配器模式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-2-2-数据直接适配带来的困境"><span class="nav-number">2.2.</span> <span class="nav-text">4.2.2    数据直接适配带来的困境</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-2-3-使用适配器模式"><span class="nav-number">2.3.</span> <span class="nav-text">4.2.3    使用适配器模式</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#4-2-3-1-类适配器"><span class="nav-number">2.3.1.</span> <span class="nav-text">4.2.3.1    类适配器</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-2-3-2-对象适配器"><span class="nav-number">2.3.2.</span> <span class="nav-text">4.2.3.2        对象适配器</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-2-4-适配器模式的优缺点"><span class="nav-number">2.4.</span> <span class="nav-text">4.2.4    适配器模式的优缺点</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-3-策略"><span class="nav-number">3.</span> <span class="nav-text">4.3    策略</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#4-3-1-if-else-的问题"><span class="nav-number">3.1.</span> <span class="nav-text">4.3.1    if - else 的问题</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-3-2-策略模式的原理"><span class="nav-number">3.2.</span> <span class="nav-text">4.3.2    策略模式的原理</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-3-3-策略模式的使用"><span class="nav-number">3.3.</span> <span class="nav-text">4.3.3    策略模式的使用</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-3-4-策略模式的优缺点"><span class="nav-number">3.4.</span> <span class="nav-text">4.3.4    策略模式的优缺点</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-4-观察者"><span class="nav-number">4.</span> <span class="nav-text">4.4    观察者</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#4-4-1-如何订阅一本杂志"><span class="nav-number">4.1.</span> <span class="nav-text">4.4.1    如何订阅一本杂志</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#4-4-1-1-如何订阅一本杂志"><span class="nav-number">4.1.1.</span> <span class="nav-text">4.4.1.1    如何订阅一本杂志</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-4-2-通知中心的抽象设计"><span class="nav-number">4.2.</span> <span class="nav-text">4.4.2    通知中心的抽象设计</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-4-3-实现通知中心"><span class="nav-number">4.3.</span> <span class="nav-text">4.4.3    实现通知中心</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#4-4-3-1-实现通知中心类"><span class="nav-number">4.3.1.</span> <span class="nav-text">4.4.3.1    实现通知中心类</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-4-3-2-使用通知中心"><span class="nav-number">4.3.2.</span> <span class="nav-text">4.4.3.2    使用通知中心</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-4-4-KVO与通知中心"><span class="nav-number">4.4.</span> <span class="nav-text">4.4.4    KVO与通知中心</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#4-4-4-1-Cocoa框架的通知中心"><span class="nav-number">4.4.1.</span> <span class="nav-text">4.4.4.1    Cocoa框架的通知中心</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-4-4-2-KVO机制的观察者模式"><span class="nav-number">4.4.2.</span> <span class="nav-text">4.4.4.2    KVO机制的观察者模式</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#通知中心"><span class="nav-number">4.4.2.1.</span> <span class="nav-text">通知中心</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#演示"><span class="nav-number">4.4.2.2.</span> <span class="nav-text">演示</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-5-原型模式和外观模式"><span class="nav-number">5.</span> <span class="nav-text">4.5    原型模式和外观模式</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#4-5-1-原型模式"><span class="nav-number">5.1.</span> <span class="nav-text">4.5.1    原型模式</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#4-5-1-1-模版的用处"><span class="nav-number">5.1.1.</span> <span class="nav-text">4.5.1.1    模版的用处</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-5-1-2-原型模式的原理"><span class="nav-number">5.1.2.</span> <span class="nav-text">4.5.1.2    原型模式的原理</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#案例"><span class="nav-number">5.1.2.1.</span> <span class="nav-text">案例</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-5-1-3-NSCoping协议的使用细节"><span class="nav-number">5.1.3.</span> <span class="nav-text">4.5.1.3    NSCoping协议的使用细节</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-5-2-外观模式"><span class="nav-number">5.2.</span> <span class="nav-text">4.5.2    外观模式</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#4-5-2-1-如何去一个指定的地方"><span class="nav-number">5.2.1.</span> <span class="nav-text">4.5.2.1    如何去一个指定的地方</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-5-2-2-外观模式的原理"><span class="nav-number">5.2.2.</span> <span class="nav-text">4.5.2.2    外观模式的原理</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-5-2-3-如何绘制复杂的图形"><span class="nav-number">5.2.3.</span> <span class="nav-text">4.5.2.3    如何绘制复杂的图形</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-6-装饰"><span class="nav-number">6.</span> <span class="nav-text">4.6    装饰</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#4-6-1-照片与相框"><span class="nav-number">6.1.</span> <span class="nav-text">4.6.1    照片与相框</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-6-2-装饰模式的原理"><span class="nav-number">6.2.</span> <span class="nav-text">4.6.2    装饰模式的原理</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-6-3-实现装饰模式"><span class="nav-number">6.3.</span> <span class="nav-text">4.6.3    实现装饰模式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-6-4-category的使用"><span class="nav-number">6.4.</span> <span class="nav-text">4.6.4    category的使用</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-7-工厂"><span class="nav-number">7.</span> <span class="nav-text">4.7    工厂</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#4-7-1-制造手机与使用手机"><span class="nav-number">7.1.</span> <span class="nav-text">4.7.1    制造手机与使用手机</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-7-2-简单工厂"><span class="nav-number">7.2.</span> <span class="nav-text">4.7.2    简单工厂</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#案例：通过简单工厂获取手机实例"><span class="nav-number">7.2.1.</span> <span class="nav-text">案例：通过简单工厂获取手机实例</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-7-3-抽象工厂"><span class="nav-number">7.3.</span> <span class="nav-text">4.7.3    抽象工厂</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#案例：通过工厂管理器获取定制的具体工厂，并通过具体的工厂获取产品"><span class="nav-number">7.3.1.</span> <span class="nav-text">案例：通过工厂管理器获取定制的具体工厂，并通过具体的工厂获取产品</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-7-4-Cocoa-框架中的-NSNumber"><span class="nav-number">7.4.</span> <span class="nav-text">4.7.4    Cocoa 框架中的 NSNumber</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-8-桥接"><span class="nav-number">8.</span> <span class="nav-text">4.8    桥接</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#4-8-1-遥控器与电视机"><span class="nav-number">8.1.</span> <span class="nav-text">4.8.1 遥控器与电视机</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-8-2-桥接模式原理"><span class="nav-number">8.2.</span> <span class="nav-text">4.8.2 桥接模式原理</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-8-3-设计游戏机模拟器"><span class="nav-number">8.3.</span> <span class="nav-text">4.8.3 设计游戏机模拟器</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#案例-1"><span class="nav-number">8.3.1.</span> <span class="nav-text">案例</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-9-代理"><span class="nav-number">9.</span> <span class="nav-text">4.9    代理</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#4-9-1-代理模式"><span class="nav-number">9.1.</span> <span class="nav-text">4.9.1 代理模式</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#案例：顾客和经销商"><span class="nav-number">9.1.1.</span> <span class="nav-text">案例：顾客和经销商</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#使用"><span class="nav-number">9.1.2.</span> <span class="nav-text">使用</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-9-2-代理与协议"><span class="nav-number">9.2.</span> <span class="nav-text">4.9.2 代理与协议</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#案例：单纯使用协议"><span class="nav-number">9.2.1.</span> <span class="nav-text">案例：单纯使用协议</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-9-3-用NSProxy-实现的代理模式"><span class="nav-number">9.3.</span> <span class="nav-text">4.9.3 用NSProxy 实现的代理模式</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#案例-2"><span class="nav-number">9.3.1.</span> <span class="nav-text">案例</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-10-单例"><span class="nav-number">10.</span> <span class="nav-text">4.10    单例</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#4-10-1-单例模式"><span class="nav-number">10.1.</span> <span class="nav-text">4.10.1 单例模式</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#单例模式的基本原理"><span class="nav-number">10.1.1.</span> <span class="nav-text">单例模式的基本原理</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#单例模式用以解决何种问题"><span class="nav-number">10.1.2.</span> <span class="nav-text">单例模式用以解决何种问题</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#单例模式的优缺点"><span class="nav-number">10.1.3.</span> <span class="nav-text">单例模式的优缺点</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#案例：存储用户信息的单例类"><span class="nav-number">10.1.4.</span> <span class="nav-text">案例：存储用户信息的单例类</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-10-2-编写严格的单例"><span class="nav-number">10.2.</span> <span class="nav-text">4.10.2 编写严格的单例</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-10-3-优化本地存储"><span class="nav-number">10.3.</span> <span class="nav-text">4.10.3 优化本地存储</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-11-备忘录"><span class="nav-number">11.</span> <span class="nav-text">4.11    备忘录</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#4-11-1-如何存储记录"><span class="nav-number">11.1.</span> <span class="nav-text">4.11.1    如何存储记录</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-11-2-备忘录模式"><span class="nav-number">11.2.</span> <span class="nav-text">4.11.2 备忘录模式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-11-3-优化存储方案"><span class="nav-number">11.3.</span> <span class="nav-text">4.11.3    优化存储方案</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-11-4-恢复-UIView-的状态"><span class="nav-number">11.4.</span> <span class="nav-text">4.11.4    恢复 UIView 的状态</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#存储UIView的问题"><span class="nav-number">11.4.1.</span> <span class="nav-text">存储UIView的问题</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#使用备忘录模式"><span class="nav-number">11.4.2.</span> <span class="nav-text">使用备忘录模式</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-12-生成器"><span class="nav-number">12.</span> <span class="nav-text">4.12    生成器</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#4-12-1-建造房子的承包商"><span class="nav-number">12.1.</span> <span class="nav-text">4.12.1 建造房子的承包商</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-12-2-生成器模式"><span class="nav-number">12.2.</span> <span class="nav-text">4.12.2 生成器模式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-12-3-制造汽车的流程"><span class="nav-number">12.3.</span> <span class="nav-text">4.12.3 制造汽车的流程</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-13-命令"><span class="nav-number">13.</span> <span class="nav-text">4.13    命令</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#4-13-1-电视机、遥控器与接收器之间的关系"><span class="nav-number">13.1.</span> <span class="nav-text">4.13.1 电视机、遥控器与接收器之间的关系</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-13-2-命令模式"><span class="nav-number">13.2.</span> <span class="nav-text">4.13.2 命令模式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-13-3-改变一个视图的明暗程度"><span class="nav-number">13.3.</span> <span class="nav-text">4.13.3 改变一个视图的明暗程度</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-14-组合"><span class="nav-number">14.</span> <span class="nav-text">4.14    组合</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#4-14-1-树形结构"><span class="nav-number">14.1.</span> <span class="nav-text">4.14.1    树形结构</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-14-2-组合模式"><span class="nav-number">14.2.</span> <span class="nav-text">4.14.2    组合模式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-14-3-编写文件夹系统"><span class="nav-number">14.3.</span> <span class="nav-text">4.14.3 编写文件夹系统</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-15-迭代器"><span class="nav-number">15.</span> <span class="nav-text">4.15    迭代器</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#4-15-1-线性表"><span class="nav-number">15.1.</span> <span class="nav-text">4.15.1 线性表</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-15-2-迭代器模式"><span class="nav-number">15.2.</span> <span class="nav-text">4.15.2 迭代器模式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-15-3-实现组合对象的迭代器"><span class="nav-number">15.3.</span> <span class="nav-text">4.15.3 实现组合对象的迭代器</span></a></li></ol></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Sean</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Muse
+  </a>
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+  
+  
+
+  
+
+  
+
+  
+
 </body>
 </html>
