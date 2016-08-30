@@ -5,7 +5,7 @@
   
 
 
-<html class="theme-next muse use-motion">
+<html class="theme-next mist use-motion">
 <head>
   <meta charset="UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
@@ -148,7 +148,7 @@
 <script type="text/javascript" id="hexo.configuration">
   var NexT = window.NexT || {};
   var CONFIG = {
-    scheme: 'Muse',
+    scheme: 'Mist',
     sidebar: {"position":"left","display":"post"},
     fancybox: true,
     motion: true,
@@ -223,6 +223,16 @@
               <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
             
             首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
           </a>
         </li>
       
@@ -356,7 +366,7 @@
 <h3 id="9-1-1-定义"><a href="#9-1-1-定义" class="headerlink" title="9.1.1    定义"></a>9.1.1    定义</h3><blockquote>
 <p><strong>语法：</strong>类和结构体</p>
 </blockquote>
-<figure class="highlight swift"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 类</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">SomeClass</span> </span>&#123;</span><br><span class="line">    <span class="comment">// class definition goes here</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 结构体</span></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">SomeStructure</span> </span>&#123;</span><br><span class="line">    <span class="comment">// structure definition goes here</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 类</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">SomeClass</span> </span>&#123;</span><br><span class="line">    <span class="comment">// class definition goes here</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 结构体</span></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">SomeStructure</span> </span>&#123;</span><br><span class="line">    <span class="comment">// structure definition goes here</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <blockquote>
 <p><strong>命名风格</strong>：为了将<code>Swift</code>类型和其它标记的命名区分开，命名最好遵从一定规范</p>
 <ol>
@@ -364,22 +374,22 @@
 <li>属性和方法命名要符合Swift类型的小写命名风格（<code>lowerCamelCase</code>）</li>
 </ol>
 </blockquote>
-<figure class="highlight swift"><table><tr><td class="code"><pre><span class="line"><span class="comment">//定义一个结构体</span></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">Resolution</span></span>&#123;</span><br><span class="line">    <span class="comment">//包含两个存储属性</span></span><br><span class="line">    <span class="keyword">var</span> width = <span class="number">0</span></span><br><span class="line">    <span class="keyword">var</span> height = <span class="number">0</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//定义一个类</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">VideoMode</span> </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> resolution = <span class="type">Resolution</span>()</span><br><span class="line">    <span class="keyword">var</span> interlaced = <span class="literal">false</span></span><br><span class="line">    <span class="keyword">var</span> frameRate = <span class="number">0.0</span></span><br><span class="line">    <span class="keyword">var</span> name:<span class="type">String</span>?</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//定义一个结构体</span></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">Resolution</span></span>&#123;</span><br><span class="line">    <span class="comment">//包含两个存储属性</span></span><br><span class="line">    <span class="keyword">var</span> width = <span class="number">0</span></span><br><span class="line">    <span class="keyword">var</span> height = <span class="number">0</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//定义一个类</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">VideoMode</span> </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> resolution = <span class="type">Resolution</span>()</span><br><span class="line">    <span class="keyword">var</span> interlaced = <span class="literal">false</span></span><br><span class="line">    <span class="keyword">var</span> frameRate = <span class="number">0.0</span></span><br><span class="line">    <span class="keyword">var</span> name:<span class="type">String</span>?</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <h3 id="9-1-2-类和结构体实例"><a href="#9-1-2-类和结构体实例" class="headerlink" title="9.1.2    类和结构体实例"></a>9.1.2    类和结构体实例</h3><blockquote>
 <p><strong>最简单形式</strong>：<code>结构体或者类的类型名称()</code></p>
 <ul>
 <li>属性会被初始化为默认值</li>
 </ul>
 </blockquote>
-<figure class="highlight swift"><table><tr><td class="code"><pre><span class="line"><span class="keyword">let</span> someResolution = <span class="type">Resolution</span>()<span class="comment">//创建结构体实例</span></span><br><span class="line"><span class="keyword">let</span> someVideoMode = <span class="type">VideoMode</span>()<span class="comment">//创建类实例</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> someResolution = <span class="type">Resolution</span>()<span class="comment">//创建结构体实例</span></span><br><span class="line"><span class="keyword">let</span> someVideoMode = <span class="type">VideoMode</span>()<span class="comment">//创建类实例</span></span><br></pre></td></tr></table></figure>
 <h3 id="9-1-3-属性访问"><a href="#9-1-3-属性访问" class="headerlink" title="9.1.3    属性访问"></a>9.1.3    属性访问</h3><blockquote>
 <p><strong>说明</strong>：点语法（dot syntax）<br><strong>注意</strong>：Swift允许直接设置结构体属性的<code>子属性</code>（不同于o-c）</p>
 </blockquote>
-<figure class="highlight swift"><table><tr><td class="code"><pre><span class="line"><span class="built_in">println</span>(<span class="string">"The width of someResolution is \(someResolution.width)"</span>)<span class="comment">//访问结构体实例的属性</span></span><br><span class="line">someVideoMode.resolution.width = <span class="number">1280</span><span class="comment">//为结构体的属性的字属性赋值</span></span><br><span class="line"><span class="built_in">println</span>(<span class="string">"The width of someVideoMode is now \(someVideoMode.resolution.width)"</span>)<span class="comment">//访问结构体属性的字属性</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">println</span>(<span class="string">"The width of someResolution is \(someResolution.width)"</span>)<span class="comment">//访问结构体实例的属性</span></span><br><span class="line">someVideoMode.resolution.width = <span class="number">1280</span><span class="comment">//为结构体的属性的字属性赋值</span></span><br><span class="line"><span class="built_in">println</span>(<span class="string">"The width of someVideoMode is now \(someVideoMode.resolution.width)"</span>)<span class="comment">//访问结构体属性的字属性</span></span><br></pre></td></tr></table></figure>
 <h3 id="9-1-4-结构体类型的成员逐一构造器"><a href="#9-1-4-结构体类型的成员逐一构造器" class="headerlink" title="9.1.4        结构体类型的成员逐一构造器"></a>9.1.4        结构体类型的成员逐一构造器</h3><blockquote>
 <p><strong>说明</strong>：结构体自动生成（类实例没有默认的成员逐一构造器）<br><strong>用途：</strong>始化新结构体实例中成员的属性<br><strong>调用</strong>：将结构体实例中<code>各个属性的初始值</code>，通过<code>属性的名称</code>传递到<code>成员逐一构造器</code>之中</p>
 </blockquote>
-<figure class="highlight swift"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 调用逐一成员构造器</span></span><br><span class="line"><span class="keyword">let</span> vga = <span class="type">Resolution</span>(width: <span class="number">640</span>, height: <span class="number">480</span>);</span><br></pre></td></tr></table></figure>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 调用逐一成员构造器</span></span><br><span class="line"><span class="keyword">let</span> vga = <span class="type">Resolution</span>(width: <span class="number">640</span>, height: <span class="number">480</span>);</span><br></pre></td></tr></table></figure>
 <h2 id="9-2-结构体和枚举是值类型"><a href="#9-2-结构体和枚举是值类型" class="headerlink" title="9.2    结构体和枚举是值类型"></a>9.2    结构体和枚举是值类型</h2><blockquote>
 <p><strong>值类型特点</strong>：值类型被<code>赋给一个常量(变量)</code>或者被<code>传递给一个函数</code>的时候，实际上操作的是其<code>副本</code>。<br><strong>扩展</strong>：所有<code>基本数据类型</code>在都是通过<code>结构体</code>来实现的。</p>
 </blockquote>
@@ -425,7 +435,7 @@
 </tbody>
 </table>
 <p>&gt;</p>
-<figure class="highlight swift"><table><tr><td class="code"><pre><span class="line"><span class="comment">//结构体是值类型</span></span><br><span class="line"><span class="keyword">let</span> hd = <span class="type">Resolution</span>(width: <span class="number">1920</span>, height: <span class="number">1080</span>)</span><br><span class="line"><span class="keyword">var</span> cinema = hd</span><br><span class="line">cinema.width = <span class="number">2048</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">println</span>(<span class="string">"cinema is now \(cinema.width) pixels wide"</span>)<span class="comment">//2048</span></span><br><span class="line"><span class="built_in">println</span>(<span class="string">"hd is still \(hd.width) pixels wide"</span>)<span class="comment">//1920</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//枚举类型也是值类型</span></span><br><span class="line"><span class="class"><span class="keyword">enum</span> <span class="title">CompassPoint</span></span>&#123;</span><br><span class="line">    <span class="keyword">case</span> <span class="type">North</span>, <span class="type">South</span>, <span class="type">East</span>, <span class="type">West</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">var</span> currentDirection = <span class="type">CompassPoint</span>.<span class="type">West</span></span><br><span class="line"><span class="keyword">let</span> rememberedDirection = currentDirection</span><br><span class="line">currentDirection = .<span class="type">East</span></span><br><span class="line"><span class="keyword">if</span> rememberedDirection == .<span class="type">West</span>&#123;<span class="comment">//拷贝赋值并不影响原始值</span></span><br><span class="line">    <span class="built_in">println</span>(<span class="string">"The remembered direction is still .West"</span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//结构体是值类型</span></span><br><span class="line"><span class="keyword">let</span> hd = <span class="type">Resolution</span>(width: <span class="number">1920</span>, height: <span class="number">1080</span>)</span><br><span class="line"><span class="keyword">var</span> cinema = hd</span><br><span class="line">cinema.width = <span class="number">2048</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">println</span>(<span class="string">"cinema is now \(cinema.width) pixels wide"</span>)<span class="comment">//2048</span></span><br><span class="line"><span class="built_in">println</span>(<span class="string">"hd is still \(hd.width) pixels wide"</span>)<span class="comment">//1920</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//枚举类型也是值类型</span></span><br><span class="line"><span class="class"><span class="keyword">enum</span> <span class="title">CompassPoint</span></span>&#123;</span><br><span class="line">    <span class="keyword">case</span> <span class="type">North</span>, <span class="type">South</span>, <span class="type">East</span>, <span class="type">West</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">var</span> currentDirection = <span class="type">CompassPoint</span>.<span class="type">West</span></span><br><span class="line"><span class="keyword">let</span> rememberedDirection = currentDirection</span><br><span class="line">currentDirection = .<span class="type">East</span></span><br><span class="line"><span class="keyword">if</span> rememberedDirection == .<span class="type">West</span>&#123;<span class="comment">//拷贝赋值并不影响原始值</span></span><br><span class="line">    <span class="built_in">println</span>(<span class="string">"The remembered direction is still .West"</span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <h2 id="9-3-类是引用类型"><a href="#9-3-类是引用类型" class="headerlink" title="9.3    类是引用类型"></a>9.3    类是引用类型</h2><blockquote>
 <p><strong>说明：</strong>被赋予到一个变量、常量或者被传递到一个函数时，引用的是已存在的实例本身而不是其拷贝。<br><strong>注意</strong>：用类型的实例即使被声明为常量，成员的值依然可以改变，因为改变实例的内容并没有改变引用用本身（因为引用不过是个地址）。</p>
 </blockquote>
@@ -598,7 +608,7 @@ alseTenEighty.frameRate = <span class="number">30.0</span>
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">85</span>
+              <span class="site-state-item-count">94</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -608,7 +618,7 @@ alseTenEighty.frameRate = <span class="number">30.0</span>
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">10</span>
+                <span class="site-state-item-count">11</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
@@ -670,7 +680,7 @@ alseTenEighty.frameRate = <span class="number">30.0</span>
 <div class="theme-info">
   主题 -
   <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
-    NexT.Muse
+    NexT.Mist
   </a>
 </div>
 

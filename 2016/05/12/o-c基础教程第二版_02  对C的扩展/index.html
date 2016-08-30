@@ -5,7 +5,7 @@
   
 
 
-<html class="theme-next muse use-motion">
+<html class="theme-next mist use-motion">
 <head>
   <meta charset="UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
@@ -136,7 +136,7 @@
 <script type="text/javascript" id="hexo.configuration">
   var NexT = window.NexT || {};
   var CONFIG = {
-    scheme: 'Muse',
+    scheme: 'Mist',
     sidebar: {"position":"left","display":"post"},
     fancybox: true,
     motion: true,
@@ -211,6 +211,16 @@
               <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
             
             首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
           </a>
         </li>
       
@@ -334,7 +344,7 @@
 <h2 id="2-2-解构-Hello-Objective-C-程序"><a href="#2-2-解构-Hello-Objective-C-程序" class="headerlink" title="2.2   解构 Hello Objective-C 程序"></a>2.2   解构 Hello Objective-C 程序</h2><blockquote>
 <p><strong>默认编译器：</strong> XCode 的默认编译器为<code>LLVM</code>，可以处理<code>C</code>（.c文件）、<code>C++</code>（.cpp）、<code>Objective-C</code>（.m）。<br><strong>扩展：</strong>扩展名<code>.m</code>代表<code>message</code>，它值得是<code>Object-C</code>的一个主要特征。</p>
 </blockquote>
-<figure class="highlight objectivec"><table><tr><td class="code"><pre><span class="line"><span class="comment">// O-C 支持的模块导入方式</span></span><br><span class="line"><span class="meta">#import <span class="meta-string">&lt;Foundation/Foundation.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="comment">// main 的声明语句和结尾的 return 语句和 C 一样</span></span><br><span class="line"><span class="keyword">int</span> main(<span class="keyword">int</span> argc, <span class="keyword">const</span> <span class="keyword">char</span> * argv[]) &#123;</span><br><span class="line">    <span class="keyword">@autoreleasepool</span> &#123;</span><br><span class="line">        <span class="comment">// insert code here...</span></span><br><span class="line">        <span class="built_in">NSLog</span>(<span class="string">@"Hello, World!"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// O-C 支持的模块导入方式</span></span><br><span class="line"><span class="meta">#import <span class="meta-string">&lt;Foundation/Foundation.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="comment">// main 的声明语句和结尾的 return 语句和 C 一样</span></span><br><span class="line"><span class="keyword">int</span> main(<span class="keyword">int</span> argc, <span class="keyword">const</span> <span class="keyword">char</span> * argv[]) &#123;</span><br><span class="line">    <span class="keyword">@autoreleasepool</span> &#123;</span><br><span class="line">        <span class="comment">// insert code here...</span></span><br><span class="line">        <span class="built_in">NSLog</span>(<span class="string">@"Hello, World!"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <h3 id="2-2-1-import-语句"><a href="#2-2-1-import-语句" class="headerlink" title="2.2.1    #import 语句"></a>2.2.1    #import 语句</h3><blockquote>
 <p><strong>功能：</strong>通知编译器查询头文件中相应的代码并导入，一个文件中只会被包含一次（无论调用多少次<code>#import</code>语句）<br><strong>说明：</strong>相比<code>C</code>的<code>#include</code>，<code>#import</code>能避免文件相互包含的情况导致的错误（<code>C</code>语言通过<code>ifdef</code>实现）。<br><strong>注意：</strong><code>Foundation</code>框架的头文件占用了近1MB的磁盘空间，使用<code>#import &lt;Foundation/Foundation.h&gt;</code>包含头文件时，Xcode使用<code>预编译头文件</code>加快读取速度。</p>
 </blockquote>
@@ -354,7 +364,7 @@
 <p><strong>说明：</strong><code>Cocoa</code>给其所有函数、常量和类型名都添加了<code>NS前缀</code>（使用<code>NS</code>而不是<code>Cocoa</code>源自历史遗留：<code>Cocoa</code>的前身为<code>NextSTEP</code>工具包）。</p>
 </blockquote>
 <h4 id="NSLog函数"><a href="#NSLog函数" class="headerlink" title="NSLog函数"></a>NSLog函数</h4><blockquote>
-<p><strong>说明：</strong>用于向控制台输出内容<br><strong>原型：</strong><code>NSObjCRuntime.h</code><br><figure class="highlight objectivec"><table><tr><td class="code"><pre><span class="line"><span class="comment">/**</span><br><span class="line">** @param &#123;NSString *&#125; format 字符串（可以包含格式说明符） </span><br><span class="line">** @param &#123;...&#125; 对应格式串中格式说明符可变参数</span><br><span class="line">*/</span></span><br><span class="line"><span class="keyword">void</span> <span class="built_in">NSLog</span>(<span class="built_in">NSString</span> *format, ...)</span><br></pre></td></tr></table></figure></p>
+<p><strong>说明：</strong>用于向控制台输出内容<br><strong>原型：</strong><code>NSObjCRuntime.h</code><br><figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span><br><span class="line">** @param &#123;NSString *&#125; format 字符串（可以包含格式说明符） </span><br><span class="line">** @param &#123;...&#125; 对应格式串中格式说明符可变参数</span><br><span class="line">*/</span></span><br><span class="line"><span class="keyword">void</span> <span class="built_in">NSLog</span>(<span class="built_in">NSString</span> *format, ...)</span><br></pre></td></tr></table></figure></p>
 <p><strong>技巧：</strong>建议在<code>O-C</code>中使用<code>NSLog</code>替代<code>printf</code>，因为它添加了一些特性，比如</p>
 <ul>
 <li>时间戳</li>
@@ -379,7 +389,7 @@
 </ul>
 <p><strong>注意：</strong><code>O-C</code>的<code>BOOL</code>不仅能保存<code>NO</code>和<code>YES</code>，编译器将其作为<code>8位二进制数</code>处理，也就是说可以赋值其它整数和<code>char</code>类型值（大于一个字节将溢出）。</p>
 </blockquote>
-<h3 id="2-3-1-BOOL-强大的实用功能"><a href="#2-3-1-BOOL-强大的实用功能" class="headerlink" title="2.3.1    BOOL 强大的实用功能"></a>2.3.1    BOOL 强大的实用功能</h3><figure class="highlight objectivec"><table><tr><td class="code"><pre><span class="line"><span class="meta">#import <span class="meta-string">&lt;Foundation/Foundation.h&gt;</span></span></span><br><span class="line"><span class="comment">/**</span><br><span class="line"> * 比较两个 int 型值是否相等</span><br><span class="line"> * @param &#123;int&#125; thing1 第一个值</span><br><span class="line"> * @param &#123;int&#125; thing2 第二个值</span><br><span class="line"> * @return &#123;BOOL&#125; YES 相等， NO 不相等</span><br><span class="line"> */</span></span><br><span class="line"><span class="built_in">BOOL</span> areIntsDifferent (<span class="keyword">int</span> thing1, <span class="keyword">int</span> thing2) &#123;</span><br><span class="line">    <span class="keyword">if</span> (thing1 == thing2) &#123;</span><br><span class="line">        <span class="keyword">return</span> (<span class="literal">NO</span>);</span><br><span class="line">    &#125;<span class="keyword">else</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> (<span class="literal">YES</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span><br><span class="line"> * 输出 BOOL 值对应的描述</span><br><span class="line"> * @param &#123;BOOL&#125; yesNo BOOL值</span><br><span class="line"> * @return &#123;NSString&#125; YES "YES", NO "NO"</span><br><span class="line"> */</span></span><br><span class="line"><span class="built_in">NSString</span> *boolString (<span class="built_in">BOOL</span> yesNo) &#123;</span><br><span class="line">    <span class="keyword">if</span> (yesNo == <span class="literal">NO</span>) &#123;</span><br><span class="line">        <span class="keyword">return</span> (<span class="string">@"NO"</span>);</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> (<span class="string">@"YES"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">int</span> main(<span class="keyword">int</span> argc, <span class="keyword">const</span> <span class="keyword">char</span> * argv[]) &#123;</span><br><span class="line">    <span class="built_in">BOOL</span> areTheyDifferent;</span><br><span class="line">    <span class="comment">// 调用areTheDifferent函数</span></span><br><span class="line">    areTheyDifferent = areIntsDifferent(<span class="number">5</span>, <span class="number">5</span>);</span><br><span class="line">    <span class="comment">// 调用boolString函数</span></span><br><span class="line">    <span class="built_in">NSLog</span>(<span class="string">@"are %d and %d different? %@"</span>, <span class="number">5</span>, <span class="number">5</span>, boolString(areTheyDifferent));</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="2-3-1-BOOL-强大的实用功能"><a href="#2-3-1-BOOL-强大的实用功能" class="headerlink" title="2.3.1    BOOL 强大的实用功能"></a>2.3.1    BOOL 强大的实用功能</h3><figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#import <span class="meta-string">&lt;Foundation/Foundation.h&gt;</span></span></span><br><span class="line"><span class="comment">/**</span><br><span class="line"> * 比较两个 int 型值是否相等</span><br><span class="line"> * @param &#123;int&#125; thing1 第一个值</span><br><span class="line"> * @param &#123;int&#125; thing2 第二个值</span><br><span class="line"> * @return &#123;BOOL&#125; YES 相等， NO 不相等</span><br><span class="line"> */</span></span><br><span class="line"><span class="built_in">BOOL</span> areIntsDifferent (<span class="keyword">int</span> thing1, <span class="keyword">int</span> thing2) &#123;</span><br><span class="line">    <span class="keyword">if</span> (thing1 == thing2) &#123;</span><br><span class="line">        <span class="keyword">return</span> (<span class="literal">NO</span>);</span><br><span class="line">    &#125;<span class="keyword">else</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> (<span class="literal">YES</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span><br><span class="line"> * 输出 BOOL 值对应的描述</span><br><span class="line"> * @param &#123;BOOL&#125; yesNo BOOL值</span><br><span class="line"> * @return &#123;NSString&#125; YES "YES", NO "NO"</span><br><span class="line"> */</span></span><br><span class="line"><span class="built_in">NSString</span> *boolString (<span class="built_in">BOOL</span> yesNo) &#123;</span><br><span class="line">    <span class="keyword">if</span> (yesNo == <span class="literal">NO</span>) &#123;</span><br><span class="line">        <span class="keyword">return</span> (<span class="string">@"NO"</span>);</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> (<span class="string">@"YES"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">int</span> main(<span class="keyword">int</span> argc, <span class="keyword">const</span> <span class="keyword">char</span> * argv[]) &#123;</span><br><span class="line">    <span class="built_in">BOOL</span> areTheyDifferent;</span><br><span class="line">    <span class="comment">// 调用areTheDifferent函数</span></span><br><span class="line">    areTheyDifferent = areIntsDifferent(<span class="number">5</span>, <span class="number">5</span>);</span><br><span class="line">    <span class="comment">// 调用boolString函数</span></span><br><span class="line">    <span class="built_in">NSLog</span>(<span class="string">@"are %d and %d different? %@"</span>, <span class="number">5</span>, <span class="number">5</span>, boolString(areTheyDifferent));</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <h2 id="2-4-小结"><a href="#2-4-小结" class="headerlink" title="2.4   小结"></a>2.4   小结</h2>
       
     </div>
@@ -493,7 +503,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">85</span>
+              <span class="site-state-item-count">94</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -503,7 +513,7 @@
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">10</span>
+                <span class="site-state-item-count">11</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
@@ -565,7 +575,7 @@
 <div class="theme-info">
   主题 -
   <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
-    NexT.Muse
+    NexT.Mist
   </a>
 </div>
 

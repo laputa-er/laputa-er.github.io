@@ -1,0 +1,818 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="ECMAScript6入门," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1" />
+
+
+
+
+
+
+<meta name="description" content="4.1 字符的unicode表示法
+
+
+unicode表示法
+码点
+兼容性
+
+
+
+
+\uxxxx
+一个两个字节长度的16进制数字
+all
+
+
+\uxxxx\uxxxx
+两个两个字节长度的16进制数字
+all
+
+
+\u{xx...}
+码点为任意unicode编码
+es6+
+
+
+
+1234567891011&quot;\u&amp;#123;20BB7&amp;#125;&quot;// &quot;𠮷&quot;&quot;\u&amp;#123;41&amp;#125;\u&amp;">
+<meta property="og:type" content="article">
+<meta property="og:title" content="4 字符串的扩展(ECMAScript6入门)">
+<meta property="og:url" content="http://laputa-er.github.io/2016/08/30/es6_4 字符串的扩展/index.html">
+<meta property="og:site_name" content="Sean">
+<meta property="og:description" content="4.1 字符的unicode表示法
+
+
+unicode表示法
+码点
+兼容性
+
+
+
+
+\uxxxx
+一个两个字节长度的16进制数字
+all
+
+
+\uxxxx\uxxxx
+两个两个字节长度的16进制数字
+all
+
+
+\u{xx...}
+码点为任意unicode编码
+es6+
+
+
+
+1234567891011&quot;\u&amp;#123;20BB7&amp;#125;&quot;// &quot;𠮷&quot;&quot;\u&amp;#123;41&amp;#125;\u&amp;">
+<meta property="og:image" content="http://o6ul1xz4z.bkt.clouddn.com/img/1469070909258.png">
+<meta property="og:updated_time" content="2016-08-30T14:59:22.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="4 字符串的扩展(ECMAScript6入门)">
+<meta name="twitter:description" content="4.1 字符的unicode表示法
+
+
+unicode表示法
+码点
+兼容性
+
+
+
+
+\uxxxx
+一个两个字节长度的16进制数字
+all
+
+
+\uxxxx\uxxxx
+两个两个字节长度的16进制数字
+all
+
+
+\u{xx...}
+码点为任意unicode编码
+es6+
+
+
+
+1234567891011&quot;\u&amp;#123;20BB7&amp;#125;&quot;// &quot;𠮷&quot;&quot;\u&amp;#123;41&amp;#125;\u&amp;">
+<meta name="twitter:image" content="http://o6ul1xz4z.bkt.clouddn.com/img/1469070909258.png">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 0,
+      author: '博主'
+    }
+  };
+</script>
+
+
+
+
+  <link rel="canonical" href="http://laputa-er.github.io/2016/08/30/es6_4 字符串的扩展/"/>
+
+  <title> 4 字符串的扩展(ECMAScript6入门) | Sean </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">Sean</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">笔记分享</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                4 字符串的扩展(ECMAScript6入门)
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-08-30T22:01:44+08:00" content="2016-08-30">
+              2016-08-30
+            </time>
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/08/30/es6_4 字符串的扩展/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/08/30/es6_4 字符串的扩展/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="4-1-字符的unicode表示法"><a href="#4-1-字符的unicode表示法" class="headerlink" title="4.1 字符的unicode表示法"></a>4.1 字符的unicode表示法</h2><table>
+<thead>
+<tr>
+<th>unicode表示法</th>
+<th>码点</th>
+<th>兼容性</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>\uxxxx</code></td>
+<td>一个两个字节长度的16进制数字</td>
+<td>all</td>
+</tr>
+<tr>
+<td><code>\uxxxx\uxxxx</code></td>
+<td>两个两个字节长度的16进制数字</td>
+<td>all</td>
+</tr>
+<tr>
+<td><code>\u{xx...}</code></td>
+<td>码点为任意unicode编码</td>
+<td>es6+</td>
+</tr>
+</tbody>
+</table>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">"\u&#123;20BB7&#125;"</span></span><br><span class="line"><span class="comment">// "𠮷"</span></span><br><span class="line"></span><br><span class="line"><span class="string">"\u&#123;41&#125;\u&#123;42&#125;\u&#123;43&#125;"</span></span><br><span class="line"><span class="comment">// "ABC"</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> hello = <span class="number">123</span>;</span><br><span class="line">hell\u&#123;<span class="number">6</span>F&#125; <span class="comment">// 123</span></span><br><span class="line"></span><br><span class="line"><span class="string">'\u&#123;1F680&#125;'</span> === <span class="string">'\uD83D\uDE80'</span></span><br><span class="line"><span class="comment">// true</span></span><br></pre></td></tr></table></figure>
+<h2 id="4-2-codePointAt"><a href="#4-2-codePointAt" class="headerlink" title="4.2 codePointAt()"></a>4.2 codePointAt()</h2><blockquote>
+<p><strong>背景：</strong><code>javascript</code>使用<code>utf-16</code>（两个字节）存储字符，使用<code>charCodeAt</code>无法正确处理四字节字符</p>
+</blockquote>
+<p>类似<code>charCodeAt</code>，区别是<code>codePointAt</code>能够正确识别四字节字符（比如<code>吉祥</code>）。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> s = <span class="string">'吉a'</span>;</span><br><span class="line"></span><br><span class="line">s.codePointAt(<span class="number">0</span>) <span class="comment">// 134071(吉,0xD842 0xDFB7)</span></span><br><span class="line">s.codePointAt(<span class="number">1</span>) <span class="comment">// 57271（0xDFB7）</span></span><br><span class="line"></span><br><span class="line">s.charCodeAt(<span class="number">2</span>) <span class="comment">// 97</span></span><br><span class="line">s.codePointAt(<span class="number">2</span>) <span class="comment">// 97</span></span><br></pre></td></tr></table></figure>
+<p><strong>注意：</strong><code>codePointAt</code>仍会按照两个字节一个字符的方式计算字符串中字符数量，因此传递给<code>codePointAt</code>的参数和<code>charCodeAt</code>是一样的。<br><strong>扩展：</strong>使用<code>for-of</code>可以正确识别32位（4字节）UTF-16字符。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> s = <span class="string">'吉a'</span>;</span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">let</span> ch <span class="keyword">of</span> s) &#123;</span><br><span class="line">  <span class="built_in">console</span>.log(ch.codePointAt(<span class="number">0</span>).toString(<span class="number">16</span>));</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 20bb7</span></span><br><span class="line"><span class="comment">// 61</span></span><br></pre></td></tr></table></figure></p>
+<p><strong>技巧：</strong>使用<code>codePointAt</code>获取字符的<code>UTF-16</code>完整编码，并判断其大小，就可以识别4字节字符。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">is32Bit</span>(<span class="params">c</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> c.codePointAt(<span class="number">0</span>) &gt; <span class="number">0xFFFF</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">is32Bit(<span class="string">"𠮷"</span>) <span class="comment">// true</span></span><br><span class="line">is32Bit(<span class="string">"a"</span>) <span class="comment">// false</span></span><br></pre></td></tr></table></figure></p>
+<h2 id="4-3-String-fromCodePoint"><a href="#4-3-String-fromCodePoint" class="headerlink" title="4.3 String.fromCodePoint()"></a>4.3 String.fromCodePoint()</h2><blockquote>
+<p><strong>背景：</strong><code>String.fromCharCode</code>用于从码点返回对应的字符，但对32位的<code>UTF-16</code>字符进行转换会发生溢出。</p>
+</blockquote>
+<p><code>String.fromCodePoint</code>对应<code>codePointAt</code>，可以正确返回32为<code>UTF-16</code>字符对应的字符；当传递多个参数给<code>String.fromCodePoint</code>时，会返回每个参数（码点）对应的字符拼接成的字符串。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">String</span>.fromCodePoint(<span class="number">0x20BB7</span>)</span><br><span class="line"><span class="comment">// "𠮷"</span></span><br><span class="line"><span class="built_in">String</span>.fromCodePoint(<span class="number">0x78</span>, <span class="number">0x1f680</span>, <span class="number">0x79</span>) === <span class="string">'x\uD83D\uDE80y'</span></span><br><span class="line"><span class="comment">// true</span></span><br></pre></td></tr></table></figure>
+<h2 id="4-4-字符串的遍历器接口"><a href="#4-4-字符串的遍历器接口" class="headerlink" title="4.4 字符串的遍历器接口"></a>4.4 字符串的遍历器接口</h2><p><strong>说明：</strong>es6为字符串添加了便利器接口，因而可以通过<code>for-of</code>遍历字符串。<br><strong>特点：</strong>能够正确识别码点大于<code>\uffff</code>的字符<br><strong>技巧：</strong>利用<code>for-of</code>计算字符串正确的字符个数（传统的<code>for</code>和<code>for-in</code>无法做到）</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> text = <span class="built_in">String</span>.fromCodePoint(<span class="number">0x20BB7</span>);</span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">let</span> i <span class="keyword">of</span> text) &#123;</span><br><span class="line">  <span class="built_in">console</span>.log(i);</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// "吉"</span></span><br></pre></td></tr></table></figure>
+<h2 id="4-5-at"><a href="#4-5-at" class="headerlink" title="4.5 at()"></a>4.5 at()</h2><blockquote>
+<p><strong>说明：</strong>字符串的方法（提案状态？），能够识别码点大于<code>\uffff</code>的字符<br><strong>ES5：</strong>字符串的<code>charAt</code>方法用于返回字符串给定位置的字符，但不能正确识别码点大于<code>\uffff</code>的字符</p>
+</blockquote>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">'吉'</span>.at(<span class="number">0</span>) <span class="comment">// "吉"</span></span><br></pre></td></tr></table></figure>
+<h2 id="4-6-normalize"><a href="#4-6-normalize" class="headerlink" title="4.6 normalize()"></a>4.6 normalize()</h2><p><strong>说明：</strong>es6提供字符串实例的<code>normalize</code>方法，用来将字符的不同表示方法统一为同样的形式，称为<code>unicode正规化</code>。</p>
+<h2 id="4-7-includes-startsWith-endsWith"><a href="#4-7-includes-startsWith-endsWith" class="headerlink" title="4.7 includes(), startsWith(), endsWith()"></a>4.7 includes(), startsWith(), endsWith()</h2><table>
+<thead>
+<tr>
+<th>方法</th>
+<th>返回值</th>
+<th>第二个参数(可选)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>includes</td>
+<td>布尔值，表示是否找到了参数字符串</td>
+<td>开始搜索的位置</td>
+</tr>
+<tr>
+<td>startsWith</td>
+<td>布尔值，表示参数字符串是否在源字符串的头部</td>
+<td>开始搜索的位置</td>
+</tr>
+<tr>
+<td>endsWith</td>
+<td>布尔值，表示参数字符串是否在源字符串的尾部</td>
+<td>停止搜索的位置</td>
+</tr>
+</tbody>
+</table>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> s = <span class="string">'Hello world!'</span>;</span><br><span class="line"></span><br><span class="line">s.startsWith(<span class="string">'world'</span>, <span class="number">6</span>) <span class="comment">// true</span></span><br><span class="line">s.endsWith(<span class="string">'Hello'</span>, <span class="number">5</span>) <span class="comment">// true</span></span><br><span class="line">s.includes(<span class="string">'Hello'</span>, <span class="number">6</span>) <span class="comment">// false</span></span><br></pre></td></tr></table></figure>
+<h2 id="4-8-repeat"><a href="#4-8-repeat" class="headerlink" title="4.8 repeat()"></a>4.8 repeat()</h2><p><strong>用途：</strong>返回一个将源字符串重复n次的新字符串<br><strong>注意：</strong>如果参数不是整数，将会按照一定规则取整<br>非整数参数|转换后<br>-|-<br>小数|向下取整<br>负数或<code>Infinity</code>|报错<br>0~-1|0<br><code>NaN</code>|0<br>字符串|相应的数字</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">'x'</span>.repeat(<span class="number">3</span>) <span class="comment">// "xxx"</span></span><br><span class="line"><span class="string">'hello'</span>.repeat(<span class="number">2</span>) <span class="comment">// "hellohello"</span></span><br><span class="line"><span class="string">'na'</span>.repeat(<span class="number">0</span>) <span class="comment">// ""</span></span><br><span class="line"></span><br><span class="line"><span class="string">'na'</span>.repeat(<span class="number">-0.9</span>) <span class="comment">// ""</span></span><br><span class="line"><span class="string">'na'</span>.repeat(<span class="string">'na'</span>) <span class="comment">// ""</span></span><br><span class="line"><span class="string">'na'</span>.repeat(<span class="string">'3'</span>) <span class="comment">// "nanana"</span></span><br></pre></td></tr></table></figure>
+<p>##4.9 padStart(), padEnd()<br><strong>ES7：</strong>补全字符串的长度<br>函数|用途<br>-|-<br>padStart|用于头部补全<br>padEnd|用于尾部补全</p>
+<table>
+<thead>
+<tr>
+<th>参数</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>第一个参数</td>
+<td>指定字符串的最小长度</td>
+</tr>
+<tr>
+<td>第二个参数（可选）</td>
+<td>用来补全的字符串，默认为空格。如果用来补全的字符串与原字符串，两者的长度之和超过了指定的最小长度，则会截去超出位数的补全字符串</td>
+</tr>
+</tbody>
+</table>
+<p><strong>注意：</strong>如果原字符串的长度，等于或大于指定的最小长度，则返回原字符串。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 为数值补全指定位数</span></span><br><span class="line"><span class="string">'1'</span>.padStart(<span class="number">10</span>, <span class="string">'0'</span>) <span class="comment">// "0000000001"</span></span><br><span class="line"><span class="string">'12'</span>.padStart(<span class="number">10</span>, <span class="string">'0'</span>) <span class="comment">// "0000000012"</span></span><br><span class="line"><span class="string">'123456'</span>.padStart(<span class="number">10</span>, <span class="string">'0'</span>) <span class="comment">// "0000123456"</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 提示字符串格式</span></span><br><span class="line"><span class="string">'12'</span>.padStart(<span class="number">10</span>, <span class="string">'YYYY-MM-DD'</span>) <span class="comment">// "YYYY-MM-12"</span></span><br><span class="line"><span class="string">'09-12'</span>.padStart(<span class="number">10</span>, <span class="string">'YYYY-MM-DD'</span>) <span class="comment">// "YYYY-09-12"</span></span><br></pre></td></tr></table></figure>
+<p>##4.10 模版字符串<br><strong>语法：</strong>使用反引号括起来</p>
+<ul>
+<li>可以当作普通字符串来使用，也可以用来定义多行字符串</li>
+<li>可以在字符串中<code>嵌入变量</code></li>
+<li>如果模版字符串中使用反引号，则前面要用<code>反斜杠转义</code></li>
+<li>所有的<code>空格和缩进</code>都会被保留在输出之中，不需要的话可以使用<code>trim</code>方法消除</li>
+<li>模板字符串中嵌入变量，需要将变量名写在<code>${}</code>之中</li>
+</ul>
+<h3 id="4-10-1-嵌入JS表达式"><a href="#4-10-1-嵌入JS表达式" class="headerlink" title="4.10.1 嵌入JS表达式"></a>4.10.1 嵌入<code>JS表达式</code></h3><p>大括号内部可以放入任意的JavaScript表达式，可以</p>
+<ul>
+<li>进行运算</li>
+<li>引用对象属性</li>
+<li>调用函数</li>
+</ul>
+<p><strong>注意：</strong></p>
+<ul>
+<li>如果<code>${}</code>中的值不是字符串，将按照一般的规则转为字符串</li>
+<li>如果<code>${}</code>内部是一个字符串，将会原样输出</li>
+<li>如果模板字符串中的变量没有声明，将报错</li>
+<li>通过<code>${}</code>，模板字符串甚至还能嵌套</li>
+</ul>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">// 定义返回模版字符串的函数</span><br><span class="line">const tmpl = addrs =&gt; `</span><br><span class="line">  &lt;table&gt;</span><br><span class="line">  $&#123;addrs.map(addr =&gt; `</span><br><span class="line">    &lt;tr&gt;&lt;td&gt;$&#123;addr.first&#125;&lt;/td&gt;&lt;/tr&gt;</span><br><span class="line">    &lt;tr&gt;&lt;td&gt;$&#123;addr.last&#125;&lt;/td&gt;&lt;/tr&gt;</span><br><span class="line">  `).join('')&#125;</span><br><span class="line">  &lt;/table&gt;</span><br><span class="line">`;</span><br><span class="line"></span><br><span class="line">// 定义填充模版字符串的数据</span><br><span class="line">const data = [</span><br><span class="line">    &#123; first: '&lt;Jane&gt;', last: 'Bond' &#125;,</span><br><span class="line">    &#123; first: 'Lars', last: '&lt;Croft&gt;' &#125;,</span><br><span class="line">];</span><br><span class="line"></span><br><span class="line">console.log(tmpl(data));</span><br><span class="line">// &lt;table&gt;</span><br><span class="line">//</span><br><span class="line">//   &lt;tr&gt;&lt;td&gt;&lt;Jane&gt;&lt;/td&gt;&lt;/tr&gt;</span><br><span class="line">//   &lt;tr&gt;&lt;td&gt;Bond&lt;/td&gt;&lt;/tr&gt;</span><br><span class="line">//</span><br><span class="line">//   &lt;tr&gt;&lt;td&gt;Lars&lt;/td&gt;&lt;/tr&gt;</span><br><span class="line">//   &lt;tr&gt;&lt;td&gt;&lt;Croft&gt;&lt;/td&gt;&lt;/tr&gt;</span><br><span class="line">//</span><br><span class="line">// &lt;/table&gt;</span><br></pre></td></tr></table></figure>
+<p>##4.11 实例：模版编译</p>
+<p><em>l04_template.vue</em><br><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br></pre></td><td class="code"><pre><span class="line">&lt;script&gt;</span><br><span class="line">	export default &#123;</span><br><span class="line">		data () &#123;</span><br><span class="line">			return &#123;</span><br><span class="line">				template: '',</span><br><span class="line">				templateCompiled: '',</span><br><span class="line">				templateOutput: ''</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;,</span><br><span class="line">		methods: &#123;</span><br><span class="line">			/**</span><br><span class="line">			* 模版编译函数</span><br><span class="line">			* @param &#123;string&#125; template 模版字符串</span><br><span class="line">			* @return &#123;string&#125; 可执行的js代码</span><br><span class="line">			*/</span><br><span class="line">			compile: function (template)&#123;</span><br><span class="line">			  var evalExpr = /&lt;%=(.+?)%&gt;/g;</span><br><span class="line">			  var expr = /&lt;%([\s\S]+?)%&gt;/g;</span><br><span class="line"></span><br><span class="line">			  template = template</span><br><span class="line">			    .replace(evalExpr, '`); \n  echo( $1 ); \n  echo(`')</span><br><span class="line">			    .replace(expr, '`); \n $1 \n  echo(`');</span><br><span class="line"></span><br><span class="line">			  template = 'echo(`' + template + '`);';</span><br><span class="line"></span><br><span class="line">			  var script =</span><br><span class="line">			  `(function parse(data)&#123;</span><br><span class="line">			    var output = "";</span><br><span class="line"></span><br><span class="line">			    function echo(html)&#123;</span><br><span class="line">			      output += html;</span><br><span class="line">			    &#125;</span><br><span class="line"></span><br><span class="line">			    $&#123; template &#125;</span><br><span class="line"></span><br><span class="line">			    return output;</span><br><span class="line">			  &#125;)`;</span><br><span class="line"></span><br><span class="line">			  return script;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;,</span><br><span class="line">		ready: function () &#123;</span><br><span class="line">			// 定义原始模版</span><br><span class="line">			this.template = `</span><br><span class="line">			&lt;ul&gt;</span><br><span class="line">			  &lt;% for(var i=0; i &lt; data.supplies.length; i++) &#123; %&gt;</span><br><span class="line">			    &lt;li&gt;&lt;%= data.supplies[i] %&gt;&lt;/li&gt;</span><br><span class="line">			  &lt;% &#125; %&gt;</span><br><span class="line">			&lt;/ul&gt;</span><br><span class="line">			`;</span><br><span class="line">			this.templateCompiled = this.compile(this.template);</span><br><span class="line"></span><br><span class="line">			// eval 中的代码会定义一个函数，并返回这个函数的引用</span><br><span class="line">			var parse = eval(this.templateCompiled);</span><br><span class="line"></span><br><span class="line">			// 调用函数完成拼接</span><br><span class="line">			this.templateOutput = parse(&#123; supplies: [ "broom", "mop", "cleaner" ] &#125;);</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&lt;/script&gt;</span><br><span class="line"></span><br><span class="line">&lt;template&gt;</span><br><span class="line">	&lt;h3&gt;模版&lt;/h3&gt;</span><br><span class="line">	&lt;code&gt;&#123;&#123;template&#125;&#125;&lt;/code&gt;</span><br><span class="line">	&lt;h3&gt;编译后的模版&lt;/h3&gt;</span><br><span class="line">	&lt;code&gt;&#123;&#123;templateCompiled&#125;&#125;&lt;/code&gt;</span><br><span class="line">	&lt;h3&gt;灌入数据的模版&lt;/h3&gt;</span><br><span class="line">	&lt;code&gt;&#123;&#123;templateOutput&#125;&#125;&lt;/code&gt;</span><br><span class="line">&lt;/template&gt;</span><br></pre></td></tr></table></figure></p>
+<hr>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># http://localhost:8080/#!/l04</span></span><br><span class="line">$ npm start</span><br></pre></td></tr></table></figure>
+<p><img src="http://o6ul1xz4z.bkt.clouddn.com/img/1469070909258.png" alt="Alt text"></p>
+<p>##4.12 标签模版<br><strong>说明：</strong>一种针对模版字符串的特殊函数调用。<br><strong>语法：</strong><br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">函数名<span class="string">`模<span class="subst">$&#123;表达式1&#125;</span>版字<span class="subst">$&#123;表达式2&#125;</span>串`</span>;</span><br><span class="line"><span class="comment">// 等价于</span></span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span><br><span class="line">* @param &#123;array like&#125; 第一个参数</span><br><span class="line">* @param &#123;...string&#125; 不定参数</span><br><span class="line">*/</span></span><br><span class="line">函数名([<span class="string">'模'</span>,<span class="string">'版'</span>,<span class="string">'字'</span>,<span class="string">'符'</span>,<span class="string">'串'</span>], 表达式<span class="number">1</span>返回值, 表达式<span class="number">2</span>返回值);</span><br></pre></td></tr></table></figure></p>
+<p><strong>参数：</strong>调用函数传入的第一个参数有一个<code>row</code>属性，是一个和第一个参数本身内容相同的数组，不过元素中的所有<code>\</code>都被转义了，从而可以获得字符串的原始版本。<br><strong>用途：</strong>通过实现相应的处理模版字符串的函数，<code>标签模版</code>常用于</p>
+<ul>
+<li>处理<code>HTML</code>字符串过滤</li>
+<li>多语言转换（国际化处理）</li>
+<li>为模版增加条件判断和循环处理等模版基础能力</li>
+<li>嵌入其它语言</li>
+</ul>
+<p><em>l04_taggedTemplate.vue</em><br><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br></pre></td><td class="code"><pre><span class="line">&lt;script&gt;</span><br><span class="line">	export default &#123;</span><br><span class="line">		data () &#123;</span><br><span class="line">			return &#123;</span><br><span class="line">				template: "Hello $&#123; a + b &#125; world $&#123; a * b&#125;",</span><br><span class="line">				templateOutput: ''</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;,</span><br><span class="line">		methods: &#123;</span><br><span class="line">			/**</span><br><span class="line">			 * 将各个参数按照原来的位置拼合回去(写法1)</span><br><span class="line">			 * @param  &#123;array&#125; literals 被插入的表达式隔开的字符串组成的数组</span><br><span class="line">			 * @return &#123;string&#125;     各个参数按照原来的位置拼合的字符串     </span><br><span class="line">			 */</span><br><span class="line">			passthru1: function (literals) &#123;</span><br><span class="line">				var result = ''</span><br><span class="line">				var i = 0</span><br><span class="line">				while (i &lt; literals.length) &#123;</span><br><span class="line">					// 拼接单纯的字符串</span><br><span class="line">					result += literals[i++]</span><br><span class="line"></span><br><span class="line">					// 拼接插入的表达式运算结果</span><br><span class="line">					if (i &lt; arguments.length) &#123;</span><br><span class="line">						result += arguments[i]</span><br><span class="line">					&#125;</span><br><span class="line">				&#125;</span><br><span class="line">				return result;</span><br><span class="line">			&#125;,</span><br><span class="line">			/**</span><br><span class="line">			 * 将各个参数按照原来的位置拼合回去(写法2)</span><br><span class="line">			 * @param  &#123;array&#125;    literals 被插入的表达式隔开的字符串组成的数组</span><br><span class="line">			 * @param  &#123;...array&#125; values   插入的所有表达式结果（从左到右摘出来）</span><br><span class="line">			 * @return &#123;string&#125;     各个参数按照原来的位置拼合的字符串 </span><br><span class="line">			 */</span><br><span class="line">			passthru2: function (literals, ...values) &#123;</span><br><span class="line">				var output = ''</span><br><span class="line">				for (var index = 0; index &lt; values.length; index++) &#123;</span><br><span class="line">					output +=literals[index] + values[index]</span><br><span class="line">				&#125;</span><br><span class="line">				// 被插入的表达式隔开的字符串组成的数组 比 插入的所有表达式结果长度大1</span><br><span class="line">				output += literals[index]</span><br><span class="line"></span><br><span class="line">				return output</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;,</span><br><span class="line">		ready: function () &#123;</span><br><span class="line">			let a = 2</span><br><span class="line">			let b = 4</span><br><span class="line">			this.templateOutput = this.passthru2`Hello $&#123; a + b &#125; world $&#123; a * b&#125;`</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&lt;/script&gt;</span><br><span class="line"></span><br><span class="line">&lt;template&gt;</span><br><span class="line">	&lt;p&gt;运行&lt;/p&gt;</span><br><span class="line">	&lt;code&gt;passthru`&#123;&#123;template&#125;&#125;`&lt;/code&gt;</span><br><span class="line">	&lt;p&gt;输出&lt;/p&gt;</span><br><span class="line">	&lt;code&gt;&#123;&#123;templateOutput&#125;&#125;&lt;/code&gt;</span><br><span class="line">&lt;/template&gt;</span><br></pre></td></tr></table></figure></p>
+<p>##4.13 String.raw()<br><strong>用途：</strong>两种使用方式</p>
+<ul>
+<li>作为模版标签使用</li>
+<li>作为普通函数调用<figure class="highlight vbscript-html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br></pre></td><td class="code"><pre><span class="line"><span class="xml"><span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="javascript"></span><br><span class="line">	<span class="keyword">export</span> <span class="keyword">default</span> &#123;</span><br><span class="line">		data () &#123;</span><br><span class="line">			<span class="keyword">return</span> &#123;</span><br><span class="line">				hiHuanhang: <span class="string">''</span>,</span><br><span class="line">				hiUtf16: <span class="string">''</span>,</span><br><span class="line">				test1: <span class="string">''</span>,</span><br><span class="line">				test2: <span class="string">''</span></span><br><span class="line">			&#125;</span><br><span class="line">		&#125;,</span><br><span class="line">		methods: &#123;</span><br><span class="line">			<span class="comment">/**</span><br><span class="line">			 * 自己视线一个 String.raw</span><br><span class="line">			 * @param  &#123;array&#125;    strings 被插入的表达式隔开的字符串组成的类数组,需要有raw属性</span><br><span class="line">			 * @param  &#123;...string&#125; value   插入的表达式返回值</span><br><span class="line">			 * @return &#123;string&#125;            转义后的字符串</span><br><span class="line">			 */</span></span><br><span class="line">			myRaw: <span class="function"><span class="keyword">function</span> (<span class="params">strings, ...value</span>) </span>&#123;</span><br><span class="line">				<span class="keyword">var</span> output = <span class="string">''</span>;</span><br><span class="line">				<span class="keyword">for</span> (<span class="keyword">var</span> index = <span class="number">0</span>; index &lt; values.length; index++) &#123;</span><br><span class="line">					output += strings.raw[index] + values[index];</span><br><span class="line">				&#125;</span><br><span class="line">				output += strings.raw[index];</span><br><span class="line">				<span class="keyword">return</span> output;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;,</span><br><span class="line">		ready: <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line"></span><br><span class="line">			<span class="comment">/* 用法1:当作模版标签使用 */</span></span><br><span class="line">			<span class="keyword">this</span>.hiHuanhang = <span class="built_in">String</span>.raw<span class="string">`Hi\n<span class="subst">$&#123;2+3&#125;</span>!`</span>;</span><br><span class="line">			<span class="comment">// "Hi\\n5!"</span></span><br><span class="line"></span><br><span class="line">			<span class="keyword">this</span>.hiUtf16 = <span class="built_in">String</span>.raw<span class="string">`Hi\u000A!`</span>;</span><br><span class="line">			<span class="comment">// 'Hi\\u000A!'</span></span><br><span class="line">			</span><br><span class="line">			<span class="comment">/* 用法2:当作普通函数调用 */</span></span><br><span class="line">			<span class="keyword">this</span>.test1 = <span class="built_in">String</span>.raw(&#123; raw: <span class="string">'test'</span> &#125;, <span class="number">0</span>, <span class="number">1</span>, <span class="number">2</span>);</span><br><span class="line">			<span class="comment">// 't0e1s2t'</span></span><br><span class="line"></span><br><span class="line">			<span class="comment">// 等同于</span></span><br><span class="line">			<span class="keyword">this</span>.test2 = <span class="built_in">String</span>.raw(&#123; raw: [<span class="string">'t'</span>,<span class="string">'e'</span>,<span class="string">'s'</span>,<span class="string">'t'</span>] &#125;, <span class="number">0</span>, <span class="number">1</span>, <span class="number">2</span>);</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">template</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">p</span>&gt;</span>转换换行符<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">p</span>&gt;</span>&#123;&#123;hiHuanhang&#125;&#125;<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">	</span><br><span class="line">	<span class="tag">&lt;<span class="name">p</span>&gt;</span>转换utf-16表示方式<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">p</span>&gt;</span>&#123;&#123;hiUtf16&#125;&#125;<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line"></span><br><span class="line">	<span class="tag">&lt;<span class="name">p</span>&gt;</span>当做普通函数调用<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">p</span>&gt;</span>&#123;&#123;test2&#125;&#125;<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">template</span>&gt;</span></span></span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/ECMAScript6入门/" rel="tag">#ECMAScript6入门</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/08/30/es6_5 正则的扩展/" rel="next" title="5 正则的扩展(ECMAScript6入门)">
+                <i class="fa fa-chevron-left"></i> 5 正则的扩展(ECMAScript6入门)
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/08/30/es6_3 变量的解构赋值/" rel="prev" title="3 变量的解构赋值(ECMAScript6入门)">
+                3 变量的解构赋值(ECMAScript6入门) <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2016/08/30/es6_4 字符串的扩展/"
+           data-title="4 字符串的扩展(ECMAScript6入门)" data-url="http://laputa-er.github.io/2016/08/30/es6_4 字符串的扩展/">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.gif"
+               alt="Sean" />
+          <p class="site-author-name" itemprop="name">Sean</p>
+          <p class="site-description motion-element" itemprop="description">整理了一批过去一段时间ios相关的笔记，其它的笔记也整理下？源码分享出来？再说吧...反正也只有自己会看吧...</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">94</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">11</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#4-1-字符的unicode表示法"><span class="nav-number">1.</span> <span class="nav-text">4.1 字符的unicode表示法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-2-codePointAt"><span class="nav-number">2.</span> <span class="nav-text">4.2 codePointAt()</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-3-String-fromCodePoint"><span class="nav-number">3.</span> <span class="nav-text">4.3 String.fromCodePoint()</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-4-字符串的遍历器接口"><span class="nav-number">4.</span> <span class="nav-text">4.4 字符串的遍历器接口</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-5-at"><span class="nav-number">5.</span> <span class="nav-text">4.5 at()</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-6-normalize"><span class="nav-number">6.</span> <span class="nav-text">4.6 normalize()</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-7-includes-startsWith-endsWith"><span class="nav-number">7.</span> <span class="nav-text">4.7 includes(), startsWith(), endsWith()</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-8-repeat"><span class="nav-number">8.</span> <span class="nav-text">4.8 repeat()</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#4-10-1-嵌入JS表达式"><span class="nav-number">8.1.</span> <span class="nav-text">4.10.1 嵌入JS表达式</span></a></li></ol></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Sean</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"lapuda-er"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+    <script src="/vendors/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
+    <script src="/js/src/hook-duoshuo.js"></script>
+  
+
+
+
+
+
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

@@ -5,7 +5,7 @@
   
 
 
-<html class="theme-next muse use-motion">
+<html class="theme-next mist use-motion">
 <head>
   <meta charset="UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
@@ -112,7 +112,7 @@ c语言编译器不会检测格式串中转换说明的数据是否和输出项�
 <script type="text/javascript" id="hexo.configuration">
   var NexT = window.NexT || {};
   var CONFIG = {
-    scheme: 'Muse',
+    scheme: 'Mist',
     sidebar: {"position":"left","display":"post"},
     fancybox: true,
     motion: true,
@@ -187,6 +187,16 @@ c语言编译器不会检测格式串中转换说明的数据是否和输出项�
               <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
             
             首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
           </a>
         </li>
       
@@ -357,8 +367,8 @@ c语言编译器不会检测格式串中转换说明的数据是否和输出项�
 <blockquote>
 <p><strong>注意：</strong>以上只就部分转换说明符进行了说明。</p>
 </blockquote>
-<h3 id="3-1-2-程序：用printf函数格式化数"><a href="#3-1-2-程序：用printf函数格式化数" class="headerlink" title="3.1.2    程序：用printf函数格式化数"></a>3.1.2    程序：用printf函数格式化数</h3><figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="comment">/**</span><br><span class="line"> * Prints int and float values in various formats</span><br><span class="line"> */</span></span><br><span class="line"></span><br><span class="line"><span class="meta"># <span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"> <span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line"> 	<span class="keyword">int</span> i;</span><br><span class="line"> 	<span class="keyword">float</span> x;</span><br><span class="line"></span><br><span class="line"> 	i = <span class="number">40</span>;</span><br><span class="line"> 	x = <span class="number">839.21</span>;</span><br><span class="line"></span><br><span class="line"> 	<span class="built_in">printf</span>(<span class="string">"|%d|%5d|%-5d|%5.3d|\n"</span>, i, i, i, i);</span><br><span class="line"> 	<span class="built_in">printf</span>(<span class="string">"|%10.3f|%10.3e|%-10g|\n"</span>, x, x, x);</span><br><span class="line"></span><br><span class="line"> 	return <span class="number">0</span>;</span><br><span class="line"> &#125;</span><br></pre></td></tr></table></figure>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ ./tprintf </span><br><span class="line"> |40|   40|40   |  040|</span><br><span class="line"> |   839.210| 8.392e+02|839.21    |</span><br></pre></td></tr></table></figure>
+<h3 id="3-1-2-程序：用printf函数格式化数"><a href="#3-1-2-程序：用printf函数格式化数" class="headerlink" title="3.1.2    程序：用printf函数格式化数"></a>3.1.2    程序：用printf函数格式化数</h3><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span><br><span class="line"> * Prints int and float values in various formats</span><br><span class="line"> */</span></span><br><span class="line"></span><br><span class="line"><span class="meta"># <span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"> <span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line"> 	<span class="keyword">int</span> i;</span><br><span class="line"> 	<span class="keyword">float</span> x;</span><br><span class="line"></span><br><span class="line"> 	i = <span class="number">40</span>;</span><br><span class="line"> 	x = <span class="number">839.21</span>;</span><br><span class="line"></span><br><span class="line"> 	<span class="built_in">printf</span>(<span class="string">"|%d|%5d|%-5d|%5.3d|\n"</span>, i, i, i, i);</span><br><span class="line"> 	<span class="built_in">printf</span>(<span class="string">"|%10.3f|%10.3e|%-10g|\n"</span>, x, x, x);</span><br><span class="line"></span><br><span class="line"> 	return <span class="number">0</span>;</span><br><span class="line"> &#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ ./tprintf </span><br><span class="line"> |40|   40|40   |  040|</span><br><span class="line"> |   839.210| 8.392e+02|839.21    |</span><br></pre></td></tr></table></figure>
 <h3 id="3-1-3-转义序列"><a href="#3-1-3-转义序列" class="headerlink" title="3.1.3    转义序列"></a>3.1.3    转义序列</h3><blockquote>
 <p><strong>简介：</strong>通过使用<code>\</code>组合其它字符实现对字符的转义，转义字符使字符串包含一些特殊字符而又不会使编译器引发问题，包括非打印的控制字符和对编译器有特殊含义的字符（比如<code>&quot;</code>）。</p>
 </blockquote>
@@ -389,7 +399,7 @@ c语言编译器不会检测格式串中转换说明的数据是否和输出项�
 </tr>
 </tbody>
 </table>
-<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="built_in">printf</span>(<span class="string">"Item\tUnit\tPurpose\n\tPrice\tDate\n"</span>)</span><br></pre></td></tr></table></figure>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">printf</span>(<span class="string">"Item\tUnit\tPurpose\n\tPrice\tDate\n"</span>)</span><br></pre></td></tr></table></figure>
 <h2 id="3-2-scanf函数"><a href="#3-2-scanf函数" class="headerlink" title="3.2    scanf函数"></a>3.2    scanf函数</h2><blockquote>
 <p><strong>语法：</strong><code>scanf(格式串, 表达式1, 表达式2, ...)</code><br><strong>注意：</strong></p>
 <ul>
@@ -415,8 +425,8 @@ c语言编译器不会检测格式串中转换说明的数据是否和输出项�
 <li>在printf函数调用时在变量前面放置<code>&amp;</code></li>
 <li>scanf中格式串中出现不必要的<code>\n</code>，导致交互程序会一直匹配用户输入的空白符</li>
 </ul>
-<h3 id="3-2-4-程序：计算持有的股票的价值"><a href="#3-2-4-程序：计算持有的股票的价值" class="headerlink" title="3.2.4    程序：计算持有的股票的价值"></a>3.2.4    程序：计算持有的股票的价值</h3><figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="comment">/**</span><br><span class="line"> * Computes the value of stock holdings</span><br><span class="line"> */</span></span><br><span class="line"></span><br><span class="line"><span class="meta"># <span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"> <span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line"> 	<span class="keyword">int</span> price, shares;</span><br><span class="line"> 	<span class="keyword">float</span> num, denom, value;</span><br><span class="line"></span><br><span class="line"> 	<span class="built_in">printf</span>(<span class="string">"Enter share price (must inclide a fraction):\n"</span>);</span><br><span class="line"> 	<span class="built_in">scanf</span>(<span class="string">"%d%f/%f"</span>, &amp;price, &amp;num, &amp;denom);</span><br><span class="line"></span><br><span class="line"> 	<span class="built_in">printf</span>(<span class="string">"Enter number of shares:"</span>);</span><br><span class="line"> 	<span class="built_in">scanf</span>(<span class="string">"%d"</span>, &amp;shares);</span><br><span class="line"></span><br><span class="line"> 	value = (price + num / denom) * shares;</span><br><span class="line"></span><br><span class="line"> 	<span class="built_in">printf</span>(<span class="string">"Value of holdings:$%.2f\n"</span>, value);</span><br><span class="line"></span><br><span class="line"> &#125;</span><br></pre></td></tr></table></figure>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ ./stocks </span><br><span class="line"> Enter share price (must inclide a fraction):</span><br><span class="line"> 64 18/40</span><br><span class="line"> Enter number of shares:100</span><br><span class="line"> Value of holdings:<span class="variable">$6445</span>.00</span><br></pre></td></tr></table></figure>
+<h3 id="3-2-4-程序：计算持有的股票的价值"><a href="#3-2-4-程序：计算持有的股票的价值" class="headerlink" title="3.2.4    程序：计算持有的股票的价值"></a>3.2.4    程序：计算持有的股票的价值</h3><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span><br><span class="line"> * Computes the value of stock holdings</span><br><span class="line"> */</span></span><br><span class="line"></span><br><span class="line"><span class="meta"># <span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"> <span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line"> 	<span class="keyword">int</span> price, shares;</span><br><span class="line"> 	<span class="keyword">float</span> num, denom, value;</span><br><span class="line"></span><br><span class="line"> 	<span class="built_in">printf</span>(<span class="string">"Enter share price (must inclide a fraction):\n"</span>);</span><br><span class="line"> 	<span class="built_in">scanf</span>(<span class="string">"%d%f/%f"</span>, &amp;price, &amp;num, &amp;denom);</span><br><span class="line"></span><br><span class="line"> 	<span class="built_in">printf</span>(<span class="string">"Enter number of shares:"</span>);</span><br><span class="line"> 	<span class="built_in">scanf</span>(<span class="string">"%d"</span>, &amp;shares);</span><br><span class="line"></span><br><span class="line"> 	value = (price + num / denom) * shares;</span><br><span class="line"></span><br><span class="line"> 	<span class="built_in">printf</span>(<span class="string">"Value of holdings:$%.2f\n"</span>, value);</span><br><span class="line"></span><br><span class="line"> &#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">$ ./stocks </span><br><span class="line"> Enter share price (must inclide a fraction):</span><br><span class="line"> 64 18/40</span><br><span class="line"> Enter number of shares:100</span><br><span class="line"> Value of holdings:<span class="variable">$6445</span>.00</span><br></pre></td></tr></table></figure>
 
       
     </div>
@@ -530,7 +540,7 @@ c语言编译器不会检测格式串中转换说明的数据是否和输出项�
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">85</span>
+              <span class="site-state-item-count">94</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -540,7 +550,7 @@ c语言编译器不会检测格式串中转换说明的数据是否和输出项�
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">10</span>
+                <span class="site-state-item-count">11</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
@@ -602,7 +612,7 @@ c语言编译器不会检测格式串中转换说明的数据是否和输出项�
 <div class="theme-info">
   主题 -
   <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
-    NexT.Muse
+    NexT.Mist
   </a>
 </div>
 

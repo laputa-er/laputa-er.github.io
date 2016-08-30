@@ -5,7 +5,7 @@
   
 
 
-<html class="theme-next muse use-motion">
+<html class="theme-next mist use-motion">
 <head>
   <meta charset="UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
@@ -133,7 +133,7 @@
 <script type="text/javascript" id="hexo.configuration">
   var NexT = window.NexT || {};
   var CONFIG = {
-    scheme: 'Muse',
+    scheme: 'Mist',
     sidebar: {"position":"left","display":"post"},
     fancybox: true,
     motion: true,
@@ -208,6 +208,16 @@
               <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
             
             首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
           </a>
         </li>
       
@@ -353,9 +363,9 @@
 </tr>
 </tbody>
 </table>
-<figure class="highlight swift"><table><tr><td class="code"><pre><span class="line"><span class="comment">//具备读写能力的附属脚本</span></span><br><span class="line"><span class="keyword">subscript</span>(index:<span class="type">Int</span>)-&gt;<span class="type">Int</span>&#123;</span><br><span class="line">    <span class="keyword">get</span>&#123;</span><br><span class="line">        <span class="comment">//返回与入參匹配的Int类型的值</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">set</span>(newValue)&#123;</span><br><span class="line">        <span class="comment">//执行赋值操作</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//只读的附属脚本（简写形式）</span></span><br><span class="line"><span class="keyword">subscript</span>(index:<span class="type">Int</span>)-&gt;<span class="type">Int</span>&#123;</span><br><span class="line">    <span class="comment">//返回与入參匹配的Int类型的值</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//具备读写能力的附属脚本</span></span><br><span class="line"><span class="keyword">subscript</span>(index:<span class="type">Int</span>)-&gt;<span class="type">Int</span>&#123;</span><br><span class="line">    <span class="keyword">get</span>&#123;</span><br><span class="line">        <span class="comment">//返回与入參匹配的Int类型的值</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">set</span>(newValue)&#123;</span><br><span class="line">        <span class="comment">//执行赋值操作</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//只读的附属脚本（简写形式）</span></span><br><span class="line"><span class="keyword">subscript</span>(index:<span class="type">Int</span>)-&gt;<span class="type">Int</span>&#123;</span><br><span class="line">    <span class="comment">//返回与入參匹配的Int类型的值</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p><strong>案例</strong>：展示传入整数的n倍数（结构体中使用只读下标脚本）</p>
-<figure class="highlight swift"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">TimesTable</span> </span>&#123;</span><br><span class="line">    <span class="keyword">let</span> multiplier:<span class="type">Int</span></span><br><span class="line">    <span class="keyword">subscript</span>(index:<span class="type">Int</span>)-&gt;<span class="type">Int</span>&#123;</span><br><span class="line">        <span class="keyword">return</span> multiplier * index</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">let</span> threeTimesTable = <span class="type">TimesTable</span>(multiplier: <span class="number">3</span>)</span><br><span class="line"><span class="built_in">println</span>(<span class="string">"3的6倍是\(threeTimesTable[6])"</span>)</span><br></pre></td></tr></table></figure>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">TimesTable</span> </span>&#123;</span><br><span class="line">    <span class="keyword">let</span> multiplier:<span class="type">Int</span></span><br><span class="line">    <span class="keyword">subscript</span>(index:<span class="type">Int</span>)-&gt;<span class="type">Int</span>&#123;</span><br><span class="line">        <span class="keyword">return</span> multiplier * index</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">let</span> threeTimesTable = <span class="type">TimesTable</span>(multiplier: <span class="number">3</span>)</span><br><span class="line"><span class="built_in">println</span>(<span class="string">"3的6倍是\(threeTimesTable[6])"</span>)</span><br></pre></td></tr></table></figure>
 <h2 id="12-2-用法（以字典为例）"><a href="#12-2-用法（以字典为例）" class="headerlink" title="12.2    用法（以字典为例）"></a>12.2    用法（以字典为例）</h2><blockquote>
 <p><strong>说明：</strong>字典本身是由结构体实现的，通过下标脚本来对其实例来进行存取操作。<br><strong>特点：</strong></p>
 <ol>
@@ -364,7 +374,7 @@
 <li>从字典实例中删除某个索引下的值也需要给这个索引赋值为<code>nil</code></li>
 </ol>
 </blockquote>
-<figure class="highlight swift"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> numberOfLogs = [<span class="string">"spider"</span>:<span class="number">8</span>, <span class="string">"ant"</span>:<span class="number">6</span>, <span class="string">"cat"</span>:<span class="number">4</span>]</span><br><span class="line">numberOfLogs[<span class="string">"birds"</span>] = <span class="number">2</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> numberOfLogs = [<span class="string">"spider"</span>:<span class="number">8</span>, <span class="string">"ant"</span>:<span class="number">6</span>, <span class="string">"cat"</span>:<span class="number">4</span>]</span><br><span class="line">numberOfLogs[<span class="string">"birds"</span>] = <span class="number">2</span></span><br></pre></td></tr></table></figure>
 <h2 id="12-3-高级"><a href="#12-3-高级" class="headerlink" title="12.3    高级"></a>12.3    高级</h2><blockquote>
 <p><strong>说明：</strong>下面详细说明下标脚本的一些特点</p>
 <ul>
@@ -378,7 +388,7 @@
 <li><em>参数：</em>不能使用输入输出参数，也不能给参数设置默认值</li>
 </ul>
 </blockquote>
-<figure class="highlight swift"><table><tr><td class="code"><pre><span class="line"><span class="comment">//矩阵</span></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">Matrix</span> </span>&#123;</span><br><span class="line">    <span class="keyword">let</span> rows:<span class="type">Int</span>, columns:<span class="type">Int</span></span><br><span class="line">    <span class="keyword">var</span> grid:[<span class="type">Double</span>]</span><br><span class="line">    </span><br><span class="line">    <span class="comment">//构造方法：包含两个入參</span></span><br><span class="line">    <span class="keyword">init</span>(rows:<span class="type">Int</span>, columns:<span class="type">Int</span>)&#123;</span><br><span class="line">        <span class="keyword">self</span>.rows = rows</span><br><span class="line">        <span class="keyword">self</span>.columns = columns</span><br><span class="line">        grid = <span class="type">Array</span>(<span class="built_in">count</span>:rows * columns, repeatedValue:<span class="number">0.0</span>)</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">//确保入參的row货column不会造成数组越界</span></span><br><span class="line">    <span class="function"><span class="keyword">func</span> <span class="title">indexIsVaildForRow</span><span class="params">(row:Int, column:Int)</span></span> -&gt; <span class="type">Bool</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> row &gt;= <span class="number">0</span> &amp;&amp; row &lt; rows &amp;&amp; column &gt;= <span class="number">0</span> &amp;&amp;  column &lt; columns</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">//下标脚本（两个参数）</span></span><br><span class="line">    <span class="keyword">subscript</span>(row:<span class="type">Int</span>, column:<span class="type">Int</span>)-&gt;<span class="type">Double</span>&#123;</span><br><span class="line">        <span class="keyword">get</span>&#123;</span><br><span class="line">            <span class="built_in">assert</span>(indexIsVaildForRow(row, column:column), <span class="string">"Index out of range"</span>)</span><br><span class="line">            <span class="keyword">return</span> grid[(row * columns) + column]</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">set</span>&#123;</span><br><span class="line">            <span class="built_in">assert</span>(indexIsVaildForRow(row, column: column), <span class="string">"Index out of range"</span>)</span><br><span class="line">            grid[(row * columns) + column] = newValue</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//创建结构体实例</span></span><br><span class="line"><span class="keyword">var</span> matrix = <span class="type">Matrix</span>(rows: <span class="number">2</span>, columns: <span class="number">2</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment">//利用下标脚本赋值</span></span><br><span class="line">matrix[<span class="number">0</span>, <span class="number">1</span>] = <span class="number">1.5</span></span><br><span class="line">matrix[<span class="number">1</span>, <span class="number">0</span>] = <span class="number">3.2</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//矩阵</span></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">Matrix</span> </span>&#123;</span><br><span class="line">    <span class="keyword">let</span> rows:<span class="type">Int</span>, columns:<span class="type">Int</span></span><br><span class="line">    <span class="keyword">var</span> grid:[<span class="type">Double</span>]</span><br><span class="line">    </span><br><span class="line">    <span class="comment">//构造方法：包含两个入參</span></span><br><span class="line">    <span class="keyword">init</span>(rows:<span class="type">Int</span>, columns:<span class="type">Int</span>)&#123;</span><br><span class="line">        <span class="keyword">self</span>.rows = rows</span><br><span class="line">        <span class="keyword">self</span>.columns = columns</span><br><span class="line">        grid = <span class="type">Array</span>(<span class="built_in">count</span>:rows * columns, repeatedValue:<span class="number">0.0</span>)</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">//确保入參的row货column不会造成数组越界</span></span><br><span class="line">    <span class="function"><span class="keyword">func</span> <span class="title">indexIsVaildForRow</span><span class="params">(row:Int, column:Int)</span></span> -&gt; <span class="type">Bool</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> row &gt;= <span class="number">0</span> &amp;&amp; row &lt; rows &amp;&amp; column &gt;= <span class="number">0</span> &amp;&amp;  column &lt; columns</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">//下标脚本（两个参数）</span></span><br><span class="line">    <span class="keyword">subscript</span>(row:<span class="type">Int</span>, column:<span class="type">Int</span>)-&gt;<span class="type">Double</span>&#123;</span><br><span class="line">        <span class="keyword">get</span>&#123;</span><br><span class="line">            <span class="built_in">assert</span>(indexIsVaildForRow(row, column:column), <span class="string">"Index out of range"</span>)</span><br><span class="line">            <span class="keyword">return</span> grid[(row * columns) + column]</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">set</span>&#123;</span><br><span class="line">            <span class="built_in">assert</span>(indexIsVaildForRow(row, column: column), <span class="string">"Index out of range"</span>)</span><br><span class="line">            grid[(row * columns) + column] = newValue</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//创建结构体实例</span></span><br><span class="line"><span class="keyword">var</span> matrix = <span class="type">Matrix</span>(rows: <span class="number">2</span>, columns: <span class="number">2</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment">//利用下标脚本赋值</span></span><br><span class="line">matrix[<span class="number">0</span>, <span class="number">1</span>] = <span class="number">1.5</span></span><br><span class="line">matrix[<span class="number">1</span>, <span class="number">0</span>] = <span class="number">3.2</span></span><br></pre></td></tr></table></figure>
       
     </div>
 
@@ -491,7 +501,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">85</span>
+              <span class="site-state-item-count">94</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -501,7 +511,7 @@
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">10</span>
+                <span class="site-state-item-count">11</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
@@ -563,7 +573,7 @@
 <div class="theme-info">
   主题 -
   <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
-    NexT.Muse
+    NexT.Mist
   </a>
 </div>
 

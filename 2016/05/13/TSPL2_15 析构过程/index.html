@@ -5,7 +5,7 @@
   
 
 
-<html class="theme-next muse use-motion">
+<html class="theme-next mist use-motion">
 <head>
   <meta charset="UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
@@ -89,7 +89,7 @@
 15.1        析构过程原理
 语法：不带()也不需要参数
 
-deinit&amp;#123;	// 手动释放一些资源&amp;#125;
+123deinit&amp;#123;	// 手动释放一些资源&amp;#125;
 
 父类析构器的调用：
 
@@ -103,7 +103,7 @@ deinit&amp;#123;	// 手动释放一些资源&amp;#125;
 
 
 是
-子类析构函数实现的最">
+子类析构函数实">
 <meta property="og:type" content="article">
 <meta property="og:title" content="15 析构过程">
 <meta property="og:url" content="http://laputa-er.github.io/2016/05/13/TSPL2_15 析构过程/index.html">
@@ -113,7 +113,7 @@ deinit&amp;#123;	// 手动释放一些资源&amp;#125;
 15.1        析构过程原理
 语法：不带()也不需要参数
 
-deinit&amp;#123;	// 手动释放一些资源&amp;#125;
+123deinit&amp;#123;	// 手动释放一些资源&amp;#125;
 
 父类析构器的调用：
 
@@ -127,7 +127,7 @@ deinit&amp;#123;	// 手动释放一些资源&amp;#125;
 
 
 是
-子类析构函数实现的最">
+子类析构函数实">
 <meta property="og:updated_time" content="2016-05-13T13:12:25.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="15 析构过程">
@@ -136,7 +136,7 @@ deinit&amp;#123;	// 手动释放一些资源&amp;#125;
 15.1        析构过程原理
 语法：不带()也不需要参数
 
-deinit&amp;#123;	// 手动释放一些资源&amp;#125;
+123deinit&amp;#123;	// 手动释放一些资源&amp;#125;
 
 父类析构器的调用：
 
@@ -150,14 +150,14 @@ deinit&amp;#123;	// 手动释放一些资源&amp;#125;
 
 
 是
-子类析构函数实现的最">
+子类析构函数实">
 
 
 
 <script type="text/javascript" id="hexo.configuration">
   var NexT = window.NexT || {};
   var CONFIG = {
-    scheme: 'Muse',
+    scheme: 'Mist',
     sidebar: {"position":"left","display":"post"},
     fancybox: true,
     motion: true,
@@ -232,6 +232,16 @@ deinit&amp;#123;	// 手动释放一些资源&amp;#125;
               <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
             
             首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
           </a>
         </li>
       
@@ -346,7 +356,7 @@ deinit&amp;#123;	// 手动释放一些资源&amp;#125;
 <h2 id="15-1-析构过程原理"><a href="#15-1-析构过程原理" class="headerlink" title="15.1        析构过程原理"></a>15.1        析构过程原理</h2><blockquote>
 <p><strong>语法：</strong>不带<code>()</code>也不需要<code>参数</code></p>
 </blockquote>
-<figure class="highlight swift"><table><tr><td class="code"><pre><span class="line"><span class="keyword">deinit</span>&#123;</span><br><span class="line">	<span class="comment">// 手动释放一些资源</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">deinit</span>&#123;</span><br><span class="line">	<span class="comment">// 手动释放一些资源</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <blockquote>
 <p><strong>父类析构器的调用：</strong></p>
 </blockquote>
@@ -371,7 +381,7 @@ deinit&amp;#123;	// 手动释放一些资源&amp;#125;
 <blockquote>
 <p><strong>访问属性：</strong>可以访问所有请求实例的属性</p>
 </blockquote>
-<h2 id="15-2-析构过程操作"><a href="#15-2-析构过程操作" class="headerlink" title="15.2        析构过程操作"></a>15.2        析构过程操作</h2><figure class="highlight swift"><table><tr><td class="code"><pre><span class="line"><span class="comment">//银行</span></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">Bank</span> </span>&#123;</span><br><span class="line">    <span class="comment">//硬币数量</span></span><br><span class="line">    <span class="keyword">static</span> <span class="keyword">var</span> coinsInBank = <span class="number">10_000</span></span><br><span class="line">    </span><br><span class="line">    <span class="comment">//分发硬币</span></span><br><span class="line">    <span class="keyword">static</span> <span class="function"><span class="keyword">func</span> <span class="title">vendCoins</span><span class="params">(<span class="keyword">var</span> numberOfCoinsToVend:Int)</span></span>-&gt;<span class="type">Int</span>&#123;</span><br><span class="line">        numberOfCoinsToVend = <span class="built_in">min</span>(numberOfCoinsToVend, coinsInBank)</span><br><span class="line">        coinsInBank -= numberOfCoinsToVend</span><br><span class="line">        <span class="keyword">return</span> numberOfCoinsToVend</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">//获得硬币</span></span><br><span class="line">    <span class="keyword">static</span> <span class="function"><span class="keyword">func</span> <span class="title">receiveCoins</span><span class="params">(coins:Int)</span></span>&#123;</span><br><span class="line">        coinsInBank += coins</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//玩家</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Player</span> </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> coinsInPurse:<span class="type">Int</span></span><br><span class="line">    <span class="comment">//初始化玩家的硬币数量</span></span><br><span class="line">    <span class="keyword">init</span>(coins:<span class="type">Int</span>)&#123;</span><br><span class="line">        coinsInPurse = <span class="type">Bank</span>.vendCoins(coins)</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">//玩家从银行获得硬币</span></span><br><span class="line">    <span class="function"><span class="keyword">func</span> <span class="title">winCoins</span><span class="params">(coins:Int)</span></span>&#123;</span><br><span class="line">        coinsInPurse += <span class="type">Bank</span>.vendCoins(coins)</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">//玩家退出时归还所有硬币</span></span><br><span class="line">    <span class="keyword">deinit</span>&#123;</span><br><span class="line">        <span class="type">Bank</span>.receiveCoins(coinsInPurse)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> playerOne:<span class="type">Player</span>? = <span class="type">Player</span>(coins: <span class="number">100</span>)<span class="comment">//拥有100个硬币的玩家</span></span><br><span class="line">playerOne!.winCoins(<span class="number">2_000</span>)<span class="comment">//赢得2000个硬币</span></span><br><span class="line">playerOne = <span class="literal">nil</span><span class="comment">//玩家退出</span></span><br></pre></td></tr></table></figure>
+<h2 id="15-2-析构过程操作"><a href="#15-2-析构过程操作" class="headerlink" title="15.2        析构过程操作"></a>15.2        析构过程操作</h2><figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//银行</span></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">Bank</span> </span>&#123;</span><br><span class="line">    <span class="comment">//硬币数量</span></span><br><span class="line">    <span class="keyword">static</span> <span class="keyword">var</span> coinsInBank = <span class="number">10_000</span></span><br><span class="line">    </span><br><span class="line">    <span class="comment">//分发硬币</span></span><br><span class="line">    <span class="keyword">static</span> <span class="function"><span class="keyword">func</span> <span class="title">vendCoins</span><span class="params">(<span class="keyword">var</span> numberOfCoinsToVend:Int)</span></span>-&gt;<span class="type">Int</span>&#123;</span><br><span class="line">        numberOfCoinsToVend = <span class="built_in">min</span>(numberOfCoinsToVend, coinsInBank)</span><br><span class="line">        coinsInBank -= numberOfCoinsToVend</span><br><span class="line">        <span class="keyword">return</span> numberOfCoinsToVend</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">//获得硬币</span></span><br><span class="line">    <span class="keyword">static</span> <span class="function"><span class="keyword">func</span> <span class="title">receiveCoins</span><span class="params">(coins:Int)</span></span>&#123;</span><br><span class="line">        coinsInBank += coins</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//玩家</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Player</span> </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> coinsInPurse:<span class="type">Int</span></span><br><span class="line">    <span class="comment">//初始化玩家的硬币数量</span></span><br><span class="line">    <span class="keyword">init</span>(coins:<span class="type">Int</span>)&#123;</span><br><span class="line">        coinsInPurse = <span class="type">Bank</span>.vendCoins(coins)</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">//玩家从银行获得硬币</span></span><br><span class="line">    <span class="function"><span class="keyword">func</span> <span class="title">winCoins</span><span class="params">(coins:Int)</span></span>&#123;</span><br><span class="line">        coinsInPurse += <span class="type">Bank</span>.vendCoins(coins)</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">//玩家退出时归还所有硬币</span></span><br><span class="line">    <span class="keyword">deinit</span>&#123;</span><br><span class="line">        <span class="type">Bank</span>.receiveCoins(coinsInPurse)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> playerOne:<span class="type">Player</span>? = <span class="type">Player</span>(coins: <span class="number">100</span>)<span class="comment">//拥有100个硬币的玩家</span></span><br><span class="line">playerOne!.winCoins(<span class="number">2_000</span>)<span class="comment">//赢得2000个硬币</span></span><br><span class="line">playerOne = <span class="literal">nil</span><span class="comment">//玩家退出</span></span><br></pre></td></tr></table></figure>
       
     </div>
 
@@ -484,7 +494,7 @@ deinit&amp;#123;	// 手动释放一些资源&amp;#125;
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">85</span>
+              <span class="site-state-item-count">94</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -494,7 +504,7 @@ deinit&amp;#123;	// 手动释放一些资源&amp;#125;
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">10</span>
+                <span class="site-state-item-count">11</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
@@ -556,7 +566,7 @@ deinit&amp;#123;	// 手动释放一些资源&amp;#125;
 <div class="theme-info">
   主题 -
   <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
-    NexT.Muse
+    NexT.Mist
   </a>
 </div>
 

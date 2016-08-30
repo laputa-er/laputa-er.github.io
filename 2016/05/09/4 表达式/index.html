@@ -5,7 +5,7 @@
   
 
 
-<html class="theme-next muse use-motion">
+<html class="theme-next mist use-motion">
 <head>
   <meta charset="UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
@@ -183,7 +183,7 @@ int类型的操作数和float型操作数混合在一起时，运算结果为flo
 <script type="text/javascript" id="hexo.configuration">
   var NexT = window.NexT || {};
   var CONFIG = {
-    scheme: 'Muse',
+    scheme: 'Mist',
     sidebar: {"position":"left","display":"post"},
     fancybox: true,
     motion: true,
@@ -258,6 +258,16 @@ int类型的操作数和float型操作数混合在一起时，运算结果为flo
               <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
             
             首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
           </a>
         </li>
       
@@ -456,20 +466,20 @@ int类型的操作数和float型操作数混合在一起时，运算结果为flo
 <ul>
 <li>一元运算符都是右结合<code>(right assoiative)</code>的,即从右向左结合</li>
 </ul>
-<figure class="highlight c"><table><tr><td class="code"><pre><span class="line">-+i;<span class="comment">//-(+i)</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">-+i;<span class="comment">//-(+i)</span></span><br></pre></td></tr></table></figure>
 <blockquote>
 <ul>
 <li>二元运算符都是左结合<code>(left assoiative)</code>的，即从左向右结合</li>
 </ul>
 </blockquote>
-<figure class="highlight c"><table><tr><td class="code"><pre><span class="line">i-j-k;<span class="comment">//(i-j)-k</span></span><br><span class="line">+i+jk/;<span class="comment">//(+i)+(j/k)</span></span><br></pre></td></tr></table></figure>
-<h3 id="4-1-2-程序：计算通用产品代码的校验位"><a href="#4-1-2-程序：计算通用产品代码的校验位" class="headerlink" title="4.1.2    程序：计算通用产品代码的校验位"></a>4.1.2    程序：计算通用产品代码的校验位</h3><figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="comment">/**</span><br><span class="line"> * Compaer a Universal Prouct Code check digit</span><br><span class="line"> */</span></span><br><span class="line"></span><br><span class="line"><span class="meta"># <span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"> <span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line"> 	<span class="keyword">int</span> d, i1, i2, i3, i4, i5, j1, j2, j3, j4, j5, first_sum, second_sum, total;</span><br><span class="line"> 	<span class="comment">/*输入左边第一位数字*/</span></span><br><span class="line"> 	<span class="built_in">printf</span>(<span class="string">"Enter the first (single) digit:"</span>);</span><br><span class="line"> 	<span class="built_in">scanf</span>(<span class="string">"%d"</span>, &amp;d);</span><br><span class="line"> 	<span class="comment">/*输入2-6位数字*/</span></span><br><span class="line"> 	<span class="built_in">printf</span>(<span class="string">"Enter first groun of value digits:"</span>);</span><br><span class="line"> 	<span class="built_in">scanf</span>(<span class="string">"%1d%1d%1d%1d%1d"</span>, &amp;i1, &amp;i2, &amp;i3, &amp;i4, &amp;i5);</span><br><span class="line"> 	<span class="comment">/*输入7-11位数字*/</span></span><br><span class="line"> 	<span class="built_in">printf</span>(<span class="string">"Enter second group of five digits:"</span>);</span><br><span class="line"> 	<span class="built_in">scanf</span>(<span class="string">"%1d%1d%1d%1d%1d"</span>, &amp;j1, &amp;j2, &amp;j3, &amp;j4, &amp;j5);</span><br><span class="line"> 	first_sum = d + i2 + i4 + j1 + j3 + j5;</span><br><span class="line"> 	second_sum = i1 + i3 + i5 + j2 + j4;</span><br><span class="line"> 	total = <span class="number">3</span> * first_sum + second_sum;</span><br><span class="line"></span><br><span class="line"> 	<span class="built_in">printf</span>(<span class="string">"Check digit:%d\n"</span>, <span class="number">9</span> - ((total - <span class="number">1</span>) % <span class="number">10</span>));</span><br><span class="line"></span><br><span class="line"> 	return <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line"> &#125;</span><br></pre></td></tr></table></figure>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ ./upc </span><br><span class="line"> Enter the first (single) digit:2</span><br><span class="line"> Enter first groun of value digits:23456</span><br><span class="line"> Enter second group of five digits:78954</span><br><span class="line"> Check digit:5</span><br></pre></td></tr></table></figure>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">i-j-k;<span class="comment">//(i-j)-k</span></span><br><span class="line">+i+jk/;<span class="comment">//(+i)+(j/k)</span></span><br></pre></td></tr></table></figure>
+<h3 id="4-1-2-程序：计算通用产品代码的校验位"><a href="#4-1-2-程序：计算通用产品代码的校验位" class="headerlink" title="4.1.2    程序：计算通用产品代码的校验位"></a>4.1.2    程序：计算通用产品代码的校验位</h3><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span><br><span class="line"> * Compaer a Universal Prouct Code check digit</span><br><span class="line"> */</span></span><br><span class="line"></span><br><span class="line"><span class="meta"># <span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"> <span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line"> 	<span class="keyword">int</span> d, i1, i2, i3, i4, i5, j1, j2, j3, j4, j5, first_sum, second_sum, total;</span><br><span class="line"> 	<span class="comment">/*输入左边第一位数字*/</span></span><br><span class="line"> 	<span class="built_in">printf</span>(<span class="string">"Enter the first (single) digit:"</span>);</span><br><span class="line"> 	<span class="built_in">scanf</span>(<span class="string">"%d"</span>, &amp;d);</span><br><span class="line"> 	<span class="comment">/*输入2-6位数字*/</span></span><br><span class="line"> 	<span class="built_in">printf</span>(<span class="string">"Enter first groun of value digits:"</span>);</span><br><span class="line"> 	<span class="built_in">scanf</span>(<span class="string">"%1d%1d%1d%1d%1d"</span>, &amp;i1, &amp;i2, &amp;i3, &amp;i4, &amp;i5);</span><br><span class="line"> 	<span class="comment">/*输入7-11位数字*/</span></span><br><span class="line"> 	<span class="built_in">printf</span>(<span class="string">"Enter second group of five digits:"</span>);</span><br><span class="line"> 	<span class="built_in">scanf</span>(<span class="string">"%1d%1d%1d%1d%1d"</span>, &amp;j1, &amp;j2, &amp;j3, &amp;j4, &amp;j5);</span><br><span class="line"> 	first_sum = d + i2 + i4 + j1 + j3 + j5;</span><br><span class="line"> 	second_sum = i1 + i3 + i5 + j2 + j4;</span><br><span class="line"> 	total = <span class="number">3</span> * first_sum + second_sum;</span><br><span class="line"></span><br><span class="line"> 	<span class="built_in">printf</span>(<span class="string">"Check digit:%d\n"</span>, <span class="number">9</span> - ((total - <span class="number">1</span>) % <span class="number">10</span>));</span><br><span class="line"></span><br><span class="line"> 	return <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line"> &#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">$ ./upc </span><br><span class="line"> Enter the first (single) digit:2</span><br><span class="line"> Enter first groun of value digits:23456</span><br><span class="line"> Enter second group of five digits:78954</span><br><span class="line"> Check digit:5</span><br></pre></td></tr></table></figure>
 <h2 id="4-2-赋值运算符"><a href="#4-2-赋值运算符" class="headerlink" title="4.2    赋值运算符"></a>4.2    赋值运算符</h2><blockquote>
 <p><strong>注意：</strong>c语言的<code>=</code>不是<code>语句</code>，而是<code>运算符</code>。赋值表达式<code>v=e</code>的结果是v的值。</p>
 </blockquote>
 <h3 id="4-2-1-简单赋值"><a href="#4-2-1-简单赋值" class="headerlink" title="4.2.1    简单赋值"></a>4.2.1    简单赋值</h3><blockquote>
-<p><strong>语法：</strong><code>v=e</code>，<code>e</code>可以是常量、变量或表达式。<br><strong>副作用：</strong>简单赋值运算符是已知的第一个有副作用的运算符，因为它会改变操作数的值。<br><figure class="highlight c"><table><tr><td class="code"><pre><span class="line">i = j = k = <span class="number">0</span>;<span class="comment">//i = (j = k = 0)</span></span><br></pre></td></tr></table></figure></p>
+<p><strong>语法：</strong><code>v=e</code>，<code>e</code>可以是常量、变量或表达式。<br><strong>副作用：</strong>简单赋值运算符是已知的第一个有副作用的运算符，因为它会改变操作数的值。<br><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">i = j = k = <span class="number">0</span>;<span class="comment">//i = (j = k = 0)</span></span><br></pre></td></tr></table></figure></p>
 </blockquote>
 <h3 id="4-2-2-左值"><a href="#4-2-2-左值" class="headerlink" title="4.2.2    左值"></a>4.2.2    左值</h3><blockquote>
 <p><strong>定义：</strong><code>Q&amp;A</code>左值表示存储在计算机内存中的对象，而不是常量和计算结果。例如变量。<br><strong>注意：</strong>赋值运算符要求左边的操作数必须是左值。</p>
@@ -537,18 +547,18 @@ int类型的操作数和float型操作数混合在一起时，运算结果为flo
 <h3 id="4-4-2-为表达式添加圆括号"><a href="#4-4-2-为表达式添加圆括号" class="headerlink" title="4.4.2    为表达式添加圆括号"></a>4.4.2    为表达式添加圆括号</h3><blockquote>
 <p><strong>过程：</strong>检查表达式，找到最高优先级地运算符后，用圆括号把运算符合相应的操作数括起来，圆括号的内容将被看成一个单独的操作数。然后重复此类操作指导表达式被完全加上圆括号。 </p>
 </blockquote>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">s=&gt;start: start</span><br><span class="line">e=&gt;end: end</span><br><span class="line">op1=&gt;operation: a = b += c++ - d + --e / -f</span><br><span class="line">op2=&gt;operation: a = b += (c++) - d + (--e) / (-f)</span><br><span class="line">op3=&gt;operation: a = b += (c++) - d + ((--e) / (-f))</span><br><span class="line">op4=&gt;operation: a = b += ((c++) - d + (((--e) / (-f))))</span><br><span class="line">op5=&gt;operation: (a = b += ((c++) - d + (((--e) / (-f)))))</span><br><span class="line"></span><br><span class="line">s-&gt;op1-&gt;op2-&gt;op3-&gt;op4-&gt;op5-&gt;e</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">s=&gt;start: start</span><br><span class="line">e=&gt;end: end</span><br><span class="line">op1=&gt;operation: a = b += c++ - d + --e / -f</span><br><span class="line">op2=&gt;operation: a = b += (c++) - d + (--e) / (-f)</span><br><span class="line">op3=&gt;operation: a = b += (c++) - d + ((--e) / (-f))</span><br><span class="line">op4=&gt;operation: a = b += ((c++) - d + (((--e) / (-f))))</span><br><span class="line">op5=&gt;operation: (a = b += ((c++) - d + (((--e) / (-f)))))</span><br><span class="line"></span><br><span class="line">s-&gt;op1-&gt;op2-&gt;op3-&gt;op4-&gt;op5-&gt;e</span><br></pre></td></tr></table></figure>
 <h3 id="4-4-3-子表达式的求值顺序"><a href="#4-4-3-子表达式的求值顺序" class="headerlink" title="4.4.3    子表达式的求值顺序"></a>4.4.3    子表达式的求值顺序</h3><blockquote>
 <p><strong>注意：</strong>c语言并没有定义子表达式的求值顺序（<code>&amp;&amp;</code> <code>||</code> <code>条件运算符</code> <code>逗号运算符</code>除外）</p>
 </blockquote>
-<figure class="highlight c"><table><tr><td class="code"><pre><span class="line">a = <span class="number">5</span>;</span><br><span class="line">c = (b = a + <span class="number">2</span>) - (a = <span class="number">1</span>)<span class="comment">//c可能是6也可能是2</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">a = <span class="number">5</span>;</span><br><span class="line">c = (b = a + <span class="number">2</span>) - (a = <span class="number">1</span>)<span class="comment">//c可能是6也可能是2</span></span><br></pre></td></tr></table></figure>
 <blockquote>
 <p><strong>建议：</strong>不在表达式种使用赋值运算符，而是采用一串分离的赋值表达式。</p>
 </blockquote>
 <h2 id="4-5-表达式语句"><a href="#4-5-表达式语句" class="headerlink" title="4.5    表达式语句"></a>4.5    表达式语句</h2><blockquote>
 <p><strong>表达式转换为语句：</strong>任何表达式都可以通过添加分号转换为语句。<br><strong>注意：</strong>除非表达式有副作用，否则将表达式用作语句并没有任何意义。</p>
 </blockquote>
-<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="keyword">int</span> i = <span class="number">1</span>;</span><br><span class="line">i --;<span class="comment">//因为副作用的关系起到了作用</span></span><br><span class="line"></span><br><span class="line">i * j - <span class="number">1</span>;<span class="comment">//因为没有副作用，将该表达式作为语句使用没有任何意义</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> i = <span class="number">1</span>;</span><br><span class="line">i --;<span class="comment">//因为副作用的关系起到了作用</span></span><br><span class="line"></span><br><span class="line">i * j - <span class="number">1</span>;<span class="comment">//因为没有副作用，将该表达式作为语句使用没有任何意义</span></span><br></pre></td></tr></table></figure>
 
       
     </div>
@@ -662,7 +672,7 @@ int类型的操作数和float型操作数混合在一起时，运算结果为flo
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">85</span>
+              <span class="site-state-item-count">94</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -672,7 +682,7 @@ int类型的操作数和float型操作数混合在一起时，运算结果为flo
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">10</span>
+                <span class="site-state-item-count">11</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
@@ -734,7 +744,7 @@ int类型的操作数和float型操作数混合在一起时，运算结果为flo
 <div class="theme-info">
   主题 -
   <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
-    NexT.Muse
+    NexT.Mist
   </a>
 </div>
 

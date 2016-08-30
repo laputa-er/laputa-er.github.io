@@ -5,7 +5,7 @@
   
 
 
-<html class="theme-next muse use-motion">
+<html class="theme-next mist use-motion">
 <head>
   <meta charset="UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
@@ -118,7 +118,7 @@ File-&amp;gt;New-&amp;gt;New Project（Create a New Xcode Proje">
 <script type="text/javascript" id="hexo.configuration">
   var NexT = window.NexT || {};
   var CONFIG = {
-    scheme: 'Muse',
+    scheme: 'Mist',
     sidebar: {"position":"left","display":"post"},
     fancybox: true,
     motion: true,
@@ -193,6 +193,16 @@ File-&amp;gt;New-&amp;gt;New Project（Create a New Xcode Proje">
               <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
             
             首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
           </a>
         </li>
       
@@ -380,9 +390,9 @@ File-&amp;gt;New-&amp;gt;New Project（Create a New Xcode Proje">
 </ol>
 </blockquote>
 <p><em>MSCAppDelegate.h</em></p>
-<figure class="highlight objectivec"><table><tr><td class="code"><pre><span class="line"><span class="meta">#import <span class="meta-string">&lt;Cocoa/Cocoa.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">@interface</span> <span class="title">MSCAppDelegate</span> : <span class="title">NSObject</span> &lt;<span class="title">NSApplicationDelegate</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">@property</span> (<span class="keyword">assign</span>) <span class="keyword">IBOutlet</span> <span class="built_in">NSWindow</span> *window;</span><br><span class="line"><span class="keyword">@property</span> (<span class="keyword">weak</span>) <span class="keyword">IBOutlet</span> <span class="built_in">NSTextField</span> *textField;</span><br><span class="line"><span class="keyword">@property</span> (<span class="keyword">weak</span>) <span class="keyword">IBOutlet</span> <span class="built_in">NSTextField</span> *resultsField;</span><br><span class="line"></span><br><span class="line">- (<span class="keyword">IBAction</span>)uppercase:(<span class="keyword">id</span>)sender;</span><br><span class="line">- (<span class="keyword">IBAction</span>)lowercase:(<span class="keyword">id</span>)sender;</span><br><span class="line"></span><br><span class="line"><span class="keyword">@end</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#import <span class="meta-string">&lt;Cocoa/Cocoa.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">@interface</span> <span class="title">MSCAppDelegate</span> : <span class="title">NSObject</span> &lt;<span class="title">NSApplicationDelegate</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">@property</span> (<span class="keyword">assign</span>) <span class="keyword">IBOutlet</span> <span class="built_in">NSWindow</span> *window;</span><br><span class="line"><span class="keyword">@property</span> (<span class="keyword">weak</span>) <span class="keyword">IBOutlet</span> <span class="built_in">NSTextField</span> *textField;</span><br><span class="line"><span class="keyword">@property</span> (<span class="keyword">weak</span>) <span class="keyword">IBOutlet</span> <span class="built_in">NSTextField</span> *resultsField;</span><br><span class="line"></span><br><span class="line">- (<span class="keyword">IBAction</span>)uppercase:(<span class="keyword">id</span>)sender;</span><br><span class="line">- (<span class="keyword">IBAction</span>)lowercase:(<span class="keyword">id</span>)sender;</span><br><span class="line"></span><br><span class="line"><span class="keyword">@end</span></span><br></pre></td></tr></table></figure>
 <p><em>MSCAppDelegate.m</em></p>
-<figure class="highlight objectivec"><table><tr><td class="code"><pre><span class="line"><span class="meta">#import <span class="meta-string">"MSCAppDelegate.h"</span></span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">@implementation</span> <span class="title">MSCAppDelegate</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">@synthesize</span> window = _window;</span><br><span class="line"><span class="keyword">@synthesize</span> textField = _textField;</span><br><span class="line"><span class="keyword">@synthesize</span> resultsField = _resultsField;</span><br><span class="line"></span><br><span class="line">- (<span class="keyword">id</span>)init &#123;</span><br><span class="line">	<span class="keyword">if</span> (<span class="literal">nil</span> != (<span class="keyword">self</span> = [<span class="keyword">super</span> init])) &#123;</span><br><span class="line">        <span class="comment">// 此时还没和界面对象建立连接，因此都是 nil</span></span><br><span class="line">		<span class="built_in">NSLog</span> (<span class="string">@"init: text %@ / results %@"</span>, _textField, _resultsField);</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	<span class="keyword">return</span> <span class="keyword">self</span>;	</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span><br><span class="line"> * 对界面对象进行一些初始化工作</span><br><span class="line"> * 连接建立后会被调用</span><br><span class="line"> *  @override</span><br><span class="line"> */</span></span><br><span class="line">- (<span class="keyword">void</span>)awakeFromNib &#123;</span><br><span class="line">	<span class="built_in">NSLog</span> (<span class="string">@"awake: text %@ / results %@"</span>, _textField, _resultsField);</span><br><span class="line">	</span><br><span class="line">	[_textField setStringValue:<span class="string">@"Enter text here"</span>];</span><br><span class="line">	[_resultsField setStringValue:<span class="string">@"Results"</span>];</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">- (<span class="keyword">void</span>)applicationDidFinishLaunching:(<span class="built_in">NSNotification</span> *)aNotification &#123;</span><br><span class="line">    <span class="comment">// Insert code here to initialize your application</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">- (<span class="keyword">IBAction</span>)uppercase:(<span class="keyword">id</span>)sender &#123;</span><br><span class="line">	<span class="built_in">NSString</span> *original = [_textField stringValue];</span><br><span class="line">	<span class="built_in">NSString</span> *uppercase = [original uppercaseString];</span><br><span class="line">	[_resultsField setStringValue:uppercase];</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">- (<span class="keyword">IBAction</span>)lowercase:(<span class="keyword">id</span>)sender &#123;</span><br><span class="line">	<span class="built_in">NSString</span> *original = [_textField stringValue];</span><br><span class="line">	<span class="built_in">NSString</span> *lowercase = [original lowercaseString];</span><br><span class="line">	[_resultsField setStringValue:lowercase];</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">@end</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#import <span class="meta-string">"MSCAppDelegate.h"</span></span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">@implementation</span> <span class="title">MSCAppDelegate</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">@synthesize</span> window = _window;</span><br><span class="line"><span class="keyword">@synthesize</span> textField = _textField;</span><br><span class="line"><span class="keyword">@synthesize</span> resultsField = _resultsField;</span><br><span class="line"></span><br><span class="line">- (<span class="keyword">id</span>)init &#123;</span><br><span class="line">	<span class="keyword">if</span> (<span class="literal">nil</span> != (<span class="keyword">self</span> = [<span class="keyword">super</span> init])) &#123;</span><br><span class="line">        <span class="comment">// 此时还没和界面对象建立连接，因此都是 nil</span></span><br><span class="line">		<span class="built_in">NSLog</span> (<span class="string">@"init: text %@ / results %@"</span>, _textField, _resultsField);</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	<span class="keyword">return</span> <span class="keyword">self</span>;	</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span><br><span class="line"> * 对界面对象进行一些初始化工作</span><br><span class="line"> * 连接建立后会被调用</span><br><span class="line"> *  @override</span><br><span class="line"> */</span></span><br><span class="line">- (<span class="keyword">void</span>)awakeFromNib &#123;</span><br><span class="line">	<span class="built_in">NSLog</span> (<span class="string">@"awake: text %@ / results %@"</span>, _textField, _resultsField);</span><br><span class="line">	</span><br><span class="line">	[_textField setStringValue:<span class="string">@"Enter text here"</span>];</span><br><span class="line">	[_resultsField setStringValue:<span class="string">@"Results"</span>];</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">- (<span class="keyword">void</span>)applicationDidFinishLaunching:(<span class="built_in">NSNotification</span> *)aNotification &#123;</span><br><span class="line">    <span class="comment">// Insert code here to initialize your application</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">- (<span class="keyword">IBAction</span>)uppercase:(<span class="keyword">id</span>)sender &#123;</span><br><span class="line">	<span class="built_in">NSString</span> *original = [_textField stringValue];</span><br><span class="line">	<span class="built_in">NSString</span> *uppercase = [original uppercaseString];</span><br><span class="line">	[_resultsField setStringValue:uppercase];</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">- (<span class="keyword">IBAction</span>)lowercase:(<span class="keyword">id</span>)sender &#123;</span><br><span class="line">	<span class="built_in">NSString</span> *original = [_textField stringValue];</span><br><span class="line">	<span class="built_in">NSString</span> *lowercase = [original lowercaseString];</span><br><span class="line">	[_resultsField setStringValue:lowercase];</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">@end</span></span><br></pre></td></tr></table></figure>
 <h2 id="15-7-小结"><a href="#15-7-小结" class="headerlink" title="15.7    小结"></a>15.7    小结</h2>
       
     </div>
@@ -496,7 +506,7 @@ File-&amp;gt;New-&amp;gt;New Project（Create a New Xcode Proje">
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">85</span>
+              <span class="site-state-item-count">94</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -506,7 +516,7 @@ File-&amp;gt;New-&amp;gt;New Project（Create a New Xcode Proje">
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">10</span>
+                <span class="site-state-item-count">11</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
@@ -568,7 +578,7 @@ File-&amp;gt;New-&amp;gt;New Project（Create a New Xcode Proje">
 <div class="theme-info">
   主题 -
   <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
-    NexT.Muse
+    NexT.Mist
   </a>
 </div>
 

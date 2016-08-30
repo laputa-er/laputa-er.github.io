@@ -5,7 +5,7 @@
   
 
 
-<html class="theme-next muse use-motion">
+<html class="theme-next mist use-motion">
 <head>
   <meta charset="UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
@@ -139,7 +139,7 @@
 <script type="text/javascript" id="hexo.configuration">
   var NexT = window.NexT || {};
   var CONFIG = {
-    scheme: 'Muse',
+    scheme: 'Mist',
     sidebar: {"position":"left","display":"post"},
     fancybox: true,
     motion: true,
@@ -214,6 +214,16 @@
               <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
             
             首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
           </a>
         </li>
       
@@ -359,7 +369,7 @@
 <h4 id="19-1-1-4-内存泄漏：description方法中的desc在返回前没有释放"><a href="#19-1-1-4-内存泄漏：description方法中的desc在返回前没有释放" class="headerlink" title="19.1.1.4    内存泄漏：description方法中的desc在返回前没有释放"></a>19.1.1.4    内存泄漏：description方法中的desc在返回前没有释放</h4><blockquote>
 <p><strong>说明：</strong><code>AllWeatherRadial类</code>中的<code>description</code>方法中分配了一个字符串<code>desc</code>，但没有在返回函数之前释放它。</p>
 </blockquote>
-<figure class="highlight objectivec"><table><tr><td class="code"><pre><span class="line">- (<span class="built_in">NSString</span> *) description</span><br><span class="line">&#123;</span><br><span class="line">    <span class="built_in">NSString</span> *desc;</span><br><span class="line">    desc = [[<span class="built_in">NSString</span> alloc] initWithFormat:</span><br><span class="line">                   <span class="string">@"AllWeatherRadial: %.1f / %.1f / %.1f / %.1f"</span>,</span><br><span class="line">               [<span class="keyword">self</span> pressure], [<span class="keyword">self</span> treadDepth],</span><br><span class="line">               [<span class="keyword">self</span> rainHandling], </span><br><span class="line">               [<span class="keyword">self</span> snowHandling]];</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> [desc autorelease];</span><br><span class="line"></span><br><span class="line">&#125; <span class="comment">// description</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">- (<span class="built_in">NSString</span> *) description</span><br><span class="line">&#123;</span><br><span class="line">    <span class="built_in">NSString</span> *desc;</span><br><span class="line">    desc = [[<span class="built_in">NSString</span> alloc] initWithFormat:</span><br><span class="line">                   <span class="string">@"AllWeatherRadial: %.1f / %.1f / %.1f / %.1f"</span>,</span><br><span class="line">               [<span class="keyword">self</span> pressure], [<span class="keyword">self</span> treadDepth],</span><br><span class="line">               [<span class="keyword">self</span> rainHandling], </span><br><span class="line">               [<span class="keyword">self</span> snowHandling]];</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> [desc autorelease];</span><br><span class="line"></span><br><span class="line">&#125; <span class="comment">// description</span></span><br></pre></td></tr></table></figure>
 <h3 id="19-1-2-协助分析器"><a href="#19-1-2-协助分析器" class="headerlink" title="19.1.2    协助分析器"></a>19.1.2    协助分析器</h3><blockquote>
 <p><strong>说明：</strong><code>静态分析器</code>分析出的“问题”如果是我们有意的，可以通过在声明方法时使用一些<code>关键字</code>避免误报；或者有些情况下，想要使通常没问题的方式发出警报。比如</p>
 </blockquote>
@@ -393,9 +403,9 @@
 </tr>
 </tbody>
 </table>
-<h4 id="NS-RETURNS-RETAINTED：返回一个保留的对象"><a href="#NS-RETURNS-RETAINTED：返回一个保留的对象" class="headerlink" title="NS_RETURNS_RETAINTED：返回一个保留的对象"></a>NS_RETURNS_RETAINTED：返回一个保留的对象</h4><figure class="highlight objectivec"><table><tr><td class="code"><pre><span class="line">- (<span class="built_in">NSMutableArray</span> *) superDuperArrayCreator <span class="built_in">NS_RETURNS_RETAINED</span>;</span><br></pre></td></tr></table></figure>
-<figure class="highlight objectivec"><table><tr><td class="code"><pre><span class="line">- (<span class="built_in">NSMutableArray</span> *) superDuperArrayCreator</span><br><span class="line">&#123;</span><br><span class="line">	<span class="built_in">NSMutableArray</span> *myArray = [[<span class="built_in">NSMutableArray</span> alloc] init];</span><br><span class="line">	<span class="comment">// ...</span></span><br><span class="line">	<span class="comment">// 没将 myArray 释放就返回了</span></span><br><span class="line">	<span class="keyword">return</span> myArray;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h4 id="NS-RETURNS-NOT-RETAINED：返回一个未保留的对象"><a href="#NS-RETURNS-NOT-RETAINED：返回一个未保留的对象" class="headerlink" title="NS_RETURNS_NOT_RETAINED：返回一个未保留的对象"></a>NS_RETURNS_NOT_RETAINED：返回一个未保留的对象</h4><figure class="highlight objectivec"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 分析器会在该方法视图返回一个保留对象时提出issue</span></span><br><span class="line">- (<span class="built_in">NSMutableArray</span> *) superDuperArrayCreator <span class="built_in">NS_RETURNS_NOT_RETAINED</span>;</span><br></pre></td></tr></table></figure>
+<h4 id="NS-RETURNS-RETAINTED：返回一个保留的对象"><a href="#NS-RETURNS-RETAINTED：返回一个保留的对象" class="headerlink" title="NS_RETURNS_RETAINTED：返回一个保留的对象"></a>NS_RETURNS_RETAINTED：返回一个保留的对象</h4><figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">- (<span class="built_in">NSMutableArray</span> *) superDuperArrayCreator <span class="built_in">NS_RETURNS_RETAINED</span>;</span><br></pre></td></tr></table></figure>
+<figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">- (<span class="built_in">NSMutableArray</span> *) superDuperArrayCreator</span><br><span class="line">&#123;</span><br><span class="line">	<span class="built_in">NSMutableArray</span> *myArray = [[<span class="built_in">NSMutableArray</span> alloc] init];</span><br><span class="line">	<span class="comment">// ...</span></span><br><span class="line">	<span class="comment">// 没将 myArray 释放就返回了</span></span><br><span class="line">	<span class="keyword">return</span> myArray;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="NS-RETURNS-NOT-RETAINED：返回一个未保留的对象"><a href="#NS-RETURNS-NOT-RETAINED：返回一个未保留的对象" class="headerlink" title="NS_RETURNS_NOT_RETAINED：返回一个未保留的对象"></a>NS_RETURNS_NOT_RETAINED：返回一个未保留的对象</h4><figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 分析器会在该方法视图返回一个保留对象时提出issue</span></span><br><span class="line">- (<span class="built_in">NSMutableArray</span> *) superDuperArrayCreator <span class="built_in">NS_RETURNS_NOT_RETAINED</span>;</span><br></pre></td></tr></table></figure>
 <h3 id="19-1-3-了解更多"><a href="#19-1-3-了解更多" class="headerlink" title="19.1.3    了解更多"></a>19.1.3    了解更多</h3><blockquote>
 <p><strong>说明：</strong><code>静态分析器</code>能够找到的其它问题</p>
 </blockquote>
@@ -546,7 +556,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">85</span>
+              <span class="site-state-item-count">94</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -556,7 +566,7 @@
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">10</span>
+                <span class="site-state-item-count">11</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
@@ -618,7 +628,7 @@
 <div class="theme-info">
   主题 -
   <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
-    NexT.Muse
+    NexT.Mist
   </a>
 </div>
 

@@ -5,7 +5,7 @@
   
 
 
-<html class="theme-next muse use-motion">
+<html class="theme-next mist use-motion">
 <head>
   <meta charset="UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
@@ -138,7 +138,7 @@
 <script type="text/javascript" id="hexo.configuration">
   var NexT = window.NexT || {};
   var CONFIG = {
-    scheme: 'Muse',
+    scheme: 'Mist',
     sidebar: {"position":"left","display":"post"},
     fancybox: true,
     motion: true,
@@ -213,6 +213,16 @@
               <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
             
             首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
           </a>
         </li>
       
@@ -374,16 +384,16 @@
 <li>指令都以<code>#</code>开始：<code>空白符 #指令名 指令所需要的其他信息</code></li>
 <li>在指令的符号之间可以插入任意树龄的空格或横向制表符</li>
 </ul>
-<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="meta">#		<span class="meta-keyword">define</span>		N 		100<span class="comment">// 这样写也是合法的</span></span></span><br></pre></td></tr></table></figure>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#		<span class="meta-keyword">define</span>		N 		100<span class="comment">// 这样写也是合法的</span></span></span><br></pre></td></tr></table></figure>
 <ul>
 <li>指令总是在第一个换行符处结束，除非明确地指明要继续（通过在行末尾使用<code>\</code>）</li>
 </ul>
-<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">define</span> DISK_CAPACITY (SIDES *  \</span><br><span class="line">                        TRACK_PER_SIDE * \)</span></span><br><span class="line">				    	  SECTORS_PER_TRACK * \</span><br><span class="line">						  BYTES_PER_SECTOR)</span><br></pre></td></tr></table></figure>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">define</span> DISK_CAPACITY (SIDES *  \</span><br><span class="line">                        TRACK_PER_SIDE * \)</span></span><br><span class="line">				    	  SECTORS_PER_TRACK * \</span><br><span class="line">						  BYTES_PER_SECTOR)</span><br></pre></td></tr></table></figure>
 <ul>
 <li>指令可以出现在程序种任何地方（<code>#define</code>和<code>#include</code>通常放在文件开始）</li>
 <li>注释可以和指令放在同一行</li>
 </ul>
-<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">define</span> FREEZING_PT 32.0	<span class="comment">/* Freezing point of water */</span></span></span><br></pre></td></tr></table></figure>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">define</span> FREEZING_PT 32.0	<span class="comment">/* Freezing point of water */</span></span></span><br></pre></td></tr></table></figure>
 <h2 id="14-3-宏定义"><a href="#14-3-宏定义" class="headerlink" title="14.3    宏定义"></a>14.3    宏定义</h2><blockquote>
 <p><strong>说明：</strong>除了简单的宏，与编译器也支持带参数的宏。</p>
 </blockquote>
@@ -391,11 +401,11 @@
 <ol>
 <li>不要在宏定义中放置任何额外的符号</li>
 </ol>
-<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">define</span> N = 1000<span class="comment">//不能使用=</span></span></span><br><span class="line"><span class="keyword">int</span> a[N];<span class="comment">//会成为int a[= 100]，导致错误</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">define</span> N = 1000<span class="comment">//不能使用=</span></span></span><br><span class="line"><span class="keyword">int</span> a[N];<span class="comment">//会成为int a[= 100]，导致错误</span></span><br></pre></td></tr></table></figure>
 <ol>
 <li>不能在宏定义的末尾添加分号</li>
 </ol>
-<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">define</span> N 100;<span class="comment">//这里添加的分号会被作为替换列表的一部分</span></span></span><br><span class="line"><span class="keyword">int</span> a[N];<span class="comment">//会变成int a[100;]</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">define</span> N 100;<span class="comment">//这里添加的分号会被作为替换列表的一部分</span></span></span><br><span class="line"><span class="keyword">int</span> a[N];<span class="comment">//会变成int a[100;]</span></span><br></pre></td></tr></table></figure>
 <p><strong>优点：</strong>简单的宏主要用来定义那些被<code>Kernighan</code>和<code>Ritchie</code>称为明示常量（<code>manifest constant</code>）的东西。优点如下</p>
 <ol>
 <li>程序更易读</li>
@@ -405,7 +415,7 @@
 <li>对类型重命名</li>
 <li>控制条件编译</li>
 </ol>
-<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">define</span> STE_LEN 80</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> TRUE 1</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> FALSE 0</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> PI 3.1415926</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> CR <span class="string">'R'</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> EOS <span class="string">'\0'</span></span></span><br></pre></td></tr></table></figure>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">define</span> STE_LEN 80</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> TRUE 1</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> FALSE 0</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> PI 3.1415926</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> CR <span class="string">'R'</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> EOS <span class="string">'\0'</span></span></span><br></pre></td></tr></table></figure>
 <h3 id="14-3-2-带参数的宏"><a href="#14-3-2-带参数的宏" class="headerlink" title="14.3.2    带参数的宏"></a>14.3.2    带参数的宏</h3><blockquote>
 <p><strong>语法：</strong><code>#define 标识符(x1, x2, ..., xn) 替换列表</code></p>
 <ul>
@@ -431,20 +441,20 @@
 </ul>
 <p><strong>技巧：</strong>避免使用带有副作用的宏。</p>
 </blockquote>
-<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="comment">//模拟函数</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> MAX(x, y)	((x) &gt; (y) ? (x):(y))</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> IS_EVEN(n) ((n)%2 == 0)</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//模版</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> PTINT_INT(x) printf(<span class="string">"%d\n"</span>, x)</span></span><br><span class="line">...</span><br><span class="line"></span><br><span class="line">i = MAX(j+k, m-n);<span class="comment">//会被修改为i = ((j+k) &gt; (m-n) ? (j+k):(m-n));</span></span><br><span class="line"><span class="keyword">if</span>(IS_EVEN(i)) i++;<span class="comment">//if(((i)%2 == 0)) i++;</span></span><br><span class="line"></span><br><span class="line">PRINT_INT(i/j);<span class="comment">//printf("%d\n", i/j);</span></span><br><span class="line">...</span><br></pre></td></tr></table></figure>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//模拟函数</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> MAX(x, y)	((x) &gt; (y) ? (x):(y))</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> IS_EVEN(n) ((n)%2 == 0)</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//模版</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> PTINT_INT(x) printf(<span class="string">"%d\n"</span>, x)</span></span><br><span class="line">...</span><br><span class="line"></span><br><span class="line">i = MAX(j+k, m-n);<span class="comment">//会被修改为i = ((j+k) &gt; (m-n) ? (j+k):(m-n));</span></span><br><span class="line"><span class="keyword">if</span>(IS_EVEN(i)) i++;<span class="comment">//if(((i)%2 == 0)) i++;</span></span><br><span class="line"></span><br><span class="line">PRINT_INT(i/j);<span class="comment">//printf("%d\n", i/j);</span></span><br><span class="line">...</span><br></pre></td></tr></table></figure>
 <h3 id="14-3-3-运算符"><a href="#14-3-3-运算符" class="headerlink" title="14.3.3    #运算符"></a>14.3.3    <code>#</code>运算符</h3><blockquote>
 <p><strong>说明：</strong>将带参数的宏的参数转换为字符串字面量<br><strong>语法：</strong><code>#define 标识符(x1...) 替换列表</code></p>
 <ul>
 <li><code>#参数</code>仅允许出现在带参数的宏的替换列表中</li>
 </ul>
 </blockquote>
-<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">define</span> PRINT_INT(x) printf(#x <span class="string">" = %%d"</span>, x)</span></span><br><span class="line"></span><br><span class="line">...</span><br><span class="line"><span class="comment">//c语言中相邻的字符串字面量会被合并</span></span><br><span class="line">PRINT_INT(i/j);<span class="comment">//printf("i/j = %d\n", i/j);</span></span><br><span class="line">...</span><br></pre></td></tr></table></figure>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">define</span> PRINT_INT(x) printf(#x <span class="string">" = %%d"</span>, x)</span></span><br><span class="line"></span><br><span class="line">...</span><br><span class="line"><span class="comment">//c语言中相邻的字符串字面量会被合并</span></span><br><span class="line">PRINT_INT(i/j);<span class="comment">//printf("i/j = %d\n", i/j);</span></span><br><span class="line">...</span><br></pre></td></tr></table></figure>
 <h3 id="14-3-4-运算符"><a href="#14-3-4-运算符" class="headerlink" title="14.3.4    ##运算符"></a>14.3.4    <code>##</code>运算符</h3><blockquote>
 <p><strong>说明：</strong>可以将两个记号（例如标识符）“粘”在一起，成为一个记号。</p>
 </blockquote>
-<figure class="highlight"><table><tr><td class="code"><pre><span class="line">#define MK_ID(n) i##n</span><br><span class="line"></span><br><span class="line">...</span><br><span class="line">//int i1, i2, i3;</span><br><span class="line">int MK_ID(1), MK_ID(2), MK_ID(3);</span><br><span class="line">...</span><br></pre></td></tr></table></figure>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">#define MK_ID(n) i##n</span><br><span class="line"></span><br><span class="line">...</span><br><span class="line">//int i1, i2, i3;</span><br><span class="line">int MK_ID(1), MK_ID(2), MK_ID(3);</span><br><span class="line">...</span><br></pre></td></tr></table></figure>
 <p><em>求最大值的函数模版（针对不同类型）</em></p>
-<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">define</span> GENERIC_MAX(type)		\</span><br><span class="line">type type##_max(type x, type y)	\</span><br><span class="line">&#123;								\</span><br><span class="line">	return x &gt; y ? x : y;		\</span><br><span class="line">&#125;	</span></span><br><span class="line"></span><br><span class="line">...</span><br><span class="line"><span class="comment">/**</span><br><span class="line">* float float_max(float x, float y)&#123;</span><br><span class="line">*	return x &gt; y ? x : y;</span><br><span class="line">* &#125;</span><br><span class="line">*/</span></span><br><span class="line">GENERIC_MAX(<span class="keyword">float</span>);</span><br><span class="line">...</span><br></pre></td></tr></table></figure>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">define</span> GENERIC_MAX(type)		\</span><br><span class="line">type type##_max(type x, type y)	\</span><br><span class="line">&#123;								\</span><br><span class="line">	return x &gt; y ? x : y;		\</span><br><span class="line">&#125;	</span></span><br><span class="line"></span><br><span class="line">...</span><br><span class="line"><span class="comment">/**</span><br><span class="line">* float float_max(float x, float y)&#123;</span><br><span class="line">*	return x &gt; y ? x : y;</span><br><span class="line">* &#125;</span><br><span class="line">*/</span></span><br><span class="line">GENERIC_MAX(<span class="keyword">float</span>);</span><br><span class="line">...</span><br></pre></td></tr></table></figure>
 <h3 id="14-3-5-宏的通用属性"><a href="#14-3-5-宏的通用属性" class="headerlink" title="14.3.5    宏的通用属性"></a>14.3.5    宏的通用属性</h3><ul>
 <li>宏的替换列表可以包含对另一个宏的调用</li>
 <li>预处理器智慧替换完整的记号，而不会替换记号的片段</li>
@@ -452,7 +462,7 @@
 <li>宏不可以被定义两遍，除非新的定义和旧的定义是一样的</li>
 <li>宏可以使用<code>#undef</code>指令取消定义</li>
 </ul>
-<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">define</span> N 10</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">undef</span> N<span class="comment">//取消对N的定义以便给出新的定义</span></span></span><br></pre></td></tr></table></figure>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">define</span> N 10</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">undef</span> N<span class="comment">//取消对N的定义以便给出新的定义</span></span></span><br></pre></td></tr></table></figure>
 <h3 id="14-3-6-宏定义中的圆括号"><a href="#14-3-6-宏定义中的圆括号" class="headerlink" title="14.3.6    宏定义中的圆括号"></a>14.3.6    宏定义中的圆括号</h3><blockquote>
 <p><strong>说明：</strong>在宏定义中缺少圆括号会导致c语言最让人讨厌的错误（比如优先级问题）。<br><strong>哪里要添加圆括号：</strong></p>
 <ol>
@@ -460,19 +470,19 @@
 <li>当宏有参数时，仅给替换列表添加圆括号是不够的，参数的每一次出现都要添加圆括号</li>
 </ol>
 </blockquote>
-<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">define</span> SCALE(x) (x*10)<span class="comment">//需要给x添加括号</span></span></span><br><span class="line">...</span><br><span class="line">j = SCALE(i+<span class="number">1</span>);<span class="comment">//j = ((i+1)*10);</span></span><br><span class="line">...</span><br></pre></td></tr></table></figure>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">define</span> SCALE(x) (x*10)<span class="comment">//需要给x添加括号</span></span></span><br><span class="line">...</span><br><span class="line">j = SCALE(i+<span class="number">1</span>);<span class="comment">//j = ((i+1)*10);</span></span><br><span class="line">...</span><br></pre></td></tr></table></figure>
 <h3 id="14-3-7-创建较长的宏"><a href="#14-3-7-创建较长的宏" class="headerlink" title="14.3.7    创建较长的宏"></a>14.3.7    创建较长的宏</h3><h4 id="14-3-7-1-逗号运算符"><a href="#14-3-7-1-逗号运算符" class="headerlink" title="14.3.7.1    逗号运算符"></a>14.3.7.1    逗号运算符</h4><blockquote>
 <p><strong>说明：</strong>创建较长的宏的一个办法是使用<code>逗号运算符</code>，特别是可以使用逗号运算符来使替换列表包含一系列表达式。<br><strong>限制：</strong><code>逗号运算符</code>只能连接<code>表达式</code>，不能连接<code>语句</code>。</p>
 </blockquote>
-<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">define</span> ECHO(s) (gets(s), puts(s))</span></span><br><span class="line"></span><br><span class="line">...</span><br><span class="line">ECHO(str);<span class="comment">//(gets(str); puts(str););</span></span><br><span class="line">...</span><br></pre></td></tr></table></figure>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">define</span> ECHO(s) (gets(s), puts(s))</span></span><br><span class="line"></span><br><span class="line">...</span><br><span class="line">ECHO(str);<span class="comment">//(gets(str); puts(str););</span></span><br><span class="line">...</span><br></pre></td></tr></table></figure>
 <h4 id="14-4-7-2-复合语句"><a href="#14-4-7-2-复合语句" class="headerlink" title="14.4.7.2        复合语句"></a>14.4.7.2        复合语句</h4><blockquote>
 <p><strong>说明：</strong>除了使用逗号表达式，还可以将<code>语句</code>或<code>表达式</code>放在<code>{}</code>内形成复合语句。<br><strong>缺点：</strong>不能在<code>替换列表</code>为复合语句的宏调用的末尾使用分号结尾，因为在<code>if</code>语句中会调用会导致错误。</p>
 </blockquote>
-<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">define</span> ECHO(s) (gets(s), puts(s))</span></span><br><span class="line"></span><br><span class="line">...</span><br><span class="line">ECHO(str);<span class="comment">//(gets(str); puts(str););</span></span><br><span class="line">...</span><br></pre></td></tr></table></figure>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">define</span> ECHO(s) (gets(s), puts(s))</span></span><br><span class="line"></span><br><span class="line">...</span><br><span class="line">ECHO(str);<span class="comment">//(gets(str); puts(str););</span></span><br><span class="line">...</span><br></pre></td></tr></table></figure>
 <h4 id="14-4-7-3-在只循环一次的do-while中包含语句和表达式"><a href="#14-4-7-3-在只循环一次的do-while中包含语句和表达式" class="headerlink" title="14.4.7.3    在只循环一次的do-while中包含语句和表达式"></a>14.4.7.3    在只循环一次的do-while中包含语句和表达式</h4><blockquote>
 <p><strong>说明：</strong>加入一个宏需要包含一系列的语句，而不仅仅是一些列的表达式，可以将语句放在<code>do</code>循环中，并将条件设置为假。</p>
 </blockquote>
-<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">define</span> ECHO(s)		\</span><br><span class="line">	do&#123;				\</span><br><span class="line">		gets(s); 	\</span><br><span class="line">		puts(s);	\</span><br><span class="line">	&#125;while(0)		</span></span><br><span class="line">...</span><br><span class="line"><span class="comment">//do&#123;gets(s); puts(s);&#125;while(0)</span></span><br><span class="line">ECHO(str);</span><br><span class="line">...</span><br></pre></td></tr></table></figure>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">define</span> ECHO(s)		\</span><br><span class="line">	do&#123;				\</span><br><span class="line">		gets(s); 	\</span><br><span class="line">		puts(s);	\</span><br><span class="line">	&#125;while(0)		</span></span><br><span class="line">...</span><br><span class="line"><span class="comment">//do&#123;gets(s); puts(s);&#125;while(0)</span></span><br><span class="line">ECHO(str);</span><br><span class="line">...</span><br></pre></td></tr></table></figure>
 <h3 id="14-3-8-预定义宏"><a href="#14-3-8-预定义宏" class="headerlink" title="14.3.8    预定义宏"></a>14.3.8    预定义宏</h3><blockquote>
 <p><strong>说明：</strong>在c语言中预定义了一些有用的宏，这些宏主要是提供当前编译的信息。<br><strong>扩展：</strong>c语言提供了一个通用的、用于错误检测的宏—assert宏。</p>
 </blockquote>
@@ -506,49 +516,49 @@
 </tr>
 </tbody>
 </table>
-<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="comment">//检测被零除的错误</span></span><br><span class="line"><span class="comment">//该宏应该在除法之前被调用</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> CHECK_ZERO(divisor)	\</span><br><span class="line">	<span class="meta-keyword">if</span>(divisor == 0)&#123;		\</span><br><span class="line">		printf(<span class="string">"**** Attempt to divide by zero on line %d "</span> \</span><br><span class="line">				<span class="string">"of file $s ***\n"</span>, _LINE_, _FILE_);		\\</span><br><span class="line">	&#125;</span></span><br><span class="line"></span><br><span class="line">...</span><br><span class="line">CHECK_ZERO(j);</span><br><span class="line">k = i / j;</span><br><span class="line">...</span><br></pre></td></tr></table></figure>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//检测被零除的错误</span></span><br><span class="line"><span class="comment">//该宏应该在除法之前被调用</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> CHECK_ZERO(divisor)	\</span><br><span class="line">	<span class="meta-keyword">if</span>(divisor == 0)&#123;		\</span><br><span class="line">		printf(<span class="string">"**** Attempt to divide by zero on line %d "</span> \</span><br><span class="line">				<span class="string">"of file $s ***\n"</span>, _LINE_, _FILE_);		\\</span><br><span class="line">	&#125;</span></span><br><span class="line"></span><br><span class="line">...</span><br><span class="line">CHECK_ZERO(j);</span><br><span class="line">k = i / j;</span><br><span class="line">...</span><br></pre></td></tr></table></figure>
 <h2 id="14-4-条件编译"><a href="#14-4-条件编译" class="headerlink" title="14.4    条件编译"></a>14.4    条件编译</h2><blockquote>
 <p><strong>说明：</strong>条件编译是指根据预处理器所执行的测试结果来包含或排除程序的片段。</p>
 </blockquote>
 <h3 id="14-4-1-if指令和-endif指令"><a href="#14-4-1-if指令和-endif指令" class="headerlink" title="14.4.1    #if指令和#endif指令"></a>14.4.1    #if指令和#endif指令</h3><blockquote>
-<p><strong>语法：</strong>当预处理器遇到<code>if</code>指令时，会计算常量表达式。如果表达式的值为0，那么<code>#if</code>与<code>#endif</code>之间的行将在预处理过程中删除。<br><strong>注意：</strong>对于没有定义过的标识符，<code>#if</code>指令会把它当作是值为0的宏对待。<br><figure class="highlight c"><table><tr><td class="code"><pre><span class="line">&gt;<span class="meta">#<span class="meta-keyword">if</span> 常量表达式</span></span><br><span class="line">&gt;	语句</span><br><span class="line">&gt;<span class="meta">#<span class="meta-keyword">endif</span></span></span><br></pre></td></tr></table></figure></p>
+<p><strong>语法：</strong>当预处理器遇到<code>if</code>指令时，会计算常量表达式。如果表达式的值为0，那么<code>#if</code>与<code>#endif</code>之间的行将在预处理过程中删除。<br><strong>注意：</strong>对于没有定义过的标识符，<code>#if</code>指令会把它当作是值为0的宏对待。<br><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&gt;<span class="meta">#<span class="meta-keyword">if</span> 常量表达式</span></span><br><span class="line">&gt;	语句</span><br><span class="line">&gt;<span class="meta">#<span class="meta-keyword">endif</span></span></span><br></pre></td></tr></table></figure></p>
 </blockquote>
-<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">define</span> DEBUG 1</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">if</span> DEBUG</span></span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">"Value of i: %d\n"</span>, i);</span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">"Value of j: %d\n"</span>, j);</span><br><span class="line"><span class="meta">#<span class="meta-keyword">endif</span></span></span><br></pre></td></tr></table></figure>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">define</span> DEBUG 1</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">if</span> DEBUG</span></span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">"Value of i: %d\n"</span>, i);</span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">"Value of j: %d\n"</span>, j);</span><br><span class="line"><span class="meta">#<span class="meta-keyword">endif</span></span></span><br></pre></td></tr></table></figure>
 <h3 id="14-4-2-defined运算符"><a href="#14-4-2-defined运算符" class="headerlink" title="14.4.2    defined运算符"></a>14.4.2    defined运算符</h3><blockquote>
 <p><strong>说明：</strong>如果标识符是一个定义过的宏返回1，否则返回0。<br><strong>用途：</strong>判断宏某个标识符是否被定义的宏，通常和<code>#if</code>指令结合使用。</p>
 </blockquote>
-<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">if</span> defined(DEBUG)</span></span><br><span class="line">...</span><br><span class="line"><span class="meta">#<span class="meta-keyword">endif</span></span></span><br></pre></td></tr></table></figure>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">if</span> defined(DEBUG)</span></span><br><span class="line">...</span><br><span class="line"><span class="meta">#<span class="meta-keyword">endif</span></span></span><br></pre></td></tr></table></figure>
 <h3 id="14-4-3-ifdef指令和-ifndef指令"><a href="#14-4-3-ifdef指令和-ifndef指令" class="headerlink" title="14.4.3    #ifdef指令和#ifndef指令"></a>14.4.3    #ifdef指令和#ifndef指令</h3><blockquote>
 <p><strong>说明：</strong>严格说来，这里要介绍的两种指令都不是必须的，因为都可以用其他指令模拟。</p>
 </blockquote>
 <h4 id="14-4-3-1-ifdef指令"><a href="#14-4-3-1-ifdef指令" class="headerlink" title="14.4.3.1    #ifdef指令"></a>14.4.3.1    #ifdef指令</h4><blockquote>
-<p><strong>语法：</strong>等价于<code>if defined(标识符)</code><br><figure class="highlight c"><table><tr><td class="code"><pre><span class="line">&gt;<span class="meta">#<span class="meta-keyword">ifdef</span> 标识符</span></span><br><span class="line">&gt;  当标识符被定义为宏时需要包含的代码</span><br><span class="line">&gt;<span class="meta">#<span class="meta-keyword">endif</span></span></span><br></pre></td></tr></table></figure></p>
+<p><strong>语法：</strong>等价于<code>if defined(标识符)</code><br><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&gt;<span class="meta">#<span class="meta-keyword">ifdef</span> 标识符</span></span><br><span class="line">&gt;  当标识符被定义为宏时需要包含的代码</span><br><span class="line">&gt;<span class="meta">#<span class="meta-keyword">endif</span></span></span><br></pre></td></tr></table></figure></p>
 </blockquote>
 <h4 id="14-4-3-2-ifndef指令"><a href="#14-4-3-2-ifndef指令" class="headerlink" title="14.4.3.2    #ifndef指令"></a>14.4.3.2    #ifndef指令</h4><blockquote>
-<p><strong>语法：</strong>等价于<code>#if !defined(标识符)</code><br><figure class="highlight c"><table><tr><td class="code"><pre><span class="line">&gt;<span class="meta">#<span class="meta-keyword">ifdef</span> 标识符</span></span><br><span class="line">&gt;  当标识符被定义为宏时需要包含的代码</span><br><span class="line">&gt;<span class="meta">#<span class="meta-keyword">endif</span></span></span><br></pre></td></tr></table></figure></p>
+<p><strong>语法：</strong>等价于<code>#if !defined(标识符)</code><br><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&gt;<span class="meta">#<span class="meta-keyword">ifdef</span> 标识符</span></span><br><span class="line">&gt;  当标识符被定义为宏时需要包含的代码</span><br><span class="line">&gt;<span class="meta">#<span class="meta-keyword">endif</span></span></span><br></pre></td></tr></table></figure></p>
 </blockquote>
-<h3 id="14-4-4-elif指令和-else指令"><a href="#14-4-4-elif指令和-else指令" class="headerlink" title="14.4.4    #elif指令和#else指令"></a>14.4.4    #elif指令和#else指令</h3><figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">if</span> 表达式1</span></span><br><span class="line">	语句</span><br><span class="line"><span class="meta">#<span class="meta-keyword">elif</span> 表达式2</span></span><br><span class="line">	语句</span><br><span class="line"><span class="meta">#<span class="meta-keyword">else</span></span></span><br><span class="line">	语句</span><br></pre></td></tr></table></figure>
+<h3 id="14-4-4-elif指令和-else指令"><a href="#14-4-4-elif指令和-else指令" class="headerlink" title="14.4.4    #elif指令和#else指令"></a>14.4.4    #elif指令和#else指令</h3><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">if</span> 表达式1</span></span><br><span class="line">	语句</span><br><span class="line"><span class="meta">#<span class="meta-keyword">elif</span> 表达式2</span></span><br><span class="line">	语句</span><br><span class="line"><span class="meta">#<span class="meta-keyword">else</span></span></span><br><span class="line">	语句</span><br></pre></td></tr></table></figure>
 <h3 id="14-4-5-使用条件编译"><a href="#14-4-5-使用条件编译" class="headerlink" title="14.4.5    使用条件编译"></a>14.4.5    使用条件编译</h3><p><strong>常见应用：</strong></p>
 <ul>
 <li>编写在多台机器或多种操作系统之间可移植的程序</li>
 </ul>
-<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">if</span> defined(WINDOWS)</span></span><br><span class="line"> ...</span><br><span class="line"><span class="meta">#<span class="meta-keyword">elif</span> defined(DOS)</span></span><br><span class="line">...</span><br><span class="line"><span class="meta">#<span class="meta-keyword">elif</span> defined(OS2)</span></span><br><span class="line">...</span><br><span class="line"><span class="meta">#<span class="meta-keyword">endif</span></span></span><br></pre></td></tr></table></figure>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">if</span> defined(WINDOWS)</span></span><br><span class="line"> ...</span><br><span class="line"><span class="meta">#<span class="meta-keyword">elif</span> defined(DOS)</span></span><br><span class="line">...</span><br><span class="line"><span class="meta">#<span class="meta-keyword">elif</span> defined(OS2)</span></span><br><span class="line">...</span><br><span class="line"><span class="meta">#<span class="meta-keyword">endif</span></span></span><br></pre></td></tr></table></figure>
 <ul>
 <li>编写可以使用不同的编译器进行编译的程序</li>
 </ul>
-<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">if</span> __STDC__</span></span><br><span class="line">标准c函数原型</span><br><span class="line"><span class="meta">#<span class="meta-keyword">else</span></span></span><br><span class="line">经典c函数声明</span><br><span class="line"><span class="meta">#<span class="meta-keyword">endif</span></span></span><br></pre></td></tr></table></figure>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">if</span> __STDC__</span></span><br><span class="line">标准c函数原型</span><br><span class="line"><span class="meta">#<span class="meta-keyword">else</span></span></span><br><span class="line">经典c函数声明</span><br><span class="line"><span class="meta">#<span class="meta-keyword">endif</span></span></span><br></pre></td></tr></table></figure>
 <ul>
 <li>为宏提供默认定义</li>
 </ul>
-<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">ifndef</span> BUFFER_SIZE</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> BUFFER_SIZE 256</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">endif</span></span></span><br></pre></td></tr></table></figure>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">ifndef</span> BUFFER_SIZE</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> BUFFER_SIZE 256</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">endif</span></span></span><br></pre></td></tr></table></figure>
 <ul>
 <li>临时屏蔽包含注释的代码</li>
 </ul>
-<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">if</span> 0</span></span><br><span class="line">包含注释的代码行</span><br><span class="line"><span class="meta">#<span class="meta-keyword">endif</span></span></span><br></pre></td></tr></table></figure>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">if</span> 0</span></span><br><span class="line">包含注释的代码行</span><br><span class="line"><span class="meta">#<span class="meta-keyword">endif</span></span></span><br></pre></td></tr></table></figure>
 <h2 id="14-5-其他指令"><a href="#14-5-其他指令" class="headerlink" title="14.5    其他指令"></a>14.5    其他指令</h2><h3 id="14-5-1-error指令"><a href="#14-5-1-error指令" class="headerlink" title="14.5.1    #error指令"></a>14.5.1    #error指令</h3><blockquote>
 <p><strong>语法：</strong><code>#error 消息</code><br><strong>说明：</strong>如果预处理器遇到一个<code>#error</code>指令，它会显示一个出错消息，这个消息一定会包含<code>消息</code>，然后大多数编译器会立即终止编译而不去找出其他错误。<br><strong>用途：</strong>通常与条件编译指令一起用于检测正常编译过程中不应出现的情况。</p>
 </blockquote>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">#if INT_MAX &lt; 1000000</span><br><span class="line">#error int type is too small//Error directive:int type is too small</span><br><span class="line">#endif</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">#if INT_MAX &lt; 1000000</span><br><span class="line">#error int type is too small//Error directive:int type is too small</span><br><span class="line">#endif</span><br></pre></td></tr></table></figure>
 <h3 id="14-5-2-line指令"><a href="#14-5-2-line指令" class="headerlink" title="14.5.2    #line指令"></a>14.5.2    #line指令</h3><blockquote>
 <p><strong>说明：</strong>用来改变程序行编号的方式以及使编译器认为所在文件是另一个文件。<br><strong>语法：</strong><code>#line 行号 [文件名]</code></p>
 <ul>
@@ -679,7 +689,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">85</span>
+              <span class="site-state-item-count">94</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -689,7 +699,7 @@
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">10</span>
+                <span class="site-state-item-count">11</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
@@ -751,7 +761,7 @@
 <div class="theme-info">
   主题 -
   <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
-    NexT.Muse
+    NexT.Mist
   </a>
 </div>
 

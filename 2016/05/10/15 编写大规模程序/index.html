@@ -5,7 +5,7 @@
   
 
 
-<html class="theme-next muse use-motion">
+<html class="theme-next mist use-motion">
 <head>
   <meta charset="UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
@@ -130,7 +130,7 @@
 <script type="text/javascript" id="hexo.configuration">
   var NexT = window.NexT || {};
   var CONFIG = {
-    scheme: 'Muse',
+    scheme: 'Mist',
     sidebar: {"position":"left","display":"post"},
     fancybox: true,
     motion: true,
@@ -205,6 +205,16 @@
               <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
             
             首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
           </a>
         </li>
       
@@ -359,9 +369,9 @@
 </tr>
 </tbody>
 </table>
-<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="string">"c:\cprogs\utils.h"</span>/*DOS path*/</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="string">"/cprogs/utils.h"</span>/*UNIX path*/</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="string">"c:\cprogs\utils.h"</span>/*DOS path*/</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="string">"/cprogs/utils.h"</span>/*UNIX path*/</span></span><br></pre></td></tr></table></figure>
 <p><strong>可移植性技巧：</strong>不要在<code>#include</code>指令中包含路径或驱动器信息。</p>
-<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;sys\stat.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;utils.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;..\include\utils.h&gt;</span></span></span><br></pre></td></tr></table></figure>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;sys\stat.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;utils.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;..\include\utils.h&gt;</span></span></span><br></pre></td></tr></table></figure>
 <h3 id="15-2-2-共享宏定义和类型定义"><a href="#15-2-2-共享宏定义和类型定义" class="headerlink" title="15.2.2    共享宏定义和类型定义"></a>15.2.2    共享宏定义和类型定义</h3><blockquote>
 <p><strong>说明：</strong>将通用的宏定义和类型定义放在头文件中有许多明显的好处。</p>
 <ul>
@@ -371,7 +381,7 @@
 </ul>
 </blockquote>
 <p><em>boolean.h</em></p>
-<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">define</span> TRUE 1</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> FALSE 0</span></span><br><span class="line"><span class="keyword">typedef</span> <span class="keyword">int</span> Bool;</span><br></pre></td></tr></table></figure>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">define</span> TRUE 1</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> FALSE 0</span></span><br><span class="line"><span class="keyword">typedef</span> <span class="keyword">int</span> Bool;</span><br></pre></td></tr></table></figure>
 <h3 id="15-2-3-共享函数原型"><a href="#15-2-3-共享函数原型" class="headerlink" title="15.2.3    共享函数原型"></a>15.2.3    共享函数原型</h3><blockquote>
 <p><strong>说明：</strong>为了共享函数，要把函数的定义放在一个源文件中，然后在需要调用此函数的其他文件中放置声明。<br><strong>技巧：</strong>为了保证函数原型声明一致，声明部分单独放在一个头文件中。然后在定义和调用的源文件中都引入该头文件。<br><strong>注意：</strong>在调用在其他文件中的函数时，要始终确保编译器在调用之前看到函数的原型。</p>
 </blockquote>
@@ -379,16 +389,16 @@
 <blockquote>
 <p><strong>说明：</strong>包含共享的函数的原型声明。<br><strong>注意：</strong>只在<code>calc.c</code>中使用的的函数不应该定义在该头文件中。</p>
 </blockquote>
-<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">make_empty</span><span class="params">(<span class="keyword">void</span>)</span></span>;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">is_empty</span><span class="params">(<span class="keyword">void</span>)</span></span>;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">is_full</span><span class="params">(<span class="keyword">void</span>)</span></span>;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">push</span><span class="params">(<span class="keyword">int</span> i)</span></span>;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">pop</span><span class="params">(<span class="keyword">void</span>)</span></span>;</span><br></pre></td></tr></table></figure>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">make_empty</span><span class="params">(<span class="keyword">void</span>)</span></span>;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">is_empty</span><span class="params">(<span class="keyword">void</span>)</span></span>;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">is_full</span><span class="params">(<span class="keyword">void</span>)</span></span>;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">push</span><span class="params">(<span class="keyword">int</span> i)</span></span>;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">pop</span><span class="params">(<span class="keyword">void</span>)</span></span>;</span><br></pre></td></tr></table></figure>
 <p><em>2. 函数定义：<code>stack.c</code></em></p>
 <blockquote>
 <p><strong>说明：</strong>实现stack.c中声明的所有函数。</p>
 </blockquote>
-<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="string">"stack.h"</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">int</span> contents[<span class="number">100</span>];</span><br><span class="line"><span class="keyword">int</span> top = <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">make_empty</span><span class="params">(<span class="keyword">void</span>)</span></span>&#123;</span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">"%s\n"</span>, <span class="string">"what"</span>);</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">is_empty</span><span class="params">(<span class="keyword">void</span>)</span></span>&#123;</span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">"%s\n"</span>, <span class="string">"what"</span>);</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">is_full</span><span class="params">(<span class="keyword">void</span>)</span></span>&#123;</span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">"%s\n"</span>, <span class="string">"what"</span>);</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">push</span><span class="params">(<span class="keyword">int</span> i)</span></span>&#123;</span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">"%s\n"</span>, <span class="string">"what"</span>);</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">pop</span><span class="params">(<span class="keyword">void</span>)</span></span>&#123;</span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">"%s\n"</span>, <span class="string">"what"</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="string">"stack.h"</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">int</span> contents[<span class="number">100</span>];</span><br><span class="line"><span class="keyword">int</span> top = <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">make_empty</span><span class="params">(<span class="keyword">void</span>)</span></span>&#123;</span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">"%s\n"</span>, <span class="string">"what"</span>);</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">is_empty</span><span class="params">(<span class="keyword">void</span>)</span></span>&#123;</span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">"%s\n"</span>, <span class="string">"what"</span>);</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">is_full</span><span class="params">(<span class="keyword">void</span>)</span></span>&#123;</span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">"%s\n"</span>, <span class="string">"what"</span>);</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">push</span><span class="params">(<span class="keyword">int</span> i)</span></span>&#123;</span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">"%s\n"</span>, <span class="string">"what"</span>);</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">pop</span><span class="params">(<span class="keyword">void</span>)</span></span>&#123;</span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">"%s\n"</span>, <span class="string">"what"</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p><em>3. 入口文件：<code>calc.c</code></em></p>
-<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="string">"stack.h"</span></span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">	<span class="comment">//编译器会通过stack.h中make_empty的原型找到对应的定义，从而正确调用</span></span><br><span class="line">	make_empty();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="string">"stack.h"</span></span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">	<span class="comment">//编译器会通过stack.h中make_empty的原型找到对应的定义，从而正确调用</span></span><br><span class="line">	make_empty();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p><em>编译运行</em></p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ gcc -o calc calc.c stack.c</span><br><span class="line">$ ./calc </span><br><span class="line"> what</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ gcc -o calc calc.c stack.c</span><br><span class="line">$ ./calc </span><br><span class="line"> what</span><br></pre></td></tr></table></figure>
 <h3 id="15-2-4-共享变量声明"><a href="#15-2-4-共享变量声明" class="headerlink" title="15.2.4    共享变量声明"></a>15.2.4    共享变量声明</h3><blockquote>
 <p><strong>说明：</strong>为了共享变量<code>i</code>，首先把变量i的定义（和初始化）放置在一个文件中，而在其他文件中包含变量<code>i</code>的声明（使用关键字<code>extern</code>）。<br><strong>变量声明：</strong><code>extern</code></p>
 <ul>
@@ -400,11 +410,11 @@
 </ul>
 <p><strong>技巧：</strong>通常把共享的变量的声明放置在头文件中，需要访问该共享变量的源文件中引入该头文件。同时如果变量的定义在其它源文件（而不是入口文件中），则也需要引入该头文件。<br><strong>扩展：</strong>虽然在文件中共享变量是<code>c</code>语言界的长期惯例，但是它有重大缺陷。<code>19.2</code>节有如何设计不需要共享变量的程序的知识。</p>
 </blockquote>
-<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="comment">//extern提示编译器变量i是在程序的其它位置定义的（同一文件或不同文件）</span></span><br><span class="line"><span class="keyword">extern</span> <span class="keyword">int</span> i;</span><br></pre></td></tr></table></figure>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//extern提示编译器变量i是在程序的其它位置定义的（同一文件或不同文件）</span></span><br><span class="line"><span class="keyword">extern</span> <span class="keyword">int</span> i;</span><br></pre></td></tr></table></figure>
 <h3 id="15-2-5-嵌套包含"><a href="#15-2-5-嵌套包含" class="headerlink" title="15.2.5    嵌套包含"></a>15.2.5    嵌套包含</h3><blockquote>
 <p><strong>说明：</strong>头文件自身可以包含<code>#include</code>指令。</p>
 </blockquote>
-<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="string">"boolean.h"</span></span></span><br><span class="line"></span><br><span class="line"><span class="function">Bool <span class="title">is_empty</span><span class="params">(<span class="keyword">void</span>)</span></span>;</span><br><span class="line"><span class="function">Bool <span class="title">is_full</span><span class="params">(<span class="keyword">void</span>)</span></span>;</span><br></pre></td></tr></table></figure>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="string">"boolean.h"</span></span></span><br><span class="line"></span><br><span class="line"><span class="function">Bool <span class="title">is_empty</span><span class="params">(<span class="keyword">void</span>)</span></span>;</span><br><span class="line"><span class="function">Bool <span class="title">is_full</span><span class="params">(<span class="keyword">void</span>)</span></span>;</span><br></pre></td></tr></table></figure>
 <h3 id="15-2-6-保护头文件"><a href="#15-2-6-保护头文件" class="headerlink" title="15.2.6    保护头文件"></a>15.2.6    保护头文件</h3><blockquote>
 <p><strong>为什么保护：</strong>如果源文件包含同一个文件两次（直接或间接），那么可能（如果包含类型定义）会产生编译错误。</p>
 <ul>
@@ -413,11 +423,11 @@
 </ul>
 <p><strong>如何保护：</strong>为了防止头文件多次包含导致的多次编译，将用<code>#ifndef</code>和<code>#endif</code>两个指令把文件闭合起来。在预编译阶段去重复掉引入的头文件的代码。</p>
 </blockquote>
-<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="comment">//BOOLEAN_H是按照所在头文件名(BOOLEAN.h)进行命名的，目的是避免和其它头文件中的宏冲突</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">ifndef</span> BOOLEAN_H</span></span><br><span class="line">	<span class="meta">#<span class="meta-keyword">define</span> BOOLEAN_H</span></span><br><span class="line">	<span class="meta">#<span class="meta-keyword">define</span> TRUE 1</span></span><br><span class="line">	<span class="meta">#<span class="meta-keyword">define</span> FALSE 0</span></span><br><span class="line">	<span class="keyword">typedef</span> <span class="keyword">int</span> Bool;</span><br><span class="line"><span class="meta">#<span class="meta-keyword">endif</span></span></span><br></pre></td></tr></table></figure>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//BOOLEAN_H是按照所在头文件名(BOOLEAN.h)进行命名的，目的是避免和其它头文件中的宏冲突</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">ifndef</span> BOOLEAN_H</span></span><br><span class="line">	<span class="meta">#<span class="meta-keyword">define</span> BOOLEAN_H</span></span><br><span class="line">	<span class="meta">#<span class="meta-keyword">define</span> TRUE 1</span></span><br><span class="line">	<span class="meta">#<span class="meta-keyword">define</span> FALSE 0</span></span><br><span class="line">	<span class="keyword">typedef</span> <span class="keyword">int</span> Bool;</span><br><span class="line"><span class="meta">#<span class="meta-keyword">endif</span></span></span><br></pre></td></tr></table></figure>
 <h3 id="15-2-7-头文件中的-error指令"><a href="#15-2-7-头文件中的-error指令" class="headerlink" title="15.2.7    头文件中的#error指令"></a>15.2.7    头文件中的#error指令</h3><blockquote>
 <p><strong>用途：</strong>放在头文件中用来检查不应该包含头文件的条件。</p>
 </blockquote>
-<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="comment">//只有在DOS程序中才能正常使用</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">ifndef</span> DOS</span></span><br><span class="line">	<span class="comment">//如果非DOS程序试图包含此头文件，那么编译将在#error指令处停止</span></span><br><span class="line">	<span class="meta">#<span class="meta-keyword">error</span> Grapphics supported only under DOS</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">endif</span></span></span><br></pre></td></tr></table></figure>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//只有在DOS程序中才能正常使用</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">ifndef</span> DOS</span></span><br><span class="line">	<span class="comment">//如果非DOS程序试图包含此头文件，那么编译将在#error指令处停止</span></span><br><span class="line">	<span class="meta">#<span class="meta-keyword">error</span> Grapphics supported only under DOS</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">endif</span></span></span><br></pre></td></tr></table></figure>
 <h2 id="15-3-把程序划分成多个文件（程序：文本格式化）"><a href="#15-3-把程序划分成多个文件（程序：文本格式化）" class="headerlink" title="15.3    把程序划分成多个文件（程序：文本格式化）"></a>15.3    把程序划分成多个文件（程序：文本格式化）</h2><blockquote>
 <p><strong>功能分析：</strong>能够将输入的文本格式化的命令行工具。</p>
 <ul>
@@ -433,7 +443,7 @@
 <li><strong>链接：</strong>把上一步产生的目标文件和库函数的代码结合在一起生成可执行的程序。</li>
 </ol>
 </blockquote>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment">#-o告诉编译器最终的可执行文件的名字</span></span><br><span class="line">$ gcc -o fmt fmt.c line.c word.c</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#-o告诉编译器最终的可执行文件的名字</span></span><br><span class="line">$ gcc -o fmt fmt.c line.c word.c</span><br></pre></td></tr></table></figure>
 <h3 id="15-4-1-makefile"><a href="#15-4-1-makefile" class="headerlink" title="15.4.1    makefile"></a>15.4.1    makefile</h3><p><strong>命令行编译的缺点：</strong></p>
 <ul>
 <li>枯燥乏味（敲没有营养的编译命令）</li>
@@ -446,10 +456,10 @@
 <li>描述了文件之间的依赖性</li>
 </ol>
 <p><strong>基本语法：</strong></p>
-<figure class="highlight c"><table><tr><td class="code"><pre><span class="line">目标文件名:依赖的文件</span><br><span class="line">[tab]命令</span><br></pre></td></tr></table></figure>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">目标文件名:依赖的文件</span><br><span class="line">[tab]命令</span><br></pre></td></tr></table></figure>
 <p><strong>扩展：</strong>不是每个人都使用makefile，其它程序维护工具正变得流行，包括一些集成开发环境支持的“工程文件”。</p>
-<h4 id="UNIX"><a href="#UNIX" class="headerlink" title="UNIX"></a>UNIX</h4><figure class="highlight makefile"><table><tr><td class="code"><pre><span class="line">fmt:fmt.o word.o line.o</span><br><span class="line">	gcc -o fmt fmt.o word.o line.o</span><br><span class="line">fmt.o:fmt.c word.h line.h</span><br><span class="line">	gcc -c fmt.c</span><br><span class="line">word.o:word.c word.h</span><br><span class="line">	gcc -c word.c</span><br><span class="line">line.o:line.c line.h</span><br><span class="line">	gcc -c line.c</span><br></pre></td></tr></table></figure>
-<h4 id="WIN"><a href="#WIN" class="headerlink" title="WIN"></a>WIN</h4><figure class="highlight makefile"><table><tr><td class="code"><pre><span class="line">fmt.exe:fmt.obj word.obj line.obj</span><br><span class="line">	gcc -o fmt fmt.obj word.obj line.obj</span><br><span class="line">fmt.obj:fmt.c word.h line.h</span><br><span class="line">	gcc -c fmt.c</span><br><span class="line">word.obj:word.c word.h</span><br><span class="line">	gcc -c word.c</span><br><span class="line">line.obj:line.c line.h</span><br><span class="line">	gcc -c line.c</span><br></pre></td></tr></table></figure>
+<h4 id="UNIX"><a href="#UNIX" class="headerlink" title="UNIX"></a>UNIX</h4><figure class="highlight makefile"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">fmt:fmt.o word.o line.o</span><br><span class="line">	gcc -o fmt fmt.o word.o line.o</span><br><span class="line">fmt.o:fmt.c word.h line.h</span><br><span class="line">	gcc -c fmt.c</span><br><span class="line">word.o:word.c word.h</span><br><span class="line">	gcc -c word.c</span><br><span class="line">line.o:line.c line.h</span><br><span class="line">	gcc -c line.c</span><br></pre></td></tr></table></figure>
+<h4 id="WIN"><a href="#WIN" class="headerlink" title="WIN"></a>WIN</h4><figure class="highlight makefile"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">fmt.exe:fmt.obj word.obj line.obj</span><br><span class="line">	gcc -o fmt fmt.obj word.obj line.obj</span><br><span class="line">fmt.obj:fmt.c word.h line.h</span><br><span class="line">	gcc -c fmt.c</span><br><span class="line">word.obj:word.c word.h</span><br><span class="line">	gcc -c word.c</span><br><span class="line">line.obj:line.c line.h</span><br><span class="line">	gcc -c line.c</span><br></pre></td></tr></table></figure>
 <h3 id="15-4-2-链接期间的错误"><a href="#15-4-2-链接期间的错误" class="headerlink" title="15.4.2    链接期间的错误"></a>15.4.2    链接期间的错误</h3><blockquote>
 <p><strong>常见错误：</strong></p>
 <ol>
@@ -496,9 +506,9 @@
 </tbody>
 </table>
 <p><em>foo.c</em></p>
-<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">define</span> DEBUG 1</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">define</span> DEBUG 1</span></span><br></pre></td></tr></table></figure>
 <p><em>命令行</em></p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">$ gcc -DDEBUG=1 foo.c</span><br><span class="line"># gcc -UDEBUG foo.c</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ gcc -DDEBUG=1 foo.c</span><br><span class="line"># gcc -UDEBUG foo.c</span><br></pre></td></tr></table></figure>
 
       
     </div>
@@ -612,7 +622,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">85</span>
+              <span class="site-state-item-count">94</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -622,7 +632,7 @@
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">10</span>
+                <span class="site-state-item-count">11</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
@@ -684,7 +694,7 @@
 <div class="theme-info">
   主题 -
   <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
-    NexT.Muse
+    NexT.Mist
   </a>
 </div>
 
