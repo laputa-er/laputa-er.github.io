@@ -238,6 +238,433 @@
             
               
                 
+                <a class="post-title-link" href="/2016/09/19/JK_RN_React Native快速入门/" itemprop="url">
+                  React Native 快速入门
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-09-19T11:53:32+08:00" content="2016-09-19">
+              2016-09-19
+            </time>
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/09/19/JK_RN_React Native快速入门/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/09/19/JK_RN_React Native快速入门/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p><strong>视频地址：</strong><a href="http://www.jikexueyuan.com/course/1504.html" target="_blank" rel="external">http://www.jikexueyuan.com/course/1504.html</a><br><strong>练习 DEMO：</strong><a href="https://coding.net/u/eli01/p/REACT_NATIVE_PRACTICE/git/tree/master/RN_FOR_JK_HelloWorld" target="_blank" rel="external">https://coding.net/u/eli01/p/REACT_NATIVE_PRACTICE/git/tree/master/RN_FOR_JK_HelloWorld</a></p>
+<h1 id="1-React-Native介绍"><a href="#1-React-Native介绍" class="headerlink" title="1    React Native介绍"></a>1    React Native介绍</h1><p><code>Learn Once, Write Anywhere.</code><br><strong>介绍：</strong><code>React Native</code>是facebook在2015 React开发者大会上公开的应用开发框架，一个可以用<code>React</code>开发原生应用的框架。<br><strong>意义：</strong>Web和Native的结合是未来，目前对于这种跨端开发方式而言，React Native应该是首选方案。<br><strong>案例：</strong></p>
+<ol>
+<li>Facebook Group</li>
+<li>天猫ipad</li>
+<li>Chinese Flashcards</li>
+</ol>
+<p><strong>优点：</strong>为什么我们需要关心React Native?</p>
+<ol>
+<li>真正意义的跨端应用开发</li>
+<li>基于React的组件化开发模式</li>
+<li>拥有web的发布能力和原生应用的性能</li>
+<li>国内大型互联网公司已经开始投入大量资源到React Native中</li>
+<li>Web和Native结合的模式是未来</li>
+</ol>
+<p><strong>能力：</strong></p>
+<ol>
+<li>机遇原生UI组件</li>
+<li>手势识别</li>
+<li>基于FlexBox的css布局模式</li>
+<li>跨平台开发（Android预计10月后才能支持）</li>
+<li>基于React, jsx的组件化开发模式</li>
+<li>可使用npm中的模块</li>
+<li>Chrome Dev Tool的集成</li>
+</ol>
+<p><strong>同类框架：</strong></p>
+<ul>
+<li>Goole的sky</li>
+<li>Titanium</li>
+<li>NativeScript</li>
+<li>鸟巢</li>
+<li>Bee Framework</li>
+</ul>
+<h2 id="1-1-React"><a href="#1-1-React" class="headerlink" title="1.1    React"></a>1.1    React</h2><p><strong>说明：</strong>是一套前端JacaScript框架，由Facebook开源。<br><strong>特点：</strong>JSX语法，组件化模式，Virtual DOM，单向数据流。<br><strong>基本模式：</strong>每个React应用可视为组件的组合，而每个React组件由属性（property）和状态（state）来配置，当状态发生变化时更新UI，组件的结构是由虚拟的DOM来维护的，确保了实际更新的DOM只包括真正产生了状态变化的部分。<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> Hello = React.createClass(&#123;</span><br><span class="line">	render:<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">		<span class="keyword">return</span> <span class="xml"><span class="tag">&lt;<span class="name">TextHello</span> <span class="attr">React</span> <span class="attr">Native</span>&lt;/<span class="attr">Text</span>;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;);</span></span></span><br></pre></td></tr></table></figure></p>
+<h1 id="2-React-Native环境搭建"><a href="#2-React-Native环境搭建" class="headerlink" title="2    React Native环境搭建"></a>2    React Native环境搭建</h1><p><strong>环境依赖：</strong><code>OSX、Xcode、Node</code></p>
+<ul>
+<li>osx系统，目前还不支持 <code>Android</code>系统</li>
+<li>Xcode,在 App Store 上下载最新版本的 Xcode，目前应该是 3.6.1</li>
+</ul>
+<h2 id="2-1-相关依赖"><a href="#2-1-相关依赖" class="headerlink" title="2.1 相关依赖"></a>2.1 相关依赖</h2><p>（1）Homebrew<br><a href="http://brew.sh/" target="_blank" rel="external">http://brew.sh/</a></p>
+<p>（2）watchman<br><a href="https://www.watchmanmonitoring.com/" target="_blank" rel="external">https://www.watchmanmonitoring.com/</a><br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ brew install watchman <span class="comment"># 检查文件变动的工具</span></span><br></pre></td></tr></table></figure></p>
+<p>（3）flow<br><a href="https://github.com/facebook/flow" target="_blank" rel="external">https://github.com/facebook/flow</a><br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ brew install flow <span class="comment"># jsx 语法检查工具</span></span><br></pre></td></tr></table></figure></p>
+<h3 id="2-2-命令行工具"><a href="#2-2-命令行工具" class="headerlink" title="2.2 命令行工具"></a>2.2 命令行工具</h3><p>（1）react native cli<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 安装</span></span><br><span class="line">$ npm i -g react-native-cli <span class="comment"># reactive native 的命令行工具</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 项目初始化</span></span><br><span class="line">$ react-native init RN_FOR_JK_HelloWorld <span class="comment"># 项目取名为 RN_FOR_JK_HelloWorld</span></span><br></pre></td></tr></table></figure></p>
+<p>（2）使用 xcode 预览<br>虚拟机快捷键|说明<br>-|-<br>Cmd + R|重载 JS<br>Cmd + D|打开 开发菜单</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 使用 xcode 打开</span></span><br><span class="line">$ open RN_FOR_JK_HelloWorld/ios/RN_FOR_JK_HelloWorld.xcodeproj</span><br></pre></td></tr></table></figure>
+<h4 id="常见的问题"><a href="#常见的问题" class="headerlink" title="常见的问题"></a>常见的问题</h4><ul>
+<li><p><strong>npm i -g react-native-cli 无法安装？</strong><br>添加<code>sudo</code>权限安装</p>
+</li>
+<li><p><strong>Xcode 点击 run 过后报 clang 语法错误</strong><br>Xcode 版本更新到最新</p>
+</li>
+</ul>
+<h1 id="3-Movie-List示例程序"><a href="#3-Movie-List示例程序" class="headerlink" title="3    Movie List示例程序"></a>3    Movie List示例程序</h1><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">RN_FOR_JK_HelloWorld</span><br><span class="line">├── android</span><br><span class="line">├── index.android.js</span><br><span class="line">├── index.ios.js <span class="comment"># 示例代码（以 ios 为例）</span></span><br><span class="line">├── ios</span><br><span class="line">├── node_modules</span><br><span class="line">└── package.json</span><br></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span><br><span class="line"> * Sample React Native App</span><br><span class="line"> * https://github.com/facebook/react-native</span><br><span class="line"> * @flow</span><br><span class="line"> */</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> React, &#123; Component &#125; <span class="keyword">from</span> <span class="string">'react'</span>;</span><br><span class="line"><span class="keyword">import</span> &#123;</span><br><span class="line">  AppRegistry,</span><br><span class="line">  StyleSheet,</span><br><span class="line">  Text,</span><br><span class="line">  View,</span><br><span class="line">  Image,</span><br><span class="line">  ListView</span><br><span class="line">&#125; <span class="keyword">from</span> <span class="string">'react-native'</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> REQUEST_URL = <span class="string">'https://raw.githubusercontent.com/facebook/react-native/master/docs/MoviesExample.json'</span>;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">RN_FOR_JK_HelloWorld</span> <span class="keyword">extends</span> <span class="title">Component</span> </span>&#123;</span><br><span class="line">  <span class="comment">// 组件渲染</span></span><br><span class="line">  render() &#123;</span><br><span class="line">    <span class="keyword">if</span> (<span class="keyword">this</span>.state.loaded) &#123;</span><br><span class="line">      <span class="keyword">return</span> <span class="keyword">this</span>.renderList();</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">else</span> &#123;</span><br><span class="line">      <span class="keyword">return</span> <span class="keyword">this</span>.renderLoadingView();</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="comment">// 构造器</span></span><br><span class="line">  <span class="keyword">constructor</span>(props) &#123;</span><br><span class="line">    <span class="keyword">super</span>(props);</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 初始化 state</span></span><br><span class="line">    <span class="keyword">this</span>.state = &#123;</span><br><span class="line">      dataSource: <span class="keyword">new</span> ListView.DataSource(&#123;</span><br><span class="line">        rowHasChanged: (row1, row2) =&gt; row1 !== row2</span><br><span class="line">      &#125;),</span><br><span class="line">      loaded: <span class="literal">false</span></span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">  <span class="comment">// 组件挂载后</span></span><br><span class="line">  componentDidMount () &#123;</span><br><span class="line">    fetch(REQUEST_URL)</span><br><span class="line">    .then((response) =&gt; response.json())</span><br><span class="line">    .then((responseData) =&gt; &#123;</span><br><span class="line">      <span class="keyword">this</span>.setState(&#123;</span><br><span class="line">        dataSource: <span class="keyword">this</span>.state.dataSource.cloneWithRows(responseData.movies),</span><br><span class="line">        loaded: <span class="literal">true</span></span><br><span class="line">      &#125;);</span><br><span class="line">    &#125;)</span><br><span class="line">    .done();</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  renderList () &#123;</span><br><span class="line">    <span class="keyword">return</span> (</span><br><span class="line">      &lt;ListView</span><br><span class="line">        dataSource=&#123;this.state.dataSource&#125;</span><br><span class="line">        renderRow=&#123;this.renderItem&#125; /&gt;</span><br><span class="line">      )</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  renderItem (movie) &#123;</span><br><span class="line">    return (</span><br><span class="line">      &lt;View style=&#123;styles.container&#125;&gt;</span><br><span class="line">        &lt;Image</span><br><span class="line">          source=&#123;&#123;uri: movie.posters.thumbnail&#125;&#125;</span><br><span class="line">          style=&#123;styles.thumbnail&#125;/&gt;</span><br><span class="line">        &lt;View</span><br><span class="line">          style=&#123;styles.rightContainer&#125;&gt;</span><br><span class="line">            &lt;Text&gt;&#123;movie.title&#125;&lt;/Text&gt;</span><br><span class="line">            &lt;Text&gt;&#123;movie.year&#125;&lt;/Text&gt;</span><br><span class="line">          &lt;/View&gt;</span><br><span class="line">      &lt;/View&gt;</span><br><span class="line">    )</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  renderLoadingView () &#123;</span><br><span class="line">    return (</span><br><span class="line">      &lt;View</span><br><span class="line">        style=&#123;styles.container&#125;&gt;</span><br><span class="line">        &lt;Text&gt;Loading, please wait!&lt;/Text&gt;</span><br><span class="line">      &lt;/View&gt;</span><br><span class="line">    );</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">/* 定义样式 */</span><br><span class="line">const styles = StyleSheet.create(&#123;</span><br><span class="line">  container: &#123;</span><br><span class="line">    flex: 1,</span><br><span class="line">    justifyContent: 'center',</span><br><span class="line">    flexDirection: 'row',</span><br><span class="line">    alignItems: 'center',</span><br><span class="line">    backgroundColor: '#f5fcff'</span><br><span class="line">  &#125;,</span><br><span class="line">  rightContainer: &#123;</span><br><span class="line">    flex: 1,</span><br><span class="line">    alignItems: 'center',</span><br><span class="line">    justifyContent: 'center'</span><br><span class="line">  &#125;,</span><br><span class="line">  thumbnail: &#123;</span><br><span class="line">    backgroundColor: '#676767',</span><br><span class="line">    width: 53,</span><br><span class="line">    height: 81</span><br><span class="line">  &#125;</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">AppRegistry.registerComponent('RN_FOR_JK_HelloWorld', () =&gt; RN_FOR_JK_HelloWorld);</span><br></pre></td></tr></table></figure>
+<p><img src="http://o6ul1xz4z.bkt.clouddn.com/img/1473688744773.png" alt="Alt text"></p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2016/09/19/JK_RN_React Native 布局指南/" itemprop="url">
+                  React Native 布局指南
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-09-19T11:41:26+08:00" content="2016-09-19">
+              2016-09-19
+            </time>
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/09/19/JK_RN_React Native 布局指南/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/09/19/JK_RN_React Native 布局指南/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p><strong>视频地址：</strong><a href="http://www.jikexueyuan.com/course/1489.html" target="_blank" rel="external">http://www.jikexueyuan.com/course/1489.html</a></p>
+<p><strong>背景：</strong><code>React Native</code> 使你能够使用基于 <code>JavaScript</code> 和 <code>React</code> 构建世界一流的应用程序。 <code>React Native</code> 把重点放在所有开发人员关心的平台的开发效率上——开发者只需学习一种语言就能轻易为任何平台高效地编写代码。 通过该课程，学员可以理解 <code>Flexbox</code>， 并基本掌握 <code>React Native</code> 的样式和布局开发。 </p>
+<h1 id="1-Flexbox-布局详解"><a href="#1-Flexbox-布局详解" class="headerlink" title="1 Flexbox 布局详解"></a>1 Flexbox 布局详解</h1><p><strong>课程说明：</strong> Flexbox 布局的基本原理和方法<br><strong>说明：</strong><code>Flexbox</code>是<code>css3</code>里边引入的布局模型－弹性盒子模型，旨在通过弹性的方式来对齐和分布容器中内容的空间，使其能够适应不同屏幕的高度。<code>React Native</code>中<code>Flexbox</code>是这个规范的一个子集。</p>
+<p><img src="http://o6ul1xz4z.bkt.clouddn.com/img/1473689485972.png" alt="Alt text"></p>
+<h2 id="1-1-Flexbox解决了什么问题？"><a href="#1-1-Flexbox解决了什么问题？" class="headerlink" title="1.1 Flexbox解决了什么问题？"></a>1.1 Flexbox解决了什么问题？</h2><ul>
+<li>浮动布局</li>
+<li>不同宽度屏幕的适配</li>
+<li>宽度自动分配</li>
+<li>水平垂直居中</li>
+</ul>
+<p><img src="http://o6ul1xz4z.bkt.clouddn.com/img/1473689609237.png" alt="Alt text"></p>
+<h2 id="1-2-Flexbox-属性"><a href="#1-2-Flexbox-属性" class="headerlink" title="1.2 Flexbox 属性"></a>1.2 Flexbox 属性</h2><h3 id="12-1-容器属性"><a href="#12-1-容器属性" class="headerlink" title="12.1 容器属性"></a>12.1 容器属性</h3><table>
+<thead>
+<tr>
+<th>容器属性</th>
+<th>值</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>flexDirection</td>
+<td>enum(<code>row</code>, <code>colum</code>)</td>
+<td>主轴的方向,默认为<code>row</code></td>
+</tr>
+<tr>
+<td>flexWrap</td>
+<td>enum(<code>wrap</code>, <code>nowrap</code>)</td>
+<td>默认为<code>nowrap</code>，所有item都在一行或一列；<code>wrap</code>则使一行或一列容不下时进行折行处理</td>
+</tr>
+<tr>
+<td>alignItems</td>
+<td>enum(<code>flext-start</code>、<code>flex-end</code>、<code>center</code>、<code>stretch</code>)</td>
+<td>在<code>cross axis</code>方向上对剩余空间的处理方式</td>
+</tr>
+<tr>
+<td>justifyContent</td>
+<td>enum(<code>flex-start</code>、<code>flex-end</code>、<code>center</code>、<code>space-between</code>、<code>space-around</code>)</td>
+<td>在<code>main axis</code>方向上对剩余空间的处理方式</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<p><strong>（1）flexDirection</strong><br><img src="http://o6ul1xz4z.bkt.clouddn.com/img/1473689934368.png" alt="Alt text"></p>
+<hr>
+<p><strong>（2）flexWrap</strong><br><img src="http://o6ul1xz4z.bkt.clouddn.com/img/1473690320187.png" alt="Alt text"></p>
+<hr>
+<p><strong>（3）alignItems</strong><br><img src="http://o6ul1xz4z.bkt.clouddn.com/img/1473690365231.png" alt="Alt text"></p>
+<hr>
+<p><strong>（4）justifyContent</strong><br><img src="http://o6ul1xz4z.bkt.clouddn.com/img/1473690550451.png" alt="Alt text"></p>
+<h3 id="1-2-2-容器属性"><a href="#1-2-2-容器属性" class="headerlink" title="1.2.2 容器属性"></a>1.2.2 容器属性</h3><table>
+<thead>
+<tr>
+<th>元素属性</th>
+<th>类型</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>flex</td>
+<td>number</td>
+<td>item 在 <code>main axis</code>方向上占用空间大小</td>
+</tr>
+<tr>
+<td>alignSelf</td>
+<td>enum(<code>flext-start</code>、<code>flex-end</code>、<code>center</code>、<code>stretch</code>)</td>
+<td>针对单一的item 在<code>cross axis</code>方向上的<code>alignItems</code></td>
+</tr>
+</tbody>
+</table>
+<p><strong>（1）flex</strong><br><img src="http://o6ul1xz4z.bkt.clouddn.com/img/1473690728595.png" alt="Alt text"></p>
+<p><strong>（2）alignSelf</strong></p>
+<h1 id="2-样式布局基础"><a href="#2-样式布局基础" class="headerlink" title="2 样式布局基础"></a>2 样式布局基础</h1><p><strong>课程背景：</strong><code>React Native</code> 的样式布局基础，包括如何添加和使用样式，以及介绍作为 Css 子集的基本盒模型布局方式</p>
+<h2 id="2-1-声明和使用样式"><a href="#2-1-声明和使用样式" class="headerlink" title="2.1 声明和使用样式"></a>2.1 声明和使用样式</h2><h4 id="2-1-1-声明"><a href="#2-1-1-声明" class="headerlink" title="2.1.1 声明"></a>2.1.1 声明</h4><p>通过 <code>StyleSheet</code>声明样式<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> styles = StyleSheet.create(&#123;</span><br><span class="line">	base: &#123;</span><br><span class="line">		width: <span class="number">38</span>,</span><br><span class="line">		height: <span class="number">38</span></span><br><span class="line">	&#125;,</span><br><span class="line">	background: &#123;</span><br><span class="line">		backgroundColor: <span class="string">'#222'</span></span><br><span class="line">	&#125;,</span><br><span class="line">	active: &#123;</span><br><span class="line">		borderWidth: <span class="number">2</span>,</span><br><span class="line">		borderColor: <span class="string">'#0f0'</span></span><br><span class="line">	&#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure></p>
+<h3 id="2-1-2-使用"><a href="#2-1-2-使用" class="headerlink" title="2.1.2 使用"></a>2.1.2 使用</h3><p>通过 <code>Style</code>属性来使用样式<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 引用单个 style</span></span><br><span class="line">&lt;Text style=&#123;styles.base&#125; /&gt;</span><br><span class="line">&lt;Text style=&#123;styles.background&#125; /&gt;</span><br><span class="line"></span><br><span class="line">// 引用多个(以数组形式)</span><br><span class="line">&lt;View style=&#123;[</span><br><span class="line">	styles.base,</span><br><span class="line">	styles.background</span><br><span class="line">]&#125; /&gt;</span><br><span class="line"></span><br><span class="line">// 直接使用</span><br><span class="line">&lt;View style=&#123;&#123;</span><br><span class="line">	width: 100,</span><br><span class="line">	height: 100</span><br><span class="line">&#125;&#125; /&gt;</span><br></pre></td></tr></table></figure></p>
+<h2 id="2-2-布局单位"><a href="#2-2-布局单位" class="headerlink" title="2.2 布局单位"></a>2.2 布局单位</h2><ul>
+<li>设置高度或者宽度时不用带单位，默认使用 <code>pt</code> 为单位</li>
+<li>不能使用百分比来设置宽度或高度</li>
+<li>可通过 <code>Dimensions</code> 模块来获取窗口宽高</li>
+<li>可通过<code>PixelRatio</code>模块来获取像素密度</li>
+</ul>
+<p><strong>使用 Dimensions模块来获取宽高</strong><br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> Dimensions = <span class="built_in">require</span>(<span class="string">'Dimensions'</span>);</span><br><span class="line"><span class="keyword">var</span> &#123;</span><br><span class="line">	width,</span><br><span class="line">	height</span><br><span class="line">&#125; = Dimensions.get(<span class="string">'window'</span>)</span><br></pre></td></tr></table></figure></p>
+<p><strong>通过 PixelRatio 对象来获取像素密度</strong><br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> pixelRation = PixelRatio.get();</span><br></pre></td></tr></table></figure></p>
+<h2 id="2-3-盒子模型"><a href="#2-3-盒子模型" class="headerlink" title="2.3 盒子模型"></a>2.3 盒子模型</h2><p><code>w3c盒模型</code>的子集<br><img src="http://o6ul1xz4z.bkt.clouddn.com/img/1473742982007.png" alt="Alt text"></p>
+<h2 id="2-4-定位模式"><a href="#2-4-定位模式" class="headerlink" title="2.4 定位模式"></a>2.4 定位模式</h2><p><strong>说明：</strong>支持<code>absolute</code>和<code>relative</code>定位<br><strong>注意：</strong>和 css 的标准不同的是，父元素容器不用设置 <code>position : absolute|relative</code></p>
+<p><strong>absolute定位</strong><br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">&lt;View style=&#123;&#123;</span><br><span class="line">	flex: <span class="number">1</span>,</span><br><span class="line">	height: <span class="number">100</span>,</span><br><span class="line">	backgroundColor: <span class="string">'#333'</span>&#125;&#125;&gt;</span><br><span class="line">	<span class="xml"><span class="tag">&lt;<span class="name">View</span> <span class="attr">style</span>=<span class="string">&#123;[styles.circle,</span> &#123;</span><br><span class="line">		<span class="attr">position:</span> '<span class="attr">absolute</span>',</span><br><span class="line">		<span class="attr">top:</span> <span class="attr">50</span>,</span><br><span class="line">		<span class="attr">left:</span> <span class="attr">180</span></span><br><span class="line">	&#125;]&#125;&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">View</span>&gt;</span></span></span><br></pre></td></tr></table></figure></p>
+<p><strong>relative定位</strong><br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">&lt;View style=&#123;&#123;</span><br><span class="line">	flex: <span class="number">1</span>,</span><br><span class="line">	height: <span class="number">100</span>,</span><br><span class="line">	backgroundColor: <span class="string">'#333'</span>&#125;&#125;&gt;</span><br><span class="line">	<span class="xml"><span class="tag">&lt;<span class="name">View</span> <span class="attr">style</span>=<span class="string">&#123;[styles.circle,</span> &#123;</span><br><span class="line">		<span class="attr">position:</span> '<span class="attr">relative</span>',</span><br><span class="line">		<span class="attr">top:</span> <span class="attr">50</span>,</span><br><span class="line">		<span class="attr">left:</span> <span class="attr">50</span>,</span><br><span class="line">		<span class="attr">marginLeft:</span> <span class="attr">50</span>&#125;]&#125;&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">View</span>&gt;</span></span></span><br></pre></td></tr></table></figure></p>
+<h2 id="2-5-css-属性"><a href="#2-5-css-属性" class="headerlink" title="2.5 css 属性"></a>2.5 css 属性</h2><ul>
+<li>transform</li>
+<li>border style</li>
+<li>font style</li>
+<li>shadow</li>
+<li>background</li>
+<li>overflow</li>
+<li>opacity</li>
+</ul>
+<h1 id="3-图像-Image-组件介绍"><a href="#3-图像-Image-组件介绍" class="headerlink" title="3  图像 Image 组件介绍"></a>3  图像 Image 组件介绍</h1><p><strong>说明：</strong><code>Image</code>组件通过<code>source</code>来指定资源，资源可以是本地的资源，也可以是网络上的资源</p>
+<h2 id="3-1-引入图片"><a href="#3-1-引入图片" class="headerlink" title="3.1 引入图片"></a>3.1 引入图片</h2><h3 id="网络图片"><a href="#网络图片" class="headerlink" title="网络图片"></a>网络图片</h3><p><strong>说明：</strong>通过设置 <code>source</code>的<code>uri</code><br><strong>注意：</strong>网络引入的必须设置其宽高<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&lt;Image</span><br><span class="line">	style=&#123;styles.logo&#125;</span><br><span class="line">	source=&#123;&#123;uri=<span class="string">'http://facebook.github.io/react/img/logo_og.png'</span>&#125;&#125;</span><br><span class="line">/&gt;</span><br></pre></td></tr></table></figure></p>
+<h3 id="本地图片"><a href="#本地图片" class="headerlink" title="本地图片"></a>本地图片</h3><p><strong>（1）使用静态资源，先将静态资源引入项目，重新编译</strong><br><img src="http://o6ul1xz4z.bkt.clouddn.com/img/1473757025709.png" alt="Alt text"></p>
+<p><strong>（2）通过 <code>require(&#39;image!name&#39;)</code>的方式引入</strong><br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&lt;Image style=&#123;styles.icon&#125;</span><br><span class="line">	source=&#123;<span class="built_in">require</span>(<span class="string">'image!myIcon'</span>)&#125; /&gt;</span><br></pre></td></tr></table></figure></p>
+<h2 id="3-2-resizeMode"><a href="#3-2-resizeMode" class="headerlink" title="3.2 resizeMode"></a>3.2 resizeMode</h2><p><strong>说明：</strong>通过<code>resizeMode</code>改变图片显示效果，类似<code>css</code>的背景模式</p>
+<table>
+<thead>
+<tr>
+<th>属性</th>
+<th>类型</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>resizeMode</td>
+<td>enum(<code>cover</code>, <code>contain</code>, <code>stretch</code>)</td>
+<td>改变图片显示效果，类似<code>css</code>的背景模式</td>
+</tr>
+</tbody>
+</table>
+<p><img src="http://o6ul1xz4z.bkt.clouddn.com/img/1473757592882.png" alt="Alt text"></p>
+<h2 id="3-3-Image-嵌套其它组件"><a href="#3-3-Image-嵌套其它组件" class="headerlink" title="3.3 Image 嵌套其它组件"></a>3.3 Image 嵌套其它组件</h2><p><strong>说明：</strong>不同于<code>html</code>中的<code>Image</code>元素，<code>Reactive Native</code>中的<code>Image</code>可嵌套其它元素</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&lt;Image style=&#123;&#123;</span><br><span class="line">	flex: <span class="number">1</span>,</span><br><span class="line">	height: <span class="number">100</span>,</span><br><span class="line">	justifyContent: <span class="string">'center'</span>,</span><br><span class="line">	alignItems: <span class="string">'center'</span>&#125;&#125;</span><br><span class="line">	source=&#123;&#123;uri: <span class="string">'...'</span>&#125;&#125;&gt;</span><br><span class="line">	<span class="xml"><span class="tag">&lt;<span class="name">Text</span> <span class="attr">style</span>=<span class="string">&#123;&#123;color:</span> <span class="attr">red</span>&#125;&#125;&gt;</span>Image Description<span class="tag">&lt;/<span class="name">Text</span>&gt;</span></span></span><br><span class="line">&lt;<span class="regexp">/Image&gt;</span></span><br></pre></td></tr></table></figure>
+<h1 id="4-文字-Text-组件介绍"><a href="#4-文字-Text-组件介绍" class="headerlink" title="4  文字 Text 组件介绍"></a>4  文字 Text 组件介绍</h1><h2 id="4-1-Text-元素"><a href="#4-1-Text-元素" class="headerlink" title="4.1 Text 元素"></a>4.1 Text 元素</h2><p><strong>说明：</strong>和<code>React Web</code>不同的是,在<code>React Native</code>中，文本元素必须要用<code>Text</code>组件包含起来，否则会出现报错</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;Text&gt;Some Text&lt;<span class="regexp">/Text&gt;</span></span><br></pre></td></tr></table></figure>
+<h2 id="4-2-Text-元素属性"><a href="#4-2-Text-元素属性" class="headerlink" title="4.2 Text 元素属性"></a>4.2 Text 元素属性</h2><table>
+<thead>
+<tr>
+<th>文本元素支持的 css 属性</th>
+<th>类型</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>fontFamily</code></td>
+<td>string</td>
+</tr>
+<tr>
+<td><code>fontSize</code></td>
+<td>number</td>
+</tr>
+<tr>
+<td><code>fontStyle</code></td>
+<td>enum(<code>normal</code>, <code>italic</code>)</td>
+</tr>
+<tr>
+<td><code>fontWeight</code></td>
+<td>enum(<code>normal</code>, <code>bold</code>, <code>100...900</code>)</td>
+</tr>
+<tr>
+<td><code>letterSpacing</code></td>
+<td>number</td>
+</tr>
+<tr>
+<td><code>lineHeight</code></td>
+<td>number</td>
+</tr>
+<tr>
+<td><code>textAlign</code></td>
+<td>enum(<code>auto</code>, <code>left</code>, <code>right</code>, <code>center</code>)</td>
+</tr>
+<tr>
+<td><code>writingDirection</code></td>
+<td>enum(<code>auto</code>, <code>ltr</code>, <code>rtl</code>)</td>
+</tr>
+<tr>
+<td><code>overflow</code></td>
+<td>enum(<code>visible</code>, <code>hidden</code>)</td>
+</tr>
+</tbody>
+</table>
+<h2 id="4-3-Text-嵌套和Text-样式继承"><a href="#4-3-Text-嵌套和Text-样式继承" class="headerlink" title="4.3 Text 嵌套和Text 样式继承"></a>4.3 Text 嵌套和Text 样式继承</h2><p><strong>说明：</strong>文本元素可以嵌套文本元素，内部使用<code>NAAttributedString</code><br><strong>注意：</strong>不同于 web 的 css 标准，<code>React Native</code>中文本元素不能继承上级<code>View</code>的样式，不过<code>Text</code>内部可实现局部继承，如下组件中，<code>and red</code>是<code>bold</code>家<code>red</code></p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&lt;Text style=&#123;&#123;fontWeight: 'bold'&#125;&#125;&gt;</span><br><span class="line">	I am bold</span><br><span class="line">	&lt;Text style=&#123;&#123;color: 'red'&#125;&#125;&gt;</span><br><span class="line">		and red</span><br><span class="line">	&lt;/Text&gt;</span><br><span class="line">&lt;/Text&gt;</span><br></pre></td></tr></table></figure>
+<h2 id="4-4-numberOfLines-属性"><a href="#4-4-numberOfLines-属性" class="headerlink" title="4.4 numberOfLines 属性"></a>4.4 numberOfLines 属性</h2><p><strong>说明：</strong>文字可以通过<code>numberOfLines</code>属性设置文本长度限制</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&lt;Text numberOfLines=&#123;5&#125;&gt;</span><br><span class="line">	&lt;Text&gt;文本元素&#123;'\n'&#125;&lt;/Text&gt;</span><br><span class="line">	&lt;Text&gt;&#123;'\n'&#125;In this...&lt;/Text&gt;</span><br><span class="line">&lt;/Text&gt;</span><br></pre></td></tr></table></figure>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2016/09/19/RN开发指南_3 构建你的第一个应用/" itemprop="url">
                   3 构建你的第一个应用(React Native开发指南)
                 </a>
@@ -1621,426 +2048,6 @@
 
 
     
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/08/30/es6_4 字符串的扩展/" itemprop="url">
-                  4 字符串的扩展(ECMAScript6入门)
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-08-30T22:01:44+08:00" content="2016-08-30">
-              2016-08-30
-            </time>
-          </span>
-
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2016/08/30/es6_4 字符串的扩展/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/08/30/es6_4 字符串的扩展/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h2 id="4-1-字符的unicode表示法"><a href="#4-1-字符的unicode表示法" class="headerlink" title="4.1 字符的unicode表示法"></a>4.1 字符的unicode表示法</h2><table>
-<thead>
-<tr>
-<th>unicode表示法</th>
-<th>码点</th>
-<th>兼容性</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code>\uxxxx</code></td>
-<td>一个两个字节长度的16进制数字</td>
-<td>all</td>
-</tr>
-<tr>
-<td><code>\uxxxx\uxxxx</code></td>
-<td>两个两个字节长度的16进制数字</td>
-<td>all</td>
-</tr>
-<tr>
-<td><code>\u{xx...}</code></td>
-<td>码点为任意unicode编码</td>
-<td>es6+</td>
-</tr>
-</tbody>
-</table>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">"\u&#123;20BB7&#125;"</span></span><br><span class="line"><span class="comment">// "𠮷"</span></span><br><span class="line"></span><br><span class="line"><span class="string">"\u&#123;41&#125;\u&#123;42&#125;\u&#123;43&#125;"</span></span><br><span class="line"><span class="comment">// "ABC"</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> hello = <span class="number">123</span>;</span><br><span class="line">hell\u&#123;<span class="number">6</span>F&#125; <span class="comment">// 123</span></span><br><span class="line"></span><br><span class="line"><span class="string">'\u&#123;1F680&#125;'</span> === <span class="string">'\uD83D\uDE80'</span></span><br><span class="line"><span class="comment">// true</span></span><br></pre></td></tr></table></figure>
-<h2 id="4-2-codePointAt"><a href="#4-2-codePointAt" class="headerlink" title="4.2 codePointAt()"></a>4.2 codePointAt()</h2><p><strong>背景：</strong><code>javascript</code>使用<code>utf-16</code>（两个字节）存储字符，使用<code>charCodeAt</code>无法正确处理四字节字符</p>
-<p>类似<code>charCodeAt</code>，区别是<code>codePointAt</code>能够正确识别四字节字符（比如<code>吉祥</code>）。</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> s = <span class="string">'吉a'</span>;</span><br><span class="line"></span><br><span class="line">s.codePointAt(<span class="number">0</span>) <span class="comment">// 134071(吉,0xD842 0xDFB7)</span></span><br><span class="line">s.codePointAt(<span class="number">1</span>) <span class="comment">// 57271（0xDFB7）</span></span><br><span class="line"></span><br><span class="line">s.charCodeAt(<span class="number">2</span>) <span class="comment">// 97</span></span><br><span class="line">s.codePointAt(<span class="number">2</span>) <span class="comment">// 97</span></span><br></pre></td></tr></table></figure>
-<p><strong>注意：</strong><code>codePointAt</code>仍会按照两个字节一个字符的方式计算字符串中字符数量，因此传递给<code>codePointAt</code>的参数和<code>charCodeAt</code>是一样的。<br><strong>扩展：</strong>使用<code>for-of</code>可以正确识别32位（4字节）UTF-16字符。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> s = <span class="string">'吉a'</span>;</span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">let</span> ch <span class="keyword">of</span> s) &#123;</span><br><span class="line">  <span class="built_in">console</span>.log(ch.codePointAt(<span class="number">0</span>).toString(<span class="number">16</span>));</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 20bb7</span></span><br><span class="line"><span class="comment">// 61</span></span><br></pre></td></tr></table></figure></p>
-<p><strong>技巧：</strong>使用<code>codePointAt</code>获取字符的<code>UTF-16</code>完整编码，并判断其大小，就可以识别4字节字符。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">is32Bit</span>(<span class="params">c</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> c.codePointAt(<span class="number">0</span>) <span class="number">0xFFFF</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">is32Bit(<span class="string">"𠮷"</span>) <span class="comment">// true</span></span><br><span class="line">is32Bit(<span class="string">"a"</span>) <span class="comment">// false</span></span><br></pre></td></tr></table></figure></p>
-<h2 id="4-3-String-fromCodePoint"><a href="#4-3-String-fromCodePoint" class="headerlink" title="4.3 String.fromCodePoint()"></a>4.3 String.fromCodePoint()</h2><p><strong>背景：</strong><code>String.fromCharCode</code>用于从码点返回对应的字符，但对32位的<code>UTF-16</code>字符进行转换会发生溢出。</p>
-<p><code>String.fromCodePoint</code>对应<code>codePointAt</code>，可以正确返回32为<code>UTF-16</code>字符对应的字符；当传递多个参数给<code>String.fromCodePoint</code>时，会返回每个参数（码点）对应的字符拼接成的字符串。</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">String</span>.fromCodePoint(<span class="number">0x20BB7</span>)</span><br><span class="line"><span class="comment">// "𠮷"</span></span><br><span class="line"><span class="built_in">String</span>.fromCodePoint(<span class="number">0x78</span>, <span class="number">0x1f680</span>, <span class="number">0x79</span>) === <span class="string">'x\uD83D\uDE80y'</span></span><br><span class="line"><span class="comment">// true</span></span><br></pre></td></tr></table></figure>
-<h2 id="4-4-字符串的遍历器接口"><a href="#4-4-字符串的遍历器接口" class="headerlink" title="4.4 字符串的遍历器接口"></a>4.4 字符串的遍历器接口</h2><p><strong>说明：</strong>es6为字符串添加了便利器接口，因而可以通过<code>for-of</code>遍历字符串。<br><strong>特点：</strong>能够正确识别码点大于<code>\uffff</code>的字符<br><strong>技巧：</strong>利用<code>for-of</code>计算字符串正确的字符个数（传统的<code>for</code>和<code>for-in</code>无法做到）</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> text = <span class="built_in">String</span>.fromCodePoint(<span class="number">0x20BB7</span>);</span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">let</span> i <span class="keyword">of</span> text) &#123;</span><br><span class="line">  <span class="built_in">console</span>.log(i);</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// "吉"</span></span><br></pre></td></tr></table></figure>
-<h2 id="4-5-at"><a href="#4-5-at" class="headerlink" title="4.5 at()"></a>4.5 at()</h2><p><strong>说明：</strong>字符串的方法（提案状态？），能够识别码点大于<code>\uffff</code>的字符<br><strong>ES5：</strong>字符串的<code>charAt</code>方法用于返回字符串给定位置的字符，但不能正确识别码点大于<code>\uffff</code>的字符</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">'吉'</span>.at(<span class="number">0</span>) <span class="comment">// "吉"</span></span><br></pre></td></tr></table></figure>
-<h2 id="4-6-normalize"><a href="#4-6-normalize" class="headerlink" title="4.6 normalize()"></a>4.6 normalize()</h2><p><strong>说明：</strong>es6提供字符串实例的<code>normalize</code>方法，用来将字符的不同表示方法统一为同样的形式，称为<code>unicode正规化</code>。</p>
-<h2 id="4-7-includes-startsWith-endsWith"><a href="#4-7-includes-startsWith-endsWith" class="headerlink" title="4.7 includes(), startsWith(), endsWith()"></a>4.7 includes(), startsWith(), endsWith()</h2><table>
-<thead>
-<tr>
-<th>方法</th>
-<th>返回值</th>
-<th>第二个参数(可选)</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>includes</td>
-<td>布尔值，表示是否找到了参数字符串</td>
-<td>开始搜索的位置</td>
-</tr>
-<tr>
-<td>startsWith</td>
-<td>布尔值，表示参数字符串是否在源字符串的头部</td>
-<td>开始搜索的位置</td>
-</tr>
-<tr>
-<td>endsWith</td>
-<td>布尔值，表示参数字符串是否在源字符串的尾部</td>
-<td>停止搜索的位置</td>
-</tr>
-</tbody>
-</table>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> s = <span class="string">'Hello world!'</span>;</span><br><span class="line"></span><br><span class="line">s.startsWith(<span class="string">'world'</span>, <span class="number">6</span>) <span class="comment">// true</span></span><br><span class="line">s.endsWith(<span class="string">'Hello'</span>, <span class="number">5</span>) <span class="comment">// true</span></span><br><span class="line">s.includes(<span class="string">'Hello'</span>, <span class="number">6</span>) <span class="comment">// false</span></span><br></pre></td></tr></table></figure>
-<h2 id="4-8-repeat"><a href="#4-8-repeat" class="headerlink" title="4.8 repeat()"></a>4.8 repeat()</h2><p><strong>用途：</strong>返回一个将源字符串重复n次的新字符串<br><strong>注意：</strong>如果参数不是整数，将会按照一定规则取整<br>非整数参数|转换后<br>-|-<br>小数|向下取整<br>负数或<code>Infinity</code>|报错<br>0~-1|0<br><code>NaN</code>|0<br>字符串|相应的数字</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">'x'</span>.repeat(<span class="number">3</span>) <span class="comment">// "xxx"</span></span><br><span class="line"><span class="string">'hello'</span>.repeat(<span class="number">2</span>) <span class="comment">// "hellohello"</span></span><br><span class="line"><span class="string">'na'</span>.repeat(<span class="number">0</span>) <span class="comment">// ""</span></span><br><span class="line"></span><br><span class="line"><span class="string">'na'</span>.repeat(<span class="number">-0.9</span>) <span class="comment">// ""</span></span><br><span class="line"><span class="string">'na'</span>.repeat(<span class="string">'na'</span>) <span class="comment">// ""</span></span><br><span class="line"><span class="string">'na'</span>.repeat(<span class="string">'3'</span>) <span class="comment">// "nanana"</span></span><br></pre></td></tr></table></figure>
-<p>##4.9 padStart(), padEnd()</p>
-<p><strong>ES7：</strong>补全字符串的长度<br>函数|用途<br>-|-<br>padStart|用于头部补全<br>padEnd|用于尾部补全</p>
-<table>
-<thead>
-<tr>
-<th>参数</th>
-<th>说明</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>第一个参数</td>
-<td>指定字符串的最小长度</td>
-</tr>
-<tr>
-<td>第二个参数（可选）</td>
-<td>用来补全的字符串，默认为空格。如果用来补全的字符串与原字符串，两者的长度之和超过了指定的最小长度，则会截去超出位数的补全字符串</td>
-</tr>
-</tbody>
-</table>
-<p><strong>注意：</strong>如果原字符串的长度，等于或大于指定的最小长度，则返回原字符串。</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 为数值补全指定位数</span></span><br><span class="line"><span class="string">'1'</span>.padStart(<span class="number">10</span>, <span class="string">'0'</span>) <span class="comment">// "0000000001"</span></span><br><span class="line"><span class="string">'12'</span>.padStart(<span class="number">10</span>, <span class="string">'0'</span>) <span class="comment">// "0000000012"</span></span><br><span class="line"><span class="string">'123456'</span>.padStart(<span class="number">10</span>, <span class="string">'0'</span>) <span class="comment">// "0000123456"</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 提示字符串格式</span></span><br><span class="line"><span class="string">'12'</span>.padStart(<span class="number">10</span>, <span class="string">'YYYY-MM-DD'</span>) <span class="comment">// "YYYY-MM-12"</span></span><br><span class="line"><span class="string">'09-12'</span>.padStart(<span class="number">10</span>, <span class="string">'YYYY-MM-DD'</span>) <span class="comment">// "YYYY-09-12"</span></span><br></pre></td></tr></table></figure>
-<p>##4.10 模版字符串</p>
-<p><strong>语法：</strong>使用反引号括起来</p>
-<ul>
-<li>可以当作普通字符串来使用，也可以用来定义多行字符串</li>
-<li>可以在字符串中<code>嵌入变量</code></li>
-<li>如果模版字符串中使用反引号，则前面要用<code>反斜杠转义</code></li>
-<li>所有的<code>空格和缩进</code>都会被保留在输出之中，不需要的话可以使用<code>trim</code>方法消除</li>
-<li>模板字符串中嵌入变量，需要将变量名写在<code>${}</code>之中</li>
-</ul>
-<h3 id="4-10-1-嵌入JS表达式"><a href="#4-10-1-嵌入JS表达式" class="headerlink" title="4.10.1 嵌入JS表达式"></a>4.10.1 嵌入<code>JS表达式</code></h3><p>大括号内部可以放入任意的JavaScript表达式，可以</p>
-<ul>
-<li>进行运算</li>
-<li>引用对象属性</li>
-<li>调用函数</li>
-</ul>
-<p><strong>注意：</strong></p>
-<ul>
-<li>如果<code>${}</code>中的值不是字符串，将按照一般的规则转为字符串</li>
-<li>如果<code>${}</code>内部是一个字符串，将会原样输出</li>
-<li>如果模板字符串中的变量没有声明，将报错</li>
-<li>通过<code>${}</code>，模板字符串甚至还能嵌套</li>
-</ul>
-<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">// 定义返回模版字符串的函数</span><br><span class="line">const tmpl = addrs =`</span><br><span class="line">  &lt;table&gt;</span><br><span class="line">  $&#123;addrs.map(addr =`</span><br><span class="line">    &lt;tr&gt;&lt;td&gt;$&#123;addr.first&#125;&lt;/td&gt;&lt;/tr&gt;</span><br><span class="line">    &lt;tr&gt;&lt;td&gt;$&#123;addr.last&#125;&lt;/td&gt;&lt;/tr&gt;</span><br><span class="line">  `).join('')&#125;</span><br><span class="line">  &lt;/table&gt;</span><br><span class="line">`;</span><br><span class="line"></span><br><span class="line">// 定义填充模版字符串的数据</span><br><span class="line">const data = [</span><br><span class="line">    &#123; first: '&lt;Jane&gt;', last: 'Bond' &#125;,</span><br><span class="line">    &#123; first: 'Lars', last: '&lt;Croft&gt;' &#125;,</span><br><span class="line">];</span><br><span class="line"></span><br><span class="line">console.log(tmpl(data));</span><br><span class="line">// &lt;table&gt;</span><br><span class="line">//</span><br><span class="line">//   &lt;tr&gt;&lt;td&gt;&lt;Jane&gt;&lt;/td&gt;&lt;/tr&gt;</span><br><span class="line">//   &lt;tr&gt;&lt;td&gt;Bond&lt;/td&gt;&lt;/tr&gt;</span><br><span class="line">//</span><br><span class="line">//   &lt;tr&gt;&lt;td&gt;Lars&lt;/td&gt;&lt;/tr&gt;</span><br><span class="line">//   &lt;tr&gt;&lt;td&gt;&lt;Croft&gt;&lt;/td&gt;&lt;/tr&gt;</span><br><span class="line">//</span><br><span class="line">// &lt;/table&gt;</span><br></pre></td></tr></table></figure>
-<p>##4.11 实例：模版编译</p>
-<p><em>l04_template.vue</em><br><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br></pre></td><td class="code"><pre><span class="line">&lt;script&gt;</span><br><span class="line">	export default &#123;</span><br><span class="line">		data () &#123;</span><br><span class="line">			return &#123;</span><br><span class="line">				template: '',</span><br><span class="line">				templateCompiled: '',</span><br><span class="line">				templateOutput: ''</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;,</span><br><span class="line">		methods: &#123;</span><br><span class="line">			/**</span><br><span class="line">			* 模版编译函数</span><br><span class="line">			* @param &#123;string&#125; template 模版字符串</span><br><span class="line">			* @return &#123;string&#125; 可执行的js代码</span><br><span class="line">			*/</span><br><span class="line">			compile: function (template)&#123;</span><br><span class="line">			  var evalExpr = /&lt;%=(.+?)%&gt;/g;</span><br><span class="line">			  var expr = /&lt;%([\s\S]+?)%&gt;/g;</span><br><span class="line"></span><br><span class="line">			  template = template</span><br><span class="line">			    .replace(evalExpr, '`); \n  echo( $1 ); \n  echo(`')</span><br><span class="line">			    .replace(expr, '`); \n $1 \n  echo(`');</span><br><span class="line"></span><br><span class="line">			  template = 'echo(`' + template + '`);';</span><br><span class="line"></span><br><span class="line">			  var script =</span><br><span class="line">			  `(function parse(data)&#123;</span><br><span class="line">			    var output = "";</span><br><span class="line"></span><br><span class="line">			    function echo(html)&#123;</span><br><span class="line">			      output += html;</span><br><span class="line">			    &#125;</span><br><span class="line"></span><br><span class="line">			    $&#123; template &#125;</span><br><span class="line"></span><br><span class="line">			    return output;</span><br><span class="line">			  &#125;)`;</span><br><span class="line"></span><br><span class="line">			  return script;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;,</span><br><span class="line">		ready: function () &#123;</span><br><span class="line">			// 定义原始模版</span><br><span class="line">			this.template = `</span><br><span class="line">			&lt;ul&gt;</span><br><span class="line">			  &lt;% for(var i=0; i &lt; data.supplies.length; i++) &#123; %&gt;</span><br><span class="line">			    &lt;li&gt;&lt;%= data.supplies[i] %&gt;&lt;/li&gt;</span><br><span class="line">			  &lt;% &#125; %&gt;</span><br><span class="line">			&lt;/ul&gt;</span><br><span class="line">			`;</span><br><span class="line">			this.templateCompiled = this.compile(this.template);</span><br><span class="line"></span><br><span class="line">			// eval 中的代码会定义一个函数，并返回这个函数的引用</span><br><span class="line">			var parse = eval(this.templateCompiled);</span><br><span class="line"></span><br><span class="line">			// 调用函数完成拼接</span><br><span class="line">			this.templateOutput = parse(&#123; supplies: [ "broom", "mop", "cleaner" ] &#125;);</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&lt;/script&gt;</span><br><span class="line"></span><br><span class="line">&lt;template&gt;</span><br><span class="line">	&lt;h3&gt;模版&lt;/h3&gt;</span><br><span class="line">	&lt;code&gt;&#123;&#123;template&#125;&#125;&lt;/code&gt;</span><br><span class="line">	&lt;h3&gt;编译后的模版&lt;/h3&gt;</span><br><span class="line">	&lt;code&gt;&#123;&#123;templateCompiled&#125;&#125;&lt;/code&gt;</span><br><span class="line">	&lt;h3&gt;灌入数据的模版&lt;/h3&gt;</span><br><span class="line">	&lt;code&gt;&#123;&#123;templateOutput&#125;&#125;&lt;/code&gt;</span><br><span class="line">&lt;/template&gt;</span><br></pre></td></tr></table></figure></p>
-<hr>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># http://localhost:8080/#!/l04</span></span><br><span class="line">$ npm start</span><br></pre></td></tr></table></figure>
-<p><img src="http://o6ul1xz4z.bkt.clouddn.com/img/1469070909258.png" alt="Alt text"></p>
-<p>##4.12 标签模版</p>
-<p><strong>说明：</strong>一种针对模版字符串的特殊函数调用。<br><strong>语法：</strong><br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">函数名<span class="string">`模<span class="subst">$&#123;表达式1&#125;</span>版字<span class="subst">$&#123;表达式2&#125;</span>串`</span>;</span><br><span class="line"><span class="comment">// 等价于</span></span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span><br><span class="line">* @param &#123;array like&#125; 第一个参数</span><br><span class="line">* @param &#123;...string&#125; 不定参数</span><br><span class="line">*/</span></span><br><span class="line">函数名([<span class="string">'模'</span>,<span class="string">'版'</span>,<span class="string">'字'</span>,<span class="string">'符'</span>,<span class="string">'串'</span>], 表达式<span class="number">1</span>返回值, 表达式<span class="number">2</span>返回值);</span><br></pre></td></tr></table></figure></p>
-<p><strong>参数：</strong>调用函数传入的第一个参数有一个<code>row</code>属性，是一个和第一个参数本身内容相同的数组，不过元素中的所有<code>\</code>都被转义了，从而可以获得字符串的原始版本。<br><strong>用途：</strong>通过实现相应的处理模版字符串的函数，<code>标签模版</code>常用于</p>
-<ul>
-<li>处理<code>HTML</code>字符串过滤</li>
-<li>多语言转换（国际化处理）</li>
-<li>为模版增加条件判断和循环处理等模版基础能力</li>
-<li>嵌入其它语言</li>
-</ul>
-<p><em>l04_taggedTemplate.vue</em><br><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br></pre></td><td class="code"><pre><span class="line">&lt;script&gt;</span><br><span class="line">	export default &#123;</span><br><span class="line">		data () &#123;</span><br><span class="line">			return &#123;</span><br><span class="line">				template: "Hello $&#123; a + b &#125; world $&#123; a * b&#125;",</span><br><span class="line">				templateOutput: ''</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;,</span><br><span class="line">		methods: &#123;</span><br><span class="line">			/**</span><br><span class="line">			 * 将各个参数按照原来的位置拼合回去(写法1)</span><br><span class="line">			 * @param  &#123;array&#125; literals 被插入的表达式隔开的字符串组成的数组</span><br><span class="line">			 * @return &#123;string&#125;     各个参数按照原来的位置拼合的字符串     </span><br><span class="line">			 */</span><br><span class="line">			passthru1: function (literals) &#123;</span><br><span class="line">				var result = ''</span><br><span class="line">				var i = 0</span><br><span class="line">				while (i &lt; literals.length) &#123;</span><br><span class="line">					// 拼接单纯的字符串</span><br><span class="line">					result += literals[i++]</span><br><span class="line"></span><br><span class="line">					// 拼接插入的表达式运算结果</span><br><span class="line">					if (i &lt; arguments.length) &#123;</span><br><span class="line">						result += arguments[i]</span><br><span class="line">					&#125;</span><br><span class="line">				&#125;</span><br><span class="line">				return result;</span><br><span class="line">			&#125;,</span><br><span class="line">			/**</span><br><span class="line">			 * 将各个参数按照原来的位置拼合回去(写法2)</span><br><span class="line">			 * @param  &#123;array&#125;    literals 被插入的表达式隔开的字符串组成的数组</span><br><span class="line">			 * @param  &#123;...array&#125; values   插入的所有表达式结果（从左到右摘出来）</span><br><span class="line">			 * @return &#123;string&#125;     各个参数按照原来的位置拼合的字符串 </span><br><span class="line">			 */</span><br><span class="line">			passthru2: function (literals, ...values) &#123;</span><br><span class="line">				var output = ''</span><br><span class="line">				for (var index = 0; index &lt; values.length; index++) &#123;</span><br><span class="line">					output +=literals[index] + values[index]</span><br><span class="line">				&#125;</span><br><span class="line">				// 被插入的表达式隔开的字符串组成的数组 比 插入的所有表达式结果长度大1</span><br><span class="line">				output += literals[index]</span><br><span class="line"></span><br><span class="line">				return output</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;,</span><br><span class="line">		ready: function () &#123;</span><br><span class="line">			let a = 2</span><br><span class="line">			let b = 4</span><br><span class="line">			this.templateOutput = this.passthru2`Hello $&#123; a + b &#125; world $&#123; a * b&#125;`</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&lt;/script&gt;</span><br><span class="line"></span><br><span class="line">&lt;template&gt;</span><br><span class="line">	&lt;p&gt;运行&lt;/p&gt;</span><br><span class="line">	&lt;code&gt;passthru`&#123;&#123;template&#125;&#125;`&lt;/code&gt;</span><br><span class="line">	&lt;p&gt;输出&lt;/p&gt;</span><br><span class="line">	&lt;code&gt;&#123;&#123;templateOutput&#125;&#125;&lt;/code&gt;</span><br><span class="line">&lt;/template&gt;</span><br></pre></td></tr></table></figure></p>
-<p>##4.13 String.raw()</p>
-<p><strong>用途：</strong>两种使用方式</p>
-<ul>
-<li>作为模版标签使用</li>
-<li>作为普通函数调用<figure class="highlight vbscript-html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br></pre></td><td class="code"><pre><span class="line"><span class="xml"><span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="javascript"></span><br><span class="line">	<span class="keyword">export</span> <span class="keyword">default</span> &#123;</span><br><span class="line">		data () &#123;</span><br><span class="line">			<span class="keyword">return</span> &#123;</span><br><span class="line">				hiHuanhang: <span class="string">''</span>,</span><br><span class="line">				hiUtf16: <span class="string">''</span>,</span><br><span class="line">				test1: <span class="string">''</span>,</span><br><span class="line">				test2: <span class="string">''</span></span><br><span class="line">			&#125;</span><br><span class="line">		&#125;,</span><br><span class="line">		methods: &#123;</span><br><span class="line">			<span class="comment">/**</span><br><span class="line">			 * 自己视线一个 String.raw</span><br><span class="line">			 * @param  &#123;array&#125;    strings 被插入的表达式隔开的字符串组成的类数组,需要有raw属性</span><br><span class="line">			 * @param  &#123;...string&#125; value   插入的表达式返回值</span><br><span class="line">			 * @return &#123;string&#125;            转义后的字符串</span><br><span class="line">			 */</span></span><br><span class="line">			myRaw: <span class="function"><span class="keyword">function</span> (<span class="params">strings, ...value</span>) </span>&#123;</span><br><span class="line">				<span class="keyword">var</span> output = <span class="string">''</span>;</span><br><span class="line">				<span class="keyword">for</span> (<span class="keyword">var</span> index = <span class="number">0</span>; index &lt; values.length; index++) &#123;</span><br><span class="line">					output += strings.raw[index] + values[index];</span><br><span class="line">				&#125;</span><br><span class="line">				output += strings.raw[index];</span><br><span class="line">				<span class="keyword">return</span> output;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;,</span><br><span class="line">		ready: <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line"></span><br><span class="line">			<span class="comment">/* 用法1:当作模版标签使用 */</span></span><br><span class="line">			<span class="keyword">this</span>.hiHuanhang = <span class="built_in">String</span>.raw<span class="string">`Hi\n<span class="subst">$&#123;2+3&#125;</span>!`</span>;</span><br><span class="line">			<span class="comment">// "Hi\\n5!"</span></span><br><span class="line"></span><br><span class="line">			<span class="keyword">this</span>.hiUtf16 = <span class="built_in">String</span>.raw<span class="string">`Hi\u000A!`</span>;</span><br><span class="line">			<span class="comment">// 'Hi\\u000A!'</span></span><br><span class="line">			</span><br><span class="line">			<span class="comment">/* 用法2:当作普通函数调用 */</span></span><br><span class="line">			<span class="keyword">this</span>.test1 = <span class="built_in">String</span>.raw(&#123; raw: <span class="string">'test'</span> &#125;, <span class="number">0</span>, <span class="number">1</span>, <span class="number">2</span>);</span><br><span class="line">			<span class="comment">// 't0e1s2t'</span></span><br><span class="line"></span><br><span class="line">			<span class="comment">// 等同于</span></span><br><span class="line">			<span class="keyword">this</span>.test2 = <span class="built_in">String</span>.raw(&#123; raw: [<span class="string">'t'</span>,<span class="string">'e'</span>,<span class="string">'s'</span>,<span class="string">'t'</span>] &#125;, <span class="number">0</span>, <span class="number">1</span>, <span class="number">2</span>);</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">template</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">p</span>&gt;</span>转换换行符<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">p</span>&gt;</span>&#123;&#123;hiHuanhang&#125;&#125;<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">	</span><br><span class="line">	<span class="tag">&lt;<span class="name">p</span>&gt;</span>转换utf-16表示方式<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">p</span>&gt;</span>&#123;&#123;hiUtf16&#125;&#125;<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line"></span><br><span class="line">	<span class="tag">&lt;<span class="name">p</span>&gt;</span>当做普通函数调用<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">p</span>&gt;</span>&#123;&#123;test2&#125;&#125;<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">template</span>&gt;</span></span></span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/08/30/es6_5 正则的扩展/" itemprop="url">
-                  5 正则的扩展(ECMAScript6入门)
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-08-30T22:01:35+08:00" content="2016-08-30">
-              2016-08-30
-            </time>
-          </span>
-
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2016/08/30/es6_5 正则的扩展/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/08/30/es6_5 正则的扩展/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h2 id="5-1-RegExp构造函数"><a href="#5-1-RegExp构造函数" class="headerlink" title="5.1 RegExp构造函数"></a>5.1 RegExp构造函数</h2><p>与es5相比，es6<code>RegExp</code>函数支持第一个参数为正则表达式的同时，还能设置第二个参数，第二个参数设置的正则修饰符将会覆盖第一个参数中的正则修饰符<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/* 构造器方式 */</span></span><br><span class="line"><span class="keyword">let</span> r1 = <span class="keyword">new</span> <span class="built_in">RegExp</span>(<span class="string">'xzy'</span>, <span class="string">'i'</span>)<span class="comment">// 方式1(es5/es6): 第一个参数为字符串</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> r2 = <span class="keyword">new</span> <span class="built_in">RegExp</span>(<span class="regexp">/xyz/i</span>)<span class="comment">// 方式2(es5/es6): 第一个参数为正则表达式</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> r3 = <span class="keyword">new</span> <span class="built_in">RegExp</span>(<span class="regexp">/xyz/ig</span>, <span class="string">'i'</span>)<span class="comment">//  方式3(es5/es6):第一个参数为正则表达式，且支持第二个参数设置正则表达式修饰符</span></span><br><span class="line"></span><br><span class="line"><span class="comment">/* 正则对象(es5/es6) */</span></span><br><span class="line"><span class="keyword">let</span> r4 = <span class="regexp">/xyz/i</span></span><br></pre></td></tr></table></figure></p>
-<h2 id="5-2-字符串的正则方法"><a href="#5-2-字符串的正则方法" class="headerlink" title="5.2 字符串的正则方法"></a>5.2 字符串的正则方法</h2><p>在<code>es6</code>中，字符串的四个与正则相关的方法全部会调用<code>RegExp</code>对象定义的相应方法</p>
-<table>
-<thead>
-<tr>
-<th>字符串实例方法</th>
-<th>被调用的<code>RegExp</code>的方法</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>String.prototype.<code>match</code></td>
-<td>RegExp.prototype[Symbol.<code>match</code>]</td>
-</tr>
-<tr>
-<td>String.prototype.<code>replace</code></td>
-<td>RegExp.prototype[Symbol.<code>replace</code>]</td>
-</tr>
-<tr>
-<td>String.prototype.<code>search</code></td>
-<td>RegExp.prototype[Symbol.<code>search</code>]</td>
-</tr>
-<tr>
-<td>String.prototype.<code>split</code></td>
-<td>RegExp.prototype[Symbol.<code>split</code>]</td>
-</tr>
-</tbody>
-</table>
-<h2 id="5-3-u修饰符"><a href="#5-3-u修饰符" class="headerlink" title="5.3 u修饰符"></a>5.3 u修饰符</h2><table>
-<thead>
-<tr>
-<th>比较点</th>
-<th>场景</th>
-<th>不带u修饰符</th>
-<th>带u修饰符</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>点字符(<code>.</code>)</td>
-<td>(字符串中)当匹配目标码点 0xFFFF</td>
-<td>无法匹配</td>
-<td>正确匹配</td>
-</tr>
-<tr>
-<td>Unicode字符表示法（<code>\u{}</code>）</td>
-<td></td>
-<td>当做正则量词</td>
-<td>正确识别</td>
-</tr>
-<tr>
-<td>量词（<code>{}</code>）</td>
-<td>(正则表达式中)跟在码点大于<code>0xFFFF</code>的字符后面</td>
-<td>无法识别</td>
-<td>正确识别为量词</td>
-</tr>
-<tr>
-<td>预定义模式</td>
-<td>(字符串中)当匹配目标码点 0xFFFF</td>
-<td>无法匹配</td>
-<td>正确匹配</td>
-</tr>
-<tr>
-<td><code>i</code>修饰符</td>
-<td>(字符串中)当匹配目标为非规范的字符</td>
-<td>无法匹配</td>
-<td>正确匹配</td>
-</tr>
-</tbody>
-</table>
-<h2 id="5-4-y修饰符"><a href="#5-4-y修饰符" class="headerlink" title="5.4 y修饰符"></a>5.4 y修饰符</h2><p><strong>粘连（sticky）修饰符：</strong>类似<code>g</code>修饰符，会进行全文匹配，区别在于</p>
-<ul>
-<li><code>g</code>修饰符每次都从<code>lastIndex</code>属性开始，从这个位置开始往后搜索，发现匹配为止</li>
-<li><code>y</code>修饰符每次也从<code>lastIndex</code>属性开始，从这个位置开始往后搜索，但要求在<code>lastIndex</code>指定的位置就发现匹配，否则返回 <code>null</code></li>
-</ul>
-<h3 id="5-4-1-和-g-修饰符的区别"><a href="#5-4-1-和-g-修饰符的区别" class="headerlink" title="5.4.1 和 g 修饰符的区别"></a>5.4.1 和 g 修饰符的区别</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> s = <span class="string">'aaa_aa_a'</span></span><br><span class="line"><span class="keyword">const</span> rg = <span class="regexp">/a+/g</span></span><br><span class="line"><span class="keyword">const</span> ry = <span class="regexp">/a+/y</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> result</span><br><span class="line"><span class="comment">/* g 修饰符 */</span></span><br><span class="line"><span class="built_in">console</span>.log(rg.exec(s))<span class="comment">// ["aaa", index: 0, input: "aaa_aa_a"]</span></span><br><span class="line"><span class="built_in">console</span>.log(rg.exec(s))<span class="comment">// ["aa", index: 4, input: "aaa_aa_a"]</span></span><br><span class="line"><span class="built_in">console</span>.log(rg.exec(s))<span class="comment">// ["a", index: 7, input: "aaa_aa_a"]</span></span><br><span class="line"><span class="built_in">console</span>.log(rg.exec(s))<span class="comment">// null</span></span><br><span class="line"></span><br><span class="line"><span class="comment">/* y 修饰符 */</span></span><br><span class="line"><span class="built_in">console</span>.log(ry.exec(s))<span class="comment">// ["aaa", index: 0, input: "aaa_aa_a"]</span></span><br><span class="line"><span class="built_in">console</span>.log(ry.exec(s))</span><br></pre></td></tr></table></figure>
-<h3 id="5-4-2-从字符串提取-tokeb-词元"><a href="#5-4-2-从字符串提取-tokeb-词元" class="headerlink" title="5.4.2 从字符串提取 tokeb (词元)"></a>5.4.2 从字符串提取 tokeb (词元)</h3><p><strong>说明：</strong>根据<code>y</code>修饰符<code>粘连</code>的特性，可以利用这一点敏感地识别到提取词元过程中是否有异常字符出现。</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> &#123;</span><br><span class="line">	methods: &#123;</span><br><span class="line">		<span class="comment">/**</span><br><span class="line">		 * 逐个取出字符串中的词元</span><br><span class="line">		 * @param  &#123;RegExp&#125; TOKEN_REGEX 正则实例</span><br><span class="line">		 * @param  &#123;String&#125; str 目标字符串</span><br><span class="line">		 * @return &#123;Array&#125; 词元数组  </span><br><span class="line">		 */</span></span><br><span class="line">		tokenize (TOKEN_REGEX, str) &#123;</span><br><span class="line">			<span class="keyword">let</span> result = []</span><br><span class="line">			<span class="keyword">let</span> match</span><br><span class="line">			<span class="keyword">while</span> (match = TOKEN_REGEX.exec(str)) &#123;</span><br><span class="line">				result.push(match[<span class="number">1</span>])</span><br><span class="line">			&#125;</span><br><span class="line">			<span class="keyword">return</span> result</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;,</span><br><span class="line">	ready: <span class="function"><span class="keyword">function</span> (<span class="params"></span>)</span>&#123;</span><br><span class="line">		<span class="comment">/** 从字符串提取 tokeb (词元)  */</span></span><br><span class="line">		<span class="comment">/* g 修饰符 */</span></span><br><span class="line">		<span class="keyword">const</span> TOKEN_G = <span class="regexp">/\s*(\+|[0-9]+)\s*/g</span></span><br><span class="line"></span><br><span class="line">		<span class="built_in">console</span>.log(<span class="keyword">this</span>.tokenize(TOKEN_G, <span class="string">'3 + 4'</span>))<span class="comment">// ["3", "+", "4"]</span></span><br><span class="line">		<span class="built_in">console</span>.log(<span class="keyword">this</span>.tokenize(TOKEN_G, <span class="string">'3x + 4'</span>))<span class="comment">// ["3", "+", "4"]</span></span><br><span class="line"></span><br><span class="line">		<span class="comment">/* y 修饰符 */</span></span><br><span class="line">		<span class="keyword">const</span> TOKEN_Y = <span class="regexp">/\s*(\+|[0-9]+)\s*/y</span></span><br><span class="line"></span><br><span class="line">		<span class="built_in">console</span>.log(<span class="keyword">this</span>.tokenize(TOKEN_Y, <span class="string">'3 + 4'</span>))<span class="comment">// ["3", "+", "4"]</span></span><br><span class="line">		<span class="built_in">console</span>.log(<span class="keyword">this</span>.tokenize(TOKEN_Y, <span class="string">'3x + 4'</span>))<span class="comment">// ["3"]</span></span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h2 id="5-5-sticky属性"><a href="#5-5-sticky属性" class="headerlink" title="5.5 sticky属性"></a>5.5 sticky属性</h2><p><code>RegExp.prototype.sticky</code>：是否设置了<code>y</code>修饰符<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> r = <span class="regexp">/hello\d/y</span></span><br><span class="line">r.sticky <span class="comment">// true</span></span><br></pre></td></tr></table></figure></p>
-<h2 id="5-6-flags属性"><a href="#5-6-flags属性" class="headerlink" title="5.6 flags属性"></a>5.6 flags属性</h2><p><code>RegExp.prototype.flags</code>：返回正则表达式的修饰符</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// ES5的source属性</span></span><br><span class="line"><span class="comment">// 返回正则表达式的正文</span></span><br><span class="line">/abc/ig.source</span><br><span class="line"><span class="comment">// "abc"</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// ES6的flags属性</span></span><br><span class="line"><span class="comment">// 返回正则表达式的修饰符</span></span><br><span class="line">/abc/ig.flags</span><br><span class="line"><span class="comment">// 'gi'</span></span><br></pre></td></tr></table></figure>
-<h2 id="5-7-RegExp-escape"><a href="#5-7-RegExp-escape" class="headerlink" title="5.7 RegExp.escape()"></a>5.7 RegExp.escape()</h2><p><strong>功能：</strong>将字符串中有特殊正则含义的字符转义掉<br><strong>注意：</strong>曾被建议加入<code>ES7</code>，由于安全风险没被采纳</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 原始字符串</span></span><br><span class="line"><span class="keyword">const</span> str = <span class="string">'hello. how are you?'</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// escape 处理后的字符串</span></span><br><span class="line"><span class="keyword">const</span> regStr = <span class="keyword">this</span>.escapeRegExp(str)<span class="comment">// hello\. how are you\?</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 通过 escape 处理后的字符串构建正则实例</span></span><br><span class="line"><span class="keyword">const</span> regex = <span class="keyword">new</span> <span class="built_in">RegExp</span>(regStr, <span class="string">'g'</span>)</span><br></pre></td></tr></table></figure>
-<h2 id="5-8-后行断言"><a href="#5-8-后行断言" class="headerlink" title="5.8 后行断言"></a>5.8 后行断言</h2><p>提案阶段，在<code>ES7</code>中加入。</p>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
@@ -2086,7 +2093,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">98</span>
+              <span class="site-state-item-count">100</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -2096,7 +2103,7 @@
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">13</span>
+                <span class="site-state-item-count">14</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>

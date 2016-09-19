@@ -238,6 +238,396 @@
             
               
                 
+                <a class="post-title-link" href="/2016/05/13/TSPL2_13 继承/" itemprop="url">
+                  13 继承
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-05-13T19:46:35+08:00" content="2016-05-13">
+              2016-05-13
+            </time>
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/05/13/TSPL2_13 继承/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/05/13/TSPL2_13 继承/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <blockquote>
+<p><strong>说明</strong>：一个类可以继承另一个类的方法,属性和其它特性</p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>能力</th>
+<th>相关成员</th>
+<th>价值</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>调用</td>
+<td>超类的方法、属性、下标脚本</td>
+<td>代码重用</td>
+</tr>
+<tr>
+<td>重写</td>
+<td>超类的方法、属性、下标脚本</td>
+<td>优化或修改它们的行为</td>
+</tr>
+<tr>
+<td>监视</td>
+<td>继承来的属性（通过添加属性(存储属性或计算属性)观察器）</td>
+<td>当值改变时，类就会被通知到</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p><strong>注意：</strong>只有类能够继承</p>
+</blockquote>
+<h2 id="13-1-定义一个基类"><a href="#13-1-定义一个基类" class="headerlink" title="13.1    定义一个基类"></a>13.1    定义一个基类</h2><blockquote>
+<p><strong>基类：</strong>不继承其它类的类（swift的类并不是从一个通用的基类继承而来）</p>
+</blockquote>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//定义一个基类</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Vehicle</span> </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> currentSpeed = <span class="number">0.0</span></span><br><span class="line">    <span class="keyword">var</span> description:<span class="type">String</span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="string">"traveling at \(currentSpeed) miles per hour"</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">func</span> <span class="title">makeNoise</span><span class="params">()</span></span>&#123;</span><br><span class="line">        <span class="comment">//什么也不做－因为车辆不一定有噪音</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> someVehicle = <span class="type">Vehicle</span>()</span><br><span class="line"><span class="built_in">println</span>(<span class="string">"Vehicle:\(someVehicle.description)"</span>)</span><br></pre></td></tr></table></figure>
+<h2 id="13-2-子类生成"><a href="#13-2-子类生成" class="headerlink" title="13.2    子类生成"></a>13.2    子类生成</h2><blockquote>
+<p><strong>说明</strong>：<code>class 子类:超类 ｛｝</code></p>
+</blockquote>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//继承Vehicle</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Bicycle</span>:<span class="title">Vehicle</span> </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> hasBasket = <span class="literal">false</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">let</span> bicycle = <span class="type">Bicycle</span>()</span><br><span class="line"></span><br><span class="line"><span class="comment">//设置子类自己的实例属性</span></span><br><span class="line">bicycle.hasBasket = <span class="literal">true</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//修改继承来的属性</span></span><br><span class="line">bicycle.currentSpeed = <span class="number">15.0</span></span><br></pre></td></tr></table></figure>
+<h2 id="13-3-重写"><a href="#13-3-重写" class="headerlink" title="13.3    重写"></a>13.3    重写</h2><blockquote>
+<p><strong>关键字：</strong><code>override</code>(会提醒编译器检查该类是否有匹配重写版本的声明)</p>
+<p><strong>说明：</strong>子类可以为继承来的实例方法、类方法、实例属性、下标脚本提供自己定制的实现。</p>
+</blockquote>
+<h3 id="13-3-1-访问超类的方法、属性及下标脚本"><a href="#13-3-1-访问超类的方法、属性及下标脚本" class="headerlink" title="13.3.1    访问超类的方法、属性及下标脚本"></a>13.3.1    访问超类的方法、属性及下标脚本</h3><table>
+<thead>
+<tr>
+<th>成员</th>
+<th>访问方式</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>方法</td>
+<td><code>super.someMethod()</code></td>
+</tr>
+<tr>
+<td>属性</td>
+<td><code>super.someProperty</code></td>
+</tr>
+<tr>
+<td>下标脚本</td>
+<td><code>super[someIndex]</code></td>
+</tr>
+</tbody>
+</table>
+<h3 id="13-3-2-重写方法"><a href="#13-3-2-重写方法" class="headerlink" title="13.3.2    重写方法"></a>13.3.2    重写方法</h3><blockquote>
+<p><strong>关键字</strong>：<code>override</code></p>
+</blockquote>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Train</span>:<span class="title">Vechicle</span> </span>&#123;</span><br><span class="line">    <span class="keyword">override</span> <span class="function"><span class="keyword">func</span> <span class="title">makeNoise</span><span class="params">()</span></span>&#123;</span><br><span class="line">        <span class="built_in">println</span>(<span class="string">"Choo Choo"</span>)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">let</span> train = <span class="type">Train</span>()</span><br><span class="line">train.makeNoise()</span><br></pre></td></tr></table></figure>
+<h3 id="13-3-3-重写属性"><a href="#13-3-3-重写属性" class="headerlink" title="13.3.3     重写属性"></a>13.3.3     重写属性</h3><blockquote>
+<p><strong>说明</strong>：重写什么？</p>
+<ol>
+<li>重写继承来的<code>实例属性</code>或<code>类属性</code></li>
+<li>提供自己定制的<code>getter</code>和<code>setter</code></li>
+<li>重写属性观察器观察被重写的属性的变化（非只读属性不可以设置）</li>
+</ol>
+<p><strong>注意</strong></p>
+<ol>
+<li>存储型或计算型属性都可以被重写（包括<code>getters</code>和<code>setters</code>）</li>
+<li>计算机会根据属性的名字和类型检查重写的属性是否与超累中同名同类型的属性相匹配</li>
+<li>可以将继承来的只读属性重写为一个读写属性（通过重写属性的<code>getters</code>和<code>setters</code>）</li>
+</ol>
+<ul>
+<li>如果重写属性提供了<code>setter</code>,也一定要提供<code>getter</code></li>
+<li><code>setter</code>中可以通过<code>super.someProperty</code>来返回继承来的值</li>
+</ul>
+</blockquote>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Car</span>:<span class="title">Vehicle</span> </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> gear = <span class="number">1</span></span><br><span class="line">    <span class="keyword">override</span> <span class="keyword">var</span> description:<span class="type">String</span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">super</span>.description + <span class="string">" in gear \(gear)"</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> car = <span class="type">Car</span>()</span><br><span class="line">car.currentSpeed = <span class="number">25.0</span></span><br><span class="line">car.gear = <span class="number">3</span></span><br><span class="line"><span class="built_in">println</span>(<span class="string">"Car:\(car.description)"</span>)</span><br><span class="line">+ 重写属性观察器</span><br><span class="line"><span class="number">1</span>. 不可重写属性观察器的继承来的属性：常量存储属性、只读计算属性</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">AutomaticCar</span>:<span class="title">Car</span> </span>&#123;</span><br><span class="line">    <span class="comment">//重写属性及其属性观察器</span></span><br><span class="line">    <span class="keyword">override</span> <span class="keyword">var</span> currentSpeed:<span class="type">Double</span>&#123;</span><br><span class="line">        <span class="keyword">didSet</span>&#123;</span><br><span class="line">            gear = <span class="type">Int</span>(currentSpeed / <span class="number">10.0</span>) + <span class="number">1</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">let</span> automatic = <span class="type">AutomaticCar</span>()</span><br><span class="line">automatic.currentSpeed = <span class="number">35.0</span></span><br><span class="line"><span class="built_in">println</span>(<span class="string">"AutomaticCar:\(automatic.description)"</span>)</span><br></pre></td></tr></table></figure>
+<h2 id="13-4-防止重写"><a href="#13-4-防止重写" class="headerlink" title="13.4    防止重写"></a>13.4    防止重写</h2><blockquote>
+<p><strong>关键字：</strong><code>final</code><br><strong>说明：</strong>可以通过把方法,属性或下标脚本标记为 <code>final</code> 来防止它们被重写,只需要在声明关键字前加上 <code>final</code> 特性即<br>可</p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>类型</th>
+<th><code>final</code>声明方式</th>
+<th>用途</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>属性</td>
+<td><code>final var</code></td>
+<td>不可被重写</td>
+</tr>
+<tr>
+<td>实例方法</td>
+<td><code>final func</code></td>
+<td>不可被重写</td>
+</tr>
+<tr>
+<td>下标脚本</td>
+<td><code>final subscript</code></td>
+<td>不可被重写</td>
+</tr>
+<tr>
+<td>类方法</td>
+<td><code>final class func</code></td>
+<td>不可被重写</td>
+</tr>
+<tr>
+<td>类</td>
+<td><code>final class</code></td>
+<td>不可被继承</td>
+</tr>
+</tbody>
+</table>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2016/05/13/TSPL2_12 下标脚本/" itemprop="url">
+                  12 下标脚本
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-05-13T19:46:20+08:00" content="2016-05-13">
+              2016-05-13
+            </time>
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/05/13/TSPL2_12 下标脚本/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/05/13/TSPL2_12 下标脚本/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <blockquote>
+<p><strong>用途</strong>：访问对象、集合、序列的快捷方式，可以使用下标脚本的索引设置和获取值，不需要再调用对应的存取方法<br><strong>支持</strong>：类、结构体、枚举<br><strong>特点</strong>:</p>
+<ol>
+<li>同一个目类型可以定义多个附属脚本</li>
+<li>可以通过索引值的类型进行重载</li>
+<li>语法类似实例方法和计算属性的混合</li>
+</ol>
+</blockquote>
+<h2 id="12-1-语法"><a href="#12-1-语法" class="headerlink" title="12.1    语法"></a>12.1    语法</h2><blockquote>
+<p><strong>关键字</strong>：<code>subscript</code>、<code>set</code>、<code>get</code><br><strong>说明：</strong>语法类似于<code>实例方法</code>语法和<code>计算型属性</code>语法的混合。</p>
+<ul>
+<li>显式声明入参和返回值（类似实例方法）</li>
+<li>可以设定为读写或只读，由 <code>getter</code> 和<code>setter</code> 实现（类似计算属性）</li>
+</ul>
+<p><strong>setter和getter：</strong></p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th><em>**</em></th>
+<th>参数</th>
+<th>返回值</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>set</td>
+<td>0或多个参数类型必须与<code>get</code>返回类型相同，如果不指定参数，会提供一个名为<code>newValue</code>的默认参数</td>
+<td>无</td>
+</tr>
+<tr>
+<td>get</td>
+<td>无</td>
+<td>和脚本入参类型相同值</td>
+</tr>
+</tbody>
+</table>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//具备读写能力的附属脚本</span></span><br><span class="line"><span class="keyword">subscript</span>(index:<span class="type">Int</span>)-&gt;<span class="type">Int</span>&#123;</span><br><span class="line">    <span class="keyword">get</span>&#123;</span><br><span class="line">        <span class="comment">//返回与入參匹配的Int类型的值</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">set</span>(newValue)&#123;</span><br><span class="line">        <span class="comment">//执行赋值操作</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//只读的附属脚本（简写形式）</span></span><br><span class="line"><span class="keyword">subscript</span>(index:<span class="type">Int</span>)-&gt;<span class="type">Int</span>&#123;</span><br><span class="line">    <span class="comment">//返回与入參匹配的Int类型的值</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><strong>案例</strong>：展示传入整数的n倍数（结构体中使用只读下标脚本）</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">TimesTable</span> </span>&#123;</span><br><span class="line">    <span class="keyword">let</span> multiplier:<span class="type">Int</span></span><br><span class="line">    <span class="keyword">subscript</span>(index:<span class="type">Int</span>)-&gt;<span class="type">Int</span>&#123;</span><br><span class="line">        <span class="keyword">return</span> multiplier * index</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">let</span> threeTimesTable = <span class="type">TimesTable</span>(multiplier: <span class="number">3</span>)</span><br><span class="line"><span class="built_in">println</span>(<span class="string">"3的6倍是\(threeTimesTable[6])"</span>)</span><br></pre></td></tr></table></figure>
+<h2 id="12-2-用法（以字典为例）"><a href="#12-2-用法（以字典为例）" class="headerlink" title="12.2    用法（以字典为例）"></a>12.2    用法（以字典为例）</h2><blockquote>
+<p><strong>说明：</strong>字典本身是由结构体实现的，通过下标脚本来对其实例来进行存取操作。<br><strong>特点：</strong></p>
+<ol>
+<li>字典实例在下标脚本中使用和字典索引相同类型的值</li>
+<li>字典通过附属脚本返回的实际是一个可选值</li>
+<li>从字典实例中删除某个索引下的值也需要给这个索引赋值为<code>nil</code></li>
+</ol>
+</blockquote>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> numberOfLogs = [<span class="string">"spider"</span>:<span class="number">8</span>, <span class="string">"ant"</span>:<span class="number">6</span>, <span class="string">"cat"</span>:<span class="number">4</span>]</span><br><span class="line">numberOfLogs[<span class="string">"birds"</span>] = <span class="number">2</span></span><br></pre></td></tr></table></figure>
+<h2 id="12-3-高级"><a href="#12-3-高级" class="headerlink" title="12.3    高级"></a>12.3    高级</h2><blockquote>
+<p><strong>说明：</strong>下面详细说明下标脚本的一些特点</p>
+<ul>
+<li><em>参数：</em>下标脚本可以接受任意数量的入参，并且这些入参可以是任意类型</li>
+<li><em>返回值：</em>下标脚本的返回值也可以是任意类型</li>
+<li><em>变量：</em>下标脚本可以使用变量参数和可变参数</li>
+<li><em>重载：</em>一个类或结构体可以根据自身需要提供多个下标脚本实现，使用下标脚本时将通过入参的数量和类型进行区分，自动匹配合适的下标脚本，这就是下标脚本的重载</li>
+</ul>
+<p><strong>限制：</strong></p>
+<ul>
+<li><em>参数：</em>不能使用输入输出参数，也不能给参数设置默认值</li>
+</ul>
+</blockquote>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//矩阵</span></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">Matrix</span> </span>&#123;</span><br><span class="line">    <span class="keyword">let</span> rows:<span class="type">Int</span>, columns:<span class="type">Int</span></span><br><span class="line">    <span class="keyword">var</span> grid:[<span class="type">Double</span>]</span><br><span class="line">    </span><br><span class="line">    <span class="comment">//构造方法：包含两个入參</span></span><br><span class="line">    <span class="keyword">init</span>(rows:<span class="type">Int</span>, columns:<span class="type">Int</span>)&#123;</span><br><span class="line">        <span class="keyword">self</span>.rows = rows</span><br><span class="line">        <span class="keyword">self</span>.columns = columns</span><br><span class="line">        grid = <span class="type">Array</span>(<span class="built_in">count</span>:rows * columns, repeatedValue:<span class="number">0.0</span>)</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">//确保入參的row货column不会造成数组越界</span></span><br><span class="line">    <span class="function"><span class="keyword">func</span> <span class="title">indexIsVaildForRow</span><span class="params">(row:Int, column:Int)</span></span> -&gt; <span class="type">Bool</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> row &gt;= <span class="number">0</span> &amp;&amp; row &lt; rows &amp;&amp; column &gt;= <span class="number">0</span> &amp;&amp;  column &lt; columns</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">//下标脚本（两个参数）</span></span><br><span class="line">    <span class="keyword">subscript</span>(row:<span class="type">Int</span>, column:<span class="type">Int</span>)-&gt;<span class="type">Double</span>&#123;</span><br><span class="line">        <span class="keyword">get</span>&#123;</span><br><span class="line">            <span class="built_in">assert</span>(indexIsVaildForRow(row, column:column), <span class="string">"Index out of range"</span>)</span><br><span class="line">            <span class="keyword">return</span> grid[(row * columns) + column]</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">set</span>&#123;</span><br><span class="line">            <span class="built_in">assert</span>(indexIsVaildForRow(row, column: column), <span class="string">"Index out of range"</span>)</span><br><span class="line">            grid[(row * columns) + column] = newValue</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//创建结构体实例</span></span><br><span class="line"><span class="keyword">var</span> matrix = <span class="type">Matrix</span>(rows: <span class="number">2</span>, columns: <span class="number">2</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment">//利用下标脚本赋值</span></span><br><span class="line">matrix[<span class="number">0</span>, <span class="number">1</span>] = <span class="number">1.5</span></span><br><span class="line">matrix[<span class="number">1</span>, <span class="number">0</span>] = <span class="number">3.2</span></span><br></pre></td></tr></table></figure>
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2016/05/13/TSPL2_11 方法/" itemprop="url">
                   11 方法
                 </a>
@@ -2565,823 +2955,6 @@ alseTenEighty.frameRate = <span class="number">30.0</span>
 
 
     
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/05/13/TSPL2_03  字符串和字符/" itemprop="url">
-                  3 字符串和字符
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-05-13T19:32:42+08:00" content="2016-05-13">
-              2016-05-13
-            </time>
-          </span>
-
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2016/05/13/TSPL2_03  字符串和字符/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/05/13/TSPL2_03  字符串和字符/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <blockquote>
-<p><strong>说明：</strong>有序的<code>Character</code>类型的值的集合，通过<code>String类</code>来表示。</p>
-<ul>
-<li>每一个字符串都是由编码无关的<code>Unicide</code>字符组成</li>
-<li>可以通过內插的方式将字符串插入到常量、变量、字面量表达式中</li>
-</ul>
-<p><strong>扩展：</strong>和Cocoa中的Foundation框架中的<code>NSString类</code>进行了无缝对接</p>
-<ul>
-<li>可以将创建的任何字符串的值转换成<code>NSString</code></li>
-<li>可以调用任意的<code>NSString</code>API</li>
-<li>可以在任意要求传入<code>NSString</code>实例作为参数的API中用<code>String类</code>的值代替</li>
-</ul>
-</blockquote>
-<p>##3.1    字符串字面量</p>
-<blockquote>
-<p><strong>格式：</strong><code>&quot;固定顺序的文本字符集&quot;</code><br><strong>应用：</strong>为常量或变量提供初始值</p>
-</blockquote>
-<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> someString = <span class="string">"Some string literal value"</span></span><br></pre></td></tr></table></figure>
-<p>##3.2    初始化空字符串</p>
-<blockquote>
-<p><strong>说明：</strong>2种形式</p>
-<ol>
-<li>将空的字符串字面量赋值给变量</li>
-<li>初始化一个新的<code>String</code>实例</li>
-</ol>
-<p><strong>判空：</strong>可以通过字符串实例的<code>isEmpty</code>属性(Boolean)来判断字符串是否为空。</p>
-</blockquote>
-<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 形式1</span></span><br><span class="line"><span class="keyword">var</span> emptyString = <span class="string">""</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 形式2</span></span><br><span class="line"><span class="keyword">var</span> anotherEmptyString = <span class="type">String</span>()</span><br><span class="line"></span><br><span class="line"><span class="comment">// 判空</span></span><br><span class="line"><span class="keyword">if</span> emptyString.isEmpty &#123;</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">"Nothing to see here"</span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>##3.3    字符串可变性</p>
-<blockquote>
-<p><strong>说明：</strong>和Swift中其它值类型一样，可变性取决于定义为常量还是变量</p>
-<ul>
-<li>常量：不可改变</li>
-<li>变量：可以改变</li>
-</ul>
-<p><strong>扩展：</strong>在O-C和Cocoa中，字符串的可变性取决于使用<code>NSString类</code>还是<code>NSMutableString类</code>。</p>
-</blockquote>
-<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 定义为变量</span></span><br><span class="line"><span class="keyword">var</span> variableString = <span class="string">"Hourse"</span></span><br><span class="line"><span class="comment">// 所以可以修改</span></span><br><span class="line">variableString += <span class="string">" add carriage"</span></span><br></pre></td></tr></table></figure>
-<p>##3.4    字符串是值类型</p>
-<blockquote>
-<p><strong>说明：</strong>意味着在以下操作中通过拷贝来传递值</p>
-<ul>
-<li>常量、变量赋值操作</li>
-<li>在函数、方法中传参</li>
-</ul>
-<p><strong>意义：</strong>确保传递的字符串不会被意外修改。<br><strong>扩展：</strong>为了保证性能，Swift编译器只会在绝对必要的情况下才进行复制。</p>
-<p>##3.5    使用字符<br><strong>说明：</strong><code>Character</code></p>
-<ul>
-<li>字符类型的常量和字符串相似，不同点在于自能包含一个字符。</li>
-<li>用字符常量初始化字符类型必须指定常量或变量为<code>Character</code>，否则默认为字符串类型。</li>
-</ul>
-</blockquote>
-<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> exclamatuinMark: <span class="type">Character</span> = <span class="string">"!"</span></span><br></pre></td></tr></table></figure>
-<p>###3.5.1    字符串的Chracters属性</p>
-<blockquote>
-<p><strong>说明：</strong>可以通过该属性遍历字符串对应的字符数组。</p>
-</blockquote>
-<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 遍历字符串中的字符</span></span><br><span class="line"><span class="keyword">for</span> character <span class="keyword">in</span> <span class="string">"Dog"</span>.characters &#123;</span><br><span class="line">    <span class="built_in">print</span>(character)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>###3.5.2    字符数组转换为字符串</p>
-<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 声明字符数组</span></span><br><span class="line"><span class="keyword">let</span> catCharacters: [<span class="type">Character</span>] = [<span class="string">"C"</span>, <span class="string">"a"</span>, <span class="string">"t"</span>]</span><br><span class="line"><span class="comment">// 将字符数组转换为字符串</span></span><br><span class="line"><span class="keyword">let</span> catString = <span class="type">String</span>(catCharacters)</span><br><span class="line"><span class="built_in">print</span>(catString)<span class="comment">// "Cat"</span></span><br></pre></td></tr></table></figure>
-<p>##3.6    连接字符串和字符</p>
-<blockquote>
-<p><strong>说明：</strong>两种方式</p>
-<ul>
-<li><code>+</code>、<code>+=</code>：字符串拼接</li>
-<li><code>append方法</code><br>###append方法<br><strong>说明：</strong>将一个字符附加到字符串变量的尾部<br><strong>原型：</strong><code>String类实例方法</code></li>
-</ul>
-</blockquote>
-<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&gt;<span class="comment">/**</span><br><span class="line">&gt;* @param &#123;Character&#125; c 字符</span><br><span class="line">&gt;*/</span></span><br><span class="line">&gt;void append(<span class="built_in">c</span>: <span class="type">Character</span>)</span><br></pre></td></tr></table></figure>
-<blockquote>
-<p><strong>注意：</strong>参数只能是<code>Character</code>常量或变量，不能是字面量(因为存在歧义)</p>
-</blockquote>
-<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> str1 = <span class="string">"hello"</span></span><br><span class="line"><span class="keyword">let</span> str2 = <span class="string">" there"</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//+</span></span><br><span class="line"><span class="keyword">var</span> welcome = str1 + str2<span class="comment">// hello there</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//+=</span></span><br><span class="line"><span class="keyword">var</span> instruction = <span class="string">"look over"</span></span><br><span class="line">instruction += str2<span class="comment">// look over there</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//append</span></span><br><span class="line"><span class="keyword">let</span> exclamationMark: <span class="type">Character</span> = <span class="string">"!"</span></span><br><span class="line">instruction.append(exclamationMark)</span><br></pre></td></tr></table></figure>
-<p>##3.7    字符串插值</p>
-<blockquote>
-<p><strong>用途：</strong>构建新的字符串。<br><strong>语法：</strong><code>\(表达式)</code></p>
-</blockquote>
-<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> multiplier = <span class="number">3</span></span><br><span class="line"><span class="comment">// 通过插值构建新的字符串</span></span><br><span class="line"><span class="keyword">let</span> message = <span class="string">"\(multiplier) times 2.5 is \(Double(multiplier) * 2.5)"</span></span><br></pre></td></tr></table></figure>
-<p>##3.8    Unicode</p>
-<p>###3.8.1    Unicode标量</p>
-<blockquote>
-<p><strong>Unicode码位：</strong>格式为<code>U+[1到8位16进制数字]</code></p>
-<ul>
-<li><strong>Unicode标量码位：</strong>是对应字符或者修饰符的唯一的21位数字，每个<code>Unicode标量</code>都对应着一个<code>Unicode码位</code>，但反过来不成立。</li>
-<li><strong>Unicode代理项码位：</strong>Unicode码位中不属于Unicode标量的部分。</li>
-</ul>
-</blockquote>
-<table>
-<thead>
-<tr>
-<th>U+0000~U+D7FF</th>
-<th>U+D800~U+DFFF</th>
-<th>U+E000~U+10FFF</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>Unicode标量</td>
-<td>unicode代理项</td>
-<td>Unicode标量</td>
-</tr>
-</tbody>
-</table>
-<blockquote>
-<p><strong>应用：</strong>Swift的<code>String</code>类型是基于Unicode标量建立的。</p>
-</blockquote>
-<p>###3.8.2    字符串字面量的特殊字符</p>
-<blockquote>
-<p><strong>说明：</strong>分两类</p>
-<ul>
-<li>转义字符</li>
-<li>Unicode标量</li>
-</ul>
-</blockquote>
-<table>
-<thead>
-<tr>
-<th>特殊字符</th>
-<th>含义</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code>\0</code></td>
-<td>空字符</td>
-</tr>
-<tr>
-<td><code>\\</code></td>
-<td>反斜线</td>
-</tr>
-<tr>
-<td><code>\t</code></td>
-<td>水平制表符</td>
-</tr>
-<tr>
-<td><code>\n</code></td>
-<td>换行符</td>
-</tr>
-<tr>
-<td><code>\r</code></td>
-<td>回车符</td>
-</tr>
-<tr>
-<td><code>\&quot;</code></td>
-<td>双引号</td>
-</tr>
-<tr>
-<td><code>\&#39;</code></td>
-<td>单引号</td>
-</tr>
-<tr>
-<td><code>\u{1到8位16进制数}</code></td>
-<td>Unicode标量</td>
-</tr>
-</tbody>
-</table>
-<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// \"</span></span><br><span class="line"><span class="keyword">let</span> wiseWords = <span class="string">"\"Imagination is more importent than knowledge\" - Einstein"</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// Unocode标量</span></span><br><span class="line"><span class="keyword">let</span> dollarSign = <span class="string">"\u&#123;24&#125;"</span></span><br></pre></td></tr></table></figure>
-<p>###3.8.3    可扩展的字形群集</p>
-<blockquote>
-<p><strong>说明：</strong>有些字符由多个部分组成，每个部分都可以用一个Unicode标量表示。组合起来就形成了一个新字符。</p>
-</blockquote>
-<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// é</span></span><br><span class="line"><span class="keyword">let</span> eAcute: <span class="type">Character</span> = <span class="string">"\u&#123;E9&#125;"</span><span class="comment">// é</span></span><br><span class="line"><span class="keyword">let</span> combinedEAcute: <span class="type">Character</span> = <span class="string">"\u&#123;65&#125;\u&#123;301&#125;"</span><span class="comment">// é</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 한</span></span><br><span class="line"><span class="keyword">let</span> precomposed: <span class="type">Character</span> = <span class="string">"\u&#123;D55C&#125;"</span><span class="comment">// 한</span></span><br><span class="line"><span class="keyword">let</span> decomposed: <span class="type">Character</span> = <span class="string">"\u&#123;1112&#125;\u&#123;1161&#125;\u&#123;11AB&#125;"</span><span class="comment">// 한</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// é⃝</span></span><br><span class="line"><span class="keyword">let</span> encosedEAcute: <span class="type">Character</span> = <span class="string">"\u&#123;E9&#125;\u&#123;20DD&#125;"</span><span class="comment">// é⃝</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 🇺🇸</span></span><br><span class="line"><span class="keyword">let</span> regionalIndicatorForUS: <span class="type">Character</span> = <span class="string">"\u&#123;1F1FA&#125;\u&#123;1F1F8&#125;"</span><span class="comment">// 🇺🇸</span></span><br></pre></td></tr></table></figure>
-<p>##3.9    计算字符数量</p>
-<p>###characters.count属性</p>
-<blockquote>
-<p><strong>说明：</strong><code>String</code>类实例成员<code>characters</code>提供的记录字符总数的属性。<br><strong>性能问题：</strong>字符串中可能包含可扩展字符群，只有遍历<code>Unicode</code>标量确定字符群表示的字符后才能确定字符串的长度<br><strong>扩展：</strong><code>NSString</code>的<code>length</code>属性不同于swift的<code>String</code>的<code>count</code>属性。前者利用<code>UTF-16</code>表示的16位代码单元数字。</p>
-</blockquote>
-<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> unusualMenagerie = <span class="string">"Koala, Snail, Penguin, Dromedary"</span></span><br><span class="line"><span class="comment">// 获得字符串中字符的数量</span></span><br><span class="line"><span class="built_in">print</span>(<span class="string">"unusualMenagerie has \(unusualMenagerie.characters.count)"</span>)<span class="comment">// 32</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 使用可扩展的群组作为Character拼接到字符串时，字符串的字符数量并不一定会改变</span></span><br><span class="line"><span class="keyword">var</span> word = <span class="string">"cafe"</span></span><br><span class="line"><span class="built_in">print</span>(<span class="string">"the number of characters in \(word) is \(word.characters.count)"</span>)<span class="comment">// 4</span></span><br><span class="line"></span><br><span class="line">word += <span class="string">"\u&#123;301&#125;"</span><span class="comment">// café</span></span><br><span class="line"><span class="built_in">print</span>(<span class="string">"the number of characters in \(word) is \(word.characters.count)"</span>)<span class="comment">// 4</span></span><br></pre></td></tr></table></figure>
-<p>##3.10    访问和修改字符串</p>
-<blockquote>
-<p><strong>说明：</strong>两种方式</p>
-<ul>
-<li>字符串的属性和方法</li>
-<li>下标语法<br>###3.10.1    字符串索引<br>####相关属性(2个)</li>
-</ul>
-</blockquote>
-<table>
-<thead>
-<tr>
-<th>字符串实例属性</th>
-<th>说明</th>
-<th>空字符串相应属性值</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>startIndex</td>
-<td>第一个<code>Character</code>的下标</td>
-<td>0</td>
-</tr>
-<tr>
-<td>endIndex</td>
-<td>最后一个<code>Character</code>的下标 + 1</td>
-<td>0</td>
-</tr>
-</tbody>
-</table>
-<p>####predecessor方法</p>
-<blockquote>
-<p><strong>说明：</strong>通过当前下标获得前一个下标<br><strong>原型：</strong><code>Index类型的成员方法</code></p>
-</blockquote>
-<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&gt;<span class="comment">/**</span><br><span class="line">&gt;* @return  &#123;String.CharacterView.Index&#125; 下标索引</span><br><span class="line">&gt;*/</span></span><br><span class="line">&gt;<span class="function"><span class="keyword">func</span> <span class="title">predecessor</span> -&gt; <span class="title">String</span>.<span class="title">CharacterView</span>.<span class="title">Index</span></span></span><br></pre></td></tr></table></figure>
-<p>####successor方法</p>
-<blockquote>
-<p><strong>说明：</strong>通过当前索引获得后面一个索引。<br><strong>原型：</strong><code>Index类型的成员方法</code></p>
-</blockquote>
-<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&gt;<span class="comment">/**</span><br><span class="line">&gt;* @return  &#123;String.CharacterView.Index&#125; 下标索引</span><br><span class="line">&gt;*/</span></span><br><span class="line">&gt;<span class="function"><span class="keyword">func</span> <span class="title">successor</span> -&gt; <span class="title">String</span>.<span class="title">CharacterView</span>.<span class="title">Index</span></span></span><br></pre></td></tr></table></figure>
-<p>####indices属性</p>
-<blockquote>
-<p><strong>说明：</strong>包含全部索引的<code>Range</code><br><strong>类型：</strong><code>Range &lt;Index&gt;</code><br><strong>原型：</strong><code>String&gt;characters的成员属性</code></p>
-</blockquote>
-<p>####advancedBy方法</p>
-<blockquote>
-<p><strong>说明：</strong>以当前位置为参照，获得相隔指定数量个下标的位置处的下标。<br><strong>原型：</strong><code>String.CharacterView.Index类型的成员方法</code></p>
-</blockquote>
-<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&gt;<span class="comment">/**</span><br><span class="line">&gt;* @param &#123;Int&#125; n 距离（正数代表向右移动，负数代表向左移动）</span><br><span class="line">&gt;* @return &#123;Index&#125; 下标</span><br><span class="line">&gt;*/</span></span><br><span class="line">&gt;<span class="function"><span class="keyword">func</span> <span class="title">advancedBy</span><span class="params">(n: Int)</span></span> -&gt; <span class="type">String</span>.<span class="type">CharacterView</span>.<span class="type">Index</span></span><br></pre></td></tr></table></figure>
-<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> greeting = <span class="string">"Gunten Tag!"</span></span><br><span class="line"><span class="comment">// 访问第一个字符</span></span><br><span class="line">greeting[greeting.startIndex]<span class="comment">// G</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 访问最后一个字符</span></span><br><span class="line">greeting[greeting.endIndex.predecessor()]<span class="comment">// !</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 访问第二个字符</span></span><br><span class="line">greeting[greeting.startIndex.successor()]<span class="comment">// u</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 访问最后一个字符</span></span><br><span class="line">greeting[greeting.endIndex.advancedBy(-<span class="number">1</span>)] <span class="comment">// !</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// indices属性</span></span><br><span class="line"><span class="keyword">for</span> index <span class="keyword">in</span> greeting.characters.<span class="built_in">indices</span> &#123;</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">"\(greeting[index])"</span>, terminator: <span class="string">""</span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>###3.10.2    插入和删除</p>
-<p>####insert函数</p>
-<blockquote>
-<p><strong>说明：</strong>在一个字符串的指定索引插入一个字符串。<br><strong>原型：</strong><code>String类型的实例方法</code></p>
-</blockquote>
-<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&gt;<span class="comment">/**</span><br><span class="line">&gt;* @param &#123;Character&#125; newElement 要插入的字符</span><br><span class="line">&gt;* @param &#123;Index&#125; atIndex 插入的位置</span><br><span class="line">&gt;*/</span></span><br><span class="line">&gt;<span class="function"><span class="keyword">func</span> <span class="title">insert</span><span class="params">(newElement: Character, atIndex: Index)</span></span> -&gt; void</span><br></pre></td></tr></table></figure>
-<p>####insertContentsOf函数</p>
-<blockquote>
-<p><strong>说明：</strong>在一个字符串的指定索引插入一个字符串。<br><strong>原型：</strong><code>String类型的实例方法</code></p>
-</blockquote>
-<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&gt;<span class="comment">/**</span><br><span class="line">&gt;* @param &#123;CollectionType&#125; newElements 插入的集合</span><br><span class="line">&gt;* @param &#123;Index&#125; at 插入位置</span><br><span class="line">&gt;*/</span></span><br><span class="line">&gt;<span class="function"><span class="keyword">func</span> <span class="title">insertContentsOf</span><span class="params">(newElements: CollectionType, at: Index)</span></span> -&gt; void</span><br></pre></td></tr></table></figure>
-<p>####removeAtIndex函数</p>
-<blockquote>
-<p><strong>说明：</strong>在一个字符串中的指定索引删除一个字符<br><strong>原型：</strong><code>String类型的实例方法</code></p>
-</blockquote>
-<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&gt;<span class="comment">/**</span><br><span class="line">&gt;* @param  &#123;Index&#125; i 要删除的字符对应的索引</span><br><span class="line">&gt;* @return &#123;Character&#125; 删除的字符</span><br><span class="line">&gt;*/</span></span><br><span class="line">&gt;<span class="function"><span class="keyword">func</span> <span class="title">removeAtIndex</span><span class="params">(i: Index)</span></span> -&gt; <span class="type">Character</span></span><br></pre></td></tr></table></figure>
-<p>####removeRange函数</p>
-<blockquote>
-<p><strong>说明：</strong>在一个字符串的指定索引删除一个字串<br><strong>原型：</strong><code>String类型的实例方法</code></p>
-</blockquote>
-<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&gt;<span class="function"><span class="keyword">func</span> <span class="title">removeRange</span><span class="params">(subRange: Range&lt;Index&gt;)</span></span> -&gt; void</span><br></pre></td></tr></table></figure>
-<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> welcome = <span class="string">"hello"</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 在字符串尾部插入一个字符</span></span><br><span class="line">welcome.insert(<span class="string">"!"</span>, atIndex: welcome.endIndex)<span class="comment">// hello</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 在字符串倒数第二个位置插入另一个字符串</span></span><br><span class="line">welcome.insertContentsOf(<span class="string">" there"</span>.characters, at: welcome.endIndex.predecessor())<span class="comment">// hello!</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 删除指定索引处的字符</span></span><br><span class="line">welcome.removeAtIndex(welcome.endIndex.predecessor())<span class="comment">// hello there!</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 删除子串</span></span><br><span class="line"><span class="keyword">let</span> range = welcome.endIndex.advancedBy(-<span class="number">6</span>)..&lt;welcome.endIndex<span class="comment">// 5..&lt;11</span></span><br><span class="line">welcome.removeRange(range)<span class="comment">// hello</span></span><br></pre></td></tr></table></figure>
-<p>##3.11    比较字符串</p>
-<p>###3.11.1    字符串/字符相等</p>
-<blockquote>
-<p><strong>说明：</strong>使用<code>!=</code>和<code>==</code></p>
-<ul>
-<li>如果两个字符串（或字符）的可扩展字形群集是标准相等（Unicode标量不同，语言外观相同）的，那就认为它们是相等的</li>
-</ul>
-</blockquote>
-<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 比较普通两个字符串</span></span><br><span class="line"><span class="keyword">let</span> quotation = <span class="string">"we're a lot alike, you and I."</span></span><br><span class="line"><span class="keyword">let</span> sameQuotation = <span class="string">"we're a lot alike, you and I."</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> quotation == sameQuotation &#123;</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">"There two strings are considered equal"</span>)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 比较两个Unicode标量不同但外观相同的字符串</span></span><br><span class="line"><span class="keyword">let</span> eAcuteQuestion = <span class="string">"Voulez-vous un caf\u&#123;E9&#125;?"</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> combinedEAcuteQuestion = <span class="string">"Voulez-vous uncaf\u&#123;65&#125;\u&#123;301&#125;?"</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> eAcuteQuestion == combinedEAcuteQuestion &#123;</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">"These twostrings are considered equal"</span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>###33.11.2        前缀/后缀相等</p>
-<p>####hasPrefix函数</p>
-<blockquote>
-<p><strong>说明：</strong>判断字符串是否包含某种前缀。<br><strong>原型：</strong><code>String类型的实例方法</code></p>
-</blockquote>
-<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&gt;<span class="comment">/**</span><br><span class="line">&gt;* @param &#123;String&#125; prefix 前缀</span><br><span class="line">&gt;* @return &#123;Boolean&#125; true : 包含前缀；false : 不包含前缀</span><br><span class="line">&gt;*/</span></span><br><span class="line">&gt;<span class="function"><span class="keyword">func</span> <span class="title">hasPrefix</span><span class="params">(<span class="keyword">prefix</span>: String)</span></span> -&gt; <span class="type">Boolean</span></span><br></pre></td></tr></table></figure>
-<p>####hasSuffix函数</p>
-<blockquote>
-<p><strong>说明：</strong>判断字符串是否包含某种后缀。<br><strong>原型：</strong><code>String类型的实例方法</code></p>
-</blockquote>
-<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&gt;<span class="comment">/**</span><br><span class="line">&gt;* @param &#123;String&#125; suffix 前缀</span><br><span class="line">&gt;* @return &#123;Boolean&#125; true : 包含后缀；false : 不包含后缀</span><br><span class="line">&gt;*/</span></span><br><span class="line">&gt;<span class="function"><span class="keyword">func</span> <span class="title">hasSuffix</span><span class="params">(<span class="keyword">prefix</span>: String)</span></span> -&gt; <span class="type">Boolean</span></span><br></pre></td></tr></table></figure>
-<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 场景位置</span></span><br><span class="line"><span class="keyword">let</span> romeoAndJuliet = [</span><br><span class="line">    <span class="string">"Act 1 Scene 1: Verona, A public place"</span>,</span><br><span class="line">    <span class="string">"Act 1 Scene 2: Capulet's mansion"</span>,</span><br><span class="line">    <span class="string">"Act 1 Scene 3: A room in Capulet's room"</span>,</span><br><span class="line">    <span class="string">"Act 2 Scene 1: Outside Capulet's mansion"</span>,</span><br><span class="line">    <span class="string">"Act 2 Scene 2: Capulet's orchard"</span>,</span><br><span class="line">    <span class="string">"Act 2 Scene 3: Ouside Friar Lawrence's cell"</span></span><br><span class="line">]</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> act1SceneCount = <span class="number">0</span><span class="comment">// 场景一数量</span></span><br><span class="line"><span class="comment">// 根据前缀删选数据项</span></span><br><span class="line"><span class="keyword">for</span> scene <span class="keyword">in</span> romeoAndJuliet &#123;</span><br><span class="line">    <span class="keyword">if</span> scene.hasPrefix(<span class="string">"Act 1 "</span>) &#123;</span><br><span class="line">        ++act1SceneCount</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">print</span>(<span class="string">"There are \(act1SceneCount) scenes in Act 1"</span>)</span><br></pre></td></tr></table></figure>
-<p>##3.12    字符串的Unicode表示形式</p>
-<blockquote>
-<p><strong>编码方式和字符集：</strong>事实上，计算机存储任何数据（包括文本文件）都是以<code>二进制方式</code>存储的，但字符如何对应到二进制数据，或者说二进制数据如何解读成字符是由<code>编码方式</code>和<code>字符集</code>决定的。每种<code>字符集</code>都对应一种或多种<code>编码方式</code>。<br><strong>说明：</strong>当字符串被保存到文本文件时，会按照某种编码方式存储。而Unicode标量对应的编码方式包括以下三种。</p>
-</blockquote>
-<table>
-<thead>
-<tr>
-<th>Unicode字符集对应的编码方式</th>
-<th>代码单元大小（bit）</th>
-<th>对应的String的成员属性</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><strong>UTF-8</strong></td>
-<td>8</td>
-<td>utf8</td>
-</tr>
-<tr>
-<td><strong>UTF-16</strong></td>
-<td>16</td>
-<td>utf16</td>
-</tr>
-<tr>
-<td><strong>UTF-32(Unicode标量集合)</strong></td>
-<td>32</td>
-<td>unicodeScalars</td>
-</tr>
-</tbody>
-</table>
-<p>###举个例子：<code>Dog‼🐶</code></p>
-<table>
-<thead>
-<tr>
-<th>code unit(十进制)</th>
-<th>D</th>
-<th>o</th>
-<th>g</th>
-<th>!!</th>
-<th>🐶</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><strong>UTF-8编码</strong></td>
-<td>68</td>
-<td>111</td>
-<td>103</td>
-<td>226 128 188</td>
-<td>240 159 144 182</td>
-</tr>
-<tr>
-<td><strong>UTF-16编码</strong></td>
-<td>68</td>
-<td>111</td>
-<td>103</td>
-<td>8252</td>
-<td>55357 56374</td>
-</tr>
-<tr>
-<td><strong>UTF-32(Unicode标量)</strong></td>
-<td>68</td>
-<td>111</td>
-<td>103</td>
-<td>8252</td>
-<td>128054</td>
-</tr>
-</tbody>
-</table>
-<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/05/13/TSPL2_02  基本运算符/" itemprop="url">
-                  2 基本运算符
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-05-13T19:32:24+08:00" content="2016-05-13">
-              2016-05-13
-            </time>
-          </span>
-
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2016/05/13/TSPL2_02  基本运算符/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/05/13/TSPL2_02  基本运算符/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <table>
-<thead>
-<tr>
-<th>基本运算</th>
-<th>正负</th>
-<th>自加/减</th>
-<th>自返运算</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>a+b</td>
-<td>+a</td>
-<td>a++/++a</td>
-<td>a+=b</td>
-</tr>
-<tr>
-<td>a-b</td>
-<td>-b</td>
-<td><code>b--/--b</code></td>
-<td>a-=b</td>
-</tr>
-<tr>
-<td>a*b</td>
-<td></td>
-<td></td>
-<td>a*=b</td>
-</tr>
-<tr>
-<td>a/b</td>
-<td></td>
-<td></td>
-<td>a/=b</td>
-</tr>
-<tr>
-<td>a%b</td>
-<td></td>
-<td></td>
-<td>a%=b</td>
-</tr>
-</tbody>
-</table>
-<p>[toc]</p>
-<h2 id="2-1-术语"><a href="#2-1-术语" class="headerlink" title="2.1    术语"></a>2.1    术语</h2><ul>
-<li>运算符</li>
-</ul>
-<table>
-<thead>
-<tr>
-<th>按照操作数数量分类</th>
-<th>说明</th>
-<th>举例</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>一元运算符</td>
-<td>分为前值运算符和后值运算符</td>
-<td><code>!</code>、<code>++</code>、<code>--</code>等</td>
-</tr>
-<tr>
-<td>二元运算符</td>
-<td>在两个操作数之间</td>
-<td>大部分运算符都属于二元运算符</td>
-</tr>
-<tr>
-<td>三元运算符</td>
-<td>和C语言一样只有一个三目运算符</td>
-<td><code>a ? b : c</code></td>
-</tr>
-</tbody>
-</table>
-<ul>
-<li>操作数：受运算影响的值叫做操作数</li>
-</ul>
-<h2 id="2-2-赋值运算符"><a href="#2-2-赋值运算符" class="headerlink" title="2.2    赋值运算符"></a>2.2    赋值运算符</h2><blockquote>
-<p><strong>说明：</strong>用来跟新或初始化变量或常量。</p>
-<ul>
-<li>右边如果是元组，会被分解成多个常量或变量</li>
-<li>不返回值（不同于c和o-c）</li>
-</ul>
-</blockquote>
-<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> (x, y) = (<span class="number">1</span>, <span class="number">2</span>)</span><br></pre></td></tr></table></figure>
-<h2 id="2-3-算术运算符"><a href="#2-3-算术运算符" class="headerlink" title="2.3    算术运算符"></a>2.3    算术运算符</h2><h3 id="2-3-1-四则运算"><a href="#2-3-1-四则运算" class="headerlink" title="2.3.1    四则运算"></a>2.3.1    四则运算</h3><blockquote>
-<p><strong>说明：</strong>其中<code>+</code>允许操作数为字符串，此时不再是四则运算中的加法运算，而是用来拼接字符串。</p>
-</blockquote>
-<table>
-<thead>
-<tr>
-<th>四则运算符</th>
-<th>说明</th>
-<th>操作数类型</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>+</td>
-<td>加法或连接符</td>
-<td>数值类型或字符串</td>
-</tr>
-<tr>
-<td>-</td>
-<td>减法</td>
-<td>数值类型</td>
-</tr>
-<tr>
-<td>*</td>
-<td>乘法</td>
-<td>数值类型</td>
-</tr>
-<tr>
-<td>/</td>
-<td>除法</td>
-<td>数值类型（两个操作数都是整数则结果取整(<code>Int</code>)，否则为<code>Double</code>）</td>
-</tr>
-</tbody>
-</table>
-<h3 id="2-3-2-求余运算符"><a href="#2-3-2-求余运算符" class="headerlink" title="2.3.2    求余运算符"></a>2.3.2    求余运算符</h3><blockquote>
-<p><strong>说明：</strong>在其它语言中也叫做取膜运算。<br><strong>规则：</strong><code>余数 = a % b</code>，其中<code>a = (|b| x 倍数) + 余数</code></p>
-<ul>
-<li><code>b</code>的符号将会被忽略，也就是说 <code>a % b</code>和<code>a % -b</code>相同</li>
-</ul>
-</blockquote>
-<h3 id="2-3-3-浮点数求余运算"><a href="#2-3-3-浮点数求余运算" class="headerlink" title="2.3.3    浮点数求余运算"></a>2.3.3    浮点数求余运算</h3><blockquote>
-<p><strong>说明：</strong>不同于<code>c</code>和<code>o-c</code>，<code>Swift</code>中可以对浮点数进行求余。</p>
-</blockquote>
-<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">8</span> % <span class="number">2.5</span><span class="comment">// 0.5</span></span><br></pre></td></tr></table></figure>
-<h3 id="2-3-4-自增和自减运算"><a href="#2-3-4-自增和自减运算" class="headerlink" title="2.3.4    自增和自减运算"></a>2.3.4    自增和自减运算</h3><blockquote>
-<p><strong>操作对象：</strong>整型和浮点型<br><strong>技巧：</strong>先修改后返回更符合我们的逻辑，因此除非需要<code>i++（i--）</code>的特性，否则推荐使用<code>++i(--i)</code></p>
-</blockquote>
-<table>
-<thead>
-<tr>
-<th>相对操作数的位置</th>
-<th>自增</th>
-<th>自减</th>
-<th>返回值</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>前置</td>
-<td><code>++i</code></td>
-<td><code>--i</code></td>
-<td>先自增，后返回</td>
-</tr>
-<tr>
-<td>后置</td>
-<td><code>i++</code></td>
-<td><code>i++</code></td>
-<td>先返回，后自增</td>
-</tr>
-</tbody>
-</table>
-<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> a = <span class="number">0</span></span><br><span class="line"><span class="keyword">let</span> b = ++a<span class="comment">// a 1, b 1</span></span><br><span class="line"><span class="keyword">let</span> <span class="built_in">c</span> = a++<span class="comment">// a 2, c 1</span></span><br></pre></td></tr></table></figure>
-<h3 id="2-3-5-一元负号运算符"><a href="#2-3-5-一元负号运算符" class="headerlink" title="2.3.5    一元负号运算符"></a>2.3.5    一元负号运算符</h3><blockquote>
-<p><strong>符号：</strong><code>-</code><br><strong>说明：</strong>写在操作数之前，中间没有空格</p>
-</blockquote>
-<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> three = <span class="number">3</span></span><br><span class="line"><span class="keyword">let</span> minusThree = -three</span><br><span class="line"><span class="keyword">let</span> plusThree = -minusThree</span><br></pre></td></tr></table></figure>
-<h3 id="2-3-6-一元正号运算符"><a href="#2-3-6-一元正号运算符" class="headerlink" title="2.3.6    一元正号运算符"></a>2.3.6    一元正号运算符</h3><blockquote>
-<p><strong>说明：</strong>不做任何改变地返回操作数的值<br><strong>用途：</strong>和负数一起使用时为整数添加<code>+</code>符号使代码看起来更加对称。</p>
-</blockquote>
-<h2 id="2-4-复合赋值"><a href="#2-4-复合赋值" class="headerlink" title="2.4    复合赋值"></a>2.4    复合赋值</h2><table>
-<thead>
-<tr>
-<th>自返运算(复合赋值)</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>a+=2</td>
-</tr>
-<tr>
-<td>a-=2</td>
-</tr>
-<tr>
-<td>a*=2</td>
-</tr>
-<tr>
-<td>a/=2</td>
-</tr>
-<tr>
-<td>a%=2</td>
-</tr>
-</tbody>
-</table>
-<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> a = <span class="number">1</span></span><br><span class="line">a += <span class="number">2</span><span class="comment">// a 3</span></span><br></pre></td></tr></table></figure>
-<h2 id="2-5-比较运算符"><a href="#2-5-比较运算符" class="headerlink" title="2.5    比较运算符"></a>2.5    比较运算符</h2><blockquote>
-<p><strong>应用：</strong>多用于<code>if</code>语句</p>
-</blockquote>
-<table>
-<thead>
-<tr>
-<th>运算符</th>
-<th>说明</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>a == b</td>
-<td>等于</td>
-</tr>
-<tr>
-<td>a != b</td>
-<td>不等于</td>
-</tr>
-<tr>
-<td>a &gt; b</td>
-<td>大于</td>
-</tr>
-<tr>
-<td>a &lt; b</td>
-<td>小于</td>
-</tr>
-<tr>
-<td>a === b</td>
-<td>两个引用指向同一个对象实例</td>
-</tr>
-<tr>
-<td>a !== b</td>
-<td>两个引用不指向同一个对象实例</td>
-</tr>
-</tbody>
-</table>
-<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> name = <span class="string">"word"</span></span><br><span class="line"><span class="keyword">if</span> name == <span class="string">"wword"</span> &#123;</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">"hello world"</span>)</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">else</span> &#123;</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">"I'm sorry \(name), but I don't recognize you"</span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h2 id="2-6-三目运算符"><a href="#2-6-三目运算符" class="headerlink" title="2.6    三目运算符"></a>2.6    三目运算符</h2><blockquote>
-<p><strong>语法：</strong><code>问题 ? 答案1 : 答案2</code><br><strong>技巧：</strong>过度使用三目运算符会使简洁的代码变得难懂。</p>
-</blockquote>
-<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> contentHeight = <span class="number">40</span></span><br><span class="line"><span class="keyword">let</span> hasHeader = <span class="literal">true</span></span><br><span class="line"><span class="keyword">let</span> rowHeight = contentHeight + (hasHeader ? <span class="number">50</span> : <span class="number">20</span>)</span><br></pre></td></tr></table></figure>
-<h2 id="2-7-空合运算符"><a href="#2-7-空合运算符" class="headerlink" title="2.7    空合运算符"></a>2.7    空合运算符</h2><blockquote>
-<p><strong>语法：</strong><code>a ?? b</code><br><strong>说明：</strong>对可选类型<code>a</code>进行空判断，如果<code>a</code>包含一个值就进行解封，否则就返回一个默认值<code>b</code>。</p>
-<ul>
-<li><code>a ?? b</code>等价于<code>a != nil ? a! : b</code></li>
-<li>表达式<code>a</code>必须是<code>Optional</code>类型</li>
-<li>默认值<code>b</code>的类型必须要和<code>a</code>存储的类型保持一致</li>
-<li>短路求值：如果<code>a</code>不是<code>nil</code>，则<code>b</code>不会被估值</li>
-</ul>
-</blockquote>
-<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> defaultColorName = <span class="string">"red"</span></span><br><span class="line"><span class="keyword">var</span> userDefinedColorName: <span class="type">String</span>?<span class="comment">// nil</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> colorNameToUse = userDefinedColorName ?? defaultColorName<span class="comment">// red</span></span><br></pre></td></tr></table></figure>
-<h2 id="2-8-区间运算符"><a href="#2-8-区间运算符" class="headerlink" title="2.8    区间运算符"></a>2.8    区间运算符</h2><blockquote>
-<p><strong>说明：</strong>分两种</p>
-<ul>
-<li>闭区间运算符（<code>a...b</code>）：包含a和b</li>
-<li>半开区间运算符（<code>a..&lt;b</code>）：包含a不包含b</li>
-</ul>
-<p><strong>应用：</strong>在迭代一个区间的所有值时非常有用，比如在<code>for-in</code>循环中。</p>
-</blockquote>
-<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> names = [<span class="string">"Anna"</span>, <span class="string">"Alex"</span>, <span class="string">"Brain"</span>, <span class="string">"Jack"</span>]</span><br><span class="line"><span class="keyword">let</span> <span class="built_in">count</span> = names.<span class="built_in">count</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> <span class="number">0</span>..&lt;<span class="built_in">count</span> &#123;</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">"第 \(i + 1) 个人叫 \(names[i])"</span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h2 id="2-9-逻辑运算符"><a href="#2-9-逻辑运算符" class="headerlink" title="2.9    逻辑运算符"></a>2.9    逻辑运算符</h2><blockquote>
-<p><strong>说明：</strong>一共3个</p>
-</blockquote>
-<table>
-<thead>
-<tr>
-<th>逻辑运算符</th>
-<th>说明</th>
-<th>是否短路</th>
-<th>结合性</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code>!a</code></td>
-<td>逻辑非</td>
-<td></td>
-</tr>
-<tr>
-<td><code>a &amp;&amp; b</code></td>
-<td>逻辑与</td>
-<td>是</td>
-<td>左结合</td>
-</tr>
-<tr>
-<td><code>a｜｜b</code></td>
-<td>逻辑或</td>
-<td>是</td>
-<td>左结合</td>
-</tr>
-</tbody>
-</table>
-<blockquote>
-<p><strong>提高可读性：</strong></p>
-<ul>
-<li>多个逻辑运算符组合运算时使用括号来明确优先级</li>
-<li>小心地选择布尔常量或变量</li>
-</ul>
-</blockquote>
-<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> (enteredDoorCode &amp;&amp; passedRetinaScan) || hasDoorKey || knowsOverridePassword &#123;</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">"Welcome!"</span>)</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">else</span> &#123;</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">"ACCESS DENIED"</span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
@@ -3427,7 +3000,7 @@ alseTenEighty.frameRate = <span class="number">30.0</span>
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">98</span>
+              <span class="site-state-item-count">100</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -3437,7 +3010,7 @@ alseTenEighty.frameRate = <span class="number">30.0</span>
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">13</span>
+                <span class="site-state-item-count">14</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>

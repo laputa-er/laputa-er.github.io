@@ -238,6 +238,823 @@
             
               
                 
+                <a class="post-title-link" href="/2016/05/13/TSPL2_03  字符串和字符/" itemprop="url">
+                  3 字符串和字符
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-05-13T19:32:42+08:00" content="2016-05-13">
+              2016-05-13
+            </time>
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/05/13/TSPL2_03  字符串和字符/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/05/13/TSPL2_03  字符串和字符/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <blockquote>
+<p><strong>说明：</strong>有序的<code>Character</code>类型的值的集合，通过<code>String类</code>来表示。</p>
+<ul>
+<li>每一个字符串都是由编码无关的<code>Unicide</code>字符组成</li>
+<li>可以通过內插的方式将字符串插入到常量、变量、字面量表达式中</li>
+</ul>
+<p><strong>扩展：</strong>和Cocoa中的Foundation框架中的<code>NSString类</code>进行了无缝对接</p>
+<ul>
+<li>可以将创建的任何字符串的值转换成<code>NSString</code></li>
+<li>可以调用任意的<code>NSString</code>API</li>
+<li>可以在任意要求传入<code>NSString</code>实例作为参数的API中用<code>String类</code>的值代替</li>
+</ul>
+</blockquote>
+<p>##3.1    字符串字面量</p>
+<blockquote>
+<p><strong>格式：</strong><code>&quot;固定顺序的文本字符集&quot;</code><br><strong>应用：</strong>为常量或变量提供初始值</p>
+</blockquote>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> someString = <span class="string">"Some string literal value"</span></span><br></pre></td></tr></table></figure>
+<p>##3.2    初始化空字符串</p>
+<blockquote>
+<p><strong>说明：</strong>2种形式</p>
+<ol>
+<li>将空的字符串字面量赋值给变量</li>
+<li>初始化一个新的<code>String</code>实例</li>
+</ol>
+<p><strong>判空：</strong>可以通过字符串实例的<code>isEmpty</code>属性(Boolean)来判断字符串是否为空。</p>
+</blockquote>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 形式1</span></span><br><span class="line"><span class="keyword">var</span> emptyString = <span class="string">""</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 形式2</span></span><br><span class="line"><span class="keyword">var</span> anotherEmptyString = <span class="type">String</span>()</span><br><span class="line"></span><br><span class="line"><span class="comment">// 判空</span></span><br><span class="line"><span class="keyword">if</span> emptyString.isEmpty &#123;</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">"Nothing to see here"</span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>##3.3    字符串可变性</p>
+<blockquote>
+<p><strong>说明：</strong>和Swift中其它值类型一样，可变性取决于定义为常量还是变量</p>
+<ul>
+<li>常量：不可改变</li>
+<li>变量：可以改变</li>
+</ul>
+<p><strong>扩展：</strong>在O-C和Cocoa中，字符串的可变性取决于使用<code>NSString类</code>还是<code>NSMutableString类</code>。</p>
+</blockquote>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 定义为变量</span></span><br><span class="line"><span class="keyword">var</span> variableString = <span class="string">"Hourse"</span></span><br><span class="line"><span class="comment">// 所以可以修改</span></span><br><span class="line">variableString += <span class="string">" add carriage"</span></span><br></pre></td></tr></table></figure>
+<p>##3.4    字符串是值类型</p>
+<blockquote>
+<p><strong>说明：</strong>意味着在以下操作中通过拷贝来传递值</p>
+<ul>
+<li>常量、变量赋值操作</li>
+<li>在函数、方法中传参</li>
+</ul>
+<p><strong>意义：</strong>确保传递的字符串不会被意外修改。<br><strong>扩展：</strong>为了保证性能，Swift编译器只会在绝对必要的情况下才进行复制。</p>
+<p>##3.5    使用字符<br><strong>说明：</strong><code>Character</code></p>
+<ul>
+<li>字符类型的常量和字符串相似，不同点在于自能包含一个字符。</li>
+<li>用字符常量初始化字符类型必须指定常量或变量为<code>Character</code>，否则默认为字符串类型。</li>
+</ul>
+</blockquote>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> exclamatuinMark: <span class="type">Character</span> = <span class="string">"!"</span></span><br></pre></td></tr></table></figure>
+<p>###3.5.1    字符串的Chracters属性</p>
+<blockquote>
+<p><strong>说明：</strong>可以通过该属性遍历字符串对应的字符数组。</p>
+</blockquote>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 遍历字符串中的字符</span></span><br><span class="line"><span class="keyword">for</span> character <span class="keyword">in</span> <span class="string">"Dog"</span>.characters &#123;</span><br><span class="line">    <span class="built_in">print</span>(character)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>###3.5.2    字符数组转换为字符串</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 声明字符数组</span></span><br><span class="line"><span class="keyword">let</span> catCharacters: [<span class="type">Character</span>] = [<span class="string">"C"</span>, <span class="string">"a"</span>, <span class="string">"t"</span>]</span><br><span class="line"><span class="comment">// 将字符数组转换为字符串</span></span><br><span class="line"><span class="keyword">let</span> catString = <span class="type">String</span>(catCharacters)</span><br><span class="line"><span class="built_in">print</span>(catString)<span class="comment">// "Cat"</span></span><br></pre></td></tr></table></figure>
+<p>##3.6    连接字符串和字符</p>
+<blockquote>
+<p><strong>说明：</strong>两种方式</p>
+<ul>
+<li><code>+</code>、<code>+=</code>：字符串拼接</li>
+<li><code>append方法</code><br>###append方法<br><strong>说明：</strong>将一个字符附加到字符串变量的尾部<br><strong>原型：</strong><code>String类实例方法</code></li>
+</ul>
+</blockquote>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&gt;<span class="comment">/**</span><br><span class="line">&gt;* @param &#123;Character&#125; c 字符</span><br><span class="line">&gt;*/</span></span><br><span class="line">&gt;void append(<span class="built_in">c</span>: <span class="type">Character</span>)</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p><strong>注意：</strong>参数只能是<code>Character</code>常量或变量，不能是字面量(因为存在歧义)</p>
+</blockquote>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> str1 = <span class="string">"hello"</span></span><br><span class="line"><span class="keyword">let</span> str2 = <span class="string">" there"</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//+</span></span><br><span class="line"><span class="keyword">var</span> welcome = str1 + str2<span class="comment">// hello there</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//+=</span></span><br><span class="line"><span class="keyword">var</span> instruction = <span class="string">"look over"</span></span><br><span class="line">instruction += str2<span class="comment">// look over there</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//append</span></span><br><span class="line"><span class="keyword">let</span> exclamationMark: <span class="type">Character</span> = <span class="string">"!"</span></span><br><span class="line">instruction.append(exclamationMark)</span><br></pre></td></tr></table></figure>
+<p>##3.7    字符串插值</p>
+<blockquote>
+<p><strong>用途：</strong>构建新的字符串。<br><strong>语法：</strong><code>\(表达式)</code></p>
+</blockquote>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> multiplier = <span class="number">3</span></span><br><span class="line"><span class="comment">// 通过插值构建新的字符串</span></span><br><span class="line"><span class="keyword">let</span> message = <span class="string">"\(multiplier) times 2.5 is \(Double(multiplier) * 2.5)"</span></span><br></pre></td></tr></table></figure>
+<p>##3.8    Unicode</p>
+<p>###3.8.1    Unicode标量</p>
+<blockquote>
+<p><strong>Unicode码位：</strong>格式为<code>U+[1到8位16进制数字]</code></p>
+<ul>
+<li><strong>Unicode标量码位：</strong>是对应字符或者修饰符的唯一的21位数字，每个<code>Unicode标量</code>都对应着一个<code>Unicode码位</code>，但反过来不成立。</li>
+<li><strong>Unicode代理项码位：</strong>Unicode码位中不属于Unicode标量的部分。</li>
+</ul>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>U+0000~U+D7FF</th>
+<th>U+D800~U+DFFF</th>
+<th>U+E000~U+10FFF</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Unicode标量</td>
+<td>unicode代理项</td>
+<td>Unicode标量</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p><strong>应用：</strong>Swift的<code>String</code>类型是基于Unicode标量建立的。</p>
+</blockquote>
+<p>###3.8.2    字符串字面量的特殊字符</p>
+<blockquote>
+<p><strong>说明：</strong>分两类</p>
+<ul>
+<li>转义字符</li>
+<li>Unicode标量</li>
+</ul>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>特殊字符</th>
+<th>含义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>\0</code></td>
+<td>空字符</td>
+</tr>
+<tr>
+<td><code>\\</code></td>
+<td>反斜线</td>
+</tr>
+<tr>
+<td><code>\t</code></td>
+<td>水平制表符</td>
+</tr>
+<tr>
+<td><code>\n</code></td>
+<td>换行符</td>
+</tr>
+<tr>
+<td><code>\r</code></td>
+<td>回车符</td>
+</tr>
+<tr>
+<td><code>\&quot;</code></td>
+<td>双引号</td>
+</tr>
+<tr>
+<td><code>\&#39;</code></td>
+<td>单引号</td>
+</tr>
+<tr>
+<td><code>\u{1到8位16进制数}</code></td>
+<td>Unicode标量</td>
+</tr>
+</tbody>
+</table>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// \"</span></span><br><span class="line"><span class="keyword">let</span> wiseWords = <span class="string">"\"Imagination is more importent than knowledge\" - Einstein"</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// Unocode标量</span></span><br><span class="line"><span class="keyword">let</span> dollarSign = <span class="string">"\u&#123;24&#125;"</span></span><br></pre></td></tr></table></figure>
+<p>###3.8.3    可扩展的字形群集</p>
+<blockquote>
+<p><strong>说明：</strong>有些字符由多个部分组成，每个部分都可以用一个Unicode标量表示。组合起来就形成了一个新字符。</p>
+</blockquote>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// é</span></span><br><span class="line"><span class="keyword">let</span> eAcute: <span class="type">Character</span> = <span class="string">"\u&#123;E9&#125;"</span><span class="comment">// é</span></span><br><span class="line"><span class="keyword">let</span> combinedEAcute: <span class="type">Character</span> = <span class="string">"\u&#123;65&#125;\u&#123;301&#125;"</span><span class="comment">// é</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 한</span></span><br><span class="line"><span class="keyword">let</span> precomposed: <span class="type">Character</span> = <span class="string">"\u&#123;D55C&#125;"</span><span class="comment">// 한</span></span><br><span class="line"><span class="keyword">let</span> decomposed: <span class="type">Character</span> = <span class="string">"\u&#123;1112&#125;\u&#123;1161&#125;\u&#123;11AB&#125;"</span><span class="comment">// 한</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// é⃝</span></span><br><span class="line"><span class="keyword">let</span> encosedEAcute: <span class="type">Character</span> = <span class="string">"\u&#123;E9&#125;\u&#123;20DD&#125;"</span><span class="comment">// é⃝</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 🇺🇸</span></span><br><span class="line"><span class="keyword">let</span> regionalIndicatorForUS: <span class="type">Character</span> = <span class="string">"\u&#123;1F1FA&#125;\u&#123;1F1F8&#125;"</span><span class="comment">// 🇺🇸</span></span><br></pre></td></tr></table></figure>
+<p>##3.9    计算字符数量</p>
+<p>###characters.count属性</p>
+<blockquote>
+<p><strong>说明：</strong><code>String</code>类实例成员<code>characters</code>提供的记录字符总数的属性。<br><strong>性能问题：</strong>字符串中可能包含可扩展字符群，只有遍历<code>Unicode</code>标量确定字符群表示的字符后才能确定字符串的长度<br><strong>扩展：</strong><code>NSString</code>的<code>length</code>属性不同于swift的<code>String</code>的<code>count</code>属性。前者利用<code>UTF-16</code>表示的16位代码单元数字。</p>
+</blockquote>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> unusualMenagerie = <span class="string">"Koala, Snail, Penguin, Dromedary"</span></span><br><span class="line"><span class="comment">// 获得字符串中字符的数量</span></span><br><span class="line"><span class="built_in">print</span>(<span class="string">"unusualMenagerie has \(unusualMenagerie.characters.count)"</span>)<span class="comment">// 32</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 使用可扩展的群组作为Character拼接到字符串时，字符串的字符数量并不一定会改变</span></span><br><span class="line"><span class="keyword">var</span> word = <span class="string">"cafe"</span></span><br><span class="line"><span class="built_in">print</span>(<span class="string">"the number of characters in \(word) is \(word.characters.count)"</span>)<span class="comment">// 4</span></span><br><span class="line"></span><br><span class="line">word += <span class="string">"\u&#123;301&#125;"</span><span class="comment">// café</span></span><br><span class="line"><span class="built_in">print</span>(<span class="string">"the number of characters in \(word) is \(word.characters.count)"</span>)<span class="comment">// 4</span></span><br></pre></td></tr></table></figure>
+<p>##3.10    访问和修改字符串</p>
+<blockquote>
+<p><strong>说明：</strong>两种方式</p>
+<ul>
+<li>字符串的属性和方法</li>
+<li>下标语法<br>###3.10.1    字符串索引<br>####相关属性(2个)</li>
+</ul>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>字符串实例属性</th>
+<th>说明</th>
+<th>空字符串相应属性值</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>startIndex</td>
+<td>第一个<code>Character</code>的下标</td>
+<td>0</td>
+</tr>
+<tr>
+<td>endIndex</td>
+<td>最后一个<code>Character</code>的下标 + 1</td>
+<td>0</td>
+</tr>
+</tbody>
+</table>
+<p>####predecessor方法</p>
+<blockquote>
+<p><strong>说明：</strong>通过当前下标获得前一个下标<br><strong>原型：</strong><code>Index类型的成员方法</code></p>
+</blockquote>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&gt;<span class="comment">/**</span><br><span class="line">&gt;* @return  &#123;String.CharacterView.Index&#125; 下标索引</span><br><span class="line">&gt;*/</span></span><br><span class="line">&gt;<span class="function"><span class="keyword">func</span> <span class="title">predecessor</span> -&gt; <span class="title">String</span>.<span class="title">CharacterView</span>.<span class="title">Index</span></span></span><br></pre></td></tr></table></figure>
+<p>####successor方法</p>
+<blockquote>
+<p><strong>说明：</strong>通过当前索引获得后面一个索引。<br><strong>原型：</strong><code>Index类型的成员方法</code></p>
+</blockquote>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&gt;<span class="comment">/**</span><br><span class="line">&gt;* @return  &#123;String.CharacterView.Index&#125; 下标索引</span><br><span class="line">&gt;*/</span></span><br><span class="line">&gt;<span class="function"><span class="keyword">func</span> <span class="title">successor</span> -&gt; <span class="title">String</span>.<span class="title">CharacterView</span>.<span class="title">Index</span></span></span><br></pre></td></tr></table></figure>
+<p>####indices属性</p>
+<blockquote>
+<p><strong>说明：</strong>包含全部索引的<code>Range</code><br><strong>类型：</strong><code>Range &lt;Index&gt;</code><br><strong>原型：</strong><code>String&gt;characters的成员属性</code></p>
+</blockquote>
+<p>####advancedBy方法</p>
+<blockquote>
+<p><strong>说明：</strong>以当前位置为参照，获得相隔指定数量个下标的位置处的下标。<br><strong>原型：</strong><code>String.CharacterView.Index类型的成员方法</code></p>
+</blockquote>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&gt;<span class="comment">/**</span><br><span class="line">&gt;* @param &#123;Int&#125; n 距离（正数代表向右移动，负数代表向左移动）</span><br><span class="line">&gt;* @return &#123;Index&#125; 下标</span><br><span class="line">&gt;*/</span></span><br><span class="line">&gt;<span class="function"><span class="keyword">func</span> <span class="title">advancedBy</span><span class="params">(n: Int)</span></span> -&gt; <span class="type">String</span>.<span class="type">CharacterView</span>.<span class="type">Index</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> greeting = <span class="string">"Gunten Tag!"</span></span><br><span class="line"><span class="comment">// 访问第一个字符</span></span><br><span class="line">greeting[greeting.startIndex]<span class="comment">// G</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 访问最后一个字符</span></span><br><span class="line">greeting[greeting.endIndex.predecessor()]<span class="comment">// !</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 访问第二个字符</span></span><br><span class="line">greeting[greeting.startIndex.successor()]<span class="comment">// u</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 访问最后一个字符</span></span><br><span class="line">greeting[greeting.endIndex.advancedBy(-<span class="number">1</span>)] <span class="comment">// !</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// indices属性</span></span><br><span class="line"><span class="keyword">for</span> index <span class="keyword">in</span> greeting.characters.<span class="built_in">indices</span> &#123;</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">"\(greeting[index])"</span>, terminator: <span class="string">""</span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>###3.10.2    插入和删除</p>
+<p>####insert函数</p>
+<blockquote>
+<p><strong>说明：</strong>在一个字符串的指定索引插入一个字符串。<br><strong>原型：</strong><code>String类型的实例方法</code></p>
+</blockquote>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&gt;<span class="comment">/**</span><br><span class="line">&gt;* @param &#123;Character&#125; newElement 要插入的字符</span><br><span class="line">&gt;* @param &#123;Index&#125; atIndex 插入的位置</span><br><span class="line">&gt;*/</span></span><br><span class="line">&gt;<span class="function"><span class="keyword">func</span> <span class="title">insert</span><span class="params">(newElement: Character, atIndex: Index)</span></span> -&gt; void</span><br></pre></td></tr></table></figure>
+<p>####insertContentsOf函数</p>
+<blockquote>
+<p><strong>说明：</strong>在一个字符串的指定索引插入一个字符串。<br><strong>原型：</strong><code>String类型的实例方法</code></p>
+</blockquote>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&gt;<span class="comment">/**</span><br><span class="line">&gt;* @param &#123;CollectionType&#125; newElements 插入的集合</span><br><span class="line">&gt;* @param &#123;Index&#125; at 插入位置</span><br><span class="line">&gt;*/</span></span><br><span class="line">&gt;<span class="function"><span class="keyword">func</span> <span class="title">insertContentsOf</span><span class="params">(newElements: CollectionType, at: Index)</span></span> -&gt; void</span><br></pre></td></tr></table></figure>
+<p>####removeAtIndex函数</p>
+<blockquote>
+<p><strong>说明：</strong>在一个字符串中的指定索引删除一个字符<br><strong>原型：</strong><code>String类型的实例方法</code></p>
+</blockquote>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&gt;<span class="comment">/**</span><br><span class="line">&gt;* @param  &#123;Index&#125; i 要删除的字符对应的索引</span><br><span class="line">&gt;* @return &#123;Character&#125; 删除的字符</span><br><span class="line">&gt;*/</span></span><br><span class="line">&gt;<span class="function"><span class="keyword">func</span> <span class="title">removeAtIndex</span><span class="params">(i: Index)</span></span> -&gt; <span class="type">Character</span></span><br></pre></td></tr></table></figure>
+<p>####removeRange函数</p>
+<blockquote>
+<p><strong>说明：</strong>在一个字符串的指定索引删除一个字串<br><strong>原型：</strong><code>String类型的实例方法</code></p>
+</blockquote>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&gt;<span class="function"><span class="keyword">func</span> <span class="title">removeRange</span><span class="params">(subRange: Range&lt;Index&gt;)</span></span> -&gt; void</span><br></pre></td></tr></table></figure>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> welcome = <span class="string">"hello"</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 在字符串尾部插入一个字符</span></span><br><span class="line">welcome.insert(<span class="string">"!"</span>, atIndex: welcome.endIndex)<span class="comment">// hello</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 在字符串倒数第二个位置插入另一个字符串</span></span><br><span class="line">welcome.insertContentsOf(<span class="string">" there"</span>.characters, at: welcome.endIndex.predecessor())<span class="comment">// hello!</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 删除指定索引处的字符</span></span><br><span class="line">welcome.removeAtIndex(welcome.endIndex.predecessor())<span class="comment">// hello there!</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 删除子串</span></span><br><span class="line"><span class="keyword">let</span> range = welcome.endIndex.advancedBy(-<span class="number">6</span>)..&lt;welcome.endIndex<span class="comment">// 5..&lt;11</span></span><br><span class="line">welcome.removeRange(range)<span class="comment">// hello</span></span><br></pre></td></tr></table></figure>
+<p>##3.11    比较字符串</p>
+<p>###3.11.1    字符串/字符相等</p>
+<blockquote>
+<p><strong>说明：</strong>使用<code>!=</code>和<code>==</code></p>
+<ul>
+<li>如果两个字符串（或字符）的可扩展字形群集是标准相等（Unicode标量不同，语言外观相同）的，那就认为它们是相等的</li>
+</ul>
+</blockquote>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 比较普通两个字符串</span></span><br><span class="line"><span class="keyword">let</span> quotation = <span class="string">"we're a lot alike, you and I."</span></span><br><span class="line"><span class="keyword">let</span> sameQuotation = <span class="string">"we're a lot alike, you and I."</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> quotation == sameQuotation &#123;</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">"There two strings are considered equal"</span>)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 比较两个Unicode标量不同但外观相同的字符串</span></span><br><span class="line"><span class="keyword">let</span> eAcuteQuestion = <span class="string">"Voulez-vous un caf\u&#123;E9&#125;?"</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> combinedEAcuteQuestion = <span class="string">"Voulez-vous uncaf\u&#123;65&#125;\u&#123;301&#125;?"</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> eAcuteQuestion == combinedEAcuteQuestion &#123;</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">"These twostrings are considered equal"</span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>###33.11.2        前缀/后缀相等</p>
+<p>####hasPrefix函数</p>
+<blockquote>
+<p><strong>说明：</strong>判断字符串是否包含某种前缀。<br><strong>原型：</strong><code>String类型的实例方法</code></p>
+</blockquote>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&gt;<span class="comment">/**</span><br><span class="line">&gt;* @param &#123;String&#125; prefix 前缀</span><br><span class="line">&gt;* @return &#123;Boolean&#125; true : 包含前缀；false : 不包含前缀</span><br><span class="line">&gt;*/</span></span><br><span class="line">&gt;<span class="function"><span class="keyword">func</span> <span class="title">hasPrefix</span><span class="params">(<span class="keyword">prefix</span>: String)</span></span> -&gt; <span class="type">Boolean</span></span><br></pre></td></tr></table></figure>
+<p>####hasSuffix函数</p>
+<blockquote>
+<p><strong>说明：</strong>判断字符串是否包含某种后缀。<br><strong>原型：</strong><code>String类型的实例方法</code></p>
+</blockquote>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&gt;<span class="comment">/**</span><br><span class="line">&gt;* @param &#123;String&#125; suffix 前缀</span><br><span class="line">&gt;* @return &#123;Boolean&#125; true : 包含后缀；false : 不包含后缀</span><br><span class="line">&gt;*/</span></span><br><span class="line">&gt;<span class="function"><span class="keyword">func</span> <span class="title">hasSuffix</span><span class="params">(<span class="keyword">prefix</span>: String)</span></span> -&gt; <span class="type">Boolean</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 场景位置</span></span><br><span class="line"><span class="keyword">let</span> romeoAndJuliet = [</span><br><span class="line">    <span class="string">"Act 1 Scene 1: Verona, A public place"</span>,</span><br><span class="line">    <span class="string">"Act 1 Scene 2: Capulet's mansion"</span>,</span><br><span class="line">    <span class="string">"Act 1 Scene 3: A room in Capulet's room"</span>,</span><br><span class="line">    <span class="string">"Act 2 Scene 1: Outside Capulet's mansion"</span>,</span><br><span class="line">    <span class="string">"Act 2 Scene 2: Capulet's orchard"</span>,</span><br><span class="line">    <span class="string">"Act 2 Scene 3: Ouside Friar Lawrence's cell"</span></span><br><span class="line">]</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> act1SceneCount = <span class="number">0</span><span class="comment">// 场景一数量</span></span><br><span class="line"><span class="comment">// 根据前缀删选数据项</span></span><br><span class="line"><span class="keyword">for</span> scene <span class="keyword">in</span> romeoAndJuliet &#123;</span><br><span class="line">    <span class="keyword">if</span> scene.hasPrefix(<span class="string">"Act 1 "</span>) &#123;</span><br><span class="line">        ++act1SceneCount</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">print</span>(<span class="string">"There are \(act1SceneCount) scenes in Act 1"</span>)</span><br></pre></td></tr></table></figure>
+<p>##3.12    字符串的Unicode表示形式</p>
+<blockquote>
+<p><strong>编码方式和字符集：</strong>事实上，计算机存储任何数据（包括文本文件）都是以<code>二进制方式</code>存储的，但字符如何对应到二进制数据，或者说二进制数据如何解读成字符是由<code>编码方式</code>和<code>字符集</code>决定的。每种<code>字符集</code>都对应一种或多种<code>编码方式</code>。<br><strong>说明：</strong>当字符串被保存到文本文件时，会按照某种编码方式存储。而Unicode标量对应的编码方式包括以下三种。</p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>Unicode字符集对应的编码方式</th>
+<th>代码单元大小（bit）</th>
+<th>对应的String的成员属性</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>UTF-8</strong></td>
+<td>8</td>
+<td>utf8</td>
+</tr>
+<tr>
+<td><strong>UTF-16</strong></td>
+<td>16</td>
+<td>utf16</td>
+</tr>
+<tr>
+<td><strong>UTF-32(Unicode标量集合)</strong></td>
+<td>32</td>
+<td>unicodeScalars</td>
+</tr>
+</tbody>
+</table>
+<p>###举个例子：<code>Dog‼🐶</code></p>
+<table>
+<thead>
+<tr>
+<th>code unit(十进制)</th>
+<th>D</th>
+<th>o</th>
+<th>g</th>
+<th>!!</th>
+<th>🐶</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>UTF-8编码</strong></td>
+<td>68</td>
+<td>111</td>
+<td>103</td>
+<td>226 128 188</td>
+<td>240 159 144 182</td>
+</tr>
+<tr>
+<td><strong>UTF-16编码</strong></td>
+<td>68</td>
+<td>111</td>
+<td>103</td>
+<td>8252</td>
+<td>55357 56374</td>
+</tr>
+<tr>
+<td><strong>UTF-32(Unicode标量)</strong></td>
+<td>68</td>
+<td>111</td>
+<td>103</td>
+<td>8252</td>
+<td>128054</td>
+</tr>
+</tbody>
+</table>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2016/05/13/TSPL2_02  基本运算符/" itemprop="url">
+                  2 基本运算符
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-05-13T19:32:24+08:00" content="2016-05-13">
+              2016-05-13
+            </time>
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/05/13/TSPL2_02  基本运算符/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/05/13/TSPL2_02  基本运算符/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <table>
+<thead>
+<tr>
+<th>基本运算</th>
+<th>正负</th>
+<th>自加/减</th>
+<th>自返运算</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>a+b</td>
+<td>+a</td>
+<td>a++/++a</td>
+<td>a+=b</td>
+</tr>
+<tr>
+<td>a-b</td>
+<td>-b</td>
+<td><code>b--/--b</code></td>
+<td>a-=b</td>
+</tr>
+<tr>
+<td>a*b</td>
+<td></td>
+<td></td>
+<td>a*=b</td>
+</tr>
+<tr>
+<td>a/b</td>
+<td></td>
+<td></td>
+<td>a/=b</td>
+</tr>
+<tr>
+<td>a%b</td>
+<td></td>
+<td></td>
+<td>a%=b</td>
+</tr>
+</tbody>
+</table>
+<p>[toc]</p>
+<h2 id="2-1-术语"><a href="#2-1-术语" class="headerlink" title="2.1    术语"></a>2.1    术语</h2><ul>
+<li>运算符</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>按照操作数数量分类</th>
+<th>说明</th>
+<th>举例</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>一元运算符</td>
+<td>分为前值运算符和后值运算符</td>
+<td><code>!</code>、<code>++</code>、<code>--</code>等</td>
+</tr>
+<tr>
+<td>二元运算符</td>
+<td>在两个操作数之间</td>
+<td>大部分运算符都属于二元运算符</td>
+</tr>
+<tr>
+<td>三元运算符</td>
+<td>和C语言一样只有一个三目运算符</td>
+<td><code>a ? b : c</code></td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>操作数：受运算影响的值叫做操作数</li>
+</ul>
+<h2 id="2-2-赋值运算符"><a href="#2-2-赋值运算符" class="headerlink" title="2.2    赋值运算符"></a>2.2    赋值运算符</h2><blockquote>
+<p><strong>说明：</strong>用来跟新或初始化变量或常量。</p>
+<ul>
+<li>右边如果是元组，会被分解成多个常量或变量</li>
+<li>不返回值（不同于c和o-c）</li>
+</ul>
+</blockquote>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> (x, y) = (<span class="number">1</span>, <span class="number">2</span>)</span><br></pre></td></tr></table></figure>
+<h2 id="2-3-算术运算符"><a href="#2-3-算术运算符" class="headerlink" title="2.3    算术运算符"></a>2.3    算术运算符</h2><h3 id="2-3-1-四则运算"><a href="#2-3-1-四则运算" class="headerlink" title="2.3.1    四则运算"></a>2.3.1    四则运算</h3><blockquote>
+<p><strong>说明：</strong>其中<code>+</code>允许操作数为字符串，此时不再是四则运算中的加法运算，而是用来拼接字符串。</p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>四则运算符</th>
+<th>说明</th>
+<th>操作数类型</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>+</td>
+<td>加法或连接符</td>
+<td>数值类型或字符串</td>
+</tr>
+<tr>
+<td>-</td>
+<td>减法</td>
+<td>数值类型</td>
+</tr>
+<tr>
+<td>*</td>
+<td>乘法</td>
+<td>数值类型</td>
+</tr>
+<tr>
+<td>/</td>
+<td>除法</td>
+<td>数值类型（两个操作数都是整数则结果取整(<code>Int</code>)，否则为<code>Double</code>）</td>
+</tr>
+</tbody>
+</table>
+<h3 id="2-3-2-求余运算符"><a href="#2-3-2-求余运算符" class="headerlink" title="2.3.2    求余运算符"></a>2.3.2    求余运算符</h3><blockquote>
+<p><strong>说明：</strong>在其它语言中也叫做取膜运算。<br><strong>规则：</strong><code>余数 = a % b</code>，其中<code>a = (|b| x 倍数) + 余数</code></p>
+<ul>
+<li><code>b</code>的符号将会被忽略，也就是说 <code>a % b</code>和<code>a % -b</code>相同</li>
+</ul>
+</blockquote>
+<h3 id="2-3-3-浮点数求余运算"><a href="#2-3-3-浮点数求余运算" class="headerlink" title="2.3.3    浮点数求余运算"></a>2.3.3    浮点数求余运算</h3><blockquote>
+<p><strong>说明：</strong>不同于<code>c</code>和<code>o-c</code>，<code>Swift</code>中可以对浮点数进行求余。</p>
+</blockquote>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">8</span> % <span class="number">2.5</span><span class="comment">// 0.5</span></span><br></pre></td></tr></table></figure>
+<h3 id="2-3-4-自增和自减运算"><a href="#2-3-4-自增和自减运算" class="headerlink" title="2.3.4    自增和自减运算"></a>2.3.4    自增和自减运算</h3><blockquote>
+<p><strong>操作对象：</strong>整型和浮点型<br><strong>技巧：</strong>先修改后返回更符合我们的逻辑，因此除非需要<code>i++（i--）</code>的特性，否则推荐使用<code>++i(--i)</code></p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>相对操作数的位置</th>
+<th>自增</th>
+<th>自减</th>
+<th>返回值</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>前置</td>
+<td><code>++i</code></td>
+<td><code>--i</code></td>
+<td>先自增，后返回</td>
+</tr>
+<tr>
+<td>后置</td>
+<td><code>i++</code></td>
+<td><code>i++</code></td>
+<td>先返回，后自增</td>
+</tr>
+</tbody>
+</table>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> a = <span class="number">0</span></span><br><span class="line"><span class="keyword">let</span> b = ++a<span class="comment">// a 1, b 1</span></span><br><span class="line"><span class="keyword">let</span> <span class="built_in">c</span> = a++<span class="comment">// a 2, c 1</span></span><br></pre></td></tr></table></figure>
+<h3 id="2-3-5-一元负号运算符"><a href="#2-3-5-一元负号运算符" class="headerlink" title="2.3.5    一元负号运算符"></a>2.3.5    一元负号运算符</h3><blockquote>
+<p><strong>符号：</strong><code>-</code><br><strong>说明：</strong>写在操作数之前，中间没有空格</p>
+</blockquote>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> three = <span class="number">3</span></span><br><span class="line"><span class="keyword">let</span> minusThree = -three</span><br><span class="line"><span class="keyword">let</span> plusThree = -minusThree</span><br></pre></td></tr></table></figure>
+<h3 id="2-3-6-一元正号运算符"><a href="#2-3-6-一元正号运算符" class="headerlink" title="2.3.6    一元正号运算符"></a>2.3.6    一元正号运算符</h3><blockquote>
+<p><strong>说明：</strong>不做任何改变地返回操作数的值<br><strong>用途：</strong>和负数一起使用时为整数添加<code>+</code>符号使代码看起来更加对称。</p>
+</blockquote>
+<h2 id="2-4-复合赋值"><a href="#2-4-复合赋值" class="headerlink" title="2.4    复合赋值"></a>2.4    复合赋值</h2><table>
+<thead>
+<tr>
+<th>自返运算(复合赋值)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>a+=2</td>
+</tr>
+<tr>
+<td>a-=2</td>
+</tr>
+<tr>
+<td>a*=2</td>
+</tr>
+<tr>
+<td>a/=2</td>
+</tr>
+<tr>
+<td>a%=2</td>
+</tr>
+</tbody>
+</table>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> a = <span class="number">1</span></span><br><span class="line">a += <span class="number">2</span><span class="comment">// a 3</span></span><br></pre></td></tr></table></figure>
+<h2 id="2-5-比较运算符"><a href="#2-5-比较运算符" class="headerlink" title="2.5    比较运算符"></a>2.5    比较运算符</h2><blockquote>
+<p><strong>应用：</strong>多用于<code>if</code>语句</p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>运算符</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>a == b</td>
+<td>等于</td>
+</tr>
+<tr>
+<td>a != b</td>
+<td>不等于</td>
+</tr>
+<tr>
+<td>a &gt; b</td>
+<td>大于</td>
+</tr>
+<tr>
+<td>a &lt; b</td>
+<td>小于</td>
+</tr>
+<tr>
+<td>a === b</td>
+<td>两个引用指向同一个对象实例</td>
+</tr>
+<tr>
+<td>a !== b</td>
+<td>两个引用不指向同一个对象实例</td>
+</tr>
+</tbody>
+</table>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> name = <span class="string">"word"</span></span><br><span class="line"><span class="keyword">if</span> name == <span class="string">"wword"</span> &#123;</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">"hello world"</span>)</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">else</span> &#123;</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">"I'm sorry \(name), but I don't recognize you"</span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="2-6-三目运算符"><a href="#2-6-三目运算符" class="headerlink" title="2.6    三目运算符"></a>2.6    三目运算符</h2><blockquote>
+<p><strong>语法：</strong><code>问题 ? 答案1 : 答案2</code><br><strong>技巧：</strong>过度使用三目运算符会使简洁的代码变得难懂。</p>
+</blockquote>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> contentHeight = <span class="number">40</span></span><br><span class="line"><span class="keyword">let</span> hasHeader = <span class="literal">true</span></span><br><span class="line"><span class="keyword">let</span> rowHeight = contentHeight + (hasHeader ? <span class="number">50</span> : <span class="number">20</span>)</span><br></pre></td></tr></table></figure>
+<h2 id="2-7-空合运算符"><a href="#2-7-空合运算符" class="headerlink" title="2.7    空合运算符"></a>2.7    空合运算符</h2><blockquote>
+<p><strong>语法：</strong><code>a ?? b</code><br><strong>说明：</strong>对可选类型<code>a</code>进行空判断，如果<code>a</code>包含一个值就进行解封，否则就返回一个默认值<code>b</code>。</p>
+<ul>
+<li><code>a ?? b</code>等价于<code>a != nil ? a! : b</code></li>
+<li>表达式<code>a</code>必须是<code>Optional</code>类型</li>
+<li>默认值<code>b</code>的类型必须要和<code>a</code>存储的类型保持一致</li>
+<li>短路求值：如果<code>a</code>不是<code>nil</code>，则<code>b</code>不会被估值</li>
+</ul>
+</blockquote>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> defaultColorName = <span class="string">"red"</span></span><br><span class="line"><span class="keyword">var</span> userDefinedColorName: <span class="type">String</span>?<span class="comment">// nil</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> colorNameToUse = userDefinedColorName ?? defaultColorName<span class="comment">// red</span></span><br></pre></td></tr></table></figure>
+<h2 id="2-8-区间运算符"><a href="#2-8-区间运算符" class="headerlink" title="2.8    区间运算符"></a>2.8    区间运算符</h2><blockquote>
+<p><strong>说明：</strong>分两种</p>
+<ul>
+<li>闭区间运算符（<code>a...b</code>）：包含a和b</li>
+<li>半开区间运算符（<code>a..&lt;b</code>）：包含a不包含b</li>
+</ul>
+<p><strong>应用：</strong>在迭代一个区间的所有值时非常有用，比如在<code>for-in</code>循环中。</p>
+</blockquote>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> names = [<span class="string">"Anna"</span>, <span class="string">"Alex"</span>, <span class="string">"Brain"</span>, <span class="string">"Jack"</span>]</span><br><span class="line"><span class="keyword">let</span> <span class="built_in">count</span> = names.<span class="built_in">count</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> <span class="number">0</span>..&lt;<span class="built_in">count</span> &#123;</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">"第 \(i + 1) 个人叫 \(names[i])"</span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="2-9-逻辑运算符"><a href="#2-9-逻辑运算符" class="headerlink" title="2.9    逻辑运算符"></a>2.9    逻辑运算符</h2><blockquote>
+<p><strong>说明：</strong>一共3个</p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>逻辑运算符</th>
+<th>说明</th>
+<th>是否短路</th>
+<th>结合性</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>!a</code></td>
+<td>逻辑非</td>
+<td></td>
+</tr>
+<tr>
+<td><code>a &amp;&amp; b</code></td>
+<td>逻辑与</td>
+<td>是</td>
+<td>左结合</td>
+</tr>
+<tr>
+<td><code>a｜｜b</code></td>
+<td>逻辑或</td>
+<td>是</td>
+<td>左结合</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p><strong>提高可读性：</strong></p>
+<ul>
+<li>多个逻辑运算符组合运算时使用括号来明确优先级</li>
+<li>小心地选择布尔常量或变量</li>
+</ul>
+</blockquote>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> (enteredDoorCode &amp;&amp; passedRetinaScan) || hasDoorKey || knowsOverridePassword &#123;</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">"Welcome!"</span>)</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">else</span> &#123;</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">"ACCESS DENIED"</span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2016/05/13/TSPL2_01  基础部分/" itemprop="url">
                   1 基础部分
                 </a>
@@ -2284,603 +3101,6 @@
 
 
     
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/05/13/o-c基础教程第二版_14 代码块和并发性/" itemprop="url">
-                  14 代码块和并发行
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-05-13T10:41:10+08:00" content="2016-05-13">
-              2016-05-13
-            </time>
-          </span>
-
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2016/05/13/o-c基础教程第二版_14 代码块和并发性/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/05/13/o-c基础教程第二版_14 代码块和并发性/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h2 id="14-1-代码块"><a href="#14-1-代码块" class="headerlink" title="14.1    代码块"></a>14.1    代码块</h2><blockquote>
-<p><strong>说明：</strong><code>代码块</code>是由C语言实现的，是对C语言中函数的扩展。<br><strong>支持的语言：</strong><code>Objective-C</code>、<code>C</code> 、<code>C++</code>、<code>Objective-C++</code><br><strong>用途：</strong><code>替代函数</code>或实现<code>闭包</code><br><strong>现状：</strong><code>代码块</code>在<code>Xcode</code>的<code>GCC</code>和<code>CLang</code>工具中是有效的，但它不属于<code>ANSI</code>的<code>C</code>语言标准。关于代码块的提议已经提交给C语言标准团体。</p>
-</blockquote>
-<h3 id="14-1-1-代码块和函数指针"><a href="#14-1-1-代码块和函数指针" class="headerlink" title="14.1.1    代码块和函数指针"></a>14.1.1    代码块和函数指针</h3><blockquote>
-<p><strong>说明：</strong><code>代码块</code>的语法借鉴了<code>函数指针</code></p>
-<ul>
-<li><strong>返回类型</strong>可以手动声明也可以由编译器通过代码块推导</li>
-<li>具有指定类型的<strong>参数</strong>列表</li>
-<li>拥有<strong>名称</strong></li>
-<li>代码放在<code>{}</code>中</li>
-</ul>
-<p><strong>语法：</strong><code>&lt;returntype&gt; (^blockname)(list of arguments) = ^(arguments){body;}</code><br><em>实现部分推导出返回值类型</em></p>
-</blockquote>
-<figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 实现部分省略了返回值类型，没有参数列表</span></span><br><span class="line"><span class="keyword">void</span> (^theBlock)() = ^&#123;</span><br><span class="line">	printf(<span class="string">"Hello Blocks!"</span>);</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-<figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span><br><span class="line">* 定义并实现代码块 square_block</span><br><span class="line">* 计算乘方</span><br><span class="line">* @param &#123;int&#125; number 数值</span><br><span class="line">* @return &#123;int&#125; number 乘方结果</span><br><span class="line">*/</span></span><br><span class="line"><span class="keyword">int</span> (^square_block)(<span class="keyword">int</span> number) = ^(<span class="keyword">int</span> number) &#123;</span><br><span class="line">	<span class="keyword">return</span> (number * number);</span><br><span class="line">&#125;;</span><br><span class="line"><span class="comment">// 调用代码块</span></span><br><span class="line"><span class="keyword">int</span> result = square_block(<span class="number">5</span>);</span><br><span class="line">printf(<span class="string">"Result = %d\n"</span>, result);</span><br></pre></td></tr></table></figure>
-<h4 id="14-1-1-1-通过代码块名调用代码块"><a href="#14-1-1-1-通过代码块名调用代码块" class="headerlink" title="14.1.1.1    通过代码块名调用代码块"></a>14.1.1.1    通过代码块名调用代码块</h4><blockquote>
-<p><strong>说明：</strong>可以像调用<code>函数</code>一样调用<code>代码块</code>。<br><strong>比函数强大：</strong>代码块可以访问与它相同的有效范围内声明的变量。</p>
-</blockquote>
-<figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 声明并初始化变量：声明时的作用域和代码块相同</span></span><br><span class="line"><span class="keyword">int</span> value = <span class="number">6</span>;</span><br><span class="line"><span class="comment">// 定义并实现代码块</span></span><br><span class="line"><span class="keyword">int</span> (^multiply_block)(<span class="keyword">int</span> number) = ^(<span class="keyword">int</span> number) &#123;</span><br><span class="line">	<span class="comment">// 访问外部同作用域声明的变量</span></span><br><span class="line">	<span class="keyword">return</span> (value * number);</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-<h4 id="14-1-1-2-直接调用代码块（匿名）"><a href="#14-1-1-2-直接调用代码块（匿名）" class="headerlink" title="14.1.1.2    直接调用代码块（匿名）"></a>14.1.1.2    直接调用代码块（匿名）</h4><blockquote>
-<p><strong>说明：</strong>使用代码块时通常不需要创建一个代码块变量，而是在代码中内联代码块的内容。<br><strong>使用场景：</strong>作为参数传递给方法或函数</p>
-</blockquote>
-<figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 数组</span></span><br><span class="line"><span class="built_in">NSArray</span> *array = [<span class="built_in">NSArray</span> arrayWithObjects: <span class="string">@"Amir"</span>, <span class="string">@"Mishal"</span>, <span class="string">@"Irrum"</span>, <span class="string">@"Adam"</span>, <span class="literal">nil</span>];</span><br><span class="line"><span class="built_in">NSLog</span>(<span class="string">@"Unsorted Array %@"</span>, array);</span><br><span class="line"><span class="comment">// 传递匿名代码块</span></span><br><span class="line"><span class="built_in">NSArray</span> *soredArray = [array sortedArrayUsingComparator: ^(<span class="built_in">NSString</span> *object1, <span class="built_in">NSString</span> *object2)] &#123;</span><br><span class="line">	<span class="keyword">return</span> [object1 compare: object2];</span><br><span class="line">&#125;;</span><br><span class="line"><span class="built_in">NSLog</span>(<span class="string">@"Sorted Array %@"</span>, sortedArray);</span><br></pre></td></tr></table></figure>
-<h4 id="14-1-1-3-使用typedef关键字"><a href="#14-1-1-3-使用typedef关键字" class="headerlink" title="14.1.1.3    使用typedef关键字"></a>14.1.1.3    使用<code>typedef</code>关键字</h4><blockquote>
-<p><strong>说明：</strong>将<code>代码块</code>声明定义为一种类型，更易于代码的编写。<br><strong>语法：</strong><code>typedef 代码块定义;</code><br><strong>注意：</strong><code>typedef</code>后面的<code>代码块</code>定义中的代码块名不再具备<code>代码块名</code>的功能，而是一种类型名。</p>
-</blockquote>
-<figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 将代码块定义为一种类型： MKSampleMultiply2BlockRef</span></span><br><span class="line"><span class="keyword">typedef</span> <span class="keyword">double</span> (^<span class="built_in">MKSampleMultiply2BlockRef</span>)(<span class="keyword">double</span> c, <span class="keyword">double</span> d);</span><br><span class="line"><span class="comment">// 使用新类型创建代码块</span></span><br><span class="line"><span class="built_in">MKSampleMultiply2BlockRef</span> multiply2 = ^(<span class="keyword">double</span> c, <span class="keyword">double</span> d) &#123;</span><br><span class="line">	<span class="keyword">return</span> c * d;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="comment">// 调用代码块</span></span><br><span class="line">printf(<span class="string">"%f, %f"</span>, multiply2(<span class="number">4</span>, <span class="number">5</span>), multiply2(<span class="number">5</span>, <span class="number">2</span>));</span><br></pre></td></tr></table></figure>
-<h4 id="14-1-1-4-代码块和变量"><a href="#14-1-1-4-代码块和变量" class="headerlink" title="14.1.1.4    代码块和变量"></a>14.1.1.4    代码块和变量</h4><blockquote>
-<p><strong>说明：</strong>代码块被声明后会捕捉到创建时的上下文中的变量或函数。</p>
-<ul>
-<li>全局变量（包括在封闭范围内声明的本地静态变量）</li>
-<li>全局函数</li>
-<li>封闭范围内的参数</li>
-<li><code>Objective-C</code>的实例变量</li>
-<li>代码块内部的本地变量</li>
-</ul>
-</blockquote>
-<h5 id="本地变量"><a href="#本地变量" class="headerlink" title="本地变量"></a>本地变量</h5><blockquote>
-<p><strong>说明：</strong>与代码块在同一范围内声明的变量。<br><strong>捕获情况：</strong>代码块会在定义时把本地变量当作<code>常量</code>复制并保存它们的状态。</p>
-</blockquote>
-<figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 定义代码块类型</span></span><br><span class="line"><span class="keyword">typedef</span> <span class="keyword">double</span> (^<span class="built_in">MKSampleMultiplyBlockRef</span>)(<span class="keyword">void</span>);</span><br><span class="line"><span class="comment">// 本地变量</span></span><br><span class="line"><span class="keyword">double</span> a = <span class="number">10</span>, b = <span class="number">20</span>;</span><br><span class="line"><span class="comment">// 声明并实现代码块，复制并保存状态</span></span><br><span class="line"><span class="built_in">MKSampleMultiplyBlockRef</span> multiply = ^(<span class="keyword">void</span>) &#123;</span><br><span class="line">	reutrn a * b;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="comment">// 调用代码块</span></span><br><span class="line"><span class="built_in">NSLog</span>(<span class="string">@"%f"</span>, multiply());<span class="comment">// 200</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 修改本地变量</span></span><br><span class="line">a = <span class="number">20</span>;</span><br><span class="line">b = <span class="number">50</span>;</span><br><span class="line"><span class="built_in">NSLog</span>(<span class="string">@"%f"</span>, multiply());<span class="comment">// 200</span></span><br></pre></td></tr></table></figure>
-<h5 id="全局变量"><a href="#全局变量" class="headerlink" title="全局变量"></a>全局变量</h5><blockquote>
-<p><strong>说明：</strong>可以根据需要将变量标记为<code>静态的（全局的）</code>。<br><strong>捕获情况：</strong>同本地变量。</p>
-</blockquote>
-<figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">static</span> <span class="keyword">double</span> a = <span class="number">10</span>, b = <span class="number">20</span>;</span><br><span class="line"><span class="built_in">MKSimpleMultiplyBlockRef</span> multiply = ^(<span class="keyword">void</span>) &#123;</span><br><span class="line">	<span class="keyword">return</span> a * b;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="built_in">NSLog</span>(<span class="string">@"%f"</span>, multiply());<span class="comment">// 200</span></span><br></pre></td></tr></table></figure>
-<h5 id="参数变量"><a href="#参数变量" class="headerlink" title="参数变量"></a>参数变量</h5><blockquote>
-<p><strong>说明：</strong>代码块中的参数变量与函数中的参数变量具有相同的作用。</p>
-</blockquote>
-<figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 定义代码块类型</span></span><br><span class="line"><span class="keyword">typedef</span> <span class="keyword">double</span> (^<span class="built_in">MKSampleMultiply2BlockRef</span>)(<span class="keyword">double</span> c, <span class="keyword">double</span> d);</span><br><span class="line"><span class="comment">// 声明并实现代码块</span></span><br><span class="line"><span class="built_in">MKSimpleMultiply2BlockRef</span> multiply2 = ^(<span class="keyword">double</span> c, <span class="keyword">double</span> d) &#123;</span><br><span class="line">	<span class="keyword">return</span> c * d;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="comment">// 调用代码块</span></span><br><span class="line"><span class="built_in">NSLog</span>(<span class="string">@"%f, %f"</span>, multiply2(<span class="number">4</span>, <span class="number">5</span>), multiply2(<span class="number">5</span>, <span class="number">2</span>));</span><br></pre></td></tr></table></figure>
-<h5 id="block变量"><a href="#block变量" class="headerlink" title="_block变量"></a>_block变量</h5><blockquote>
-<p><strong>关键字：</strong><code>_block</code><br><strong>说明：</strong><code>本地变量</code>会被<code>代码块</code>当作<code>常量</code>获取到，如果想要修改它们的值，必须通过<code>_black</code>将它们声明为<code>可修改</code>的。<br><strong>限制：</strong>由两种情况不能使用<code>_block</code>修饰</p>
-<ul>
-<li>长度可变数组</li>
-<li>包含长度可变数组的结构体</li>
-</ul>
-</blockquote>
-<figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 用_block 修饰，使变量 c 在代码块中的副本可修改</span></span><br><span class="line">_block <span class="keyword">double</span> c = <span class="number">3</span>;</span><br><span class="line"><span class="built_in">MKSampleMultiplyBlockRef</span> multiply = ^(<span class="keyword">double</span> a, <span class="keyword">double</span> b) &#123;</span><br><span class="line">	c = a * b;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-<h5 id="代码块内部的本地变量"><a href="#代码块内部的本地变量" class="headerlink" title="代码块内部的本地变量"></a>代码块内部的本地变量</h5><blockquote>
-<p><strong>说明：</strong>对<code>代码块来说</code>，和<code>本地变量</code>一样使用。</p>
-</blockquote>
-<figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 定义并实现代码块</span></span><br><span class="line"><span class="keyword">void</span> (^<span class="built_in">MKSampleBlockRef</span>)(<span class="keyword">void</span>) = ^(<span class="keyword">void</span>)&#123;</span><br><span class="line">	<span class="keyword">double</span> a = <span class="number">4</span>;</span><br><span class="line">	<span class="keyword">double</span> c = <span class="number">2</span>;</span><br><span class="line">	<span class="built_in">NSLog</span>(<span class="string">@"%f"</span>, a * c);</span><br><span class="line">&#125;;</span><br><span class="line"><span class="comment">// 调用代码块</span></span><br><span class="line"><span class="built_in">MKSimpleBlockRef</span>();</span><br></pre></td></tr></table></figure>
-<h3 id="14-1-2-Objective-C代码块内存管理"><a href="#14-1-2-Objective-C代码块内存管理" class="headerlink" title="14.1.2    Objective-C代码块内存管理"></a>14.1.2    Objective-C代码块内存管理</h3><blockquote>
-<p><strong>说明：</strong>代码块是对象，所以可以向它发送任何与内存管理由关的信息。</p>
-<ul>
-<li>如果引用了一个<code>Objective-C</code>对象，必须要<code>保留</code>它</li>
-<li>如果类的方法中的<code>代码块</code>通过引用访问了一个实例变量，要<code>保留</code>一次<code>self</code>（执行所在方法的对象）</li>
-<li>如果通过数值访问了一个实例变量，变量需要<code>保留</code></li>
-</ul>
-</blockquote>
-<p><em>ProcessString.h：方法中包含代码块的类</em></p>
-<figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#import <span class="meta-string">&lt;Foundation/Foundation.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">@interface</span> <span class="title">ProcessStrings</span> : <span class="title">NSObject</span></span></span><br><span class="line"><span class="keyword">@property</span> (<span class="keyword">strong</span>) <span class="built_in">NSString</span> *theString;</span><br><span class="line"></span><br><span class="line">- (<span class="keyword">void</span>)testMyString;</span><br><span class="line"><span class="keyword">@end</span></span><br></pre></td></tr></table></figure>
-<p><em>ProcessString.m</em></p>
-<figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#import <span class="meta-string">"ProcessStrings.h"</span></span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">@implementation</span> <span class="title">ProcessStrings</span></span></span><br><span class="line"><span class="keyword">@synthesize</span> theString = _theString;</span><br><span class="line"></span><br><span class="line">- (<span class="keyword">void</span>)testMyString</span><br><span class="line">&#123;</span><br><span class="line">	<span class="comment">// 代码块1</span></span><br><span class="line">    <span class="built_in">NSString</span> *string1 = ^&#123;</span><br><span class="line">    	<span class="comment">// 规则2：直接通过引用（实例变量名）访问了实例变量，若没有ARC则应该保留self</span></span><br><span class="line">        <span class="keyword">return</span> [_theString stringByAppendingString:_theString];</span><br><span class="line">    &#125;;</span><br><span class="line"></span><br><span class="line">    <span class="built_in">NSString</span> *localObject = _theString;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 代码块2</span></span><br><span class="line">    <span class="built_in">NSString</span> *string2 = ^&#123;</span><br><span class="line">    	<span class="comment">// 规则3: 通过中间变量间接访问了实例变量，如果没有ARC则要保留localObject</span></span><br><span class="line">        <span class="keyword">return</span> [localObject stringByAppendingString:localObject];</span><br><span class="line">    &#125;;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">@end</span></span><br></pre></td></tr></table></figure>
-<p><em>main.m</em></p>
-<figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#import <span class="meta-string">&lt;Foundation/Foundation.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="meta">#import <span class="meta-string">"ProcessStrings.h"</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">int</span> main(<span class="keyword">int</span> argc, <span class="keyword">const</span> <span class="keyword">char</span> * argv[])</span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">@autoreleasepool</span></span><br><span class="line">    &#123;</span><br><span class="line">        ProcessStrings *myStringProcessor = [[ProcessStrings alloc] init];</span><br><span class="line">        myStringProcessor.theString = <span class="string">@"Hello Objective Blocks!"</span>;</span><br><span class="line">        </span><br><span class="line">        <span class="comment">// 调用对象中包含代码块的方法</span></span><br><span class="line">        [myStringProcessor testMyString];</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<blockquote>
-<p><strong>扩展：</strong>在C语言中，必须使用<code>Block_copy()</code>和<code>Block_release()</code>函数来适当地管理内存。</p>
-</blockquote>
-<figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#import <span class="meta-string">&lt;Foundation/Foundation.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">typedef</span> <span class="keyword">void</span> (^<span class="built_in">MKSampleVoidBlockRef</span>)(<span class="keyword">void</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">int</span> main(<span class="keyword">int</span> argc, <span class="keyword">const</span> <span class="keyword">char</span> * argv[])</span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">@autoreleasepool</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="built_in">MKSampleVoidBlockRef</span> block1 = ^&#123;</span><br><span class="line">            <span class="built_in">NSLog</span>(<span class="string">@"Block1"</span>);</span><br><span class="line">        &#125;;</span><br><span class="line">        block1();</span><br><span class="line">        </span><br><span class="line">        <span class="built_in">MKSampleVoidBlockRef</span> block2 = ^&#123;</span><br><span class="line">            <span class="built_in">NSLog</span>(<span class="string">@"Block2"</span>);</span><br><span class="line">        &#125;;</span><br><span class="line">        block2();</span><br><span class="line">        Block_release(block2);</span><br><span class="line">        </span><br><span class="line">        block2 = Block_copy(block1);</span><br><span class="line">        block2();</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h2 id="14-2-并发性"><a href="#14-2-并发性" class="headerlink" title="14.2    并发性"></a>14.2    并发性</h2><blockquote>
-<p><strong>说明：</strong>能够在同一时间执行多个任务的程序称为<code>并发的(concurrent)</code>程序。苹果公司提供了多种可以利用多核特性的<code>API</code>。</p>
-</blockquote>
-<table>
-<thead>
-<tr>
-<th>相关技术选择</th>
-<th>说明</th>
-<th>备注</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>POSIX线程</td>
-<td>利用并发行最基础的方法是使用<code>POSIX</code>线程来处理程序的不同部分使其能够独立运行。<code>POSIX线程</code>拥有支持<code>C</code>和<code>Objective-C</code>的API。</td>
-<td>因为线程是级别较低的API，必须手动管理，挑战很大</td>
-</tr>
-<tr>
-<td>GDC(Grand Central Dipatch)</td>
-<td>运行在系统级别，减少了不少线程管理的麻烦</td>
-<td>可以平衡应用程序所有内同的家在，从而提高计算机或设备的运行效率</td>
-</tr>
-</tbody>
-</table>
-<h3 id="14-2-1-同步"><a href="#14-2-1-同步" class="headerlink" title="14.2.1    同步"></a>14.2.1    同步</h3><blockquote>
-<p><strong>关键字：</strong><code>@synchronized</code><br><strong>说明：</strong>用来设置<code>临界区</code>，确保多个线程不会在同一时间进入<code>临界区</code>。<br><strong>相关：</strong><code>@property</code>指令的<code>atomic</code>特性会让编译器通过插入<code>@synchronize(mutex, atomic)</code>生成强制彼此互斥的<code>getter</code>和<code>setter</code>方法（降低了代码性能），而<code>nonatomic</code>特性（默认）则不会。</p>
-</blockquote>
-<h4 id="14-2-1-1-选择性能"><a href="#14-2-1-1-选择性能" class="headerlink" title="14.2.1.1    选择性能"></a>14.2.1.1    选择性能</h4><blockquote>
-<p><strong>说明：</strong><code>NSObject</code>提供了一些可以使代码在后台以较低性能运行的方法（方法名带有<code>performSelector</code>前缀）</p>
-</blockquote>
-<h5 id="performSelectorInBackground实例方法"><a href="#performSelectorInBackground实例方法" class="headerlink" title="performSelectorInBackground实例方法"></a>performSelectorInBackground实例方法</h5><blockquote>
-<p><strong>说明：</strong>通过创建一个线程，在后端运行一个指定的方法。<br><strong>限制：</strong>指定运行的方法（第一个参数）要遵从以下限制</p>
-<ul>
-<li>方法中需要<code>@autoreleasepool</code></li>
-<li>方法不能有返回值，参数最多一个且必须为<code>id</code>类型</li>
-</ul>
-<ol>
-<li><code>- (void) myMethod;</code></li>
-<li><code>- (void) myMethod:(id)myObject;</code></li>
-</ol>
-<p><strong>原型：</strong><code>NSObject</code></p>
-</blockquote>
-<figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span><br><span class="line">* @param &#123;SEL&#125; 希望在后台运行的方法</span><br><span class="line">* @param &#123;id&#125; object 可以传递一个对象</span><br><span class="line">*/</span></span><br><span class="line">(<span class="keyword">void</span>) performSelectorInBackground:(nonnull SEL) withObject:(nullable <span class="keyword">id</span>)&gt;</span><br></pre></td></tr></table></figure>
-<p><em>SelectorTester.h</em></p>
-<figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#import <span class="meta-string">&lt;Foundation/Foundation.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">@interface</span> <span class="title">SelectorTester</span> : <span class="title">NSObject</span></span></span><br><span class="line"></span><br><span class="line">- (<span class="keyword">void</span>) runSelectors;</span><br><span class="line"></span><br><span class="line"><span class="keyword">@end</span></span><br></pre></td></tr></table></figure>
-<p><em>SelectorTester.m</em></p>
-<figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#import <span class="meta-string">"SelectorTester.h"</span></span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">@implementation</span> <span class="title">SelectorTester</span></span></span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span><br><span class="line"> *  封装对性能选择器的调用</span><br><span class="line"> */</span></span><br><span class="line">- (<span class="keyword">void</span>) runSelectors &#123;</span><br><span class="line">    <span class="comment">// 在后端运行不带参数的方法</span></span><br><span class="line">    [<span class="keyword">self</span> performSelectorInBackground:<span class="keyword">@selector</span>(myBackgroundMethod1) withObject:<span class="literal">nil</span>];</span><br><span class="line">    <span class="comment">// 在后端运行带一个参数的方法</span></span><br><span class="line">    [<span class="keyword">self</span> performSelectorInBackground:<span class="keyword">@selector</span>(myBackgroundMethod2:) withObject:<span class="string">@"Hello Selector"</span>];</span><br><span class="line">    <span class="built_in">NSLog</span>(<span class="string">@"Done performing selectors"</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span><br><span class="line"> *  @pravite</span><br><span class="line"> *  会被选择器调用的方法：不带参数</span><br><span class="line"> */</span></span><br><span class="line">- (<span class="keyword">void</span>) myBackgroundMethod1 &#123;</span><br><span class="line">    <span class="keyword">@autoreleasepool</span> &#123;</span><br><span class="line">        <span class="built_in">NSLog</span>(<span class="string">@"myBackgroundMethod1"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span><br><span class="line"> *  @pravite</span><br><span class="line"> *  会被选择器调用的方法：只有一个参数</span><br><span class="line"> *  @param &#123;id&#125; object 一个对象</span><br><span class="line"> */</span></span><br><span class="line">- (<span class="keyword">void</span>) myBackgroundMethod2: (<span class="keyword">id</span>)object &#123;</span><br><span class="line">    <span class="keyword">@autoreleasepool</span> &#123;</span><br><span class="line">        <span class="built_in">NSLog</span>(<span class="string">@"myBackgroundMethod2 %@"</span>, object);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">@end</span></span><br></pre></td></tr></table></figure>
-<h4 id="14-2-1-2-调度队列"><a href="#14-2-1-2-调度队列" class="headerlink" title="14.2.1.2    调度队列"></a>14.2.1.2    调度队列</h4><blockquote>
-<p><strong>说明：</strong><code>GDC</code>可以使用<code>调度队列（dispatch queue）</code>，共有3种。</p>
-</blockquote>
-<table>
-<thead>
-<tr>
-<th>队列类型</th>
-<th>说明</th>
-<th>并行／串行</th>
-<th>备注</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>连续队列</td>
-<td>根据指派的顺序执行任务</td>
-<td>串行，先入先出（FIFO，栈）</td>
-<td>可以创建多个<code>连续</code>队列，彼此并行</td>
-</tr>
-<tr>
-<td>并发队列</td>
-<td>并发执行一个或多个任务</td>
-<td>并行，根据指派到队列的顺序开始执行</td>
-<td>无法创建，只能从系统提供的并发队列中选择（一共3个）</td>
-</tr>
-<tr>
-<td>主队列</td>
-<td>应用程序的有效的主队列</td>
-<td>主线程只有一个，无所谓串/并行</td>
-<td>执行的应用程序的主线程任务</td>
-</tr>
-</tbody>
-</table>
-<blockquote>
-<p><strong>调度队列数据类型：</strong><code>dispatch_queue_t</code></p>
-</blockquote>
-<h5 id="连续队列"><a href="#连续队列" class="headerlink" title="连续队列"></a>连续队列</h5><blockquote>
-<p><strong>说明：</strong>只要任务是异步提交的，队列会确保任务根据预定顺序执行，不会发生死锁。<br><strong>适用：</strong>一连串的任务需要按照一定的顺序执行的场景</p>
-</blockquote>
-<h6 id="dispatch-queue-create全局方法"><a href="#dispatch-queue-create全局方法" class="headerlink" title="dispatch_queue_create全局方法"></a>dispatch_queue_create全局方法</h6><blockquote>
-<p><strong>说明：</strong>创建连续队列<br><strong>原型：</strong></p>
-</blockquote>
-<figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span><br><span class="line">* @param &#123;const char *&#125; label 队列的名称</span><br><span class="line">* @param &#123;dispatch_queue_attr_t&#125; attr 队列的特性（可以为NULL）</span><br><span class="line">* @return &#123;dispatch_queue_t&#125; 顺序队列</span><br><span class="line">*/</span></span><br><span class="line"><span class="built_in">dispatch_queue_t</span> dispatch_queue_create(<span class="keyword">const</span> <span class="keyword">char</span> *label, dispatch_queue_attr_t attr);</span><br></pre></td></tr></table></figure>
-<figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 声明连续队列</span></span><br><span class="line"><span class="built_in">dispatch_queue_t</span> my_serial_queue;</span><br><span class="line"><span class="comment">// 创建连续队列</span></span><br><span class="line">my_serial_queue = dispatch_queue_create(<span class="string">"com.apress.MySerialQueue1"</span>, <span class="literal">NULL</span>);</span><br></pre></td></tr></table></figure>
-<h5 id="并发队列"><a href="#并发队列" class="headerlink" title="并发队列"></a>并发队列</h5><blockquote>
-<p><strong>说明：</strong>并发调度队列适用于那些可以并行运行的任务</p>
-<ul>
-<li>开始执行时间遵从FIFO</li>
-<li>任务可以在前一个任务结束前就开始执行</li>
-<li>一次所运行的任务数量是无法预测的（根据其它运行的任务的状况）</li>
-</ul>
-<p><strong>技巧：</strong>如果需要确保每次运行的任务的数量都是一样的，可以通过线程<code>API</code>来手动管理线程。</p>
-</blockquote>
-<h6 id="dispatch-get-global-queue全局方法"><a href="#dispatch-get-global-queue全局方法" class="headerlink" title="dispatch_get_global_queue全局方法"></a>dispatch_get_global_queue全局方法</h6><blockquote>
-<p><strong>说明：</strong>获取系统的并发队列。<br><strong>原型：</strong><code>/usr/include/dispatch/queue.h</code></p>
-</blockquote>
-<figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span><br><span class="line">* @param &#123;long&#125; identifier 优先级选项</span><br><span class="line">* @param &#123;unsigned long&#125; flags 标记（可以为0）</span><br><span class="line">* @return &#123;dispatch_queue_t&#125; 顺序队列</span><br><span class="line">*/</span></span><br><span class="line"><span class="built_in">dispatch_queue_t</span> dispatch_get_global_queue(<span class="keyword">long</span> identifier, <span class="keyword">unsigned</span> <span class="keyword">long</span> flags);</span><br></pre></td></tr></table></figure>
-<figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 声明并发队列</span></span><br><span class="line"><span class="built_in">dispatch_queue_t</span> my_global_queue;</span><br><span class="line"><span class="comment">// 获取并发队列（默认优先级）</span></span><br><span class="line">my_global_queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, <span class="number">0</span>);</span><br></pre></td></tr></table></figure>
-<h5 id="主队列"><a href="#主队列" class="headerlink" title="主队列"></a>主队列</h5><h6 id="dispatch-get-current-queue全局方法"><a href="#dispatch-get-current-queue全局方法" class="headerlink" title="dispatch_get_current_queue全局方法"></a>dispatch_get_current_queue全局方法</h6><blockquote>
-<p><strong>说明：</strong>获取<code>当前运行的</code>队列代码块，如果在代码块的对象之外调用了这个函数，则它会返回<code>主队列</code>。<br><strong>注意：</strong>该方法在从<code>OS X 10.9</code>和<code>ios 6</code>开始被废弃，因为GCD队列本身是不可重入的，同步阻塞会导致死锁。<br><strong>用途：</strong>仍然可以作为调试手段在代码中使用。</p>
-</blockquote>
-<figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 获取主线程或当前队列</span></span><br><span class="line"><span class="built_in">dispatch_queue_t</span> theQueue = dispatch_get_current_queue();</span><br></pre></td></tr></table></figure>
-<h3 id="14-2-2-队列也要内存管理"><a href="#14-2-2-队列也要内存管理" class="headerlink" title="14.2.2    队列也要内存管理"></a>14.2.2    队列也要内存管理</h3><blockquote>
-<p><strong>说明：</strong><code>调度队列</code>是引用计数对象，可以使用<code>dispatch_retain()</code>和<code>dispatch_release()</code>来修改队列的保留计数器的值。</p>
-</blockquote>
-<h4 id="14-2-2-1-队列的上下文"><a href="#14-2-2-1-队列的上下文" class="headerlink" title="14.2.2.1    队列的上下文"></a>14.2.2.1    队列的上下文</h4><blockquote>
-<p><strong>说明：</strong>可以向<code>调度对象（包括调度队列）</code>指派<code>全局数据上下文</code>，可以在上下文中指派任意类型的数据，比如<code>Objective-C</code>对象或指针。<br><strong>内存管理：</strong>必须在需要<code>队列上下文</code>的时候分配内存并在队列销毁之前进行清理。</p>
-</blockquote>
-<h5 id="dispatch-set-context全局方法"><a href="#dispatch-set-context全局方法" class="headerlink" title="dispatch_set_context全局方法"></a>dispatch_set_context全局方法</h5><blockquote>
-<p><strong>说明：</strong>为指定队列设置<code>全局上下文</code>。<br><strong>原型：</strong><code>/usr/include/dispatch/object.h</code></p>
-</blockquote>
-<figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span><br><span class="line">* @param &#123;dispatch_object_t&#125; object 调度队列</span><br><span class="line">* @param &#123;void *&#125; context 上下文</span><br><span class="line">*/</span></span><br><span class="line"><span class="keyword">void</span> dispatch_set_context(dispatch_object_t object, <span class="keyword">void</span> *context);</span><br></pre></td></tr></table></figure>
-<h5 id="dispatch-get-context全局方法"><a href="#dispatch-get-context全局方法" class="headerlink" title="dispatch_get_context全局方法"></a>dispatch_get_context全局方法</h5><blockquote>
-<p><strong>说明：</strong>获得<code>调度队列</code>的<code>全局数据上下文</code>。<br><strong>原型：</strong><code>/usr/include/dispatch/object.h</code></p>
-</blockquote>
-<figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span><br><span class="line">* @param &#123;dispatch_object_t&#125; object 调度队列</span><br><span class="line">* @return &#123;void *&#125; 全局数据上下文</span><br><span class="line">*/</span></span><br><span class="line"><span class="keyword">void</span> * dispatch_get_context(dispatch_object_t object);</span><br></pre></td></tr></table></figure>
-<figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 创建可变字典（作为全局数据上下文）</span></span><br><span class="line"><span class="built_in">NSMutableDictionary</span> *myContext = [[<span class="built_in">NSMutableDictionary</span> alloc] initWithCapacity:<span class="number">5</span>];</span><br><span class="line"><span class="comment">// 为全局上下文添加队列需要的数据</span></span><br><span class="line">[myContext setObject:<span class="string">@"My Context"</span> forKey:<span class="string">@"title"</span>];</span><br><span class="line">[myContext setObject:[<span class="built_in">NSNumber</span> numberWithInt:<span class="number">0</span>] forKey:<span class="string">@"value"</span>];</span><br><span class="line"><span class="comment">// 为连续队列 my_serial_queue 设置全局数据上下文</span></span><br><span class="line">dispatch_set_context(my_serial_queue, (__bridge_retained <span class="keyword">void</span> *)myContext);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 提取全局数据上下文(桥接转换__bridge，告诉ARC不想自己来管理上下文的内存)</span></span><br><span class="line">myContext = (__bridge <span class="built_in">NSMutableDictionary</span> *)dispatch_get_context(my_serial_queue);</span><br></pre></td></tr></table></figure>
-<h4 id="14-2-2-2-全局数据上下文内存管理"><a href="#14-2-2-2-全局数据上下文内存管理" class="headerlink" title="14.2.2.2    全局数据上下文内存管理"></a>14.2.2.2    全局数据上下文内存管理</h4><blockquote>
-<p><strong>说明：</strong>编写一个<code>终结器(finalizer)</code>函数，在<code>dealloc</code>中调用。</p>
-</blockquote>
-<figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span><br><span class="line">* 终结器函数</span><br><span class="line">* @param &#123;void *&#125; context 全局数据上下文对象</span><br><span class="line">*/</span></span><br><span class="line"><span class="keyword">void</span> myFinalizerFunction(<span class="keyword">void</span> *context) &#123;</span><br><span class="line">	<span class="built_in">NSLog</span>(<span class="string">@"myFinalizerFunction"</span>);</span><br><span class="line">	<span class="comment">// 桥接转换：将全局数据上下文对象桥接转换为具体类型</span></span><br><span class="line">	<span class="comment">// 其中，__bridge_transfer 将拥有权限转移到了本函数中，意味着该对象的内存管理由全局释放池换成了我们的函数</span></span><br><span class="line">	<span class="built_in">NSMutableDictionary</span> *theData = (__bridge_transfer <span class="built_in">NSMutableDictionary</span>*)context;</span><br><span class="line">	<span class="comment">// 清空作为全局数据上下文的对象</span></span><br><span class="line">	[theData removeAllObjects];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h4 id="14-2-2-3-向调度队列添加任务"><a href="#14-2-2-3-向调度队列添加任务" class="headerlink" title="14.2.2.3    向调度队列添加任务"></a>14.2.2.3    向调度队列添加任务</h4><blockquote>
-<p><strong>说明：</strong>有两种方式可以向队列中添加任务，每种方式针对<code>代码块</code>和<code>函数</code>各有一个调度函数（共4个）</p>
-<ul>
-<li><strong>同步：</strong>队列会一直等待前面任务结束</li>
-<li><strong>异步：</strong>添加任务后，不必等待任务，函数会立刻返回（推荐，因为不会阻塞其他代码的运行）</li>
-</ul>
-</blockquote>
-<p>|<em>**</em>|同步|异步|<br>|代码块|<code>dispatch_sync</code>|<code>dispatch_async</code>|<br>|函数|<code>dispatch_sync_f</code>|<code>dispatch_async_f</code>|</p>
-<h5 id="dispatch-sync全局函数"><a href="#dispatch-sync全局函数" class="headerlink" title="dispatch_sync全局函数"></a>dispatch_sync全局函数</h5><blockquote>
-<p><strong>说明：</strong>向队列中<code>同步</code>添加<code>代码块</code>。<br><strong>原型：</strong><code>/use/include/dispatch/queue.h</code></p>
-</blockquote>
-<figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span><br><span class="line">* @param &#123;dispatch_queue_t&#125; queue 调度队列</span><br><span class="line">* @param &#123;dispatch_block_t&#125; block 代码块</span><br><span class="line">*/</span></span><br><span class="line"><span class="keyword">void</span> <span class="built_in">dispatch_async</span>(<span class="built_in">dispatch_queue_t</span> queue, dispatch_block_t block);</span><br></pre></td></tr></table></figure>
-<h5 id="dispatch-async全局函数"><a href="#dispatch-async全局函数" class="headerlink" title="dispatch_async全局函数"></a>dispatch_async全局函数</h5><blockquote>
-<p><strong>说明：</strong>向队列中<code>异步</code>添加<code>代码块</code>。<br><strong>原型：</strong><code>/use/include/dispatch/queue.h</code></p>
-</blockquote>
-<figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span><br><span class="line">* @param &#123;dispatch_queue_t&#125; queue 调度队列</span><br><span class="line">* @param &#123;dispatch_block_t&#125; block 代码块</span><br><span class="line">*/</span></span><br><span class="line"><span class="keyword">void</span> <span class="built_in">dispatch_async</span>(<span class="built_in">dispatch_queue_t</span> queue, dispatch_block_t block);</span><br></pre></td></tr></table></figure>
-<figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 异步添加代码块：内联方式</span></span><br><span class="line"><span class="built_in">dispatch_async</span>(my_serial_queue, ^&#123;</span><br><span class="line">    <span class="built_in">NSLog</span>(<span class="string">@"Serial Task 1"</span>);</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 异步添加代码块：非内联</span></span><br><span class="line"><span class="keyword">typedef</span> <span class="keyword">void</span> (^dispatch_block_t)(<span class="keyword">void</span>);</span><br><span class="line">dispatch_block_t myBlock = ^&#123;</span><br><span class="line">    <span class="built_in">NSLog</span>(<span class="string">@"My Prefined block"</span>);</span><br><span class="line">&#125;;</span><br><span class="line"><span class="built_in">dispatch_async</span>(my_serial_queue, myBlock);</span><br></pre></td></tr></table></figure>
-<h5 id="dispatch-sync-f全局函数"><a href="#dispatch-sync-f全局函数" class="headerlink" title="dispatch_sync_f全局函数"></a>dispatch_sync_f全局函数</h5><blockquote>
-<p><strong>说明：</strong>向队列中<code>同步</code>添加<code>代码块</code>。<br><strong>原型：</strong><code>/use/include/dispatch/queue.h</code></p>
-</blockquote>
-<figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span><br><span class="line">* @param &#123;dispatch_queue_t&#125; queue 调度队列</span><br><span class="line">* @param &#123;void *&#125; context 需要传递的任意上下文</span><br><span class="line">* @param &#123;dispatch_function_t&#125; work 函数</span><br><span class="line">*/</span></span><br><span class="line"><span class="keyword">void</span> dispatch_async_f(<span class="built_in">dispatch_queue_t</span> queue,	<span class="keyword">void</span> *context,	dispatch_function_t work);</span><br></pre></td></tr></table></figure>
-<h5 id="dispatch-async-f全局函数"><a href="#dispatch-async-f全局函数" class="headerlink" title="dispatch_async_f全局函数"></a>dispatch_async_f全局函数</h5><blockquote>
-<p><strong>说明：</strong>向队列中<code>异步</code>添加<code>代码块</code>。<br><strong>原型：</strong><code>/use/include/dispatch/queue.h</code></p>
-</blockquote>
-<figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span><br><span class="line">* @param &#123;dispatch_queue_t&#125; queue 调度队列</span><br><span class="line">* @param &#123;void *&#125; context 需要传递的任意上下文</span><br><span class="line">* @param &#123;dispatch_function_t&#125; work 函数</span><br><span class="line">*/</span></span><br><span class="line"><span class="keyword">void</span> dispatch_async_f(<span class="built_in">dispatch_queue_t</span> queue,	<span class="keyword">void</span> *context,	dispatch_function_t work);</span><br></pre></td></tr></table></figure>
-<figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 定义好要添加到队列的函数</span></span><br><span class="line"><span class="keyword">void</span> myDispatchFunction (<span class="keyword">void</span> *argument) &#123;</span><br><span class="line">    <span class="built_in">NSLog</span>(<span class="string">@"Serial Task %@"</span>, (__bridge <span class="built_in">NSNumber</span> *)argument);</span><br><span class="line">    <span class="comment">// 获得当前队列的全局数据上下文</span></span><br><span class="line">    <span class="built_in">NSMutableDictionary</span> *context = (__bridge <span class="built_in">NSMutableDictionary</span> *)dispatch_get_context(dispatch_get_current_queue());</span><br><span class="line">    <span class="comment">// 在字典中索引</span></span><br><span class="line">    <span class="built_in">NSNumber</span> *value = [context objectForKey:<span class="string">@"value"</span>];</span><br><span class="line">    <span class="built_in">NSLog</span>(<span class="string">@"value = %@"</span>, value);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 同步向队列中添加函数</span></span><br><span class="line">dispatch_async_f(my_serial_queue, (__bridge <span class="keyword">void</span> *)[<span class="built_in">NSNumber</span> numberWithInt:<span class="number">3</span>], (dispatch_function_t)myDispatchFunction);</span><br></pre></td></tr></table></figure>
-<h4 id="14-2-2-3-调度队列的暂停和重启"><a href="#14-2-2-3-调度队列的暂停和重启" class="headerlink" title="14.2.2.3    调度队列的暂停和重启"></a>14.2.2.3    调度队列的暂停和重启</h4><h5 id="dispatch-suspend全局方法"><a href="#dispatch-suspend全局方法" class="headerlink" title="dispatch_suspend全局方法"></a>dispatch_suspend全局方法</h5><blockquote>
-<p><strong>说明：</strong>暂停队列<br><strong>原型：</strong><code>/use/include/dispatch/object.h</code></p>
-</blockquote>
-<figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span><br><span class="line">* @param &#123;dispatch_object_t&#125; object 要暂停的队列</span><br><span class="line">*/</span></span><br><span class="line"><span class="keyword">void</span> dispatch_suspend(dispatch_object_t object);</span><br></pre></td></tr></table></figure>
-<h5 id="dispatch-resume全局方法"><a href="#dispatch-resume全局方法" class="headerlink" title="dispatch_resume全局方法"></a>dispatch_resume全局方法</h5><blockquote>
-<p><strong>说明：</strong>重启队列<br><strong>原型：</strong><code>/use/include/dispatch/object.h</code></p>
-</blockquote>
-<figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span><br><span class="line">* @param &#123;dispatch_object_t&#125; object 要暂停的队列</span><br><span class="line">*/</span></span><br><span class="line"><span class="keyword">void</span> dispatch_resume(dispatch_object_t object);</span><br></pre></td></tr></table></figure>
-<figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 暂停队列</span></span><br><span class="line">dispatch_suspend(my_serial_queue);</span><br><span class="line"><span class="comment">// 重启队列</span></span><br><span class="line">dispatch_resume(my_serial_queue);</span><br></pre></td></tr></table></figure>
-<h3 id="14-2-3-操作队列"><a href="#14-2-3-操作队列" class="headerlink" title="14.2.3    操作队列"></a>14.2.3    操作队列</h3><blockquote>
-<p><strong>说明：</strong>有一些称为<code>操作（operation）</code>的<code>API</code>，可以让队列使用起来更加简单。</p>
-<ol>
-<li>创建一个<code>操作</code>对象</li>
-<li>将其指派给<code>操作队列</code></li>
-<li><code>操作</code>被队列执行</li>
-</ol>
-</blockquote>
-<h4 id="操作的创建方式"><a href="#操作的创建方式" class="headerlink" title="操作的创建方式"></a><code>操作</code>的创建方式</h4><blockquote>
-<p><strong>说明：</strong>一共有3种方式</p>
-</blockquote>
-<table>
-<thead>
-<tr>
-<th>方式</th>
-<th>说明</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>调用操作（<code>NSInvocationOperation</code>）</td>
-<td>前提是已经拥有一个可以完成工作的类，并且想在队列上执行</td>
-</tr>
-<tr>
-<td>代码块操作（<code>NSBlockOperation</code>）</td>
-<td>类似包含了要执行代码块的<code>dispatch_async</code>函数</td>
-</tr>
-<tr>
-<td>自定义的<code>操作</code></td>
-<td>通过继承<code>NSOperation</code>定义自己的<code>操作</code></td>
-</tr>
-</tbody>
-</table>
-<h5 id="方式一：创建调用操作"><a href="#方式一：创建调用操作" class="headerlink" title="方式一：创建调用操作"></a>方式一：创建<code>调用操作</code></h5><figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">@implementation</span> <span class="title">MyCustomClass</span></span></span><br><span class="line"></span><br><span class="line">- (<span class="built_in">NSOperation</span> *)operationWithData: (<span class="keyword">id</span>)data &#123;</span><br><span class="line">	<span class="keyword">return</span> [[<span class="built_in">NSInvocationOperation</span> alloc] initWithTarget: <span class="keyword">self</span> selectorL <span class="keyword">@selector</span>(myWorkerMethod:)object:data];</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 做具体工作的函数</span></span><br><span class="line">- (<span class="keyword">void</span>)myWorkerMethod: (<span class="keyword">id</span>)data &#123;</span><br><span class="line">	<span class="built_in">NSLog</span>(<span class="string">@"My Worker Method %@"</span>, data);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">@end</span></span><br></pre></td></tr></table></figure>
-<h5 id="方式二：创建代码块操作"><a href="#方式二：创建代码块操作" class="headerlink" title="方式二：创建代码块操作"></a>方式二：创建<code>代码块操作</code></h5><blockquote>
-<p><strong>说明：</strong>创建时作为参数的<code>代码块</code>的类型和在<code>调度队列</code>中使用的相同。</p>
-<ul>
-<li>一旦创建了第一个<code>代码块操作</code>，便可以通过<code>addExecutionBlock</code>方法继续添加更多的<code>代码块</code></li>
-<li>根据<code>队列</code>的类型，代码块会分别以连续或并行的方式运行</li>
-</ul>
-</blockquote>
-<figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">NSBlockOperation</span> *blockOperation = [<span class="built_in">NSBlockOperation</span> blockOperationWithBlock: ^ &#123;</span><br><span class="line">	<span class="comment">// 具体工作内容</span></span><br><span class="line">&#125;];</span><br><span class="line"></span><br><span class="line"><span class="comment">// 通过代码块操作，继续添加代码块</span></span><br><span class="line">[blockOperation addExecutionBlock:^&#123;</span><br><span class="line">	<span class="comment">// 更多要做工作</span></span><br><span class="line">&#125;];</span><br></pre></td></tr></table></figure>
-<h4 id="向队列中添加操作"><a href="#向队列中添加操作" class="headerlink" title="向队列中添加操作"></a>向队列中添加操作</h4><blockquote>
-<p><strong>说明：</strong>可以使用<code>NSOperationQueue</code>来取代之前使用的<code>dispatch_queue</code>函数，特点如下</p>
-<ul>
-<li>并发执行<code>操作</code></li>
-<li>具有<code>相关性</code>，也就是说，如果某个<code>操作</code>是基于其它<code>操作</code>的，则也会先被执行</li>
-</ul>
-<p><strong>技巧：</strong>如果要确保添加的<code>操作</code>是连续执行（串行）的，可以设置最大并发操作数为1，这样会按照<code>先入先出</code>的规范执行</p>
-</blockquote>
-<figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 获取队列</span></span><br><span class="line"><span class="built_in">NSOperationQueue</span> *currentQueue = [<span class="built_in">NSOperation</span> currentQueue];</span><br><span class="line"></span><br><span class="line"><span class="comment">// 添加操作</span></span><br><span class="line">[theQueue addOperation:blockOperation];</span><br><span class="line"></span><br><span class="line"><span class="comment">// 也可以添加代码块替代操作对象</span></span><br><span class="line">[theQueue addOperationWithBlock:^&#123;</span><br><span class="line">	<span class="built_in">NSLog</span>(<span class="string">@"my work"</span>);</span><br><span class="line">&#125;];</span><br></pre></td></tr></table></figure>
-<h2 id="14-3-小结"><a href="#14-3-小结" class="headerlink" title="14.3    小结"></a>14.3    小结</h2>
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/05/13/o-c基础教程第二版_13 协议/" itemprop="url">
-                  13 协议
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-05-13T10:40:50+08:00" content="2016-05-13">
-              2016-05-13
-            </time>
-          </span>
-
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2016/05/13/o-c基础教程第二版_13 协议/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/05/13/o-c基础教程第二版_13 协议/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h2 id="13-1-正式协议"><a href="#13-1-正式协议" class="headerlink" title="13.1    正式协议"></a>13.1    正式协议</h2><blockquote>
-<p><strong>说明：</strong>正式协议类似<code>Java</code>的接口。</p>
-<ul>
-<li><strong>声明协议：</strong>通过<code>@protocol</code>创建协议的声明。</li>
-<li><strong>采用协议：</strong>在类的<code>@interface</code>声明中列出协议的名称。</li>
-<li><strong>遵守协议：</strong>在类的<code>@implementation</code>中实现协议的所有方法（否则编译器会生成警告）。</li>
-</ul>
-</blockquote>
-<h3 id="13-1-1-声明协议"><a href="#13-1-1-声明协议" class="headerlink" title="13.1.1    声明协议"></a>13.1.1    声明协议</h3><blockquote>
-<p><strong>说明：</strong>类似类或类别的声明</p>
-<ul>
-<li>可以继承父协议，类似继承父类</li>
-<li>内部是方法声明列表</li>
-<li>在协议中不会引入新的实例变量</li>
-</ul>
-<p><strong>语法：</strong></p>
-</blockquote>
-<figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">@protocol</span> 协议名 &lt;父协议名</span></span><br><span class="line"><span class="comment">// 方法列表</span></span><br><span class="line"><span class="keyword">@end</span></span><br></pre></td></tr></table></figure>
-<h4 id="Cocoa的NSCopying协议"><a href="#Cocoa的NSCopying协议" class="headerlink" title="Cocoa的NSCopying协议"></a>Cocoa的<code>NSCopying</code>协议</h4><blockquote>
-<p><strong>说明：</strong>如果采用了该协议，对象就会知道如何创建自己的副本。</p>
-</blockquote>
-<figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">@protocol</span> <span class="title">NSCopying</span></span></span><br><span class="line">- (<span class="keyword">id</span>) copyWithZone: (<span class="built_in">NSZone</span> *) zone;</span><br><span class="line"><span class="keyword">@end</span></span><br></pre></td></tr></table></figure>
-<h4 id="Cocoa的NSCoding协议"><a href="#Cocoa的NSCoding协议" class="headerlink" title="Cocoa的NSCoding协议"></a>Cocoa的<code>NSCoding</code>协议</h4><blockquote>
-<p><strong>说明：</strong>能够对自身进行编码和解码</p>
-</blockquote>
-<figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">@protocol</span> <span class="title">NSCoding</span></span></span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span><br><span class="line">* 接收对象的实例变量并将其转换为NSCoder类的对象</span><br><span class="line">*</span><br><span class="line">* @param &#123;NSCoder *&#125; encoder</span><br><span class="line">*/</span></span><br><span class="line">- (<span class="keyword">void</span>) encodeWithCoder: (<span class="built_in">NSCoder</span> *) encoder;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span><br><span class="line">* 从NSCoder对象中提取经过转换雪藏的实例变量，并使用它们去初始化新的对象</span><br><span class="line">*</span><br><span class="line">* @param &#123;NSCoder *&#125; decoder</span><br><span class="line">*/</span></span><br><span class="line">- (<span class="keyword">id</span>) initWithCoder: (<span class="built_in">NSCoder</span> *) decoder;</span><br><span class="line"></span><br><span class="line"><span class="keyword">@end</span></span><br></pre></td></tr></table></figure>
-<h3 id="13-1-2-采用协议"><a href="#13-1-2-采用协议" class="headerlink" title="13.1.2    采用协议"></a>13.1.2    采用协议</h3><blockquote>
-<p><strong>说明：</strong>要采用某个协议，可以在类的声明中列出该协议的名称，并用<code>&lt;&gt;</code>括起来<br><strong>语法：</strong>可以同时实现多个协议，中间用<code>,</code>分隔</p>
-</blockquote>
-<figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">@interface</span> 类名: 父类明 &lt;协议1, 协议2, ...</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="comment">// 实例变量</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 遵守协议实现的方法</span></span><br><span class="line">...</span><br><span class="line"><span class="keyword">@end</span></span><br></pre></td></tr></table></figure>
-<figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">@interface</span> <span class="title">Car</span>: <span class="title">NSObject</span> &lt;<span class="title">NSCoping</span>, <span class="title">NSCoding</span>&gt;</span></span><br><span class="line">&#123;</span><br><span class="line">	<span class="comment">// 实例变量</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 遵守协议实现的方法</span></span><br><span class="line">...</span><br><span class="line"><span class="keyword">@end</span></span><br></pre></td></tr></table></figure>
-<h3 id="13-1-3-实现协议"><a href="#13-1-3-实现协议" class="headerlink" title="13.1.3    实现协议"></a>13.1.3    实现协议</h3><h2 id="13-2-复制"><a href="#13-2-复制" class="headerlink" title="13.2    复制"></a>13.2    复制</h2><blockquote>
-<p><strong>说明：</strong>复制分为两类，<code>浅层复制（shallow copy）</code>和<code>深层复制（deep copy）</code></p>
-</blockquote>
-<table>
-<thead>
-<tr>
-<th>复制</th>
-<th>说明</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>浅层复制</td>
-<td>只会复制指向引用对象的指针</td>
-</tr>
-<tr>
-<td>深层复制</td>
-<td>将复制引用的对象</td>
-</tr>
-</tbody>
-</table>
-<h3 id="13-2-1-复制-Engine"><a href="#13-2-1-复制-Engine" class="headerlink" title="13.2.1    复制 Engine"></a>13.2.1    复制 Engine</h3><blockquote>
-<p><strong>说明：</strong>没有实例变量或属性。</p>
-</blockquote>
-<p><em>Engine.h</em></p>
-<figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#import <span class="meta-string">&lt;Foundation/Foundation.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span><br><span class="line"> *  采纳 NSCopying 协议</span><br><span class="line"> */</span></span><br><span class="line"><span class="class"><span class="keyword">@interface</span> <span class="title">Engine</span> : <span class="title">NSObject</span> &lt;<span class="title">NSCopying</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">@end</span><span class="comment">// Engine</span></span><br></pre></td></tr></table></figure>
-<p><em>Engine.m</em></p>
-<figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#import <span class="meta-string">"Engine.h"</span></span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">@implementation</span> <span class="title">Engine</span></span></span><br><span class="line"></span><br><span class="line">- (<span class="built_in">NSString</span> *) description</span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">return</span> (<span class="string">@"I am an engine.  Vrooom!"</span>);</span><br><span class="line">&#125; <span class="comment">// description</span></span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span><br><span class="line"> *  遵守协议，实现复制自身的方法</span><br><span class="line"> *</span><br><span class="line"> *  @param zone 内存区域</span><br><span class="line"> *</span><br><span class="line"> *  @return &#123;id&#125; 复制的对象</span><br><span class="line"> */</span></span><br><span class="line">- (<span class="keyword">id</span>) copyWithZone:(<span class="built_in">NSZone</span> *)zone &#123;</span><br><span class="line">    Engine *engineCopy;</span><br><span class="line">    <span class="comment">// 创建一个当前类（Engine或其子类）创建一个新对象</span></span><br><span class="line">    engineCopy = [[[<span class="keyword">self</span> class] allocWithZone:zone] init];</span><br><span class="line">    <span class="keyword">return</span> engineCopy;</span><br><span class="line">&#125;<span class="comment">// copyWithZone</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">@end</span> <span class="comment">// Engine</span></span><br></pre></td></tr></table></figure>
-<h3 id="13-2-2-复制-Tire"><a href="#13-2-2-复制-Tire" class="headerlink" title="13.2.2    复制 Tire"></a>13.2.2    复制 Tire</h3><blockquote>
-<p><strong>说明：</strong>有属性，要考虑实例变量（包括子类的）的复制，需要选择合适的构造函数或者使用<code>setter</code>修改对象的属性。<br><strong>扩展：</strong>可以使用<code>C</code>语言风格的<code>指针运算符</code>直接访问实例变量。</p>
-</blockquote>
-<figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">tireCopy-&gt;pressure = presssure;</span><br><span class="line">tireCopy-&gt;treadDepth = treadDepth;</span><br></pre></td></tr></table></figure>
-<blockquote>
-<p><strong>技巧：</strong>一般来说，当设置属性不太可能涉及额外工作时，我们尽量使用init方法和访问器方法。</p>
-</blockquote>
-<p><em>Tire.h</em></p>
-<figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#import <span class="meta-string">&lt;Foundation/Foundation.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">@interface</span> <span class="title">Tire</span> : <span class="title">NSObject</span> &lt;<span class="title">NSCopying</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">@property</span> <span class="keyword">float</span> pressure;</span><br><span class="line"><span class="keyword">@property</span> <span class="keyword">float</span> treadDepth;</span><br><span class="line"></span><br><span class="line">- (<span class="keyword">id</span>)initWithPressure:(<span class="keyword">float</span>)pressure treadDepth:(<span class="keyword">float</span>)treadDepth;</span><br><span class="line"></span><br><span class="line"><span class="keyword">@end</span></span><br></pre></td></tr></table></figure>
-<p><em>Tire.m</em></p>
-<figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#import <span class="meta-string">"Tire.h"</span></span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">@implementation</span> <span class="title">Tire</span></span></span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span><br><span class="line"> *  遵守协议，实现复制自身的方法</span><br><span class="line"> *</span><br><span class="line"> *  @param zone 内存区域</span><br><span class="line"> *</span><br><span class="line"> *  @return 复制的对象</span><br><span class="line"> */</span></span><br><span class="line">- (<span class="keyword">id</span>) copyWithZone:(<span class="built_in">NSZone</span> *)zone &#123;</span><br><span class="line">    Tire *tireCopy;</span><br><span class="line">    <span class="comment">// 调用便利构造器创建对象（属性相同）</span></span><br><span class="line">    tireCopy = [[[<span class="keyword">self</span> class] allocWithZone:zone] initWithPressure:<span class="keyword">self</span>.pressure treadDepth:<span class="keyword">self</span>.treadDepth];</span><br><span class="line">    <span class="keyword">return</span> (tireCopy);</span><br><span class="line">&#125;<span class="comment">// copyWithZone</span></span><br><span class="line"><span class="comment">// 构造器</span></span><br><span class="line">...</span><br><span class="line"></span><br><span class="line"><span class="keyword">@end</span></span><br></pre></td></tr></table></figure>
-<h3 id="13-2-3-复制-Car"><a href="#13-2-3-复制-Car" class="headerlink" title="13.2.3    复制 Car"></a>13.2.3    复制 Car</h3><p><em>Car.h</em></p>
-<figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#import <span class="meta-string">&lt;Cocoa/Cocoa.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">@class</span> <span class="title">Tire</span>;</span></span><br><span class="line"><span class="class"><span class="keyword">@class</span> <span class="title">Engine</span>;</span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">@interface</span> <span class="title">Car</span> : <span class="title">NSObject</span> &lt;<span class="title">NSCopying</span>&gt;</span></span><br><span class="line">...</span><br><span class="line"><span class="keyword">@end</span> <span class="comment">// Car</span></span><br></pre></td></tr></table></figure>
-<p><em>Car.m</em></p>
-<figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#import <span class="meta-string">"Car.h"</span></span></span><br><span class="line"><span class="meta">#import <span class="meta-string">"Engine.h"</span></span></span><br><span class="line"><span class="meta">#import <span class="meta-string">"Tire.h"</span></span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">@implementation</span> <span class="title">Car</span></span></span><br><span class="line"></span><br><span class="line">- (<span class="keyword">id</span>) copyWithZone:(<span class="built_in">NSZone</span> *)zone &#123;</span><br><span class="line">    Car *carCopy;</span><br><span class="line">    <span class="comment">// 创建车身</span></span><br><span class="line">    carCopy = [[[<span class="keyword">self</span> class] allocWithZone:zone] init];</span><br><span class="line">    <span class="comment">// 基本设置</span></span><br><span class="line">    carCopy.name = <span class="keyword">self</span>.name;</span><br><span class="line">    Engine *engineCopy;</span><br><span class="line">    engineCopy = [engine <span class="keyword">copy</span>];</span><br><span class="line">    carCopy.engine = engineCopy;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i= <span class="number">0</span>; i &lt; <span class="number">4</span>; i++) &#123;</span><br><span class="line">        Tire *tireCopy;</span><br><span class="line">        tireCopy = [[<span class="keyword">self</span> tireAtIndex:i] <span class="keyword">copy</span>];</span><br><span class="line">        [carCopy setTire:tireCopy atIndex:i];</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> (carCopy);</span><br><span class="line">&#125;<span class="comment">// copyWithZone</span></span><br><span class="line">...</span><br><span class="line"></span><br><span class="line"><span class="keyword">@end</span> <span class="comment">// Car</span></span><br></pre></td></tr></table></figure>
-<h3 id="13-2-4-协议和数据"><a href="#13-2-4-协议和数据" class="headerlink" title="13.2.4    协议和数据"></a>13.2.4    协议和数据</h3><blockquote>
-<p><strong>说明：</strong>可以在实例变量和方法参数的后面添加<code>&lt;协议名&gt;</code>来对对象是够遵守协议进行类型检查。</p>
-</blockquote>
-<figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 要求 object 遵守 NSCopying 协议,否则编译器会给出警告</span></span><br><span class="line">- (<span class="keyword">void</span>) setObjectValue: (<span class="keyword">id</span>&lt;<span class="built_in">NSCopying</span>&gt;) object;</span><br></pre></td></tr></table></figure>
-<h2 id="13-3-Objective-C-2-0-的新特性"><a href="#13-3-Objective-C-2-0-的新特性" class="headerlink" title="13.3    Objective-C 2.0 的新特性"></a>13.3    Objective-C 2.0 的新特性</h2><blockquote>
-<p><strong>说明：</strong><code>Objective-C 2.0</code>中增加了两个新的协议修饰符：<code>@optional</code>和<code>@required</code>，用来取代<code>非正式协议</code></p>
-<ul>
-<li><code>@optional</code>：后面的方法声明列表可以实现也可以不实现</li>
-<li><code>@required</code>后面的方法列表中的方法必须被实现</li>
-</ul>
-<p><strong>优点(相比非正式协议)：</strong>可以用来在类声明中明确表达我们的意图。</p>
-</blockquote>
-<figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">@proptocol BaseballPlayer</span><br><span class="line"></span><br><span class="line"><span class="comment">// 必须实现</span></span><br><span class="line">- (<span class="keyword">void</span>) drawHugeSalary;</span><br><span class="line"><span class="comment">// 可以实现</span></span><br><span class="line"><span class="keyword">@optional</span></span><br><span class="line">- (<span class="keyword">void</span>) slideeHome;</span><br><span class="line">- (<span class="keyword">void</span>) catchBall;</span><br><span class="line">- (<span class="keyword">void</span>) throwBall;</span><br><span class="line"><span class="comment">// 必须实现</span></span><br><span class="line"><span class="keyword">@required</span></span><br><span class="line">- (<span class="keyword">void</span>) swingBat;</span><br><span class="line"></span><br><span class="line"><span class="keyword">@end</span><span class="comment">//</span></span><br></pre></td></tr></table></figure>
-<h2 id="13-4-委托方法"><a href="#13-4-委托方法" class="headerlink" title="13.4    委托方法"></a>13.4    委托方法</h2><blockquote>
-<p><strong>说明：</strong><code>委托</code>是一个经常与<code>协议</code>共用的特性。<br><strong>举例：</strong><code>管理者</code>将部分具体工作委托给<code>工作人员</code>完成，<code>工作人员类</code>采纳了指定<code>协议</code>。<br><img src="http://o6ul1xz4z.bkt.clouddn.com/img/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202016-01-22%20%E4%B8%8B%E5%8D%886.19.00.png" alt="Alt text"></p>
-</blockquote>
-<p><em>WorkerProtocol.h：工作人员类采纳的协议</em></p>
-<figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#import <span class="meta-string">&lt;Foundation/Foundation.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">@protocol</span> <span class="title">WorkerProtocol</span> &lt;<span class="title">NSObject</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">@optional</span></span><br><span class="line">- (<span class="keyword">void</span>)doSomeOptionalWork;</span><br><span class="line"></span><br><span class="line"><span class="keyword">@required</span></span><br><span class="line">- (<span class="keyword">void</span>)doSomeRequiredWork;</span><br><span class="line"></span><br><span class="line"><span class="keyword">@end</span></span><br></pre></td></tr></table></figure>
-<p><em>Worker1.h + Worker1.m</em> </p>
-<figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#import <span class="meta-string">&lt;Foundation/Foundation.h&gt;</span></span></span><br><span class="line"><span class="meta">#import <span class="meta-string">"WorkerProtocol.h"</span></span></span><br><span class="line"><span class="comment">// 采纳了协议 WorkerProtocol</span></span><br><span class="line"><span class="class"><span class="keyword">@interface</span> <span class="title">Worker1</span> : <span class="title">NSObject</span> &lt;<span class="title">WorkerProtocol</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">@end</span></span><br></pre></td></tr></table></figure>
-<figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#import <span class="meta-string">"Worker1.h"</span></span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">@implementation</span> <span class="title">Worker1</span></span></span><br><span class="line"></span><br><span class="line">- (<span class="keyword">void</span>)doSomeRequiredWork &#123;</span><br><span class="line">    <span class="built_in">NSLog</span>(<span class="string">@"Worker1 doing required work."</span>);</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">@end</span></span><br></pre></td></tr></table></figure>
-<p><em>Worker2.h + Worker2.m</em> </p>
-<figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#import <span class="meta-string">&lt;Foundation/Foundation.h&gt;</span></span></span><br><span class="line"><span class="meta">#import <span class="meta-string">"WorkerProtocol.h"</span></span></span><br><span class="line"><span class="comment">// 采纳了协议 WorkerProtocol</span></span><br><span class="line"><span class="class"><span class="keyword">@interface</span> <span class="title">Worker2</span> : <span class="title">NSObject</span> &lt;<span class="title">WorkerProtocol</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">@end</span></span><br></pre></td></tr></table></figure>
-<figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#import <span class="meta-string">"Worker2.h"</span></span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">@implementation</span> <span class="title">Worker2</span></span></span><br><span class="line"></span><br><span class="line">- (<span class="keyword">void</span>)doSomeRequiredWork &#123;</span><br><span class="line">    <span class="built_in">NSLog</span>(<span class="string">@"Worker2 doing required work."</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">- (<span class="keyword">void</span>)doSomeOptionalWork &#123;</span><br><span class="line">    <span class="built_in">NSLog</span>(<span class="string">@"Worker2 doing optional work."</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">@end</span></span><br></pre></td></tr></table></figure>
-<p><em>Manager.h + Manager.m：管理者（会委托部分工作给设置的委托对象）</em></p>
-<figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#import <span class="meta-string">&lt;Foundation/Foundation.h&gt;</span></span></span><br><span class="line"><span class="meta">#import <span class="meta-string">"WorkerProtocol.h"</span></span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">@interface</span> <span class="title">Manager</span> : <span class="title">NSObject</span></span></span><br><span class="line"><span class="keyword">@property</span> (<span class="keyword">weak</span>) <span class="keyword">id</span> &lt;WorkerProtocol&gt; delegate;</span><br><span class="line"></span><br><span class="line">- (<span class="keyword">void</span>)doWork;</span><br><span class="line"><span class="keyword">@end</span></span><br></pre></td></tr></table></figure>
-<figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#import <span class="meta-string">"Manager.h"</span></span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 定义私有方法</span></span><br><span class="line"><span class="class"><span class="keyword">@interface</span> <span class="title">Manager</span> ()</span></span><br><span class="line">- (<span class="keyword">void</span>)myWork;</span><br><span class="line"><span class="keyword">@end</span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">@implementation</span> <span class="title">Manager</span></span></span><br><span class="line"><span class="keyword">@synthesize</span> delegate;</span><br><span class="line"></span><br><span class="line">- (<span class="keyword">void</span>)doWork</span><br><span class="line">&#123;</span><br><span class="line">    <span class="comment">// 调用委托对象完成必要工作</span></span><br><span class="line">    [delegate doSomeRequiredWork];</span><br><span class="line">    <span class="comment">// 检查是否有额外工作，有则做</span></span><br><span class="line">    <span class="keyword">if</span>(<span class="literal">YES</span> == [delegate respondsToSelector:<span class="keyword">@selector</span>(doSomeOptionalWork)])</span><br><span class="line">    &#123;</span><br><span class="line">        [delegate doSomeOptionalWork];</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">// 执行自己的私有方法</span></span><br><span class="line">    [<span class="keyword">self</span> myWork];</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">- (<span class="keyword">void</span>)myWork &#123;</span><br><span class="line">    <span class="built_in">NSLog</span>(<span class="string">@"I am a manager and I am working"</span>);</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">@end</span></span><br></pre></td></tr></table></figure>
-<p><em>main.m</em></p>
-<figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#import <span class="meta-string">&lt;Foundation/Foundation.h&gt;</span></span></span><br><span class="line"><span class="meta">#import <span class="meta-string">"Manager.h"</span></span></span><br><span class="line"><span class="meta">#import <span class="meta-string">"Worker1.h"</span></span></span><br><span class="line"><span class="meta">#import <span class="meta-string">"Worker2.h"</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">int</span> main(<span class="keyword">int</span> argc, <span class="keyword">const</span> <span class="keyword">char</span> * argv[])</span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">@autoreleasepool</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="comment">// 管理者</span></span><br><span class="line">        Manager *manager = [[Manager alloc] init];</span><br><span class="line">        <span class="comment">// 委托对象</span></span><br><span class="line">        Worker1 *worker1 = [[Worker1 alloc] init];</span><br><span class="line">        <span class="comment">// 为管理者设置委托对象</span></span><br><span class="line">        manager.delegate = worker1;</span><br><span class="line">        <span class="comment">// 工作（内部委托 worker1 工作）</span></span><br><span class="line">        [manager doWork];</span><br><span class="line">        </span><br><span class="line">        Worker2 *worker2 = [[Worker2 alloc] init];</span><br><span class="line">        manager.delegate = worker2;</span><br><span class="line">        [manager doWork];</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h2 id="13-5-小结"><a href="#13-5-小结" class="headerlink" title="13.5    小结"></a>13.5    小结</h2>
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
@@ -2926,7 +3146,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">98</span>
+              <span class="site-state-item-count">100</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -2936,7 +3156,7 @@
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">13</span>
+                <span class="site-state-item-count">14</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>

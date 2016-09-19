@@ -238,6 +238,387 @@
             
               
                 
+                <a class="post-title-link" href="/2016/05/13/o-c基础教程第二版_04  继承/" itemprop="url">
+                  4 继承
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-05-13T10:36:44+08:00" content="2016-05-13">
+              2016-05-13
+            </time>
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/05/13/o-c基础教程第二版_04  继承/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/05/13/o-c基础教程第二版_04  继承/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <blockquote>
+<p><strong>说明：</strong>处理类和对象的关系时，要重视<code>OOP</code>的两个方面</p>
+<ul>
+<li><strong>继承：</strong>定义一个具有父类所有功能的新类</li>
+<li><strong>复合：</strong>在对象中引用其他对象</li>
+</ul>
+</blockquote>
+<h2 id="4-1-为何使用继承"><a href="#4-1-为何使用继承" class="headerlink" title="4.1    为何使用继承"></a>4.1    为何使用继承</h2><blockquote>
+<p><strong>说明：</strong>将所有重复的内容合并在一起，并在需要的地方拥有自定义的方法。<br><strong>不使用继承的架构</strong><br><img src="http://o6ul1xz4z.bkt.clouddn.com/img/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202016-01-02%20%E4%B8%8B%E5%8D%887.34.10.png" alt="Alt text"><br><strong>使用继承后的架构</strong><br><img src="http://o6ul1xz4z.bkt.clouddn.com/img/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202016-01-02%20%E4%B8%8B%E5%8D%887.35.04.png" alt="Alt text"></p>
+</blockquote>
+<h2 id="4-2-继承的语法格式"><a href="#4-2-继承的语法格式" class="headerlink" title="4.2    继承的语法格式"></a>4.2    继承的语法格式</h2><blockquote>
+<p><strong>说明：</strong><code>@interface 子类名: 父类名</code></p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>术语</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>超类（或父类）</td>
+<td>继承的类</td>
+</tr>
+<tr>
+<td>子类（或孩子类）</td>
+<td>执行继承的类</td>
+</tr>
+<tr>
+<td>重写</td>
+<td>如果想改变方法的实现，需要重写继承的方法</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p><strong>注意：</strong><code>O-C</code>不支持多继承（可以使用类别和协议模拟多继承效果）</p>
+</blockquote>
+<h2 id="4-3-继承的工作机制"><a href="#4-3-继承的工作机制" class="headerlink" title="4.3    继承的工作机制"></a>4.3    继承的工作机制</h2><h3 id="4-3-1-方法调度"><a href="#4-3-1-方法调度" class="headerlink" title="4.3.1    方法调度"></a>4.3.1    方法调度</h3><blockquote>
+<p><strong>说明：</strong>当发送消息时，<code>O-C</code>的方法调度机制将在当前的类中搜索相应的方法。如果无法在接收消息的对象的类文件中找到相应的方法，它就会在该对象的超类中进行查找。<br><strong>注意：</strong>如果在最顶层的<code>NSObject</code>类中也没有找到该方法，则会出现一个运行时错误。</p>
+</blockquote>
+<h3 id="4-3-2-实例变量"><a href="#4-3-2-实例变量" class="headerlink" title="4.3.2    实例变量"></a>4.3.2    实例变量</h3><blockquote>
+<p><strong>说明：</strong><code>O-C</code> 中图和访问实例变量</p>
+<ul>
+<li>子类会从父类继承实例变量</li>
+<li>子类根据自己的情况添加额外的自己的实例变量</li>
+<li>每个方法被调用时都获得了一个名为<code>self</code>的参数，<code>self</code>指向继承链中第一个类中的第一个实例变量。</li>
+</ul>
+<p><strong>多态性：</strong>使用更具体种类的对象来代替一般类型，这种能力被称为<code>多态性</code>。<br><strong>扩展：</strong>通过<code>对象基地址</code>（第一个实例变量的首个字节在内存中的位置）加上<code>偏移地址</code>，编译器就可以查找其他实例变量的位置。这个机制叫做<code>基地址加偏移</code>，通过硬编码实现，但存在<code>脆弱的基类问题</code>，<code>Leopard</code>系统中通过引入64位<code>Objective-C</code>运行时（使用间接寻址方式确定变量的位置）解决了这个问题。</p>
+</blockquote>
+<h2 id="4-4-重写方法"><a href="#4-4-重写方法" class="headerlink" title="4.4    重写方法"></a>4.4    重写方法</h2><h3 id="super关键字"><a href="#super关键字" class="headerlink" title="super关键字"></a>super关键字</h3><blockquote>
+<p><strong>说明：</strong>利用<code>super</code>，既可以重写方法的实现，又能调用超类中的实现方式。<br><strong>原理：</strong>既不是参数也不是实例变量，而是由<code>Objective-C</code>编译器提供的一种神奇的功能。当想<code>super</code>发送消息时，实际上是在请求<code>Obective-C</code>向该类的超类发送消息。如果超类中没有定义该消息，则向平常一样继续在<code>继承链</code>上一级中查找。</p>
+</blockquote>
+<h2 id="4-5-小结"><a href="#4-5-小结" class="headerlink" title="4.5    小结"></a>4.5    小结</h2><h2 id="4-6-举个栗子"><a href="#4-6-举个栗子" class="headerlink" title="4.6    举个栗子"></a>4.6    举个栗子</h2><figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2016/05/13/o-c基础教程第二版_03  面向对象编程的基础知识/" itemprop="url">
+                  3 面向对象编程的基础知识
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-05-13T10:35:54+08:00" content="2016-05-13">
+              2016-05-13
+            </time>
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/05/13/o-c基础教程第二版_03  面向对象编程的基础知识/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/05/13/o-c基础教程第二版_03  面向对象编程的基础知识/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <blockquote>
+<p><strong>OOP历史：</strong>演变自20世纪60年代的<code>Simula</code>、70年代的<code>SmallTalk</code>、80年代的<code>Clascal</code>以及其他相关语言。<code>C++</code>、<code>Java</code>、<code>Python</code>和<code>Objective-C</code>等现代编程语言都从这个早期的语言中获得了灵感。</p>
+</blockquote>
+<h2 id="3-1-间接"><a href="#3-1-间接" class="headerlink" title="3.1    间接"></a>3.1    间接</h2><p><code>只要在多加一层间接，计算机科学中就没有解决不了的问题</code>。</p>
+<blockquote>
+<p><strong>说明：</strong>指的就是面向对象的<code>多态性</code>。<br><strong>原理：</strong>在程序运行期间，通过指针间接获取某个值，而不是直接获取（<code>指针指向</code>的变化对程序员不可见）。</p>
+</blockquote>
+<h3 id="3-1-1-变量与间接"><a href="#3-1-1-变量与间接" class="headerlink" title="3.1.1    变量与间接"></a>3.1.1    变量与间接</h3><blockquote>
+<p><strong>说明：</strong>基本变量就是间接思想的一种实际应用。</p>
+</blockquote>
+<figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#import <span class="meta-string">&lt;Foundation/Foundation.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">int</span> main(<span class="keyword">int</span> argc, <span class="keyword">const</span> <span class="keyword">char</span> * argv[]) &#123;</span><br><span class="line">    <span class="comment">// 通过修改 count 间接控制后面循环的次数，本身就蕴含着间接的思想</span></span><br><span class="line">    <span class="keyword">int</span> count = <span class="number">5</span>;</span><br><span class="line">    <span class="built_in">NSLog</span>(<span class="string">@"The numbers from 1 to %d:"</span>, count);</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= count; i++) &#123;</span><br><span class="line">        <span class="built_in">NSLog</span>(<span class="string">@"%d\n"</span>, i);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="3-1-2-使用文件名的间接"><a href="#3-1-2-使用文件名的间接" class="headerlink" title="3.1.2    使用文件名的间接"></a>3.1.2    使用文件名的间接</h3><blockquote>
+<p><strong>说明：</strong>程序中使用文件（而不是写死在代码中）也是间接思想的运用。<br><strong>技巧：</strong><code>xcode</code>中运行程序时提供文件路径的方式</p>
+<ol>
+<li>打开设置面板：Product（菜单）-&gt; Scheme -&gt; Edit Scheme</li>
+<li>在面板中添加参数：Arguments -&gt; Arguments Passed On Launch—&gt;点击<code>+</code>添加</li>
+</ol>
+</blockquote>
+<figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#import <span class="meta-string">&lt;Foundation/Foundation.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">int</span> main(<span class="keyword">int</span> argc, <span class="keyword">const</span> <span class="keyword">char</span> * argv[]) &#123;</span><br><span class="line">    <span class="comment">// 命令中没有提供文件名，则退出程序</span></span><br><span class="line">    <span class="keyword">if</span> (argc == <span class="number">1</span>) &#123;</span><br><span class="line">        <span class="built_in">NSLog</span>(<span class="string">@"you need to provide a file name"</span>);</span><br><span class="line">        <span class="keyword">return</span> (<span class="number">1</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">// 1. 打开文件</span></span><br><span class="line">    FILE *wordFile = fopen(argv[<span class="number">1</span>], <span class="string">"r"</span>);</span><br><span class="line">    </span><br><span class="line">    <span class="comment">// 2. 访问文件</span></span><br><span class="line">    <span class="keyword">char</span> word[<span class="number">100</span>];</span><br><span class="line">    </span><br><span class="line">    <span class="comment">// 一行一行地读区</span></span><br><span class="line">    <span class="keyword">while</span> (fgets(word, <span class="number">100</span>, wordFile)) &#123;</span><br><span class="line">        <span class="comment">// 将每行最后的换行符替换为字符串结束符（从而不会被后面的 strlen 计入字符串的长度）</span></span><br><span class="line">        word[strlen(word) - <span class="number">1</span>] = <span class="string">'\0'</span>;</span><br><span class="line">        <span class="built_in">NSLog</span>(<span class="string">@"%s is %lu characters long"</span>, word, strlen(word));</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">// 3. 关闭文件</span></span><br><span class="line">    fclose(wordFile);</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="3-2-在面向对象编程中使用间接"><a href="#3-2-在面向对象编程中使用间接" class="headerlink" title="3.2    在面向对象编程中使用间接"></a>3.2    在面向对象编程中使用间接</h2><blockquote>
+<p><strong>说明：</strong><code>OOP</code>的核心在于使用间接来调用代码（而不是直接调用函数）</p>
+</blockquote>
+<h3 id="3-2-1-过程式编程"><a href="#3-2-1-过程式编程" class="headerlink" title="3.2.1    过程式编程"></a>3.2.1    过程式编程</h3><blockquote>
+<p><strong>说明：</strong>在过程式编程中，数据通常保存在简单的数据结构中。要花时间连接数据和用来处理数据的函数。<br><strong>语言举例：</strong><code>BASIC</code>、<code>C</code>、<code>Tcl</code>和<code>Perl</code></p>
+</blockquote>
+<figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#import <span class="meta-string">&lt;Foundation/Foundation.h&gt;</span></span></span><br><span class="line"><span class="comment">/******* 枚举：图形的基本元素 *******/</span></span><br><span class="line"><span class="comment">// 图形类型</span></span><br><span class="line"><span class="keyword">typedef</span> <span class="keyword">enum</span> &#123;</span><br><span class="line">    kCircle,</span><br><span class="line">    kRectangle,</span><br><span class="line">    kEgg</span><br><span class="line">&#125; ShapeType;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 图形颜色</span></span><br><span class="line"><span class="keyword">typedef</span> <span class="keyword">enum</span> &#123;</span><br><span class="line">    kRedColor,</span><br><span class="line">    kGreenColor,</span><br><span class="line">    kBlueColor</span><br><span class="line">&#125; ShapeColor;</span><br><span class="line"></span><br><span class="line"><span class="comment">/****** 结构体：图形类型 ******/</span></span><br><span class="line"><span class="comment">// 绘图区域</span></span><br><span class="line"><span class="keyword">typedef</span> <span class="keyword">struct</span> &#123;</span><br><span class="line">    <span class="keyword">int</span> x, y, width, height;<span class="comment">// 坐标和边长</span></span><br><span class="line">&#125; ShapeRect;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 图形</span></span><br><span class="line"><span class="keyword">typedef</span> <span class="keyword">struct</span> &#123;</span><br><span class="line">    ShapeType type;<span class="comment">// 类型</span></span><br><span class="line">    ShapeColor fillColor;<span class="comment">// 填充色</span></span><br><span class="line">    ShapeRect bounds;<span class="comment">// 边框</span></span><br><span class="line">&#125; Shape;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span><br><span class="line"> * 将传入的颜色值转换为字符串描述</span><br><span class="line"> * @param &#123;ShapeColor&#125; colorName 图形颜色</span><br><span class="line"> * @return &#123;NSString&#125; 枚举类型的颜色对应的字符串</span><br><span class="line"> */</span></span><br><span class="line"><span class="built_in">NSString</span> *colorName (ShapeColor colorName) &#123;</span><br><span class="line">    <span class="keyword">switch</span> (colorName) &#123;</span><br><span class="line">        <span class="keyword">case</span> kRedColor:</span><br><span class="line">            <span class="keyword">return</span> <span class="string">@"red"</span>;</span><br><span class="line">            <span class="keyword">break</span>;</span><br><span class="line">        <span class="keyword">case</span> kGreenColor:</span><br><span class="line">            <span class="keyword">return</span> <span class="string">@"green"</span>;</span><br><span class="line">        <span class="keyword">case</span> kBlueColor:</span><br><span class="line">            <span class="keyword">return</span> <span class="string">@"blue"</span>;</span><br><span class="line">        <span class="keyword">default</span>:</span><br><span class="line">            <span class="keyword">break</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span><br><span class="line"> * 绘制圆形</span><br><span class="line"> * @param &#123;ShapeRect&#125; bounds 绘制区域</span><br><span class="line"> * @param &#123;ShapeColor&#125; fillColor 图形填充色</span><br><span class="line"> */</span></span><br><span class="line"><span class="keyword">void</span> drawCircle (ShapeRect bounds, ShapeColor fillColor) &#123;</span><br><span class="line">    <span class="built_in">NSLog</span>(<span class="string">@"drawing a circle at (%d %d %d %d) in %@"</span>, bounds.x, bounds.y, bounds.height, bounds.width, colorName(fillColor));</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span><br><span class="line"> * 绘制矩形</span><br><span class="line"> * @param &#123;ShapeRect&#125; bounds 绘制区域</span><br><span class="line"> * @param &#123;ShapeColor&#125; fillColor 图形填充色</span><br><span class="line"> */</span></span><br><span class="line"><span class="keyword">void</span> drawRectangle (ShapeRect bounds, ShapeColor fillColor) &#123;</span><br><span class="line">    <span class="built_in">NSLog</span>(<span class="string">@"drawing a rectangle at (%d %d %d %d) in %@"</span>, bounds.x, bounds.y, bounds.height, bounds.width, colorName(fillColor));&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span><br><span class="line"> * 绘制椭圆形</span><br><span class="line"> * @param &#123;ShapeRect&#125; bounds 绘制区域</span><br><span class="line"> * @param &#123;ShapeColor&#125; fillColor 图形填充色</span><br><span class="line"> */</span></span><br><span class="line"><span class="keyword">void</span> drawEgg (ShapeRect bounds, ShapeColor fillColor) &#123;</span><br><span class="line">    <span class="built_in">NSLog</span>(<span class="string">@"drawing a egg at (%d %d %d %d) in %@"</span>, bounds.x, bounds.y, bounds.height, bounds.width, colorName(fillColor));</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span><br><span class="line"> *  绘制图形</span><br><span class="line"> * @param &#123;Shape[]&#125; shapes 要绘制的一组图形</span><br><span class="line"> * @param &#123;int&#125; count 绘制数组中的前count个图形</span><br><span class="line"> */</span></span><br><span class="line"><span class="keyword">void</span> drawShapes (Shape shapes[], <span class="keyword">int</span> count) &#123;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; count; i++) &#123;</span><br><span class="line">        <span class="keyword">switch</span> (shapes[i].type) &#123;</span><br><span class="line">            <span class="keyword">case</span> kCircle:</span><br><span class="line">                drawCircle (shapes[i].bounds, shapes[i].fillColor);</span><br><span class="line">                <span class="keyword">break</span>;</span><br><span class="line">            <span class="keyword">case</span> kRectangle:</span><br><span class="line">                drawRectangle (shapes[i].bounds, shapes[i].fillColor);</span><br><span class="line">                <span class="keyword">break</span>;</span><br><span class="line">            <span class="keyword">case</span> kEgg:</span><br><span class="line">                drawEgg(shapes[i].bounds, shapes[i].fillColor);</span><br><span class="line">                <span class="keyword">break</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">int</span> main(<span class="keyword">int</span> argc, <span class="keyword">const</span> <span class="keyword">char</span> * argv[]) &#123;</span><br><span class="line">    <span class="comment">// 存放图形实例的数组</span></span><br><span class="line">    Shape shapes[<span class="number">3</span>];</span><br><span class="line">    <span class="comment">// 红色圆形</span></span><br><span class="line">    ShapeRect rect0 = &#123;<span class="number">0</span>, <span class="number">0</span>, <span class="number">10</span>, <span class="number">30</span>&#125;;</span><br><span class="line">    shapes[<span class="number">0</span>].type = kCircle;</span><br><span class="line">    shapes[<span class="number">0</span>].fillColor = kRedColor;</span><br><span class="line">    shapes[<span class="number">0</span>].bounds = rect0;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">// 绿色矩形</span></span><br><span class="line">    ShapeRect rect1 = &#123;<span class="number">30</span>, <span class="number">40</span>, <span class="number">50</span>, <span class="number">60</span>&#125;;</span><br><span class="line">    shapes[<span class="number">1</span>].type = kRectangle;</span><br><span class="line">    shapes[<span class="number">1</span>].fillColor = kGreenColor;</span><br><span class="line">    shapes[<span class="number">1</span>].bounds = rect1;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">// 蓝色椭圆</span></span><br><span class="line">    ShapeRect rect2 = &#123;<span class="number">15</span>, <span class="number">18</span>, <span class="number">37</span>, <span class="number">29</span>&#125;;</span><br><span class="line">    shapes[<span class="number">2</span>].type = kEgg;</span><br><span class="line">    shapes[<span class="number">2</span>].fillColor = kBlueColor;</span><br><span class="line">    shapes[<span class="number">2</span>].bounds = rect2;</span><br><span class="line">    </span><br><span class="line">    drawShapes(shapes, <span class="number">3</span>);</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">2016-01-02 00:50:43.911 3.2.1-procedureOriented[834:55458] drawing a circle at (0 0 30 10) <span class="keyword">in</span> red</span><br><span class="line">2016-01-02 00:50:43.912 3.2.1-procedureOriented[834:55458] drawing a rectangle at (30 40 60 50) <span class="keyword">in</span> green</span><br><span class="line">2016-01-02 00:50:43.912 3.2.1-procedureOriented[834:55458] drawing a egg at (15 18 29 37) <span class="keyword">in</span> blue</span><br><span class="line">Program ended with <span class="built_in">exit</span> code: 0</span><br></pre></td></tr></table></figure>
+<h3 id="3-2-2-实现面向对象编程"><a href="#3-2-2-实现面向对象编程" class="headerlink" title="3.2.2    实现面向对象编程"></a>3.2.2    实现面向对象编程</h3><blockquote>
+<p><strong>说明：</strong>过程式编程建立在函数之上，数据为函数服务，而面向对象编程则以程序的数据为中心，函数为数据服务。<br><strong>原理：</strong>数据通过<code>间接方式</code>引用相应代码对数据进行操作（数据能够知道如何查找相应的函数）。</p>
+</blockquote>
+<h4 id="id（标识符）"><a href="#id（标识符）" class="headerlink" title="id（标识符）"></a>id（标识符）</h4><blockquote>
+<p><strong>说明：</strong><code>identifier</code>，是一种泛型，可以用来定义引用任何类型对象的变量。</p>
+</blockquote>
+<h4 id="发送消息"><a href="#发送消息" class="headerlink" title="发送消息"></a>发送消息</h4><blockquote>
+<p><strong>说明：</strong>通知对象执行某种操作，也叫做<code>调用方法</code></p>
+</blockquote>
+<h4 id="类"><a href="#类" class="headerlink" title="类"></a>类</h4><blockquote>
+<p><strong>说明：</strong>不同于其他<code>OOP</code>系统，在<code>O-C</code>中，如果在运行时改变某个类，则该类的所有对象会<code>自动继承这些变化</code>。</p>
+</blockquote>
+<h2 id="3-3-有关术语"><a href="#3-3-有关术语" class="headerlink" title="3.3    有关术语"></a>3.3    有关术语</h2><blockquote>
+<p><strong>说明：</strong>有关<code>面向对象</code>的术语</p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>术语</th>
+<th>说明</th>
+<th>语法</th>
+<th>备注</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>类(class)</strong></td>
+<td>一种表示对象类型的结构体</td>
+<td>类名首字母大写</td>
+<td>对象通过它的类来获取自身的各种信息</td>
+</tr>
+<tr>
+<td><strong>对象或实例(object)</strong></td>
+<td>一种包含值和指向其类的隐藏指针的结构体</td>
+<td>指向对象的变量通常首字母不要大些</td>
+<td></td>
+</tr>
+<tr>
+<td><strong>消息(message)</strong></td>
+<td>对象可以执行的操作，用于通知对象做什么</td>
+<td></td>
+</tr>
+<tr>
+<td><strong>方法(method)</strong></td>
+<td>响应消息运行的代码</td>
+<td></td>
+<td>根据对象的类，消息可以调用不同的方法</td>
+</tr>
+<tr>
+<td><strong>方法调度(method dispatcher)</strong></td>
+<td>用于推测执行什么方法以响应某个特定的消息</td>
+<td></td>
+</tr>
+<tr>
+<td><strong>接口(interface)</strong></td>
+<td>类为对象提供的特性描述</td>
+<td></td>
+</tr>
+<tr>
+<td><strong>实现(implementation)</strong></td>
+<td>使接口能正常工作的代码</td>
+</tr>
+</tbody>
+</table>
+<h2 id="3-4-Object-C语言中的OOP"><a href="#3-4-Object-C语言中的OOP" class="headerlink" title="3.4    Object-C语言中的OOP"></a>3.4    Object-C语言中的OOP</h2><h3 id="3-4-1-interface部分"><a href="#3-4-1-interface部分" class="headerlink" title="3.4.1    @interface部分"></a>3.4.1    @interface部分</h3><blockquote>
+<p><strong>说明：</strong>定义类的公共接口，真正运行的代码位于<code>@implementation</code>中。<br><strong>用途：</strong>在特定类的对象被创建时，为编译器提供有关该类的信息，尤其是对象的数据成员及其提供的功能。<br><strong>组成：</strong>语法上包含以下几个部分</p>
+<ul>
+<li>继承其它<code>interface</code></li>
+<li>实现<code>protocol</code></li>
+<li>实例变量</li>
+<li>方法声明</li>
+</ul>
+</blockquote>
+<figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">@interface</span> 类名: 父类名 </span>&#123;</span><br><span class="line">	<span class="comment">// 实例属性</span></span><br><span class="line">	属性类型 属性名;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 方法声明</span></span><br><span class="line">- (返回值类型) 方法名: (参数<span class="number">1</span>类型)参数<span class="number">1</span>名称, (参数<span class="number">2</span>类型)参数<span class="number">2</span>名称;</span><br><span class="line"><span class="keyword">@end</span><span class="comment">// 类名（便于代码阅读）</span></span><br></pre></td></tr></table></figure>
+<blockquote>
+<p><strong>注意：</strong>在声明方法时，如果方法有参数，则需要冒号，否则不需要。</p>
+</blockquote>
+<figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// Circle类</span></span><br><span class="line"><span class="class"><span class="keyword">@interface</span> <span class="title">Circle</span>: <span class="title">NSObject</span> </span>&#123;</span><br><span class="line">    <span class="comment">// 实例变量</span></span><br><span class="line">    <span class="keyword">@private</span></span><br><span class="line">    ShapeColor fillColor;</span><br><span class="line">    ShapeRect bounds;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 方法声明</span></span><br><span class="line">- (<span class="keyword">void</span>) setFillCollor: (ShapeColor) fillColor;</span><br><span class="line">- (<span class="keyword">void</span>) setBounds: (ShapeRect) bounds;</span><br><span class="line">- (<span class="keyword">void</span>) draw;</span><br><span class="line"><span class="keyword">@end</span><span class="comment">// Circle</span></span><br></pre></td></tr></table></figure>
+<h3 id="3-4-2-implementation部分"><a href="#3-4-2-implementation部分" class="headerlink" title="3.4.2    @implementation部分"></a>3.4.2    @implementation部分</h3><blockquote>
+<p><strong>说明：</strong><code>@implementation</code>是一个编译器指令，表明将为某个类提供代码</p>
+<ul>
+<li>方法的定义不必按照在<code>@interface</code>指令中的顺序出现</li>
+<li>可以定义没有在<code>@interface</code>中声明过的方法</li>
+<li>同一个类中，方法的参数名不可以和实例属性名相同，否则方法被调用时会覆盖实例属性的值</li>
+</ul>
+<p><strong>扩展：</strong></p>
+<ul>
+<li><strong>实例变量名：</strong>如果实例变量取一个和方法名相同的名字，<code>Cocoa</code>还可以发挥出某些神奇的威力</li>
+<li><strong>运行时：</strong><code>O-C运行时</code>是指用户应用程序时，支持这些应用程序的代码块</li>
+<li><strong>self：</strong>类的方法被调用时，一个名为<code>self</code>的秘密隐藏参数将被传递给接受对象，而这个参数引用的就是该接收对象</li>
+</ul>
+</blockquote>
+<figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">@implementation</span> <span class="title">Circle</span></span></span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span><br><span class="line"> * 设置图形填充色</span><br><span class="line"> * @param &#123;ShapeColor&#125; c 颜色</span><br><span class="line"> */</span></span><br><span class="line">- (<span class="keyword">void</span>) setFillCollor:(ShapeColor)c &#123;</span><br><span class="line">    fillColor = c;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span><br><span class="line"> * 设置绘图区域</span><br><span class="line"> * @param &#123;ShapeRect&#125; b 绘图区域</span><br><span class="line"> */</span></span><br><span class="line">- (<span class="keyword">void</span>) setBounds:(ShapeRect)b &#123;</span><br><span class="line">    bounds = b;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">@end</span></span><br></pre></td></tr></table></figure>
+<h3 id="3-4-3-实例化对象"><a href="#3-4-3-实例化对象" class="headerlink" title="3.4.3    实例化对象"></a>3.4.3    实例化对象</h3><blockquote>
+<p><strong>说明：</strong>实例化对象时，需要分配内存，然后将这些内存初始化并保存为有用的默认值。<br><strong>语法：</strong>向相应的<code>类</code>(或已经存在的<code>对象</code>)发送<code>new</code>消息，该类接收并处理完<code>new</code>消息后，我们就会得到一个可以使用的新对象实例。</p>
+</blockquote>
+<figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br><span class="line">165</span><br><span class="line">166</span><br><span class="line">167</span><br><span class="line">168</span><br><span class="line">169</span><br><span class="line">170</span><br><span class="line">171</span><br><span class="line">172</span><br><span class="line">173</span><br><span class="line">174</span><br><span class="line">175</span><br><span class="line">176</span><br><span class="line">177</span><br><span class="line">178</span><br><span class="line">179</span><br><span class="line">180</span><br><span class="line">181</span><br><span class="line">182</span><br><span class="line">183</span><br><span class="line">184</span><br><span class="line">185</span><br><span class="line">186</span><br><span class="line">187</span><br><span class="line">188</span><br><span class="line">189</span><br><span class="line">190</span><br><span class="line">191</span><br><span class="line">192</span><br><span class="line">193</span><br><span class="line">194</span><br><span class="line">195</span><br><span class="line">196</span><br><span class="line">197</span><br><span class="line">198</span><br><span class="line">199</span><br><span class="line">200</span><br><span class="line">201</span><br><span class="line">202</span><br><span class="line">203</span><br><span class="line">204</span><br><span class="line">205</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#import <span class="meta-string">&lt;Foundation/Foundation.h&gt;</span></span></span><br><span class="line"><span class="comment">// --------------------------------------------------</span></span><br><span class="line"><span class="comment">// 图形类型</span></span><br><span class="line"><span class="keyword">typedef</span> <span class="keyword">enum</span> &#123;</span><br><span class="line">    kCircle,</span><br><span class="line">    kRectangle,</span><br><span class="line">    kEgg</span><br><span class="line">&#125; ShapeType;</span><br><span class="line"></span><br><span class="line"><span class="comment">// --------------------------------------------------</span></span><br><span class="line"><span class="comment">// 图形颜色</span></span><br><span class="line"><span class="keyword">typedef</span> <span class="keyword">enum</span> &#123;</span><br><span class="line">    kRedColor,</span><br><span class="line">    kGreenColor,</span><br><span class="line">    kBlueColor</span><br><span class="line">&#125; ShapeColor;</span><br><span class="line"></span><br><span class="line"><span class="comment">// --------------------------------------------------</span></span><br><span class="line"><span class="comment">// 绘图区域</span></span><br><span class="line"><span class="keyword">typedef</span> <span class="keyword">struct</span> &#123;</span><br><span class="line">    <span class="keyword">int</span> x, y, width, height;<span class="comment">// 坐标和边长</span></span><br><span class="line">&#125; ShapeRect;</span><br><span class="line"></span><br><span class="line"><span class="comment">// --------------------------------------------------</span></span><br><span class="line"><span class="comment">/**</span><br><span class="line"> * 将传入的颜色值转换为字符串描述</span><br><span class="line"> * @param &#123;ShapeColor&#125; colorName 图形颜色</span><br><span class="line"> * @return &#123;NSString&#125; 枚举类型的颜色对应的字符串</span><br><span class="line"> */</span></span><br><span class="line"><span class="built_in">NSString</span> *colorName (ShapeColor colorName) &#123;</span><br><span class="line">    <span class="keyword">switch</span> (colorName) &#123;</span><br><span class="line">        <span class="keyword">case</span> kRedColor:</span><br><span class="line">            <span class="keyword">return</span> <span class="string">@"red"</span>;</span><br><span class="line">            <span class="keyword">break</span>;</span><br><span class="line">        <span class="keyword">case</span> kGreenColor:</span><br><span class="line">            <span class="keyword">return</span> <span class="string">@"green"</span>;</span><br><span class="line">        <span class="keyword">case</span> kBlueColor:</span><br><span class="line">            <span class="keyword">return</span> <span class="string">@"blue"</span>;</span><br><span class="line">        <span class="keyword">default</span>:</span><br><span class="line">            <span class="keyword">break</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// --------------------------------------------------</span></span><br><span class="line"><span class="comment">// Circle类</span></span><br><span class="line"><span class="class"><span class="keyword">@interface</span> <span class="title">Circle</span>: <span class="title">NSObject</span> </span>&#123;</span><br><span class="line">    <span class="comment">// 实例变量</span></span><br><span class="line">    <span class="keyword">@private</span></span><br><span class="line">    ShapeColor fillColor;</span><br><span class="line">    ShapeRect bounds;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 方法声明</span></span><br><span class="line">- (<span class="keyword">void</span>) setFillCollor: (ShapeColor) fillColor;</span><br><span class="line">- (<span class="keyword">void</span>) setBounds: (ShapeRect) bounds;</span><br><span class="line">- (<span class="keyword">void</span>) draw;</span><br><span class="line"><span class="keyword">@end</span><span class="comment">// Circle</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">// Circle类的实现</span></span><br><span class="line"><span class="class"><span class="keyword">@implementation</span> <span class="title">Circle</span></span></span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span><br><span class="line"> * 设置图形填充色</span><br><span class="line"> * @param &#123;ShapeColor&#125; c 颜色</span><br><span class="line"> */</span></span><br><span class="line">- (<span class="keyword">void</span>) setFillCollor:(ShapeColor)c &#123;</span><br><span class="line">    fillColor = c;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span><br><span class="line"> * 设置绘图区域</span><br><span class="line"> * @param &#123;ShapeRect&#125; b 绘图区域</span><br><span class="line"> */</span></span><br><span class="line">- (<span class="keyword">void</span>) setBounds:(ShapeRect)b &#123;</span><br><span class="line">    bounds = b;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span><br><span class="line"> * 绘制</span><br><span class="line"> */</span></span><br><span class="line">- (<span class="keyword">void</span>) draw &#123;</span><br><span class="line">    <span class="built_in">NSLog</span>(<span class="string">@"drawing a circle at (%d %d %d %d) in %@"</span>, bounds.x, bounds.y, bounds.width, bounds.height, colorName(fillColor));</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">@end</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// --------------------------------------------------</span></span><br><span class="line"><span class="comment">// Rectangle类</span></span><br><span class="line"><span class="class"><span class="keyword">@interface</span> <span class="title">Rectangle</span>: <span class="title">NSObject</span> </span>&#123;</span><br><span class="line">    <span class="comment">// 实例变量</span></span><br><span class="line"><span class="keyword">@private</span></span><br><span class="line">    ShapeColor fillColor;</span><br><span class="line">    ShapeRect bounds;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 方法声明</span></span><br><span class="line">- (<span class="keyword">void</span>) setFillCollor: (ShapeColor) fillColor;</span><br><span class="line">- (<span class="keyword">void</span>) setBounds: (ShapeRect) bounds;</span><br><span class="line">- (<span class="keyword">void</span>) draw;</span><br><span class="line"><span class="keyword">@end</span><span class="comment">// Rectangle</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">// Rectangle类的实现</span></span><br><span class="line"><span class="class"><span class="keyword">@implementation</span> <span class="title">Rectangle</span></span></span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span><br><span class="line"> * 设置图形填充色</span><br><span class="line"> * @param &#123;ShapeColor&#125; c 颜色</span><br><span class="line"> */</span></span><br><span class="line">- (<span class="keyword">void</span>) setFillCollor:(ShapeColor)c &#123;</span><br><span class="line">    fillColor = c;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span><br><span class="line"> * 设置绘图区域</span><br><span class="line"> * @param &#123;ShapeRect&#125; b 绘图区域</span><br><span class="line"> */</span></span><br><span class="line">- (<span class="keyword">void</span>) setBounds:(ShapeRect)b &#123;</span><br><span class="line">    bounds = b;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span><br><span class="line"> * 绘制</span><br><span class="line"> */</span></span><br><span class="line">- (<span class="keyword">void</span>) draw &#123;</span><br><span class="line">    <span class="built_in">NSLog</span>(<span class="string">@"drawing a rectangle at (%d %d %d %d) in %@"</span>, bounds.x, bounds.y, bounds.width, bounds.height, colorName(fillColor));</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">@end</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// --------------------------------------------------</span></span><br><span class="line"><span class="comment">// Egg类</span></span><br><span class="line"><span class="class"><span class="keyword">@interface</span> <span class="title">Egg</span>: <span class="title">NSObject</span> </span>&#123;</span><br><span class="line">    <span class="comment">// 实例变量</span></span><br><span class="line"><span class="keyword">@private</span></span><br><span class="line">    ShapeColor fillColor;</span><br><span class="line">    ShapeRect bounds;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 方法声明</span></span><br><span class="line">- (<span class="keyword">void</span>) setFillCollor: (ShapeColor) fillColor;</span><br><span class="line">- (<span class="keyword">void</span>) setBounds: (ShapeRect) bounds;</span><br><span class="line">- (<span class="keyword">void</span>) draw;</span><br><span class="line"><span class="keyword">@end</span><span class="comment">// Egg</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">// Egg类的实现</span></span><br><span class="line"><span class="class"><span class="keyword">@implementation</span> <span class="title">Egg</span></span></span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span><br><span class="line"> * 设置图形填充色</span><br><span class="line"> * @param &#123;ShapeColor&#125; c 颜色</span><br><span class="line"> */</span></span><br><span class="line">- (<span class="keyword">void</span>) setFillCollor:(ShapeColor)c &#123;</span><br><span class="line">    fillColor = c;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span><br><span class="line"> * 设置绘图区域</span><br><span class="line"> * @param &#123;ShapeRect&#125; b 绘图区域</span><br><span class="line"> */</span></span><br><span class="line">- (<span class="keyword">void</span>) setBounds:(ShapeRect)b &#123;</span><br><span class="line">    bounds = b;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span><br><span class="line"> * 绘制</span><br><span class="line"> */</span></span><br><span class="line">- (<span class="keyword">void</span>) draw &#123;</span><br><span class="line">    <span class="built_in">NSLog</span>(<span class="string">@"drawing a egg at (%d %d %d %d) in %@"</span>, bounds.x, bounds.y, bounds.width, bounds.height, colorName(fillColor));</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">@end</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// --------------------------------------------------</span></span><br><span class="line"><span class="comment">/**</span><br><span class="line"> *  绘制图形</span><br><span class="line"> * @param &#123;id[]&#125; shapes 要绘制的一组图形</span><br><span class="line"> * @param &#123;int&#125; count 绘制数组中的前count个图形</span><br><span class="line"> */</span></span><br><span class="line"><span class="keyword">void</span> drawShapes (<span class="keyword">id</span> shapes[], <span class="keyword">int</span> count) &#123;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; count; i++) &#123;</span><br><span class="line">        <span class="keyword">id</span> shape = shapes[i];</span><br><span class="line">        [shape draw];</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">int</span> main(<span class="keyword">int</span> argc, <span class="keyword">const</span> <span class="keyword">char</span> * argv[]) &#123;</span><br><span class="line">    <span class="keyword">id</span> shapes[<span class="number">3</span>];</span><br><span class="line">    <span class="comment">// 红色圆形</span></span><br><span class="line">    ShapeRect rect0 =&#123;<span class="number">0</span>, <span class="number">0</span>, <span class="number">10</span>, <span class="number">30</span>&#125;;</span><br><span class="line">    shapes[<span class="number">0</span>] = [Circle new];</span><br><span class="line">    [shapes[<span class="number">0</span>] setBounds: rect0];</span><br><span class="line">    [shapes[<span class="number">0</span>] setFillCollor:kRedColor];</span><br><span class="line">    </span><br><span class="line">    <span class="comment">// 绿色矩形</span></span><br><span class="line">    ShapeRect rect1 = &#123;<span class="number">30</span>, <span class="number">40</span>, <span class="number">50</span>, <span class="number">60</span>&#125;;</span><br><span class="line">    shapes[<span class="number">1</span>] = [Rectangle new];</span><br><span class="line">    [shapes[<span class="number">1</span>] setBounds: rect1];</span><br><span class="line">    [shapes[<span class="number">1</span>] setFillCollor:kGreenColor];</span><br><span class="line">    </span><br><span class="line">    <span class="comment">// 蓝色椭圆</span></span><br><span class="line">    ShapeRect rect2 = &#123;<span class="number">15</span>, <span class="number">18</span>, <span class="number">37</span>, <span class="number">29</span>&#125;;</span><br><span class="line">    shapes[<span class="number">2</span>] = [Egg new];</span><br><span class="line">    [shapes[<span class="number">2</span>] setBounds: rect2];</span><br><span class="line">    [shapes[<span class="number">2</span>] setFillCollor:kBlueColor];</span><br><span class="line">    </span><br><span class="line">    drawShapes(shapes, <span class="number">3</span>);</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="3-4-4-扩展-Shapes-Object-程序"><a href="#3-4-4-扩展-Shapes-Object-程序" class="headerlink" title="3.4.4    扩展 Shapes-Object 程序"></a>3.4.4    扩展 Shapes-Object 程序</h3><blockquote>
+<p><strong>说明：</strong>软件实体应该对扩展开放，而对修改关闭</p>
+</blockquote>
+<h2 id="3-5-小结"><a href="#3-5-小结" class="headerlink" title="3.5    小结"></a>3.5    小结</h2>
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2016/05/12/o-c基础教程第二版_02  对C的扩展/" itemprop="url">
                   2 对c的扩展
                 </a>
@@ -3924,549 +4305,6 @@
 
 
     
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/05/10/20 低级程序设计/" itemprop="url">
-                  20 低级程序设计
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-05-10T22:05:58+08:00" content="2016-05-10">
-              2016-05-10
-            </time>
-          </span>
-
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2016/05/10/20 低级程序设计/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/05/10/20 低级程序设计/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <blockquote>
-<p><strong>说明：</strong>位操作和其他一些低级运算在编写系统程序（包括编译器和操作系统）、加密程序、图形程序以及其他一些需要高执行速度或高效地使用空间的程序时非常有用。</p>
-</blockquote>
-<h2 id="20-1-按位运算符"><a href="#20-1-按位运算符" class="headerlink" title="20.1    按位运算符"></a>20.1    按位运算符</h2><blockquote>
-<p><strong>说明：</strong>C语言一共提供了6个按位运算符。</p>
-</blockquote>
-<h3 id="20-1-1-移位运算符"><a href="#20-1-1-移位运算符" class="headerlink" title="20.1.1    移位运算符"></a>20.1.1    移位运算符</h3><blockquote>
-<p><strong>说明：</strong>移位运算符可以改变数的二进制形式，将它的位向左或向右移动。<br><strong>优先级：</strong>低于算数运算符<code>i&lt;&lt;2+1 &lt;==&gt; i&lt;&lt;(2+1)</code><br><strong>操作数类型要求：</strong>可以是任意整型或字符型的<br><strong>副作用：</strong>不存在（不会改变操作数本身）<br>|运算符|名称|示例|返回值|复合移位运算符|<br>|-|-|-|-|-|<br>|<code>&lt;&lt;</code>|左位移|<code>i&lt;&lt;j</code>|<code>i</code>中的位左移<code>j</code>位的结果（左端溢出，右端补0）|<code>&lt;&lt;=</code>|<br>|<code>&gt;&gt;</code>|右位移|<code>i&gt;&gt;j</code>|<code>i</code>中的位右移<code>j</code>位的结果（右端溢出，左端补0或保存符号位而补1）|<code>&gt;&gt;=</code>|</p>
-</blockquote>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">unsigned</span> <span class="keyword">int</span> i, j;</span><br><span class="line">i = <span class="number">13</span>; <span class="comment">// 0000000000001101(16位)</span></span><br><span class="line">j = i &lt;&lt; <span class="number">2</span>; <span class="comment">// 0000000000110100(16位)</span></span><br><span class="line">j = i &gt;&gt; <span class="number">2</span>; <span class="comment">// 0000000000000011(16位)</span></span><br></pre></td></tr></table></figure>
-<h3 id="20-1-2-按位求反、按位与、按位亦或、按位或"><a href="#20-1-2-按位求反、按位与、按位亦或、按位或" class="headerlink" title="20.1.2    按位求反、按位与、按位亦或、按位或"></a>20.1.2    按位求反、按位与、按位亦或、按位或</h3><blockquote>
-<p><strong>优先级：</strong><code>~</code> &gt; <code>&amp;</code> &gt; <code>^</code> &gt; <code>|</code>，都比<code>关系运算符</code>和<code>判等运算符</code>低。<br><strong>技巧：</strong>使用<code>~</code>创建在位一级具备可移植性的程序（例子）</p>
-<ol>
-<li>~0：所有位都为1的整数（否则就要最大的整数，但不同位的机器不同）</li>
-<li>~0x001f：除了最后5位其它为都为1<br>|符号|名称|返回值|复合运算符|<br>|-|-|-|-|<br>|<code>~</code>|按位求反|将每一个0替换成1，每一个1替换成0|<code>~=</code>|<br>|<code>&amp;</code>|按位与|对两个操作数相应的位执行逻辑与运算|<code>&amp;=</code>|<br>|<code>^</code>|按位亦或|对两个操作数相应的位执行逻辑或操作，都是1时产生0|<code>^=</code>|<br>|<code>\</code>|按位或|对两个操作数相应的位执行逻辑或操作，都是1时产生1|<code>\=</code>|</li>
-</ol>
-</blockquote>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 假设unsigned int类型的值占16位</span></span><br><span class="line">i = <span class="number">21</span>; <span class="comment">//    0000000000010101</span></span><br><span class="line">j = <span class="number">56</span>; <span class="comment">//    0000000000111000</span></span><br><span class="line">k = ~i; <span class="comment">//    1111111111101010</span></span><br><span class="line">k = i &amp; j; <span class="comment">// 0000000000010000</span></span><br><span class="line">k = i ^ j; <span class="comment">// 0000000000101101</span></span><br><span class="line">k = i | j; <span class="comment">// 0000000000111101</span></span><br><span class="line"></span><br><span class="line">i = <span class="number">21</span>;</span><br><span class="line">j = <span class="number">56</span>;</span><br><span class="line">i &amp;= j;</span><br><span class="line">i ^= j;</span><br><span class="line">i |= j;</span><br></pre></td></tr></table></figure>
-<h3 id="20-1-3-用按位运算符访问位"><a href="#20-1-3-用按位运算符访问位" class="headerlink" title="20.1.3    用按位运算符访问位"></a>20.1.3    用按位运算符访问位</h3><blockquote>
-<p><strong>说明：</strong>通过按位运算，可以提取或修改存储在少数几个位中的数据。<br><strong>用途：</strong>比如，在编写图形程序时，可能会需要讲两个或更多的像素挤在一个字节中，从而降低空间复杂度和时间复杂度。<br><strong>方式：</strong>构造“掩码”，通过按位复合运算修改位</p>
-<h4 id="设置位（为1）"><a href="#设置位（为1）" class="headerlink" title="设置位（为1）"></a>设置位（为1）</h4><p><strong>说明：</strong> 通过与“掩码”进行<code>按位或运算</code>设置某一位为1<br><strong>掩码：</strong>除要设置的位外都为0（可以通过对整数1进行移位运算构造掩码）（<code>0000000000001000</code>）。<br><strong>相关按位运算：</strong><code>按位或运算</code></p>
-</blockquote>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">i = <span class="number">0x0000</span>;</span><br><span class="line"><span class="comment">// 将第4位设置为1</span></span><br><span class="line"><span class="comment">// 0000000000000000 (i)</span></span><br><span class="line"><span class="comment">// 0000000000001000 (掩码)</span></span><br><span class="line"><span class="comment">// 0000000000001000 (按位或运算结果)</span></span><br><span class="line">i |= <span class="number">0x0010</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 更通用的方式,通过移位运算灵活构造掩码</span></span><br><span class="line">i |= <span class="number">1</span> &lt;&lt; j; <span class="comment">// 使用移位运算构造掩码</span></span><br></pre></td></tr></table></figure>
-<h4 id="将位清零"><a href="#将位清零" class="headerlink" title="将位清零"></a>将位清零</h4><blockquote>
-<p><strong>说明：</strong>通过与“掩码”进行<code>按位且运算</code>设置某一位为0<br><strong>掩码：</strong>除要清零的位外都为1的掩码（可以通过<code>移位运算</code>和<code>按位非运算</code>）构造（<code>1111111111110111</code>）。<br><strong>相关按位运算：</strong><code>按位且运算</code></p>
-</blockquote>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">i = <span class="number">0x00ff</span>;  <span class="comment">// 0000000011111111</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 0000000011111111（i）</span></span><br><span class="line"><span class="comment">// 1111111111110111 (掩码)</span></span><br><span class="line"><span class="comment">// 0000000011110111 (按位且运算结果)</span></span><br><span class="line">i &amp;= ~<span class="number">0x0010</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 更通用的方式,通过移位运算和按位非灵活构造掩码</span></span><br><span class="line">i &amp;= ~(<span class="number">1</span> &lt;&lt; j);</span><br></pre></td></tr></table></figure>
-<h4 id="检测位"><a href="#检测位" class="headerlink" title="检测位"></a>检测位</h4><blockquote>
-<p><strong>说明：</strong>检测某一位是否被设置过（设置为1）。<br><strong>掩码：</strong>除要设置的位外都为0（可以通过对整数1进行移位运算构造掩码）（<code>1111111111110111</code>）。<br><strong>相关按位运算：</strong><code>按位且运算</code></p>
-</blockquote>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 设置需要的掩码(假设在16位机器上)</span></span><br><span class="line"><span class="keyword">enum</span> &#123;</span><br><span class="line">	BLUE = <span class="number">1</span>, <span class="comment">// 0000000000000001</span></span><br><span class="line">	GREN = <span class="number">2</span>, <span class="comment">// 0000000000000010</span></span><br><span class="line">	RED = <span class="number">4</span>   <span class="comment">// 0000000000000100</span></span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">i |= BULE; <span class="comment">// 设置BLUE bit(最后一位为1)</span></span><br><span class="line">i &amp;= ~BLUE; <span class="comment">// 抹掉BLUE bit</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 检测BLUE bit是否被设置</span></span><br><span class="line"><span class="keyword">if</span> (i &amp; BULUE) &#123;</span><br><span class="line">	...</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 检测BLUE bit和GREEN bit是否都被设置了</span></span><br><span class="line"><span class="keyword">if</span> (i &amp; (BLUE | GREEN)) &#123;</span><br><span class="line">	...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h3 id="20-1-4-用按位运算符访问位域"><a href="#20-1-4-用按位运算符访问位域" class="headerlink" title="20.1.4    用按位运算符访问位域"></a>20.1.4    用按位运算符访问位域</h3><blockquote>
-<p><strong>位域：</strong>连续的几个位<br><strong>位域下标记法：</strong>最右边是最低位，记为0位</p>
-<h4 id="修改位域"><a href="#修改位域" class="headerlink" title="修改位域"></a>修改位域</h4><p><strong>说明：</strong>不同于修改位，修改位域并不单纯的只是设置位或清除位，目标值中1和0可以并存，因此多了清除先清除位域的操作。<br><strong>相关按位运算：</strong><code>按位与</code>（用来清除位域）；<code>按位或</code>（用来将新的位存入域）</p>
-</blockquote>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/*将二进制的值101存入变量i的第4-6位*/</span></span><br><span class="line"><span class="comment">// 0000000000000000，i的值可以使任意的16位整数</span></span><br><span class="line">i = <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 先将i的4-6位清零，然后用构造的掩码设置4-6位</span></span><br><span class="line"><span class="comment">// 0000000001110000 (0x0070)</span></span><br><span class="line"><span class="comment">// 1111111110001111 (~0x0070，掩码)</span></span><br><span class="line"><span class="comment">// 0000000001010000 (0x0050，4-6位上为要存储的二进制)</span></span><br><span class="line">i = i &amp; ~<span class="number">0x0070</span> | <span class="number">0x0050</span></span><br></pre></td></tr></table></figure>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/*让上名的例子更加通用*/</span></span><br><span class="line"><span class="comment">// 0000000000000101, 包含需要存储的值</span></span><br><span class="line">j = <span class="number">5</span>;</span><br><span class="line">i = (i &amp; ~<span class="number">0x0070</span>) | (j &lt;&lt; <span class="number">4</span>);</span><br></pre></td></tr></table></figure>
-<h4 id="获取位域"><a href="#获取位域" class="headerlink" title="获取位域"></a>获取位域</h4><blockquote>
-<p><strong>说明：</strong>获得指定位域上的值。<br><strong>相关按位运算：</strong><code>按位与</code><br><strong>技巧：</strong>当位域处在数的末尾区间时，获取值更加方便。如果要获取的位域不在末尾，可以先通过位移移至末尾。</p>
-</blockquote>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 0000000000000111 (0x0007)</span></span><br><span class="line">j = i &amp; <span class="number">0x0007</span>; <span class="comment">// 获取0-2位上的位并放在j的末端</span></span><br></pre></td></tr></table></figure>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">j = (i &gt;&gt; <span class="number">4</span>) &amp; <span class="number">0x0007</span>;</span><br></pre></td></tr></table></figure>
-<h3 id="20-1-5-程序：XOR加密"><a href="#20-1-5-程序：XOR加密" class="headerlink" title="20.1.5    程序：XOR加密"></a>20.1.5    程序：XOR加密</h3><blockquote>
-<p><strong>说明：</strong>将每一个字符与一个密匙进行亦或（XOR）运算；要将信息解码，只需要再次加密，即可得到原来的字符。<br><strong>注意：</strong>读或写包含控制字符的文件时会在一些操作系统中引发错误，应当避免。</p>
-</blockquote>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">-------------加密---------------</span><br><span class="line">		<span class="number">01111010</span> (z， 加密前)</span><br><span class="line">^(XOR)  <span class="number">00100110</span> (&amp;, 密匙)</span><br><span class="line">		<span class="number">01011100</span> (\, 加密后)</span><br><span class="line">-------------解密---------------</span><br><span class="line">		<span class="number">01011100</span> (\, 解密)</span><br><span class="line">^(XOR)  <span class="number">00100110</span> (&amp;, 同样的密匙)</span><br><span class="line">		<span class="number">01111010</span> (z, 解密后)</span><br></pre></td></tr></table></figure>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span><br><span class="line"> * 以文件作为输入，使用XOR加密(或解密)。并将加密(或解密)后的文本输出</span><br><span class="line"> */</span></span><br><span class="line"><span class="meta"># <span class="meta-keyword">include</span> <span class="meta-string">&lt;ctype.h&gt;</span></span></span><br><span class="line"><span class="meta"># <span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta"># <span class="meta-keyword">define</span> KEY <span class="string">'&amp;'</span></span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span> <span class="params">()</span> </span>&#123;</span><br><span class="line">	<span class="keyword">int</span> orig_char, new_char;</span><br><span class="line">	<span class="comment">// 遍历输入流中的每一个字符，加密后输出，直到文件末尾</span></span><br><span class="line">	<span class="keyword">while</span> ((orig_char = getchar()) != EOF) &#123;</span><br><span class="line">		<span class="comment">// 加密</span></span><br><span class="line">		new_char = orig_char ^ KEY;</span><br><span class="line"></span><br><span class="line">		<span class="comment">// 如果加密（或解密）后的字符是控制字符则不加密（或解密）</span></span><br><span class="line">		<span class="keyword">if</span> (<span class="built_in">iscntrl</span>(orig_char) || <span class="built_in">iscntrl</span>(new_char)) &#123;</span><br><span class="line">			<span class="built_in">putchar</span>(orig_char);</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">else</span> &#123;</span><br><span class="line">			<span class="built_in">putchar</span>(new_char);</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	return <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ ./xor &lt; msg.txt</span><br></pre></td></tr></table></figure>
-<h2 id="20-2-结构中的位域"><a href="#20-2-结构中的位域" class="headerlink" title="20.2    结构中的位域"></a>20.2    结构中的位域</h2><blockquote>
-<p><strong>说明：</strong>C语言提供了可以在结构中声明存储在位域中的成员。<br><strong>语法：</strong>位域的类型必需是<code>int</code>、<code>unsigned int</code>或<code>signed int</code>。</p>
-</blockquote>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">struct</span> 结构名 &#123;</span><br><span class="line">	&#123;<span class="keyword">int</span>|<span class="keyword">unsigned</span> <span class="keyword">int</span>|<span class="keyword">signed</span> <span class="keyword">int</span>&#125; [成员名]: 位数;</span><br><span class="line">	...</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-<blockquote>
-<p><strong>注意：</strong>使用<code>按位运算</code>可以达到同样的效果，而且可能更快些，当可读性不如<code>结构中的位域</code>。<br><strong>局限性：</strong>通常位域没有地址，因此C语言不允许将<code>&amp;运算符</code>或<code>scanf函数</code>用于位域。<br><strong>可移植性技巧：</strong>将所有的位域声明为<code>unsigned int</code>或<code>signed int</code>而不是<code>int</code>，因为一些编译器将位域的最高位作为符号位，而其它一些编译器则不会。</p>
-</blockquote>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/*</span><br><span class="line">* 文件创建日期信息（成员为位域的结构）</span><br><span class="line">*/</span></span><br><span class="line"><span class="keyword">struct</span> file_date &#123;</span><br><span class="line">	<span class="comment">// 日：5个位</span></span><br><span class="line">	<span class="keyword">unsigned</span> <span class="keyword">int</span> day: <span class="number">5</span>;</span><br><span class="line">	<span class="comment">// 月：5个位</span></span><br><span class="line">	<span class="keyword">unsigned</span> <span class="keyword">int</span> mounth: <span class="number">4</span>;</span><br><span class="line">	<span class="comment">// 年：7个位</span></span><br><span class="line">	<span class="keyword">unsigned</span> <span class="keyword">int</span> year: <span class="number">7</span>;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-<h3 id="位域是如何存储的"><a href="#位域是如何存储的" class="headerlink" title="位域是如何存储的"></a>位域是如何存储的</h3><blockquote>
-<p><strong>存储单元：</strong>一个存储单元的大小是由实现定义的，通常是8位、16位或32位。<br><strong>未命名为域：</strong>将无法被赋值和使用，但正常占据空间。经常用来作为成员间的填充，以保证其它位域存储在适当的位置。<br><strong>长度为0的位域：</strong>告诉编译器将下一个位域放在一个存储单元的起始位置，即如果当前存储单元还有空间剩余，无论能否放下长度为0的成员的后面的成员，都会将其放在下一个存储单元中。</p>
-</blockquote>
-<ul>
-<li><strong>存储顺序：</strong>当编译器处理结构实例时，会将位域逐个存入存储单元（从左向右或从右向左）</li>
-<li><strong>位域型成员之间的间隙：</strong>位域之间没有间隙，直到剩下的空间不够放下一个位域（这时会跳到下一个存储单元继续存放，即<code>存在间隙</code>或跨存储单元存放，即<code>没有间隙</code>）。</li>
-</ul>
-<p><strong>案例</strong></p>
-<blockquote>
-<p><strong>说明：</strong>假设位域是<code>从右至左</code>存储，且当一个存储单元剩余的空间无法存储下一个位域成员时会<code>跨存储单元存储</code>。这时DOS系统上编译常用的方式。</p>
-</blockquote>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 声明结构实例</span></span><br><span class="line"><span class="keyword">struct</span> file_date fd;</span><br><span class="line">fd.day = <span class="number">28</span>;</span><br><span class="line">fd.month = <span class="number">12</span>;</span><br><span class="line">fd.year = <span class="number">8</span>;</span><br></pre></td></tr></table></figure>
-<table>
-<thead>
-<tr>
-<th>*</th>
-<th>year</th>
-<th>month</th>
-<th>day</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>存储</td>
-<td>0001000</td>
-<td>1100</td>
-<td>11100</td>
-</tr>
-<tr>
-<td>大小（bit）</td>
-<td>7</td>
-<td>4</td>
-<td>5</td>
-</tr>
-<tr>
-<td>区间</td>
-<td>15-9</td>
-<td>8-5</td>
-<td>4-0</td>
-</tr>
-</tbody>
-</table>
-<h2 id="20-3-其他低级技术"><a href="#20-3-其他低级技术" class="headerlink" title="20.3    其他低级技术"></a>20.3    其他低级技术</h2><h3 id="20-3-1-定义依赖机器的类型"><a href="#20-3-1-定义依赖机器的类型" class="headerlink" title="20.3.1    定义依赖机器的类型"></a>20.3.1    定义依赖机器的类型</h3><blockquote>
-<p><strong>说明：</strong>可以将<code>char</code>作为一个字节（不一定存储字符）来使用。</p>
-</blockquote>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">typedef</span> <span class="keyword">unsigned</span> <span class="keyword">char</span> BYTE;</span><br><span class="line"><span class="keyword">typedef</span> <span class="keyword">unsigned</span> <span class="keyword">int</span> WORD;</span><br></pre></td></tr></table></figure>
-<h3 id="20-3-2-用联合从多个视角看待数据"><a href="#20-3-2-用联合从多个视角看待数据" class="headerlink" title="20.3.2    用联合从多个视角看待数据"></a>20.3.2    用联合从多个视角看待数据</h3><h4 id="案例一：使用联合结合结构体（位域成员）实现文件日期和整数的转换。"><a href="#案例一：使用联合结合结构体（位域成员）实现文件日期和整数的转换。" class="headerlink" title="案例一：使用联合结合结构体（位域成员）实现文件日期和整数的转换。"></a>案例一：使用<code>联合</code>结合<code>结构体（位域成员）</code>实现文件日期和整数的转换。</h4><blockquote>
-<p><strong>说明：</strong></p>
-<ul>
-<li>获取：可以通过成员<code>i</code>以两个字节的形式获得日期的整数形式</li>
-<li>设置：可以通过成员<code>fd</code>以结构体的方式设置文件日期（以两个字节的方式存储）</li>
-</ul>
-</blockquote>
-<p><em>文件日期定义</em></p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/*</span><br><span class="line">* 文件创建日期信息（成员为位域的结构）</span><br><span class="line">*/</span></span><br><span class="line"><span class="keyword">struct</span> file_date &#123;</span><br><span class="line">	<span class="comment">// 日：5个位</span></span><br><span class="line">	<span class="keyword">unsigned</span> <span class="keyword">int</span> day: <span class="number">5</span>;</span><br><span class="line">	<span class="comment">// 月：5个位</span></span><br><span class="line">	<span class="keyword">unsigned</span> <span class="keyword">int</span> mounth: <span class="number">4</span>;</span><br><span class="line">	<span class="comment">// 年：7个位</span></span><br><span class="line">	<span class="keyword">unsigned</span> <span class="keyword">int</span> year: <span class="number">7</span>;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-<p><em>封装一个方便读取和设置数据结构</em></p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">union</span> int_date &#123;</span><br><span class="line">	<span class="keyword">unsigned</span> <span class="keyword">int</span> ;</span><br><span class="line">	<span class="keyword">struct</span> file_date fd;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-<p><em>实践</em></p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span><br><span class="line">* 将整数形式（两个字节）的日期以作为文件日期数据结构打印</span><br><span class="line">* @param &#123;undesigned int&#125; n 存储这日期信息的整数</span><br><span class="line">*/</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">print_date</span> <span class="params">(undesigned <span class="keyword">int</span> n)</span> </span>&#123;</span><br><span class="line">	<span class="keyword">union</span> int_date u;</span><br><span class="line">	u.i = n;</span><br><span class="line">	<span class="comment">// 年只显示后两位（比如1990年简称90年）</span></span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">"%d/%d/%.2d\n"</span>, u.fd.month, u.fd.day, (u.fd.year + <span class="number">1980</span>));</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-<h4 id="案例二：模拟对寄存器的访问（Intel-80x86）"><a href="#案例二：模拟对寄存器的访问（Intel-80x86）" class="headerlink" title="案例二：模拟对寄存器的访问（Intel 80x86）"></a>案例二：模拟对寄存器的访问（Intel 80x86）</h4><blockquote>
-<p><strong>说明：</strong>需要对16位寄存器和8位寄存器进行访问，同时保留它们之间的关系。<br><strong>寄存器：</strong>Intel 80x86处理器包涵4个16位的寄存器（<code>AX(AH|AL)</code>、<code>BX(BH|BL)</code>、<code>CX(CH|CL)</code>、<code>DX(DH|DL)</code>），其中每个16位寄存器都包含2个8位寄存器。</p>
-</blockquote>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">typedef</span> <span class="keyword">unsigned</span> <span class="keyword">char</span> BYTE;</span><br><span class="line"><span class="keyword">typedef</span> <span class="keyword">unsigned</span> <span class="keyword">int</span> WORD;</span><br><span class="line"></span><br><span class="line"><span class="keyword">union</span> &#123;</span><br><span class="line">	<span class="comment">// 16位寄存器的结构</span></span><br><span class="line">	<span class="keyword">struct</span> &#123;</span><br><span class="line">		WORD ax, bx, cx. dx;</span><br><span class="line">	&#125; word;</span><br><span class="line">	</span><br><span class="line">	<span class="comment">// 8位寄存器的结构</span></span><br><span class="line">	<span class="keyword">struct</span> &#123;</span><br><span class="line">		BYTE al, ah, bl, bh, cl, ch, dl, dh;</span><br><span class="line">	&#125;;</span><br><span class="line">&#125; regs;</span><br></pre></td></tr></table></figure>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 按照8位寄存器的方式修改</span></span><br><span class="line">regs.byte.ah = <span class="number">0x12</span>;</span><br><span class="line">regs.byte.al = <span class="number">0x34</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 按照16位寄存器的方式观察</span></span><br><span class="line"><span class="built_in">printf</span>(<span class="string">"AX: %x\n"</span>, regs.word.ax);</span><br></pre></td></tr></table></figure>
-<h3 id="20-3-3-将指针作为地址使用（将地址转换为指针使用）"><a href="#20-3-3-将指针作为地址使用（将地址转换为指针使用）" class="headerlink" title="20.3.3    将指针作为地址使用（将地址转换为指针使用）"></a>20.3.3    将指针作为地址使用（将地址转换为指针使用）</h3><blockquote>
-<p><strong>说明：</strong>指针按照其自身的构造方式可以分为两类（以16位机器为例）<br>|分类|组成|大小(bit)|地址转换为指针|情景|<br>|-|-|-|-|<br>|近指针|偏移量||16|将整数强制转换为指针|在一些计算机中|<br>|远指针|段地址＋偏移量|32|<code>far(关键字，非标准c)</code>+<code>MK_FP</code>(dos.h中的宏)|Intel CPU的实时模式（DOS使用的模式）|</p>
-</blockquote>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 近指针</span></span><br><span class="line">BYTE *p;</span><br><span class="line">p = (BYTE *) <span class="number">0x1000</span>; <span class="comment">// 将16位整数地址直接转换为指针</span></span><br></pre></td></tr></table></figure>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 远指针</span></span><br><span class="line">BYTE far *p; <span class="comment">// 使用far声明一个远指针</span></span><br><span class="line">p = MKFP(segment, offset); <span class="comment">// 段地址， 偏移量</span></span><br></pre></td></tr></table></figure>
-<h3 id="20-3-4-程序：设置Num-Lock-键"><a href="#20-3-4-程序：设置Num-Lock-键" class="headerlink" title="20.3.4    程序：设置Num Lock 键"></a>20.3.4    程序：设置Num Lock 键</h3><blockquote>
-<p><strong>说明：</strong>在<code>IBM PC</code>机极其兼容机上，<code>Num Lock</code>切换涌来确定数字键盘上的按键是作为数字键使用，还是作为移动光标的方向键。<br><strong>原理：</strong><code>Num Lock</code>的状态保存在地址位地址段为40（16进制）、偏移量为17（16进制）的字节中。该字节的第5位（最低位为0位）用来控制<code>Num Lock</code>的状态。</p>
-</blockquote>
-<p><strong>开启Num Lock</strong></p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span><br><span class="line"> * 开启num lock</span><br><span class="line"> */</span></span><br><span class="line"><span class="meta"># <span class="meta-keyword">include</span> <span class="meta-string">&lt;dos.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">typedef</span> <span class="keyword">unsigned</span> <span class="keyword">char</span> BYTE;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span> <span class="params">()</span> </span>&#123;</span><br><span class="line">	BYTE far *p = MK_FP(<span class="number">0x0040</span>, <span class="number">0x0017</span>);</span><br><span class="line"></span><br><span class="line">	<span class="comment">// 0000000000100000 (掩码)</span></span><br><span class="line">	*p |= <span class="number">0x20</span>; </span><br><span class="line">	return <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p><strong>关闭Num Lock</strong></p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span><br><span class="line"> * 关闭num lock</span><br><span class="line"> */</span></span><br><span class="line"><span class="meta"># <span class="meta-keyword">include</span> <span class="meta-string">&lt;dos.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">typedef</span> <span class="keyword">unsigned</span> <span class="keyword">char</span> BYTE;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span> <span class="params">()</span> </span>&#123;</span><br><span class="line">	BYTE far *p = MK_FP(<span class="number">0x0040</span>, <span class="number">0x0017</span>);</span><br><span class="line"></span><br><span class="line">	<span class="comment">// 1111111111011111 (掩码)</span></span><br><span class="line">	*p &amp;= ～<span class="number">0x20</span>; </span><br><span class="line">	return <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h3 id="20-3-5-volatile类型限定符"><a href="#20-3-5-volatile类型限定符" class="headerlink" title="20.3.5    volatile类型限定符"></a>20.3.5    volatile类型限定符</h3><blockquote>
-<p><strong>关键字：</strong><code>volatile</code><br><strong>说明：</strong>通常使用在用于指向易变内存空间的指针的声明中。用来防止编译器优化过程中错误地将易变内容缓存在了寄存器中，而不再读取内存中易变内容。</p>
-</blockquote>
-<p><em>优化前的逻辑</em></p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 优化前的逻辑</span></span><br><span class="line"><span class="keyword">while</span> (缓冲区未满) &#123;</span><br><span class="line">	等待输入; <span class="comment">// 将输入存储到*p</span></span><br><span class="line">	buffer[i] = *p;</span><br><span class="line">	<span class="keyword">if</span> (buffer[i++] == <span class="string">'\n'</span>) &#123;</span><br><span class="line">		<span class="keyword">break</span>;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p><em>优化后的逻辑</em></p>
-<blockquote>
-<p><strong>说明：</strong>注意到这个循环中既没有改变p，也没有改变<em>p，因此对程序进行优化，使</em>p只被读取一次。</p>
-</blockquote>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">在寄存器中存储*p;</span><br><span class="line"><span class="keyword">while</span> (缓冲区未满) &#123;</span><br><span class="line">	等待输入;</span><br><span class="line">	buffer[i] = 存储在寄存器中的值;</span><br><span class="line">	<span class="keyword">if</span> (buffer[i++] == <span class="string">'\n'</span>) &#123;</span><br><span class="line">		</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/05/10/19 程序设计/" itemprop="url">
-                  19 程序设计
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-05-10T22:00:04+08:00" content="2016-05-10">
-              2016-05-10
-            </time>
-          </span>
-
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2016/05/10/19 程序设计/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/05/10/19 程序设计/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h2 id="19-1-模块"><a href="#19-1-模块" class="headerlink" title="19.1    模块"></a>19.1    模块</h2><blockquote>
-<p><strong>说明：</strong><code>模块</code>是一组功能（服务）的集合，其中一些功能可以被程序的其它部分（<code>客户</code>）使用。每个模块都有一个<code>接口</code>来描述所提供的功能。模块的细节，包括这些功能自身的源代码，都包含在模块的<code>实现</code>中。</p>
-</blockquote>
-<table>
-<thead>
-<tr>
-<th>文件角色</th>
-<th>说明</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>接口</td>
-<td><code>模块名.h</code>(头文件)</td>
-</tr>
-<tr>
-<td>实现</td>
-<td>对应头文件<code>模块名.c</code>文件</td>
-</tr>
-<tr>
-<td>客户</td>
-<td>通过<code>#include</code>引入模块的文件</td>
-</tr>
-</tbody>
-</table>
-<blockquote>
-<p><strong>优点：</strong>将程序分割成模块有一系列好处</p>
-<ul>
-<li>抽象：不必了解功能的实现细节，只需对模块的接口达成一致</li>
-<li>可复用：每个模块都可以在另一个程序中复用</li>
-<li>可维护性（最重要）：当程序出现错误或需要升级时，通常只会影响一个模块</li>
-</ul>
-<p><strong>扩展：</strong><a href="">Fundamental of SoftWare Engineer</a></p>
-</blockquote>
-<h3 id="19-1-1-内聚性与耦合性"><a href="#19-1-1-内聚性与耦合性" class="headerlink" title="19.1.1    内聚性与耦合性"></a>19.1.1    内聚性与耦合性</h3><blockquote>
-<p><strong>说明：</strong>一个好的模块接口并不是随意的一组声明，应具有下面两个性质</p>
-<ul>
-<li>高内聚：模块中的元素应该紧密相关</li>
-<li>低耦合：模块之间应该尽可能相互独立</li>
-</ul>
-</blockquote>
-<h3 id="19-1-2-模块的类型"><a href="#19-1-2-模块的类型" class="headerlink" title="19.1.2    模块的类型"></a>19.1.2    模块的类型</h3><table>
-<thead>
-<tr>
-<th>类型</th>
-<th>说明</th>
-<th>举例</th>
-<th>备注</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>数据池</td>
-<td>一些相关的变量或常量的集合</td>
-<td><code>&lt;float.h&gt;</code>(<a href="">23.1</a>)、 <code>&lt;limits.h&gt;</code>(<a href="">23.2</a>)</td>
-<td>通常不建议将变量放在头文件</td>
-</tr>
-<tr>
-<td>库</td>
-<td>一组相关函数的集合</td>
-<td><code>&lt;string.h&gt;</code></td>
-<td></td>
-</tr>
-<tr>
-<td>抽象对象</td>
-<td>对隐藏的数据结构进行操作的一组函数的集合</td>
-<td></td>
-<td>如果数据是隐藏起来的，那么这个对象那个就是“抽象的”</td>
-</tr>
-<tr>
-<td>抽象数据类型</td>
-<td>将具体数据实现方式隐藏起来的数据类型称为抽象数据类型</td>
-<td></td>
-<td>抽象数据类型在当今的程序设计中起着非常重要的作用</td>
-</tr>
-</tbody>
-</table>
-<h2 id="19-2-信息隐藏"><a href="#19-2-信息隐藏" class="headerlink" title="19.2    信息隐藏"></a>19.2    信息隐藏</h2><blockquote>
-<p><strong>说明：</strong>一个设计良好的模块经常会对它的客户隐藏一些信息。谨慎的对客户隐藏信息的方法称为信息隐藏。<br><strong>优点：</strong></p>
-<ul>
-<li>安全性：<code>客户</code>只能通过<code>模块</code>自身的函数进行参数</li>
-<li>灵活性：修改模块通常不必修改接口，对<code>客户</code>没有影响</li>
-</ul>
-<p><strong>原理：</strong>使用<code>static</code></p>
-</blockquote>
-<table>
-<thead>
-<tr>
-<th>修饰</th>
-<th>链接情况</th>
-<th>说明</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>函数</td>
-<td>内部链接</td>
-<td>只能在只能被同一文件中被调用</td>
-</tr>
-<tr>
-<td>变量（文件作用域）</td>
-<td>内部链接</td>
-<td>只能被同一文件中的其它函数访问</td>
-</tr>
-</tbody>
-</table>
-<blockquote>
-<p><strong>技巧：</strong>使用宏定义“公有”和“私有”可以使程序含义更加清晰（尤其是<code>static</code>，因为它在c语言中有许多用法）</p>
-<h3 id="栈模块-实现部分"><a href="#栈模块-实现部分" class="headerlink" title="栈模块(实现部分)"></a>栈模块(实现部分)</h3></blockquote>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">define</span> PUBLIC  <span class="comment">// 定义为空</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> PRIVATE static</span></span><br><span class="line"></span><br><span class="line">PRIVATE <span class="keyword">int</span> contents[STACK_SIZE] &#123; ... &#125;</span><br><span class="line"></span><br><span class="line">PRIVATE <span class="keyword">int</span> top = <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line"><span class="function">PUBLIC <span class="keyword">int</span> <span class="title">is_empty</span> <span class="params">(<span class="keyword">void</span>)</span> </span>&#123; ... &#125;</span><br><span class="line"></span><br><span class="line"><span class="function">PRIVATE <span class="keyword">int</span> <span class="title">is_full</span> <span class="params">()</span> </span>&#123; ... &#125;</span><br><span class="line"></span><br><span class="line"><span class="function">PUBLIC <span class="keyword">void</span> <span class="title">push</span> <span class="params">(<span class="keyword">void</span>)</span> </span>&#123; ... &#125;</span><br><span class="line"></span><br><span class="line"><span class="function">PUBLIC <span class="keyword">int</span> <span class="title">pop</span> <span class="params">(<span class="keyword">void</span>)</span> </span>&#123; ... &#125;</span><br></pre></td></tr></table></figure>
-<h2 id="19-3-抽象数据类型"><a href="#19-3-抽象数据类型" class="headerlink" title="19.3    抽象数据类型"></a>19.3    抽象数据类型</h2><blockquote>
-<p><strong>说明：</strong>c语言没有设计专门用于封装类型的特性（<code>class</code>），即无法定义真正的抽象数据类型。<br><strong>案例缺陷：</strong>之前定义的栈模块提供的栈不基于一种抽象数据类型，而是仅仅提供了一个相当于“栈的实例”的数据结构。当需要多个栈实例时就无能为力了。</p>
-</blockquote>
-<p><em>stack.h</em></p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span><br><span class="line">* 下面定义的Stack不是抽象数据类型，因为stack.h暴露了Stack的具体实现方式（结构体实例的成员是暴露的)</span><br><span class="line">*/</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> STACK_SIZE 100</span></span><br><span class="line"><span class="keyword">typedef</span> <span class="keyword">struct</span> &#123;</span><br><span class="line">	<span class="keyword">int</span> contents[STACK_SIZE];</span><br><span class="line">	<span class="keyword">int</span> top;</span><br><span class="line">&#125; Stack;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">make_empyt</span> <span class="params">(Stack *s)</span></span>;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">is_empty</span> <span class="params">(<span class="keyword">const</span> Stack *s)</span></span>;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">push</span> <span class="params">(Stack *s, <span class="keyword">int</span> i)</span></span>;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">pop</span> <span class="params">(Stack *s)</span></span>;</span><br></pre></td></tr></table></figure>
-<p><em>客户</em></p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="string">"stack.h"</span></span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span> <span class="params">()</span> </span>&#123;</span><br><span class="line">	<span class="comment">// 理想的使用方式</span></span><br><span class="line">	Stack s1, s2;</span><br><span class="line">	make_empty(&amp;s1);</span><br><span class="line">	make_empty(&amp;s2);</span><br><span class="line">	push(&amp;s1, <span class="number">1</span>);</span><br><span class="line">	push(&amp;s2, <span class="number">2</span>);</span><br><span class="line">	<span class="keyword">if</span> (!is_empty(&amp;s1)) &#123;</span><br><span class="line">		<span class="built_in">printf</span>(<span class="string">"%d\n"</span>, pop(&amp;s1)); <span class="comment">// 1</span></span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="comment">// 不理想的方式</span></span><br><span class="line">	Stack s3;</span><br><span class="line">	s3.top = <span class="number">0</span>; <span class="comment">//直接访问了暴露出来的成员</span></span><br><span class="line">	s3.contents[top++] = <span class="number">1</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h2 id="19-4-C-语言"><a href="#19-4-C-语言" class="headerlink" title="19.4    C++语言"></a>19.4    C++语言</h2><blockquote>
-<p><strong>说明：</strong>C++语言是由<code>AT&amp;T</code>贝尔实验室的Bjqrne Stroustrup在20世纪80年代开发出来的C语言的扩展版。<br><strong>新特性（相对C）：</strong></p>
-<ul>
-<li>面向对象：允许从已经存在的类“派生”（继承）出新的类</li>
-<li>运算符重载：为传统的C语言的运算符赋予新的含义</li>
-<li>模版：可以使我们写出通用的、高度可复用的类和函数</li>
-<li>异常处理：一种同一的方式用来检测并响应错误</li>
-</ul>
-<p><strong>兼容C：</strong>C++语言包含了标准C的全部特性，然而不是所有C语言都可以在C++的环境下编译，因为C++语言增加了更多强制限制，比C语言更加安全。</p>
-</blockquote>
-<h3 id="19-4-1-C语言与C-语言之间的差异"><a href="#19-4-1-C语言与C-语言之间的差异" class="headerlink" title="19.4.1    C语言与C++语言之间的差异"></a>19.4.1    C语言与C++语言之间的差异</h3><h4 id="19-4-1-1-注释"><a href="#19-4-1-1-注释" class="headerlink" title="19.4.1.1    注释"></a>19.4.1.1    注释</h4><blockquote>
-<p><strong>新特性：</strong>C++语言支持单行注释</p>
-</blockquote>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// This is a Comment</span></span><br></pre></td></tr></table></figure>
-<h4 id="19-4-1-2-标记与类型名"><a href="#19-4-1-2-标记与类型名" class="headerlink" title="19.4.1.2    标记与类型名"></a>19.4.1.2    标记与类型名</h4><blockquote>
-<p><strong>新特性：</strong>标记（结构、联合或枚举的名字）会自动被认为是类型名</p>
-</blockquote>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">struct</span> Complex &#123;</span><br><span class="line">	<span class="keyword">double</span> re, im;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="comment">// 相当于下列形式的c语言</span></span><br><span class="line"><span class="comment">/*</span><br><span class="line">typedef struct Complex &#123;</span><br><span class="line">	double re, im;</span><br><span class="line">&#125; Complex;</span><br><span class="line">*/</span></span><br></pre></td></tr></table></figure>
-<h4 id="19-4-1-3-不带参数的函数"><a href="#19-4-1-3-不带参数的函数" class="headerlink" title="19.4.1.3    不带参数的函数"></a>19.4.1.3    不带参数的函数</h4><blockquote>
-<p><strong>新特性：</strong>在声明或定义一个不带参数的<code>C++</code>函数时，可以不使用<code>void</code></p>
-</blockquote>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">draw</span> <span class="params">(<span class="keyword">void</span>)</span></span>; <span class="comment">// 不带参数</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">draw</span> <span class="params">()</span></span>; <span class="comment">// 和void相同</span></span><br></pre></td></tr></table></figure>
-<h4 id="19-4-1-4-默认实际参数"><a href="#19-4-1-4-默认实际参数" class="headerlink" title="19.4.1.4    默认实际参数"></a>19.4.1.4    默认实际参数</h4><blockquote>
-<p><strong>新特性：</strong>C++语言允许函数的实际参数有默认值</p>
-</blockquote>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 显示任意数量的换行符，如果没有提供参数，默认为1</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">new_line</span> <span class="params">(<span class="keyword">int</span> n = <span class="number">1</span>)</span> </span>&#123;</span><br><span class="line">	<span class="keyword">while</span> (n-- &gt; <span class="number">0</span>) &#123;</span><br><span class="line">		<span class="built_in">putchar</span>(<span class="string">'\n'</span>);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">new_line(<span class="number">3</span>); <span class="comment">// 三个换行</span></span><br><span class="line">new_line(); <span class="comment">//一个换行</span></span><br></pre></td></tr></table></figure>
-<h4 id="19-4-1-5-引用参数"><a href="#19-4-1-5-引用参数" class="headerlink" title="19.4.1.5    引用参数"></a>19.4.1.5    引用参数</h4><blockquote>
-<p><strong>新特性：</strong>允许实际参数被声明为<code>引用</code>，而不是<code>指针</code>。</p>
-</blockquote>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// c语言的方式</span></span><br><span class="line"><span class="comment">/*</span><br><span class="line">void swap (int *a, int *b) &#123;</span><br><span class="line">	int temp;</span><br><span class="line">	temp = *a;</span><br><span class="line">	*a = *b;</span><br><span class="line">	*b = temp;</span><br><span class="line">&#125;</span><br><span class="line">swap(&amp;i, &amp;j);</span><br><span class="line">*/</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// c++的方式</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">swap</span> <span class="params">(<span class="keyword">int</span>&amp; a, <span class="keyword">int</span>&amp; b)</span> </span>&#123;</span><br><span class="line">	<span class="keyword">int</span> temp;</span><br><span class="line">	temp = a;</span><br><span class="line">	a = b;</span><br><span class="line">	b = temp;</span><br><span class="line">&#125;</span><br><span class="line">swap(i, j); <span class="comment">// 不需要再参数前加&amp;运算符</span></span><br></pre></td></tr></table></figure>
-<h4 id="19-4-1-6-动态存储分配"><a href="#19-4-1-6-动态存储分配" class="headerlink" title="19.4.1.6    动态存储分配"></a>19.4.1.6    动态存储分配</h4><blockquote>
-<p><strong>新特性：</strong>使用运算符<code>new</code>（分配空间）、 <code>delete</code>（释放空间）<br><strong>语法：</strong></p>
-<ul>
-<li>分配内存：<code>new 类型说明符</code></li>
-<li>释放内存： <code>delete 指针</code></li>
-</ul>
-</blockquote>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 声明变量</span></span><br><span class="line"><span class="keyword">int</span> *int_ptr, *int_array;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 分配空间</span></span><br><span class="line">int_ptr = new <span class="keyword">int</span>; <span class="comment">// 为整数分配存储空间</span></span><br><span class="line">int_array = new <span class="keyword">int</span>[<span class="number">10</span>]; <span class="comment">// 为数组分配内存</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 释放空间</span></span><br><span class="line"><span class="keyword">delete</span> int_ptr; <span class="comment">// 为整数空间释放内存</span></span><br><span class="line"><span class="keyword">delete</span> [] int_array; <span class="comment">// 为数组释放空间</span></span><br></pre></td></tr></table></figure>
-<h3 id="19-4-2-类"><a href="#19-4-2-类" class="headerlink" title="19.4.2    类"></a>19.4.2    类</h3><blockquote>
-<p><strong>类：</strong>一个类从根本上说就是一个<code>抽象数据类型</code>：一组数据以及操作这些数据的函数<br><strong>说明：</strong>这个新数据类型的功能可以同基本数据类型同样强大。<br><strong>类的不足：</strong>类的设计和实现比较复杂，这是易用性必须付出的代价，而这也是计算机领域近几年内的妥协。</p>
-</blockquote>
-<h3 id="19-4-3-类定义"><a href="#19-4-3-类定义" class="headerlink" title="19.4.3    类定义"></a>19.4.3    类定义</h3><blockquote>
-<p><strong>类标记（class tag）：</strong>可以直接作为类型名使用，不要求类名以大写开始，但许多C++程序员尊循首字母大写的规范。<br><strong>数据成员（data memeber）：</strong>类似结构的成员（但是默认是隐藏的，即“私有的”）<br><strong>类的实例（instance）：</strong>任何类的实例就是<code>对象</code>（object）<br><strong>访问成员：</strong>使用运算符<code>.</code>或<code>-&gt;</code>来访问公有的成员</p>
-</blockquote>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> Fraction &#123;</span><br><span class="line">	<span class="keyword">int</span> id; <span class="comment">// 默认是私有的</span></span><br><span class="line"></span><br><span class="line">	<span class="comment">// 公有成员</span></span><br><span class="line">	<span class="keyword">public</span>:</span><br><span class="line">		<span class="keyword">int</span> numeratitor;</span><br><span class="line"></span><br><span class="line">	<span class="comment">// 私有成员</span></span><br><span class="line">	<span class="keyword">private</span>:</span><br><span class="line">		<span class="keyword">int</span> denominator;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h3 id="19-4-4-成员函数"><a href="#19-4-4-成员函数" class="headerlink" title="19.4.4    成员函数"></a>19.4.4    成员函数</h3><blockquote>
-<p><strong>成员函数（member function）：</strong>属于类的函数称为成员函数，特别的，那些需要访问类的私有数据成员的函数必须声明在类里面。</p>
-</blockquote>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> Fraction &#123;</span><br><span class="line">	<span class="keyword">public</span>:</span><br><span class="line">		<span class="comment">// 将函数的定义放在类的定义之中</span></span><br><span class="line">		<span class="function"><span class="keyword">void</span> <span class="title">create</span><span class="params">(<span class="keyword">int</span> num, <span class="keyword">int</span> denom)</span> </span>&#123;</span><br><span class="line">			numertor = num;</span><br><span class="line">			denominator = denom;</span><br><span class="line">		&#125;;</span><br><span class="line">		<span class="function"><span class="keyword">void</span> <span class="title">print</span><span class="params">()</span></span>;</span><br><span class="line">		<span class="comment">// 只声明不定义（定义部分放在类外部）</span></span><br><span class="line">		<span class="comment">/**</span><br><span class="line">		* 乘法函数</span><br><span class="line">		* @param &#123;Fraction f&#125; </span><br><span class="line">		*/</span></span><br><span class="line">		<span class="function">Fraction <span class="title">mul</span><span class="params">(Fraction f)</span></span>;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span><br><span class="line">* 乘法函数的定义</span><br><span class="line">* Fraction::前缀是必需的，否则C++编译器会将mul作为一个普通函数</span><br><span class="line">* @param &#123;Fraction f&#125; 分数</span><br><span class="line">*/</span></span><br><span class="line">Fraction Fraction::mul(Fraction f) &#123;</span><br><span class="line">	Fraction result;</span><br><span class="line">	result.numerator = numerator * f.numerator;</span><br><span class="line">	result.denominator = denominator * f.denominator;</span><br><span class="line">	result.reduce();</span><br><span class="line">	return result;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Fraction f1;</span><br><span class="line">f1.create(<span class="number">1</span>, <span class="number">2</span>);</span><br><span class="line">Fraction f2 = f1.mul(f1);</span><br></pre></td></tr></table></figure>
-<h3 id="19-4-5-构造函数"><a href="#19-4-5-构造函数" class="headerlink" title="19.4.5    构造函数"></a>19.4.5    构造函数</h3><blockquote>
-<p><strong>构造函数（controctor）：</strong></p>
-<ul>
-<li>通常时自动调用的（编译器安排在合适的时机自动调用）</li>
-<li>定义在public成员部分，不需要指定返回值类型</li>
-<li>命名和类名相同</li>
-</ul>
-</blockquote>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> Fraction &#123;</span><br><span class="line">	<span class="keyword">public</span>: </span><br><span class="line">		Fraction(<span class="keyword">int</span> num = <span class="number">0</span>, <span class="keyword">int</span> denom = <span class="number">1</span>) &#123;</span><br><span class="line">			numerator = num;</span><br><span class="line">			denominator = denom;</span><br><span class="line">		&#125;;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="function">Fraction <span class="title">f1</span><span class="params">(<span class="number">3</span>, <span class="number">4</span>)</span></span>; <span class="comment">// 通过构造函数声明并初始化实例</span></span><br><span class="line"><span class="function">Fraction <span class="title">f2</span><span class="params">(<span class="number">3</span>)</span></span>; <span class="comment">// 等同于Fraction f2(3, 1);</span></span><br><span class="line">Fraction f3; <span class="comment">// 等同于 f3(0, 1);</span></span><br></pre></td></tr></table></figure>
-<h3 id="19-4-6-构造函数和动态存储分配"><a href="#19-4-6-构造函数和动态存储分配" class="headerlink" title="19.4.6    构造函数和动态存储分配"></a>19.4.6    构造函数和动态存储分配</h3><blockquote>
-<p><strong>说明：</strong>构造函数和析构函数为那些内存分配和回收函数提供了比较合适的时机。<br><strong>举例：</strong>创建自己的<code>String</code>类型<br>|比较|C++的<code>String</code>（自定义）|C语言实现方式（<code>char</code>数组）|<br>|-|-|-|<br>|字符串长度|任意长度|受限于数组的长度|<br>|获取字符串长度|O(1)|O(n)|<br>|扩展性|需要时可给String类添加操作|无法修改（就算引入<string.h>，但无法扩展）|</string.h></p>
-</blockquote>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> String&#123;</span><br><span class="line">	<span class="keyword">public</span>:</span><br><span class="line">		<span class="comment">// 声明构造函数</span></span><br><span class="line">		String(<span class="keyword">const</span> <span class="keyword">char</span> *s);</span><br><span class="line">	<span class="keyword">private</span>:</span><br><span class="line">		<span class="keyword">char</span> *text;</span><br><span class="line">		<span class="keyword">int</span> len;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 定义构造函数</span></span><br><span class="line">String::String(<span class="keyword">const</span> <span class="keyword">char</span> *s) &#123;</span><br><span class="line">	<span class="comment">// 计算s所指向的字符串的长度</span></span><br><span class="line">	len = <span class="built_in">strlen</span>(s);</span><br><span class="line">	<span class="comment">// 分配足够大的空间</span></span><br><span class="line">	text = new Char[len + <span class="number">1</span>];</span><br><span class="line">	<span class="comment">// 将字符串复制到刚刚分配的内存中</span></span><br><span class="line">	<span class="built_in">strcpy</span>(text, s);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h3 id="19-4-7-析构函数"><a href="#19-4-7-析构函数" class="headerlink" title="19.4.7    析构函数"></a>19.4.7    析构函数</h3><blockquote>
-<p><strong>析构函数（destructor）：</strong></p>
-<ul>
-<li>名字：<code>~类名</code></li>
-<li>返回值：没有返回值</li>
-<li>参数：没有</li>
-</ul>
-<p><strong>用途：</strong>自动存储期限的类的实例，当其生存期结束后，普通成员的内存会被释放，但在构造函数中分配内存的成员指向的内存不会被释放（内存泄漏）。所以需要析构函数在对象释放时自动调用，清理构造函数动态分配的内存。</p>
-</blockquote>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> String&#123;</span><br><span class="line">	<span class="keyword">public</span>:</span><br><span class="line">		<span class="comment">// 声明并定义构造函数</span></span><br><span class="line">		String(<span class="keyword">const</span> <span class="keyword">char</span> *s) &#123;</span><br><span class="line">			<span class="comment">// 计算s所指向的字符串的长度</span></span><br><span class="line">			len = <span class="built_in">strlen</span>(s);</span><br><span class="line">			<span class="comment">// 分配足够大的空间</span></span><br><span class="line">			text = new Char[len + <span class="number">1</span>];</span><br><span class="line">			<span class="comment">// 将字符串复制到刚刚分配的内存中</span></span><br><span class="line">			<span class="built_in">strcpy</span>(text, s);</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="comment">// 声明并定义析构函数</span></span><br><span class="line">		~String() &#123;</span><br><span class="line">			<span class="keyword">delete</span> [] text;</span><br><span class="line">		&#125;</span><br><span class="line">	<span class="keyword">private</span>:</span><br><span class="line">		<span class="keyword">char</span> *text;</span><br><span class="line">		<span class="keyword">int</span> len;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-<h3 id="19-4-8-重载"><a href="#19-4-8-重载" class="headerlink" title="19.4.8    重载"></a>19.4.8    重载</h3><h4 id="函数重载"><a href="#函数重载" class="headerlink" title="函数重载"></a>函数重载</h4><blockquote>
-<p><strong>说明：</strong>在同一作用域下存在两个或以上同名但参数不同的函数(包括构造函数)叫做函数的重载。<br><strong>用途：</strong>需要记住更少的函数名，编译器会根据实际参数的情况自动判断调用哪一个函数。<br><strong>默认构造函数：</strong>不带时机参数的构造函数，会在声明对象而没有制定初始值时被调用。</p>
-</blockquote>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> Sring &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">	<span class="comment">// 构造函数</span></span><br><span class="line">	String(<span class="keyword">const</span> <span class="keyword">char</span> *s);</span><br><span class="line">	</span><br><span class="line">	<span class="comment">/*</span><br><span class="line">	* 重载构造函数（默认）</span><br><span class="line">	* @overload</span><br><span class="line">	*/</span></span><br><span class="line">	String() &#123;</span><br><span class="line">		text = <span class="number">0</span>;</span><br><span class="line">		len = <span class="number">0</span>;</span><br><span class="line">	&#125;;</span><br><span class="line">	<span class="comment">// 析构函数</span></span><br><span class="line">	~String() &#123;</span><br><span class="line">		<span class="keyword">delete</span> [] text;</span><br><span class="line">	&#125;;</span><br><span class="line">	...</span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">	<span class="keyword">char</span> *text;</span><br><span class="line">	<span class="keyword">int</span> len;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">String s; <span class="comment">// 不带实际参数，会调用默认构造函数</span></span><br></pre></td></tr></table></figure>
-<h4 id="运算符重载"><a href="#运算符重载" class="headerlink" title="运算符重载"></a>运算符重载</h4><blockquote>
-<p><strong>说明：</strong>重载运算符后，根据操作数类型的不同，同样的运算符号可以代表不同的操作。<br><strong>用途：</strong>更易读，更自然（不需要定义一些难以记住的函数名）</p>
-</blockquote>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> Fraction &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">	...</span><br><span class="line">	<span class="comment">// 声明重载操作符：*</span></span><br><span class="line">	Fraction <span class="keyword">operator</span>*(Fraction f);</span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">	...</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 定义重载操作符：*</span></span><br><span class="line">Fraction Fraction::operation*(Fraction f) &#123;</span><br><span class="line">	<span class="comment">//代码</span></span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">...</span><br><span class="line">f3 = f1 * f2; <span class="comment">// 定义的*是一个二元运算符(相当于f3 = f1.operator*(f2);)</span></span><br></pre></td></tr></table></figure>
-<h4 id="C-语言的输入／输出（）"><a href="#C-语言的输入／输出（）" class="headerlink" title="C++语言的输入／输出（）"></a>C++语言的输入／输出（<stdio.h>）</stdio.h></h4>
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
@@ -4512,7 +4350,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">98</span>
+              <span class="site-state-item-count">100</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -4522,7 +4360,7 @@
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">13</span>
+                <span class="site-state-item-count">14</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
