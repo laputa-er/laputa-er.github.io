@@ -238,6 +238,575 @@
             
               
                 
+                <a class="post-title-link" href="/2016/05/13/TSPL2_21 扩展/" itemprop="url">
+                  21 扩展
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-05-13T19:57:35+08:00" content="2016-05-13">
+              2016-05-13
+            </time>
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/05/13/TSPL2_21 扩展/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/05/13/TSPL2_21 扩展/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <blockquote>
+<p><strong>说明：</strong><code>扩展</code>就是为一个已有的<code>类</code>、<code>结构体</code>、<code>枚举类型</code>或者<code>协议类型</code>添加新功能(包括没有权限获取原始源代码的情况)。</p>
+<ul>
+<li>添加<code>计算型属性</code>和<code>计算类型属性</code></li>
+<li>定义<code>实例方法</code>和<code>类型方法</code></li>
+<li>提供新的<code>构造器</code></li>
+<li>定义<code>下标</code></li>
+<li>定义和使用新的<code>嵌套类型</code></li>
+<li>是一个有类型符合某个<code>协议</code></li>
+</ul>
+<p><strong>注意：</strong></p>
+<ul>
+<li>扩展可以为一个类型添加新的功能，但是<code>不能重写已有的功能</code>。</li>
+<li>如果你通过扩展为一个已有类型添加新功能，那么新功能对该类型的所有已有实例都是可用的，<code>即使它们是在这个扩展定义之前创建的</code>。</li>
+</ul>
+</blockquote>
+<h2 id="21-1-扩展语法"><a href="#21-1-扩展语法" class="headerlink" title="21.1    扩展语法"></a>21.1    扩展语法</h2><blockquote>
+<p><strong>说明：</strong>使用<code>extension</code>声明扩展</p>
+</blockquote>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 形式一：为SomeType添加功能</span></span><br><span class="line"><span class="class"><span class="keyword">extension</span> <span class="title">SomeType</span> </span>&#123;</span><br><span class="line">    <span class="comment">// 为 SomeType 添加的新功能写到这里</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 形式二：使SomeType实现协议</span></span><br><span class="line"><span class="class"><span class="keyword">extension</span> <span class="title">SomeType</span>: <span class="title">SomeProtocol</span>, <span class="title">AnotherProctocol</span> </span>&#123;</span><br><span class="line">    <span class="comment">// 协议实现写到这里</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="21-2-计算型属性"><a href="#21-2-计算型属性" class="headerlink" title="21.2    计算型属性"></a>21.2    计算型属性</h2><blockquote>
+<p><strong>说明：</strong>扩展可以为已有类型添加<code>计算型实例属性</code>和<code>计算型类型属性</code>。<br><strong>注意：</strong>不可以添加<code>存储型属性</code>，也不可以为已有属性<code>添加属性观察器</code>。</p>
+</blockquote>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 为Double添加一些只读计算属性</span></span><br><span class="line"><span class="class"><span class="keyword">extension</span> <span class="title">Double</span> </span>&#123;</span><br><span class="line">    <span class="comment">// 千米</span></span><br><span class="line">    <span class="keyword">var</span> km: <span class="type">Double</span> &#123; <span class="keyword">return</span> <span class="keyword">self</span> * <span class="number">1_000.0</span> &#125;</span><br><span class="line">    <span class="comment">// 米</span></span><br><span class="line">    <span class="keyword">var</span> m : <span class="type">Double</span> &#123; <span class="keyword">return</span> <span class="keyword">self</span> &#125;</span><br><span class="line">    <span class="comment">// 厘米</span></span><br><span class="line">    <span class="keyword">var</span> cm: <span class="type">Double</span> &#123; <span class="keyword">return</span> <span class="keyword">self</span> / <span class="number">100.0</span> &#125;</span><br><span class="line">    <span class="comment">// 毫米</span></span><br><span class="line">    <span class="keyword">var</span> mm: <span class="type">Double</span> &#123; <span class="keyword">return</span> <span class="keyword">self</span> / <span class="number">1_000.0</span> &#125;</span><br><span class="line">    <span class="comment">// 尺</span></span><br><span class="line">    <span class="keyword">var</span> ft: <span class="type">Double</span> &#123; <span class="keyword">return</span> <span class="keyword">self</span> / <span class="number">3.28084</span> &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 访问计算属性</span></span><br><span class="line"><span class="keyword">let</span> oneInch = <span class="number">25.4</span>.mm<span class="comment">// 0.0254</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> threeFeet = <span class="number">3</span>.ft<span class="comment">// 0.914399970739201</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> aMarathon = <span class="number">42</span>.km + <span class="number">195</span>.m<span class="comment">// 42195.0</span></span><br></pre></td></tr></table></figure>
+<h2 id="21-3-构造器"><a href="#21-3-构造器" class="headerlink" title="21.3    构造器"></a>21.3    构造器</h2><blockquote>
+<p><strong>说明：</strong>扩展可以为已有类型添加<code>新的构造器</code>(便利构造器)</p>
+<ul>
+<li>在为值类型扩展的构造器中调用<code>逐一构造器</code>：值类型的原始实现中未定义任何定制的构造器时</li>
+</ul>
+</blockquote>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 大小</span></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">Size</span> </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> width = <span class="number">0.0</span>, height = <span class="number">0.0</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 坐标</span></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">Point</span> </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> x = <span class="number">0.0</span>, y = <span class="number">0.0</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 正方形</span></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">Rect</span> </span>&#123;</span><br><span class="line">    <span class="comment">// 原点</span></span><br><span class="line">    <span class="keyword">var</span> origin = <span class="type">Point</span>()</span><br><span class="line">    <span class="comment">// 大小</span></span><br><span class="line">    <span class="keyword">var</span> size = <span class="type">Size</span>()</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 创建实例：默认构造器</span></span><br><span class="line"><span class="keyword">let</span> defaultRect = <span class="type">Rect</span>()</span><br><span class="line"><span class="comment">// 创建实例：逐一成员构造器</span></span><br><span class="line"><span class="keyword">let</span> memberwiseRect = <span class="type">Rect</span>(origin: <span class="type">Point</span>(x: <span class="number">2.0</span>, y: <span class="number">2.0</span>),</span><br><span class="line">    size: <span class="type">Size</span>(width: <span class="number">5.0</span>, height: <span class="number">5.0</span>))</span><br><span class="line"></span><br><span class="line"><span class="comment">// 扩展 Rect</span></span><br><span class="line"><span class="class"><span class="keyword">extension</span> <span class="title">Rect</span> </span>&#123;</span><br><span class="line">    <span class="comment">// 添加一个新的构造器</span></span><br><span class="line">    <span class="keyword">init</span>(center: <span class="type">Point</span>, size: <span class="type">Size</span>) &#123;</span><br><span class="line">        <span class="keyword">let</span> originX = center.x - (size.width / <span class="number">2</span>)</span><br><span class="line">        <span class="keyword">let</span> originY = center.y - (size.height / <span class="number">2</span>)</span><br><span class="line">        <span class="comment">// 调用逐一成员构造器</span></span><br><span class="line">        <span class="keyword">self</span>.<span class="keyword">init</span>(origin: <span class="type">Point</span>(x: originX, y: originY), size: size)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 使用扩展的构造器创建 Rect 的实例</span></span><br><span class="line"><span class="keyword">let</span> centerRect = <span class="type">Rect</span>(center: <span class="type">Point</span>(x: <span class="number">4.0</span>, y: <span class="number">4.0</span>),</span><br><span class="line">    size: <span class="type">Size</span>(width: <span class="number">3.0</span>, height: <span class="number">3.0</span>))</span><br></pre></td></tr></table></figure>
+<h2 id="21-4-方法"><a href="#21-4-方法" class="headerlink" title="21.4    方法"></a>21.4    方法</h2><blockquote>
+<p><strong>说明：</strong>扩展可以为已有类型添加新的<code>实例方法</code>和<code>类型方法</code>。<br><strong>注意：</strong><code>结构体</code>和<code>枚举</code>类型中修改 <code>self</code> 或<code>其属性</code>的方法必须将该实例方法标注为 <code>mutating</code>，正如来自原始实现的<code>变异方法</code>一样。</p>
+</blockquote>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 扩展 Int 类型</span></span><br><span class="line"><span class="class"><span class="keyword">extension</span> <span class="title">Int</span> </span>&#123;</span><br><span class="line">    <span class="comment">/**</span><br><span class="line">    * 添加一个实例方法</span><br><span class="line">    * 按照自身数目重复执行一个任务</span><br><span class="line">    * @param &#123;() -&gt; Void&#125; task 函数</span><br><span class="line">    */</span></span><br><span class="line">    <span class="function"><span class="keyword">func</span> <span class="title">repetitions</span><span class="params">(task: <span class="params">()</span></span></span> -&gt; <span class="type">Void</span>) &#123;</span><br><span class="line">        <span class="keyword">for</span> <span class="number">_</span> <span class="keyword">in</span> <span class="number">0</span>..&lt;<span class="keyword">self</span> &#123;</span><br><span class="line">            task()</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 调用扩展的实例方法</span></span><br><span class="line"><span class="number">3</span>.repetitions(&#123;</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">"Hello!"</span>)</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line"><span class="comment">// 更简洁的方式（使用尾随闭包）</span></span><br><span class="line"><span class="number">3</span>.repetitions &#123;</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">"Goodbye!"</span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><em>添加变异方法</em></p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">extension</span> <span class="title">Int</span> </span>&#123;</span><br><span class="line">    <span class="comment">// 结构体和枚举类型中修改 self 或其属性的方法必须将该实例方法标注为 mutating</span></span><br><span class="line">    <span class="keyword">mutating</span> <span class="function"><span class="keyword">func</span> <span class="title">square</span><span class="params">()</span></span> &#123;</span><br><span class="line">        <span class="keyword">self</span> = <span class="keyword">self</span> * <span class="keyword">self</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 创建实例</span></span><br><span class="line"><span class="keyword">var</span> someInt = <span class="number">3</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 调用扩展的实例方法</span></span><br><span class="line">someInt.square()</span><br></pre></td></tr></table></figure>
+<h2 id="21-5-下标"><a href="#21-5-下标" class="headerlink" title="21.5    下标"></a>21.5    下标</h2><blockquote>
+<p><strong>说明：</strong>扩展可以为已有类型添加新<code>下标</code></p>
+</blockquote>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 扩展 Int 类型</span></span><br><span class="line"><span class="class"><span class="keyword">extension</span> <span class="title">Int</span> </span>&#123;</span><br><span class="line">    <span class="comment">/* 添加一个下标</span><br><span class="line">     * 从右往左数</span><br><span class="line">     */</span></span><br><span class="line">    <span class="keyword">subscript</span>(<span class="keyword">var</span> digitIndex: <span class="type">Int</span>) -&gt; <span class="type">Int</span> &#123;</span><br><span class="line">        <span class="keyword">var</span> decimalBase = <span class="number">1</span></span><br><span class="line">        <span class="keyword">while</span> digitIndex &gt; <span class="number">0</span> &#123;</span><br><span class="line">            decimalBase *= <span class="number">10</span></span><br><span class="line">            --digitIndex</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> (<span class="keyword">self</span> / decimalBase) % <span class="number">10</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="number">746381295</span>[<span class="number">0</span>]<span class="comment">// 5</span></span><br><span class="line"></span><br><span class="line"><span class="number">746381295</span>[<span class="number">1</span>]<span class="comment">// 9</span></span><br><span class="line"></span><br><span class="line"><span class="number">746381295</span>[<span class="number">2</span>]<span class="comment">// 2</span></span><br><span class="line"></span><br><span class="line"><span class="number">746381295</span>[<span class="number">8</span>]<span class="comment">// 7</span></span><br></pre></td></tr></table></figure>
+<h2 id="21-6-嵌套类型"><a href="#21-6-嵌套类型" class="headerlink" title="21.6    嵌套类型"></a>21.6    嵌套类型</h2><blockquote>
+<p><strong>说明：</strong>扩展可以为已有的<code>类</code>、<code>结构体</code>和<code>枚举</code>添加新的<code>嵌套类型</code></p>
+</blockquote>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 扩展 Int 类型</span></span><br><span class="line"><span class="class"><span class="keyword">extension</span> <span class="title">Int</span> </span>&#123;</span><br><span class="line">    <span class="comment">// 数字类型（正、0、负）</span></span><br><span class="line">    <span class="class"><span class="keyword">enum</span> <span class="title">Kind</span> </span>&#123;</span><br><span class="line">        <span class="keyword">case</span> <span class="type">Negative</span>, <span class="type">Zero</span>, <span class="type">Positive</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">// 计算属性：获取数字类型</span></span><br><span class="line">    <span class="keyword">var</span> kind: <span class="type">Kind</span> &#123;</span><br><span class="line">        <span class="keyword">switch</span> <span class="keyword">self</span> &#123;</span><br><span class="line">        <span class="keyword">case</span> <span class="number">0</span>:</span><br><span class="line">            <span class="keyword">return</span> .<span class="type">Zero</span></span><br><span class="line">        <span class="keyword">case</span> <span class="keyword">let</span> x <span class="keyword">where</span> x &gt; <span class="number">0</span>:</span><br><span class="line">            <span class="keyword">return</span> .<span class="type">Positive</span></span><br><span class="line">        <span class="keyword">default</span>:</span><br><span class="line">            <span class="keyword">return</span> .<span class="type">Negative</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span><br><span class="line">* 判断数组中 Int 的类型</span><br><span class="line">* @param &#123;[Int]&#125; numbers Int数组</span><br><span class="line">*/</span></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">printIntegerKinds</span><span class="params">(numbers: [Int])</span></span> &#123;</span><br><span class="line">    <span class="keyword">for</span> number <span class="keyword">in</span> numbers &#123;</span><br><span class="line">        <span class="keyword">switch</span> number.kind &#123;</span><br><span class="line">        <span class="keyword">case</span> .<span class="type">Negative</span>:</span><br><span class="line">            <span class="built_in">print</span>(<span class="string">"- "</span>, terminator: <span class="string">""</span>)</span><br><span class="line">        <span class="keyword">case</span> .<span class="type">Zero</span>:</span><br><span class="line">            <span class="built_in">print</span>(<span class="string">"0 "</span>, terminator: <span class="string">""</span>)</span><br><span class="line">        <span class="keyword">case</span> .<span class="type">Positive</span>:</span><br><span class="line">            <span class="built_in">print</span>(<span class="string">"+ "</span>, terminator: <span class="string">""</span>)</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">""</span>)</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 调用</span></span><br><span class="line">printIntegerKinds([<span class="number">3</span>, <span class="number">19</span>, -<span class="number">27</span>, <span class="number">0</span>, -<span class="number">6</span>, <span class="number">0</span>, <span class="number">7</span>])<span class="comment">// + + - 0 - 0 +swift</span></span><br></pre></td></tr></table></figure>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2016/05/13/TSPL2_20 类型嵌套/" itemprop="url">
+                  20 类型嵌套
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-05-13T19:57:17+08:00" content="2016-05-13">
+              2016-05-13
+            </time>
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/05/13/TSPL2_20 类型嵌套/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/05/13/TSPL2_20 类型嵌套/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <blockquote>
+<p><strong>说明：</strong><code>Swift</code> 允许你定义嵌套类型，可以在支持的类型中定义嵌套的<code>枚举</code>、<code>类</code>和<code>结构体</code>。可以根据需要定义<code>多级嵌套</code>。<br><strong>用途：</strong>方便地定义工具类或结构体来使用。</p>
+</blockquote>
+<h2 id="20-1-嵌套类型实践"><a href="#20-1-嵌套类型实践" class="headerlink" title="20.1    嵌套类型实践"></a>20.1    嵌套类型实践</h2><figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/*</span><br><span class="line">* 扑克牌</span><br><span class="line">* 没有自定义构造器的结构体：因此有默认的成员构造器</span><br><span class="line">*/</span></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">BlackjackCard</span> </span>&#123;</span><br><span class="line">    <span class="comment">// 嵌套的 Suit 枚举</span></span><br><span class="line">    <span class="class"><span class="keyword">enum</span> <span class="title">Suit</span>: <span class="title">Character</span> </span>&#123;</span><br><span class="line">        <span class="keyword">case</span> <span class="type">Spades</span> = <span class="string">"♠"</span>, <span class="type">Hearts</span> = <span class="string">"♡"</span>, <span class="type">Diamonds</span> = <span class="string">"♢"</span>, <span class="type">Clubs</span> = <span class="string">"♣"</span></span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">// 嵌套的 Rank 枚举</span></span><br><span class="line">    <span class="class"><span class="keyword">enum</span> <span class="title">Rank</span>: <span class="title">Int</span> </span>&#123;</span><br><span class="line">        <span class="keyword">case</span> <span class="type">Two</span> = <span class="number">2</span>, <span class="type">Three</span>, <span class="type">Four</span>, <span class="type">Five</span>, <span class="type">Six</span>, <span class="type">Seven</span>, <span class="type">Eight</span>, <span class="type">Nine</span>, <span class="type">Ten</span></span><br><span class="line">        <span class="keyword">case</span> <span class="type">Jack</span>, <span class="type">Queen</span>, <span class="type">King</span>, <span class="type">Ace</span></span><br><span class="line">        <span class="class"><span class="keyword">struct</span> <span class="title">Values</span> </span>&#123;</span><br><span class="line">            <span class="keyword">let</span> first: <span class="type">Int</span>, second: <span class="type">Int</span>?</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">var</span> values: <span class="type">Values</span> &#123;</span><br><span class="line">            <span class="keyword">switch</span> <span class="keyword">self</span> &#123;</span><br><span class="line">            <span class="keyword">case</span> .<span class="type">Ace</span>:</span><br><span class="line">                <span class="keyword">return</span> <span class="type">Values</span>(first: <span class="number">1</span>, second: <span class="number">11</span>)</span><br><span class="line">            <span class="keyword">case</span> .<span class="type">Jack</span>, .<span class="type">Queen</span>, .<span class="type">King</span>:</span><br><span class="line">                <span class="keyword">return</span> <span class="type">Values</span>(first: <span class="number">10</span>, second: <span class="literal">nil</span>)</span><br><span class="line">            <span class="keyword">default</span>:</span><br><span class="line">                <span class="keyword">return</span> <span class="type">Values</span>(first: <span class="keyword">self</span>.rawValue, second: <span class="literal">nil</span>)</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">// 用嵌套在结构体内部的类型声明属性</span></span><br><span class="line">    <span class="keyword">let</span> rank: <span class="type">Rank</span>, suit: <span class="type">Suit</span></span><br><span class="line">    <span class="keyword">var</span> description: <span class="type">String</span> &#123;</span><br><span class="line">        <span class="keyword">var</span> output = <span class="string">"suit is \(suit.rawValue),"</span></span><br><span class="line">        output += <span class="string">" value is \(rank.values.first)"</span></span><br><span class="line">        <span class="keyword">if</span> <span class="keyword">let</span> second = rank.values.second &#123;</span><br><span class="line">            output += <span class="string">" or \(second)"</span></span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> output</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 创建实例（嵌套类型也能用于类型推断）</span></span><br><span class="line"><span class="keyword">let</span> theAceOfSpades = <span class="type">BlackjackCard</span>(rank: .<span class="type">Ace</span>, suit: .<span class="type">Spades</span>)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">"theAceOfSpades:\(theAceOfSpades.description)"</span>)</span><br></pre></td></tr></table></figure>
+<h2 id="20-2-嵌套类型的引用"><a href="#20-2-嵌套类型的引用" class="headerlink" title="20.2    嵌套类型的引用"></a>20.2    嵌套类型的引用</h2><blockquote>
+<p><strong>说明：</strong>在外部引用嵌套类型时，在<code>嵌套类型的类型名</code>前加上<code>其外部类型的类型名</code>作为前缀。</p>
+</blockquote>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 引用嵌套类型</span></span><br><span class="line"><span class="keyword">let</span> heartsSymbol = <span class="type">BlackjackCard</span>.<span class="type">Suit</span>.<span class="type">Hearts</span>.rawValue</span><br></pre></td></tr></table></figure>
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2016/05/13/TSPL2_19 类型转换（Type Casting）/" itemprop="url">
+                  19 类型转换
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-05-13T19:56:57+08:00" content="2016-05-13">
+              2016-05-13
+            </time>
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/05/13/TSPL2_19 类型转换（Type Casting）/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/05/13/TSPL2_19 类型转换（Type Casting）/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <blockquote>
+<p><strong>说明：</strong><code>类型转换</code>可以判断实例的类型，也可以将实例看做是其父类或者子类的实例。<br><strong>操作符：</strong><code>is</code>和<code>as</code></p>
+<ul>
+<li>检查值的类型：<code>is</code></li>
+<li>转换类型：<code>as</code></li>
+</ul>
+</blockquote>
+<h2 id="19-1-定义一个类层次作为例子"><a href="#19-1-定义一个类层次作为例子" class="headerlink" title="19.1    定义一个类层次作为例子"></a>19.1    定义一个类层次作为例子</h2><figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//多媒体文件</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">MediaItem</span> </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> name:<span class="type">String</span></span><br><span class="line">    <span class="keyword">init</span>(name:<span class="type">String</span>)&#123;</span><br><span class="line">        <span class="keyword">self</span>.name = name</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//电影</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Movie</span>:<span class="title">MediaItem</span></span>&#123;</span><br><span class="line">    <span class="keyword">var</span> director:<span class="type">String</span></span><br><span class="line">    <span class="keyword">init</span>(name:<span class="type">String</span>, director:<span class="type">String</span>)&#123;</span><br><span class="line">        <span class="keyword">self</span>.director = director</span><br><span class="line">        <span class="keyword">super</span>.<span class="keyword">init</span>(name: name)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//歌曲</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Song</span>:<span class="title">MediaItem</span></span>&#123;</span><br><span class="line">    <span class="keyword">var</span> artist:<span class="type">String</span></span><br><span class="line">    <span class="keyword">init</span>(name: <span class="type">String</span>,artist:<span class="type">String</span>) &#123;</span><br><span class="line">        <span class="keyword">self</span>.artist = artist</span><br><span class="line">        <span class="keyword">super</span>.<span class="keyword">init</span>(name: name)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//存储多媒体文件的数组（迭代该数组取出的每一项类型都会是MediaItem）</span></span><br><span class="line"><span class="keyword">let</span> library = [</span><br><span class="line">    <span class="type">Movie</span>(name: <span class="string">"Casablance"</span>, director: <span class="string">"Michael Curtiz"</span>),</span><br><span class="line">    <span class="type">Song</span>(name: <span class="string">"Blue Suede Shoes"</span>, artist: <span class="string">"Elvis Presley"</span>),</span><br><span class="line">    <span class="type">Movie</span>(name: <span class="string">"Citizen Kane"</span>, director: <span class="string">"Orson Welles"</span>),</span><br><span class="line">    <span class="type">Song</span>(name: <span class="string">"The One And The Only"</span>, artist: <span class="string">"Chesney Jawkes"</span>),</span><br><span class="line">    <span class="type">Song</span>(name: <span class="string">"Never Gonna Give You up"</span>, artist: <span class="string">"Rick Astley"</span>)</span><br><span class="line">]</span><br></pre></td></tr></table></figure>
+<h2 id="19-2-检查类型"><a href="#19-2-检查类型" class="headerlink" title="19.2    检查类型"></a>19.2    检查类型</h2><blockquote>
+<p><strong>说明：</strong><code>类型检查操作符(is)</code>，用来检查一个实例是否属于<code>特定子类型</code>。若实例属于那个子类型，类型检查操作符返回 <code>true</code>，否则返回 <code>false</code>。</p>
+</blockquote>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//计算电影和歌曲类型分别的有多少个</span></span><br><span class="line"><span class="keyword">var</span> movieCount = <span class="number">0</span></span><br><span class="line"><span class="keyword">var</span> songCount = <span class="number">0</span></span><br><span class="line"><span class="keyword">for</span> item <span class="keyword">in</span> library&#123;</span><br><span class="line">    <span class="comment">//通过is判断一个实例具体是某种类型的哪种子类型</span></span><br><span class="line">    <span class="keyword">if</span> item <span class="keyword">is</span> <span class="type">Movie</span>&#123;</span><br><span class="line">        ++movieCount</span><br><span class="line">    &#125;<span class="keyword">else</span> <span class="keyword">if</span> item <span class="keyword">is</span> <span class="type">Song</span>&#123;</span><br><span class="line">        ++songCount</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">println</span>(<span class="string">"Media library contains \(movieCount) movies and \(songCount) songs"</span>)</span><br></pre></td></tr></table></figure>
+<h2 id="19-3-向下转型"><a href="#19-3-向下转型" class="headerlink" title="19.3    向下转型"></a>19.3    向下转型</h2><blockquote>
+<p><strong>两种方式：</strong>可选形式和强制形式<br><strong>注意：</strong>类型转换不影响原本被转换的实例</p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th><em>**</em></th>
+<th>可选形式</th>
+<th>强制形式</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>类型转换操作符</td>
+<td><code>as?</code></td>
+<td><code>as</code></td>
+</tr>
+<tr>
+<td>适用场景</td>
+<td>试图向下转型为一个不确定的类型</td>
+<td>向下转成一个确定的类型</td>
+</tr>
+<tr>
+<td>返回值</td>
+<td>返回试图向下转成的的类型的可选值</td>
+<td>返回目标类型</td>
+</tr>
+</tbody>
+</table>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//向下转型(不改变原本实例，指示获得转变后的实例来使用)</span></span><br><span class="line"><span class="keyword">for</span> item <span class="keyword">in</span> library&#123;</span><br><span class="line">    <span class="keyword">if</span> <span class="keyword">let</span> movie = item <span class="keyword">as</span>? <span class="type">Movie</span>&#123;</span><br><span class="line">        <span class="built_in">println</span>(<span class="string">"Movie:'\(movie.name)',dir.\(movie.director)"</span>)</span><br><span class="line">    &#125;<span class="keyword">else</span> <span class="keyword">if</span> <span class="keyword">let</span> song = item <span class="keyword">as</span>? <span class="type">Song</span>&#123;</span><br><span class="line">        <span class="built_in">println</span>(<span class="string">"Song:'\(song.name)',by \(song.artist)"</span>)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="19-4-Any和AnyObject的类型转换"><a href="#19-4-Any和AnyObject的类型转换" class="headerlink" title="19.4    Any和AnyObject的类型转换"></a>19.4    <code>Any</code>和<code>AnyObject</code>的类型转换</h2><blockquote>
+<p><strong>Swift为不确定类型提供了两种特殊类型别名：</strong></p>
+<ul>
+<li><code>AnyObject</code>：可以代表任何<code>class</code>类型的实例</li>
+<li><code>Any</code>：可以表示任何类型，除了方法类型</li>
+</ul>
+<p><strong>注意：</strong>只有当你明确的需要它的行为和功能时才使用<code>Any</code>和<code>AnyObject</code></p>
+</blockquote>
+<h3 id="19-4-1-AnyObject类型"><a href="#19-4-1-AnyObject类型" class="headerlink" title="19.4.1    AnyObject类型"></a>19.4.1    <code>AnyObject</code>类型</h3><blockquote>
+<p><strong>用途：</strong>在工作中使用 <code>Cocoa APIs</code> 时，我们经常会接收到一个 <code>[AnyObject]</code> 类型的数组，或者说“一个任意类型对象的数组”。这是因为 <code>Objective-C</code> 没有明确的类型化数组。<br><strong>说明：</strong>从 <code>Xcode 7</code> 和 <code>Swift 2.0</code> 开始，由于 <code>Objective-C</code> 引入了轻量泛型，集合类型已经可以类型化了，在 <code>Swift</code> 中使用 <code>Cocoa API</code> 也越来越少遇到 <code>AnyObjec</code> 类型了。<br><strong>技巧：</strong>可以使用强制形式的类型转换<code>as</code>来下转数组中的每一项到比 <code>AnyObject</code> 更明确的类型</p>
+</blockquote>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//AnyObject:可以代表任何class类型的实例</span></span><br><span class="line"><span class="keyword">let</span> someObjects:[<span class="type">AnyObject</span>] = [</span><br><span class="line">    <span class="type">Movie</span>(name: <span class="string">"2001:A Space Obyssey"</span>, director: <span class="string">"Stanley Kubrick"</span>),</span><br><span class="line">    <span class="type">Movie</span>(name: <span class="string">"Moon"</span>, director: <span class="string">"Duncan Jones"</span>),</span><br><span class="line">    <span class="type">Movie</span>(name: <span class="string">"Alien"</span>, director: <span class="string">"Ridley Scott"</span>)</span><br><span class="line">]</span><br><span class="line"><span class="comment">//方式一</span></span><br><span class="line"><span class="keyword">for</span> object <span class="keyword">in</span> someObjects&#123;</span><br><span class="line">    <span class="keyword">let</span> movie = object <span class="keyword">as</span> <span class="type">Movie</span></span><br><span class="line">    <span class="built_in">println</span>(<span class="string">"Movie:'\(movie.name)',dir.Stanley Kubrick"</span>)</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//方式二（更简洁）</span></span><br><span class="line"><span class="keyword">for</span> movie <span class="keyword">in</span> someObjects <span class="keyword">as</span> [<span class="type">Movie</span>]&#123;</span><br><span class="line">    <span class="built_in">println</span>(<span class="string">"Movie:'\(movie.name)',dir.\(movie.director)"</span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="19-4-2-Any类型"><a href="#19-4-2-Any类型" class="headerlink" title="19.4.2    Any类型"></a>19.4.2    <code>Any</code>类型</h3><p><strong>注意：</strong>在<code>switch</code>语句的<code>case</code>中使用<code>as</code>而不是<code>as?</code>是安全的，不会导致运行时错误</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//Any类型</span></span><br><span class="line"><span class="keyword">var</span> things = [<span class="type">Any</span>]()</span><br><span class="line">things.append(<span class="number">0</span>)</span><br><span class="line">things.append(<span class="number">0.0</span>)</span><br><span class="line">things.append(<span class="number">42</span>)</span><br><span class="line">things.append(<span class="number">3.141592654</span>)</span><br><span class="line">things.append(<span class="string">"hello"</span>)</span><br><span class="line">things.append(<span class="type">Movie</span>(name: <span class="string">"Ghostbusters"</span>, director: <span class="string">"Ivan Reitman"</span>))</span><br><span class="line">things.append(&#123;(name:<span class="type">String</span>) -&gt; <span class="type">String</span> <span class="keyword">in</span> <span class="string">"Hello,\(name)"</span>&#125;)</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> thing <span class="keyword">in</span> things &#123;</span><br><span class="line">    <span class="keyword">switch</span> thing &#123;</span><br><span class="line">    <span class="keyword">case</span> <span class="number">0</span> <span class="keyword">as</span> <span class="type">Int</span>:</span><br><span class="line">        <span class="built_in">println</span>(<span class="string">"zero as an Int"</span>)</span><br><span class="line">    <span class="keyword">case</span> <span class="number">0</span> <span class="keyword">as</span> <span class="type">Double</span>:</span><br><span class="line">        <span class="built_in">println</span>(<span class="string">"zero as a Double"</span>)</span><br><span class="line">    <span class="keyword">case</span> <span class="keyword">let</span> someInt <span class="keyword">as</span> <span class="type">Int</span>:</span><br><span class="line">        <span class="built_in">println</span>(<span class="string">"an integer value of \(someInt)"</span>)</span><br><span class="line">    <span class="keyword">case</span> <span class="keyword">let</span> someDouble <span class="keyword">as</span> <span class="type">Double</span> <span class="keyword">where</span> someDouble &gt; <span class="number">0</span>:</span><br><span class="line">        <span class="built_in">println</span>(<span class="string">"a positive double value of \(someDouble)"</span>)</span><br><span class="line">    <span class="keyword">case</span> <span class="keyword">is</span> <span class="type">Double</span>:</span><br><span class="line">        <span class="built_in">println</span>(<span class="string">"some other double value that I don't want to print"</span>)</span><br><span class="line">    <span class="keyword">case</span> <span class="keyword">let</span> someString <span class="keyword">as</span> <span class="type">String</span>:</span><br><span class="line">        <span class="built_in">println</span>(<span class="string">"a string value of \"\(someString)\""</span>)</span><br><span class="line">    <span class="keyword">case</span> <span class="keyword">let</span> (x, y) <span class="keyword">as</span> (<span class="type">Double</span>, <span class="type">Double</span>):</span><br><span class="line">        <span class="built_in">println</span>(<span class="string">"an (x, y) point at \(x), \(y)"</span>)</span><br><span class="line">    <span class="keyword">case</span> <span class="keyword">let</span> movie <span class="keyword">as</span> <span class="type">Movie</span>:</span><br><span class="line">        <span class="built_in">println</span>(<span class="string">"a movie called '\(movie.name)', dir. \(movie.director)"</span>)</span><br><span class="line">    <span class="keyword">case</span> <span class="keyword">let</span> stringConverter <span class="keyword">as</span> <span class="type">String</span> -&gt; <span class="type">String</span>:</span><br><span class="line">        <span class="built_in">println</span>(stringConverter(<span class="string">"Michael"</span>))</span><br><span class="line">    <span class="keyword">default</span>:</span><br><span class="line">        <span class="built_in">println</span>(<span class="string">"something else"</span>)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2016/05/13/TSPL2_18 错误处理/" itemprop="url">
+                  18 错误处理
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-05-13T19:56:39+08:00" content="2016-05-13">
+              2016-05-13
+            </time>
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/05/13/TSPL2_18 错误处理/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/05/13/TSPL2_18 错误处理/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <blockquote>
+<p><strong>说明：</strong><code>错误处理</code>是响应错误以及从错误中恢复的过程。<code>可选类型</code>可用来表示值缺失，但是当某个操作失败时，最好能得知失败的原因，从而可以作出相应的应对。<br><strong>扩展：</strong><code>Swift</code> 中的错误处理涉及到错误处理模式，这会用到 <code>Cocoa</code> 和 <code>Objective-C</code> 中的<code>NSError</code></p>
+</blockquote>
+<h2 id="18-1-表示并抛出错误"><a href="#18-1-表示并抛出错误" class="headerlink" title="18.1    表示并抛出错误"></a>18.1    表示并抛出错误</h2><blockquote>
+<p><strong>说明：</strong>错误用符合<code>ErrorType</code>协议的类型的值来表示。这个空协议表明该类型可以用于错误处理。<br><strong>技巧：</strong>Swift 的<code>枚举</code>类型尤为适合构建一组相关的错误状态，枚举的关联值还可以提供错误状态的额外信息。</p>
+</blockquote>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 自动贩卖机错误</span></span><br><span class="line"><span class="class"><span class="keyword">enum</span> <span class="title">VendingMachineError</span>: <span class="title">ErrorType</span> </span>&#123;</span><br><span class="line">    <span class="keyword">case</span> <span class="type">InvalidSelection</span><span class="comment">// 选择无效</span></span><br><span class="line">    <span class="keyword">case</span> <span class="type">InsufficientFunds</span>(coinsNeeded: <span class="type">Int</span>)<span class="comment">// 金额不足</span></span><br><span class="line">    <span class="keyword">case</span> <span class="type">OutOfStock</span><span class="comment">// 缺货</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 抛出“金额不足”的错误</span></span><br><span class="line"><span class="keyword">throw</span> <span class="type">VendingMachineError</span>.<span class="type">InsufficientFunds</span>(coinsNeeded: <span class="number">5</span>)</span><br></pre></td></tr></table></figure>
+<h2 id="18-2-处理错误"><a href="#18-2-处理错误" class="headerlink" title="18.2    处理错误"></a>18.2    处理错误</h2><blockquote>
+<p><strong>说明：</strong>某个错误被抛出时，附近的某部分代码必须负责处理这个错误。有<code>4</code>中给处理错误的方式</p>
+<ul>
+<li>把函数<code>抛出</code>的错误传递给调用此函数的代码</li>
+<li>用<code>do-catch</code>语句处理错误</li>
+<li>将错误作为<code>可选类型</code>处理</li>
+<li><code>断言</code>此错误根本不会发生</li>
+</ul>
+<p><strong>标识可能出错的地方：</strong>在调用一个能抛出错误的<code>函数</code>、<code>方法</code>或者<code>构造器</code>之前，加上<code>try</code>关键字，或者<code>try?</code>或<code>try!</code>这种变体</p>
+<p><strong>引伸：</strong>和其他语言中的异常处理不同的是，Swift 中的错误处理并不涉及解除调用栈，就此而言，<code>throw语句</code>的性能特性是可以和<code>return语句</code>相媲美的。</p>
+</blockquote>
+<h3 id="18-2-1-用throwing函数传递错误"><a href="#18-2-1-用throwing函数传递错误" class="headerlink" title="18.2.1    用throwing函数传递错误"></a>18.2.1    用throwing函数传递错误</h3><blockquote>
+<p><strong>说明：</strong>一个标有<code>throws</code>关键字的函数被称作<code>throwing 函数</code>。</p>
+<ul>
+<li>调用<code>throwing函数</code>必须使用<code>try</code></li>
+<li>调用<code>throwing函数</code>必须要么直接处理这些错误（使用<code>do-catch</code>语句，<code>try?</code>或<code>try!</code>）；要么继续将这些错误传递下去</li>
+</ul>
+<p><strong>用途：</strong>可以在其内部抛出错误，并将错误传递到函数<code>被调用时的作用域</code>。<br><strong>语法：</strong>在函数声明的<code>参数列表</code>和<code>-&gt;</code>之间加上<code>throws</code>关键字。</p>
+</blockquote>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">canThrowErrors</span><span class="params">()</span></span> <span class="keyword">throws</span> -&gt; <span class="type">String</span></span><br></pre></td></tr></table></figure>
+<blockquote>
+<p><strong>注意：</strong>只有 <code>throwing函数</code>可以传递错误。任何在某个<code>非 throwing 函数</code>内部抛出的错误只能在函数内部处理。</p>
+</blockquote>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 自动贩卖机错误</span></span><br><span class="line"><span class="class"><span class="keyword">enum</span> <span class="title">VendingMachineError</span>: <span class="title">ErrorType</span> </span>&#123;</span><br><span class="line">    <span class="keyword">case</span> <span class="type">InvalidSelection</span><span class="comment">// 选择无效</span></span><br><span class="line">    <span class="keyword">case</span> <span class="type">InsufficientFunds</span>(coinsNeeded: <span class="type">Int</span>)<span class="comment">// 金额不足</span></span><br><span class="line">    <span class="keyword">case</span> <span class="type">OutOfStock</span><span class="comment">// 缺货</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 商品</span></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">Item</span> </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> price: <span class="type">Int</span></span><br><span class="line">    <span class="keyword">var</span> <span class="built_in">count</span>: <span class="type">Int</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 自动贩卖机</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">VendingMachine</span> </span>&#123;</span><br><span class="line">    <span class="comment">// 食品清单</span></span><br><span class="line">    <span class="keyword">var</span> inventory = [</span><br><span class="line">        <span class="string">"Candy Bar"</span>: <span class="type">Item</span>(price: <span class="number">12</span>, <span class="built_in">count</span>: <span class="number">7</span>),</span><br><span class="line">        <span class="string">"Chips"</span>: <span class="type">Item</span>(price: <span class="number">10</span>, <span class="built_in">count</span>: <span class="number">4</span>),</span><br><span class="line">        <span class="string">"Pretzels"</span>: <span class="type">Item</span>(price: <span class="number">7</span>, <span class="built_in">count</span>: <span class="number">11</span>)</span><br><span class="line">    ]</span><br><span class="line">    <span class="comment">// 投币数量</span></span><br><span class="line">    <span class="keyword">var</span> coinsDeposited = <span class="number">0</span></span><br><span class="line">    <span class="comment">// 发放食品</span></span><br><span class="line">    <span class="function"><span class="keyword">func</span> <span class="title">dispenseSnack</span><span class="params">(snack: String)</span></span> &#123;</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">"Dispensing \(snack)"</span>)</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/*</span><br><span class="line">    * 出售</span><br><span class="line">    * throwing方法：会抛出相应错误（如果有的话）</span><br><span class="line">    */</span></span><br><span class="line">    <span class="function"><span class="keyword">func</span> <span class="title">vend</span><span class="params">(itemNamed name: String)</span></span> <span class="keyword">throws</span> &#123;</span><br><span class="line">        <span class="comment">// 是否有对应商品</span></span><br><span class="line">        <span class="keyword">guard</span> <span class="keyword">var</span> item = inventory[name] <span class="keyword">else</span> &#123;</span><br><span class="line">            <span class="keyword">throw</span> <span class="type">VendingMachineError</span>.<span class="type">InvalidSelection</span></span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">        <span class="comment">// 是否还有剩余</span></span><br><span class="line">        <span class="keyword">guard</span> item.<span class="built_in">count</span> &gt; <span class="number">0</span> <span class="keyword">else</span> &#123;</span><br><span class="line">            <span class="keyword">throw</span> <span class="type">VendingMachineError</span>.<span class="type">OutOfStock</span></span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">        <span class="comment">// 投币是否足够</span></span><br><span class="line">        <span class="keyword">guard</span> item.price &lt;= coinsDeposited <span class="keyword">else</span> &#123;</span><br><span class="line">            <span class="keyword">throw</span> <span class="type">VendingMachineError</span>.<span class="type">InsufficientFunds</span>(coinsNeeded: item.price - coinsDeposited)</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">        <span class="comment">// 没问题，进行交易</span></span><br><span class="line">        coinsDeposited -= item.price</span><br><span class="line">        --item.<span class="built_in">count</span></span><br><span class="line">        inventory[name] = item</span><br><span class="line">        dispenseSnack(name)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> favoriteSnacks = [</span><br><span class="line">    <span class="string">"Alice"</span>: <span class="string">"Chips"</span>,</span><br><span class="line">    <span class="string">"Bob"</span>: <span class="string">"Licorice"</span>,</span><br><span class="line">    <span class="string">"Eve"</span>: <span class="string">"Pretzels"</span>,</span><br><span class="line">]</span><br><span class="line"></span><br><span class="line"><span class="comment">/*</span><br><span class="line">* 买小吃</span><br><span class="line">*/</span></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">buyFavoriteSnack</span><span class="params">(person: String, vendingMachine: VendingMachine)</span></span> <span class="keyword">throws</span> &#123;</span><br><span class="line">    <span class="keyword">let</span> snackName = favoriteSnacks[person] ?? <span class="string">"Candy Bar"</span></span><br><span class="line">    <span class="comment">// 调用throwing方法必须使用try关键字</span></span><br><span class="line">    <span class="keyword">try</span> vendingMachine.vend(itemNamed: snackName)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="18-2-2-用Do-Catch处理错误"><a href="#18-2-2-用Do-Catch处理错误" class="headerlink" title="18.2.2    用Do-Catch处理错误"></a>18.2.2    用Do-Catch处理错误</h3><blockquote>
+<p><strong>说明：</strong>可以使用一个<code>do-catch</code>语句运行一段闭包代码来处理错误。如果在<code>do</code>子句中的代码抛出了一个错误，这个错误会与<code>catch</code>子句做匹配，从而决定哪条子句能处理它。</p>
+<ul>
+<li>在<code>catch</code>后面写一个匹配模式来表明这个子句能处理什么样的错误</li>
+<li>如果一条<code>catch</code>子句没有指定匹配模式，那么这条子句可以匹配任何错误，并且把错误绑定到一个名字为<code>error</code>的局部常量</li>
+<li><code>catch</code>子句不必将<code>do</code>子句中的代码所抛出的每一个可能的错误都作处理</li>
+<li>如果所有<code>catch</code>子句都未处理错误，错误就会传递到周围的作用域（要么是一个外围的<code>do-catch</code>错误处理语句，要么是一个<code>throwing</code> 函数的内部）</li>
+</ul>
+</blockquote>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 创建一个售卖机实例</span></span><br><span class="line"><span class="keyword">var</span> vendingMachine = <span class="type">VendingMachine</span>()</span><br><span class="line"><span class="comment">// 投币</span></span><br><span class="line">vendingMachine.coinsDeposited = <span class="number">8</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">do</span> &#123;</span><br><span class="line">    <span class="comment">// 买最喜欢的零食</span></span><br><span class="line">    <span class="keyword">try</span> buyFavoriteSnack(<span class="string">"Alice"</span>, vendingMachine: vendingMachine)</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 没有该商品</span></span><br><span class="line"><span class="keyword">catch</span> <span class="type">VendingMachineError</span>.<span class="type">InvalidSelection</span> &#123;</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">"Invalid Selection"</span>)</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 卖完了</span></span><br><span class="line"><span class="keyword">catch</span> <span class="type">VendingMachineError</span>.<span class="type">OutOfStock</span> &#123;</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">"Out of Stock."</span>)</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 投币不足</span></span><br><span class="line"><span class="keyword">catch</span> <span class="type">VendingMachineError</span>.<span class="type">InsufficientFunds</span>(<span class="keyword">let</span> coinsNeeded) &#123;</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">"Insufficent funds. Please insert an additional \(coinsNeeded)"</span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="18-2-3-将错误转换成可选值"><a href="#18-2-3-将错误转换成可选值" class="headerlink" title="18.2.3    将错误转换成可选值"></a>18.2.3    将错误转换成可选值</h3><blockquote>
+<p><strong>语法：</strong><code>try?</code><br><strong>说明：</strong>使用<code>try?</code>调用表达式，返回相应表达式返回值的<code>可选类型</code>（如果表达式抛出错误，则表达式<code>nil</code>）<br><strong>技巧：</strong>如果你想对所有的错误都采用同样的方式来处理，用<code>try?</code>就可以让你写出简洁的错误处理代码</p>
+</blockquote>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// throwing 函数</span></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">someThrowingFunction</span><span class="params">()</span></span> <span class="keyword">throws</span> -&gt; <span class="type">Int</span> &#123;</span><br><span class="line">    <span class="comment">// ...</span></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/* 调用 throwing 函数 */</span></span><br><span class="line"><span class="comment">// 方式一：使用 try? 调用</span></span><br><span class="line"><span class="keyword">let</span> x = <span class="keyword">try</span>? someThrowingFunction()</span><br><span class="line"></span><br><span class="line"><span class="comment">// 方式二：方式一的等价形式</span></span><br><span class="line"><span class="keyword">let</span> y: <span class="type">Int</span>?</span><br><span class="line"><span class="keyword">do</span> &#123;</span><br><span class="line">    y = <span class="keyword">try</span> someThrowingFunction()</span><br><span class="line">&#125; <span class="keyword">catch</span> &#123;</span><br><span class="line">    y = <span class="literal">nil</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 从磁盘获取</span></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">fetchDataFromDisk</span><span class="params">()</span></span> -&gt; <span class="type">String</span>? &#123;</span><br><span class="line">    <span class="comment">// ...</span></span><br><span class="line">    <span class="keyword">return</span> <span class="literal">nil</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 从服务器获取</span></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">fetchDataFromServer</span><span class="params">()</span></span> -&gt; <span class="type">String</span>? &#123;</span><br><span class="line">    <span class="comment">// ...</span></span><br><span class="line">    <span class="keyword">return</span> <span class="literal">nil</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span><br><span class="line">* 获取数据</span><br><span class="line">*/</span></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">fetchData</span><span class="params">()</span></span> -&gt; <span class="type">String</span>? &#123;</span><br><span class="line">    <span class="keyword">if</span> <span class="keyword">let</span> data = <span class="keyword">try</span>? fetchDataFromDisk() &#123;</span><br><span class="line">        <span class="keyword">return</span> data</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span> <span class="keyword">let</span> data = <span class="keyword">try</span>? fetchDataFromServer() &#123;</span><br><span class="line">        <span class="keyword">return</span> data</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="literal">nil</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="18-2-4-禁用错误传递"><a href="#18-2-4-禁用错误传递" class="headerlink" title="18.2.4        禁用错误传递"></a>18.2.4        禁用错误传递</h3><blockquote>
+<p><strong>语法：</strong><code>try!</code><br><strong>说明：</strong>其实就是把<code>抛出错误</code>转变为<code>运行时断言</code><br><strong>应用：</strong>确定<code>throwing</code> 函数实际上在运行时<code>不会抛出错误</code>的才能使用。<br><strong>注意：</strong>如果实际上抛出了错误，你会得到一个运行时错误（而不会传递错误）</p>
+</blockquote>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 确定图片资源是存在的</span></span><br><span class="line"><span class="keyword">let</span> photo = <span class="keyword">try</span>! loadImage(<span class="string">"./Resources/John Appleseed.jpg"</span>)</span><br></pre></td></tr></table></figure>
+<h2 id="18-3-指定清理操作"><a href="#18-3-指定清理操作" class="headerlink" title="18.3    指定清理操作"></a>18.3    指定清理操作</h2><blockquote>
+<p><strong>说明：</strong>使用<code>defer</code>语句指定在即将离开<code>当前代码块</code>时执行一系列语句。<br><strong>支持情景：</strong>不管是以何种方式离开当前代码块的</p>
+<ul>
+<li>由于抛出错误而离开</li>
+<li>诸如<code>return</code>或者<code>break</code>的语句</li>
+</ul>
+<p><strong>语法：</strong>由<code>defer</code>关键字和要被延迟执行的语句组成</p>
+<ul>
+<li>延迟执行的语句不能包含任何<code>控制转移语句</code>（<code>break</code>或是<code>return</code>语句，或是抛出一个错误）</li>
+<li>延迟执行的操作会按照它们被指定时的顺序的<code>相反顺序</code>执行</li>
+</ul>
+</blockquote>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 处理文件</span></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">processFile</span><span class="params">(filename: String)</span></span> <span class="keyword">throws</span> &#123;</span><br><span class="line">    <span class="comment">// 如果文件存在</span></span><br><span class="line">    <span class="keyword">if</span> exists(filename) &#123;</span><br><span class="line">        <span class="comment">// 打开文件</span></span><br><span class="line">        <span class="keyword">let</span> file = open(filename)</span><br><span class="line">        </span><br><span class="line">        <span class="comment">// 当前代码块结束时执行</span></span><br><span class="line">        <span class="keyword">defer</span> &#123;</span><br><span class="line">            close(file)</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">        <span class="comment">// 处理打开的文件</span></span><br><span class="line">        <span class="keyword">while</span> <span class="keyword">let</span> line = <span class="keyword">try</span> file.readline() &#123;</span><br><span class="line">            <span class="comment">// 处理文件。</span></span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">// 根据 defer 语句的指定，close(file) 会在这里被隐式调用，即作用域的最后。</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2016/05/13/TSPL2_17 可选链式调用/" itemprop="url">
                   17 可选链式调用
                 </a>
@@ -1595,1068 +2164,6 @@
 
 
     
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/05/13/TSPL2_11 方法/" itemprop="url">
-                  11 方法
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-05-13T19:45:53+08:00" content="2016-05-13">
-              2016-05-13
-            </time>
-          </span>
-
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2016/05/13/TSPL2_11 方法/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/05/13/TSPL2_11 方法/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <blockquote>
-<p><strong>定义</strong>：与某些特定类型相关联的函数。</p>
-</blockquote>
-<table>
-<thead>
-<tr>
-<th>方法</th>
-<th>支持类型</th>
-<th>关联对象</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>实例方法</td>
-<td>类、结构体、枚举</td>
-<td>实例</td>
-</tr>
-<tr>
-<td>类型方法</td>
-<td>类、结构体、枚举</td>
-<td>类型</td>
-</tr>
-</tbody>
-</table>
-<h2 id="11-1-实例方法"><a href="#11-1-实例方法" class="headerlink" title="11.1    实例方法"></a>11.1    实例方法</h2><blockquote>
-<p><strong>说明：</strong>写在它所属的类型的前后<code>{}</code>之间</p>
-<ul>
-<li>能够隐式访问它所属类型的所有的其他实例方法和属性</li>
-<li>只能被它所属的类的某个特定实例调用</li>
-</ul>
-</blockquote>
-<table>
-<thead>
-<tr>
-<th>调用位置</th>
-<th>调用方式</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>内部</td>
-<td>能够隐式访问它所属类型的所有其它实例方法和属性</td>
-</tr>
-<tr>
-<td>外部</td>
-<td>只能被它所属的类的某个特定实例调用</td>
-</tr>
-</tbody>
-</table>
-<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Counter</span> </span>&#123;</span><br><span class="line">    <span class="comment">//实例属性</span></span><br><span class="line">    <span class="keyword">var</span> <span class="built_in">count</span> = <span class="number">0</span></span><br><span class="line">    <span class="comment">//实例方法1</span></span><br><span class="line">    <span class="function"><span class="keyword">func</span> <span class="title">increment</span><span class="params">()</span></span>&#123;</span><br><span class="line">        <span class="built_in">count</span>++</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">//实例方法2</span></span><br><span class="line">    <span class="function"><span class="keyword">func</span> <span class="title">incrementBy</span><span class="params">(amount:Int)</span></span>&#123;</span><br><span class="line">        <span class="built_in">count</span> += amount</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">//实例方法3</span></span><br><span class="line">    <span class="function"><span class="keyword">func</span> <span class="title">reset</span><span class="params">()</span></span>&#123;</span><br><span class="line">        <span class="built_in">count</span> = <span class="number">0</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> counter = <span class="type">Counter</span>()</span><br><span class="line">counter.increment()</span><br><span class="line">counter.incrementBy(<span class="number">5</span>)</span><br><span class="line">counter.reset()</span><br></pre></td></tr></table></figure>
-<h3 id="11-1-1-方法的内部参数名和外部参数名"><a href="#11-1-1-方法的内部参数名和外部参数名" class="headerlink" title="11.1.1    方法的内部参数名和外部参数名"></a>11.1.1    方法的内部参数名和外部参数名</h3><blockquote>
-<p><strong>说明：</strong>同函数。</p>
-</blockquote>
-<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Counter</span> </span>&#123;</span><br><span class="line">    <span class="comment">//实例属性</span></span><br><span class="line">    <span class="keyword">var</span> <span class="built_in">count</span> = <span class="number">0</span></span><br><span class="line">    <span class="function"><span class="keyword">func</span> <span class="title">incrementBy</span><span class="params">(amount:Int, numberOfTime:Int)</span></span>&#123;</span><br><span class="line">        <span class="built_in">count</span> += amount * numberOfTime</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> counter = <span class="type">Counter</span>()</span><br><span class="line"></span><br><span class="line"><span class="comment">//第一个参数：不必为再定义一个外部变量名，因为通过incrementBy已经很清楚地看出它的作用</span></span><br><span class="line"><span class="comment">//其它参数：需要被一个外部参数名所限制，以便在方法呗调用时明确它的作用</span></span><br><span class="line">counter.incrementBy(<span class="number">5</span>, numberOfTime:<span class="number">3</span>)</span><br></pre></td></tr></table></figure>
-<h3 id="11-1-2-修改方法的外部参数名称"><a href="#11-1-2-修改方法的外部参数名称" class="headerlink" title="11.1.2  修改方法的外部参数名称"></a>11.1.2  修改方法的外部参数名称</h3><blockquote>
-<p><strong>说明：</strong>同函数。</p>
-<ul>
-<li>可以为第一个参数添加一个显式的外部名称</li>
-<li>不想为方法的第二个及后续的参数提供一个外部名称，可以通过使用下划线<code>_</code>作为该参数的显式外部名称</li>
-</ul>
-</blockquote>
-<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span><br><span class="line">*覆盖参数的默认行为</span><br><span class="line">*/</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Counter</span> </span>&#123;</span><br><span class="line">    <span class="comment">//实例属性</span></span><br><span class="line">    <span class="keyword">var</span> <span class="built_in">count</span> = <span class="number">0</span></span><br><span class="line">    <span class="comment">//其它参数：使用_作为前缀，参数不在具有外部名称</span></span><br><span class="line">    <span class="function"><span class="keyword">func</span> <span class="title">incrementBy</span><span class="params">(amount:Int, <span class="number">_</span> numberOfTime:Int)</span></span>&#123;</span><br><span class="line">        <span class="built_in">count</span> += amount * numberOfTime</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> counter = <span class="type">Counter</span>()</span><br><span class="line">counter.incrementBy(amount:<span class="number">5</span>, <span class="number">3</span>)</span><br></pre></td></tr></table></figure>
-<h3 id="11-1-3-self属性"><a href="#11-1-3-self属性" class="headerlink" title="11.1.3  self属性"></a>11.1.3  self属性</h3><blockquote>
-<p><strong>说明：</strong>类型的每一个实例都有一个隐含属性叫做<code>self</code>，<code>self</code>完全等同于该实例本身。</p>
-<ul>
-<li>在方法中调用实例的其它方法和属性时可以省略<code>self</code>（除非需要区分参数名和属性名）</li>
-</ul>
-<p><strong>用途：</strong>在一个实例的实例方法中使用这个隐含的self属性来引用当前实例</p>
-</blockquote>
-<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">Point</span> </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> x = <span class="number">0.0</span>, y = <span class="number">0.0</span></span><br><span class="line">    <span class="function"><span class="keyword">func</span> <span class="title">isToTheRightOfX</span><span class="params">(x:Double)</span></span> -&gt; <span class="type">Bool</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">self</span>.x &gt; x<span class="comment">//使用self.x指明使用属性x而不是参数x</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> somePoint = <span class="type">Point</span>(x:<span class="number">4.0</span>, y:<span class="number">5.0</span>)</span><br><span class="line"><span class="keyword">if</span> somePoint.isToTheRightOfX(<span class="number">1.0</span>)&#123;</span><br><span class="line">    <span class="built_in">println</span>(<span class="string">"This point to the right of the line where x == 1.0"</span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h3 id="11-1-4-在实例方法中修改值类型"><a href="#11-1-4-在实例方法中修改值类型" class="headerlink" title="11.1.4  在实例方法中修改值类型"></a>11.1.4  在实例方法中修改值类型</h3><blockquote>
-<p><strong>背景</strong>：值类型（结构体和枚举）的属性不能在普通实例方法中被修改<br><strong>说明</strong>：关键字<code>mutating</code> 放到方法的<code>func</code>关键字之前，使变量实例属性的方法具备修改实例中的属性（包括<code>self</code>）的能力。<br><strong>注意</strong>：不能在结构体类型的常量上调用可变方法，因为此时所有属性都无法修改。</p>
-</blockquote>
-<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">Point</span> </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> x = <span class="number">0.0</span>, y = <span class="number">0.0</span></span><br><span class="line">    <span class="keyword">mutating</span> <span class="function"><span class="keyword">func</span> <span class="title">moveByX</span><span class="params">(deltaX:Double,y deltaY:Double)</span></span>&#123;</span><br><span class="line">        x += deltaX</span><br><span class="line">        y += deltaY</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> somePoint = <span class="type">Point</span>(x:<span class="number">4.0</span>, y:<span class="number">5.0</span>)<span class="comment">//声明为let再调用mutating方法将报错</span></span><br><span class="line">somePoint.moveByX(<span class="number">2.0</span>, y: <span class="number">3.0</span>)</span><br></pre></td></tr></table></figure>
-<h3 id="11-1-5-在变异方法中给self赋值-通过mutating"><a href="#11-1-5-在变异方法中给self赋值-通过mutating" class="headerlink" title="11.1.5  在变异方法中给self赋值(通过mutating)"></a>11.1.5  在变异方法中给self赋值(通过<code>mutating</code>)</h3><blockquote>
-<p><strong>说明：</strong>可变方法能够赋给隐含属性self一个全新的实例</p>
-<h4 id="结构体中使用"><a href="#结构体中使用" class="headerlink" title="结构体中使用"></a>结构体中使用</h4></blockquote>
-<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">Point</span> </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> x = <span class="number">0.0</span>, y = <span class="number">0.0</span></span><br><span class="line">    <span class="keyword">mutating</span> <span class="function"><span class="keyword">func</span> <span class="title">moveByX</span><span class="params">(deltaX:Double,y deltaY:Double)</span></span>&#123;</span><br><span class="line">        <span class="keyword">self</span> = <span class="type">Point</span>(x: x + deltaX, y: y + deltaY)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">var</span> somePoint = <span class="type">Point</span>(x:<span class="number">4.0</span>, y:<span class="number">5.0</span>)<span class="comment">//声明为let再调用mutating方法将报错</span></span><br><span class="line">somePoint.moveByX(<span class="number">2.0</span>, y: <span class="number">3.0</span>)</span><br></pre></td></tr></table></figure>
-<h4 id="枚举中使用"><a href="#枚举中使用" class="headerlink" title="枚举中使用"></a>枚举中使用</h4><figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//定义一个三态开关的枚举，具备循环切换状态的能力</span></span><br><span class="line"><span class="class"><span class="keyword">enum</span> <span class="title">TriStateSwitch</span></span>&#123;</span><br><span class="line">    <span class="keyword">case</span> <span class="type">Off</span>, <span class="type">Low</span>, <span class="type">High</span></span><br><span class="line">    <span class="comment">//该方法的每次调用都会导致值的改变（通过修改self）</span></span><br><span class="line">    <span class="keyword">mutating</span> <span class="function"><span class="keyword">func</span> <span class="title">next</span><span class="params">()</span></span>&#123;</span><br><span class="line">        <span class="keyword">switch</span> <span class="keyword">self</span>&#123;</span><br><span class="line">        <span class="keyword">case</span> <span class="type">Off</span>:</span><br><span class="line">            <span class="keyword">self</span> = <span class="type">Low</span></span><br><span class="line">        <span class="keyword">case</span> <span class="type">Low</span>:</span><br><span class="line">            <span class="keyword">self</span> = <span class="type">High</span></span><br><span class="line">        <span class="keyword">case</span> <span class="type">High</span>:</span><br><span class="line">            <span class="keyword">self</span> = <span class="type">Off</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">var</span> ovenLight = <span class="type">TriStateSwitch</span>.<span class="type">Low</span></span><br><span class="line">ovenLight.next()<span class="comment">//.High</span></span><br><span class="line">ovenLight.next()<span class="comment">//.Off</span></span><br></pre></td></tr></table></figure>
-<h2 id="11-2-类型（静态）方法"><a href="#11-2-类型（静态）方法" class="headerlink" title="11.2    类型（静态）方法"></a>11.2    类型（静态）方法</h2><blockquote>
-<p><strong>关键字：</strong>使用的关键字同类型（静态）属性。</p>
-</blockquote>
-<table>
-<thead>
-<tr>
-<th>类型</th>
-<th>关键字</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>类</td>
-<td><code>class</code></td>
-</tr>
-<tr>
-<td>结构体、枚举</td>
-<td><code>static</code></td>
-</tr>
-</tbody>
-</table>
-<blockquote>
-<p><strong>说明：</strong>类型方法和实例方法一样用<code>点语法</code>调用</p>
-<ol>
-<li><code>self</code>属性指向类型本身</li>
-<li>静态(类型)方法法中<code>能也只能</code>直接（不需要类型名称前缀）访问其它静态方法和属性</li>
-</ol>
-</blockquote>
-<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">LevelTracker</span></span>&#123;</span><br><span class="line">    <span class="keyword">static</span> <span class="keyword">var</span> highestUnlocked = <span class="number">1</span></span><br><span class="line">    <span class="keyword">static</span> <span class="function"><span class="keyword">func</span> <span class="title">unlockLevel</span><span class="params">(level:Int)</span></span>&#123;</span><br><span class="line">        <span class="keyword">if</span> level &gt; highestUnlocked&#123;</span><br><span class="line">            highestUnlocked = level</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">//静态方法中访问静态变量</span></span><br><span class="line">    <span class="keyword">static</span> <span class="function"><span class="keyword">func</span> <span class="title">levelIsUnlocked</span><span class="params">(level:Int)</span></span>-&gt;<span class="type">Bool</span>&#123;</span><br><span class="line">        <span class="keyword">return</span> level &lt;= highestUnlocked</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">var</span> currentLevel = <span class="number">1</span></span><br><span class="line">    </span><br><span class="line">    <span class="comment">//变异实例方法中修改实例属性的值（只有当实例赋值为变量时）</span></span><br><span class="line">    <span class="keyword">mutating</span> <span class="function"><span class="keyword">func</span> <span class="title">advanceToLevel</span><span class="params">(level:Int)</span></span>-&gt;<span class="type">Bool</span>&#123;</span><br><span class="line">        <span class="keyword">if</span> <span class="type">LevelTracker</span>.levelIsUnlocked(level)&#123;</span><br><span class="line">            currentLevel = level</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">true</span></span><br><span class="line">        &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">false</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">SomeClass</span> </span>&#123;</span><br><span class="line">    <span class="class"><span class="keyword">class</span> <span class="title">func</span> <span class="title">someMethod</span>()</span>&#123;</span><br><span class="line">        <span class="comment">//type method implementation goes here</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="type">SomeClass</span>.someMethod()</span><br></pre></td></tr></table></figure>
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/05/13/TSPL2_10  属性/" itemprop="url">
-                  10 属性
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-05-13T19:45:28+08:00" content="2016-05-13">
-              2016-05-13
-            </time>
-          </span>
-
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2016/05/13/TSPL2_10  属性/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/05/13/TSPL2_10  属性/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <blockquote>
-<p><strong>按从属区分</strong></p>
-</blockquote>
-<table>
-<thead>
-<tr>
-<th><strong>属性类型</strong></th>
-<th><strong>特点</strong></th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>类型属性</td>
-<td>类型本身的属性</td>
-</tr>
-<tr>
-<td>实例属性</td>
-<td>特定类型的实例的属性</td>
-</tr>
-</tbody>
-</table>
-<blockquote>
-<p><strong>按存储数据的方式区分</strong></p>
-</blockquote>
-<table>
-<thead>
-<tr>
-<th><strong>属性类型</strong></th>
-<th><strong>特点</strong></th>
-<th><strong>限制</strong></th>
-<th><strong>定义方式</strong></th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>存储属性</td>
-<td>存储常量或变量作为实例的一部分</td>
-<td>类、结构体</td>
-<td><code>let</code>、<code>var</code></td>
-</tr>
-<tr>
-<td>计算属性</td>
-<td>通过计算获取值的，值是不固定的</td>
-<td>类、结构体、枚举</td>
-<td><code>var</code></td>
-</tr>
-</tbody>
-</table>
-<blockquote>
-<p><strong>计算属性分类</strong></p>
-</blockquote>
-<table>
-<thead>
-<tr>
-<th><strong>计算属性</strong></th>
-<th><strong>特点</strong></th>
-<th><strong>定义方式</strong></th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>读写计算属性</td>
-<td>既可以获取值，也可以设置值</td>
-<td>只提供getter没有setter</td>
-</tr>
-<tr>
-<td>只读计算属性</td>
-<td>总是返回一个值，可以通过点运算符访问，但不能设置新的值。</td>
-<td>同时设置getter和setter</td>
-</tr>
-</tbody>
-</table>
-<h2 id="10-1-存储属性-Stored-Properties"><a href="#10-1-存储属性-Stored-Properties" class="headerlink" title="10.1    存储属性(Stored Properties)"></a>10.1    存储属性(Stored Properties)</h2><table>
-<thead>
-<tr>
-<th><strong>存储属性类型</strong></th>
-<th><strong>定义方式</strong></th>
-<th><strong>特点</strong></th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>变量存储属性</td>
-<td>使用<code>var</code>定义</td>
-<td>可以修改</td>
-</tr>
-<tr>
-<td>常量存储属性</td>
-<td>使用<code>let</code>定义</td>
-<td>初始化后不可修改</td>
-</tr>
-</tbody>
-</table>
-<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//1.声明一个结构体</span></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">FixedLengthRange</span> </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> firstValue:<span class="type">Int</span></span><br><span class="line">    <span class="keyword">let</span> length:<span class="type">Int</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//2.创建结构体实例</span></span><br><span class="line"><span class="keyword">var</span> rangeOfThreeItems = <span class="type">FixedLengthRange</span>(firstValue: <span class="number">0</span>, length: <span class="number">3</span>)</span><br><span class="line"><span class="comment">//3.修改结构体实例的变量存储属性</span></span><br><span class="line">rangeOfThreeItems.firstValue = <span class="number">6</span></span><br></pre></td></tr></table></figure>
-<h3 id="10-1-1-常量结构体实例和常量类实例的存储属性"><a href="#10-1-1-常量结构体实例和常量类实例的存储属性" class="headerlink" title="10.1.1    常量结构体实例和常量类实例的存储属性"></a>10.1.1    常量结构体实例和常量类实例的存储属性</h3><blockquote>
-<p><strong>说明：</strong>创建了一个结构体的实例并将其赋值给一个常量，则无法修改该实例的任何属性，即使定义了变量存储属性</p>
-</blockquote>
-<table>
-<thead>
-<tr>
-<th><strong>特指</strong></th>
-<th><strong>被赋值给常量</strong></th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>结构体(struct)实例</td>
-<td>它的所有属性（包括<code>var</code>声明的）也就成了常量。</td>
-</tr>
-<tr>
-<td>类(class)实例</td>
-<td>仍然可以修改实例的变量属性（<code>var</code>）</td>
-</tr>
-</tbody>
-</table>
-<h3 id="10-1-2-延迟存储属性"><a href="#10-1-2-延迟存储属性" class="headerlink" title="10.1.2    延迟存储属性"></a>10.1.2    延迟存储属性</h3><blockquote>
-<p><strong>关键字：</strong><code>lazy</code><br><strong>说明：</strong>第一次被调用的时候才会计算其初始值的属性<br><strong>注意：</strong>必须将延迟存储属性声明为变量(<code>var</code>)，因为常量属性在构造完成之前必须要有初始值，延迟属性不能保证这一点。<br><strong>应用</strong>：</p>
-<ol>
-<li>当属性的值依赖于在实例的构造过程结束前无法知道具体值的外部因素时</li>
-<li>当属性的值需要复杂或大量计算时</li>
-</ol>
-</blockquote>
-<pre><code>class DataImporter {
-    /*
-    DataImporter是一个将外部文件中的数据导入的类。这个类的初始化会消耗不少时间。
-    */
-    var fileName = &quot;data.txt&quot;;
-}
-
-class DataManager {
-    lazy var impoter = DataImporter()
-    var data = [String]()
-    //这里提供数据管理功能
-}
-let manager = DataManager()
-manager.data.append(&quot;Some data&quot;)
-manager.data.append(&quot;Some more data&quot;)
-//DataImporter实例的importer属性还没有被创建
-
-println(manager.impoter.fileName)//DataImporter的实例现在被创建了，输出&quot;data.txt&quot;
-</code></pre><h3 id="10-1-3-存储属性和实例变量"><a href="#10-1-3-存储属性和实例变量" class="headerlink" title="10.1.3    存储属性和实例变量"></a>10.1.3    存储属性和实例变量</h3><blockquote>
-<p>说明：<code>swift</code>的属性没有对应的实例变量，属性的后端存储也无法直接访问。</p>
-</blockquote>
-<h2 id="10-2-计算属性"><a href="#10-2-计算属性" class="headerlink" title="10.2    计算属性"></a>10.2    计算属性</h2><blockquote>
-<p><strong>说明：</strong>计算属性不直接存储值，而是提供一个 <code>getter</code> 和一个可选的 <code>setter</code>，来间接获取和设置其他属性或变量的值。</p>
-<ul>
-<li>定义<code>getter</code>计算并返回属性值</li>
-<li>定义可选的<code>setter</code>间接设置其它属性或变量的值。</li>
-</ul>
-<p><strong>注意</strong>:创建实例时可以不必为计算属性赋值，因为计算属性并不存储值，而是通过计算动态得出的。</p>
-</blockquote>
-<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">Point</span> </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> x = <span class="number">0.0</span>,y = <span class="number">0.0</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">Size</span> </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> width = <span class="number">0.0</span>, height = <span class="number">0.0</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">Rect</span> </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> origin = <span class="type">Point</span>()</span><br><span class="line">    <span class="keyword">var</span> size = <span class="type">Size</span>()</span><br><span class="line">	</span><br><span class="line">	<span class="comment">//计算属性</span></span><br><span class="line">    <span class="keyword">var</span> center:<span class="type">Point</span>&#123;</span><br><span class="line">        <span class="keyword">get</span>&#123;</span><br><span class="line">            <span class="keyword">let</span> centerX = origin.x + (size.width / <span class="number">2</span>)</span><br><span class="line">            <span class="keyword">let</span> centerY = origin.y + (size.height / <span class="number">2</span>)</span><br><span class="line">            <span class="keyword">return</span> <span class="type">Point</span>(x:centerX, y:centerY)</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">set</span>(newCenter)&#123;</span><br><span class="line">            origin.x = newCenter.x - (size.width / <span class="number">2</span>)</span><br><span class="line">            origin.y = newCenter.y - (size.height / <span class="number">2</span>)</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">var</span> square = <span class="type">Rect</span>(origin: <span class="type">Point</span>(x:<span class="number">15.0</span>,y:<span class="number">0.0</span>), size: <span class="type">Size</span>(width: <span class="number">10.0</span>, height: <span class="number">10.0</span>))</span><br><span class="line"><span class="keyword">let</span> initialSquareCenter = <span class="type">Point</span>(x:<span class="number">15.0</span>, y:<span class="number">15.0</span>)</span><br><span class="line"><span class="built_in">println</span>(<span class="string">"Square.origin is now at (\(square.origin.x),\(square.origin.y))"</span>)</span><br></pre></td></tr></table></figure>
-<h3 id="10-2-1-便捷setter声明"><a href="#10-2-1-便捷setter声明" class="headerlink" title="10.2.1    便捷setter声明"></a>10.2.1    便捷setter声明</h3><blockquote>
-<p><strong>说明</strong>:如果计算属性的<code>setter</code>没有定义标识新值的参数名，则可以使用默认名称<code>newValue</code>。</p>
-</blockquote>
-<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//不使用便捷setter声明</span></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">Rect</span> </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> origin = <span class="type">Point</span>()</span><br><span class="line">    <span class="keyword">var</span> size = <span class="type">Size</span>()</span><br><span class="line">    <span class="keyword">var</span> center:<span class="type">Point</span>&#123;</span><br><span class="line">        <span class="keyword">get</span>&#123;</span><br><span class="line">            <span class="keyword">let</span> centerX = origin.x + (size.width / <span class="number">2</span>)</span><br><span class="line">            <span class="keyword">let</span> centerY = origin.y + (size.height / <span class="number">2</span>)</span><br><span class="line">            <span class="keyword">return</span> <span class="type">Point</span>(x:centerX, y:centerY)</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">set</span>(newCenter)&#123;</span><br><span class="line">            origin.x = newCenter.x - (size.width / <span class="number">2</span>)</span><br><span class="line">            origin.y = newCenter.y - (size.height / <span class="number">2</span>)</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//使用便捷setter声明</span></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">AlternativeRect</span> </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> origin = <span class="type">Point</span>()</span><br><span class="line">    <span class="keyword">var</span> size = <span class="type">Size</span>()</span><br><span class="line">    <span class="keyword">var</span> center:<span class="type">Point</span>&#123;</span><br><span class="line">        <span class="keyword">get</span>&#123;</span><br><span class="line">            <span class="keyword">let</span> centerX = origin.x + (size.width / <span class="number">2</span>)</span><br><span class="line">            <span class="keyword">let</span> centerY = origin.y + (size.height / <span class="number">2</span>)</span><br><span class="line">            <span class="keyword">return</span> <span class="type">Point</span>(x:centerX, y:centerY)</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">set</span>&#123;</span><br><span class="line">            origin.x = newValue.x - (size.width / <span class="number">2</span>)</span><br><span class="line">            origin.y = newValue.y - (size.height / <span class="number">2</span>)</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">```	</span><br><span class="line"></span><br><span class="line">### <span class="number">10.2</span>.<span class="number">2</span> 只读计算属性</span><br><span class="line">&gt;**说明：**只有 `getter` 没有 `setter` 的计算属性就是只读计算属性</span><br><span class="line">&gt;**用途**：当一个属性的值完全只需要计算得出而不需要设置值时。</span><br><span class="line"></span><br><span class="line">```swift</span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">Cuboid</span> </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> width = <span class="number">0.0</span>, height = <span class="number">0.0</span>, depth = <span class="number">0.0</span></span><br><span class="line">    <span class="keyword">var</span> volume:<span class="type">Double</span>&#123;</span><br><span class="line">        <span class="keyword">return</span> width * height * depth</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">let</span> fourByFiveByTwo = <span class="type">Cuboid</span>(width: <span class="number">4.0</span>, height: <span class="number">5.0</span>, depth: <span class="number">2.0</span>)</span><br><span class="line"><span class="built_in">println</span>(<span class="string">"the volume of fourByFiveByTwo is 40.0"</span>)</span><br></pre></td></tr></table></figure>
-<h2 id="10-3-属性观察器"><a href="#10-3-属性观察器" class="headerlink" title="10.3    属性观察器"></a>10.3    属性观察器</h2><blockquote>
-<p><strong>说明：</strong>属性观察器监控和响应属性值的变化，每次属性被设置值的时候都会调用属性观察器，甚至新值和当前值相同的时候也不例外。</p>
-</blockquote>
-<h3 id="10-3-1-哪些属性可以定义属性观察器？"><a href="#10-3-1-哪些属性可以定义属性观察器？" class="headerlink" title="10.3.1    哪些属性可以定义属性观察器？"></a>10.3.1    哪些属性可以定义属性观察器？</h3><table>
-<thead>
-<tr>
-<th><strong>可以设置属性观察器</strong></th>
-<th><strong>不可以设置属性观察器</strong></th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>结构体、类的静态(类型)属性和实例属性</td>
-<td>类无法重载的计算属性</td>
-</tr>
-<tr>
-<td>类继承的属性</td>
-<td>延迟存储属性</td>
-</tr>
-</tbody>
-</table>
-<blockquote>
-<p><strong>注意</strong>：不需要为无法重载的计算属性添加属性观察器，因为可以通过<code>setter</code>直接监控和响应值的变化。</p>
-</blockquote>
-<h3 id="10-3-2-属性观察器有哪几种？"><a href="#10-3-2-属性观察器有哪几种？" class="headerlink" title="10.3.2    属性观察器有哪几种？"></a>10.3.2    属性观察器有哪几种？</h3><table>
-<thead>
-<tr>
-<th>属性观察器</th>
-<th>调用时机</th>
-<th>参数</th>
-<th>参数默认名</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code>willSet</code></td>
-<td>在设置新的值之前调用</td>
-<td>新的属性的值</td>
-<td>newValue</td>
-</tr>
-<tr>
-<td><code>didSet</code></td>
-<td>在新的值被设置之后被调用</td>
-<td>旧的属性值</td>
-<td>oldValue</td>
-</tr>
-</tbody>
-</table>
-<blockquote>
-<p><strong>注意</strong>：<code>willSet</code>和<code>didSet</code>观察器只会当属性的值在初始化之外的地方被设置时调用。</p>
-</blockquote>
-<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">StepCounter</span> </span>&#123;</span><br><span class="line">	    <span class="comment">//定义一个属性及其属性观察器</span></span><br><span class="line">    <span class="keyword">var</span> totalSteps:<span class="type">Int</span> = <span class="number">0</span>&#123;</span><br><span class="line">        <span class="comment">//在设置新值之前调用</span></span><br><span class="line">        <span class="keyword">willSet</span>(newTotalSteps)&#123;</span><br><span class="line">            <span class="built_in">println</span>(<span class="string">"About to set totalSteps to \(newTotalSteps)"</span>)</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">//在新值被设置之后调用</span></span><br><span class="line">        <span class="keyword">didSet</span>&#123;</span><br><span class="line">            <span class="keyword">if</span> totalSteps &gt; oldValue&#123;</span><br><span class="line">                <span class="built_in">println</span>(<span class="string">"aDDED \(totalSteps - oldValue) steps"</span>)</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">let</span> stepCounter = <span class="type">StepCounter</span>()</span><br><span class="line">stepCounter.totalSteps = <span class="number">200</span></span><br><span class="line"><span class="comment">//About to set totalSteps to 200</span></span><br><span class="line"><span class="comment">//Added 200 steps</span></span><br></pre></td></tr></table></figure>
-<h2 id="10-4-全局变量和局部变量"><a href="#10-4-全局变量和局部变量" class="headerlink" title="10.4 全局变量和局部变量"></a>10.4 全局变量和局部变量</h2><table>
-<thead>
-<tr>
-<th><em>**</em></th>
-<th>全局变量</th>
-<th>局部变量</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><strong>定义</strong></td>
-<td>函数、方法、闭包或任何类型之外定义的变量</td>
-<td>函数、方法或必包内部定义的变量</td>
-</tr>
-<tr>
-<td><strong>默认是否延迟计算</strong></td>
-<td>是</td>
-<td>否（除非使用<code>lazy</code>）</td>
-</tr>
-<tr>
-<td><strong>是否可以定义计算属性</strong></td>
-<td>是</td>
-<td>是</td>
-</tr>
-<tr>
-<td><strong>是否可以为存储型变量定义观察器</strong></td>
-<td>是</td>
-<td>是</td>
-</tr>
-</tbody>
-</table>
-<h2 id="10-5-类型属性"><a href="#10-5-类型属性" class="headerlink" title="10.5    类型属性"></a>10.5    类型属性</h2><blockquote>
-<p><strong>用途</strong>：用于定义特定类型所有实例共享的数据。<br><strong>注意</strong>：必须给存储类型属性设置默认值，因为类型本身无法在初始化过程中使用构造函器给类型属性赋值。<br><strong>说明：</strong>无论创建了多少个该类型的实例，这些属性都只有唯一一份。这种属性就是类型属性。</p>
-</blockquote>
-<table>
-<thead>
-<tr>
-<th>分类</th>
-<th>存储型类型属性</th>
-<th>计算型类型属性</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>可以定义该类型属性的类型</td>
-<td><code>struct</code>、<code>enum</code></td>
-<td><code>struct</code>、<code>enum</code>、<code>class</code></td>
-</tr>
-<tr>
-<td>可以为变量或常量</td>
-<td>变量、常量</td>
-<td>变量</td>
-</tr>
-<tr>
-<td>是否需要指定默认值</td>
-<td>是</td>
-<td>否</td>
-</tr>
-</tbody>
-</table>
-<h3 id="10-5-1-类型属性语法"><a href="#10-5-1-类型属性语法" class="headerlink" title="10.5.1  类型属性语法"></a>10.5.1  类型属性语法</h3><blockquote>
-<p><strong>说明：</strong>使用关键字static来定义类型属性。在为类定义计算型类型属性时，可以改用关键字class来支持子类对父类的实现进行重写</p>
-</blockquote>
-<table>
-<thead>
-<tr>
-<th>定义类型属性的关键字</th>
-<th>使用类型</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code>static</code></td>
-<td>值类型（结构体、枚举）</td>
-</tr>
-<tr>
-<td><code>class</code></td>
-<td>类</td>
-</tr>
-</tbody>
-</table>
-<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//结构体</span></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">SomeStructure</span> </span>&#123;</span><br><span class="line">    <span class="comment">//存储型类型属性</span></span><br><span class="line">    <span class="keyword">static</span> <span class="keyword">var</span> storedTypeProperty = <span class="string">"Some value"</span></span><br><span class="line">    </span><br><span class="line">    <span class="comment">//计算型类型属性（只读）</span></span><br><span class="line">    <span class="keyword">static</span> <span class="keyword">var</span> computedTypeProperty:<span class="type">Int</span>&#123;</span><br><span class="line">        <span class="comment">//这里返回一个int值</span></span><br><span class="line">        <span class="keyword">return</span> <span class="number">0</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//枚举类型</span></span><br><span class="line"><span class="class"><span class="keyword">enum</span> <span class="title">SomeEnumeration</span></span>&#123;</span><br><span class="line">    <span class="keyword">static</span> <span class="keyword">var</span> storedTypeProperty = <span class="string">"Some value"</span>  </span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//类</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">SomeClass</span></span>&#123;</span><br><span class="line">    <span class="class"><span class="keyword">class</span> <span class="title">var</span> <span class="title">computedTypeProperty</span>:<span class="title">Int</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="number">0</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h3 id="10-5-2-获取和设置类型属性的值"><a href="#10-5-2-获取和设置类型属性的值" class="headerlink" title="10.5.2  获取和设置类型属性的值"></a>10.5.2  获取和设置类型属性的值</h3><blockquote>
-<p><strong>说明：</strong><code>类型名.类型属性</code></p>
-</blockquote>
-<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">AudioChannel</span> </span>&#123;</span><br><span class="line">    <span class="keyword">static</span> <span class="keyword">let</span> thresholdLevel = <span class="number">10</span></span><br><span class="line">    <span class="keyword">static</span> <span class="keyword">var</span> maxInputLevelForAllChannels = <span class="number">0</span></span><br><span class="line">    <span class="keyword">var</span> currentLevel:<span class="type">Int</span> = <span class="number">0</span> &#123;</span><br><span class="line">        <span class="keyword">didSet</span>&#123;</span><br><span class="line">            <span class="keyword">if</span> currentLevel &gt; <span class="type">AudioChannel</span>.thresholdLevel&#123;</span><br><span class="line">                <span class="comment">//将新电平值设置为阀值</span></span><br><span class="line">                currentLevel = <span class="type">AudioChannel</span>.thresholdLevel</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">if</span> currentLevel &gt; <span class="type">AudioChannel</span>.maxInputLevelForAllChannels&#123;</span><br><span class="line">                <span class="comment">//存储当前电平值作为新的最大输入电平</span></span><br><span class="line">                <span class="type">AudioChannel</span>.maxInputLevelForAllChannels = currentLevel</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> leftChannel = <span class="type">AudioChannel</span>()</span><br><span class="line"><span class="keyword">var</span> rightChannel = <span class="type">AudioChannel</span>()</span><br><span class="line"></span><br><span class="line">leftChannel.currentLevel = <span class="number">7</span></span><br><span class="line"><span class="built_in">println</span>(leftChannel.currentLevel)<span class="comment">//7</span></span><br><span class="line"><span class="built_in">println</span>(<span class="type">AudioChannel</span>.maxInputLevelForAllChannels)<span class="comment">//7</span></span><br></pre></td></tr></table></figure>
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/05/13/TSPL2_09  类和结构体/" itemprop="url">
-                  9 类和结构体
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-05-13T19:44:57+08:00" content="2016-05-13">
-              2016-05-13
-            </time>
-          </span>
-
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2016/05/13/TSPL2_09  类和结构体/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/05/13/TSPL2_09  类和结构体/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h2 id="9-1-类和结构体对比"><a href="#9-1-类和结构体对比" class="headerlink" title="9.1    类和结构体对比"></a>9.1    类和结构体对比</h2><blockquote>
-<p><strong>背景:</strong></p>
-<ol>
-<li>不需要为自定义类和结构创建独立的接口和实现文件，系统会自动生成面向其它代码的外部接口  </li>
-<li>类和结构体的关系比其它语言更加紧密  </li>
-<li>结构体总是通过被复制的方式在代码中传递，因此请不要使用引用计数</li>
-</ol>
-</blockquote>
-<h3 id="相同点"><a href="#相同点" class="headerlink" title="相同点"></a>相同点</h3><ol>
-<li>定义属性用于存储值</li>
-<li>定义方法用于提供功能</li>
-<li>定义附属脚本用于访问值</li>
-<li>定义构造器用于生成初始化值</li>
-<li>通过扩展增加默认实现的功能</li>
-<li>实现协议以提供某种标准功能</li>
-</ol>
-<h3 id="类比结构体多的附加功能"><a href="#类比结构体多的附加功能" class="headerlink" title="类比结构体多的附加功能"></a>类比结构体多的附加功能</h3><ol>
-<li>继承允许一个类继承另一个类的特征</li>
-<li>类型转换允许在运行时检查和解释一个类实例的类型</li>
-<li>解构器允许一个类实例释放任何其所分配的资源</li>
-<li>引用计数允许对一个类的多次引用</li>
-</ol>
-<h3 id="9-1-1-定义"><a href="#9-1-1-定义" class="headerlink" title="9.1.1    定义"></a>9.1.1    定义</h3><blockquote>
-<p><strong>语法：</strong>类和结构体</p>
-</blockquote>
-<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 类</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">SomeClass</span> </span>&#123;</span><br><span class="line">    <span class="comment">// class definition goes here</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 结构体</span></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">SomeStructure</span> </span>&#123;</span><br><span class="line">    <span class="comment">// structure definition goes here</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<blockquote>
-<p><strong>命名风格</strong>：为了将<code>Swift</code>类型和其它标记的命名区分开，命名最好遵从一定规范</p>
-<ol>
-<li>类或结构体的命名必须符合Swift类型的大写命名风格（<code>UpperCamelCase</code>）</li>
-<li>属性和方法命名要符合Swift类型的小写命名风格（<code>lowerCamelCase</code>）</li>
-</ol>
-</blockquote>
-<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//定义一个结构体</span></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">Resolution</span></span>&#123;</span><br><span class="line">    <span class="comment">//包含两个存储属性</span></span><br><span class="line">    <span class="keyword">var</span> width = <span class="number">0</span></span><br><span class="line">    <span class="keyword">var</span> height = <span class="number">0</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//定义一个类</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">VideoMode</span> </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> resolution = <span class="type">Resolution</span>()</span><br><span class="line">    <span class="keyword">var</span> interlaced = <span class="literal">false</span></span><br><span class="line">    <span class="keyword">var</span> frameRate = <span class="number">0.0</span></span><br><span class="line">    <span class="keyword">var</span> name:<span class="type">String</span>?</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h3 id="9-1-2-类和结构体实例"><a href="#9-1-2-类和结构体实例" class="headerlink" title="9.1.2    类和结构体实例"></a>9.1.2    类和结构体实例</h3><blockquote>
-<p><strong>最简单形式</strong>：<code>结构体或者类的类型名称()</code></p>
-<ul>
-<li>属性会被初始化为默认值</li>
-</ul>
-</blockquote>
-<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> someResolution = <span class="type">Resolution</span>()<span class="comment">//创建结构体实例</span></span><br><span class="line"><span class="keyword">let</span> someVideoMode = <span class="type">VideoMode</span>()<span class="comment">//创建类实例</span></span><br></pre></td></tr></table></figure>
-<h3 id="9-1-3-属性访问"><a href="#9-1-3-属性访问" class="headerlink" title="9.1.3    属性访问"></a>9.1.3    属性访问</h3><blockquote>
-<p><strong>说明</strong>：点语法（dot syntax）<br><strong>注意</strong>：Swift允许直接设置结构体属性的<code>子属性</code>（不同于o-c）</p>
-</blockquote>
-<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">println</span>(<span class="string">"The width of someResolution is \(someResolution.width)"</span>)<span class="comment">//访问结构体实例的属性</span></span><br><span class="line">someVideoMode.resolution.width = <span class="number">1280</span><span class="comment">//为结构体的属性的字属性赋值</span></span><br><span class="line"><span class="built_in">println</span>(<span class="string">"The width of someVideoMode is now \(someVideoMode.resolution.width)"</span>)<span class="comment">//访问结构体属性的字属性</span></span><br></pre></td></tr></table></figure>
-<h3 id="9-1-4-结构体类型的成员逐一构造器"><a href="#9-1-4-结构体类型的成员逐一构造器" class="headerlink" title="9.1.4        结构体类型的成员逐一构造器"></a>9.1.4        结构体类型的成员逐一构造器</h3><blockquote>
-<p><strong>说明</strong>：结构体自动生成（类实例没有默认的成员逐一构造器）<br><strong>用途：</strong>始化新结构体实例中成员的属性<br><strong>调用</strong>：将结构体实例中<code>各个属性的初始值</code>，通过<code>属性的名称</code>传递到<code>成员逐一构造器</code>之中</p>
-</blockquote>
-<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 调用逐一成员构造器</span></span><br><span class="line"><span class="keyword">let</span> vga = <span class="type">Resolution</span>(width: <span class="number">640</span>, height: <span class="number">480</span>);</span><br></pre></td></tr></table></figure>
-<h2 id="9-2-结构体和枚举是值类型"><a href="#9-2-结构体和枚举是值类型" class="headerlink" title="9.2    结构体和枚举是值类型"></a>9.2    结构体和枚举是值类型</h2><blockquote>
-<p><strong>值类型特点</strong>：值类型被<code>赋给一个常量(变量)</code>或者被<code>传递给一个函数</code>的时候，实际上操作的是其<code>副本</code>。<br><strong>扩展</strong>：所有<code>基本数据类型</code>在都是通过<code>结构体</code>来实现的。</p>
-</blockquote>
-<table>
-<thead>
-<tr>
-<th>值类型</th>
-<th>引用类型</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>整数(Integer)</td>
-<td>类(Class)</td>
-</tr>
-<tr>
-<td>浮点数(floating-point)</td>
-<td></td>
-</tr>
-<tr>
-<td>布尔值(Booleans)</td>
-<td></td>
-</tr>
-<tr>
-<td>字符串(string)</td>
-<td></td>
-</tr>
-<tr>
-<td>数组(array)</td>
-<td></td>
-</tr>
-<tr>
-<td>字典(directionaries)</td>
-<td></td>
-</tr>
-<tr>
-<td>结构体(struc)</td>
-<td></td>
-</tr>
-<tr>
-<td>枚举(enum)</td>
-</tr>
-</tbody>
-</table>
-<p>&gt;</p>
-<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//结构体是值类型</span></span><br><span class="line"><span class="keyword">let</span> hd = <span class="type">Resolution</span>(width: <span class="number">1920</span>, height: <span class="number">1080</span>)</span><br><span class="line"><span class="keyword">var</span> cinema = hd</span><br><span class="line">cinema.width = <span class="number">2048</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">println</span>(<span class="string">"cinema is now \(cinema.width) pixels wide"</span>)<span class="comment">//2048</span></span><br><span class="line"><span class="built_in">println</span>(<span class="string">"hd is still \(hd.width) pixels wide"</span>)<span class="comment">//1920</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//枚举类型也是值类型</span></span><br><span class="line"><span class="class"><span class="keyword">enum</span> <span class="title">CompassPoint</span></span>&#123;</span><br><span class="line">    <span class="keyword">case</span> <span class="type">North</span>, <span class="type">South</span>, <span class="type">East</span>, <span class="type">West</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">var</span> currentDirection = <span class="type">CompassPoint</span>.<span class="type">West</span></span><br><span class="line"><span class="keyword">let</span> rememberedDirection = currentDirection</span><br><span class="line">currentDirection = .<span class="type">East</span></span><br><span class="line"><span class="keyword">if</span> rememberedDirection == .<span class="type">West</span>&#123;<span class="comment">//拷贝赋值并不影响原始值</span></span><br><span class="line">    <span class="built_in">println</span>(<span class="string">"The remembered direction is still .West"</span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h2 id="9-3-类是引用类型"><a href="#9-3-类是引用类型" class="headerlink" title="9.3    类是引用类型"></a>9.3    类是引用类型</h2><blockquote>
-<p><strong>说明：</strong>被赋予到一个变量、常量或者被传递到一个函数时，引用的是已存在的实例本身而不是其拷贝。<br><strong>注意</strong>：用类型的实例即使被声明为常量，成员的值依然可以改变，因为改变实例的内容并没有改变引用用本身（因为引用不过是个地址）。</p>
-</blockquote>
-<pre><code class="swift"><span class="comment">//创建类实例</span>
-<span class="keyword">let</span> tenEighty = <span class="type">VideoMode</span>()
-tenEighty.resolution = hd
-tenEighty.interlaced = <span class="literal">true</span>
-tenEighty.name = <span class="string">"1080i"</span>
-tenEighty.frameRate = <span class="number">25.0</span>
-
-<span class="keyword">let</span> alseTenEighty = tenEighty
-alseTenEighty.frameRate = <span class="number">30.0</span>
-
-<span class="built_in">println</span>(<span class="string">"The frameRate property of tenEighty is now \(tenEighty.frameRate)"</span>)
-</code></pre>
-<h3 id="9-3-1-恒等运算符"><a href="#9-3-1-恒等运算符" class="headerlink" title="9.3.1    恒等运算符"></a>9.3.1    恒等运算符</h3><blockquote>
-<p><strong>说明：</strong><code>!===</code>、<code>===</code></p>
-</blockquote>
-<table>
-<thead>
-<tr>
-<th>区分</th>
-<th>含义</th>
-<th>说明</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code>===</code></td>
-<td>恒等于</td>
-<td>引用同一个类实例</td>
-</tr>
-<tr>
-<td><code>==</code></td>
-<td>等于</td>
-<td>两个实例的值<code>相等</code>或<code>相同</code>（遵照设计者定义的评判标准）</td>
-</tr>
-</tbody>
-</table>
-<h3 id="9-3-2-指针"><a href="#9-3-2-指针" class="headerlink" title="9.3.2    指针"></a>9.3.2    指针</h3><blockquote>
-<p><strong>说明：</strong>引用类似c中的指针（swift没有指针），区别于指针，引用的特点如下</p>
-<ol>
-<li>和其它常量或变量的定义方式相同</li>
-<li>并不直接指向内存中的某个地址</li>
-<li>不要求使用<code>*</code>来表明创建一个引用</li>
-</ol>
-</blockquote>
-<h2 id="9-4-类和结构体的选择"><a href="#9-4-类和结构体的选择" class="headerlink" title="9.4    类和结构体的选择"></a>9.4    类和结构体的选择</h2><blockquote>
-<p><strong>关键区别</strong>：结构体实例总是通过值传递，类实例总是通过引用传递。<br><strong>技巧</strong>：除非是以下情况，绝大多数自定义数据结构都应该该是类，而非结构体。</p>
-<ul>
-<li>封装少量相关简单数据值</li>
-<li>封装的数据会被拷贝，而不是引用</li>
-<li>属性会被拷贝而不是引用</li>
-<li>不需要继承另一个已经存在的类型的属性或者行为</li>
-</ul>
-</blockquote>
-<h2 id="9-5-集合类型的赋值与拷贝行为"><a href="#9-5-集合类型的赋值与拷贝行为" class="headerlink" title="9.5    集合类型的赋值与拷贝行为"></a>9.5    集合类型的赋值与拷贝行为</h2><blockquote>
-<p><strong>集合类型：</strong><code>String</code>，<code>Array</code>和<code>Dictionary</code>（均以结构体的形式实现）<br><strong>说明</strong>：所有以结构体方式实现的数据类型在被赋值给常量（或变量）以及传入函数（或方法）中时，它们的值就会发生拷贝行为。<br><strong>注意</strong>：没必要避免拷贝来保证最有性能，因为在swift会进行相应优化：只有确有必要，实际的拷贝才会执行。<br><strong>扩展：</strong><code>Objective-C</code> 中<code>NSString</code>，<code>NSArray</code>和<code>NSDictionary</code>类型均以类的形式实现，而并非结构体。</p>
-</blockquote>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/05/13/TSPL2_08  枚举类型/" itemprop="url">
-                  8 枚举类型
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-05-13T19:44:27+08:00" content="2016-05-13">
-              2016-05-13
-            </time>
-          </span>
-
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2016/05/13/TSPL2_08  枚举类型/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/05/13/TSPL2_08  枚举类型/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <blockquote>
-<p><strong>说明：</strong>枚举为一组相关的值定义了一个共同的类型，使你可以在你的代码中以类型安全的方式来使用这些值。<br><strong>更加灵活：</strong></p>
-<ul>
-<li><strong>原始值不是必需的：</strong>不必给每一个枚举成员提供一个值（原始值）</li>
-<li><strong>原始值类型：</strong>原始值的类型可以是<code>字符串</code>、<code>字符</code>、<code>整型值</code>或<code>浮点数</code></li>
-<li><strong>关联值：</strong>枚举成员可以指定任意类型的关联值存储到枚举成员中</li>
-</ul>
-<p><strong>一等类型：</strong>采用了很多在传统上只被类（class）所支持的特性</p>
-<ul>
-<li><strong>计算型属性：</strong>用于提供枚举值的附加信息</li>
-<li><strong>实例方法：</strong>用于提供和枚举值相关联的功能</li>
-<li><strong>构造函数：</strong>来提供一个初始值</li>
-<li><strong>动态扩展：</strong>可以在原始实现的基础上扩展它们的功能</li>
-<li><strong>实现协议：</strong>还可以遵守协议（protocols）来提供标准的功能</li>
-</ul>
-</blockquote>
-<h2 id="8-1-枚举语法"><a href="#8-1-枚举语法" class="headerlink" title="8.1    枚举语法"></a>8.1    枚举语法</h2><blockquote>
-<p><strong>语法：</strong>使用<code>enum</code>关键词来创建枚举并且把它们的整个定义放在一对<code>{}</code>内，使用<code>case</code>关键字来定义一个新的枚举成员值。</p>
-<ul>
-<li><strong>没有默认原始值：</strong>枚举成员在被创建时<code>不会被赋予</code>一个<code>默认的整型值</code>(与 C 和 Objective-C 不同)</li>
-<li><strong><code>case</code>后多个成员值：</strong>多个成员值可以出现在同一行上，用<code>,</code>隔开</li>
-<li><strong>枚举类型名：</strong>每个枚举定义了一个全新的类型，它们的名字应该<code>以一个大写字母开头</code>（像 Swift 中其他类型一样）</li>
-<li><strong>省略类型名：</strong>当变量或常量的类型已知是某种枚举类型时时，再次为其赋值可以省略相应枚举类型名。</li>
-</ul>
-</blockquote>
-<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">enum</span> <span class="title">SomeEnumeration</span></span>&#123;</span><br><span class="line">    <span class="keyword">case</span> 成员<span class="number">1</span></span><br><span class="line">    <span class="keyword">case</span> 成员<span class="number">2</span></span><br><span class="line">    ...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// case后一个成员值的情况</span></span><br><span class="line"><span class="class"><span class="keyword">enum</span> <span class="title">CompassPoint</span> </span>&#123;</span><br><span class="line">    <span class="keyword">case</span> <span class="type">North</span></span><br><span class="line">    <span class="keyword">case</span> <span class="type">South</span></span><br><span class="line">    <span class="keyword">case</span> <span class="type">East</span></span><br><span class="line">    <span class="keyword">case</span> <span class="type">West</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// case后多个成员值的情况</span></span><br><span class="line"><span class="class"><span class="keyword">enum</span> <span class="title">Planet</span> </span>&#123;</span><br><span class="line">    <span class="keyword">case</span> <span class="type">Mercury</span>, <span class="type">Venus</span>, <span class="type">Earth</span>, <span class="type">Mars</span>, <span class="type">Jupiter</span>, <span class="type">Saturn</span>, <span class="type">Uranus</span>, <span class="type">Neptune</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 枚举值的声明和赋值</span></span><br><span class="line"><span class="keyword">var</span> directionToHead = <span class="type">CompassPoint</span>.<span class="type">West</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 类型推断</span></span><br><span class="line">directionToHead = .<span class="type">East</span></span><br></pre></td></tr></table></figure>
-<h2 id="8-2-使用switch语句匹配枚举值"><a href="#8-2-使用switch语句匹配枚举值" class="headerlink" title="8.2    使用switch语句匹配枚举值"></a>8.2    使用switch语句匹配枚举值</h2><blockquote>
-<p><strong>注意：</strong>必须穷举所有枚举值的情况（<code>switch</code>的完备性）</p>
-</blockquote>
-<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">directionToHead = .<span class="type">South</span></span><br><span class="line"><span class="keyword">switch</span> directionToHead &#123;</span><br><span class="line">    <span class="keyword">case</span> .<span class="type">North</span>:</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">"Lots of planets have a north"</span>)</span><br><span class="line">    <span class="keyword">case</span> .<span class="type">South</span>:</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">"watch out for penguins"</span>)</span><br><span class="line">    <span class="keyword">case</span> .<span class="type">East</span>:</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">"Where the sun rises"</span>)</span><br><span class="line">    <span class="keyword">case</span> .<span class="type">West</span>:</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">"Where the skies are blue"</span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h2 id="8-3-关联值"><a href="#8-3-关联值" class="headerlink" title="8.3    关联值"></a>8.3    关联值</h2><blockquote>
-<p><strong>说明：</strong>连同成员值一起存储额外的自定义信息。</p>
-<ul>
-<li>每次在代码中使用该枚举成员时，还可以用不同的关联值</li>
-<li>可以定义 Swift 枚举来存储任意类型的关联值</li>
-</ul>
-<p><strong>语法：</strong><code>case 成员名(关联值1类型, 关联值1类型, ...)</code></p>
-</blockquote>
-<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 码</span></span><br><span class="line"><span class="class"><span class="keyword">enum</span> <span class="title">Barcode</span> </span>&#123;</span><br><span class="line">    <span class="comment">// 条形码</span></span><br><span class="line">    <span class="keyword">case</span> <span class="type">UPCA</span>(<span class="type">Int</span>, <span class="type">Int</span>, <span class="type">Int</span>, <span class="type">Int</span>)</span><br><span class="line">    <span class="comment">// 二维码</span></span><br><span class="line">    <span class="keyword">case</span> <span class="type">QRCode</span>(<span class="type">String</span>)</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 条形码</span></span><br><span class="line"><span class="keyword">var</span> productBarcode = <span class="type">Barcode</span>.<span class="type">UPCA</span>(<span class="number">8</span>, <span class="number">85909</span>, <span class="number">51226</span>, <span class="number">3</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment">// 二维码</span></span><br><span class="line">productBarcode = .<span class="type">QRCode</span>(<span class="string">"ABCDEFGHIJKLMNOP"</span>)</span><br></pre></td></tr></table></figure>
-<h3 id="提取关联值"><a href="#提取关联值" class="headerlink" title="提取关联值"></a>提取关联值</h3><blockquote>
-<p><strong>说明：</strong>可以在<code>switch</code>语句中提取一个枚举值的关联值。<br><strong>语法：</strong>需要声明提取关联值到常量（<code>let</code>）还是变量（<code>var</code>）</p>
-</blockquote>
-<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">switch</span> 枚举值 &#123;</span><br><span class="line">    <span class="keyword">case</span> .枚举成员<span class="number">1</span>(<span class="keyword">let</span> 关联值<span class="number">1</span>, ...)</span><br><span class="line">    ...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<blockquote>
-<p><strong>技巧：</strong>当一个<code>enum</code>值关联的所有关联值都想提取为<code>let</code>或<code>var</code>时，为了简洁，可以只在成员名称前标注一个<code>let</code>或者<code>var</code></p>
-</blockquote>
-<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 通过switch提取关联值</span></span><br><span class="line"><span class="keyword">switch</span> productBarcode &#123;</span><br><span class="line">    <span class="keyword">case</span> .<span class="type">UPCA</span>(<span class="keyword">let</span> numberSystem, <span class="keyword">let</span> manufacturer, <span class="keyword">let</span> product, <span class="keyword">let</span> check):</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">"UPC-A:\(numberSystem), \(manufacturer), \(product), \(check)"</span>)</span><br><span class="line">    <span class="keyword">case</span> .<span class="type">QRCode</span>(<span class="keyword">let</span> productCode):</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">"QR code:\(productCode)."</span>)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 简写（仅用于所有关联值都要提取为为常量或变量时）:在成员名前标注一个let或var</span></span><br><span class="line"><span class="keyword">switch</span> productBarcode &#123;</span><br><span class="line">    <span class="keyword">case</span> <span class="keyword">let</span> .<span class="type">UPCA</span>(numberSystem, manufacturer, product, check):</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">"UPC-A: \(numberSystem), \(manufacturer), \(product), \(check)."</span>)</span><br><span class="line">    <span class="keyword">case</span> <span class="keyword">let</span> .<span class="type">QRCode</span>(productCode):</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">"QR code: \(productCode)."</span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h2 id="8-4-原始值"><a href="#8-4-原始值" class="headerlink" title="8.4    原始值"></a>8.4    原始值</h2><blockquote>
-<p><strong>说明：</strong>枚举成员都可以有一个默认值，也叫原始值</p>
-<ul>
-<li>原始值的类型必须相同</li>
-<li>原始值可以是<code>字符串</code>，<code>字符</code>，或者<code>任意整型值</code>或<code>浮点型值</code></li>
-</ul>
-<p><strong>注意：</strong><code>原始值</code>和<code>关联值</code>不要混淆</p>
-</blockquote>
-<table>
-<thead>
-<tr>
-<th>区分对象</th>
-<th>设置的时间</th>
-<th>是否可以改变</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>关联值</td>
-<td>创建一个基于枚举成员的常量或变量时</td>
-<td>是</td>
-</tr>
-<tr>
-<td>原始值</td>
-<td>定义枚举类型时</td>
-<td>否</td>
-</tr>
-</tbody>
-</table>
-<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">enum</span> <span class="title">ASCIIControlCharacter</span>: <span class="title">Character</span> </span>&#123;</span><br><span class="line">    <span class="keyword">case</span> <span class="type">Tab</span> = <span class="string">"\t"</span></span><br><span class="line">    <span class="keyword">case</span> <span class="type">LineFeed</span> = <span class="string">"\n"</span></span><br><span class="line">    <span class="keyword">case</span> <span class="type">CarriageReturn</span> = <span class="string">"\r"</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h3 id="8-4-1-原始值的隐式赋值"><a href="#8-4-1-原始值的隐式赋值" class="headerlink" title="8.4.1    原始值的隐式赋值"></a>8.4.1    原始值的隐式赋值</h3><blockquote>
-<p><strong>说明：</strong>在使用原始值为<code>整数</code>或者<code>字符串类型</code>的枚举时，不需要显式地为每一个枚举成员设置原始值，Swift 将会自动为你赋值。</p>
-</blockquote>
-<h4 id="原始值为整数"><a href="#原始值为整数" class="headerlink" title="原始值为整数"></a>原始值为整数</h4><blockquote>
-<ul>
-<li>隐式赋值的值依次递增1</li>
-<li>如果第一个枚举成员没有设置原始值，其原始值将为0</li>
-</ul>
-</blockquote>
-<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 原始值的隐式赋值</span></span><br><span class="line"><span class="comment">// 星球（带有Int型原始值）</span></span><br><span class="line"><span class="class"><span class="keyword">enum</span> <span class="title">Planet</span>: <span class="title">Int</span> </span>&#123;</span><br><span class="line">    <span class="keyword">case</span> <span class="type">Mercury</span> = <span class="number">1</span>, <span class="type">Venus</span>, <span class="type">Earth</span>, <span class="type">Mars</span>, <span class="type">Jupiter</span>, <span class="type">Saturn</span>, <span class="type">Uranus</span>, <span class="type">Neptune</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 访问原始值</span></span><br><span class="line"><span class="keyword">let</span> earthsOrder = <span class="type">Planet</span>.<span class="type">Earth</span>.rawValue</span><br></pre></td></tr></table></figure>
-<h4 id="原始值为字符串"><a href="#原始值为字符串" class="headerlink" title="原始值为字符串"></a>原始值为字符串</h4><blockquote>
-<p><strong>说明：</strong>每个枚举成员的隐式原始值为该枚举成员的名称</p>
-</blockquote>
-<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 指南针（带有String类型）</span></span><br><span class="line"><span class="class"><span class="keyword">enum</span> <span class="title">CompassPoint</span>: <span class="title">String</span> </span>&#123;</span><br><span class="line">    <span class="keyword">case</span> <span class="type">North</span>, <span class="type">South</span>, <span class="type">East</span>, <span class="type">West</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">let</span> sunsetDirection = <span class="type">CompassPoint</span>.<span class="type">West</span>.rawValue</span><br></pre></td></tr></table></figure>
-<h3 id="8-4-2-使用原始值初始化枚举实例"><a href="#8-4-2-使用原始值初始化枚举实例" class="headerlink" title="8.4.2    使用原始值初始化枚举实例"></a>8.4.2    使用原始值初始化枚举实例</h3><blockquote>
-<p><strong>说明：</strong>在定义枚举类型的时候使用了<code>原始值</code>，那么将会自动获得一个初始化方法<br><strong>调用初始化方法：</strong><code>枚举类型名(rawValue: 原始值)</code></p>
-<ul>
-<li><strong>参数：</strong>接收一个叫做<code>rawValue</code>的参数，参数类型即为原始值类型</li>
-<li><strong>返回值（可选型）：</strong><code>枚举成员</code>或<code>nil</code></li>
-</ul>
-</blockquote>
-<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 星球（带有Int型原始值）</span></span><br><span class="line"><span class="class"><span class="keyword">enum</span> <span class="title">Planet</span>: <span class="title">Int</span> </span>&#123;</span><br><span class="line">    <span class="keyword">case</span> <span class="type">Mercury</span> = <span class="number">1</span>, <span class="type">Venus</span>, <span class="type">Earth</span>, <span class="type">Mars</span>, <span class="type">Jupiter</span>, <span class="type">Saturn</span>, <span class="type">Uranus</span>, <span class="type">Neptune</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 使用原始值初始化枚举实例</span></span><br><span class="line"><span class="keyword">let</span> passiblePlanet = <span class="type">Planet</span>(rawValue: <span class="number">7</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment">// 枚举的可失败构造器</span></span><br><span class="line"><span class="keyword">let</span> positionToFind = <span class="number">9</span></span><br><span class="line"><span class="keyword">if</span> <span class="keyword">let</span> somePlanet = <span class="type">Planet</span>(rawValue: positionToFind) &#123;</span><br><span class="line">    <span class="keyword">switch</span> somePlanet &#123;</span><br><span class="line">    <span class="keyword">case</span> .<span class="type">Earth</span>:</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">"Mostly harmless"</span>)</span><br><span class="line">    <span class="keyword">default</span>:</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">"Not a safe place for humans"</span>)</span><br><span class="line">    &#125;</span><br><span class="line">&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">"There isn't a planet at position \(positionToFind)"</span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h2 id="8-5-递归枚举"><a href="#8-5-递归枚举" class="headerlink" title="8.5    递归枚举"></a>8.5    递归枚举</h2><blockquote>
-<p><strong>说明：</strong>是一种特殊的枚举类型</p>
-<ul>
-<li>有一个或多个枚举成员<code>使用该枚举类型的实例作为关联值</code></li>
-<li>使用递归枚举时，编译器会插入一个间接层</li>
-<li>可以在枚举成员前加上<code>indirect</code>来表示该成员可递归</li>
-</ul>
-</blockquote>
-<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 表达式</span></span><br><span class="line"><span class="class"><span class="keyword">enum</span> <span class="title">ArithmeticExpression</span> </span>&#123;</span><br><span class="line">    <span class="comment">// 纯数字</span></span><br><span class="line">    <span class="keyword">case</span> <span class="type">Number</span>(<span class="type">Int</span>)</span><br><span class="line">    <span class="comment">// 两个表达式的和</span></span><br><span class="line">    <span class="keyword">indirect</span> <span class="keyword">case</span> <span class="type">Addition</span>(<span class="type">ArithmeticExpression</span>, <span class="type">ArithmeticExpression</span>)</span><br><span class="line">    <span class="comment">// 两个表达式的积</span></span><br><span class="line">    <span class="keyword">indirect</span> <span class="keyword">case</span> <span class="type">Multiplication</span>(<span class="type">ArithmeticExpression</span>, <span class="type">ArithmeticExpression</span>)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 对表达式进行处理的函数</span></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">evaluate</span><span class="params">(expression: ArithmeticExpression)</span></span> -&gt; <span class="type">Int</span> &#123;</span><br><span class="line">    <span class="keyword">switch</span> expression &#123;</span><br><span class="line">        <span class="keyword">case</span> .<span class="type">Number</span>(<span class="keyword">let</span> value):</span><br><span class="line">            <span class="keyword">return</span> value</span><br><span class="line">        <span class="keyword">case</span> .<span class="type">Addition</span>(<span class="keyword">let</span> <span class="keyword">left</span>, <span class="keyword">let</span> <span class="keyword">right</span>):</span><br><span class="line">            <span class="keyword">return</span> evaluate(<span class="keyword">left</span>) + evaluate(<span class="keyword">right</span>)</span><br><span class="line">        <span class="keyword">case</span> .<span class="type">Multiplication</span>(<span class="keyword">let</span> <span class="keyword">left</span>, <span class="keyword">let</span> <span class="keyword">right</span>):</span><br><span class="line">            <span class="keyword">return</span> evaluate(<span class="keyword">left</span>) * evaluate(<span class="keyword">right</span>)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 计算 (5 + 4) * 2</span></span><br><span class="line"><span class="keyword">let</span> five = <span class="type">ArithmeticExpression</span>.<span class="type">Number</span>(<span class="number">5</span>)</span><br><span class="line"><span class="keyword">let</span> four = <span class="type">ArithmeticExpression</span>.<span class="type">Number</span>(<span class="number">4</span>)</span><br><span class="line"><span class="keyword">let</span> sum = <span class="type">ArithmeticExpression</span>.<span class="type">Addition</span>(five, four)</span><br><span class="line"><span class="keyword">let</span> product = <span class="type">ArithmeticExpression</span>.<span class="type">Multiplication</span>(sum, <span class="type">ArithmeticExpression</span>.<span class="type">Number</span>(<span class="number">2</span>))</span><br><span class="line"><span class="built_in">print</span>(evaluate(product))</span><br></pre></td></tr></table></figure>
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
@@ -2702,7 +2209,7 @@ alseTenEighty.frameRate = <span class="number">30.0</span>
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">94</span>
+              <span class="site-state-item-count">98</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -2712,7 +2219,7 @@ alseTenEighty.frameRate = <span class="number">30.0</span>
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">12</span>
+                <span class="site-state-item-count">13</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>

@@ -1,0 +1,648 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="React Native开发指南," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1" />
+
+
+
+
+
+
+<meta name="description" content="2.1 React Native 是如何工作的？2.1.1 React 的一个特 点:Virtual DOM用途：执行 Virtual DOM 的计算,减少浏览器 DOM 的重复渲染潜力：潜力在于提供了强大的抽象能力。在开 发者的代码与实际的渲染之间加入一个抽象层,这带来了很多可能性。
+2.1.2 React Native 工作原理
+调用 Objective-C 的 API 去渲染 iOS 组件">
+<meta property="og:type" content="article">
+<meta property="og:title" content="2 React Native 工作原理(React Native开发指南)">
+<meta property="og:url" content="http://laputa-er.github.io/2016/09/19/RN开发指南_2 React Native 工作原理/index.html">
+<meta property="og:site_name" content="Sean">
+<meta property="og:description" content="2.1 React Native 是如何工作的？2.1.1 React 的一个特 点:Virtual DOM用途：执行 Virtual DOM 的计算,减少浏览器 DOM 的重复渲染潜力：潜力在于提供了强大的抽象能力。在开 发者的代码与实际的渲染之间加入一个抽象层,这带来了很多可能性。
+2.1.2 React Native 工作原理
+调用 Objective-C 的 API 去渲染 iOS 组件">
+<meta property="og:image" content="http://o6ul1xz4z.bkt.clouddn.com/img/1473752946136.png">
+<meta property="og:image" content="http://o6ul1xz4z.bkt.clouddn.com/img/1473753026098.png">
+<meta property="og:image" content="http://o6ul1xz4z.bkt.clouddn.com/img/1473753275389.png">
+<meta property="og:image" content="http://o6ul1xz4z.bkt.clouddn.com/img/1473753282710.png">
+<meta property="og:updated_time" content="2016-09-19T03:30:34.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="2 React Native 工作原理(React Native开发指南)">
+<meta name="twitter:description" content="2.1 React Native 是如何工作的？2.1.1 React 的一个特 点:Virtual DOM用途：执行 Virtual DOM 的计算,减少浏览器 DOM 的重复渲染潜力：潜力在于提供了强大的抽象能力。在开 发者的代码与实际的渲染之间加入一个抽象层,这带来了很多可能性。
+2.1.2 React Native 工作原理
+调用 Objective-C 的 API 去渲染 iOS 组件">
+<meta name="twitter:image" content="http://o6ul1xz4z.bkt.clouddn.com/img/1473752946136.png">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Muse',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 0,
+      author: '博主'
+    }
+  };
+</script>
+
+
+
+
+  <link rel="canonical" href="http://laputa-er.github.io/2016/09/19/RN开发指南_2 React Native 工作原理/"/>
+
+  <title> 2 React Native 工作原理(React Native开发指南) | Sean </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">Sean</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">笔记分享</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                2 React Native 工作原理(React Native开发指南)
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-09-19T11:05:24+08:00" content="2016-09-19">
+              2016-09-19
+            </time>
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/09/19/RN开发指南_2 React Native 工作原理/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/09/19/RN开发指南_2 React Native 工作原理/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="2-1-React-Native-是如何工作的？"><a href="#2-1-React-Native-是如何工作的？" class="headerlink" title="2.1 React Native 是如何工作的？"></a>2.1 React Native 是如何工作的？</h2><h3 id="2-1-1-React-的一个特-点-Virtual-DOM"><a href="#2-1-1-React-的一个特-点-Virtual-DOM" class="headerlink" title="2.1.1 React 的一个特 点:Virtual DOM"></a>2.1.1 React 的一个特 点:Virtual DOM</h3><p><strong>用途：</strong>执行 Virtual DOM 的计算,减少浏览器 DOM 的重复渲染<br><strong>潜力：</strong>潜力在于提供了强大的抽象能力。在开 发者的代码与实际的渲染之间加入一个抽象层,这带来了很多可能性。<br><img src="http://o6ul1xz4z.bkt.clouddn.com/img/1473752946136.png" alt="Alt text"></p>
+<h3 id="2-1-2-React-Native-工作原理"><a href="#2-1-2-React-Native-工作原理" class="headerlink" title="2.1.2 React Native 工作原理"></a>2.1.2 React Native 工作原理</h3><ul>
+<li>调用 Objective-C 的 API 去渲染 iOS 组件</li>
+<li>调用 Java 接口去渲染 Android 组件</li>
+</ul>
+<p><img src="http://o6ul1xz4z.bkt.clouddn.com/img/1473753026098.png" alt="Alt text"></p>
+<h2 id="2-2-渲染周期"><a href="#2-2-渲染周期" class="headerlink" title="2.2 渲染周期"></a>2.2 渲染周期</h2><p><strong>说明：</strong> <code>React</code>的<br><strong>注意：</strong>至于 <code>React Native</code>,生命周期与 <code>React</code> 基本相同,但渲染过程有一些区别<br><strong>React 组件挂载过程</strong><br><img src="http://o6ul1xz4z.bkt.clouddn.com/img/1473753275389.png" alt="Alt text"></p>
+<p><strong>React 组件重新渲染过程</strong><br><img src="http://o6ul1xz4z.bkt.clouddn.com/img/1473753282710.png" alt="Alt text"></p>
+<h2 id="2-3-在React-Native中创建组件"><a href="#2-3-在React-Native中创建组件" class="headerlink" title="2.3 在React Native中创建组件"></a>2.3 在React Native中创建组件</h2><h3 id="2-3-1-编写视图"><a href="#2-3-1-编写视图" class="headerlink" title="2.3.1 编写视图"></a>2.3.1 编写视图</h3><p><strong>DEMO：</strong><a href="https://github.com/facebook/react- native#examples" target="_blank" rel="external">https://github.com/facebook/react- native#examples</a><br><strong>web与React Native 基础元素比较</strong></p>
+<table>
+<thead>
+<tr>
+<th>React</th>
+<th>React Native</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>&lt;div&gt;</code></td>
+<td><code>&lt;View&gt;</code></td>
+</tr>
+<tr>
+<td><code>&lt;span&gt;</code></td>
+<td><code>&lt;Text&gt;</code></td>
+</tr>
+<tr>
+<td><code>&lt;li&gt;,&lt;ul&gt;</code></td>
+<td><code>&lt;ListView&gt;</code></td>
+</tr>
+<tr>
+<td><code>&lt;img&gt;</code></td>
+<td><code>&lt;Image&gt;</code></td>
+</tr>
+</tbody>
+</table>
+<p><strong>其他组件则是平台特定的</strong><br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"> &lt;DatePickerIOS</span><br><span class="line">       date=&#123;<span class="keyword">this</span>.state.date&#125;</span><br><span class="line">       mode=<span class="string">"date"</span></span><br><span class="line">       timeZoneOffsetInMinutes=&#123;<span class="keyword">this</span>.state.timeZoneOffsetInHours * <span class="number">60</span>&#125;</span><br><span class="line">/&gt;</span><br></pre></td></tr></table></figure></p>
+<h3 id="2-3-2-使用-JSX"><a href="#2-3-2-使用-JSX" class="headerlink" title="2.3.2 使用 JSX"></a>2.3.2 使用 JSX</h3><p><code>JSX 认为减少心智负担比文件分离更有用</code><br><strong>说明：</strong>与 <code>React</code> 中相一致,<code>React Native</code> 也是通过编写 <code>JSX</code> 来设计视图,并将视图标记和控制逻辑 组合在一起成为一个文件</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"> <span class="keyword">var</span> HelloMessage = React.createClass(&#123;</span><br><span class="line">       displayName: <span class="string">"HelloMessage"</span>,</span><br><span class="line">       render: <span class="function"><span class="keyword">function</span> <span class="title">render</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">         <span class="keyword">return</span> React.createElement(</span><br><span class="line"><span class="string">"div"</span>, <span class="literal">null</span>,</span><br><span class="line">   React Native工作原理</span><br><span class="line">| <span class="number">9</span></span><br><span class="line"><span class="string">"Hello "</span>,</span><br><span class="line">           <span class="keyword">this</span>.props.name</span><br><span class="line">         );</span><br><span class="line">&#125; &#125;);</span><br><span class="line">React.render(React.createElement(HelloMessage, &#123; name: <span class="string">"Bonnie"</span> &#125;), mountNode);</span><br></pre></td></tr></table></figure>
+<h3 id="2-3-3-原生组件的样式"><a href="#2-3-3-原生组件的样式" class="headerlink" title="2.3.3 原生组件的样式"></a>2.3.3 原生组件的样式</h3><p><strong>DEMO：</strong><a href="https:// github.com/facebook/react-native/tree/master/Examples/UIExplorer" target="_blank" rel="external">https:// github.com/facebook/react-native/tree/master/Examples/UIExplorer</a><br><strong>说明：</strong><code>React</code> 和宿主平台之间的“桥接”包含了一 个<code>缩减版 CSS 子集</code>的实现。这个 <code>CSS</code>子集主要通过 <code>flexbox</code>进行布局,做到了尽量简单 化,而不是去实现所有的 <code>CSS</code> 规则。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 定义一个样式。 </span></span><br><span class="line"><span class="keyword">var</span> style = &#123;</span><br><span class="line">	backgroundColor: <span class="string">'white'</span>,</span><br><span class="line">    fontSize: <span class="string">'16px'</span></span><br><span class="line">&#125;;</span><br><span class="line"><span class="comment">// 然后使用它。 var tv = (</span></span><br><span class="line">&lt;Text style=&#123;style&#125;&gt;</span><br><span class="line">  A styled Text</span><br><span class="line">&lt;<span class="regexp">/Text&gt;);</span></span><br></pre></td></tr></table></figure>
+<h2 id="2-4-宿主平台接口"><a href="#2-4-宿主平台接口" class="headerlink" title="2.4 宿主平台接口"></a>2.4 宿主平台接口</h2><p><strong>注意：</strong><code>React Native</code> 的“桥接”不可能暴露宿主平台全部的接口。如果你需要使用一 个未支持的特性,完全可以自己动手添加到 <code>React Native</code> 中</p>
+<h2 id="2-5-小结"><a href="#2-5-小结" class="headerlink" title="2.5 小结"></a>2.5 小结</h2><p><strong>说明：</strong>使用 React Native 为移动应用编写组件与 Web 环境的 React 相比有一些不同</p>
+<ul>
+<li>JSX 是强制使 用的</li>
+<li>通过创建组件的方式来开发基本模块</li>
+<li>通过使用 CSS 的子集编写内联语句的方式来编写样式</li>
+</ul>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/React-Native开发指南/" rel="tag">#React Native开发指南</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/09/19/RN开发指南_1 初识 React Native/" rel="next" title="1 初识 React Native(React Native开发指南)">
+                <i class="fa fa-chevron-left"></i> 1 初识 React Native(React Native开发指南)
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/09/19/RN开发指南_3 构建你的第一个应用/" rel="prev" title="3 构建你的第一个应用(React Native开发指南)">
+                3 构建你的第一个应用(React Native开发指南) <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2016/09/19/RN开发指南_2 React Native 工作原理/"
+           data-title="2 React Native 工作原理(React Native开发指南)" data-url="http://laputa-er.github.io/2016/09/19/RN开发指南_2 React Native 工作原理/">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.gif"
+               alt="Sean" />
+          <p class="site-author-name" itemprop="name">Sean</p>
+          <p class="site-description motion-element" itemprop="description">整理了一批过去一段时间ios相关的笔记，其它的笔记也整理下？源码分享出来？再说吧...反正也只有自己会看吧...</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">98</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">13</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#2-1-React-Native-是如何工作的？"><span class="nav-text">2.1 React Native 是如何工作的？</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#2-1-1-React-的一个特-点-Virtual-DOM"><span class="nav-text">2.1.1 React 的一个特 点:Virtual DOM</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-1-2-React-Native-工作原理"><span class="nav-text">2.1.2 React Native 工作原理</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-2-渲染周期"><span class="nav-text">2.2 渲染周期</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-3-在React-Native中创建组件"><span class="nav-text">2.3 在React Native中创建组件</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#2-3-1-编写视图"><span class="nav-text">2.3.1 编写视图</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-3-2-使用-JSX"><span class="nav-text">2.3.2 使用 JSX</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-3-3-原生组件的样式"><span class="nav-text">2.3.3 原生组件的样式</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-4-宿主平台接口"><span class="nav-text">2.4 宿主平台接口</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-5-小结"><span class="nav-text">2.5 小结</span></a></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Sean</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Muse
+  </a>
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"lapuda-er"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+    <script src="/vendors/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
+    <script src="/js/src/hook-duoshuo.js"></script>
+  
+
+
+
+
+
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

@@ -238,6 +238,1360 @@
             
               
                 
+                <a class="post-title-link" href="/2016/05/09/8 数组/" itemprop="url">
+                  8 数组
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-05-09T18:48:30+08:00" content="2016-05-09">
+              2016-05-09
+            </time>
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/05/09/8 数组/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/05/09/8 数组/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <blockquote>
+<p><strong>变量：</strong>变量分为两种</p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>分类</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>标量（scalar）</td>
+<td>标亮具有保存单一数据项的能力</td>
+</tr>
+<tr>
+<td>聚合（aggregate）</td>
+<td>存储数值的集合（数组(array)和结构(structure)）</td>
+</tr>
+</tbody>
+</table>
+<h2 id="8-1-一维数组"><a href="#8-1-一维数组" class="headerlink" title="8.1    一维数组"></a>8.1    一维数组</h2><blockquote>
+<p><strong>说明：</strong>数组是含有多个数据值的数据结构，并且每个数据之具有相同的数据类型。这些数据类型的值被称为元素（element）。<br><strong>声明数组：</strong>需要说明数组元素的<code>类型</code>(任何类型)和<code>数量</code>（任何整数常量表达式）。</p>
+</blockquote>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> a[<span class="number">10</span>];</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p><strong>技巧：</strong>因为程序后面变化时可能需要调整数组的长度，所以较好的方法是用宏来定义数组的长度。</p>
+</blockquote>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">define</span> N 10</span></span><br><span class="line"><span class="keyword">int</span> a[N];</span><br></pre></td></tr></table></figure>
+<h3 id="8-1-1-数组下标"><a href="#8-1-1-数组下标" class="headerlink" title="8.1.1    数组下标"></a>8.1.1    数组下标</h3><blockquote>
+<p><strong>说明：</strong>为了存取特定的数组元素，可以在写数组名的同时在后迷呐加上一个用方括号围绕的整数值（称这是对数组进行下标（subsvripting）或索引（indexing））。<br><strong>注意：</strong></p>
+<ul>
+<li><code>a[i]</code>的表达式格式是左值，所以数组元素可以和普通变量一样使用</li>
+<li>在调用scanf函数读取数组元素时，就像对待普通变量一样，必须使用取地址符号<code>&amp;</code>。</li>
+<li>c语言不要求检查下标的范围，当下标超出范围时，程序可能执行不可预知的行为。</li>
+</ul>
+</blockquote>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> a[<span class="number">10</span>], i;</span><br><span class="line"><span class="comment">//对某些编译器来说，这个表面上正确的for语句却产生了一个无限循环</span></span><br><span class="line"><span class="comment">//如果i在内存中的位置在a[9]后面，那么修改a[10]其实是修改了i，使i变为0</span></span><br><span class="line"><span class="keyword">for</span>(i = <span class="number">0</span>; i &lt; <span class="number">10</span>; i++)&#123;</span><br><span class="line">		a[i] = <span class="number">0</span>;	</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p><strong>技巧：</strong>避免数组下标的副作用。</p>
+</blockquote>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//不确定的做法</span></span><br><span class="line"><span class="keyword">while</span>(i &lt; N)&#123;</span><br><span class="line">	a[i] = b[i++];<span class="comment">//i有可能会在复制发生之前就进行自增，导致两个数组错位</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//安全的做法</span></span><br><span class="line"><span class="keyword">for</span>(i = <span class="number">0</span>; i &lt; N; i++)&#123;</span><br><span class="line">	a[i] = b[i];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">a[<span class="number">0</span>] = <span class="number">1</span>;</span><br><span class="line"><span class="built_in">printf</span>(<span class="string">"%d\n"</span>, a[<span class="number">5</span>]);</span><br><span class="line">++a[i];</span><br><span class="line"></span><br><span class="line"><span class="comment">//清空数组</span></span><br><span class="line"><span class="keyword">for</span>(i = <span class="number">0</span>; i &lt; N; i++)&#123;</span><br><span class="line">	a[i] = <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//读取数组元素</span></span><br><span class="line"><span class="keyword">for</span>(i = <span class="number">0</span>; i &lt; N; i++)&#123;</span><br><span class="line">	<span class="built_in">scanf</span>(<span class="string">"%d"</span>, &amp;a[i]);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//求和</span></span><br><span class="line"><span class="keyword">for</span>(i = <span class="number">0</span>; i &lt; N; i++)&#123;</span><br><span class="line">	sun += a[i];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="8-1-2-程序：数列反向"><a href="#8-1-2-程序：数列反向" class="headerlink" title="8.1.2    程序：数列反向"></a>8.1.2    程序：数列反向</h3><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span><br><span class="line"> * Reverse a series of numbers</span><br><span class="line"> */</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"> <span class="meta">#<span class="meta-keyword">define</span> N 10</span></span><br><span class="line"> <span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line"> 	<span class="keyword">int</span> a[N], i;</span><br><span class="line"></span><br><span class="line"> 	<span class="built_in">printf</span>(<span class="string">"Enter %d numbers:"</span>, N);</span><br><span class="line"> 	<span class="keyword">for</span> (i = <span class="number">0</span>; i &lt; N; ++i)&#123;</span><br><span class="line"> 		<span class="built_in">scanf</span>(<span class="string">"%d"</span>, &amp;a[i]);</span><br><span class="line"> 	&#125;</span><br><span class="line"> 	<span class="built_in">printf</span>(<span class="string">"In reverse order:"</span>);</span><br><span class="line"> 	<span class="keyword">for</span>(i = N<span class="number">-1</span>; i &gt;= <span class="number">0</span>; --i)&#123;</span><br><span class="line"></span><br><span class="line"> 		<span class="built_in">printf</span>(<span class="string">" %d"</span>, a[i]);</span><br><span class="line"> 	&#125;</span><br><span class="line"> 	<span class="built_in">printf</span>(<span class="string">"\n"</span>);</span><br><span class="line"></span><br><span class="line"> 	return <span class="number">0</span>;</span><br><span class="line"> &#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">$ ./reverse</span><br><span class="line"> Enter 10 numbers:10</span><br><span class="line"> 9</span><br><span class="line"> 8</span><br><span class="line"> 7</span><br><span class="line"> 6</span><br><span class="line"> 5</span><br><span class="line"> 4</span><br><span class="line"> 3</span><br><span class="line"> 2</span><br><span class="line"> 1</span><br><span class="line"> In reverse order: 1 2 3 4 5 6 7 8 9 10</span><br></pre></td></tr></table></figure>
+<h3 id="8-1-3-数组初始化"><a href="#8-1-3-数组初始化" class="headerlink" title="8.1.3    数组初始化"></a>8.1.3    数组初始化</h3><blockquote>
+<p><strong>常量表达式列表规则：</strong></p>
+<ul>
+<li>列表用<code>{}</code>括起来，内部数值用<code>,</code>分隔</li>
+<li>初始化式完全为空或比数组长度长是非法的，但可以比数组短，此时数组中生育的元素赋值为0</li>
+</ul>
+</blockquote>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//完整的格式</span></span><br><span class="line"><span class="keyword">int</span> a[<span class="number">10</span>] = &#123;<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>,<span class="number">6</span>,<span class="number">7</span>,<span class="number">8</span>,<span class="number">9</span>,<span class="number">10</span>&#125;;</span><br><span class="line"></span><br><span class="line"><span class="comment">//省略数组的长度，此时编译器会利用初始化式的长度确定数组的大小</span></span><br><span class="line"><span class="keyword">int</span> a[] = &#123;<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>,<span class="number">6</span>,<span class="number">7</span>,<span class="number">8</span>,<span class="number">9</span>,<span class="number">10</span>&#125;;</span><br><span class="line"></span><br><span class="line"><span class="comment">//初始化式比数组长度短</span></span><br><span class="line"><span class="keyword">int</span> a[<span class="number">10</span>] = &#123;<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>,<span class="number">6</span>&#125;;<span class="comment">//&#123;1,2,3,4,5,6,0,0,0,0&#125;;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//全部数组元素初始化为0</span></span><br><span class="line"><span class="keyword">int</span> a[<span class="number">10</span>] = &#123;<span class="number">0</span>&#125;;<span class="comment">//&#123;0,0,0,0,0,0,0,0,0,0&#125;</span></span><br></pre></td></tr></table></figure>
+<h3 id="8-1-4-程序：检查数中重复出现的数字"><a href="#8-1-4-程序：检查数中重复出现的数字" class="headerlink" title="8.1.4    程序：检查数中重复出现的数字"></a>8.1.4    程序：检查数中重复出现的数字</h3><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span><br><span class="line"> * Checks numbers for repeated digits</span><br><span class="line"> */</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"> <span class="meta">#<span class="meta-keyword">define</span> TRUE 1</span></span><br><span class="line"> <span class="meta">#<span class="meta-keyword">define</span> FALSE 0</span></span><br><span class="line"></span><br><span class="line"> <span class="keyword">typedef</span> <span class="keyword">int</span> Bool;</span><br><span class="line"></span><br><span class="line"> <span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line"> 	Bool digit_seen[<span class="number">10</span>] = &#123;<span class="number">0</span>&#125;;</span><br><span class="line"> 	<span class="keyword">int</span> digit;</span><br><span class="line"> 	<span class="keyword">long</span> <span class="keyword">int</span> n;</span><br><span class="line"></span><br><span class="line"> 	<span class="built_in">printf</span>(<span class="string">"Enter a number:"</span>);</span><br><span class="line"> 	<span class="built_in">scanf</span>(<span class="string">"%ld"</span>, &amp;n);</span><br><span class="line"></span><br><span class="line"> 	<span class="keyword">while</span>(n &gt; <span class="number">0</span>)&#123;</span><br><span class="line"> 		<span class="comment">//取个位数</span></span><br><span class="line"> 		digit  = n % <span class="number">10</span>;</span><br><span class="line"> 		<span class="comment">//检查个位数是不是已经有过一个了，是的话终止循环</span></span><br><span class="line"> 		<span class="keyword">if</span>(digit_seen[digit])&#123;</span><br><span class="line"> 			<span class="keyword">break</span>;</span><br><span class="line"> 		&#125;</span><br><span class="line"> 		<span class="comment">//以当前个位数作为索引将对应数字元素的值改为TRUE</span></span><br><span class="line"> 		digit_seen[digit] = TRUE;</span><br><span class="line"> 		n /= <span class="number">10</span>;</span><br><span class="line"> 	&#125;</span><br><span class="line"> 	<span class="keyword">if</span>(n&gt;<span class="number">0</span>)&#123;</span><br><span class="line"> 		<span class="comment">//n&gt;0说明至少有一个数字发生了重复</span></span><br><span class="line"> 		<span class="built_in">printf</span>(<span class="string">"Repeated digit\n\n"</span>);</span><br><span class="line"> 	&#125;<span class="keyword">else</span>&#123;</span><br><span class="line"> 		<span class="built_in">printf</span>(<span class="string">"No repeated digit\n\n"</span>);</span><br><span class="line"> 	&#125;</span><br><span class="line"> 	return <span class="number">0</span>;</span><br><span class="line"> &#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">./repdigit </span><br><span class="line">Enter a number:12345677</span><br><span class="line">Repeated digit</span><br></pre></td></tr></table></figure>
+<h3 id="8-1-5-对数组使用sizeof运算符"><a href="#8-1-5-对数组使用sizeof运算符" class="headerlink" title="8.1.5    对数组使用sizeof运算符"></a>8.1.5    对数组使用sizeof运算符</h3><blockquote>
+<p><strong>用途：</strong></p>
+<ul>
+<li>计算数组的字节数</li>
+<li>计算数组中每个元素的字节数</li>
+<li>利用上面的结果计算数组的长度</li>
+</ul>
+</blockquote>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span>(i = <span class="number">0</span>; i &lt; <span class="keyword">sizeof</span>(a) / <span class="keyword">sizeof</span>(a[<span class="number">10</span>]); i++)&#123;</span><br><span class="line">  a[i] = <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p><strong>利用宏：</strong>简化用sizeof计算数组长度。更加有效的方式是使用带参数的宏。</p>
+</blockquote>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">define</span> SIZE (sizeof(a) / sizeof(a[0]))</span></span><br><span class="line"><span class="keyword">for</span>(i = <span class="number">0</span>; i &lt; SIZE; i++)&#123;</span><br><span class="line">  a[i] = <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="8-1-6-程序：计算利息"><a href="#8-1-6-程序：计算利息" class="headerlink" title="8.1.6    程序：计算利息"></a>8.1.6    程序：计算利息</h3><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span><br><span class="line"> * Prints a table of compound interest</span><br><span class="line"> */</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"> <span class="meta">#<span class="meta-keyword">define</span> NUM_RATES (sizeof(value) / sizeof(value[0]))</span></span><br><span class="line"> <span class="meta">#<span class="meta-keyword">define</span> INITIAL_BALANCE 100.00</span></span><br><span class="line"></span><br><span class="line"> <span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line"> 	<span class="keyword">int</span> i, low_rate, num_years, year;</span><br><span class="line"> 	<span class="keyword">float</span> value[<span class="number">5</span>];</span><br><span class="line"></span><br><span class="line"> 	<span class="built_in">printf</span>(<span class="string">"Enter interest rate:"</span>);</span><br><span class="line"> 	<span class="built_in">scanf</span>(<span class="string">"%d"</span>, &amp;low_rate);</span><br><span class="line"> 	<span class="built_in">printf</span>(<span class="string">"Enter number of years:"</span>);</span><br><span class="line"> 	<span class="built_in">scanf</span>(<span class="string">"%d"</span>, &amp;num_years);</span><br><span class="line"></span><br><span class="line"> 	<span class="comment">//表格标题行</span></span><br><span class="line"> 	<span class="built_in">printf</span>(<span class="string">"\nYears"</span>);</span><br><span class="line"> 	<span class="keyword">for</span>(i = <span class="number">0</span>; i &lt; NUM_RATES; i++)&#123;</span><br><span class="line"> 		<span class="built_in">printf</span>(<span class="string">"%6d%%"</span>, low_rate + i);<span class="comment">//两个%%代表要显示%字符串</span></span><br><span class="line"> 		value[i] = INITIAL_BALANCE;</span><br><span class="line"> 	&#125;</span><br><span class="line"> 	<span class="built_in">printf</span>(<span class="string">"\n"</span>);</span><br><span class="line"> 	<span class="comment">//各个利率下逐年100美金的价值</span></span><br><span class="line"> 	<span class="keyword">for</span>(year = <span class="number">1</span>; year &lt;= num_years; year++)&#123;</span><br><span class="line"> 		<span class="built_in">printf</span>(<span class="string">"%3d    "</span>, year);</span><br><span class="line"> 		<span class="keyword">for</span>(i = <span class="number">0</span>; i &lt; NUM_RATES; i++)&#123;</span><br><span class="line"> 			value[i] += (low_rate+i) / <span class="number">100.0</span> * value[i];</span><br><span class="line"> 			<span class="built_in">printf</span>(<span class="string">"%7.2f"</span>, value[i]);</span><br><span class="line"> 		&#125;</span><br><span class="line"> 		<span class="built_in">printf</span>(<span class="string">"\n"</span>);	</span><br><span class="line"> 	&#125;</span><br><span class="line"> 	return <span class="number">0</span>;</span><br><span class="line"> &#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">$ ./interest                            </span><br><span class="line"> Enter interest rate:5</span><br><span class="line"> Enter number of years:6</span><br><span class="line"></span><br><span class="line"> Years     5%     6%     7%     8%     9%</span><br><span class="line">  1     105.00 106.00 107.00 108.00 109.00</span><br><span class="line">  2     110.25 112.36 114.49 116.64 118.81</span><br><span class="line">  3     115.76 119.10 122.50 125.97 129.50</span><br><span class="line">  4     121.55 126.25 131.08 136.05 141.16</span><br><span class="line">  5     127.63 133.82 140.26 146.93 153.86</span><br><span class="line">  6     134.01 141.85 150.07 158.69 167.71</span><br></pre></td></tr></table></figure>
+<h2 id="8-2-多维数组"><a href="#8-2-多维数组" class="headerlink" title="8.2    多维数组"></a>8.2    多维数组</h2><blockquote>
+<p><strong>语法：</strong><code>m[i][j]</code><br><strong>注意：</strong>不能把<code>m[i][j]</code>写为<code>m[i, j]</code>。c语言把逗号看成是逗号运算符，所以<code>m[i,j]</code>等同于<code>m[j]</code>。<br><strong>地位：</strong>和其它编程语言中的多位数组相比， c语言中的多位数组扮演的角色相对较弱，这主要是因为c语言为存储多维数组提供了更加灵活的方法：指针数组。</p>
+</blockquote>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">define</span> N 10</span></span><br><span class="line"><span class="keyword">float</span> ident[N][N];</span><br><span class="line"><span class="keyword">int</span> row, col;</span><br><span class="line"><span class="keyword">for</span>(row = <span class="number">0</span>; row &lt; N; row++)&#123;</span><br><span class="line">	<span class="keyword">for</span>(col = <span class="number">0</span>; col &lt; N; col++)&#123;</span><br><span class="line">		<span class="keyword">if</span>(row == col)&#123;</span><br><span class="line">			ident[row][col] = <span class="number">1.0</span>;</span><br><span class="line">		&#125;<span class="keyword">else</span>&#123;</span><br><span class="line">			ident[row][col] = <span class="number">0.0</span>;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="8-2-1-多为数组的初始化"><a href="#8-2-1-多为数组的初始化" class="headerlink" title="8.2.1    多为数组的初始化"></a>8.2.1    多为数组的初始化</h3><blockquote>
+<p><strong>说明：</strong>通过嵌套一维初始化式的方式可以产生二维数组的初始化式。<br><strong>规则：</strong>c 语言提供了多种方法来缩写初始化式。</p>
+<ul>
+<li>如果初始化式不大到足以填满整个多位数组，那么数组中剩余的元素会被赋值为0。</li>
+<li>如果内层的列表不大到足以填满数组的一行，那么慈航的剩余元素会被初始化为0。</li>
+<li>可以忽略掉内层的大括号<br><strong>注意：</strong>在多维数组中忽略掉内层的大括号可能很危险，此外省略括号会引起某些编译器产生警告信息。</li>
+</ul>
+</blockquote>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//行数不足</span></span><br><span class="line"><span class="keyword">int</span> m[<span class="number">5</span>][<span class="number">9</span>] = &#123;&#123;<span class="number">1</span>,<span class="number">1</span>,<span class="number">1</span>,<span class="number">1</span>,<span class="number">1</span>,<span class="number">1</span>,<span class="number">1</span>,<span class="number">1</span>,<span class="number">1</span>&#125;,</span><br><span class="line">			   &#123;<span class="number">1</span>,<span class="number">1</span>,<span class="number">1</span>,<span class="number">1</span>,<span class="number">1</span>,<span class="number">1</span>,<span class="number">1</span>,<span class="number">1</span>,<span class="number">1</span>&#125;,</span><br><span class="line">			   &#123;<span class="number">1</span>,<span class="number">1</span>,<span class="number">1</span>,<span class="number">1</span>,<span class="number">1</span>,<span class="number">1</span>,<span class="number">1</span>,<span class="number">1</span>,<span class="number">1</span>&#125;,</span><br><span class="line">			   &#123;<span class="number">1</span>,<span class="number">1</span>,<span class="number">1</span>,<span class="number">1</span>,<span class="number">1</span>,<span class="number">1</span>,<span class="number">1</span>,<span class="number">1</span>,<span class="number">1</span>&#125;&#125;;</span><br><span class="line"><span class="comment">//列数不足</span></span><br><span class="line"><span class="keyword">int</span> m[<span class="number">5</span>][<span class="number">9</span>] = &#123;&#123;<span class="number">1</span>,<span class="number">1</span>,<span class="number">1</span>,<span class="number">1</span>,<span class="number">1</span>,<span class="number">1</span>&#125;,</span><br><span class="line">			   &#123;<span class="number">1</span>,<span class="number">1</span>,<span class="number">1</span>,<span class="number">1</span>,<span class="number">1</span>,<span class="number">1</span>&#125;,</span><br><span class="line">			   &#123;<span class="number">1</span>,<span class="number">1</span>,<span class="number">1</span>,<span class="number">1</span>,<span class="number">1</span>,<span class="number">1</span>&#125;,</span><br><span class="line">			   &#123;<span class="number">1</span>,<span class="number">1</span>,<span class="number">1</span>,<span class="number">1</span>,<span class="number">1</span>,<span class="number">1</span>&#125;,</span><br><span class="line">			   &#123;<span class="number">1</span>,<span class="number">1</span>,<span class="number">1</span>,<span class="number">1</span>,<span class="number">1</span>,<span class="number">1</span>&#125;&#125;;</span><br><span class="line"><span class="comment">//忽略内层的大括号</span></span><br><span class="line"><span class="keyword">int</span> m[<span class="number">5</span>][<span class="number">9</span>] = &#123;<span class="number">1</span>,<span class="number">1</span>,<span class="number">1</span>,<span class="number">1</span>,<span class="number">1</span>,<span class="number">1</span>,<span class="number">1</span>,<span class="number">1</span>,<span class="number">1</span>,</span><br><span class="line">			   <span class="number">1</span>,<span class="number">1</span>,<span class="number">1</span>,<span class="number">1</span>,<span class="number">1</span>,<span class="number">1</span>,<span class="number">1</span>,<span class="number">1</span>,<span class="number">1</span>,</span><br><span class="line">			   <span class="number">1</span>,<span class="number">1</span>,<span class="number">1</span>,<span class="number">1</span>,<span class="number">1</span>,<span class="number">1</span>,<span class="number">1</span>,<span class="number">1</span>,<span class="number">1</span>,</span><br><span class="line">			   <span class="number">1</span>,<span class="number">1</span>,<span class="number">1</span>,<span class="number">1</span>,<span class="number">1</span>,<span class="number">1</span>,<span class="number">1</span>,<span class="number">1</span>,<span class="number">1</span>,</span><br><span class="line">			   <span class="number">1</span>,<span class="number">1</span>,<span class="number">1</span>,<span class="number">1</span>,<span class="number">1</span>,<span class="number">1</span>,<span class="number">1</span>,<span class="number">1</span>,<span class="number">1</span>&#125;;</span><br></pre></td></tr></table></figure>
+<h3 id="8-2-2-常量数组"><a href="#8-2-2-常量数组" class="headerlink" title="8.2.2    常量数组"></a>8.2.2    常量数组</h3><blockquote>
+<p><strong>语法：</strong><code>const 类型 数组名[]</code><br><strong>说明：</strong>程序不应对声明为<code>const</code>的数组进行修改。</p>
+<ul>
+<li>表明程序不会修改数组</li>
+<li>告知不打算修改数组对编译器发现错误是很有帮助的</li>
+</ul>
+</blockquote>
+<h3 id="8-2-3-发牌"><a href="#8-2-3-发牌" class="headerlink" title="8.2.3    发牌"></a>8.2.3    发牌</h3><blockquote>
+<p><strong>相关函数：</strong></p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>函数</th>
+<th>所属库</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>time</td>
+<td>time.h</td>
+<td>返回当前的时间，且这个时间是被编码成单独的数。</td>
+</tr>
+<tr>
+<td>srand</td>
+<td>stdlib.h</td>
+<td>初始化c语言的随机数生成器</td>
+</tr>
+<tr>
+<td>rand</td>
+<td>stdlib.h</td>
+<td>在每次调用时会产生一个显然随机的数</td>
+</tr>
+</tbody>
+</table>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span><br><span class="line"> * Deals a random hand of cards</span><br><span class="line"> */</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdlib.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;time.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> NUM_SUITS 4</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> NUM_RANKS 13</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> TRUE 1</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span>	FALSE 0</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">typedef</span> <span class="keyword">int</span> Bool;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">	Bool in_hand[NUM_SUITS][NUM_RANKS] = &#123;&#123;<span class="number">0</span>&#125;&#125;;</span><br><span class="line">	<span class="keyword">int</span> num_cards, rank, suit;</span><br><span class="line">	<span class="keyword">const</span> <span class="keyword">char</span> rank_code[] = &#123;<span class="string">'2'</span>,<span class="string">'3'</span>,<span class="string">'4'</span>,<span class="string">'5'</span>,<span class="string">'6'</span>,<span class="string">'7'</span>,<span class="string">'8'</span>,<span class="string">'9'</span>,<span class="string">'t'</span>,<span class="string">'j'</span>,<span class="string">'q'</span>,<span class="string">'k'</span>,<span class="string">'a'</span>&#125;;</span><br><span class="line">	<span class="keyword">const</span> <span class="keyword">char</span> suit_code[] = &#123;<span class="string">'c'</span>, <span class="string">'d'</span>, <span class="string">'s'</span>, <span class="string">'h'</span>&#125;;</span><br><span class="line">	srand((unsigned)time(NULL));</span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">"Enter number of cards in hand:"</span>);</span><br><span class="line">	<span class="built_in">scanf</span>(<span class="string">"%d"</span>, &amp;num_cards);</span><br><span class="line">	</span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">"Your hand:"</span>);</span><br><span class="line">	<span class="keyword">while</span>(num_cards &gt; <span class="number">0</span>)&#123;</span><br><span class="line">		suit = rand() % NUM_SUITS;<span class="comment">//检出随机的花面</span></span><br><span class="line">		rank = rand() % NUM_RANKS;<span class="comment">//检出随机的纸牌等级</span></span><br><span class="line">		<span class="comment">//如果某张牌已经发出去过，则不能再发同样的牌，应当重新发</span></span><br><span class="line">		<span class="keyword">if</span>(!in_hand[suit][rank] == TRUE)&#123;</span><br><span class="line">			in_hand[suit][rank] = TRUE;</span><br><span class="line">			num_cards--;</span><br><span class="line">			<span class="built_in">printf</span>(<span class="string">" %c%c"</span>, rank_code[rank], suit_code[suit]);</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">"\n"</span>);</span><br><span class="line">	return <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ ./deal                        </span><br><span class="line"> Enter number of cards <span class="keyword">in</span> hand:10</span><br><span class="line"> Your hand: 5s 6d th 9c 6s qs 7c 9d kh 2d</span><br></pre></td></tr></table></figure>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2016/05/09/7 基本类型/" itemprop="url">
+                  7 基本类型
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-05-09T18:39:48+08:00" content="2016-05-09">
+              2016-05-09
+            </time>
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/05/09/7 基本类型/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/05/09/7 基本类型/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="7-1-整型"><a href="#7-1-整型" class="headerlink" title="7.1    整型"></a>7.1    整型</h2><blockquote>
+<p><strong>可移植性技巧：</strong>对不超过32767的整数采用int或shaort int，其它情况下使用long int。<br><strong>注意：</strong>不要部分差别地使用长整型，因为长整型操作比较耗时。</p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>整数类型</th>
+<th>说明</th>
+<th>bit（16位机器）</th>
+<th>bit(32位机器)</th>
+<th>数值范围(16位机器)</th>
+<th>数值范围(32位机器)</th>
+<th>有无符号</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>short [signed] int</code></td>
+<td>短整型</td>
+<td>16</td>
+<td>16</td>
+<td>-2^15~2^15-1</td>
+<td>-2^15~2^15-1</td>
+<td>有</td>
+</tr>
+<tr>
+<td><code>short usigned int</code></td>
+<td>无符号短整型</td>
+<td>16</td>
+<td>16</td>
+<td>0~2^16-1</td>
+<td>0~2^16-1</td>
+<td>无</td>
+</tr>
+<tr>
+<td><code>int [signed]</code></td>
+<td>整型</td>
+<td>16</td>
+<td>32</td>
+<td>-2^15~2^15-1</td>
+<td>-2^31~2^31-1</td>
+<td>有</td>
+</tr>
+<tr>
+<td><code>int unsigned</code></td>
+<td>无符号整型</td>
+<td>16</td>
+<td>32</td>
+<td>0~2^16-1</td>
+<td>0~2^32-1</td>
+<td>无</td>
+</tr>
+<tr>
+<td><code>long [signed]</code></td>
+<td>长整型</td>
+<td>32</td>
+<td>32</td>
+<td>-2^31~2^31-1</td>
+<td>-2^31~2^31-1</td>
+<td>有</td>
+</tr>
+<tr>
+<td><code>long unsigned int</code></td>
+<td>无符号长整型</td>
+<td>32</td>
+<td>32</td>
+<td>0~2^32-1</td>
+<td>0~2^32-1</td>
+<td>无</td>
+</tr>
+</tbody>
+</table>
+<h3 id="7-1-1-整型常量"><a href="#7-1-1-整型常量" class="headerlink" title="7.1.1    整型常量"></a>7.1.1    整型常量</h3><h4 id="进制"><a href="#进制" class="headerlink" title="进制"></a>进制</h4><blockquote>
+<p><strong>注意：</strong></p>
+<ol>
+<li>整数都是以二进制形式存储的，不会考虑实际的书写方式</li>
+<li>任何时候都可以从一种书写方式切换到另一种，甚至可以混合使用</li>
+</ol>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>进制</th>
+<th>包含数字</th>
+<th>写法</th>
+<th>举例</th>
+<th>备注</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>十进制</td>
+<td>0~9</td>
+<td>不能以0开头</td>
+<td>15 255</td>
+<td></td>
+</tr>
+<tr>
+<td>八进制</td>
+<td>0~7</td>
+<td>必须以0开头</td>
+<td>017 0377</td>
+<td></td>
+</tr>
+<tr>
+<td>十六进制</td>
+<td>0~9和字母a~f</td>
+<td>字母部分大小写均可</td>
+<td>0xf</td>
+</tr>
+</tbody>
+</table>
+<h4 id="长整型和无符号整型"><a href="#长整型和无符号整型" class="headerlink" title="长整型和无符号整型"></a>长整型和无符号整型</h4><blockquote>
+<p><strong>注意：</strong>默认情况下编译器对处于int类型取值范围内的整数使用int类型，否则使用long int。</p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>后缀</th>
+<th>含义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>U(u)</td>
+<td>指定常量为无符号整型</td>
+</tr>
+<tr>
+<td>L(l)</td>
+<td>指定常量为长整型</td>
+</tr>
+</tbody>
+</table>
+<h3 id="7-1-2-读／写整数"><a href="#7-1-2-读／写整数" class="headerlink" title="7.1.2    读／写整数"></a>7.1.2    读／写整数</h3><blockquote>
+<p><strong>溢出：</strong>当程序付给变量的值太大以至于无法存储在int类型中时，这时值会被处理为不符合预期的值。</p>
+</blockquote>
+<h4 id="printf函数和scanf函数"><a href="#printf函数和scanf函数" class="headerlink" title="printf函数和scanf函数"></a><code>printf</code>函数和<code>scanf</code>函数</h4><p><strong>有符号整数</strong></p>
+<table>
+<thead>
+<tr>
+<th>转换说明符</th>
+<th>类型</th>
+<th>进制</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>%d</td>
+<td>int</td>
+<td>十进制</td>
+</tr>
+<tr>
+<td>%hd</td>
+<td>short signed int</td>
+<td>十进制</td>
+</tr>
+<tr>
+<td>%ld</td>
+<td>long signed int</td>
+<td>十进制</td>
+</tr>
+</tbody>
+</table>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">short</span> <span class="keyword">int</span> s;</span><br><span class="line"><span class="keyword">long</span> <span class="keyword">int</span> l;</span><br><span class="line"><span class="built_in">scanf</span>(<span class="string">"%hd"</span>, &amp;s);<span class="comment">//写：短整型</span></span><br><span class="line"><span class="built_in">scanf</span>(<span class="string">"%ld"</span>, &amp;l);<span class="comment">//写：长整型</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">printf</span>(<span class="string">"%hd"</span>, s);<span class="comment">//读：短整型</span></span><br><span class="line"><span class="built_in">printf</span>(<span class="string">"%ld"</span>, l);<span class="comment">//读：长整型</span></span><br></pre></td></tr></table></figure>
+<p><strong>无符号整数</strong></p>
+<table>
+<thead>
+<tr>
+<th>转换说明符</th>
+<th>类型</th>
+<th>进制</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>%u</td>
+<td>unsigned int</td>
+<td>十进制数字</td>
+</tr>
+<tr>
+<td>%o</td>
+<td>unsigned int</td>
+<td>八进制</td>
+</tr>
+<tr>
+<td>%x</td>
+<td>unsigned int</td>
+<td>十六进制</td>
+</tr>
+</tbody>
+</table>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">unsigned</span> <span class="keyword">int</span> u;</span><br><span class="line"><span class="built_in">scanf</span>(<span class="string">"%u"</span>, %u);<span class="comment">//写：无符号十进制</span></span><br><span class="line"><span class="built_in">printf</span>(<span class="string">"%u"</span>, u);<span class="comment">//读：无符号十进制</span></span><br></pre></td></tr></table></figure>
+<h3 id="7-1-3-程序：数列求和（改进版）"><a href="#7-1-3-程序：数列求和（改进版）" class="headerlink" title="7.1.3    程序：数列求和（改进版）"></a>7.1.3    程序：数列求和（改进版）</h3><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span><br><span class="line"> * Sums a series of numbers</span><br><span class="line"> */</span></span><br><span class="line"></span><br><span class="line"><span class="meta"># <span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">	<span class="keyword">int</span> n, sum = <span class="number">0</span>;</span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">"This program sums a series of intergers.\n"</span>);</span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">"Enter intergers (0 to terminate:)"</span>);</span><br><span class="line"></span><br><span class="line">	<span class="built_in">scanf</span>(<span class="string">"%d"</span>, &amp;n);</span><br><span class="line">	<span class="keyword">while</span>(n != <span class="number">0</span>)&#123;</span><br><span class="line">		sum += n;</span><br><span class="line">		<span class="built_in">scanf</span>(<span class="string">"%d"</span>, &amp;n);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">"The sun is:%d\n"</span>, sum);</span><br><span class="line">	return <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="7-2-浮点数"><a href="#7-2-浮点数" class="headerlink" title="7.2    浮点数"></a>7.2    浮点数</h2><blockquote>
+<p><strong>IEEE浮点标准：</strong></p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>类型</th>
+<th>bit</th>
+<th>最小正数</th>
+<th>最大值</th>
+<th>精度</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>float</td>
+<td>32</td>
+<td>1.17x10^-38</td>
+<td>3.40x10^38</td>
+<td>6个数字</td>
+</tr>
+<tr>
+<td>double</td>
+<td>64</td>
+<td>2.22x0^-308</td>
+<td>1.79x10^308</td>
+<td>15个数字</td>
+</tr>
+<tr>
+<td>long float</td>
+<td>>=43</td>
+<td>未说明</td>
+<td>未说明</td>
+<td>未说明</td>
+</tr>
+<tr>
+<td>long double</td>
+<td>>=79</td>
+<td>未说明</td>
+<td>未说明</td>
+<td>未说明</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p><strong>c语言浮点数：</strong></p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>浮点数</th>
+<th>说明</th>
+<th>适用</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>float</td>
+<td>单精度浮点数</td>
+<td>当精度要求不严格时，float类型是很适合的类型</td>
+</tr>
+<tr>
+<td>double</td>
+<td>双精度浮点数</td>
+<td>提供更高的精度，适合绝大多数</td>
+</tr>
+<tr>
+<td>long double</td>
+<td>扩展双精度浮点数</td>
+<td>支持极高精度的要求，很少会用到</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p><strong>注意：</strong></p>
+<ol>
+<li>long double类型没有出现在IEEE标准中，其长度随机器的不同而变化，最常通用的尺寸是80位和128位</li>
+</ol>
+</blockquote>
+<h3 id="7-2-1-浮点常量"><a href="#7-2-1-浮点常量" class="headerlink" title="7.2.1    浮点常量"></a>7.2.1    浮点常量</h3><blockquote>
+<p><strong>语法：</strong>必须包含小数点或指数<br><strong>举个栗子：</strong>57.0的多种写法</p>
+</blockquote>
+<p><code>57.0</code> <code>57.</code> <code>57.0e0</code> <code>57E0</code> <code>5.7e1</code> <code>5.7e+1</code> <code>.57e2</code> <code>570.e-1</code></p>
+<blockquote>
+<p><strong>存储方式：</strong></p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>情景</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>默认情况</td>
+<td><code>double</code></td>
+</tr>
+<tr>
+<td><code>浮点常量F(f)</code></td>
+<td><code>float</code></td>
+</tr>
+<tr>
+<td><code>浮点常量L(l)</code></td>
+<td><code>long double</code></td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p><strong>注意：</strong><code>double</code>类型的值在使用时，如果需要会自动转换为<code>float</code>类型的值。</p>
+</blockquote>
+<h3 id="7-2-2-读-些浮点数"><a href="#7-2-2-读-些浮点数" class="headerlink" title="7.2.2    读/些浮点数"></a>7.2.2    读/些浮点数</h3><table>
+<thead>
+<tr>
+<th>浮点类型</th>
+<th>读</th>
+<th>写</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>float</td>
+<td><code>%e</code> <code>%f</code> <code>%g</code></td>
+<td><code>%e</code> <code>%f</code> <code>%g</code></td>
+</tr>
+<tr>
+<td>double</td>
+<td><code>%e</code> <code>%f</code> <code>%g</code></td>
+<td><code>%le</code> <code>%lf</code> <code>%lg</code></td>
+</tr>
+<tr>
+<td>long double</td>
+<td><code>%Le</code> <code>%Lf</code> <code>%Lg</code></td>
+<td><code>%Le</code> <code>%Lf</code> <code>%Lg</code></td>
+</tr>
+</tbody>
+</table>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">double</span> d;</span><br><span class="line"><span class="built_in">scanf</span>(<span class="string">"%lf"</span>, &amp;d);</span><br><span class="line"></span><br><span class="line"><span class="keyword">long</span> <span class="keyword">double</span> ld;</span><br><span class="line"><span class="built_in">scanf</span>(<span class="string">"%Lf"</span>, &amp;ld);</span><br><span class="line"><span class="built_in">printf</span>(<span class="string">"%Lf"</span>, ld);</span><br></pre></td></tr></table></figure>
+<h2 id="7-3-字符型"><a href="#7-3-字符型" class="headerlink" title="7.3    字符型"></a>7.3    字符型</h2><blockquote>
+<p><strong>char：</strong><code>Q&amp;A</code> <code>char</code>类型的值可以根据计算机的不同而不同，因为不同的机器可能会有不同的字符集。<br><strong>ASCII字符集：</strong>用7位代码表示128个字符，一些计算机把ASCII码扩展为8位代码以便可以表示256个字符。<br><strong>字符常量：</strong>字符常量需要用单引号括起来，而不是双引号。<br><strong>将<code>char</code>当作整数：</strong>c语言会按小整数的方式处理字符，毕竟所有字符都是以二进制的形式进行编码的。在ASCII码中，字符的取值范围是0000000(0)~1111111(127)。</p>
+<blockquote>
+<p><strong>优点：</strong>利用字符和数相同的属性灵活处理字符，例如<code>for(ch = &#39;A&#39;; ch &lt;= &#39;Z&#39;; ch++) ...</code><br><strong>缺点：</strong></p>
+<ol>
+<li>导致编译器无法检查出的多种编程错误</li>
+<li>编写出诸如<code>&#39;a&#39; * &#39;b&#39; / &#39;c&#39;</code>这类无意义的表达式</li>
+<li>妨碍程序的可移植性（因为程序可能会基于一些对字符集的假设）</li>
+</ol>
+</blockquote>
+<p><strong>有符号和无符号</strong></p>
+<blockquote>
+<p><strong>编译器行为：</strong>一些编译器按照有符号数据(-128~127)处理<code>char</code>，另一些则为无符号(0~255)<code>char</code>。设置有些编译器允许程序员通过编译器选项选择<code>char</code>时有符号型还是无符号型<br><strong>可移植性技巧：</strong>用<code>signed char</code>或<code>unsigned char</code>代替<code>char</code>。</p>
+</blockquote>
+</blockquote>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">char</span> ch;</span><br><span class="line"><span class="keyword">int</span> i;</span><br><span class="line">i = <span class="string">'a'</span>;<span class="comment">//i is now 97</span></span><br><span class="line">ch = <span class="number">65</span>;<span class="comment">//ch is now 'A'</span></span><br><span class="line">ch = ch + <span class="number">1</span>;<span class="comment">//ch is now 'B'</span></span><br><span class="line">ch++;<span class="comment">//ch is now 'C'</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//如果ch时小写字母，转为大写字母</span></span><br><span class="line"><span class="keyword">if</span>(<span class="string">'a'</span> &lt;= ch &amp;&amp; ch &lt;= <span class="string">'z'</span>)&#123;</span><br><span class="line">	ch = ch - <span class="string">'a'</span> + <span class="string">'A'</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="7-3-1-转义序列"><a href="#7-3-1-转义序列" class="headerlink" title="7.3.1    转义序列"></a>7.3.1    转义序列</h3><blockquote>
+<p><strong>用途：</strong>c语言为了处理字符集中的每一个字符，提供了<code>转义字符</code>用来表示一些不可见或无法从键盘输入的字符。<br><strong>字符转义字符：</strong>没有包含所有无法打印的ASCII字符，只包含了最常用的字符。</p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>名称</th>
+<th>转移序列</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>警报（响铃）符</td>
+<td>\a</td>
+</tr>
+<tr>
+<td>回退符</td>
+<td><code>\b</code></td>
+</tr>
+<tr>
+<td>换页符</td>
+<td><code>\f</code></td>
+</tr>
+<tr>
+<td>换行符</td>
+<td><code>\n</code></td>
+</tr>
+<tr>
+<td>回车符</td>
+<td><code>\r</code></td>
+</tr>
+<tr>
+<td>横向制表符</td>
+<td><code>\t</code></td>
+</tr>
+<tr>
+<td>纵向制表符</td>
+<td><code>\v</code></td>
+</tr>
+<tr>
+<td>反斜杠</td>
+<td><code>\\</code></td>
+</tr>
+<tr>
+<td>问号</td>
+<td><code>\?</code></td>
+</tr>
+<tr>
+<td>单引号</td>
+<td><code>\&#39;</code></td>
+</tr>
+<tr>
+<td>双引号</td>
+<td><code>\&quot;</code></td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p><strong>数字转义字符：</strong>可以表示任何字符，突破<code>字符转义字符</code>的限制。<br><strong>转义字符常量：</strong>有8进制和16进制两种书写方式，需要用一对单引号括起来。</p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>进制</th>
+<th>书写方式</th>
+<th>特点</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>八进制转义序列</td>
+<td><code>\最多含有三位数字的八进制数</code></td>
+<td>必须表示为无符号字符型</td>
+</tr>
+<tr>
+<td>十六进制转义序列</td>
+<td><code>\x十六进制数</code></td>
+<td>标准c对于数字个数没有限制，<code>x</code>必须为小写，十六进制数无限制</td>
+</tr>
+</tbody>
+</table>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"># define ESC '\33'	//用宏的方式定义数字转义字符常量</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p><strong>补充：</strong></p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>其它序列</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>三字符序列（trigraph sequence）</td>
+<td>一些特殊的ASCII字符的代码</td>
+</tr>
+<tr>
+<td>多字节字符（multibyte character）</td>
+<td></td>
+</tr>
+<tr>
+<td>宽字符（nultibyte character）</td>
+</tr>
+</tbody>
+</table>
+<h3 id="7-3-2-字符处理函数"><a href="#7-3-2-字符处理函数" class="headerlink" title="7.3.2    字符处理函数"></a>7.3.2    字符处理函数</h3><blockquote>
+<p><strong>toupper：</strong>c语言的toupper库函数，用来检测自身的参数是否是小写字母，如果是则将其转换成相应的大写字母。</p>
+</blockquote>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta"># <span class="meta-keyword">include</span> <span class="meta-string">&lt;ctype.h&gt;</span></span></span><br><span class="line"><span class="keyword">if</span>(<span class="built_in">toupper</span>(ch)) == <span class="string">'A'</span>) ...</span><br></pre></td></tr></table></figure>
+<h3 id="7-3-3-读-写字符"><a href="#7-3-3-读-写字符" class="headerlink" title="7.3.3    读/写字符"></a>7.3.3    读/写字符</h3><blockquote>
+<p><strong>两种方式：</strong><code>printf</code>/<code>scanf</code>和<code>getChar</code>/<code>putchar</code></p>
+</blockquote>
+<h4 id="7-3-3-1-printf-和-scanf"><a href="#7-3-3-1-printf-和-scanf" class="headerlink" title="7.3.3.1    printf 和 scanf"></a>7.3.3.1    printf 和 scanf</h4><blockquote>
+<p><strong>转换说明：</strong><code>%c</code><br><strong>技巧：</strong></p>
+<ul>
+<li>在格式串转换说明<code>%c</code>前面加一个空格，强制<code>scanf</code>函数在读入字符前跳过空白字符。</li>
+</ul>
+</blockquote>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">scanf</span>(<span class="string">" %c"</span>, &amp;ch);<span class="comment">//会跳过零个或多个空白字符</span></span><br></pre></td></tr></table></figure>
+<blockquote>
+<ul>
+<li>通常情况下scanf函数不会跳过空白，所以很容易检查到输入行的结尾</li>
+</ul>
+</blockquote>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">do</span>&#123;</span><br><span class="line">    <span class="built_in">scanf</span>(<span class="string">"%c"</span>, &amp;ch);</span><br><span class="line">&#125;<span class="keyword">while</span>(ch != <span class="string">'\n'</span>);</span><br></pre></td></tr></table></figure>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">char</span> ch;</span><br><span class="line"><span class="built_in">scanf</span>(<span class="string">"%c"</span>, &amp;hc);<span class="comment">//reads a single character</span></span><br><span class="line"><span class="built_in">printf</span>(<span class="string">"%c"</span>, ch);<span class="comment">//writes a single character</span></span><br></pre></td></tr></table></figure>
+<h4 id="7-3-3-2-getchar-和-putchar"><a href="#7-3-3-2-getchar-和-putchar" class="headerlink" title="7.3.3.2    getchar 和 putchar"></a>7.3.3.2    getchar 和 putchar</h4><blockquote>
+<p><strong>说明：</strong></p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>库方法</th>
+<th>说明</th>
+<th>备注</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>getchar</td>
+<td>读入一个字符并返回这个字符</td>
+<td>不会跳过空白字符</td>
+</tr>
+<tr>
+<td>putchar</td>
+<td>用来单独写一个字符</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p><strong>执行速度快：</strong>比 scanf 和 printf 节约时间。</p>
+<ol>
+<li>这两个函数比scanf和prinf简单，因为scanf和prinf是设计用来读/写多种不同格式类型数据的</li>
+<li>为了额外的速度提升，通常getchar函数和puchar函数是作为宏来实现的</li>
+</ol>
+<p><strong>可以应用多种不同的c语言惯用法：</strong>包括用循环搜索字符或跳过所有出现的统一字符。</p>
+</blockquote>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//循环搜索字符</span></span><br><span class="line"><span class="keyword">while</span>(getchar != <span class="string">'\n'</span>)</span><br><span class="line">;</span><br><span class="line"><span class="comment">//跳过所有出现的统一字符</span></span><br><span class="line"><span class="keyword">while</span>((ch = getchar()) == <span class="string">' '</span>)</span><br><span class="line">;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p><strong>避免混合使用<code>scanf</code>和<code>getchar</code>：</strong>scanf函数有一种留下后边字符的趋势，也就是说对于输入后面的字符只是看了一下，并没有读入。</p>
+</blockquote>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">printf</span>(<span class="string">"Enter an interger:"</span>);</span><br><span class="line"><span class="built_in">scanf</span>(<span class="string">"%d"</span>, &amp;i);<span class="comment">//读入i的同时，scanf函数调用将会留下后面没有消耗掉的人一字符，包括换行符</span></span><br><span class="line"><span class="built_in">printf</span>(<span class="string">"Enter a command:"</span>);</span><br><span class="line">command = getchar();<span class="comment">//getchar会取回第一个声誉字符</span></span><br></pre></td></tr></table></figure>
+<h3 id="7-3-4-程序：确定消息的长度"><a href="#7-3-4-程序：确定消息的长度" class="headerlink" title="7.3.4    程序：确定消息的长度"></a>7.3.4    程序：确定消息的长度</h3><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span><br><span class="line"> * Determines the length a message</span><br><span class="line"> */</span></span><br><span class="line"></span><br><span class="line"><span class="meta"># <span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"> <span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line"> 	<span class="keyword">int</span> len = <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line"> 	<span class="built_in">printf</span>(<span class="string">"Enter a message:"</span>);</span><br><span class="line"> 	<span class="keyword">while</span>(getchar() != <span class="string">'\n'</span>)&#123;</span><br><span class="line"> 		len ++;</span><br><span class="line"> 	&#125;</span><br><span class="line"> 	<span class="built_in">printf</span>(<span class="string">"Your message was %d character(s) long.\n"</span>, len);</span><br><span class="line"> 	return <span class="number">0</span>;</span><br><span class="line"> &#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">./length2 </span><br><span class="line"> Enter a message:1234567</span><br><span class="line"> Your message was 7 character(s) long.</span><br></pre></td></tr></table></figure>
+<h2 id="7-4-sizeof运算符"><a href="#7-4-sizeof运算符" class="headerlink" title="7.4    sizeof运算符"></a>7.4    sizeof运算符</h2><blockquote>
+<p><strong>说明：</strong>编译器本身就可以计算sizeof表达式的值，所以sizeof 是一种特殊的运算符（一元运算符）<br><strong>用途：</strong>用来计算制定类型值所需空间的大小。<br><strong>sizeof表达式：</strong><code>sizeof(类型名)</code><br><strong>参数：</strong>常量、变量或表达式<br><strong>优先级：</strong>高于二元运算符（比如+）<br><strong>返回值：</strong>字节数，类型由实现定义，通常是无符号整数<br><strong>圆括号：</strong>当应用于表示式时不需要圆括号，比如<code>sizeof i</code>，但是由于运算符优先级的问题，建议始终在sizeof表达式中采用圆括号。<br><strong>以<code>int</code>为例：</strong></p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>处理器架构</th>
+<th>字节数</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>16</td>
+<td>2(通常)</td>
+</tr>
+<tr>
+<td>32</td>
+<td>4(通常)</td>
+</tr>
+</tbody>
+</table>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//把sizeof表达式转换成`unsigned long`(最大的无符号类型)</span></span><br><span class="line"><span class="built_in">printf</span>(<span class="string">"Size of int:%lu\n"</span>, (unsigned long)<span class="keyword">sizeof</span>(int));</span><br></pre></td></tr></table></figure>
+<h2 id="7-5-类型转换"><a href="#7-5-类型转换" class="headerlink" title="7.5    类型转换"></a>7.5    类型转换</h2><blockquote>
+<p><strong>计算机执行算术运算的限制：</strong>要求操作数大小相同，存储方式也相同。</p>
+</blockquote>
+<h2 id="7-5-1-隐式转换（implicit-conversion"><a href="#7-5-1-隐式转换（implicit-conversion" class="headerlink" title="7.5.1    隐式转换（implicit conversion)"></a>7.5.1    隐式转换（implicit conversion)</h2><blockquote>
+<p><strong>说明：</strong>c语言允许在表达式中混合使用基本数据类型（整数、浮点数甚至是字符）。此时c语言编译器需要生成一些指令将某些操作数转换成不同类型，是的硬件可以对表达式进行计算。<br><strong>隐式转换情景：</strong></p>
+<ul>
+<li>当算术表达式或逻辑表达式中操作数的类型不相同时（常用算数转换）</li>
+<li>当赋值运算符右侧表达式的类型和左侧变量的类型不匹配时</li>
+<li>当函数调用中使用的参数类型与其对应的参数的类型不匹配时</li>
+<li>当 return语句中表达式的类型和函数返回值的类型不匹配时</li>
+</ul>
+</blockquote>
+<h3 id="7-5-1-常用算数转换"><a href="#7-5-1-常用算数转换" class="headerlink" title="7.5.1    常用算数转换"></a>7.5.1    常用算数转换</h3><blockquote>
+<p><strong>原理：</strong>为了统一操作数的类型，通常可以将相对狭小的操作数转换成另一个操作数的类型来实现（即提升）。<br><strong>整型提升（integral promition）：</strong>把<code>char</code>或<code>short int</code>转换成<code>int</code>（或<code>unsigned int</code>）。</p>
+<p><strong>两种情况：</strong></p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>情况</th>
+<th>提升方式</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>任一操作数的类型时浮点型的情况</td>
+<td><code>long double&lt;-double&lt;-float</code></td>
+</tr>
+<tr>
+<td>两个操作数都不是浮点型的情况</td>
+<td><code>unsigned long int&lt;-long int&lt;-usigned int&lt;-int</code></td>
+</tr>
+<tr>
+<td><code>long int</code>和<code>unsigned int</code></td>
+<td>两个操作数都会转换成<code>usigned long int</code></td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p><strong>注意：</strong>尽量避免使用<code>unsigned int</code>，特别不要把它和有符号整数混合使用。</p>
+</blockquote>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> i ,u;</span><br><span class="line">i = <span class="number">-10</span>;</span><br><span class="line">u = <span class="number">10</span>;</span><br><span class="line"><span class="comment">//int转换为usigned int时最高位的符号位不再是符号位</span></span><br><span class="line">i &lt; u;<span class="comment">//0，因为会进行隐式转换导致讲-10当作unsigned int</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">char</span> c;</span><br><span class="line"><span class="keyword">short</span> <span class="keyword">int</span> s;</span><br><span class="line"><span class="keyword">int</span> i;</span><br><span class="line"><span class="keyword">unsigned</span> <span class="keyword">int</span> u;</span><br><span class="line"><span class="keyword">long</span> <span class="keyword">int</span> <span class="number">1</span>;</span><br><span class="line"><span class="keyword">unsigned</span> <span class="keyword">long</span> <span class="keyword">int</span> ul;</span><br><span class="line"><span class="keyword">float</span> f;</span><br><span class="line"><span class="keyword">double</span> d;</span><br><span class="line"><span class="keyword">long</span> <span class="keyword">double</span> ld;</span><br><span class="line"></span><br><span class="line">i = i + c;<span class="comment">//c被转为int</span></span><br><span class="line">i = i + s;<span class="comment">//s被转为int</span></span><br><span class="line">u = u + i;<span class="comment">//i被转为unsigned int</span></span><br><span class="line">l = l + u;<span class="comment">//l被转为long int</span></span><br><span class="line">ul = ul + <span class="number">1</span>;<span class="comment">//l被转为unsigned long int</span></span><br><span class="line">f = f + ul;<span class="comment">//f被转为double</span></span><br><span class="line">d = d + f;<span class="comment">//f被转为double</span></span><br><span class="line">ld = ld + d;<span class="comment">//d被转为long double</span></span><br></pre></td></tr></table></figure>
+<h3 id="7-5-2-赋值中的转换"><a href="#7-5-2-赋值中的转换" class="headerlink" title="7.5.2    赋值中的转换"></a>7.5.2    赋值中的转换</h3><blockquote>
+<p><strong>转化规则：</strong>把赋值运算右边的表达式转换成左边变量的类型。</p>
+</blockquote>
+<h4 id="7-5-2-1-两边类型一样“宽”"><a href="#7-5-2-1-两边类型一样“宽”" class="headerlink" title="7.5.2.1    两边类型一样“宽”"></a>7.5.2.1    两边类型一样“宽”</h4><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">char</span> c;</span><br><span class="line"><span class="keyword">int</span> i;</span><br><span class="line"><span class="keyword">float</span> f;</span><br><span class="line"><span class="keyword">double</span> d;</span><br><span class="line"></span><br><span class="line">i = c;<span class="comment">//c被转为int</span></span><br><span class="line">f = i;<span class="comment">//i被转为float</span></span><br><span class="line">d = f;<span class="comment">//f被转为double</span></span><br></pre></td></tr></table></figure>
+<h4 id="7-5-2-2-浮点数赋值给整型"><a href="#7-5-2-2-浮点数赋值给整型" class="headerlink" title="7.5.2.2    浮点数赋值给整型"></a>7.5.2.2    浮点数赋值给整型</h4><blockquote>
+<p><strong>规则：</strong>去掉小数部分。</p>
+</blockquote>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> i;</span><br><span class="line">i = <span class="number">842.97</span>;<span class="comment">//i为842</span></span><br><span class="line">i = <span class="number">-842.87</span>;<span class="comment">//i为-842</span></span><br></pre></td></tr></table></figure>
+<h4 id="7-5-2-3-溢出"><a href="#7-5-2-3-溢出" class="headerlink" title="7.5.2.3    溢出"></a>7.5.2.3    溢出</h4><blockquote>
+<p><strong>说明：</strong><code>Q&amp;A</code>如果取值在变量类型范围之外，那么把值赋给一个狭小类型的变量将会得到无意义的结果（设置更糟）。</p>
+</blockquote>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">c = <span class="number">10000</span>;</span><br><span class="line">i = <span class="number">1.0e20</span>;</span><br><span class="line">f = <span class="number">1.0e100</span>;</span><br></pre></td></tr></table></figure>
+<h3 id="7-5-3-强制类型转换"><a href="#7-5-3-强制类型转换" class="headerlink" title="7.5.3    强制类型转换"></a>7.5.3    强制类型转换</h3><blockquote>
+<p><strong>强制转换表达式：</strong><code>（类型名）表达式</code><br><strong>优先级：</strong>被当作一元运算符，因此高于二元运算符</p>
+</blockquote>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">float</span> f, frac_part;</span><br><span class="line">frac_part = f - (int)f;<span class="comment">//获得浮点数f的小数部分</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">float</span> quotient;</span><br><span class="line"><span class="keyword">int</span> divided, divisor;</span><br><span class="line">quotient = (float)dividend / divisor;<span class="comment">//divisor会被迫使编译器把divisor也转换成为float类型。</span></span><br></pre></td></tr></table></figure>
+<h2 id="7-6-类型定义"><a href="#7-6-类型定义" class="headerlink" title="7.6    类型定义"></a>7.6    类型定义</h2><blockquote>
+<p><strong>语法：</strong><code>typedef 原本类型名 类型别名;</code><br><strong>说明：</strong>采用typedef定义类型别名会导致编译器将其加入到类型列表中。<br><strong>用途：</strong></p>
+<ol>
+<li>如果程序员使用有意义的类型名，会使程序更加易于理解</li>
+<li>使程序更加易于维护</li>
+<li>是编写可移植程序的一种重要工具</li>
+</ol>
+<p><strong>可移植性技巧：</strong>为了更大的可移植性，可以考虑使用<code>typedef</code>定义新的整型名。</p>
+</blockquote>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//在16位机器上</span></span><br><span class="line"><span class="keyword">typedef</span> <span class="keyword">int</span> Quantity;</span><br><span class="line">Quantity q;</span><br><span class="line"></span><br><span class="line"><span class="comment">//在32位机器上</span></span><br><span class="line"><span class="keyword">typedef</span> <span class="keyword">long</span> <span class="keyword">int</span> Quantity;</span><br><span class="line">Quantity q;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p><strong>编译器库中（可能）自带的类型定义：</strong></p>
+</blockquote>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">typedef</span> <span class="keyword">int</span> <span class="keyword">ptrdiff_t</span>;</span><br><span class="line"><span class="keyword">typedef</span> <span class="keyword">unsigned</span> <span class="keyword">size_t</span>;</span><br><span class="line"><span class="keyword">typedef</span> <span class="keyword">char</span> <span class="keyword">wchar_t</span>;</span><br></pre></td></tr></table></figure>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">typedef</span> <span class="keyword">float</span> Dollars;</span><br><span class="line">Dollars cash_in, cash_out;</span><br></pre></td></tr></table></figure>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2016/05/09/6 循环/" itemprop="url">
+                  6 循环
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-05-09T18:09:39+08:00" content="2016-05-09">
+              2016-05-09
+            </time>
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/05/09/6 循环/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/05/09/6 循环/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="6-1-while语句"><a href="#6-1-while语句" class="headerlink" title="6.1    while语句"></a>6.1    while语句</h2><blockquote>
+<p><strong>语法：</strong><code>while(表达式)语句</code></p>
+<ul>
+<li>圆括号强制要求，循环体外面的大括号不强制要求使用（多个语句除外）</li>
+</ul>
+</blockquote>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">i = <span class="number">10</span>;</span><br><span class="line"><span class="keyword">while</span>(i &gt; <span class="number">0</span>)&#123;</span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">"T minus %d and counting\n"</span>, i);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="6-1-1-无限循环"><a href="#6-1-1-无限循环" class="headerlink" title="6.1.1    无限循环"></a>6.1.1    无限循环</h3><blockquote>
+<p><strong>说明：</strong>如果控制表达式的值始终是非零值的话，while语句将无法终止。<br><strong>技巧：</strong>c语言程序员有时故意用非零常量作为控制表达式来构造无限循环。</p>
+</blockquote>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">while</span>(<span class="number">1</span>) ...</span><br></pre></td></tr></table></figure>
+<h3 id="6-1-2-程序：显示平方值的表格"><a href="#6-1-2-程序：显示平方值的表格" class="headerlink" title="6.1.2    程序：显示平方值的表格"></a>6.1.2    程序：显示平方值的表格</h3><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span><br><span class="line"> * Prints a table of squares using a while statement</span><br><span class="line"> */</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"> <span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line"> 	<span class="keyword">int</span> i, n;</span><br><span class="line"> 	<span class="built_in">printf</span>(<span class="string">"This program prints a table of ssquares.\n"</span>);</span><br><span class="line"> 	<span class="built_in">printf</span>(<span class="string">"Enter number of entries in table :"</span>);</span><br><span class="line"> 	<span class="built_in">scanf</span>(<span class="string">"%d"</span>, &amp;n);</span><br><span class="line"> 	i = <span class="number">1</span>;</span><br><span class="line"> 	<span class="keyword">while</span>(i &lt;= n)&#123;</span><br><span class="line"> 		<span class="built_in">printf</span>(<span class="string">"%10d%10d\n"</span>, i, i*i);</span><br><span class="line"> 		i++;</span><br><span class="line"> 	&#125;</span><br><span class="line"> 	return <span class="number">0</span>;</span><br><span class="line"> &#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">$ ./square                          </span><br><span class="line"> This program prints a table of ssquares.</span><br><span class="line"> Enter number of entries <span class="keyword">in</span> table :5</span><br><span class="line">         1         1</span><br><span class="line">         2         4</span><br><span class="line">         3         9</span><br><span class="line">         4        16</span><br><span class="line">         5        25</span><br></pre></td></tr></table></figure>
+<h3 id="6-1-3-程序：数列求和"><a href="#6-1-3-程序：数列求和" class="headerlink" title="6.1.3    程序：数列求和"></a>6.1.3    程序：数列求和</h3><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span><br><span class="line"> * Sums a series of numbers</span><br><span class="line"> */</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">	<span class="keyword">int</span> n, sum = <span class="number">0</span>;</span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">"This program sums a series of intergers.\n"</span>);</span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">"Enter intergers (0 to terminate:)"</span>);</span><br><span class="line"></span><br><span class="line">	<span class="built_in">scanf</span>(<span class="string">"%d"</span>, &amp;n);</span><br><span class="line">	<span class="keyword">while</span>(n != <span class="number">0</span>)&#123;</span><br><span class="line">		sum += n;</span><br><span class="line">		<span class="built_in">scanf</span>(<span class="string">"%d"</span>, &amp;n);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">"The sun is:%d\n"</span>, sum);</span><br><span class="line">	return <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">$ ./sum </span><br><span class="line"> This program sums a series of intergers.</span><br><span class="line"> Enter intergers (0 to terminate:)1 2 3 4 0</span><br><span class="line"> The sun is:10</span><br></pre></td></tr></table></figure>
+<h2 id="6-2-do语句"><a href="#6-2-do语句" class="headerlink" title="6.2    do语句"></a>6.2    do语句</h2><blockquote>
+<p><strong>语法：</strong><code>do 语句 while(表达式);</code><br><strong>语句说明：</strong>do语句的本质就是while语句，只不过do语句是在每次执行循环体之后对控制表达式进行判定的。<br><strong>适用场景：</strong>至少要执行一次的循环体<br><strong>注意：</strong>最好所有的do语句都适用大括号，因为没有大括号的do语句很容易被误认为while语句。</p>
+</blockquote>
+<h3 id="程序：计算整数中数字的位数"><a href="#程序：计算整数中数字的位数" class="headerlink" title="程序：计算整数中数字的位数"></a>程序：计算整数中数字的位数</h3><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span><br><span class="line"> * Calculates the number od digits in an interger</span><br><span class="line"> */</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"> <span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line"> 	<span class="keyword">int</span> digits = <span class="number">0</span>, n;</span><br><span class="line"> 	<span class="built_in">printf</span>(<span class="string">"Enter a nonnegative interger:"</span>);</span><br><span class="line"> 	<span class="built_in">scanf</span>(<span class="string">"%d"</span>,&amp;n);</span><br><span class="line"> 	<span class="comment">//如果使用while循环，输入0将导致判断错误（认为0为0位数字）</span></span><br><span class="line"> 	<span class="keyword">do</span>&#123;</span><br><span class="line"> 		n /= <span class="number">10</span>;</span><br><span class="line"> 		digits++;</span><br><span class="line"> 	&#125;<span class="keyword">while</span>(n &gt; <span class="number">0</span>);</span><br><span class="line"> 	<span class="built_in">printf</span>(<span class="string">"The number has %d digit(s).\n"</span>, digits);</span><br><span class="line"> 	return <span class="number">0</span>;</span><br><span class="line"> &#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ ./numdigit </span><br><span class="line"> Enter a nonnegative interger:20150621</span><br><span class="line"> The number has 8 digit(s).</span><br></pre></td></tr></table></figure>
+<h2 id="6-3-for语句"><a href="#6-3-for语句" class="headerlink" title="6.3    for语句"></a>6.3    for语句</h2><blockquote>
+<p><strong>语法：</strong><code>for (表达式1;表达式2;表达式3) 语句</code></p>
+</blockquote>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span>(i = <span class="number">10</span>;  i &gt; <span class="number">0</span>; i--)&#123;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">"T minus %d and counting\n"</span>, i);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p><strong>while模拟for：</strong></p>
+</blockquote>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">表达式<span class="number">1</span>；</span><br><span class="line"><span class="keyword">while</span>(表达式<span class="number">2</span>)&#123;</span><br><span class="line">    语句</span><br><span class="line">    表达式<span class="number">3</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="6-3-1-for语句的惯用法"><a href="#6-3-1-for语句的惯用法" class="headerlink" title="6.3.1    for语句的惯用法"></a>6.3.1    for语句的惯用法</h3><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//从0向上加到n-1</span></span><br><span class="line"><span class="keyword">for</span>(i = <span class="number">0</span>; i &lt; n; i++)</span><br><span class="line"><span class="comment">//从1向上加到n</span></span><br><span class="line"><span class="keyword">for</span>(i = <span class="number">1</span>; i &lt;= n ; n++)</span><br><span class="line"><span class="comment">//从n-1减到0</span></span><br><span class="line"><span class="keyword">for</span>(i = n<span class="number">-1</span>; i &gt;= <span class="number">0</span>; i--)</span><br><span class="line"><span class="comment">//从n减到1</span></span><br><span class="line"><span class="keyword">for</span>(i = n; i &gt; <span class="number">0</span>; i--)</span><br></pre></td></tr></table></figure>
+<h3 id="6-3-2-在-for语句中省略表达式"><a href="#6-3-2-在-for语句中省略表达式" class="headerlink" title="6.3.2 在 for语句中省略表达式"></a>6.3.2 在 for语句中省略表达式</h3><table>
+<thead>
+<tr>
+<th>省略</th>
+<th>语法</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>表达式1</td>
+<td><code>for(; 表达式2; 表达式3)</code></td>
+<td>执行循环前没有初始化的操作</td>
+</tr>
+<tr>
+<td>表达式2</td>
+<td><code>for(表达式1; ; 表达式3)</code></td>
+<td>表达式2默认为真值，无限循环</td>
+</tr>
+<tr>
+<td>表达式3</td>
+<td><code>for(表达式1; 表达式2;)</code></td>
+<td>循环体有责任确认第二个表达式的值最终回变为假</td>
+</tr>
+<tr>
+<td>表达式1、3</td>
+<td><code>for(;表达式2;)</code></td>
+<td>同<code>while</code></td>
+</tr>
+<tr>
+<td>表达式1、2、3</td>
+<td><code>for(;;)</code></td>
+<td>简单的无限循环</td>
+</tr>
+</tbody>
+</table>
+<h3 id="6-3-3-逗号运算符"><a href="#6-3-3-逗号运算符" class="headerlink" title="6.3.3    逗号运算符"></a>6.3.3    逗号运算符</h3><blockquote>
+<p><strong>语法：</strong><code>表达式1,表达式2</code><br><strong>用途：</strong>为了在c语言要求单独一个表达式的情况下使用两个或多个表达式。<br><strong>使用场景：</strong>宏、<code>for</code>循环<br><strong>优先级：</strong>低于所有其它运算符。<br><strong>计算过程：</strong></p>
+<ol>
+<li>计算表达式1并且仍低哦计算出的值</li>
+<li>计算表达式2，把这个值作为整个表达式的值</li>
+</ol>
+<p><strong>注意：</strong>计算表达式1始终会有副作用；如果没有，那么表达式1就没有了存在的意义。</p>
+</blockquote>
+<h3 id="6-2-4-程序：显示平方值的表格（改进版）"><a href="#6-2-4-程序：显示平方值的表格（改进版）" class="headerlink" title="6.2.4    程序：显示平方值的表格（改进版）"></a>6.2.4    程序：显示平方值的表格（改进版）</h3><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span><br><span class="line"> * Prints a table of squares using a for statement</span><br><span class="line"> */</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"> <span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line"> 	<span class="keyword">int</span> i, n;</span><br><span class="line"> 	<span class="built_in">printf</span>(<span class="string">"This program prints a table of squares."</span>);</span><br><span class="line"> 	<span class="built_in">printf</span>(<span class="string">"Enter number of entries in table:"</span>);</span><br><span class="line"> 	<span class="built_in">scanf</span>(<span class="string">"%d"</span>, &amp;n);</span><br><span class="line"></span><br><span class="line"> 	<span class="keyword">for</span>(i = <span class="number">1</span>; i &lt;= n; i++)&#123;</span><br><span class="line"> 		<span class="built_in">printf</span>(<span class="string">"%10d%10d\n"</span>, i, i * i);</span><br><span class="line"> 	&#125;</span><br><span class="line"> 	return <span class="number">0</span>;</span><br><span class="line"> &#125;</span><br></pre></td></tr></table></figure>
+<h2 id="6-4-退出循环"><a href="#6-4-退出循环" class="headerlink" title="6.4    退出循环"></a>6.4    退出循环</h2><h3 id="6-4-1-break语句"><a href="#6-4-1-break语句" class="headerlink" title="6.4.1    break语句"></a>6.4.1    break语句</h3><blockquote>
+<p><strong>作用：</strong>把程序从<code>switch</code>语句中转移出来；跳出<code>while</code>、<code>do</code>、<code>for</code>循环。<br><strong>注意：</strong>break只能跳出一层循环</p>
+</blockquote>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span>(;;)&#123;</span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">"Enter a number (enter 0 to stop):"</span>);</span><br><span class="line">	<span class="built_in">scanf</span>(<span class="string">"%d"</span>, &amp;n);</span><br><span class="line">	<span class="keyword">if</span>(n == <span class="number">0</span>) <span class="keyword">break</span>;</span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">"%d cubed is %d\n"</span>, n, n*n*n);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="6-4-2-continue-语句"><a href="#6-4-2-continue-语句" class="headerlink" title="6.4.2    continue 语句"></a>6.4.2    continue 语句</h3><blockquote>
+<p><strong>作用：</strong>把程序控制正号转移到循环结束之前的一点；只能用于循环。</p>
+</blockquote>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">n = <span class="number">0</span>;</span><br><span class="line"><span class="keyword">while</span>(n &lt; <span class="number">10</span>)&#123;</span><br><span class="line">	<span class="built_in">scanf</span>(<span class="string">"%d"</span>, &amp;i);</span><br><span class="line">	<span class="keyword">if</span>(i == <span class="number">0</span>)<span class="keyword">continue</span>;</span><br><span class="line">	sun += i;</span><br><span class="line">	n ++;</span><br><span class="line">	<span class="comment">/*continue jumps to here*/</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="6-4-3-goto语句"><a href="#6-4-3-goto语句" class="headerlink" title="6.4.3    goto语句"></a>6.4.3    goto语句</h3><blockquote>
+<p><strong>语法：</strong></p>
+<ul>
+<li>标号语句：<code>标识符 : 语句</code></li>
+<li>goto语句：<code>goto 标识符</code></li>
+</ul>
+<p><strong>注意：</strong><code>break</code> <code>continue</code> <code>return</code>本质上都是受限制的goto语句，它们和<code>exit</code>函数配合可以应对大多数需要goto语句的情况。</p>
+</blockquote>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span>(d = <span class="number">2</span>; d &lt; n; d++)&#123;</span><br><span class="line">	<span class="keyword">if</span>(n % d == <span class="number">0</span>)&#123;</span><br><span class="line">		<span class="comment">//goto语句</span></span><br><span class="line">		<span class="keyword">goto</span> done;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//标号语句</span></span><br><span class="line">done:</span><br><span class="line"><span class="keyword">if</span>(d &lt; n)&#123;</span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">"%d is divisible by %d\n"</span>, n, d);</span><br><span class="line">&#125;<span class="keyword">else</span>&#123;</span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">"%d is prime\n"</span>, n);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="6-4-4-程序：账目簿结算"><a href="#6-4-4-程序：账目簿结算" class="headerlink" title="6.4.4    程序：账目簿结算"></a>6.4.4    程序：账目簿结算</h3><h2 id="6-5-空语句"><a href="#6-5-空语句" class="headerlink" title="6.5    空语句"></a>6.5    空语句</h2><blockquote>
+<p><strong>语法：</strong><code>;</code><br><strong>用途：</strong></p>
+<ul>
+<li>编写空循环体（在某些情况下帮助省略循环体）</li>
+<li><code>goto</code>语句的标号不能独立存在，后面必须有语句，可以使用空语句</li>
+</ul>
+</blockquote>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span>(d =<span class="number">2</span>; d &lt; n &amp;&amp; n % d != <span class="number">0</span>; d++)</span><br><span class="line">;<span class="comment">/*empty body*/</span></span><br></pre></td></tr></table></figure>
+<blockquote>
+<p><strong>注意：</strong>建议将空语句单独放在一行，便于代码阅读。</p>
+</blockquote>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2016/05/09/5 选择语句/" itemprop="url">
+                  5 选择语句
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-05-09T17:51:28+08:00" content="2016-05-09">
+              2016-05-09
+            </time>
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/05/09/5 选择语句/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/05/09/5 选择语句/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <blockquote>
+<p><strong>c语言语句：</strong></p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>分类</th>
+<th>语句</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>return语句</td>
+<td><code>return</code></td>
+</tr>
+<tr>
+<td>表达式语句</td>
+<td><code>表达式;</code></td>
+</tr>
+<tr>
+<td>选择语句</td>
+<td><code>if</code> <code>switch</code></td>
+</tr>
+<tr>
+<td>循环语句</td>
+<td><code>while</code> <code>do</code> <code>for</code></td>
+</tr>
+<tr>
+<td>跳转语句</td>
+<td><code>break</code> <code>continue</code> <code>goto</code></td>
+</tr>
+<tr>
+<td>复合语句</td>
+<td>几条语句组合成一个</td>
+</tr>
+<tr>
+<td>空语句</td>
+<td>不执行任何操作</td>
+</tr>
+</tbody>
+</table>
+<h2 id="5-1-逻辑表达式"><a href="#5-1-逻辑表达式" class="headerlink" title="5.1    逻辑表达式"></a>5.1    逻辑表达式</h2><blockquote>
+<p><strong>注意：</strong>c语言没有<code>Boolean</code>类型，表达式的<code>真假</code>依赖于其结果是<code>0</code>或<code>非0</code>。</p>
+</blockquote>
+<h3 id="5-1-1-关系运算符"><a href="#5-1-1-关系运算符" class="headerlink" title="5.1.1    关系运算符"></a>5.1.1    关系运算符</h3><p><code>&gt;</code> <code>&lt;</code> <code>&gt;=</code> <code>&lt;=</code></p>
+<blockquote>
+<p><strong>操作数类型：</strong>可以用关系运算符比较整数和浮点数，以及混合类型的操作数。<br><strong>返回值：</strong>c语言的表达式中产生的结果是<code>0或1</code><br><strong>优先级于结合性：</strong>关系运算符的优先级低于算术运算符。</p>
+</blockquote>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">i &lt; j &lt; k;<span class="comment">//(i &lt; j) &lt; k</span></span><br></pre></td></tr></table></figure>
+<h3 id="5-1-2-判等运算符"><a href="#5-1-2-判等运算符" class="headerlink" title="5.1.2    判等运算符"></a>5.1.2    判等运算符</h3><p><code>==</code> <code>!=</code></p>
+<blockquote>
+<p><strong>操作数类型：</strong>同关系运算符<br><strong>返回值：</strong>同关系运算符<br><strong>优先级于结合性：</strong>优先级低于关系运算符，左结合<br><strong>技巧：</strong>利用关系运算符和判等运算符返回整数值这一事实</p>
+</blockquote>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">(i &gt;= j) + (i == j);<span class="comment">//0(大于),1(等于),2(小于)</span></span><br></pre></td></tr></table></figure>
+<h3 id="5-1-3-逻辑运算符"><a href="#5-1-3-逻辑运算符" class="headerlink" title="5.1.3    逻辑运算符"></a>5.1.3    逻辑运算符</h3><p><code>&amp;&amp;</code> <code>\|\|</code> <code>!</code></p>
+<blockquote>
+<p><strong>操作数类型：</strong>真（任何非零值操作数），假（零值）。<br><strong>返回值：</strong>0（假）或1（真）。<br><strong>优先级于结合性：</strong><code>&amp;&amp;</code>和<code>||</code>优先级低于关系运算符和判等运算符，左结合；<code>!</code>优先级同<code>+(正)、-(负)</code>。<br><strong>注意：</strong><code>&amp;&amp;</code>和<code>||</code>都对运算符进行<code>短路</code>计算，也就是说，计算机先计算左侧的值，如果通过左侧的值推导出表达式的值就不需要运行计算右侧的值（操作数的副作用也不会发生）。</p>
+</blockquote>
+<h2 id="5-2-if语句"><a href="#5-2-if语句" class="headerlink" title="5.2    if语句"></a>5.2    if语句</h2><blockquote>
+<p><strong>语法：</strong><code>if (表达式) 语句（单独一条）</code><br><strong>注意：</strong>为语句增加大括号或表达式使用圆括号有时并不是必需的，但会使程序更易读，使编译器更容易理解。</p>
+</blockquote>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span>(lent_num == MAX_LINES)&#123;</span><br><span class="line">	line_num = <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="5-2-1-复合语句"><a href="#5-2-1-复合语句" class="headerlink" title="5.2.1    复合语句"></a>5.2.1    复合语句</h3><blockquote>
+<p><strong>语法：</strong><code>if(表达式){语句1;语句2;...}</code></p>
+</blockquote>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span>(lent_num == MAX_LINES)&#123;</span><br><span class="line">	line_num = <span class="number">0</span>;</span><br><span class="line">	page_num ++;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="5-2-2-else语句"><a href="#5-2-2-else语句" class="headerlink" title="5.2.2 else语句"></a>5.2.2 else语句</h3><blockquote>
+<p><strong>语法：</strong><code>if(表达式) 语句 else 语句</code></p>
+<h3 id="5-2-3-级联if语句"><a href="#5-2-3-级联if语句" class="headerlink" title="5.2.3    级联if语句"></a>5.2.3    级联if语句</h3><p><strong>语法：</strong></p>
+</blockquote>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span>(表达式)</span><br><span class="line">	语句</span><br><span class="line"><span class="keyword">else</span> <span class="keyword">if</span>(表达式)</span><br><span class="line">	语句</span><br><span class="line"><span class="keyword">else</span> <span class="keyword">if</span>(表达式)</span><br><span class="line">	语句</span><br><span class="line"><span class="keyword">else</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span>(n &lt; <span class="number">0</span>)&#123;</span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">"n is less than 0\n"</span>)</span><br><span class="line">&#125;<span class="keyword">else</span>&#123;</span><br><span class="line">	<span class="keyword">if</span>(n == <span class="number">0</span>)&#123;</span><br><span class="line">		<span class="built_in">printf</span>(<span class="string">"n is equal to 0\n"</span>)</span><br><span class="line">	&#125;<span class="keyword">else</span>&#123;</span><br><span class="line">		<span class="built_in">printf</span>(<span class="string">"n is greter than 0\n"</span>);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="5-2-4-程序：计算股票经纪人的佣金"><a href="#5-2-4-程序：计算股票经纪人的佣金" class="headerlink" title="5.2.4    程序：计算股票经纪人的佣金"></a>5.2.4    程序：计算股票经纪人的佣金</h3><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span><br><span class="line"> * Calculate a broker's commission</span><br><span class="line"> */</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"> <span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line"> 	<span class="keyword">float</span> commission, value;</span><br><span class="line"> 	<span class="built_in">printf</span>(<span class="string">"Enter value of trade:"</span>);</span><br><span class="line"> 	<span class="built_in">scanf</span>(<span class="string">"%f"</span>, &amp;value);</span><br><span class="line"></span><br><span class="line"> 	<span class="keyword">if</span> (value &lt; <span class="number">2500.00</span>)&#123;</span><br><span class="line"> 		commission = <span class="number">30.00</span> + <span class="number">.017</span> * value;</span><br><span class="line"> 	&#125;<span class="keyword">else</span> <span class="keyword">if</span> (value &lt; <span class="number">6250.00</span>)&#123;</span><br><span class="line"> 		commission = <span class="number">56.00</span> + <span class="number">.0066</span> * value;</span><br><span class="line"> 	&#125;<span class="keyword">else</span> <span class="keyword">if</span> (value &lt; <span class="number">20000.00</span>)&#123;</span><br><span class="line"> 		commission = <span class="number">76.00</span> + <span class="number">.0034</span> * value;</span><br><span class="line"> 	&#125;<span class="keyword">else</span> <span class="keyword">if</span> (value &lt; <span class="number">50000.00</span>)&#123;</span><br><span class="line"> 		commission = <span class="number">100.00</span> + <span class="number">.0022</span> * value;</span><br><span class="line"> 	&#125;<span class="keyword">else</span> <span class="keyword">if</span> (value &lt; <span class="number">500000.00</span>)&#123;</span><br><span class="line"> 		commission = <span class="number">155.00</span> + <span class="number">.0011</span> * value;</span><br><span class="line"> 	&#125;<span class="keyword">else</span>&#123;</span><br><span class="line"> 		commission = <span class="number">255.00</span> + <span class="number">.0009</span> * value;</span><br><span class="line"> 	&#125;</span><br><span class="line"></span><br><span class="line"> 	<span class="keyword">if</span>(commission &lt; <span class="number">39.00</span>)&#123;</span><br><span class="line"> 		commission = <span class="number">39.00</span>;</span><br><span class="line"> 	&#125;</span><br><span class="line"> 	<span class="built_in">printf</span>(<span class="string">"commission:$%.2f\n\n"</span>, commission);</span><br><span class="line"></span><br><span class="line"> 	return <span class="number">0</span>;</span><br><span class="line"> &#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ ./broker </span><br><span class="line"> Enter value of trade:6000</span><br><span class="line"> commission:<span class="variable">$95</span>.60</span><br></pre></td></tr></table></figure>
+<h3 id="5-2-5-“悬空else”的问题"><a href="#5-2-5-“悬空else”的问题" class="headerlink" title="5.2.5    “悬空else”的问题"></a>5.2.5    “悬空else”的问题</h3><blockquote>
+<p><strong>规则：</strong>c语言遵循的规则是else字句应该属于离它最近的且还未和其他else匹配的if语句。<br><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span>(y != <span class="number">0</span>)</span><br><span class="line">	<span class="keyword">if</span>(x != <span class="number">0</span>)</span><br><span class="line">		result = x / y;</span><br><span class="line">	<span class="keyword">else</span></span><br><span class="line">		<span class="built_in">printf</span>(<span class="string">"Error:y is equal to 0\n"</span>);</span><br></pre></td></tr></table></figure></p>
+</blockquote>
+<h3 id="5-2-6-条件表达式"><a href="#5-2-6-条件表达式" class="headerlink" title="5.2.6    条件表达式"></a>5.2.6    条件表达式</h3><blockquote>
+<p><strong>又名：</strong>三元运算符<br><strong>语法：</strong><code>表达式1 ? 表达式2 : 表达式3</code><br><strong>优先级：</strong>低于所有其它运算符<br><strong>使用场景：</strong>return语句、printf函数中、某些类型的宏定义<br><strong>注意：</strong>条件表达式使程序更加短小也更难以阅读，所以最好避免使用<br><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> i, j, k;</span><br><span class="line">i = <span class="number">1</span>;</span><br><span class="line">j = <span class="number">2</span>;</span><br><span class="line">k = i &gt; (j ? i : j) + j;</span><br></pre></td></tr></table></figure></p>
+</blockquote>
+<h3 id="5-2-7-模拟布尔值"><a href="#5-2-7-模拟布尔值" class="headerlink" title="5.2.7    模拟布尔值"></a>5.2.7    模拟布尔值</h3><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">define</span> TRUE 1</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> FALSE 0</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> BOOL int</span></span><br><span class="line">...</span><br><span class="line"><span class="keyword">if</span>(flag == TRUE) ...</span><br><span class="line"><span class="keyword">if</span>(flag == FALSE) ...</span><br><span class="line"><span class="keyword">if</span>(!flag) ...</span><br></pre></td></tr></table></figure>
+<h2 id="5-3-switch语句"><a href="#5-3-switch语句" class="headerlink" title="5.3    switch语句"></a>5.3    switch语句</h2><blockquote>
+<p><strong>语法：</strong><br><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">switch</span>(表达式)&#123;</span><br><span class="line">	<span class="keyword">case</span> 常量表达式 : 多条语句</span><br><span class="line">	...</span><br><span class="line">	<span class="keyword">case</span> 常量表达式 : 多条语句</span><br><span class="line">	<span class="keyword">default</span> : 多条语句</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p><strong>特点：</strong></p>
+<ol>
+<li>不允许由重复的情况标号</li>
+<li>对情况的顺序没有要求（default）不一定要放置在最后</li>
+<li>不要求一定要有default，如果不匹配任何情况又没有default，则什么也不做</li>
+</ol>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>组成</th>
+<th>说明</th>
+<th>特点</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>控制表达式</td>
+<td>switch <code>控制表达式</code></td>
+<td>整数或字符（也会被当作整数）</td>
+</tr>
+<tr>
+<td>情况标号</td>
+<td><code>case 常量表达式</code></td>
+<td>常量表达式中只能存在常量（包括宏）</td>
+</tr>
+<tr>
+<td>语句</td>
+<td>每个情况标号后边任意数量的语句</td>
+<td>c语言中少数几个不需要大括号的地方之一</td>
+</tr>
+</tbody>
+</table>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">switch</span>(grade)&#123;</span><br><span class="line">	<span class="keyword">case</span> <span class="number">4</span>: <span class="keyword">case</span> <span class="number">3</span>: <span class="keyword">case</span> <span class="number">2</span>: <span class="keyword">case</span> <span class="number">1</span>:</span><br><span class="line">		<span class="built_in">printf</span>(<span class="string">"Passing"</span>);</span><br><span class="line">		<span class="keyword">break</span>;</span><br><span class="line">	<span class="keyword">case</span> <span class="number">0</span>: <span class="built_in">printf</span>(<span class="string">"Failing"</span>);</span><br><span class="line">		<span class="keyword">break</span>;</span><br><span class="line">	<span class="keyword">default</span>: <span class="built_in">printf</span>(<span class="string">"Illegal grade"</span>);</span><br><span class="line">		<span class="keyword">break</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="5-3-1-break语句的作用"><a href="#5-3-1-break语句的作用" class="headerlink" title="5.3.1    break语句的作用"></a>5.3.1    break语句的作用</h3><blockquote>
+<p><strong>说明：</strong>switch语句实际上是一种基于计算的跳转，如果没有break或其它跳转语句，程序控制将会从一种情况继续到下面一种情况。<br><strong>注意：</strong>break的故意省略需要明确指出以防某些人尝试修正“错误”。</p>
+</blockquote>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">switch</span>(grade)&#123;</span><br><span class="line">	<span class="keyword">case</span> <span class="number">4</span>: <span class="keyword">case</span> <span class="number">3</span>: <span class="keyword">case</span> <span class="number">2</span>: <span class="keyword">case</span> <span class="number">1</span>:</span><br><span class="line">		num_passing++;</span><br><span class="line">		<span class="comment">/*FALL THROUGH*/</span></span><br><span class="line">	<span class="keyword">case</span> <span class="number">0</span>: total grades++;</span><br><span class="line">		<span class="keyword">break</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="5-3-2-程序：显示法定格式的日期"><a href="#5-3-2-程序：显示法定格式的日期" class="headerlink" title="5.3.2    程序：显示法定格式的日期"></a>5.3.2    程序：显示法定格式的日期</h3><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span><br><span class="line"> * Prints a date in legal form</span><br><span class="line"> */</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"> <span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line"> 	<span class="keyword">int</span> month, day, year;</span><br><span class="line"> 	<span class="built_in">printf</span>(<span class="string">"Enter date (mm/dd/yy):"</span>);</span><br><span class="line"> 	<span class="built_in">scanf</span>(<span class="string">"%d /%d /%d"</span>, &amp;month, &amp;day, &amp;year);</span><br><span class="line"></span><br><span class="line"> 	<span class="built_in">printf</span>(<span class="string">"Dated this %d"</span>, day);</span><br><span class="line"> 	<span class="keyword">switch</span>(day)&#123;</span><br><span class="line"> 		<span class="keyword">case</span> <span class="number">1</span>:<span class="keyword">case</span> <span class="number">21</span>:<span class="keyword">case</span> <span class="number">31</span>:</span><br><span class="line"> 			<span class="built_in">printf</span>(<span class="string">"st"</span>);<span class="keyword">break</span>;</span><br><span class="line"> 		<span class="keyword">case</span> <span class="number">2</span>:<span class="keyword">case</span> <span class="number">22</span>:</span><br><span class="line"> 			<span class="built_in">printf</span>(<span class="string">"nd"</span>);<span class="keyword">break</span>;</span><br><span class="line"> 		<span class="keyword">case</span> <span class="number">3</span>:<span class="keyword">case</span> <span class="number">23</span>:</span><br><span class="line"> 			<span class="built_in">printf</span>(<span class="string">"th"</span>);<span class="keyword">break</span>;</span><br><span class="line"> 	&#125;</span><br><span class="line"> 	<span class="built_in">printf</span>(<span class="string">" day of "</span>);</span><br><span class="line"> 	<span class="keyword">switch</span>(month)&#123;</span><br><span class="line"> 		<span class="keyword">case</span> <span class="number">1</span>: <span class="built_in">printf</span>(<span class="string">"January"</span>);<span class="keyword">break</span>;</span><br><span class="line"> 		<span class="keyword">case</span> <span class="number">2</span>: <span class="built_in">printf</span>(<span class="string">"February"</span>);<span class="keyword">break</span>;</span><br><span class="line"> 		<span class="keyword">case</span> <span class="number">3</span>: <span class="built_in">printf</span>(<span class="string">"Marth"</span>);<span class="keyword">break</span>;</span><br><span class="line"> 		<span class="keyword">case</span> <span class="number">4</span>: <span class="built_in">printf</span>(<span class="string">"April"</span>);<span class="keyword">break</span>;</span><br><span class="line"> 		<span class="keyword">case</span> <span class="number">5</span>: <span class="built_in">printf</span>(<span class="string">"May"</span>);<span class="keyword">break</span>;</span><br><span class="line"> 		<span class="keyword">case</span> <span class="number">6</span>: <span class="built_in">printf</span>(<span class="string">"June"</span>);<span class="keyword">break</span>;</span><br><span class="line"> 		<span class="keyword">case</span> <span class="number">7</span>: <span class="built_in">printf</span>(<span class="string">"July"</span>);<span class="keyword">break</span>;</span><br><span class="line"> 		<span class="keyword">case</span> <span class="number">8</span>: <span class="built_in">printf</span>(<span class="string">"August"</span>);<span class="keyword">break</span>;</span><br><span class="line"> 		<span class="keyword">case</span> <span class="number">9</span>: <span class="built_in">printf</span>(<span class="string">"September"</span>);<span class="keyword">break</span>;</span><br><span class="line"> 		<span class="keyword">case</span> <span class="number">10</span>: <span class="built_in">printf</span>(<span class="string">"October"</span>);<span class="keyword">break</span>;</span><br><span class="line"> 		<span class="keyword">case</span> <span class="number">11</span>: <span class="built_in">printf</span>(<span class="string">"November"</span>);<span class="keyword">break</span>;</span><br><span class="line"> 		<span class="keyword">case</span> <span class="number">12</span>: <span class="built_in">printf</span>(<span class="string">"December"</span>);<span class="keyword">break</span>;</span><br><span class="line"> 	&#125;</span><br><span class="line"> 	<span class="built_in">printf</span>(<span class="string">",20%.2d\n"</span>, year);</span><br><span class="line"> 	return <span class="number">0</span>;</span><br><span class="line"> &#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ ./date                        </span><br><span class="line"> Enter date (mm/dd/yy):6/21/15          </span><br><span class="line"> Dated this 21st day of June,2015</span><br></pre></td></tr></table></figure>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2016/05/09/4 表达式/" itemprop="url">
                   4	表达式
                 </a>
@@ -1186,7 +2540,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">94</span>
+              <span class="site-state-item-count">98</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -1196,7 +2550,7 @@
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">12</span>
+                <span class="site-state-item-count">13</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
