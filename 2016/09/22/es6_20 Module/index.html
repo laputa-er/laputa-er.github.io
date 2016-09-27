@@ -108,7 +108,7 @@
 
 
 两">
-<meta property="og:updated_time" content="2016-09-22T08:28:55.000Z">
+<meta property="og:updated_time" content="2016-09-27T07:25:11.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="20 Module(ECMAScript6入门)">
 <meta name="twitter:description" content="说明：ES6模块的设计思想，是尽量的静态化，使得编译时就能确定模块的依赖关系，以及输入和输出的变量
@@ -396,10 +396,34 @@
 </tr>
 </tbody>
 </table>
-<p><strong>适用比较：</strong><br>模块加载方案|说明<br>-|-<br>CommonJS|用于服务器<br>AMD|用于浏览器<br>es6 module|浏览器和服务器通用的模块解决方案</p>
+<p><strong>适用比较：</strong></p>
+<table>
+<thead>
+<tr>
+<th>模块加载方案</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>CommonJS</td>
+<td>用于服务器</td>
+</tr>
+<tr>
+<td>AMD</td>
+<td>用于浏览器</td>
+</tr>
+<tr>
+<td>es6 module</td>
+<td>浏览器和服务器通用的模块解决方案</td>
+</tr>
+</tbody>
+</table>
 <p><strong>注意：</strong><code>Node</code>的默认模块格式是<code>CommonJS</code>，目前还没决定怎么支持<code>ES6</code>模块。所以，只能通过<code>Babel</code>这样的转码器，在<code>Node</code>里面使用<code>ES6</code>模块。</p>
-<h3 id="script"><a href="#script" class="headerlink" title="script"></a>script</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;script type=<span class="string">"module"</span> src=<span class="string">"foo.js"</span>&gt;<span class="xml"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span></span><br></pre></td></tr></table></figure>
-<h3 id="import"><a href="#import" class="headerlink" title="import"></a>import</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// ES6模块</span></span><br><span class="line"><span class="keyword">import</span> &#123; stat, exists, readFile &#125; <span class="keyword">from</span> <span class="string">'fs'</span>;</span><br></pre></td></tr></table></figure>
+<p><em>script</em></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;script type=<span class="string">"module"</span> src=<span class="string">"foo.js"</span>&gt;<span class="xml"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span></span><br></pre></td></tr></table></figure>
+<p><em>import</em></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// ES6模块</span></span><br><span class="line"><span class="keyword">import</span> &#123; stat, exists, readFile &#125; <span class="keyword">from</span> <span class="string">'fs'</span>;</span><br></pre></td></tr></table></figure>
 <h1 id="1-严格模式"><a href="#1-严格模式" class="headerlink" title="1 严格模式"></a>1 严格模式</h1><p><strong>说明：</strong><code>ES6</code>的模块自动采用严格模式，不管你有没有在模块头部加上<code>use strict</code>;</p>
 <ul>
 <li>变量必须声明后再使用</li>
@@ -647,7 +671,7 @@
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#script"><span class="nav-text">script</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#import"><span class="nav-text">import</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#1-严格模式"><span class="nav-text">1 严格模式</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#2-export命令"><span class="nav-text">2 export命令</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#2-1-简单使用"><span class="nav-text">2.1 简单使用</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-2-注意点"><span class="nav-text">2.2 注意点</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#3-import命令"><span class="nav-text">3 import命令</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#3-1-基本使用"><span class="nav-text">3.1 基本使用</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#4-模块的整体加载"><span class="nav-text">4 模块的整体加载</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#5-export-default-命令"><span class="nav-text">5 export default 命令</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#6-模块的继承"><span class="nav-text">6 模块的继承</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#7-ES6模块加载的实质"><span class="nav-text">7 ES6模块加载的实质</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#8-循环加载"><span class="nav-text">8 循环加载</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#8-1-CommonJS模块的加载原理"><span class="nav-text">8.1 CommonJS模块的加载原理</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#8-2-CommonJS模块的循环加载"><span class="nav-text">8.2 CommonJS模块的循环加载</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#8-3-ES6模块的循环加载"><span class="nav-text">8.3 ES6模块的循环加载</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#9-跨模块常量"><span class="nav-text">9 跨模块常量</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#10-ES6模块的转码"><span class="nav-text">10 ES6模块的转码</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#10-1-ES6-module-transpiler"><span class="nav-text">10.1 ES6 module transpiler</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#10-2-SystemJS"><span class="nav-text">10.2 SystemJS</span></a></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#1-严格模式"><span class="nav-text">1 严格模式</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#2-export命令"><span class="nav-text">2 export命令</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#2-1-简单使用"><span class="nav-text">2.1 简单使用</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-2-注意点"><span class="nav-text">2.2 注意点</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#3-import命令"><span class="nav-text">3 import命令</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#3-1-基本使用"><span class="nav-text">3.1 基本使用</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#4-模块的整体加载"><span class="nav-text">4 模块的整体加载</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#5-export-default-命令"><span class="nav-text">5 export default 命令</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#6-模块的继承"><span class="nav-text">6 模块的继承</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#7-ES6模块加载的实质"><span class="nav-text">7 ES6模块加载的实质</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#8-循环加载"><span class="nav-text">8 循环加载</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#8-1-CommonJS模块的加载原理"><span class="nav-text">8.1 CommonJS模块的加载原理</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#8-2-CommonJS模块的循环加载"><span class="nav-text">8.2 CommonJS模块的循环加载</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#8-3-ES6模块的循环加载"><span class="nav-text">8.3 ES6模块的循环加载</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#9-跨模块常量"><span class="nav-text">9 跨模块常量</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#10-ES6模块的转码"><span class="nav-text">10 ES6模块的转码</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#10-1-ES6-module-transpiler"><span class="nav-text">10.1 ES6 module transpiler</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#10-2-SystemJS"><span class="nav-text">10.2 SystemJS</span></a></li></ol></li></ol></div>
             
           </div>
         </section>
