@@ -120,7 +120,7 @@
 <meta property="og:image" content="http://o6ul1xz4z.bkt.clouddn.com/img/1471097772183.png">
 <meta property="og:image" content="http://o6ul1xz4z.bkt.clouddn.com/img/1471098062069.png">
 <meta property="og:image" content="http://o6ul1xz4z.bkt.clouddn.com/img/1471098192119.png">
-<meta property="og:updated_time" content="2016-10-06T07:08:52.000Z">
+<meta property="og:updated_time" content="2016-10-06T15:06:31.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="JavaScript 正则表达式">
 <meta name="twitter:description" content="视频地址：http://www.imooc.com/learn/706推荐在线练习工具：https://regexper.com/
@@ -596,7 +596,8 @@
 </thead>
 <tbody>
 <tr>
-<td>贪婪模式｜尽可能多地匹配字符</td>
+<td>贪婪模式</td>
+<td>尽可能多地匹配字符</td>
 <td>默认</td>
 </tr>
 <tr>
@@ -655,7 +656,37 @@
 </tbody>
 </table>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">'a2*34v8'</span>.match(<span class="regexp">/\w(?=\d)/g</span>)</span><br><span class="line"><span class="comment">// ["a", "3", "v"]</span></span><br></pre></td></tr></table></figure>
-<h2 id="2-10-对象属性"><a href="#2-10-对象属性" class="headerlink" title="2.10 对象属性"></a>2.10 对象属性</h2><p><code>RegExp</code>对象常用属性<br>属性|说明<br>-|-<br>global|是否全文搜索，默认<code>false</code><br>ignoreCase|是否大小写敏感，默认使<code>false</code><br>multiline|多行搜索，默认值是<code>false</code><br>laseIndex|是当前表达式匹配内容的最后一个字符的下一个位置，也就是下一次搜索开始的位置，在没有使用<code>g</code>修饰符时，该值始终为0<br>source|正则表达式的文本字符串</p>
+<h2 id="2-10-对象属性"><a href="#2-10-对象属性" class="headerlink" title="2.10 对象属性"></a>2.10 对象属性</h2><p><code>RegExp</code>对象常用属性</p>
+<table>
+<thead>
+<tr>
+<th>属性</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>global</td>
+<td>是否全文搜索，默认<code>false</code></td>
+</tr>
+<tr>
+<td>ignoreCase</td>
+<td>是否大小写敏感，默认使<code>false</code></td>
+</tr>
+<tr>
+<td>multiline</td>
+<td>多行搜索，默认值是<code>false</code></td>
+</tr>
+<tr>
+<td>laseIndex</td>
+<td>是当前表达式匹配内容的最后一个字符的下一个位置，也就是下一次搜索开始的位置，在没有使用<code>g</code>修饰符时，该值始终为0</td>
+</tr>
+<tr>
+<td>source</td>
+<td>正则表达式的文本字符串</td>
+</tr>
+</tbody>
+</table>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> reg = <span class="regexp">/\bis\b/gi</span></span><br><span class="line"><span class="string">'I do because I love.This is fun. IS NOT IT?'</span>.match(reg)</span><br><span class="line"><span class="comment">// ["is", "IS"]</span></span><br><span class="line"></span><br><span class="line">reg.global</span><br><span class="line"><span class="comment">// true</span></span><br><span class="line">reg.ignoreCase</span><br><span class="line"><span class="comment">// true</span></span><br><span class="line">reg.multiline</span><br><span class="line"><span class="comment">// false</span></span><br><span class="line">reg.lastIndex</span><br><span class="line"><span class="comment">// 0</span></span><br><span class="line">reg.source</span><br><span class="line"><span class="comment">// "\bis\b"</span></span><br></pre></td></tr></table></figure>
 <h2 id="2-11-test-和-exec方法"><a href="#2-11-test-和-exec方法" class="headerlink" title="2.11 test 和 exec方法"></a>2.11 test 和 exec方法</h2><h3 id="2-11-1-RegExp-prototype-test-str"><a href="#2-11-1-RegExp-prototype-test-str" class="headerlink" title="2.11.1 RegExp.prototype.test(str)"></a>2.11.1 RegExp.prototype.test(str)</h3><p> <strong>功能：</strong>用于测试字符串参数中是否存在匹配正则表达式模式的字符串<br> <strong>返回值：</strong>存在返回 true, 不存在返回 false</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> reg1 = <span class="regexp">/\w/</span></span><br><span class="line"><span class="keyword">const</span> reg2 = <span class="regexp">/\w/g</span></span><br><span class="line"></span><br><span class="line">reg1.test(<span class="string">'abc'</span>)</span><br><span class="line"><span class="comment">// true</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 添加 g 修饰符会干扰 test 函数，因为每次匹配的起点（lastIndex）会不断向后移动，最后一次匹配返回的结果一定是是false</span></span><br><span class="line"><span class="keyword">while</span>(reg2.test(<span class="string">'abc'</span>)) &#123;</span><br><span class="line">  <span class="built_in">console</span>.log(reg2.lastIndex)</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 1</span></span><br><span class="line"><span class="comment">// 2</span></span><br><span class="line"><span class="comment">// 3</span></span><br></pre></td></tr></table></figure>
@@ -714,7 +745,21 @@
 </tbody>
 </table>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">'1az2bb3cv4d51eee6f7'</span>.match(<span class="regexp">/\d(\w)\d/</span>)<span class="comment">// ["4d5", "d"]</span></span><br></pre></td></tr></table></figure>
-<p>＃全局调用<br>如果 <code>RegExp</code>具有标志<code>g</code>则 <code>match</code>方法将执行全文搜索，找到字符串中的所有匹配子字符串。返回的数组没有 <code>index</code> 属性或<code>input</code>属性<br>返回数组的元素下标|说明<br>-|-<br>all|所有匹配的子串</p>
+<p>＃全局调用<br>如果 <code>RegExp</code>具有标志<code>g</code>则 <code>match</code>方法将执行全文搜索，找到字符串中的所有匹配子字符串。返回的数组没有 <code>index</code> 属性或<code>input</code>属性</p>
+<table>
+<thead>
+<tr>
+<th>返回数组的元素下标</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>all</td>
+<td>所有匹配的子串</td>
+</tr>
+</tbody>
+</table>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">'1az2bb3cv4d51eee6f7'</span>.match(<span class="regexp">/\d(\w)\d/g</span>)<span class="comment">// ["4d5", "6f7"]</span></span><br></pre></td></tr></table></figure>
 <p><strong>注意：</strong> 如果<code>RegExp</code>没有标志<code>g</code>，那么<code>match</code>方法只能在字符串中执行一次匹配</p>
 <h3 id="2-12-3-String-prototype-split"><a href="#2-12-3-String-prototype-split" class="headerlink" title="2.12.3 String.prototype.split"></a>2.12.3 String.prototype.split</h3><p> <strong>功能：</strong>我们经常使用<code>split</code>方法把字符串分割为字符数组，在一些复杂的分割情况下我们可以使用正则表达式解决<br> <strong>参数（1）：</strong><code>RegExp</code>对象（如果是其它类型，将会被当做正则表达式字符串处理，内部仍旧会处理为一个 <code>RegExp</code>对象）</p>
