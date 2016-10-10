@@ -1,0 +1,1003 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="es6," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1" />
+
+
+
+
+
+
+<meta name="description" content="13.1 Iterator（遍历器）的概念是什么：它是一种接口，为各种不同的数据结构(Array、Object、Map、Set)提供统一的访问机制有啥用：
+
+为各种数据结构，提供一个统一的、简便的访问接口
+使得数据结构的成员能够按某种次序排列
+ES6创造了一种新的遍历命令for...of循环，Iterator接口主要供for...of消费
+
+原理：Iterator的遍历过程
+
+创建一个指针对象，指">
+<meta property="og:type" content="article">
+<meta property="og:title" content="13 Iterator和for...of循环(ECMAScript6入门)">
+<meta property="og:url" content="http://laputa-er.github.io/2016/10/10/es6_13 Iterator和for…of循环/index.html">
+<meta property="og:site_name" content="Sean">
+<meta property="og:description" content="13.1 Iterator（遍历器）的概念是什么：它是一种接口，为各种不同的数据结构(Array、Object、Map、Set)提供统一的访问机制有啥用：
+
+为各种数据结构，提供一个统一的、简便的访问接口
+使得数据结构的成员能够按某种次序排列
+ES6创造了一种新的遍历命令for...of循环，Iterator接口主要供for...of消费
+
+原理：Iterator的遍历过程
+
+创建一个指针对象，指">
+<meta property="og:updated_time" content="2016-10-10T02:30:55.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="13 Iterator和for...of循环(ECMAScript6入门)">
+<meta name="twitter:description" content="13.1 Iterator（遍历器）的概念是什么：它是一种接口，为各种不同的数据结构(Array、Object、Map、Set)提供统一的访问机制有啥用：
+
+为各种数据结构，提供一个统一的、简便的访问接口
+使得数据结构的成员能够按某种次序排列
+ES6创造了一种新的遍历命令for...of循环，Iterator接口主要供for...of消费
+
+原理：Iterator的遍历过程
+
+创建一个指针对象，指">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 0,
+      author: '博主'
+    }
+  };
+</script>
+
+
+
+
+  <link rel="canonical" href="http://laputa-er.github.io/2016/10/10/es6_13 Iterator和for…of循环/"/>
+
+  <title> 13 Iterator和for...of循环(ECMAScript6入门) | Sean </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//hm.baidu.com/hm.js?898688f51c5a3d6b37dd23e04441e5bd";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">Sean</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">笔记分享</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup">
+ <span class="search-icon fa fa-search"></span>
+ <input type="text" id="local-search-input">
+ <div id="local-search-result"></div>
+ <span class="popup-btn-close">close</span>
+</div>
+
+
+    </div>
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                13 Iterator和for...of循环(ECMAScript6入门)
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-10-10T10:05:29+08:00" content="2016-10-10">
+              2016-10-10
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/ECMAScript6入门/" itemprop="url" rel="index">
+                    <span itemprop="name">ECMAScript6入门</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/10/10/es6_13 Iterator和for…of循环/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/10/10/es6_13 Iterator和for…of循环/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="13-1-Iterator（遍历器）的概念"><a href="#13-1-Iterator（遍历器）的概念" class="headerlink" title="13.1 Iterator（遍历器）的概念"></a>13.1 Iterator（遍历器）的概念</h2><p><strong>是什么：</strong>它是一种接口，为各种不同的数据结构(<code>Array、Object、Map、Set</code>)提供统一的访问机制<br><strong>有啥用：</strong></p>
+<ul>
+<li>为各种数据结构，提供一个统一的、简便的访问<code>接口</code></li>
+<li>使得数据结构的成员能够按某种次序排列</li>
+<li><code>ES6</code>创造了一种新的遍历命令<code>for...of</code>循环，<code>Iterator</code>接口主要供<code>for...of</code>消费</li>
+</ul>
+<p><strong>原理：</strong><code>Iterator</code>的遍历过程</p>
+<ol>
+<li>创建一个指针对象，指向当前数据结构的起始位置</li>
+<li>第一次调用指针对象的<code>next</code>方法，可以将指针指向数据结构的第一个成员</li>
+<li>第二次调用指针对象的<code>next</code>方法，指针就指向数据结构的第二个成员</li>
+<li>不断调用指针对象的<code>next</code>方法，直到它指向数据结构的结束位置</li>
+</ol>
+<h3 id="13-2-1-模拟next方法"><a href="#13-2-1-模拟next方法" class="headerlink" title="13.2.1 模拟next方法"></a>13.2.1 模拟<code>next</code>方法</h3><p><strong>说明：</strong>自定义一个便利器生成函数，来说明 <code>next()</code> 的工作原理</p>
+<table>
+<thead>
+<tr>
+<th><code>next()</code>返回的对象的属性</th>
+<th>类型</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>value</code></td>
+<td><code>any</code></td>
+<td>当前位置的成员，遍历完毕时为<code>undefined</code></td>
+</tr>
+<tr>
+<td><code>done</code></td>
+<td><code>boolean</code></td>
+<td>表示遍历是否结束</td>
+</tr>
+</tbody>
+</table>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> it = makeIterator([<span class="string">'a'</span>, <span class="string">'b'</span>]);</span><br><span class="line"></span><br><span class="line">it.next() <span class="comment">// &#123; value: "a", done: false &#125;</span></span><br><span class="line">it.next() <span class="comment">// &#123; value: "b", done: false &#125;</span></span><br><span class="line">it.next() <span class="comment">// &#123; value: undefined, done: true &#125;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span><br><span class="line">* 一个遍历器生成函数，返回一个遍历器对象</span><br><span class="line">*/</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">makeIterator</span>(<span class="params">array</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">var</span> nextIndex = <span class="number">0</span>;</span><br><span class="line">  <span class="keyword">return</span> &#123;</span><br><span class="line">    next: <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">      <span class="keyword">return</span> nextIndex &lt; array.length ?</span><br><span class="line">        &#123;value: array[nextIndex++], done: <span class="literal">false</span>&#125; :</span><br><span class="line">        &#123;value: <span class="literal">undefined</span>, done: <span class="literal">true</span>&#125;;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="13-2-1-用-TypeScript-描述相关概念"><a href="#13-2-1-用-TypeScript-描述相关概念" class="headerlink" title="13.2.1 用 TypeScript 描述相关概念"></a>13.2.1 用 TypeScript 描述相关概念</h3><ul>
+<li><code>Iterable</code>: 遍历器接口</li>
+<li><code>Iterator</code>: 遍历器对象</li>
+<li><code>next()</code>返回值</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//  便利器接口</span></span><br><span class="line">interface Iterable &#123;</span><br><span class="line">  [<span class="built_in">Symbol</span>.iterator]() : Iterator,</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 遍历器对象</span></span><br><span class="line">interface Iterator &#123;</span><br><span class="line">  next(value?: any) : IterationResult,</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// next() 返回值</span></span><br><span class="line">interface IterationResult &#123;</span><br><span class="line">  value: any,</span><br><span class="line">  done: boolean,</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="13-2-数据结构的默认Iterator接口"><a href="#13-2-数据结构的默认Iterator接口" class="headerlink" title="13.2 数据结构的默认Iterator接口"></a>13.2 数据结构的默认Iterator接口</h2><p><strong>说明：</strong>有些数据结构原生具备<code>Iterator</code>接口，比如</p>
+<ul>
+<li><code>Array</code></li>
+<li><code>String</code></li>
+<li><code>Map</code></li>
+<li><code>Set</code></li>
+<li>某些特殊的类数组对象（<code>DOM NodeList</code>、<code>arguments</code>）</li>
+</ul>
+<p><strong>对象为什么没有默认部署<code>Iterator</code>接口：</strong>遍历器是一种线性处理，对于任何非线性的数据结构，部署遍历器接口，就等于部署一种线性转换。严格地说，对象部署遍历器接口并不是很必要，因为对象的哪个属性先遍历，哪个属性后遍历是不确定的</p>
+<h3 id="13-2-1-Symbol-iterator"><a href="#13-2-1-Symbol-iterator" class="headerlink" title="13.2.1 Symbol.iterator"></a>13.2.1 Symbol.iterator</h3><p><strong>类型：</strong>一个预定义好的、类型为<code>Symbol</code>的特殊值<br><strong>说明：</strong>默认的<code>Iterator</code>接口部署在数据结构的<code>Symbol.iterator</code>属性</p>
+<ul>
+<li>一个数据结构只要具有<code>Symbol.iterator</code>属性，就可以认为是<code>可遍历的</code>（iterable）</li>
+<li>调用<code>Symbol.iterator</code>方法，就会得到当前数据结构默认的遍历器生成函数</li>
+</ul>
+<p><strong>注意：</strong>如果<code>Symbol.iterator</code>方法对应的不是遍历器生成函数（即会返回一个遍历器对象），解释引擎将会报错</p>
+<h3 id="13-2-2-对象上部署Iterable接口"><a href="#13-2-2-对象上部署Iterable接口" class="headerlink" title="13.2.2 对象上部署Iterable接口"></a>13.2.2 对象上部署<code>Iterable</code>接口</h3><p><strong>说明：</strong>必须在<code>Symbol.iterator</code>的属性上部署遍历器生成方法（<code>原型链</code>上的对象具有该方法也可）</p>
+<p><em>Demo1: 在 class 中部署（将当前实例作为<code>便利器对象</code>返回）</em></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span><br><span class="line">* 在这个类上部署 Iterable 接口</span><br><span class="line">* 该类用来定义一个数字区间</span><br><span class="line">*/</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">RangeIterator</span> </span>&#123;</span><br><span class="line">  <span class="keyword">constructor</span>(start, stop) &#123;</span><br><span class="line">    <span class="keyword">this</span>.value = start;</span><br><span class="line">    <span class="keyword">this</span>.stop = stop;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  [<span class="built_in">Symbol</span>.iterator]() &#123; <span class="keyword">return</span> <span class="keyword">this</span>; &#125;</span><br><span class="line"></span><br><span class="line">  next() &#123;</span><br><span class="line">    <span class="keyword">var</span> value = <span class="keyword">this</span>.value;</span><br><span class="line">    <span class="keyword">if</span> (value &lt; <span class="keyword">this</span>.stop) &#123;</span><br><span class="line">      <span class="keyword">this</span>.value++;</span><br><span class="line">      <span class="keyword">return</span> &#123;done: <span class="literal">false</span>, value: value&#125;;</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">      <span class="keyword">return</span> &#123;done: <span class="literal">true</span>, value: <span class="literal">undefined</span>&#125;;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span><br><span class="line">* 给上面定义的区间类包装一个工厂方法</span><br><span class="line">*/</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">range</span>(<span class="params">start, stop</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> <span class="keyword">new</span> RangeIterator(start, stop);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 遍历一个区间实例</span></span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">var</span> value <span class="keyword">of</span> range(<span class="number">0</span>, <span class="number">3</span>)) &#123;</span><br><span class="line">  <span class="built_in">console</span>.log(value);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><em>Demo2: 实现链表（在构造函数的原型链上部署<code>Symbol.iterator</code>方法）</em><br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 构造器</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Obj</span>(<span class="params">value</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">this</span>.value = value;</span><br><span class="line">  <span class="keyword">this</span>.next = <span class="literal">null</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 在原型上提供 Symbol.iterator 的实现</span></span><br><span class="line">Obj.prototype[<span class="built_in">Symbol</span>.iterator] = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">var</span> iterator = &#123;</span><br><span class="line">    next: next</span><br><span class="line">  &#125;;</span><br><span class="line"></span><br><span class="line">  <span class="comment">// 遍历时，this 指向调用 Symbol.iterator 的是和该原型关联的实例</span></span><br><span class="line">  <span class="keyword">var</span> current = <span class="keyword">this</span>;</span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="keyword">function</span> <span class="title">next</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (current) &#123;</span><br><span class="line">      <span class="keyword">var</span> value = current.value;</span><br><span class="line">      current = current.next;<span class="comment">// 如果提供了 next 属性，current 会改为指向那个 next</span></span><br><span class="line">      <span class="keyword">return</span> &#123;</span><br><span class="line">        done: <span class="literal">false</span>,</span><br><span class="line">        value: value</span><br><span class="line">      &#125;;</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">      <span class="keyword">return</span> &#123;</span><br><span class="line">        done: <span class="literal">true</span></span><br><span class="line">      &#125;;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> iterator;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 头节点</span></span><br><span class="line"><span class="keyword">var</span> one = <span class="keyword">new</span> Obj(<span class="number">1</span>);</span><br><span class="line"><span class="keyword">var</span> two = <span class="keyword">new</span> Obj(<span class="number">2</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 尾节点</span></span><br><span class="line"><span class="keyword">var</span> three = <span class="keyword">new</span> Obj(<span class="number">3</span>);</span><br><span class="line"></span><br><span class="line">one.next = two;</span><br><span class="line">two.next = three;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 遍历链表</span></span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">var</span> i <span class="keyword">of</span> one)&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(i);</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 1</span></span><br><span class="line"><span class="comment">// 2</span></span><br><span class="line"><span class="comment">// 3</span></span><br></pre></td></tr></table></figure></p>
+<p><em>Demo3: 在对象字面量中部署</em><br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> obj = &#123;</span><br><span class="line">  data: [ <span class="string">'hello'</span>, <span class="string">'world'</span> ],</span><br><span class="line">  [<span class="built_in">Symbol</span>.iterator]() &#123;</span><br><span class="line">    <span class="keyword">const</span> self = <span class="keyword">this</span>;</span><br><span class="line">    <span class="keyword">let</span> index = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">return</span> &#123;</span><br><span class="line">      next() &#123;</span><br><span class="line">        <span class="keyword">if</span> (index &lt; self.data.length) &#123;</span><br><span class="line">          <span class="keyword">return</span> &#123;</span><br><span class="line">            value: self.data[index++],</span><br><span class="line">            done: <span class="literal">false</span></span><br><span class="line">          &#125;;</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">          <span class="keyword">return</span> &#123; value: <span class="literal">undefined</span>, done: <span class="literal">true</span> &#125;;</span><br><span class="line">        &#125;</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure></p>
+<h3 id="13-2-3-类似数组的对象部署-Iterator-接口"><a href="#13-2-3-类似数组的对象部署-Iterator-接口" class="headerlink" title="13.2.3 类似数组的对象部署 Iterator 接口"></a>13.2.3 类似数组的对象部署 Iterator 接口</h3><p><strong>说明：</strong>对于<code>类数组对象</code>（存在<code>数值键名</code>和<code>length</code>属性），部署<code>Iterator</code>接口，有一个简便方法，就是<code>Symbol.iterator</code>方法直接引用数组的<code>Iterator</code>接口<br><strong>注意：</strong>普通对象部署数组的<code>Symbol.iterator</code>方法，并无效果</p>
+<p><em>Demo: 类数组对象调用数组的<code>Symbol.iterator</code>方法</em><br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> iterable = &#123;</span><br><span class="line">  <span class="number">0</span>: <span class="string">'a'</span>,</span><br><span class="line">  <span class="number">1</span>: <span class="string">'b'</span>,</span><br><span class="line">  <span class="number">2</span>: <span class="string">'c'</span>,</span><br><span class="line">  length: <span class="number">3</span>,</span><br><span class="line">  [<span class="built_in">Symbol</span>.iterator]: <span class="built_in">Array</span>.prototype[<span class="built_in">Symbol</span>.iterator]</span><br><span class="line">&#125;;</span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">let</span> item <span class="keyword">of</span> iterable) &#123;</span><br><span class="line">  <span class="built_in">console</span>.log(item); <span class="comment">// 'a', 'b', 'c'</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 也可以使用while循环遍历</span></span><br><span class="line"><span class="keyword">var</span> $iterator = iterable[<span class="built_in">Symbol</span>.iterator]();</span><br><span class="line"><span class="keyword">var</span> $result = $iterator.next();</span><br><span class="line"><span class="keyword">while</span> (!$result.done) &#123;</span><br><span class="line">  <span class="keyword">var</span> x = $result.value;</span><br><span class="line">  <span class="comment">// ...</span></span><br><span class="line">  $result = $iterator.next();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h2 id="13-3-调用Iterator接口的场合"><a href="#13-3-调用Iterator接口的场合" class="headerlink" title="13.3 调用Iterator接口的场合"></a>13.3 调用Iterator接口的场合</h2><p><strong>说明：</strong>总结下默认调用<code>Iterator</code>接口的场景</p>
+<ul>
+<li>解构赋值</li>
+<li>扩展运算符</li>
+<li><code>yield*</code>后面跟的是一个可遍历的结构</li>
+<li>其它（遍历数组）</li>
+</ul>
+<ol>
+<li><code>for...of</code></li>
+<li><code>Array.from()</code></li>
+<li><code>Map(), Set(), WeakMap(), WeakSet()</code>（比如new Map([[‘a’,1],[‘b’,2]])）</li>
+<li><code>Promise.all()</code></li>
+<li><code>Promise.race()</code></li>
+</ol>
+<p><em>Demo1: 解构赋值</em><br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> set = <span class="keyword">new</span> <span class="built_in">Set</span>().add(<span class="string">'a'</span>).add(<span class="string">'b'</span>).add(<span class="string">'c'</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> [x,y] = set;</span><br><span class="line"><span class="comment">// x='a'; y='b'</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> [first, ...rest] = set;</span><br><span class="line"><span class="comment">// first='a'; rest=['b','c'];</span></span><br></pre></td></tr></table></figure></p>
+<p><em>Demo2: 扩展运算符</em><br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 例一</span></span><br><span class="line"><span class="keyword">var</span> str = <span class="string">'hello'</span>;</span><br><span class="line">[...str] <span class="comment">//  ['h','e','l','l','o']</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 例二</span></span><br><span class="line"><span class="keyword">let</span> arr = [<span class="string">'b'</span>, <span class="string">'c'</span>];</span><br><span class="line">[<span class="string">'a'</span>, ...arr, <span class="string">'d'</span>]</span><br><span class="line"><span class="comment">// ['a', 'b', 'c', 'd']</span></span><br></pre></td></tr></table></figure></p>
+<p><em>Demo3: `yield</em>`后面跟的是一个可遍历的结构*<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> generator = <span class="function"><span class="keyword">function</span>* (<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">yield</span> <span class="number">1</span>;</span><br><span class="line">  <span class="keyword">yield</span>* [<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>];</span><br><span class="line">  <span class="keyword">yield</span> <span class="number">5</span>;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> iterator = generator();</span><br><span class="line"></span><br><span class="line">iterator.next() <span class="comment">// &#123; value: 1, done: false &#125;</span></span><br><span class="line">iterator.next() <span class="comment">// &#123; value: 2, done: false &#125;</span></span><br><span class="line">iterator.next() <span class="comment">// &#123; value: 3, done: false &#125;</span></span><br><span class="line">iterator.next() <span class="comment">// &#123; value: 4, done: false &#125;</span></span><br><span class="line">iterator.next() <span class="comment">// &#123; value: 5, done: false &#125;</span></span><br><span class="line">iterator.next() <span class="comment">// &#123; value: undefined, done: true &#125;</span></span><br></pre></td></tr></table></figure></p>
+<h2 id="13-4-字符串的Iterator接口"><a href="#13-4-字符串的Iterator接口" class="headerlink" title="13.4 字符串的Iterator接口"></a>13.4 字符串的Iterator接口</h2><p><em>Demo1: 字符串是一个类似数组的对象，也原生具有Iterator接口</em><br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> someString = <span class="string">"hi"</span>;</span><br><span class="line"><span class="keyword">typeof</span> someString[<span class="built_in">Symbol</span>.iterator]</span><br><span class="line"><span class="comment">// "function"</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> iterator = someString[<span class="built_in">Symbol</span>.iterator]();</span><br><span class="line"></span><br><span class="line">iterator.next()  <span class="comment">// &#123; value: "h", done: false &#125;</span></span><br><span class="line">iterator.next()  <span class="comment">// &#123; value: "i", done: false &#125;</span></span><br><span class="line">iterator.next()  <span class="comment">// &#123; value: undefined, done: true &#125;</span></span><br></pre></td></tr></table></figure></p>
+<p><em>Demo2: 覆盖原生的<code>Symbol.iterator</code>方法，达到修改遍历器行为的目的</em><br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> str = <span class="keyword">new</span> <span class="built_in">String</span>(<span class="string">"hi"</span>);</span><br><span class="line"></span><br><span class="line">[...str] <span class="comment">// ["h", "i"]</span></span><br><span class="line"></span><br><span class="line">str[<span class="built_in">Symbol</span>.iterator] = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> &#123;</span><br><span class="line">    next: <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">      <span class="keyword">if</span> (<span class="keyword">this</span>._first) &#123;</span><br><span class="line">        <span class="keyword">this</span>._first = <span class="literal">false</span>;</span><br><span class="line">        <span class="keyword">return</span> &#123; value: <span class="string">"bye"</span>, done: <span class="literal">false</span> &#125;;</span><br><span class="line">      &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> &#123; done: <span class="literal">true</span> &#125;;</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;,</span><br><span class="line">    _first: <span class="literal">true</span></span><br><span class="line">  &#125;;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">[...str] <span class="comment">// ["bye"]</span></span><br><span class="line">str <span class="comment">// "hi"</span></span><br></pre></td></tr></table></figure></p>
+<h2 id="13-5-Iterator接口与Generator函数"><a href="#13-5-Iterator接口与Generator函数" class="headerlink" title="13.5 Iterator接口与Generator函数"></a>13.5 Iterator接口与Generator函数</h2><p><strong>说明：</strong>Generator函数是<code>Symbol.iterator</code>方法的最简单实现，几乎不用部署任何代码，只要用<code>yield</code>命令给出每一步的返回值即可</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> myIterable = &#123;&#125;;</span><br><span class="line"></span><br><span class="line">myIterable[<span class="built_in">Symbol</span>.iterator] = <span class="function"><span class="keyword">function</span>* (<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">yield</span> <span class="number">1</span>;</span><br><span class="line">  <span class="keyword">yield</span> <span class="number">2</span>;</span><br><span class="line">  <span class="keyword">yield</span> <span class="number">3</span>;</span><br><span class="line">&#125;;</span><br><span class="line">[...myIterable] <span class="comment">// [1, 2, 3]</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 或者采用下面的简洁写法</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> obj = &#123;</span><br><span class="line">  * [<span class="built_in">Symbol</span>.iterator]() &#123;</span><br><span class="line">    <span class="keyword">yield</span> <span class="string">'hello'</span>;</span><br><span class="line">    <span class="keyword">yield</span> <span class="string">'world'</span>;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">let</span> x <span class="keyword">of</span> obj) &#123;</span><br><span class="line">  <span class="built_in">console</span>.log(x);</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// hello</span></span><br><span class="line"><span class="comment">// world</span></span><br></pre></td></tr></table></figure>
+<h2 id="13-6-遍历器对象的return-，throw"><a href="#13-6-遍历器对象的return-，throw" class="headerlink" title="13.6 遍历器对象的return()，throw()"></a>13.6 遍历器对象的return()，throw()</h2><p><strong>说明：</strong>遍历器对象有3个可以实现的方法</p>
+<table>
+<thead>
+<tr>
+<th>方法</th>
+<th>说明</th>
+<th>必需</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>next()</code></td>
+<td>切换到下一个要遍历的指针</td>
+<td>是</td>
+</tr>
+<tr>
+<td><code>return()</code></td>
+<td>如果<code>for...of</code>循环提前退出（通常是因为出错，或者有<code>break</code>语句或<code>continue</code>语句），就会调用<code>return</code>方法</td>
+<td>否</td>
+</tr>
+<tr>
+<td><code>throw()</code></td>
+<td>主要是配合<code>Generator</code>函数使用，一般的遍历器对象用不到这个方法</td>
+<td>否</td>
+</tr>
+</tbody>
+</table>
+<h3 id="return"><a href="#return" class="headerlink" title="return()"></a>return()</h3><p><strong>用途：</strong>如果一个对象在完成遍历前，需要清理或释放资源，就可以部署<code>return</code>方法</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">readLinesSync</span>(<span class="params">file</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> &#123;</span><br><span class="line">    next() &#123;</span><br><span class="line">      <span class="keyword">if</span> (file.isAtEndOfFile()) &#123;</span><br><span class="line">        file.close();</span><br><span class="line">        <span class="keyword">return</span> &#123; done: <span class="literal">true</span> &#125;;</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="comment">// 如果让文件的遍历提前返回，就会触发执行return方法</span></span><br><span class="line">    <span class="keyword">return</span>() &#123;</span><br><span class="line">      file.close();</span><br><span class="line">      <span class="keyword">return</span> &#123; done: <span class="literal">true</span> &#125;;</span><br><span class="line">    &#125;,</span><br><span class="line">  &#125;;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="13-7-for…of循环"><a href="#13-7-for…of循环" class="headerlink" title="13.7 for…of循环"></a>13.7 for…of循环</h2><p><strong>说明：</strong>一个数据结构只要部署了<code>Symbol.iterator</code>属性，就被视为具有<code>iterator</code>接口，就可以用<code>for...of</code>循环遍历它的成员</p>
+<h3 id="13-7-1-数组"><a href="#13-7-1-数组" class="headerlink" title="13.7.1 数组"></a>13.7.1 数组</h3><p><strong>说明：</strong>和<code>for...in</code>相比</p>
+<ul>
+<li><code>for...of</code>循环读取键值（<code>for...in</code>循环读取键名）</li>
+<li><code>for...of</code>循环只返回具有数字索引的属性（<code>for...in</code>循环会也返回除此之外的其它属性）</li>
+</ul>
+<p><strong>技巧：</strong>如果要通过<code>for...of</code>循环，获取数组的索引，可以借助数组实例的<code>entries</code>方法和<code>keys</code>方法</p>
+<p><em>Demo: <code>for...of</code>   vs.  <code>for...in</code></em><br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> arr = [<span class="number">3</span>, <span class="number">5</span>, <span class="number">7</span>];</span><br><span class="line">arr.foo = <span class="string">'hello'</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">let</span> i <span class="keyword">in</span> arr) &#123;</span><br><span class="line">  <span class="built_in">console</span>.log(i); <span class="comment">// "0", "1", "2", "foo"</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">let</span> i <span class="keyword">of</span> arr) &#123;</span><br><span class="line">  <span class="built_in">console</span>.log(i); <span class="comment">//  "3", "5", "7"</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h3 id="13-7-2-Set-和-Map-结构"><a href="#13-7-2-Set-和-Map-结构" class="headerlink" title="13.7.2 Set 和 Map 结构"></a>13.7.2 Set 和 Map 结构</h3><p><strong>遍历的顺序：</strong> 遍历的顺序是按照各个成员被添加进数据结构的顺序<br><strong>遍历时的返回值：</strong><code>Map</code>和<code>Set</code>不同</p>
+<table>
+<thead>
+<tr>
+<th>返回值</th>
+<th>类型</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>Set</code></td>
+<td><code>any</code></td>
+<td><code>value</code></td>
+</tr>
+<tr>
+<td><code>Map</code></td>
+<td><code>Array</code></td>
+<td><code>[key, value]</code></td>
+</tr>
+</tbody>
+</table>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> map = <span class="keyword">new</span> <span class="built_in">Map</span>().set(<span class="string">'a'</span>, <span class="number">1</span>).set(<span class="string">'b'</span>, <span class="number">2</span>);</span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">let</span> pair <span class="keyword">of</span> map) &#123;</span><br><span class="line">  <span class="built_in">console</span>.log(pair);</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// ['a', 1]</span></span><br><span class="line"><span class="comment">// ['b', 2]</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">let</span> [key, value] <span class="keyword">of</span> map) &#123;</span><br><span class="line">  <span class="built_in">console</span>.log(key + <span class="string">' : '</span> + value);</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// a : 1</span></span><br><span class="line"><span class="comment">// b : 2</span></span><br></pre></td></tr></table></figure>
+<h3 id="13-7-3-计算生成的数据结构"><a href="#13-7-3-计算生成的数据结构" class="headerlink" title="13.7.3 计算生成的数据结构"></a>13.7.3 计算生成的数据结构</h3><p><strong>说明：</strong><code>数组</code>、<code>Set</code>、<code>Map</code>都部署了<code>keys()</code>、<code>values()</code>、<code>entries()</code>，调用后都返回遍历器对象（计算生成的数据结构）</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> arr = [<span class="string">'a'</span>, <span class="string">'b'</span>, <span class="string">'c'</span>];</span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">let</span> pair <span class="keyword">of</span> arr.entries()) &#123;</span><br><span class="line">  <span class="built_in">console</span>.log(pair);</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// [0, 'a']</span></span><br><span class="line"><span class="comment">// [1, 'b']</span></span><br><span class="line"><span class="comment">// [2, 'c']</span></span><br></pre></td></tr></table></figure>
+<h3 id="13-7-3-类数组对象"><a href="#13-7-3-类数组对象" class="headerlink" title="13.7.3 类数组对象"></a>13.7.3 类数组对象</h3><p><strong>限制：</strong>必须是实现了<code>Iterator</code>接口的类数组对象，比如</p>
+<ul>
+<li><code>String</code></li>
+<li><code>DOM NodeList</code>对象</li>
+<li><code>arguments</code>对象</li>
+<li>…</li>
+</ul>
+<p><strong>技巧：</strong>为了可以被<code>for...of</code>遍历，可以使用<code>Array.from</code>方法将没有实现<code>Iterator</code>接口的类数组对象转为数组</p>
+<p><em>Demo: <code>for...of</code>循环用于<code>字符串</code>、<code>DOM NodeList对象</code>、<code>arguments对象</code>的例子</em><br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 字符串</span></span><br><span class="line"><span class="keyword">let</span> str = <span class="string">"hello"</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">let</span> s <span class="keyword">of</span> str) &#123;</span><br><span class="line">  <span class="built_in">console</span>.log(s); <span class="comment">// h e l l o</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// DOM NodeList对象</span></span><br><span class="line"><span class="keyword">let</span> paras = <span class="built_in">document</span>.querySelectorAll(<span class="string">"p"</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">let</span> p <span class="keyword">of</span> paras) &#123;</span><br><span class="line">  p.classList.add(<span class="string">"test"</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// arguments对象</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">printArgs</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">let</span> x <span class="keyword">of</span> <span class="built_in">arguments</span>) &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(x);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line">printArgs(<span class="string">'a'</span>, <span class="string">'b'</span>);</span><br><span class="line"><span class="comment">// 'a'</span></span><br><span class="line"><span class="comment">// 'b'</span></span><br></pre></td></tr></table></figure></p>
+<h3 id="13-7-4-对象"><a href="#13-7-4-对象" class="headerlink" title="13.7.4 对象"></a>13.7.4 对象</h3><p><strong>说明：</strong>对于普通的对象，<code>for...of</code>结构不能直接使用，会报错，必须部署<code>iterator</code>接口后才能使用</p>
+<h4 id="13-7-4-1-不部署-Iterator-接口"><a href="#13-7-4-1-不部署-Iterator-接口" class="headerlink" title="13.7.4.1 不部署 Iterator 接口"></a>13.7.4.1 不部署 Iterator 接口</h4><p><strong>说明：</strong>这种情况下可以通过以下方式遍历对象</p>
+<ul>
+<li><code>for...in</code>循环（遍历键名）</li>
+<li><code>Object.keys()</code>配合<code>for...of</code></li>
+<li>使用<code>Generator</code>函数将对象重新包装一下</li>
+</ul>
+<p><em>Demo1: <code>for...in</code>循环（遍历键名）</em><br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> es6 = &#123;</span><br><span class="line">  edition: <span class="number">6</span>,</span><br><span class="line">  committee: <span class="string">"TC39"</span>,</span><br><span class="line">  standard: <span class="string">"ECMA-262"</span></span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> (e <span class="keyword">in</span> es6) &#123;</span><br><span class="line">  <span class="built_in">console</span>.log(e);</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// edition</span></span><br><span class="line"><span class="comment">// committee</span></span><br><span class="line"><span class="comment">// standard</span></span><br></pre></td></tr></table></figure></p>
+<p><em>Demo2: <code>Object.keys()</code>配合<code>for...of</code></em><br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> (<span class="keyword">var</span> key <span class="keyword">of</span> <span class="built_in">Object</span>.keys(someObject)) &#123;</span><br><span class="line">  <span class="built_in">console</span>.log(key + <span class="string">": "</span> + someObject[key]);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p><em>Demo3: 使用<code>Generator</code>函数将对象重新包装一下</em><br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span>* <span class="title">entries</span>(<span class="params">obj</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">let</span> key <span class="keyword">of</span> <span class="built_in">Object</span>.keys(obj)) &#123;</span><br><span class="line">    <span class="keyword">yield</span> [key, obj[key]];</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">let</span> [key, value] <span class="keyword">of</span> entries(obj)) &#123;</span><br><span class="line">  <span class="built_in">console</span>.log(key, <span class="string">"-&gt;"</span>, value);</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// a -&gt; 1</span></span><br><span class="line"><span class="comment">// b -&gt; 2</span></span><br><span class="line"><span class="comment">// c -&gt; 3</span></span><br></pre></td></tr></table></figure></p>
+<h4 id="13-7-4-2-部署-Iterator-接口"><a href="#13-7-4-2-部署-Iterator-接口" class="headerlink" title="13.7.4.2 部署 Iterator 接口"></a>13.7.4.2 部署 Iterator 接口</h4><p><strong>说明：</strong>一个方便的方法是将数组的<code>Symbol.iterator</code>属性，直接赋值给其他对象的<code>Symbol.iterator</code>属性</p>
+<p><em>Demo: 让<code>for...of</code>环遍历<code>jQuery</code>对象</em><br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">jQuery.prototype[<span class="built_in">Symbol</span>.iterator] =</span><br><span class="line">  <span class="built_in">Array</span>.prototype[<span class="built_in">Symbol</span>.iterator];</span><br></pre></td></tr></table></figure></p>
+<h3 id="13-7-5-与其他遍历语法的比较"><a href="#13-7-5-与其他遍历语法的比较" class="headerlink" title="13.7.5 与其他遍历语法的比较"></a>13.7.5 与其他遍历语法的比较</h3><p><strong>说明：</strong><code>JavaScript</code>提供多种遍历语法，以数组为例</p>
+<ul>
+<li><code>for</code>循环</li>
+<li><code>for...in</code>循环</li>
+<li><code>forEach</code>方法</li>
+</ul>
+<h4 id="13-7-5-1-其它遍历语法"><a href="#13-7-5-1-其它遍历语法" class="headerlink" title="13.7.5.1 其它遍历语法"></a>13.7.5.1 其它遍历语法</h4><h4 id="for循环"><a href="#for循环" class="headerlink" title="for循环"></a><code>for</code>循环</h4><p><strong>缺点：</strong>写法比较麻烦<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> (<span class="keyword">var</span> index = <span class="number">0</span>; index &lt; myArray.length; index++) &#123;</span><br><span class="line">  <span class="built_in">console</span>.log(myArray[index]);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h4 id="for-in循环"><a href="#for-in循环" class="headerlink" title="for...in循环"></a><code>for...in</code>循环</h4><p><strong>缺点：</strong><code>for...in</code>循环主要是为遍历对象而设计的，不适用于遍历数组</p>
+<ul>
+<li>数组的键名是数字，但是<code>for...in</code>循环是以字符串作为键名，比如“0”、“1”、“2”等等</li>
+<li>不仅遍历数字键名，还会遍历手动添加的其他键，甚至包括原型链上的键</li>
+<li>某些情况下，<code>for...in</code>循环会以任意顺序遍历键名</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> (<span class="keyword">var</span> index <span class="keyword">in</span> myArray) &#123;</span><br><span class="line">  <span class="built_in">console</span>.log(myArray[index]);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="forEach方法"><a href="#forEach方法" class="headerlink" title="forEach方法"></a><code>forEach</code>方法</h4><p><strong>缺点：</strong>无法中途跳出<code>forEach</code>循环，<code>break</code>命令或<code>return</code>命令都不能奏效</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">myArray.forEach(<span class="function"><span class="keyword">function</span> (<span class="params">value</span>) </span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(value);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<h4 id="13-7-5-2-for…of-循环的优点"><a href="#13-7-5-2-for…of-循环的优点" class="headerlink" title="13.7.5.2 for…of 循环的优点"></a>13.7.5.2 for…of 循环的优点</h4><p><strong>说明：</strong>相比上面几种做法，有一些显著的优点</p>
+<ul>
+<li>有着同<code>for...in</code>一样的简洁语法，但是没有<code>for...in</code>那些缺点。</li>
+<li>不同用于<code>forEach</code>方法，它可以与<code>break</code>、<code>continue</code>和<code>return</code>配合使用</li>
+<li>提供了遍历所有数据结构的统一操作接口</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> (<span class="keyword">var</span> n <span class="keyword">of</span> fibonacci) &#123;</span><br><span class="line">  <span class="keyword">if</span> (n &gt; <span class="number">1000</span>)</span><br><span class="line">    <span class="keyword">break</span>;</span><br><span class="line">  <span class="built_in">console</span>.log(n);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/es6/" rel="tag">#es6</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/10/10/es6_12 Set 和 Map 数据结构/" rel="next" title="12 Set 和 Map 数据结构(ECMAScript6入门)">
+                <i class="fa fa-chevron-left"></i> 12 Set 和 Map 数据结构(ECMAScript6入门)
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/10/10/es6_14 Generator 函数/" rel="prev" title="14 Generator 函数(ECMAScript6入门)">
+                14 Generator 函数(ECMAScript6入门) <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2016/10/10/es6_13 Iterator和for…of循环/"
+           data-title="13 Iterator和for...of循环(ECMAScript6入门)" data-url="http://laputa-er.github.io/2016/10/10/es6_13 Iterator和for…of循环/">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.gif"
+               alt="Sean" />
+          <p class="site-author-name" itemprop="name">Sean</p>
+          <p class="site-description motion-element" itemprop="description">整理了一批过去一段时间ios相关的笔记，其它的笔记也整理下？源码分享出来？再说吧...反正也只有自己会看吧...</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">111</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">12</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">7</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#13-1-Iterator（遍历器）的概念"><span class="nav-text">13.1 Iterator（遍历器）的概念</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#13-2-1-模拟next方法"><span class="nav-text">13.2.1 模拟next方法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#13-2-1-用-TypeScript-描述相关概念"><span class="nav-text">13.2.1 用 TypeScript 描述相关概念</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#13-2-数据结构的默认Iterator接口"><span class="nav-text">13.2 数据结构的默认Iterator接口</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#13-2-1-Symbol-iterator"><span class="nav-text">13.2.1 Symbol.iterator</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#13-2-2-对象上部署Iterable接口"><span class="nav-text">13.2.2 对象上部署Iterable接口</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#13-2-3-类似数组的对象部署-Iterator-接口"><span class="nav-text">13.2.3 类似数组的对象部署 Iterator 接口</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#13-3-调用Iterator接口的场合"><span class="nav-text">13.3 调用Iterator接口的场合</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#13-4-字符串的Iterator接口"><span class="nav-text">13.4 字符串的Iterator接口</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#13-5-Iterator接口与Generator函数"><span class="nav-text">13.5 Iterator接口与Generator函数</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#13-6-遍历器对象的return-，throw"><span class="nav-text">13.6 遍历器对象的return()，throw()</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#return"><span class="nav-text">return()</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#13-7-for…of循环"><span class="nav-text">13.7 for…of循环</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#13-7-1-数组"><span class="nav-text">13.7.1 数组</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#13-7-2-Set-和-Map-结构"><span class="nav-text">13.7.2 Set 和 Map 结构</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#13-7-3-计算生成的数据结构"><span class="nav-text">13.7.3 计算生成的数据结构</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#13-7-3-类数组对象"><span class="nav-text">13.7.3 类数组对象</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#13-7-4-对象"><span class="nav-text">13.7.4 对象</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#13-7-4-1-不部署-Iterator-接口"><span class="nav-text">13.7.4.1 不部署 Iterator 接口</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#13-7-4-2-部署-Iterator-接口"><span class="nav-text">13.7.4.2 部署 Iterator 接口</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#13-7-5-与其他遍历语法的比较"><span class="nav-text">13.7.5 与其他遍历语法的比较</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#13-7-5-1-其它遍历语法"><span class="nav-text">13.7.5.1 其它遍历语法</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#for循环"><span class="nav-text">for循环</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#for-in循环"><span class="nav-text">for...in循环</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#forEach方法"><span class="nav-text">forEach方法</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#13-7-5-2-for…of-循环的优点"><span class="nav-text">13.7.5.2 for…of 循环的优点</span></a></li></ol></li></ol></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Sean</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"lapuda-er"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+    <script src="/vendors/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
+    <script src="/js/src/hook-duoshuo.js"></script>
+  
+
+
+
+
+
+
+  
+  
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length == 0) {
+       search_path = "search.xml";
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    function proceedsearch() {
+      $("body").append('<div class="popoverlay">').css('overflow', 'hidden');
+      $('.popup').toggle();
+
+    }
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+    'use strict';
+    $.ajax({
+        url: path,
+        dataType: "xml",
+        async: true,
+        success: function( xmlResponse ) {
+            // get the contents from search data
+            isfetched = true;
+            $('.popup').detach().appendTo('.header-inner');
+            var datas = $( "entry", xmlResponse ).map(function() {
+                return {
+                    title: $( "title", this ).text(),
+                    content: $("content",this).text(),
+                    url: $( "url" , this).text()
+                };
+            }).get();
+            var $input = document.getElementById(search_id);
+            var $resultContent = document.getElementById(content_id);
+            $input.addEventListener('input', function(){
+                var matchcounts = 0;
+                var str='<ul class=\"search-result-list\">';
+                var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+                $resultContent.innerHTML = "";
+                if (this.value.trim().length > 1) {
+                // perform local searching
+                datas.forEach(function(data) {
+                    var isMatch = true;
+                    var content_index = [];
+                    var data_title = data.title.trim().toLowerCase();
+                    var data_content = data.content.trim().replace(/<[^>]+>/g,"").toLowerCase();
+                    var data_url = data.url;
+                    var index_title = -1;
+                    var index_content = -1;
+                    var first_occur = -1;
+                    // only match artiles with not empty titles and contents
+                    if(data_title != '' && data_content != '') {
+                        keywords.forEach(function(keyword, i) {
+                            index_title = data_title.indexOf(keyword);
+                            index_content = data_content.indexOf(keyword);
+                            if( index_title < 0 && index_content < 0 ){
+                                isMatch = false;
+                            } else {
+                                if (index_content < 0) {
+                                    index_content = 0;
+                                }
+                                if (i == 0) {
+                                    first_occur = index_content;
+                                }
+                            }
+                        });
+                    }
+                    // show search results
+                    if (isMatch) {
+                        matchcounts += 1;
+                        str += "<li><a href='"+ data_url +"' class='search-result-title'>"+ data_title +"</a>";
+                        var content = data.content.trim().replace(/<[^>]+>/g,"");
+                        if (first_occur >= 0) {
+                            // cut out 100 characters
+                            var start = first_occur - 20;
+                            var end = first_occur + 80;
+                            if(start < 0){
+                                start = 0;
+                            }
+                            if(start == 0){
+                                end = 50;
+                            }
+                            if(end > content.length){
+                                end = content.length;
+                            }
+                            var match_content = content.substring(start, end);
+                            // highlight all keywords
+                            keywords.forEach(function(keyword){
+                                var regS = new RegExp(keyword, "gi");
+                                match_content = match_content.replace(regS, "<b class=\"search-keyword\">"+keyword+"</b>");
+                            });
+
+                            str += "<p class=\"search-result\">" + match_content +"...</p>"
+                        }
+                        str += "</li>";
+                    }
+                })};
+                str += "</ul>";
+                if (matchcounts == 0) { str = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>' }
+                if (keywords == "") { str = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>' }
+                $resultContent.innerHTML = str;
+            });
+            proceedsearch();
+        }
+    });}
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched == false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+
+    });
+
+    $('.popup-btn-close').click(function(e){
+      $('.popup').hide();
+      $(".popoverlay").remove();
+      $('body').css('overflow', '');
+    });
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+  </script>
+
+
+  
+
+  
+
+  
+
+</body>
+</html>
