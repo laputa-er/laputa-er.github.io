@@ -102,7 +102,7 @@
 当处于Pending状态时，无法得知目前进展到哪一个阶段（刚刚开始还是即将完成）
 
 扩展：如果某些事件不断地反复发生，一般来说，使用stream模式是比部署Pr">
-<meta property="og:updated_time" content="2016-10-26T09:12:18.000Z">
+<meta property="og:updated_time" content="2016-10-28T05:35:11.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="15 Promise 对象(ECMAScript6入门)">
 <meta name="twitter:description" content="15.1 Promise的含义说明：Promise是异步编程的一种解决方案，比传统的解决方案——回调函数和事件，更合理和更强大缺点：
@@ -414,7 +414,7 @@
 <h2 id="15-4-Promise-prototype-catch"><a href="#15-4-Promise-prototype-catch" class="headerlink" title="15.4 Promise.prototype.catch()"></a>15.4 Promise.prototype.catch()</h2><p><strong>说明：</strong>用于指定发生错误时的回调函数，相当于<code>then</code>只提供<code>rejected</code>状态的回调（<code>Promise.prototype.then(null, rejection)</code>）</p>
 <ul>
 <li>如果<code>Promise</code>状态已经变成<code>Resolved</code>，再抛出错误是无效的</li>
-<li><code>Promise</code>对象的错误具有<code>冒泡</code>性质，会一直向后传递（所以链式调用中，位置靠后抱错不会被位置靠前的 <code>catch</code> 捕获），直到被捕获为止</li>
+<li><code>Promise</code>对象的错误具有<code>冒泡</code>性质，会一直向后传递（所以链式调用中，位置靠后报错不会被位置靠前的 <code>catch</code> 捕获），直到被捕获为止</li>
 <li>跟传统的<code>try/catch</code>代码块不同的是，如果没有使用<code>catch</code>方法指定错误处理的回调函数，<code>Promise</code>对象抛出的错误不会传递到外层代码，即不会有任何反应（Chrome浏览器不遵守这条规定，它会抛出错误“ReferenceError: x is not defined”。）</li>
 <li><code>catch</code>方法之中，还能再抛出错误，如果后面还有<code>catch</code>，可以被捕获<br>参数|类型|说明|必需<br>-|-|-|-<br>1|<code>function</code>|发生错误时的回调函数|是</li>
 </ul>
@@ -511,7 +511,7 @@
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span><br><span class="line">* 一个thenable对象</span><br><span class="line">*/</span></span><br><span class="line"><span class="keyword">let</span> thenable = &#123;</span><br><span class="line">  then: <span class="function"><span class="keyword">function</span>(<span class="params">resolve, reject</span>) </span>&#123;</span><br><span class="line">    resolve(<span class="number">42</span>);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> p1 = <span class="built_in">Promise</span>.resolve(thenable);</span><br><span class="line"></span><br><span class="line">p1.then(<span class="function"><span class="keyword">function</span>(<span class="params">value</span>) </span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(value);  <span class="comment">// 42</span></span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
 <p><em>Demo3: 情形3</em><br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> p = <span class="built_in">Promise</span>.resolve(<span class="string">'Hello'</span>);</span><br><span class="line"></span><br><span class="line">p.then(<span class="function"><span class="keyword">function</span> (<span class="params">s</span>)</span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(s)</span><br><span class="line">&#125;);</span><br><span class="line"><span class="comment">// Hello</span></span><br></pre></td></tr></table></figure></p>
 <p><em>Demo4: 情形4</em><br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 插入到下一轮事件循环的开头</span></span><br><span class="line">setTimeout(<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">'three'</span>);</span><br><span class="line">&#125;, <span class="number">0</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 放入放到当前事件循环的末尾</span></span><br><span class="line"><span class="built_in">Promise</span>.resolve().then(<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">'two'</span>);</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">'one'</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">// one</span></span><br><span class="line"><span class="comment">// two</span></span><br><span class="line"><span class="comment">// three</span></span><br></pre></td></tr></table></figure></p>
-<h2 id="15-8-Promise-reject"><a href="#15-8-Promise-reject" class="headerlink" title="15.8 Promise.reject()"></a>15.8 Promise.reject()</h2><p><strong>说明：</strong>也会返回一个新的    <code>Promise</code>实例，该实例的状态为<code>rejected</code><br><strong>参数：</strong>和<code>Promise.resolved()</code>完全一致</p>
+<h2 id="15-8-Promise-reject"><a href="#15-8-Promise-reject" class="headerlink" title="15.8 Promise.reject()"></a>15.8 Promise.reject()</h2><p><strong>说明：</strong>也会返回一个新的 <code>Promise</code>实例，该实例的状态为<code>rejected</code><br><strong>参数：</strong>和<code>Promise.resolved()</code>完全一致</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> p = <span class="built_in">Promise</span>.reject(<span class="string">'出错了'</span>);</span><br><span class="line"><span class="comment">// 等同于</span></span><br><span class="line"><span class="keyword">var</span> p = <span class="keyword">new</span> <span class="built_in">Promise</span>((resolve, reject) =&gt; reject(<span class="string">'出错了'</span>))</span><br><span class="line"></span><br><span class="line">p.then(<span class="literal">null</span>, <span class="function"><span class="keyword">function</span> (<span class="params">s</span>)</span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(s)</span><br><span class="line">&#125;);</span><br><span class="line"><span class="comment">// 出错了</span></span><br></pre></td></tr></table></figure>
 <h2 id="15-9-两个有用的附加方法"><a href="#15-9-两个有用的附加方法" class="headerlink" title="15.9 两个有用的附加方法"></a>15.9 两个有用的附加方法</h2><p><strong>说明：</strong>不是<code>Promise API</code>提供的方法，需要自己部署</p>
 <h3 id="done"><a href="#done" class="headerlink" title="done()"></a>done()</h3><p><strong>说明：</strong>总是处于回调链的尾端，保证抛出任何可能出现的错误<br><strong>参数：</strong>和<code>Promise.prototype.then()</code>完全一致</p>
@@ -652,7 +652,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">116</span>
+              <span class="site-state-item-count">117</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -669,7 +669,7 @@
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">7</span>
+                <span class="site-state-item-count">8</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
