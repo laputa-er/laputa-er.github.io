@@ -90,7 +90,7 @@
 <meta property="og:url" content="http://laputa-er.github.io/2016/10/10/es6_9 对象的扩展/index.html">
 <meta property="og:site_name" content="Sean">
 <meta property="og:description" content="9.1 属性（包括方法）的简洁表示法9.2.1 基本语法12345678910111213var birth = &apos;2000/01/01&apos;;var Person = &amp;#123;  name: &apos;张三&apos;,  //等同于birth: birth  birth,  // 等同于hello: function ()...  hello() &amp;#123; console.log(&apos;我的名字是&apos;, this">
-<meta property="og:updated_time" content="2016-10-24T09:38:05.000Z">
+<meta property="og:updated_time" content="2016-11-09T14:08:10.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="9 对象的扩展(ECMAScript6入门)">
 <meta name="twitter:description" content="9.1 属性（包括方法）的简洁表示法9.2.1 基本语法12345678910111213var birth = &apos;2000/01/01&apos;;var Person = &amp;#123;  name: &apos;张三&apos;,  //等同于birth: birth  birth,  // 等同于hello: function ()...  hello() &amp;#123; console.log(&apos;我的名字是&apos;, this">
@@ -523,10 +523,38 @@
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 默认值</span></span><br><span class="line"><span class="keyword">const</span> DEFAULTS = &#123;</span><br><span class="line">  logLevel: <span class="number">0</span>,</span><br><span class="line">  outputFormat: <span class="string">'html'</span></span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 应用默认值</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">processContent</span>(<span class="params">options</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">let</span> options = <span class="built_in">Object</span>.assign(&#123;&#125;, DEFAULTS, options);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <h2 id="9-6-属性的可枚举性"><a href="#9-6-属性的可枚举性" class="headerlink" title="9.6 属性的可枚举性"></a>9.6 属性的可枚举性</h2><h3 id="9-6-1-Object-getOwnPropertyDescriptor"><a href="#9-6-1-Object-getOwnPropertyDescriptor" class="headerlink" title="9.6.1 Object.getOwnPropertyDescriptor()"></a>9.6.1 Object.getOwnPropertyDescriptor()</h3><p><strong>描述对象：</strong>对象的每个属性都有一个描述对象，用来控制该属性的行为<br><strong>说明：</strong>获取该属性的描述对象</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> obj = &#123; foo: <span class="number">123</span> &#125;;</span><br><span class="line"><span class="built_in">Object</span>.getOwnPropertyDescriptor(obj, <span class="string">'foo'</span>)</span><br><span class="line"><span class="comment">//  &#123;</span></span><br><span class="line"><span class="comment">//    value: 123,</span></span><br><span class="line"><span class="comment">//    writable: true,</span></span><br><span class="line"><span class="comment">//    enumerable: true,</span></span><br><span class="line"><span class="comment">//    configurable: true</span></span><br><span class="line"><span class="comment">//  &#125;</span></span><br></pre></td></tr></table></figure>
-<h3 id="9-6-2-可枚举性"><a href="#9-6-2-可枚举性" class="headerlink" title="9.6.2 可枚举性"></a>9.6.2 可枚举性</h3><p><strong><code>enumerable</code>：</strong>如果该属性为<code>false</code>，就表示某些操作会忽略当前属性<br><strong>注意：</strong>ES6规定，所有<code>Class</code>的原型的方法都是不可枚举的<br><strong>技巧：</strong>操作中引入继承的属性会让问题复杂化，大多数时候，我们只关心对象自身的属性。所以，尽量不要用<code>for...in</code>循环，而用<code>Object.keys()</code>代替<br>会被<code>enumerable</code>影响的操作|说明<br>-|-<br><code>for...in</code>|只遍历对象自身的和继承的可枚举的属性<br><code>Object.keys()</code>|返回对象自身的所有可枚举的属性的键名<br><code>JSON.stringify()</code>|只串行化对象自身的可枚举的属性<br><code>Object.assign()</code>|会忽略<code>enumerable</code>为<code>false</code>的属性，只拷贝对象自身的可枚举的属性</p>
+<h3 id="9-6-2-可枚举性"><a href="#9-6-2-可枚举性" class="headerlink" title="9.6.2 可枚举性"></a>9.6.2 可枚举性</h3><p><strong><code>enumerable</code>：</strong>如果该属性为<code>false</code>，就表示某些操作会忽略当前属性<br><strong>注意：</strong>ES6规定，所有<code>Class</code>的原型的方法都是不可枚举的<br><strong>技巧：</strong>操作中引入继承的属性会让问题复杂化，大多数时候，我们只关心对象自身的属性。所以，尽量不要用<code>for...in</code>循环，而用<code>Object.keys()</code>代替</p>
+<table>
+<thead>
+<tr>
+<th>会被<code>enumerable</code>影响的操作</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>for...in</code></td>
+<td>只遍历对象自身的和继承的可枚举的属性</td>
+</tr>
+<tr>
+<td><code>Object.keys()</code></td>
+<td>返回对象自身的所有可枚举的属性的键名</td>
+</tr>
+<tr>
+<td><code>JSON.stringify()</code></td>
+<td>只串行化对象自身的可枚举的属性</td>
+</tr>
+<tr>
+<td><code>Object.assign()</code></td>
+<td>会忽略<code>enumerable</code>为<code>false</code>的属性，只拷贝对象自身的可枚举的属性</td>
+</tr>
+</tbody>
+</table>
 <h4 id="Object-create-proto-propertiesObject"><a href="#Object-create-proto-propertiesObject" class="headerlink" title="Object.create(proto[, propertiesObject])"></a>Object.create(proto[, propertiesObject])</h4><blockquote>
 <p><strong>用途：</strong> 以 第一个参数为 prototype 创建一个新的对象，其中第二个参数中可以为新对象添加些初始化的属性。<br><strong>注意：</strong>第二个参数默认是不可遍历的，除非在描述对象中显示声明属性可枚举。</p>
-<h2 id="9-7-属性的遍历"><a href="#9-7-属性的遍历" class="headerlink" title="9.7 属性的遍历"></a>9.7 属性的遍历</h2><p><strong>说明：</strong>一共 5 种方式<br><strong>遍历顺序：</strong>这5种方法遍历对象的属性，都遵守同样的属性遍历的次序规则</p>
+</blockquote>
+<h2 id="9-7-属性的遍历"><a href="#9-7-属性的遍历" class="headerlink" title="9.7 属性的遍历"></a>9.7 属性的遍历</h2><blockquote>
+<p><strong>说明：</strong>一共 5 种方式<br><strong>遍历顺序：</strong>这5种方法遍历对象的属性，都遵守同样的属性遍历的次序规则</p>
 <ul>
 <li>首先遍历所有属性名为数值的属性，按照数字排序</li>
 <li>其次遍历所有属性名为字符串的属性，按照生成时间排序</li>

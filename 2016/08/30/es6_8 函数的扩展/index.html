@@ -97,7 +97,7 @@
 
 阅读代码的人，可以立刻意识到哪些参数">
 <meta property="og:image" content="http://o6ul1xz4z.bkt.clouddn.com/img/1472366383179.png">
-<meta property="og:updated_time" content="2016-10-17T10:03:53.000Z">
+<meta property="og:updated_time" content="2016-11-09T09:56:35.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="8 函数的扩展(ECMAScript6入门)">
 <meta name="twitter:description" content="8.1 函数参数的默认值8.1.1 ES6之前123456function log (x, y) &amp;#123;	if (typeof y === &apos;undefined&apos;) &amp;#123;		y = &apos;World&apos;	&amp;#125;	console.log(x, y)&amp;#125;
@@ -360,7 +360,7 @@
 <h3 id="8-1-2-基本用法"><a href="#8-1-2-基本用法" class="headerlink" title="8.1.2 基本用法"></a>8.1.2 基本用法</h3><p><strong>说明：</strong>ES6允许为函数的参数设置默认值，即直接写在参数定义的后面。</p>
 <ul>
 <li>阅读代码的人，可以立刻意识到哪些参数是可以省略的，不用查看函数或文档</li>
-<li>有理由将来的代码优化，即使未来的版本在对外接口中，彻底拿掉这个参数，也不回导致以前的代码无法运行</li>
+<li>有利于将来的代码优化，即使未来的版本在对外接口中，彻底拿掉这个参数，也不回导致以前的代码无法运行</li>
 </ul>
 <p><strong>注意：</strong>参数变量是默认声明的，不能用<code>let</code>或<code>const</code>再次声明，否则会报错<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">log</span> (<span class="params">x, y = 'World'</span>) </span>&#123;</span><br><span class="line">	<span class="built_in">console</span>.log(x, y)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">log (<span class="string">'Hello'</span>)<span class="comment">// Hello World</span></span><br><span class="line">log (<span class="string">'Hello'</span>, China)<span class="comment">// Hello China</span></span><br><span class="line">log (<span class="string">'Hello'</span>, <span class="string">''</span>)<span class="comment">// Hello</span></span><br></pre></td></tr></table></figure></p>
 <h3 id="8-1-3-与解构赋值默认值结合使用"><a href="#8-1-3-与解构赋值默认值结合使用" class="headerlink" title="8.1.3 与解构赋值默认值结合使用"></a>8.1.3 与解构赋值默认值结合使用</h3><p><strong>案例1</strong>：只使用解构赋值默认值<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">foo</span>(<span class="params">&#123;x, y = 5&#125;</span>) </span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(x, y);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">foo(&#123;&#125;) <span class="comment">// undefined, 5</span></span><br><span class="line">foo(&#123;x: <span class="number">1</span>&#125;) <span class="comment">// 1, 5</span></span><br><span class="line">foo(&#123;x: <span class="number">1</span>, y: <span class="number">2</span>&#125;) <span class="comment">// 1, 2</span></span><br><span class="line">foo() <span class="comment">// TypeError: Cannot read property 'x' of undefined</span></span><br></pre></td></tr></table></figure></p>
