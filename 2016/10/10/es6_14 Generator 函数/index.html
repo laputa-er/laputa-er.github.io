@@ -107,7 +107,7 @@ Generator 函数是什么：可以从以下几个角度理解
 
 function关键字与函数名之间有">
 <meta property="og:image" content="http://o6ul1xz4z.bkt.clouddn.com/img/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202016-10-09%20%E4%B8%8B%E5%8D%884.38.35.png">
-<meta property="og:updated_time" content="2016-10-10T02:26:25.000Z">
+<meta property="og:updated_time" content="2016-11-30T21:20:26.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="14 Generator 函数(ECMAScript6入门)">
 <meta name="twitter:description" content="14.1 简介14.1.1 基本概念
@@ -492,7 +492,23 @@ function关键字与函数名之间有">
 <li><code>throw</code>命令与<code>Generator.prototype.throw()</code>是无关的，两者互不影响</li>
 </ul>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> gen = <span class="function"><span class="keyword">function</span>* <span class="title">gen</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">  <span class="keyword">try</span> &#123;</span><br><span class="line">    <span class="keyword">yield</span> <span class="built_in">console</span>.log(<span class="string">'a'</span>);</span><br><span class="line">  &#125; <span class="keyword">catch</span> (e) &#123;</span><br><span class="line">    <span class="comment">// ...</span></span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">yield</span> <span class="built_in">console</span>.log(<span class="string">'b'</span>);</span><br><span class="line">  <span class="keyword">yield</span> <span class="built_in">console</span>.log(<span class="string">'c'</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> g = gen();</span><br><span class="line">g.next() <span class="comment">// a</span></span><br><span class="line">g.throw() <span class="comment">// b(顺便出发了一次 next)</span></span><br><span class="line">g.next() <span class="comment">// c</span></span><br></pre></td></tr></table></figure>
-<h2 id="14-5-Generator-prototype-return"><a href="#14-5-Generator-prototype-return" class="headerlink" title="14.5 Generator.prototype.return()"></a>14.5 Generator.prototype.return()</h2><p><strong>说明：</strong>可以返回给定的值，并且终结遍历<code>Generator</code>函数<br>参数|说明|必需<br>-|-|-<br>1|该参数将作为<code>return()</code>方法的返回的对象中的<code>value</code>属性值呗返回|否，不提供参数，则返回值的<code>value</code>属性为<code>undefined</code></p>
+<h2 id="14-5-Generator-prototype-return"><a href="#14-5-Generator-prototype-return" class="headerlink" title="14.5 Generator.prototype.return()"></a>14.5 Generator.prototype.return()</h2><p><strong>说明：</strong>可以返回给定的值，并且终结遍历<code>Generator</code>函数</p>
+<table>
+<thead>
+<tr>
+<th>参数</th>
+<th>说明</th>
+<th>必需</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>该参数将作为<code>return()</code>方法的返回的对象中的<code>value</code>属性值被返回</td>
+<td>否，不提供参数，则返回值的<code>value</code>属性为<code>undefined</code></td>
+</tr>
+</tbody>
+</table>
 <p><strong>注意：</strong>如果<code>Generator</code>函数内部有<code>try...finally</code>代码块，那么<code>return</code>方法会推迟到<code>finally</code>代码块执行完再执行。</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span>* <span class="title">numbers</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">yield</span> <span class="number">1</span>;</span><br><span class="line">  <span class="keyword">try</span> &#123;</span><br><span class="line">    <span class="keyword">yield</span> <span class="number">2</span>;</span><br><span class="line">    <span class="keyword">yield</span> <span class="number">3</span>;</span><br><span class="line">  &#125; <span class="keyword">finally</span> &#123;</span><br><span class="line">    <span class="keyword">yield</span> <span class="number">4</span>;</span><br><span class="line">    <span class="keyword">yield</span> <span class="number">5</span>;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">yield</span> <span class="number">6</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">var</span> g = numbers()</span><br><span class="line">g.next() <span class="comment">// &#123; done: false, value: 1 &#125;</span></span><br><span class="line">g.next() <span class="comment">// &#123; done: false, value: 2 &#125;</span></span><br><span class="line">g.return(<span class="number">7</span>) <span class="comment">// &#123; done: false, value: 4 &#125;</span></span><br><span class="line">g.next() <span class="comment">// &#123; done: false, value: 5 &#125;</span></span><br><span class="line">g.next() <span class="comment">// &#123; done: true, value: 7 &#125;</span></span><br></pre></td></tr></table></figure>
 <h2 id="14-6-yield-语句"><a href="#14-6-yield-语句" class="headerlink" title="14.6 yield*语句"></a>14.6 yield*语句</h2><p><strong>说明：</strong>如果yield命令后面跟的是一个遍历器对象（包括<code>Generator()</code>函数返回的）需要在<code>yield</code>命令后面加上星号，表明它返回的是一个遍历器对象</p>
