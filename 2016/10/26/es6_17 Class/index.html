@@ -102,7 +102,7 @@ ES6 的类，完全可以看作构造函数的另一种写法（类的数据类�
 <meta property="og:image" content="http://o6ul1xz4z.bkt.clouddn.com/img/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202016-10-21%20%E4%B8%8A%E5%8D%8812.16.39.png">
 <meta property="og:image" content="http://o6ul1xz4z.bkt.clouddn.com/img/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202016-10-20%20%E4%B8%8B%E5%8D%8811.41.50.png">
 <meta property="og:image" content="http://o6ul1xz4z.bkt.clouddn.com/img/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202016-10-21%20%E4%B8%8A%E5%8D%8812.22.19.png">
-<meta property="og:updated_time" content="2016-11-30T21:59:59.000Z">
+<meta property="og:updated_time" content="2016-11-30T22:12:16.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="17 Class(ECMAScript6入门)">
 <meta name="twitter:description" content="17.1 Class基本语法17.1.1 概述说明： ES6 提供了更接近传统语言的写法，引入了 Class （类）这个概念，作为对象的模板。通过 class 关键字，可以定义类。
@@ -409,7 +409,25 @@ ES6 的类，完全可以看作构造函数的另一种写法（类的数据类�
 <h3 id="17-1-8-严格模式"><a href="#17-1-8-严格模式" class="headerlink" title="17.1.8 严格模式"></a>17.1.8 严格模式</h3><p><strong>说明：</strong>类和模块(<code>Es6 模块</code>)的内部，默认就是严格模式，所以不需要使用 <code>use strict</code> 指定运行模式。</p>
 <h3 id="17-1-9-name-属性"><a href="#17-1-9-name-属性" class="headerlink" title="17.1.9 name 属性"></a>17.1.9 name 属性</h3><p><strong>说明：</strong>本质上，<code>ES6</code> 的类只是 <code>ES5</code> 的构造函数的一层包装，所以函数的许多特性都被<code>Class</code> 继承，包括 <code>name</code> 属性<br><strong>值：</strong>紧跟在 <code>class</code> 关键字后面的类名</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Point</span> </span>&#123;&#125;</span><br><span class="line">Point.name <span class="comment">// "Point"</span></span><br></pre></td></tr></table></figure>
-<h2 id="17-2-Class的继承"><a href="#17-2-Class的继承" class="headerlink" title="17.2 Class的继承"></a>17.2 Class的继承</h2><h3 id="17-2-1-基本用法"><a href="#17-2-1-基本用法" class="headerlink" title="17.2.1 基本用法"></a>17.2.1 基本用法</h3><h4 id="extends"><a href="#extends" class="headerlink" title="extends"></a>extends</h4><p><strong>说明：</strong>Class 之间可以通过 <code>extends</code> 关键字实现继承<br><strong>价值：</strong>这比 <code>ES5</code> 的通过修改原型链实现继承，要清晰和方便很多<br>对比|说明<br>-|-<br><code>ES5</code> 的继承|先创造子类的实例对象 <code>this</code>，然后再将父类的方法添加到 <code>this</code> 上面（<code>Parent.apply(this)</code>）<br><code>ES6</code> 的继承|先创造父类的实例对象 <code>this</code>（所以必须先调用super方法），然后再用子类的构造函数修改 <code>this</code></p>
+<h2 id="17-2-Class的继承"><a href="#17-2-Class的继承" class="headerlink" title="17.2 Class的继承"></a>17.2 Class的继承</h2><h3 id="17-2-1-基本用法"><a href="#17-2-1-基本用法" class="headerlink" title="17.2.1 基本用法"></a>17.2.1 基本用法</h3><h4 id="extends"><a href="#extends" class="headerlink" title="extends"></a>extends</h4><p><strong>说明：</strong>Class 之间可以通过 <code>extends</code> 关键字实现继承<br><strong>价值：</strong>这比 <code>ES5</code> 的通过修改原型链实现继承，要清晰和方便很多</p>
+<table>
+<thead>
+<tr>
+<th>对比</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>ES5</code> 的继承</td>
+<td>先创造子类的实例对象 <code>this</code>，然后再将父类的方法添加到 <code>this</code> 上面（<code>Parent.apply(this)</code>）</td>
+</tr>
+<tr>
+<td><code>ES6</code> 的继承</td>
+<td>先创造父类的实例对象 <code>this</code>（所以必须先调用super方法），然后再用子类的构造函数修改 <code>this</code></td>
+</tr>
+</tbody>
+</table>
 <h4 id="constructor-NaN"><a href="#constructor-NaN" class="headerlink" title="constructor"></a>constructor</h4><p><strong>说明：</strong>如果子类没有定义 <code>constructor</code> 方法，这个方法会被默认添加，代码如下。也就是说，不管有没有显式定义，任何一个子类都有 <code>constructor</code> 方法。</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">constructor</span>(...args) &#123;</span><br><span class="line">  <span class="keyword">super</span>(...args);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <h4 id="super"><a href="#super" class="headerlink" title="super"></a>super</h4><p><strong>说明：</strong>在子类的构造函数中，只有调用 <code>super</code> 之后，才可以使用 <code>this</code> 关键字，否则会报错。因为子类实例的构建，是基于对父类实例加工，只有 <code>super</code> 方法才能返回父类实例。<br><strong>注意：</strong> <code>super</code> 是一个特殊的关键字，代表父类的实例</p>
