@@ -123,7 +123,7 @@
 参数1
 可以被转为">
 <meta property="og:image" content="http://o6ul1xz4z.bkt.clouddn.com/img/1471704903931.png">
-<meta property="og:updated_time" content="2016-09-19T12:15:14.000Z">
+<meta property="og:updated_time" content="2016-11-30T19:09:26.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="7 数组的扩展(ECMAScript6入门)">
 <meta name="twitter:description" content="7.1 Array.from()功能：可以将两类对象转为真正的数组，从而使用数组丰富的方法
@@ -548,7 +548,29 @@
 </tbody>
 </table>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">[<span class="string">'a'</span>, <span class="string">'b'</span>, <span class="string">'c'</span>].fill(<span class="number">7</span>)<span class="comment">// [7, 7, 7]</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">new</span> <span class="built_in">Array</span>(<span class="number">3</span>).fill(<span class="number">7</span>)<span class="comment">// [7, 7, 7 ]</span></span><br><span class="line"></span><br><span class="line">[<span class="string">'a'</span>, <span class="string">'b'</span>, <span class="string">'c'</span>].fill(<span class="number">7</span>, <span class="number">1</span>, <span class="number">2</span>)<span class="comment">// ['a', 7, 'c']</span></span><br></pre></td></tr></table></figure>
-<h2 id="7-6-数组实例的-entries-keys-和values"><a href="#7-6-数组实例的-entries-keys-和values" class="headerlink" title="7.6 数组实例的 entries(), keys()和values()"></a>7.6 数组实例的 entries(), keys()和values()</h2><p><strong>用途：</strong>都针对特定方面遍历数组<br><strong>返回值：</strong>便利器对象，可以通过<code>for-of</code>循环便利器对象的 <code>next</code> 方法进行遍历<br>方法|说明<br>-|-<br>keys()|返回数组中<code>key</code>的遍历器对象<br>values()|返回数组中<code>value</code>的遍历器对象<br>entries()|返回数组中<code>key-value</code>的遍历器对象</p>
+<h2 id="7-6-数组实例的-entries-keys-和values"><a href="#7-6-数组实例的-entries-keys-和values" class="headerlink" title="7.6 数组实例的 entries(), keys()和values()"></a>7.6 数组实例的 entries(), keys()和values()</h2><p><strong>用途：</strong>都针对特定方面遍历数组<br><strong>返回值：</strong>便利器对象，可以通过<code>for-of</code>循环便利器对象的 <code>next</code> 方法进行遍历</p>
+<table>
+<thead>
+<tr>
+<th>方法</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>keys()</td>
+<td>返回数组中<code>key</code>的遍历器对象</td>
+</tr>
+<tr>
+<td>values()</td>
+<td>返回数组中<code>value</code>的遍历器对象</td>
+</tr>
+<tr>
+<td>entries()</td>
+<td>返回数组中<code>key-value</code>的遍历器对象</td>
+</tr>
+</tbody>
+</table>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> (<span class="keyword">let</span> index <span class="keyword">of</span> [<span class="string">'a'</span>, <span class="string">'b'</span>].keys()) &#123;</span><br><span class="line">  <span class="built_in">console</span>.log(index);</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 0</span></span><br><span class="line"><span class="comment">// 1</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">let</span> elem <span class="keyword">of</span> [<span class="string">'a'</span>, <span class="string">'b'</span>].values()) &#123;</span><br><span class="line">  <span class="built_in">console</span>.log(elem);</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 'a'</span></span><br><span class="line"><span class="comment">// 'b'</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">let</span> [index, elem] <span class="keyword">of</span> [<span class="string">'a'</span>, <span class="string">'b'</span>].entries()) &#123;</span><br><span class="line">  <span class="built_in">console</span>.log(index, elem);</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 0 "a"</span></span><br><span class="line"><span class="comment">// 1 "b"</span></span><br></pre></td></tr></table></figure>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> letter = [<span class="string">'a'</span>, <span class="string">'b'</span>, <span class="string">'c'</span>];</span><br><span class="line"><span class="keyword">let</span> entries = letter.entries();</span><br><span class="line">entries.next().value; <span class="comment">// [0, 'a']</span></span><br><span class="line">entries.next().value; <span class="comment">// [1, 'b']</span></span><br><span class="line">entries.next().value; <span class="comment">// [2, 'c']</span></span><br></pre></td></tr></table></figure>
 <h2 id="7-7-数组实例的-includes"><a href="#7-7-数组实例的-includes" class="headerlink" title="7.7 数组实例的 includes()"></a>7.7 数组实例的 includes()</h2><p><strong>功能：</strong>判断数组中是否包含给定的值<br><strong>返回值：</strong><code>true</code> 存在， <code>false</code> 不存在<br><strong>支持：</strong>该方法属于<code>ES7</code>，但 <code>Babel</code>转码器已经支持<br>参数|说明<br>-|-<br>参数1（必需）|要搜索的 <code>value</code><br>参数2（可选）|搜索的开始位置</p>
@@ -604,16 +626,50 @@
 </tr>
 <tr>
 <td>join()</td>
-<td>将空位是为<code>undefined</code>（<code>undefined、null</code>会被处理成空字符串）</td>
+<td>将空位视为<code>undefined</code>（<code>undefined、null</code>会被处理成空字符串）</td>
 </tr>
 <tr>
 <td>toString()</td>
-<td>将空位是为<code>undefined</code>（<code>undefined、null</code>会被处理成空字符串）</td>
+<td>将空位视为<code>undefined</code>（<code>undefined、null</code>会被处理成空字符串）</td>
 </tr>
 </tbody>
 </table>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// forEach方法</span></span><br><span class="line">[,<span class="string">'a'</span>].forEach((x,i) =&gt; <span class="built_in">console</span>.log(i)); <span class="comment">// 1</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// filter方法</span></span><br><span class="line">[<span class="string">'a'</span>,,<span class="string">'b'</span>].filter(x =&gt; <span class="literal">true</span>) <span class="comment">// ['a','b']</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// every方法</span></span><br><span class="line">[,<span class="string">'a'</span>].every(x =&gt; x===<span class="string">'a'</span>) <span class="comment">// true</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// some方法</span></span><br><span class="line">[,<span class="string">'a'</span>].some(x =&gt; x !== <span class="string">'a'</span>) <span class="comment">// false</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// map方法</span></span><br><span class="line">[,<span class="string">'a'</span>].map(x =&gt; <span class="number">1</span>) <span class="comment">// [,1]</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// join方法</span></span><br><span class="line">[,<span class="string">'a'</span>,<span class="literal">undefined</span>,<span class="literal">null</span>].join(<span class="string">'#'</span>) <span class="comment">// "#a##"</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// toString方法</span></span><br><span class="line">[,<span class="string">'a'</span>,<span class="literal">undefined</span>,<span class="literal">null</span>].toString() <span class="comment">// ",a,,"</span></span><br></pre></td></tr></table></figure>
-<h3 id="7-8-2-ES6对空位的处理"><a href="#7-8-2-ES6对空位的处理" class="headerlink" title="7.8.2 ES6对空位的处理"></a>7.8.2 ES6对空位的处理</h3><p><strong>注意：</strong>由于空位处理规则非常不统一，所以建议避免出现空位<br>运算|说明<br>-|-<br>Array.from()|不会忽略空位，而是将空位转为<code>undefined</code><br>扩展运算符|不会忽略空位，而是将空位转为<code>undefined</code><br>copyWithin()|连空位一起拷贝<br>fill()|将空位视为正常的数组位置<br>for-of|会遍历空位<br>entries()、keys()、values()、find()、findIndex()|会将空位处理成<code>undefined</code></p>
+<h3 id="7-8-2-ES6对空位的处理"><a href="#7-8-2-ES6对空位的处理" class="headerlink" title="7.8.2 ES6对空位的处理"></a>7.8.2 ES6对空位的处理</h3><p><strong>注意：</strong>由于空位处理规则非常不统一，所以建议避免出现空位</p>
+<table>
+<thead>
+<tr>
+<th>运算</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Array.from()</td>
+<td>不会忽略空位，而是将空位转为<code>undefined</code></td>
+</tr>
+<tr>
+<td>扩展运算符</td>
+<td>不会忽略空位，而是将空位转为<code>undefined</code></td>
+</tr>
+<tr>
+<td>copyWithin()</td>
+<td>连空位一起拷贝</td>
+</tr>
+<tr>
+<td>fill()</td>
+<td>将空位视为正常的数组位置</td>
+</tr>
+<tr>
+<td>for-of</td>
+<td>会遍历空位</td>
+</tr>
+<tr>
+<td>entries()、keys()、values()、find()、findIndex()</td>
+<td>会将空位处理成<code>undefined</code></td>
+</tr>
+</tbody>
+</table>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">Array</span>.from([<span class="string">'a'</span>,,<span class="string">'b'</span>])</span><br><span class="line"><span class="comment">// [ "a", undefined, "b" ]</span></span><br><span class="line"></span><br><span class="line">[...[<span class="string">'a'</span>,,<span class="string">'b'</span>]]</span><br><span class="line"><span class="comment">// [ "a", undefined, "b" ]</span></span><br><span class="line"></span><br><span class="line">[,<span class="string">'a'</span>,<span class="string">'b'</span>,,].copyWithin(<span class="number">2</span>,<span class="number">0</span>) <span class="comment">// [,"a",,"a"]</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">new</span> <span class="built_in">Array</span>(<span class="number">3</span>).fill(<span class="string">'a'</span>) <span class="comment">// ["a","a","a"]</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> arr = [, ,];</span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">let</span> i <span class="keyword">of</span> arr) &#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="number">1</span>);</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 1</span></span><br><span class="line"><span class="comment">// 1</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// entries()</span></span><br><span class="line">[...[,<span class="string">'a'</span>].entries()] <span class="comment">// [[0,undefined], [1,"a"]]</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// keys()</span></span><br><span class="line">[...[,<span class="string">'a'</span>].keys()] <span class="comment">// [0,1]</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// values()</span></span><br><span class="line">[...[,<span class="string">'a'</span>].values()] <span class="comment">// [undefined,"a"]</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// find()</span></span><br><span class="line">[,<span class="string">'a'</span>].find(x =&gt; <span class="literal">true</span>) <span class="comment">// undefined</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// findIndex()</span></span><br><span class="line">[,<span class="string">'a'</span>].findIndex(x =&gt; <span class="literal">true</span>) <span class="comment">// 0</span></span><br></pre></td></tr></table></figure>
 
       
