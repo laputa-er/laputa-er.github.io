@@ -1,0 +1,935 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="js," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1" />
+
+
+
+
+
+
+<meta name="description" content="原生 JS 实现帧动画库视频教程-慕课网
+Github
+1 认识帧动画1.1 认识帧动画什么是帧动画？所谓帧动画就是在“连续的关键帧”中分解动画动作，在时间轴的每帧上逐帧绘制不同的内容，使其连续播放而成动画。
+由于是一帧一帧地画，所以帧动画具有非常大的灵活性，几乎可以表现任何想表现的内容。
+动画库演示
+常见帧动画方式
+GIF
+
+
+CSS3 animation
+JavaScript
+
+GIF 和 C">
+<meta property="og:type" content="article">
+<meta property="og:title" content="原生 JS 实现帧动画库">
+<meta property="og:url" content="http://laputa-er.github.io/2016/12/12/imooc_原生 JS 实现帧动画库/index.html">
+<meta property="og:site_name" content="Sean">
+<meta property="og:description" content="原生 JS 实现帧动画库视频教程-慕课网
+Github
+1 认识帧动画1.1 认识帧动画什么是帧动画？所谓帧动画就是在“连续的关键帧”中分解动画动作，在时间轴的每帧上逐帧绘制不同的内容，使其连续播放而成动画。
+由于是一帧一帧地画，所以帧动画具有非常大的灵活性，几乎可以表现任何想表现的内容。
+动画库演示
+常见帧动画方式
+GIF
+
+
+CSS3 animation
+JavaScript
+
+GIF 和 C">
+<meta property="og:image" content="http://o7m5xjmtl.bkt.clouddn.com/imooc_rabbit_run.gif">
+<meta property="og:image" content="http://o7m5xjmtl.bkt.clouddn.com/BEBCEE9F-9F4B-42B8-9EBB-B4E9EBB62B2A.png">
+<meta property="og:image" content="http://o7m5xjmtl.bkt.clouddn.com/B6CBEEF6-D283-4FFE-B4A7-F3D4713ACA45.png">
+<meta property="og:updated_time" content="2016-12-12T14:53:41.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="原生 JS 实现帧动画库">
+<meta name="twitter:description" content="原生 JS 实现帧动画库视频教程-慕课网
+Github
+1 认识帧动画1.1 认识帧动画什么是帧动画？所谓帧动画就是在“连续的关键帧”中分解动画动作，在时间轴的每帧上逐帧绘制不同的内容，使其连续播放而成动画。
+由于是一帧一帧地画，所以帧动画具有非常大的灵活性，几乎可以表现任何想表现的内容。
+动画库演示
+常见帧动画方式
+GIF
+
+
+CSS3 animation
+JavaScript
+
+GIF 和 C">
+<meta name="twitter:image" content="http://o7m5xjmtl.bkt.clouddn.com/imooc_rabbit_run.gif">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 0,
+      author: '博主'
+    }
+  };
+</script>
+
+
+
+
+  <link rel="canonical" href="http://laputa-er.github.io/2016/12/12/imooc_原生 JS 实现帧动画库/"/>
+
+  <title> 原生 JS 实现帧动画库 | Sean </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//hm.baidu.com/hm.js?898688f51c5a3d6b37dd23e04441e5bd";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">Sean</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">笔记分享</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup">
+ <span class="search-icon fa fa-search"></span>
+ <input type="text" id="local-search-input">
+ <div id="local-search-result"></div>
+ <span class="popup-btn-close">close</span>
+</div>
+
+
+    </div>
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                原生 JS 实现帧动画库
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-12-12T21:44:29+08:00" content="2016-12-12">
+              2016-12-12
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/慕课网学习笔记/" itemprop="url" rel="index">
+                    <span itemprop="name">慕课网学习笔记</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/12/12/imooc_原生 JS 实现帧动画库/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/12/12/imooc_原生 JS 实现帧动画库/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p><a href="http://www.imooc.com/learn/659" target="_blank" rel="external">原生 JS 实现帧动画库视频教程-慕课网</a></p>
+<p><a href="https://github.com/ustbhuangyi/animation" target="_blank" rel="external">Github</a></p>
+<h1 id="1-认识帧动画"><a href="#1-认识帧动画" class="headerlink" title="1 认识帧动画"></a>1 认识帧动画</h1><h2 id="1-1-认识帧动画"><a href="#1-1-认识帧动画" class="headerlink" title="1.1 认识帧动画"></a>1.1 认识帧动画</h2><h3 id="什么是帧动画？"><a href="#什么是帧动画？" class="headerlink" title="什么是帧动画？"></a>什么是帧动画？</h3><p>所谓帧动画就是在“连续的关键帧”中分解动画动作，在时间轴的每帧上逐帧绘制不同的内容，使其连续播放而成动画。</p>
+<p>由于是一帧一帧地画，所以帧动画具有非常大的灵活性，几乎可以表现任何想表现的内容。</p>
+<p><a href="http://ustbhuangyi.github.io/animation/demo/" target="_blank" rel="external">动画库演示</a></p>
+<h3 id="常见帧动画方式"><a href="#常见帧动画方式" class="headerlink" title="常见帧动画方式"></a>常见帧动画方式</h3><ul>
+<li>GIF</li>
+</ul>
+<ul>
+<li>CSS3 animation</li>
+<li>JavaScript</li>
+</ul>
+<h3 id="GIF-和-CSS3-animation-实现帧动画的不足"><a href="#GIF-和-CSS3-animation-实现帧动画的不足" class="headerlink" title="GIF 和 CSS3 animation 实现帧动画的不足"></a>GIF 和 CSS3 animation 实现帧动画的不足</h3><ol>
+<li>(GIF 、 CSS3 animation)不能灵活地控制动画的 <code>暂停</code> 和 <code>播放</code></li>
+<li>(GIF)不能 <code>捕捉</code> 到动画完成的 <code>事件</code></li>
+<li>(GIF 、 CSS3 animation)不能对帧动画做更加灵活的扩展</li>
+</ol>
+<h3 id="JS-实现帧动画的原理"><a href="#JS-实现帧动画的原理" class="headerlink" title="JS 实现帧动画的原理"></a>JS 实现帧动画的原理</h3><ol>
+<li>如果有多张帧图片，用一个  image 标签承载图片，<code>定时改变 image 的 src 属性</code>（不推荐）</li>
+<li>把所有动画关键帧 <code>绘制在一张图片</code> 里，把图片作为元素的 background-image，定时改变元素的 background-position 属性（推荐）</li>
+</ol>
+<p><strong>Demo: 第二种方式简单实现</strong></p>
+<p><img src="http://o7m5xjmtl.bkt.clouddn.com/imooc_rabbit_run.gif" alt=""></p>
+<p>demo.html<br><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE html&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span> <span class="attr">lang</span>=<span class="string">"en"</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">"UTF-8"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">title</span>&gt;</span>动画 demo<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">link</span> <span class="attr">rel</span>=<span class="string">"stylesheet"</span> <span class="attr">href</span>=<span class="string">"demo.css"</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"rabbit"</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">"demo.js"</span>&gt;</span><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
+<p>demo.css<br><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-id">#rabbit</span> &#123;</span><br><span class="line">    <span class="attribute">width</span>: <span class="number">102px</span>;</span><br><span class="line">    <span class="attribute">height</span>: <span class="number">80px</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>demo.js<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span><br><span class="line"> * Created by tonyearth on 2016/12/10.</span><br><span class="line"> */</span></span><br><span class="line"><span class="keyword">var</span> imgUrl = <span class="string">'rabbit-big.png'</span></span><br><span class="line"><span class="keyword">var</span> positions = [</span><br><span class="line">    <span class="string">'0 -854'</span>,</span><br><span class="line">    <span class="string">'-174 -852'</span>,</span><br><span class="line">    <span class="string">'-349 -852'</span>,</span><br><span class="line">    <span class="string">'-524 -852'</span>,</span><br><span class="line">    <span class="string">'-698 -852'</span>,</span><br><span class="line">    <span class="string">'-873 -848'</span></span><br><span class="line">]</span><br><span class="line"><span class="keyword">var</span> ele = <span class="built_in">document</span>.getElementById(<span class="string">'rabbit'</span>)</span><br><span class="line">animation(ele, positions, imgUrl)</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">animation</span>(<span class="params">ele, positions, imgUrl</span>) </span>&#123;</span><br><span class="line">    ele.style.backgroundImage = <span class="string">'url( '</span> + imgUrl + <span class="string">')'</span></span><br><span class="line">    ele.style.backgroundRepeat = <span class="string">'no-repeat'</span></span><br><span class="line">    <span class="keyword">var</span> index = <span class="number">0</span></span><br><span class="line">    <span class="function"><span class="keyword">function</span> <span class="title">run</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">        <span class="keyword">var</span> pos = positions[index].split(<span class="string">' '</span>)</span><br><span class="line">        ele.style.backgroundPosition = pos[<span class="number">0</span>] + <span class="string">'px '</span> + pos[<span class="number">1</span>] + <span class="string">'px'</span></span><br><span class="line">        index++</span><br><span class="line">        <span class="keyword">if</span> (index &gt;= positions.length) &#123;</span><br><span class="line">            index = <span class="number">0</span></span><br><span class="line">        &#125;</span><br><span class="line">        setTimeout(run, <span class="number">80</span>)</span><br><span class="line">    &#125;</span><br><span class="line">    run()</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ python -m SimpleHTTPServer 8080 <span class="comment"># 启动一个 python 自带的简单的静态服务器</span></span><br></pre></td></tr></table></figure>
+<h2 id="1-2-设计通用帧动画库"><a href="#1-2-设计通用帧动画库" class="headerlink" title="1.2 设计通用帧动画库"></a>1.2 设计通用帧动画库</h2><p><img src="http://o7m5xjmtl.bkt.clouddn.com/BEBCEE9F-9F4B-42B8-9EBB-B4E9EBB62B2A.png" alt=""></p>
+<h3 id="01-需求分析"><a href="#01-需求分析" class="headerlink" title="01 需求分析"></a>01 需求分析</h3><ol>
+<li>支持图片 <code>预加载</code>。</li>
+<li>支持 <code>两种</code> 动画播放方式（img src、backgroundPosition），及自定义每帧动画。</li>
+<li>支持单组动画控制<code>循环次数</code>（可支持无限次）。</li>
+<li>支持一组动画完成，进行<code>下一组</code>动画。</li>
+<li>支持每个动画完成后有<code>等待时间</code>。</li>
+<li>支持动画<code>暂停</code>和<code>继续</code>播放。</li>
+<li>支持<code>动画完成后</code>执行回调函数。</li>
+</ol>
+<h3 id="02-编程接口"><a href="#02-编程接口" class="headerlink" title="02 编程接口"></a>02 编程接口</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">loadImage(imglist) <span class="comment">// 预加载图片</span></span><br><span class="line"></span><br><span class="line">changePosition(ele, positions, imageUrl) <span class="comment">// 通过改变元素的 background-position 实现动画</span></span><br><span class="line"></span><br><span class="line">changeSrc(ele, imglist) <span class="comment">// 通过改变 image 元素的 src</span></span><br><span class="line"></span><br><span class="line">enterFrame(callback) <span class="comment">// 每一帧动画执行的函数，相当于用户可以自定义每一帧动画的 callback</span></span><br><span class="line"></span><br><span class="line">repeat(times) <span class="comment">// 动画重复执行的次数，times 为空表示无限次</span></span><br><span class="line"></span><br><span class="line">repeatForver() <span class="comment">// 无限重复上一次动画，相当于 repeat()， 更友好的一个接口吧</span></span><br><span class="line"></span><br><span class="line">wait(time) <span class="comment">// 每个动画执行完后等待的时间</span></span><br><span class="line"></span><br><span class="line">then(callback) <span class="comment">// 动画执行完成后的回调函数</span></span><br><span class="line"></span><br><span class="line">start(interval) <span class="comment">// 动画开始执行， interval 表示动画执行的间隔</span></span><br><span class="line"></span><br><span class="line">pause() <span class="comment">// 动画暂停</span></span><br><span class="line"></span><br><span class="line">restart() <span class="comment">// 动画从上一次暂停处重新执行</span></span><br><span class="line"></span><br><span class="line">dispose() <span class="comment">// 释放资源</span></span><br></pre></td></tr></table></figure>
+<h3 id="03-调用方式"><a href="#03-调用方式" class="headerlink" title="03 调用方式"></a>03 调用方式</h3><ul>
+<li>支持链式调用</li>
+<li>期望用<code>动词的方式</code>描述接口</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> animation = <span class="built_in">require</span>(<span class="string">'animation'</span>)</span><br><span class="line"><span class="keyword">var</span> demoAnimation = animation()</span><br><span class="line">	.loadImage(images)</span><br><span class="line">	.changePosition(ele, positions)</span><br><span class="line">	.repeat(<span class="number">2</span>)</span><br><span class="line">	.then(<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">		<span class="comment">// 动画执行完成后调用次函数</span></span><br><span class="line">	&#125;)</span><br><span class="line">	</span><br><span class="line">demoAnimation.start(<span class="number">80</span>)</span><br></pre></td></tr></table></figure>
+<h3 id="04-代码设计"><a href="#04-代码设计" class="headerlink" title="04 代码设计"></a>04 代码设计</h3><ol>
+<li><p>我们把 “图片与加载-&gt;动画执行-&gt;动画结束”等一系列操作看成一条 <code>任务链（数组）</code>。<br>任务链有两种类型的任务：<br>a. 同步执行完毕的。<br>b. 异步定时执行的（通过计时器或者 raf <code>requestAnimationFrame</code>）</p>
+</li>
+<li><p>记录当前任务链的索引。</p>
+</li>
+<li>每个任务执行完毕后，通过调用 <code>next</code> 方法，执行下一个任务，同时更新任务链索引值。</li>
+</ol>
+<p><img src="http://o7m5xjmtl.bkt.clouddn.com/B6CBEEF6-D283-4FFE-B4A7-F3D4713ACA45.png" alt=""></p>
+<h1 id="2-设计帧动画库"><a href="#2-设计帧动画库" class="headerlink" title="2 设计帧动画库"></a>2 设计帧动画库</h1><h2 id="2-1-接口定义"><a href="#2-1-接口定义" class="headerlink" title="2.1 接口定义"></a>2.1 接口定义</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">'use strict'</span></span><br><span class="line"><span class="comment">/**</span><br><span class="line"> * 帧动画库类</span><br><span class="line"> * @constructor</span><br><span class="line"> */</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Animation</span>(<span class="params"></span>) </span>&#123;&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span><br><span class="line"> * 添加一个同步任务，去预加载图片</span><br><span class="line"> * @param imglist 图片数组</span><br><span class="line"> */</span></span><br><span class="line">Animation.prototype.loadImage = <span class="function"><span class="keyword">function</span> (<span class="params">imglist</span>) </span>&#123;&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span><br><span class="line"> * 添加一个异步定时任务，通过定时改变图片的背景位置，实现帧动画</span><br><span class="line"> * @param ele dom 对象</span><br><span class="line"> * @param positions 背景位置数组</span><br><span class="line"> * @param imageUrl 图片地址</span><br><span class="line"> */</span></span><br><span class="line">Animation.prototype.changePosition = <span class="function"><span class="keyword">function</span> (<span class="params">ele, positions, imageUrl</span>) </span>&#123;&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span><br><span class="line"> * 添加一个异步定时任务，通过定时改变 image 标签的 src 属性，实现帧动画</span><br><span class="line"> * @param ele image 标签</span><br><span class="line"> * @param imglist 图片数组</span><br><span class="line"> */</span></span><br><span class="line">Animation.prototype.changeSrc = <span class="function"><span class="keyword">function</span> (<span class="params">ele, imglist</span>) </span>&#123;&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span><br><span class="line"> * 高级用法，添加一个异步定时执行的任务，</span><br><span class="line"> * 该任务自定义动画每帧执行的任务函数</span><br><span class="line"> * @param taskFu 自定义每帧执行的任务函数</span><br><span class="line"> */</span></span><br><span class="line">Animaton.prototype.enterFrame = <span class="function"><span class="keyword">function</span> (<span class="params">taskFu</span>) </span>&#123;&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span><br><span class="line"> * 添加一个同步任务，可以在上一个任务完成后执行回调函数</span><br><span class="line"> * @param callback 回调函数</span><br><span class="line"> */</span></span><br><span class="line">Animation.prototype.then = <span class="function"><span class="keyword">function</span> (<span class="params">callback</span>) </span>&#123;&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span><br><span class="line"> * 开始执行任务</span><br><span class="line"> * @param interval 异步定时任务执行的间隔</span><br><span class="line"> */</span></span><br><span class="line">Animation.prototype.start = <span class="function"><span class="keyword">function</span> (<span class="params">interval</span>) </span>&#123;&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span><br><span class="line"> * 添加一个同步任务，该任务就是回退到上一个任务中，</span><br><span class="line"> * 实现重复上一个任务的效果，可定义重复的次数</span><br><span class="line"> * @param times 重复次数</span><br><span class="line"> */</span></span><br><span class="line">Animation.prototype.repeat = <span class="function"><span class="keyword">function</span> (<span class="params">times</span>) </span>&#123;&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span><br><span class="line"> * 添加一个同步任务，相当于 repeat() 更友好的接口，无限循环上一次任务</span><br><span class="line"> */</span></span><br><span class="line">Animation.prototype.repeatForever = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span><br><span class="line"> * 设置当前任务执行结束后到下一个任务执行开始前的等待时间</span><br><span class="line"> * @param time 等待时长</span><br><span class="line"> */</span></span><br><span class="line">Animation.prototype.wait = <span class="function"><span class="keyword">function</span> (<span class="params">time</span>) </span>&#123;&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span><br><span class="line"> * 暂停当前异步定时任务</span><br><span class="line"> */</span></span><br><span class="line">Animation.prototype.pause = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span><br><span class="line"> * 重新执行上一次暂停的异步任务</span><br><span class="line"> */</span></span><br><span class="line">Animation.prototype.restart = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span><br><span class="line"> * 释放资源</span><br><span class="line"> */</span></span><br><span class="line">Animation.prototype.dispose = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="2-2-图片预加载实现"><a href="#2-2-图片预加载实现" class="headerlink" title="2.2 图片预加载实现"></a>2.2 图片预加载实现</h2><blockquote>
+<p> 封装图片预加载功能为独立的 cmd 模块。  </p>
+</blockquote>
+<ul>
+<li>图片信息数据格式检查</li>
+</ul>
+<ul>
+<li>加载超时处理</li>
+<li>判断全部加载成功技巧：&amp; 操作</li>
+<li>任务完成后清除资源</li>
+</ul>
+<p><em>imageLoader.js</em></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">'use stract'</span></span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span><br><span class="line"> * 预加载图片函数</span><br><span class="line"> * @param images 加载图片的数组或者对象</span><br><span class="line"> * @param callback 全部图片加载完毕后调用的回调函数</span><br><span class="line"> * @param timeout 加载超时的时长</span><br><span class="line"> */</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">loadImage</span>(<span class="params">images, callback, timeout</span>) </span>&#123;</span><br><span class="line">    <span class="comment">// 加载完成图片的计数器</span></span><br><span class="line">    <span class="keyword">var</span> count = <span class="number">9</span></span><br><span class="line">    <span class="comment">// 全部图片加载成功的一个标志位</span></span><br><span class="line">    <span class="keyword">var</span> success = <span class="literal">true</span></span><br><span class="line">    <span class="comment">// 超时 timer 的 id</span></span><br><span class="line">    <span class="keyword">var</span> timeoutId = <span class="number">0</span></span><br><span class="line">    <span class="comment">// 是否加载超时的标志位</span></span><br><span class="line">    <span class="keyword">var</span> isTimeout = <span class="literal">false</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">// 对图片数组（或对象）进行遍历</span></span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">var</span> key <span class="keyword">in</span> images) &#123;</span><br><span class="line">        <span class="comment">// 过滤掉 prototype 上的属性</span></span><br><span class="line">        <span class="keyword">if</span> (!images.hasOwnProperty(key)) &#123;</span><br><span class="line">            <span class="keyword">continue</span></span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">// 获取每个图片元素</span></span><br><span class="line">        <span class="comment">// 期望格式是个 object: &#123;src:xxx&#125;</span></span><br><span class="line">        <span class="keyword">var</span> item = images[key]</span><br><span class="line">        <span class="keyword">if</span> (<span class="keyword">typeof</span>  item === <span class="string">'string'</span>) &#123;</span><br><span class="line">            item = images[key] = &#123;</span><br><span class="line">                src: item</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">// 如果格式不满足期望，则丢弃此条数据进行下一次遍历</span></span><br><span class="line">        <span class="keyword">if</span> (!item || !item.src) &#123;</span><br><span class="line">            <span class="keyword">continue</span></span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">// 计数+1</span></span><br><span class="line">        count++</span><br><span class="line">        <span class="comment">// 设置图片元素的 id</span></span><br><span class="line">        item.id = <span class="string">'_img_'</span> + key + getId()</span><br><span class="line">        <span class="comment">// 设置图片元素的 img, 它是一个 Image 对象</span></span><br><span class="line">        item.img = <span class="built_in">window</span>[item.id] = <span class="keyword">new</span> Image()</span><br><span class="line">        doLoad(item)</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">// 遍历完成如果计数为0， 则直接调用 callback</span></span><br><span class="line">    <span class="keyword">if</span> (!count) &#123;</span><br><span class="line">        callback(success)</span><br><span class="line">    &#125; <span class="keyword">else</span> <span class="keyword">if</span> (timeout) &#123;</span><br><span class="line">        timeoutId = setTimeout(onTimeout, timeout)</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">/**</span><br><span class="line">     * 真正进行图片加载的函数</span><br><span class="line">     * @param item 图片元素对象</span><br><span class="line">     */</span></span><br><span class="line">    <span class="function"><span class="keyword">function</span> <span class="title">doLoad</span>(<span class="params">item</span>) </span>&#123;</span><br><span class="line">        item.status = <span class="string">'loading'</span></span><br><span class="line">        <span class="keyword">var</span> img = item.img</span><br><span class="line">        <span class="comment">// 定义图片加载成功的回调函数</span></span><br><span class="line">        img.onload = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">            success = success &amp; <span class="literal">true</span></span><br><span class="line">            item.status = <span class="string">'loaded'</span></span><br><span class="line">            done()</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">// 定义图片加载失败的回调函数</span></span><br><span class="line">        img.onerror = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">            success = <span class="literal">false</span></span><br><span class="line">            item.status = <span class="string">'error'</span></span><br><span class="line">            done()</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 发起一个 http(s) 的请求</span></span><br><span class="line">        img.src = item.src</span><br><span class="line">        <span class="comment">/**</span><br><span class="line">         * 每张图片加载完成的回调函数（无论成功或失败）</span><br><span class="line">         */</span></span><br><span class="line">        <span class="function"><span class="keyword">function</span> <span class="title">done</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">            img.onload = img.onerror = <span class="literal">null</span></span><br><span class="line">            <span class="keyword">try</span> &#123;</span><br><span class="line">                <span class="keyword">delete</span> <span class="built_in">window</span>[item.id]</span><br><span class="line">            &#125; <span class="keyword">catch</span> (e) &#123;</span><br><span class="line"></span><br><span class="line">            &#125;</span><br><span class="line">            <span class="comment">// 每张图片加载完成，计数器减一，当所有图片加载完成且没有超时的情况，</span></span><br><span class="line">            <span class="comment">// 清除超时计时器，且执行回调函数</span></span><br><span class="line">            <span class="keyword">if</span>(!--count &amp;&amp; !isTimeout) &#123;</span><br><span class="line">                clearTimeout(timeoutId)</span><br><span class="line">                callback(success)</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span><br><span class="line">     * 超时函数</span><br><span class="line">     */</span></span><br><span class="line">    <span class="function"><span class="keyword">function</span> <span class="title">onTimeout</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">        isTimeout = <span class="literal">true</span></span><br><span class="line">        callback(<span class="literal">false</span>)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> _id = <span class="number">0</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">getId</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> ++_id</span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">module</span>.exports = loadImage</span><br></pre></td></tr></table></figure>
+<h2 id="2-3-图片预加载的应用"><a href="#2-3-图片预加载的应用" class="headerlink" title="2.3 图片预加载的应用"></a>2.3 图片预加载的应用</h2><ul>
+<li>导入与图片预加载模块（cmd）</li>
+</ul>
+<ul>
+<li>作为一个同步任务加入到任务链</li>
+</ul>
+<p><em>关键代码片段(animation.js)</em></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> loadImage = <span class="built_in">require</span>(<span class="string">'./imageLoader'</span>)</span><br><span class="line">...</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span><br><span class="line"> * 添加一个同步任务，去预加载图片</span><br><span class="line"> * @param imglist 图片数组</span><br><span class="line"> */</span></span><br><span class="line">Animation.prototype.loadImage = <span class="function"><span class="keyword">function</span> (<span class="params">imglist</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> taskFn = <span class="function"><span class="keyword">function</span> (<span class="params">next</span>) </span>&#123;</span><br><span class="line">        <span class="comment">// 使用 slice ，目的是获得 imglist 的深拷贝，避免对引用的原 imglist 产生影响</span></span><br><span class="line">        loadImage(imglist.slice(), next)</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">var</span> type = TASK_SYNC</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">this</span>._add(taskFn, type)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">...</span><br></pre></td></tr></table></figure>
+<h2 id="2-4-从入口函数开始"><a href="#2-4-从入口函数开始" class="headerlink" title="2.4 从入口函数开始"></a>2.4 从入口函数开始</h2><ul>
+<li>任务对象</li>
+</ul>
+<ul>
+<li>同步任务和异步任务</li>
+<li>任务链实现</li>
+</ul>
+<p><em>关键代码(animation.js)</em><br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span><br><span class="line"> * 执行任务</span><br><span class="line"> * @private</span><br><span class="line"> */</span></span><br><span class="line">Animation.prototype._runTask = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="comment">// 没有任务或任务没有开始，则什么也不做</span></span><br><span class="line">    <span class="keyword">if</span> (!<span class="keyword">this</span>.taskQueue || <span class="keyword">this</span>.state !== STATE_START) &#123;</span><br><span class="line">        <span class="keyword">return</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">// 任务链已经全部执行完毕，则什么也不做</span></span><br><span class="line">    <span class="keyword">if</span> (<span class="keyword">this</span>.index === <span class="keyword">this</span>.taskQueue.length) &#123;</span><br><span class="line">        <span class="keyword">this</span>.dispose()</span><br><span class="line">        <span class="keyword">return</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">// 获得任务链上的当前任务</span></span><br><span class="line">    <span class="keyword">var</span> task = <span class="keyword">this</span>.taskQueue[<span class="keyword">this</span>.index]</span><br><span class="line">    <span class="keyword">if</span> (task.type === TASK_SYNC) &#123;</span><br><span class="line">        <span class="keyword">this</span>._syncTask(task)</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        <span class="keyword">this</span>._asyncTask(task)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span><br><span class="line"> * 同步任务</span><br><span class="line"> * @param task 执行的任务对象</span><br><span class="line"> * @private</span><br><span class="line"> */</span></span><br><span class="line">Animation.prototype._syncTask = <span class="function"><span class="keyword">function</span> (<span class="params">task</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> me = <span class="keyword">this</span></span><br><span class="line">    <span class="keyword">var</span> next = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">        <span class="comment">// 切换到下一个任务</span></span><br><span class="line">        me._next()</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">var</span> taskFn = task.taskFn</span><br><span class="line">    taskFn(next)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span><br><span class="line"> * 异步任务</span><br><span class="line"> * @param task 执行的任务对象</span><br><span class="line"> * @private</span><br><span class="line"> */</span></span><br><span class="line">Animation.prototype._asyncTask = <span class="function"><span class="keyword">function</span> (<span class="params">task</span>) </span>&#123;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">/**</span><br><span class="line"> * 切换到下一个任务</span><br><span class="line"> * @private</span><br><span class="line"> */</span></span><br><span class="line">Animation.prototype._next = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">this</span>.next++</span><br><span class="line">    <span class="keyword">this</span>._runTask()</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h2 id="2-5-timeline-的实现"><a href="#2-5-timeline-的实现" class="headerlink" title="2.5 timeline 的实现"></a>2.5 timeline 的实现</h2><p><strong>说明：</strong> timeline 作为一个模块，用来实现平滑的帧动画。</p>
+<ul>
+<li>使用 requestAnimationFrame  API 避免丢帧</li>
+</ul>
+<ul>
+<li>包装 requestAnimationFrame  API，兼容低版本浏览器</li>
+<li>+new Date() 替代 Date.now() 性能更好</li>
+<li>记录动画执行的时长，帧与帧之间的间隔，保证帧动画的频率</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span><br><span class="line"> * Created by tonyearth on 2016/12/11.</span><br><span class="line"> */</span></span><br><span class="line"><span class="meta">'use strict'</span></span><br><span class="line"><span class="keyword">var</span> DEFAULT_INTERVAL = <span class="number">1000</span> / <span class="number">60</span></span><br><span class="line"><span class="comment">// 初始化状态</span></span><br><span class="line"><span class="keyword">var</span> STATE_INTERVAL = <span class="number">0</span></span><br><span class="line"><span class="comment">// 开始状态</span></span><br><span class="line"><span class="keyword">var</span> STATE_START = <span class="number">1</span></span><br><span class="line"><span class="comment">// 停止状态</span></span><br><span class="line"><span class="keyword">var</span> STATE_STOP = <span class="number">2</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> requestAnimationFrame = (<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="built_in">window</span>.requestAnimationFrame</span><br><span class="line">        || <span class="built_in">window</span>.webkitRequestAnimationFrame</span><br><span class="line">        || <span class="built_in">window</span>.mozRequestAnimationFrame</span><br><span class="line">        || <span class="built_in">window</span>.oRequestAnimationFrame</span><br><span class="line">        || <span class="function"><span class="keyword">function</span> (<span class="params">callback</span>) </span>&#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="built_in">window</span>.setTimeout(callback, callback.interval) || DEFAULT_INTERVAL</span><br><span class="line">        &#125;</span><br><span class="line">&#125;)()</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> cancelAnimationFrame = (<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="built_in">window</span>.cancelAnimationFrame</span><br><span class="line">        || <span class="built_in">window</span>.webkitCancelAnimationFrame</span><br><span class="line">        || <span class="built_in">window</span>.mozCancelAnimationFrame</span><br><span class="line">        || <span class="built_in">window</span>.oCancelAnimationFrame</span><br><span class="line">        || <span class="function"><span class="keyword">function</span> (<span class="params">id</span>) </span>&#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="built_in">window</span>.clearTimeout(id)</span><br><span class="line">        &#125;</span><br><span class="line">&#125;)()</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span><br><span class="line"> * Timeline 时间轴类</span><br><span class="line"> * @constructor</span><br><span class="line"> */</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Timeline</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">this</span>.animationHandler = <span class="number">0</span></span><br><span class="line">    <span class="keyword">this</span>.state = STATE_INTERVAL</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span><br><span class="line"> * 时间轴上每一次回调执行的函数</span><br><span class="line"> * @param time 从动画开始到当前执行的时间</span><br><span class="line"> */</span></span><br><span class="line">Timeline.prototype.onenterframe = <span class="function"><span class="keyword">function</span> (<span class="params">time</span>) </span>&#123;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span><br><span class="line"> * 动画开始</span><br><span class="line"> * @param interval 每一次回调的间隔时间</span><br><span class="line"> */</span></span><br><span class="line">Timeline.prototype.start = <span class="function"><span class="keyword">function</span> (<span class="params">interval</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (<span class="keyword">this</span>.state === STATE_START) &#123;</span><br><span class="line">        <span class="keyword">return</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">this</span>.state = STATE_START</span><br><span class="line">    <span class="keyword">this</span>.interval = interval || DEFAULT_INTERVAL</span><br><span class="line">    startTimeline(<span class="keyword">this</span>, +<span class="keyword">new</span> <span class="built_in">Date</span>())</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span><br><span class="line"> * 动画停止</span><br><span class="line"> */</span></span><br><span class="line">Timeline.prototype.stop = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (<span class="keyword">this</span>.start !== STATE_START) &#123;</span><br><span class="line">        <span class="keyword">return</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">this</span>.state = STATE_STOP</span><br><span class="line">    <span class="comment">// 如果动画开始过，则记录动画从开始到现在所经历的时间</span></span><br><span class="line">    <span class="keyword">if</span> (<span class="keyword">this</span>.startTime) &#123;</span><br><span class="line">        <span class="keyword">this</span>.dur = +<span class="keyword">new</span> <span class="built_in">Date</span>() - <span class="keyword">this</span>.startTime</span><br><span class="line">    &#125;</span><br><span class="line">    cancelAnimationFrame(<span class="keyword">this</span>.animationHandler)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span><br><span class="line"> * 重新开始动画</span><br><span class="line"> */</span></span><br><span class="line">Timeline.prototype.restart = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (<span class="keyword">this</span>.state === STATE_START) &#123;</span><br><span class="line">        <span class="keyword">return</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span> (!<span class="keyword">this</span>.dur || !<span class="keyword">this</span>.interval) &#123;</span><br><span class="line">        <span class="keyword">return</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">this</span>.start = STATE_START</span><br><span class="line">    <span class="comment">// 无缝链接动画</span></span><br><span class="line">    startTimeline(<span class="keyword">this</span>, +<span class="keyword">new</span> <span class="built_in">Date</span>() - <span class="keyword">this</span>.dur)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span><br><span class="line"> * 时间轴动画启动函数</span><br><span class="line"> * @param timeline 时间轴的实例</span><br><span class="line"> * @param startTime 动画开始的时间戳</span><br><span class="line"> */</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">startTimeline</span>(<span class="params">timeline, startTime</span>) </span>&#123;</span><br><span class="line">    timeline.startTime = startTime</span><br><span class="line">    nextTick.interval = timeline.interval</span><br><span class="line">    <span class="comment">// 记录上一次回调的时间戳</span></span><br><span class="line">    <span class="keyword">var</span> lastTick = +<span class="keyword">new</span> <span class="built_in">Date</span>()</span><br><span class="line">    nextTick()</span><br><span class="line">    <span class="comment">/**</span><br><span class="line">     * 定义每一帧执行的函数</span><br><span class="line">     */</span></span><br><span class="line">    <span class="function"><span class="keyword">function</span> <span class="title">nextTick</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">        <span class="keyword">var</span> now = +<span class="keyword">new</span> <span class="built_in">Date</span>()</span><br><span class="line">        timeline.animationHandler = requestAnimationFrame(nextTick)</span><br><span class="line">        <span class="comment">// 如果当前时间与上一次回调的时间戳大于设置的时间间隔，</span></span><br><span class="line">        <span class="comment">// 表示这一次可以执行回调函数</span></span><br><span class="line">        <span class="keyword">if</span> (now - lastTick &gt;= timeline.interval) &#123;</span><br><span class="line">            timeline.onenterframe(now - startTime)</span><br><span class="line">            lastTick = now</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">module</span>.exports = Timeline</span><br></pre></td></tr></table></figure>
+<h2 id="2-6-剩余接口实现"><a href="#2-6-剩余接口实现" class="headerlink" title="2.6 剩余接口实现"></a>2.6 剩余接口实现</h2><ul>
+<li>changePosition</li>
+</ul>
+<ul>
+<li>changeSrc</li>
+<li>then</li>
+<li>reStart</li>
+<li>repeat</li>
+<li>repeatForever</li>
+<li>wait</li>
+<li>pause</li>
+<li>dispose</li>
+</ul>
+<h1 id="3-webpack打包及帧动画库演示"><a href="#3-webpack打包及帧动画库演示" class="headerlink" title="3 webpack打包及帧动画库演示"></a>3 webpack打包及帧动画库演示</h1><h2 id="3-1-webpack打包和-demo-编写"><a href="#3-1-webpack打包和-demo-编写" class="headerlink" title="3.1 webpack打包和 demo 编写"></a>3.1 webpack打包和 demo 编写</h2><h3 id="环境"><a href="#环境" class="headerlink" title="环境"></a>环境</h3><p>(1) 全局安装 webpack<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ npm i webpack -g</span><br><span class="line">$ npm i webpack-dev-server -g</span><br></pre></td></tr></table></figure></p>
+<p>(2) package.json<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  <span class="string">"name"</span>: <span class="string">"application-name"</span>,</span><br><span class="line">  <span class="string">"version"</span>: <span class="string">"0.0.1"</span>,</span><br><span class="line">  <span class="string">"devDependencies"</span>: &#123;</span><br><span class="line">    <span class="string">"webpack"</span>: <span class="string">"^1.12.11"</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>(3) webpack.config.js<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span><br><span class="line"> * Created by tonyearth on 2016/12/11.</span><br><span class="line"> */</span></span><br><span class="line"><span class="built_in">module</span>.exports = &#123;</span><br><span class="line">    entry: &#123;</span><br><span class="line">        animation: <span class="string">'./src/animation.js'</span></span><br><span class="line">    &#125;,</span><br><span class="line">    output: &#123;</span><br><span class="line">        path: __dirname + <span class="string">'/build'</span>,<span class="comment">// ./build</span></span><br><span class="line">        filename: <span class="string">'[name].js'</span>,<span class="comment">// animation.js</span></span><br><span class="line">        library: <span class="string">'animation'</span>,<span class="comment">// 在全局注册一个 window.animation 对象</span></span><br><span class="line">        libraryTarget: <span class="string">'umd'</span><span class="comment">// 兼容 amd、 cmd 或挂载到 window</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h3 id="简单的-DEMO"><a href="#简单的-DEMO" class="headerlink" title="简单的 DEMO"></a>简单的 DEMO</h3><p><em>demo.html</em><br><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE html&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span> <span class="attr">lang</span>=<span class="string">"en"</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">"UTF-8"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">title</span>&gt;</span>动画 demo<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">link</span> <span class="attr">rel</span>=<span class="string">"stylesheet"</span> <span class="attr">href</span>=<span class="string">"demo.css"</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"rabbit"</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">"../build/animation.js"</span>&gt;</span><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">"demo.js"</span>&gt;</span><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
+<p><em>demo.js</em><br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span><br><span class="line"> * Created by tonyearth on 2016/12/10.</span><br><span class="line"> */</span></span><br><span class="line"><span class="keyword">var</span> imgUrl = <span class="string">'rabbit-big.png'</span></span><br><span class="line"><span class="keyword">var</span> positions = [</span><br><span class="line">    <span class="string">'0 -854'</span>,</span><br><span class="line">    <span class="string">'-174 -852'</span>,</span><br><span class="line">    <span class="string">'-349 -852'</span>,</span><br><span class="line">    <span class="string">'-524 -852'</span>,</span><br><span class="line">    <span class="string">'-698 -852'</span>,</span><br><span class="line">    <span class="string">'-873 -848'</span></span><br><span class="line">]</span><br><span class="line"><span class="keyword">var</span> ele = <span class="built_in">document</span>.getElementById(<span class="string">'rabbit'</span>)</span><br><span class="line"><span class="keyword">var</span> animation = <span class="built_in">window</span>.animation</span><br><span class="line"><span class="keyword">var</span> repeatAnimation = animation() <span class="comment">// 获取实例</span></span><br><span class="line">    .loadImage([imgUrl]) <span class="comment">// 任务1：预加载图片</span></span><br><span class="line">    .changePosition(ele, positions, imgUrl) <span class="comment">// 任务2： 帧动画</span></span><br><span class="line">    .repeatForever() <span class="comment">// 任务3：无限重复上面的动画</span></span><br><span class="line">repeatAnimation.start(<span class="number">80</span>)</span><br></pre></td></tr></table></figure></p>
+<h2 id="3-2-demo-的完整实现"><a href="#3-2-demo-的完整实现" class="headerlink" title="3.2 demo 的完整实现"></a>3.2 demo 的完整实现</h2><p><em>demo.html</em><br><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE html&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span> <span class="attr">lang</span>=<span class="string">"en"</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">"UTF-8"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">title</span>&gt;</span>动画 demo<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">link</span> <span class="attr">rel</span>=<span class="string">"stylesheet"</span> <span class="attr">href</span>=<span class="string">"demo.css"</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"rabbit1"</span> <span class="attr">class</span>=<span class="string">"rabbit"</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"rabbit2"</span> <span class="attr">class</span>=<span class="string">"rabbit"</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"rabbit3"</span> <span class="attr">class</span>=<span class="string">"rabbit"</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"rabbit4"</span> <span class="attr">class</span>=<span class="string">"rabbit"</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">"../build/animation.js"</span>&gt;</span><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">"demo.js"</span>&gt;</span><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
+<p><em>demo.js</em><br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span><br><span class="line"> * Created by tonyearth on 2016/12/10.</span><br><span class="line"> */</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> $(<span class="params">id</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="built_in">document</span>.getElementById(id)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">$rabbit1 = $(<span class="string">'rabbit1'</span>)</span><br><span class="line">$rabbit2 = $(<span class="string">'rabbit2'</span>)</span><br><span class="line">$rabbit3 = $(<span class="string">'rabbit3'</span>)</span><br><span class="line">$rabbit4 = $(<span class="string">'rabbit4'</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> images = [<span class="string">'rabbit-big.png'</span>, <span class="string">'rabbit-lose.png'</span>, <span class="string">'rabbit-win.png'</span>]</span><br><span class="line"><span class="keyword">var</span> rightRunningMap = [<span class="string">'0 -854'</span>, <span class="string">'-174 -852'</span>, <span class="string">'-349 -852'</span>, <span class="string">'-524 -852'</span>, <span class="string">'-698 -852'</span>, <span class="string">'-873 -848'</span>]</span><br><span class="line"><span class="keyword">var</span> leftRunningMap = [<span class="string">"0 -373"</span>, <span class="string">"-175 -376"</span>, <span class="string">"-350 -377"</span>, <span class="string">"-524 -377"</span>, <span class="string">"-699 -377"</span>, <span class="string">"-873 -379"</span>]</span><br><span class="line"><span class="keyword">var</span> rabbitWinMap = [<span class="string">"0 0"</span>, <span class="string">"-198 0"</span>, <span class="string">"-401 0"</span>, <span class="string">"-609 0"</span>, <span class="string">"-816 0"</span>, <span class="string">"0 -96"</span>, <span class="string">"-208 -97"</span>, <span class="string">"-415 -97"</span>, <span class="string">"-623 -97"</span>, <span class="string">"-831 -97"</span>, <span class="string">"0 -203"</span>, <span class="string">"-207 -203"</span>, <span class="string">"-415 -203"</span>, <span class="string">"-623 -203"</span>, <span class="string">"-831 -203"</span>, <span class="string">"0 -307"</span>, <span class="string">"-206 -307"</span>, <span class="string">"-414 -307"</span>, <span class="string">"-623 -307"</span>]</span><br><span class="line"><span class="keyword">var</span> rabbitLoseMap = [<span class="string">"0 0"</span>, <span class="string">"-163 0"</span>, <span class="string">"-327 0"</span>, <span class="string">"-491 0"</span>, <span class="string">"-655 0"</span>, <span class="string">"-819 0"</span>, <span class="string">"0 -135"</span>, <span class="string">"-166 -135"</span>, <span class="string">"-333 -135"</span>, <span class="string">"-500 -135"</span>, <span class="string">"-668 -135"</span>, <span class="string">"-835 -135"</span>, <span class="string">"0 -262"</span>]</span><br><span class="line"></span><br><span class="line"><span class="comment">/* 动画1 */</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">repeat</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> repeatAnimation = animation()</span><br><span class="line">        .loadImage(images) <span class="comment">// 任务1：预加载图片</span></span><br><span class="line">        .changePosition($rabbit1, rightRunningMap, images[<span class="number">0</span>]) <span class="comment">// 任务2： 帧动画</span></span><br><span class="line">        .repeatForever() <span class="comment">// 任务3：无限重复上面的动画</span></span><br><span class="line">    repeatAnimation.start(<span class="number">80</span>)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">repeat()</span><br><span class="line"></span><br><span class="line"><span class="comment">/* 动画2 */</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">win</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> winAnimation = animation()</span><br><span class="line">        .loadImage(images)</span><br><span class="line">        .changePosition($rabbit3, rabbitWinMap, images[<span class="number">2</span>])</span><br><span class="line">        .repeat(<span class="number">3</span>)</span><br><span class="line">        .then(<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">            <span class="built_in">console</span>.log(<span class="string">'win animation repeat 3 times and finished!'</span>)</span><br><span class="line">        &#125;)</span><br><span class="line">    winAnimation.start(<span class="number">200</span>)</span><br><span class="line">&#125;</span><br><span class="line">win()</span><br><span class="line"></span><br><span class="line"><span class="comment">/* 动画3 */</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">lose</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> loseAnimation = animation()</span><br><span class="line">        .loadImage(images)</span><br><span class="line">        .changePosition($rabbit2, rabbitLoseMap, images[<span class="number">1</span>])</span><br><span class="line">        .wait(<span class="number">1000</span>)</span><br><span class="line">        .repeat(<span class="number">1</span>)</span><br><span class="line">        .then(<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">            <span class="built_in">console</span>.log(<span class="string">'lose animation repeat 1 times and finished'</span>)</span><br><span class="line">        &#125;)</span><br><span class="line">    loseAnimation.start(<span class="number">200</span>)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">lose()</span><br><span class="line"></span><br><span class="line"><span class="comment">/* 动画4 */</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">run</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> speed = <span class="number">6</span></span><br><span class="line">    <span class="keyword">var</span> initLeft = <span class="number">0</span></span><br><span class="line">    <span class="keyword">var</span> finalLeft = <span class="number">400</span></span><br><span class="line">    <span class="keyword">var</span> frameLength = <span class="number">6</span></span><br><span class="line">    <span class="keyword">var</span> frame = <span class="number">4</span></span><br><span class="line">    <span class="keyword">var</span> right = <span class="literal">true</span></span><br><span class="line">    <span class="keyword">var</span> interval = <span class="number">50</span></span><br><span class="line">    <span class="keyword">var</span> runAnimation = animation()</span><br><span class="line">        .loadImage(images)</span><br><span class="line">        .enterFrame(<span class="function"><span class="keyword">function</span> (<span class="params">success, time</span>) </span>&#123;</span><br><span class="line">            <span class="keyword">var</span> radio = time / interval</span><br><span class="line">            <span class="keyword">var</span> position</span><br><span class="line">            <span class="keyword">var</span> left</span><br><span class="line">            <span class="keyword">if</span> (right) &#123;</span><br><span class="line">                position = rightRunningMap[frame].split(<span class="string">' '</span>)</span><br><span class="line">                left = <span class="built_in">Math</span>.min(initLeft + speed * radio, finalLeft)</span><br><span class="line"></span><br><span class="line">                <span class="keyword">if</span> (left === finalLeft) &#123;</span><br><span class="line">                    right = <span class="literal">false</span></span><br><span class="line">                    frame = <span class="number">4</span></span><br><span class="line">                     success()</span><br><span class="line">                    <span class="keyword">return</span></span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">else</span> &#123;</span><br><span class="line">                position = leftRunningMap[frame].split(<span class="string">' '</span>)</span><br><span class="line">                left = <span class="built_in">Math</span>.max(initLeft, finalLeft - speed * radio)</span><br><span class="line">                <span class="keyword">if</span> (left === initLeft) &#123;</span><br><span class="line">                    right = <span class="literal">true</span></span><br><span class="line">                    frame = <span class="number">4</span></span><br><span class="line">                    success()</span><br><span class="line">                    <span class="keyword">return</span></span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">            $rabbit4.style.backgroundImage = <span class="string">'url('</span> + images[<span class="number">0</span>] + <span class="string">')'</span></span><br><span class="line">            $rabbit4.style.backgroundPosition = position[<span class="number">0</span>] + <span class="string">'px '</span> + position[<span class="number">1</span>] + <span class="string">'px'</span></span><br><span class="line">            $rabbit4.style.left = left + <span class="string">'px'</span></span><br><span class="line">            frame++</span><br><span class="line">            <span class="keyword">if</span> (frame === frameLength) &#123;</span><br><span class="line">                frame = <span class="number">0</span></span><br><span class="line">            &#125;</span><br><span class="line">        &#125;)</span><br><span class="line">        .repeat(<span class="number">2</span>)</span><br><span class="line">        .wait(<span class="number">1000</span>)</span><br><span class="line">        .changePosition($rabbit4, rabbitWinMap, images[<span class="number">2</span>])</span><br><span class="line">        .then(<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">            <span class="built_in">console</span>.log(<span class="string">'finished!'</span>)</span><br><span class="line">        &#125;)</span><br><span class="line">    runAnimation.start(interval)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">run()</span><br></pre></td></tr></table></figure></p>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/js/" rel="tag">#js</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/11/30/JK_axure_网页设计中的版式风格/" rel="next" title="网页设计中的版式风格">
+                <i class="fa fa-chevron-left"></i> 网页设计中的版式风格
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2016/12/12/imooc_原生 JS 实现帧动画库/"
+           data-title="原生 JS 实现帧动画库" data-url="http://laputa-er.github.io/2016/12/12/imooc_原生 JS 实现帧动画库/">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.gif"
+               alt="Sean" />
+          <p class="site-author-name" itemprop="name">Sean</p>
+          <p class="site-description motion-element" itemprop="description">整理了一批过去一段时间ios相关的笔记，其它的笔记也整理下？源码分享出来？再说吧...反正也只有自己会看吧...</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">134</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">14</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">13</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#1-认识帧动画"><span class="nav-text">1 认识帧动画</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-1-认识帧动画"><span class="nav-text">1.1 认识帧动画</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#什么是帧动画？"><span class="nav-text">什么是帧动画？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#常见帧动画方式"><span class="nav-text">常见帧动画方式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#GIF-和-CSS3-animation-实现帧动画的不足"><span class="nav-text">GIF 和 CSS3 animation 实现帧动画的不足</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#JS-实现帧动画的原理"><span class="nav-text">JS 实现帧动画的原理</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-2-设计通用帧动画库"><span class="nav-text">1.2 设计通用帧动画库</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#01-需求分析"><span class="nav-text">01 需求分析</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#02-编程接口"><span class="nav-text">02 编程接口</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#03-调用方式"><span class="nav-text">03 调用方式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#04-代码设计"><span class="nav-text">04 代码设计</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#2-设计帧动画库"><span class="nav-text">2 设计帧动画库</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#2-1-接口定义"><span class="nav-text">2.1 接口定义</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-2-图片预加载实现"><span class="nav-text">2.2 图片预加载实现</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-3-图片预加载的应用"><span class="nav-text">2.3 图片预加载的应用</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-4-从入口函数开始"><span class="nav-text">2.4 从入口函数开始</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-5-timeline-的实现"><span class="nav-text">2.5 timeline 的实现</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-6-剩余接口实现"><span class="nav-text">2.6 剩余接口实现</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#3-webpack打包及帧动画库演示"><span class="nav-text">3 webpack打包及帧动画库演示</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#3-1-webpack打包和-demo-编写"><span class="nav-text">3.1 webpack打包和 demo 编写</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#环境"><span class="nav-text">环境</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#简单的-DEMO"><span class="nav-text">简单的 DEMO</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-2-demo-的完整实现"><span class="nav-text">3.2 demo 的完整实现</span></a></li></ol></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Sean</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"lapuda-er"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+    <script src="/vendors/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
+    <script src="/js/src/hook-duoshuo.js"></script>
+  
+
+
+
+
+
+
+  
+  
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length == 0) {
+       search_path = "search.xml";
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    function proceedsearch() {
+      $("body").append('<div class="popoverlay">').css('overflow', 'hidden');
+      $('.popup').toggle();
+
+    }
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+    'use strict';
+    $.ajax({
+        url: path,
+        dataType: "xml",
+        async: true,
+        success: function( xmlResponse ) {
+            // get the contents from search data
+            isfetched = true;
+            $('.popup').detach().appendTo('.header-inner');
+            var datas = $( "entry", xmlResponse ).map(function() {
+                return {
+                    title: $( "title", this ).text(),
+                    content: $("content",this).text(),
+                    url: $( "url" , this).text()
+                };
+            }).get();
+            var $input = document.getElementById(search_id);
+            var $resultContent = document.getElementById(content_id);
+            $input.addEventListener('input', function(){
+                var matchcounts = 0;
+                var str='<ul class=\"search-result-list\">';
+                var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+                $resultContent.innerHTML = "";
+                if (this.value.trim().length > 1) {
+                // perform local searching
+                datas.forEach(function(data) {
+                    var isMatch = true;
+                    var content_index = [];
+                    var data_title = data.title.trim().toLowerCase();
+                    var data_content = data.content.trim().replace(/<[^>]+>/g,"").toLowerCase();
+                    var data_url = data.url;
+                    var index_title = -1;
+                    var index_content = -1;
+                    var first_occur = -1;
+                    // only match artiles with not empty titles and contents
+                    if(data_title != '' && data_content != '') {
+                        keywords.forEach(function(keyword, i) {
+                            index_title = data_title.indexOf(keyword);
+                            index_content = data_content.indexOf(keyword);
+                            if( index_title < 0 && index_content < 0 ){
+                                isMatch = false;
+                            } else {
+                                if (index_content < 0) {
+                                    index_content = 0;
+                                }
+                                if (i == 0) {
+                                    first_occur = index_content;
+                                }
+                            }
+                        });
+                    }
+                    // show search results
+                    if (isMatch) {
+                        matchcounts += 1;
+                        str += "<li><a href='"+ data_url +"' class='search-result-title'>"+ data_title +"</a>";
+                        var content = data.content.trim().replace(/<[^>]+>/g,"");
+                        if (first_occur >= 0) {
+                            // cut out 100 characters
+                            var start = first_occur - 20;
+                            var end = first_occur + 80;
+                            if(start < 0){
+                                start = 0;
+                            }
+                            if(start == 0){
+                                end = 50;
+                            }
+                            if(end > content.length){
+                                end = content.length;
+                            }
+                            var match_content = content.substring(start, end);
+                            // highlight all keywords
+                            keywords.forEach(function(keyword){
+                                var regS = new RegExp(keyword, "gi");
+                                match_content = match_content.replace(regS, "<b class=\"search-keyword\">"+keyword+"</b>");
+                            });
+
+                            str += "<p class=\"search-result\">" + match_content +"...</p>"
+                        }
+                        str += "</li>";
+                    }
+                })};
+                str += "</ul>";
+                if (matchcounts == 0) { str = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>' }
+                if (keywords == "") { str = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>' }
+                $resultContent.innerHTML = str;
+            });
+            proceedsearch();
+        }
+    });}
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched == false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+
+    });
+
+    $('.popup-btn-close').click(function(e){
+      $('.popup').hide();
+      $(".popoverlay").remove();
+      $('body').css('overflow', '');
+    });
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+  </script>
+
+
+  
+
+  
+
+  
+
+</body>
+</html>

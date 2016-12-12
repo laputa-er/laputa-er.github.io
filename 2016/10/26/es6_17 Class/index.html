@@ -102,7 +102,7 @@ ES6 的类，完全可以看作构造函数的另一种写法（类的数据类�
 <meta property="og:image" content="http://o6ul1xz4z.bkt.clouddn.com/img/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202016-10-21%20%E4%B8%8A%E5%8D%8812.16.39.png">
 <meta property="og:image" content="http://o6ul1xz4z.bkt.clouddn.com/img/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202016-10-20%20%E4%B8%8B%E5%8D%8811.41.50.png">
 <meta property="og:image" content="http://o6ul1xz4z.bkt.clouddn.com/img/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202016-10-21%20%E4%B8%8A%E5%8D%8812.22.19.png">
-<meta property="og:updated_time" content="2016-11-30T22:12:16.000Z">
+<meta property="og:updated_time" content="2016-11-30T22:24:53.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="17 Class(ECMAScript6入门)">
 <meta name="twitter:description" content="17.1 Class基本语法17.1.1 概述说明： ES6 提供了更接近传统语言的写法，引入了 Class （类）这个概念，作为对象的模板。通过 class 关键字，可以定义类。
@@ -466,7 +466,43 @@ ES6 的类，完全可以看作构造函数的另一种写法（类的数据类�
 <h3 id="17-2-6-实例的-proto-属性"><a href="#17-2-6-实例的-proto-属性" class="headerlink" title="17.2.6 实例的  __proto__ 属性"></a>17.2.6 实例的  <code>__proto__</code> 属性</h3><p><strong>说明：</strong>子类实例的 <code>__proto__</code> 属性的 <code>__proto__</code> 属性，指向父类实例的 <code>__proto__</code>属性。也就是说，子类的原型的原型，是父类的原型。</p>
 <p><strong>技巧：</strong>通过子类实例的 <code>__proto__.__proto__</code> 属性，可以修改父类实例的行为。注意，这会影响所有父类和子类的实例。</p>
 <p><em>Demo: ColorPoint 是 Point 的子类</em><br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> p1 = <span class="keyword">new</span> Point(<span class="number">2</span>, <span class="number">3</span>);</span><br><span class="line"><span class="keyword">var</span> p2 = <span class="keyword">new</span> ColorPoint(<span class="number">2</span>, <span class="number">3</span>, <span class="string">'red'</span>);</span><br><span class="line"></span><br><span class="line">p2.__proto__ === p1.__proto__ <span class="comment">// false</span></span><br><span class="line">p2.__proto__.__proto__ === p1.__proto__ <span class="comment">// true</span></span><br><span class="line"></span><br><span class="line"><span class="comment">/* 通过子类实例的__proto__.__proto__属性，可以修改父类实例的行为 */</span></span><br><span class="line">p2.__proto__.__proto__.printName = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">'Ha'</span>);</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">p1.printName() <span class="comment">// "Ha"</span></span><br></pre></td></tr></table></figure></p>
-<h2 id="17-3-原生构造函数的继承"><a href="#17-3-原生构造函数的继承" class="headerlink" title="17.3 原生构造函数的继承"></a>17.3 原生构造函数的继承</h2><h3 id="17-3-1-原生构造函数"><a href="#17-3-1-原生构造函数" class="headerlink" title="17.3.1 原生构造函数"></a>17.3.1 原生构造函数</h3><p><strong>说明：</strong>指语言内置的构造函数，通常用来生成数据结构。<br>|ECMAScript 的原生构造函数（9个）|<br>|-|<br>|Boolean()|<br>|Number()|<br>|String()|<br>|Array()|<br>|Date()|<br>|Function()|<br>|RegExp()|<br>|Error()|<br>|Object()|</p>
+<h2 id="17-3-原生构造函数的继承"><a href="#17-3-原生构造函数的继承" class="headerlink" title="17.3 原生构造函数的继承"></a>17.3 原生构造函数的继承</h2><h3 id="17-3-1-原生构造函数"><a href="#17-3-1-原生构造函数" class="headerlink" title="17.3.1 原生构造函数"></a>17.3.1 原生构造函数</h3><p><strong>说明：</strong>指语言内置的构造函数，通常用来生成数据结构。</p>
+<table>
+<thead>
+<tr>
+<th>ECMAScript 的原生构造函数（9个）</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Boolean()</td>
+</tr>
+<tr>
+<td>Number()</td>
+</tr>
+<tr>
+<td>String()</td>
+</tr>
+<tr>
+<td>Array()</td>
+</tr>
+<tr>
+<td>Date()</td>
+</tr>
+<tr>
+<td>Function()</td>
+</tr>
+<tr>
+<td>RegExp()</td>
+</tr>
+<tr>
+<td>Error()</td>
+</tr>
+<tr>
+<td>Object()</td>
+</tr>
+</tbody>
+</table>
 <h3 id="17-3-2-错误的继承方式"><a href="#17-3-2-错误的继承方式" class="headerlink" title="17.3.2 错误的继承方式"></a>17.3.2 错误的继承方式</h3><p><code>虽然很想只根据原书做笔记，但个人认为说使用 ES5 无法实现对原生构造函数的继承有些片面。 ES5 实现继承有很多方式，只有某些方式有问题而已，而有问题的地方特指试图通过 call 或 apply 调用父类构造期构建实例属性这种行为。</code></p>
 <p><strong>说明：</strong> <code>ES5</code> 的实现继承的方式很多，有问题的是以下的方式。核心就两点，问题出在第一点</p>
 <ol>
@@ -640,7 +676,7 @@ ES6 的类，完全可以看作构造函数的另一种写法（类的数据类�
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">133</span>
+              <span class="site-state-item-count">134</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -657,7 +693,7 @@ ES6 的类，完全可以看作构造函数的另一种写法（类的数据类�
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">12</span>
+                <span class="site-state-item-count">13</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
