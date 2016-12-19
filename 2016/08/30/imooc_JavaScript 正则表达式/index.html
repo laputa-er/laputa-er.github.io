@@ -120,7 +120,7 @@
 <meta property="og:image" content="http://o6ul1xz4z.bkt.clouddn.com/img/1471097772183.png">
 <meta property="og:image" content="http://o6ul1xz4z.bkt.clouddn.com/img/1471098062069.png">
 <meta property="og:image" content="http://o6ul1xz4z.bkt.clouddn.com/img/1471098192119.png">
-<meta property="og:updated_time" content="2016-10-06T15:09:29.000Z">
+<meta property="og:updated_time" content="2016-12-18T17:15:27.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="JavaScript 正则表达式">
 <meta name="twitter:description" content="视频地址：http://www.imooc.com/learn/706推荐在线练习工具：https://regexper.com/
@@ -396,13 +396,14 @@
 <p><img src="http://o6ul1xz4z.bkt.clouddn.com/img/1471072343598.png" alt="Alt text"></p>
 <h1 id="2-认识正则表达式"><a href="#2-认识正则表达式" class="headerlink" title="2 认识正则表达式"></a>2 认识正则表达式</h1><h2 id="2-1-RegExp对象"><a href="#2-1-RegExp对象" class="headerlink" title="2.1 RegExp对象"></a>2.1 RegExp对象</h2><h3 id="2-1-1-基本用法"><a href="#2-1-1-基本用法" class="headerlink" title="2.1.1 基本用法"></a>2.1.1 基本用法</h3><p><code>JavaScript</code>通过内置对象 <code>RegExp</code>支持正则表达式。有两种方法实例化<code>RegExp</code>对象</p>
 <ul>
-<li><p>字面量</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> reg = <span class="regexp">/\bis\b/g</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// "He IS a boy.This IS a dog. Where IS she?"</span></span><br><span class="line"><span class="string">'He is a boy.This is a dog. Where is she?'</span>.replace(reg, <span class="string">'IS'</span>)</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>构造函数<br>注意：字符串本身能识别类似<code>\b</code>形式的转义字符，为了避免字符串误解，传递给<code>RegExp</code>构造函数的第一个参数中的<code>\</code>都需要转义为<code>\\</code>。</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> reg = <span class="keyword">new</span> <span class="built_in">RegExp</span>(<span class="string">'\\bis\\b'</span>, <span class="string">'g'</span>);</span><br><span class="line"><span class="comment">// "He IS a boy.This IS a dog. Where IS she?"</span></span><br><span class="line"><span class="string">'He is a boy.This is a dog. Where is she?'</span>.replace(reg, <span class="string">'IS'</span>)</span><br></pre></td></tr></table></figure>
-</li>
+<li>字面量</li>
 </ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> reg = <span class="regexp">/\bis\b/g</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// "He IS a boy.This IS a dog. Where IS she?"</span></span><br><span class="line"><span class="string">'He is a boy.This is a dog. Where is she?'</span>.replace(reg, <span class="string">'IS'</span>)</span><br></pre></td></tr></table></figure>
+<ul>
+<li>构造函数</li>
+</ul>
+<p>注意：字符串本身能识别类似<code>\b</code>形式的转义字符，为了避免字符串误解，传递给<code>RegExp</code>构造函数的第一个参数中的<code>\</code>都需要转义为<code>\\</code>。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> reg = <span class="keyword">new</span> <span class="built_in">RegExp</span>(<span class="string">'\\bis\\b'</span>, <span class="string">'g'</span>);</span><br><span class="line"><span class="comment">// "He IS a boy.This IS a dog. Where IS she?"</span></span><br><span class="line"><span class="string">'He is a boy.This is a dog. Where is she?'</span>.replace(reg, <span class="string">'IS'</span>)</span><br></pre></td></tr></table></figure>
 <h3 id="2-1-2-修饰符"><a href="#2-1-2-修饰符" class="headerlink" title="2.1.2 修饰符"></a>2.1.2 修饰符</h3><table>
 <thead>
 <tr>
@@ -495,7 +496,7 @@
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// "aXbXcXXX"</span></span><br><span class="line"><span class="string">'a1b2c3d4'</span>.replace(<span class="regexp">/[^abc]/g</span>, <span class="string">'X'</span>)</span><br></pre></td></tr></table></figure>
 <h2 id="2-4-范围类"><a href="#2-4-范围类" class="headerlink" title="2.4 范围类"></a>2.4 范围类</h2><p>正则表达式还提供了<code>范围类</code>。例如，可以使用<code>[a-z]</code>来连接两个字符表示<em>从 a 到 z 的任意字符</em>，这是个闭区间，也就是包涵 a 和 z 本身。<br><img src="http://o6ul1xz4z.bkt.clouddn.com/img/1471076736409.png" alt="Alt text"></p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">'a1b2c3d4Hello'</span>.replace(<span class="regexp">/[a-z]/g</span>, <span class="string">'X'</span>)</span><br><span class="line"><span class="string">"X1X2X3X4HXXXX"</span></span><br></pre></td></tr></table></figure>
-<p> 注意：形式为<code>[字符1-字符1]</code>的正则中的<code>-</code>都会被识别为<code>范围类</code>，若真的想使用<code>-</code>本身，要么在<code>[]</code>外部使用，要么类似<code>[字符1-字符2-]</code>，其中最后一个<code>-</code>会本当做原意文本字符。</p>
+<p> 注意：形式为<code>[字符1-字符2]</code>的正则中的<code>-</code>都会被识别为<code>范围类</code>，若真的想使用<code>-</code>本身，要么在<code>[]</code>外部使用，要么类似<code>[字符1-字符2-]</code>，其中最后一个<code>-</code>会本当做原意文本字符。</p>
 <h2 id="2-5-预定义类及边界"><a href="#2-5-预定义类及边界" class="headerlink" title="2.5 预定义类及边界"></a>2.5 预定义类及边界</h2><h3 id="2-5-1-预定义类"><a href="#2-5-1-预定义类" class="headerlink" title="2.5.1 预定义类"></a>2.5.1 预定义类</h3><p>正则表达式提供<code>预定义类</code>来匹配常见的字符类</p>
 <table>
 <thead>
@@ -508,37 +509,37 @@
 <tbody>
 <tr>
 <td>.</td>
-<td>[^\r\n]</td>
+<td><code>[^\r\n]</code></td>
 <td>除回车符和换行符之外的所有字符</td>
 </tr>
 <tr>
 <td>\d</td>
-<td>[0-9]</td>
+<td><code>[0-9]</code></td>
 <td>数字字符</td>
 </tr>
 <tr>
 <td>\D</td>
-<td>[^0-9]</td>
+<td><code>[^0-9]</code></td>
 <td>非数字字符</td>
 </tr>
 <tr>
 <td>\s</td>
-<td>[\t\n\x0B\f\r]</td>
+<td><code>[\t\n\x0B\f\r]</code></td>
 <td>空白符</td>
 </tr>
 <tr>
 <td>\S</td>
-<td>[^\t\n\x\0B\f\r]</td>
+<td><code>[^\t\n\x\0B\f\r]</code></td>
 <td>非空白符</td>
 </tr>
 <tr>
 <td>\w</td>
-<td>[a-zA-Z_0-9]</td>
+<td><code>[a-zA-Z_0-9]</code></td>
 <td>单词字符（字母、数字、下划线）</td>
 </tr>
 <tr>
 <td>\W</td>
-<td>[^a-zA-Z_0-9]</td>
+<td><code>[^a-zA-Z_0-9]</code></td>
 <td>非单词字符</td>
 </tr>
 </tbody>
@@ -631,10 +632,10 @@
 </tbody>
 </table>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 贪婪模式</span></span><br><span class="line"><span class="string">'123456789'</span>.match(<span class="regexp">/\d&#123;3,5&#125;/g</span>)</span><br><span class="line"><span class="comment">// ["12345", "6789"]</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 非贪婪模式</span></span><br><span class="line"><span class="string">'123456789'</span>.match(<span class="regexp">/\d&#123;3,5&#125;?/g</span>)</span><br><span class="line"><span class="comment">// ["123", "456", "789"]</span></span><br></pre></td></tr></table></figure>
-<h2 id="2-8-分组"><a href="#2-8-分组" class="headerlink" title="2.8 分组"></a>2.8 分组</h2><h3 id="2-8-1-基础"><a href="#2-8-1-基础" class="headerlink" title="2.8.1 基础"></a>2.8.1 基础</h3><p>使用<code>()</code>可以达到分组的功能，使量词作用于分组</p>
+<h2 id="2-8-分组"><a href="#2-8-分组" class="headerlink" title="2.8 分组"></a>2.8 分组</h2><h3 id="2-8-1-基础"><a href="#2-8-1-基础" class="headerlink" title="2.8.1 基础"></a>2.8.1 基础</h3><p>使用<code>()</code>可以达到分组的功能，使量词作用于分组。</p>
 <p><strong>例子</strong><br><img src="http://o6ul1xz4z.bkt.clouddn.com/img/1471097284500.png" alt="Alt text"></p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">'a1b2c3d4'</span>.match(<span class="regexp">/([a-z]\d)&#123;3&#125;/g</span>)</span><br><span class="line"><span class="comment">// ["a1b2c3"]</span></span><br></pre></td></tr></table></figure>
-<h3 id="2-8-2-或"><a href="#2-8-2-或" class="headerlink" title="2.8.2 或"></a>2.8.2 或</h3><p>使用<code>|</code>可以达到或的效果</p>
+<h3 id="2-8-2-或"><a href="#2-8-2-或" class="headerlink" title="2.8.2 或"></a>2.8.2 或</h3><p>使用<code>|</code>可以达到或的效果。</p>
 <p><strong>例子</strong><br><code>/Byr(on|Ca)sper/g</code>：<img src="http://o6ul1xz4z.bkt.clouddn.com/img/1471097817285.png" alt="Alt text"></p>
 <p><code>/Byron|Casper/g</code>：<img src="http://o6ul1xz4z.bkt.clouddn.com/img/1471097772183.png" alt="Alt text"></p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 有分组</span></span><br><span class="line"><span class="string">'ByronsperByrCasper'</span>.match(<span class="regexp">/Byr(on|Ca)sper/g</span>)</span><br><span class="line"><span class="comment">// ["Byronsper", "ByrCasper"]</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 无分组</span></span><br><span class="line"><span class="string">'ByronsperByrCasper'</span>.match(<span class="regexp">/Byron|Casper/g</span>)</span><br><span class="line"><span class="comment">// ["Byron", "Casper"]</span></span><br></pre></td></tr></table></figure>
@@ -668,12 +669,12 @@
 </tr>
 <tr>
 <td>正向后顾（JS不支持）</td>
-<td>exp(?=assert)</td>
+<td>exp(?&lt;=assert)</td>
 <td></td>
 </tr>
 <tr>
 <td>负向后顾（JS不支持）</td>
-<td>exp(?!assert)</td>
+<td>exp(?&lt;!assert)</td>
 <td></td>
 </tr>
 </tbody>

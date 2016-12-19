@@ -84,8 +84,7 @@
 
 
 
-<meta name="description" content="15.1    源文件
-说明：可以把程序分割成一定数量的源文件(.c文件和.h文件)。
+<meta name="description" content="15.1    源文件说明：可以把程序分割成一定数量的源文件(.c文件和.h文件)。
 
 原文件的扩展名为.c，每个原文件包含程序的部分内容，主要是函数的定义和变量
 一个原文件必须包含名为main的函数，次函数作为程序的起始点
@@ -94,13 +93,12 @@
 
 （易读）把相关的函数和变量集合在单独一个文件中可以帮助明了程序的结构
 （易维护）可以单独对每一个文件进行编译。
-（易复用">
+（易复用）">
 <meta property="og:type" content="article">
 <meta property="og:title" content="15 编写大规模程序">
 <meta property="og:url" content="http://laputa-er.github.io/2016/05/10/15 编写大规模程序/index.html">
 <meta property="og:site_name" content="Sean">
-<meta property="og:description" content="15.1    源文件
-说明：可以把程序分割成一定数量的源文件(.c文件和.h文件)。
+<meta property="og:description" content="15.1    源文件说明：可以把程序分割成一定数量的源文件(.c文件和.h文件)。
 
 原文件的扩展名为.c，每个原文件包含程序的部分内容，主要是函数的定义和变量
 一个原文件必须包含名为main的函数，次函数作为程序的起始点
@@ -109,12 +107,11 @@
 
 （易读）把相关的函数和变量集合在单独一个文件中可以帮助明了程序的结构
 （易维护）可以单独对每一个文件进行编译。
-（易复用">
-<meta property="og:updated_time" content="2016-09-19T12:13:40.000Z">
+（易复用）">
+<meta property="og:updated_time" content="2016-12-19T15:48:57.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="15 编写大规模程序">
-<meta name="twitter:description" content="15.1    源文件
-说明：可以把程序分割成一定数量的源文件(.c文件和.h文件)。
+<meta name="twitter:description" content="15.1    源文件说明：可以把程序分割成一定数量的源文件(.c文件和.h文件)。
 
 原文件的扩展名为.c，每个原文件包含程序的部分内容，主要是函数的定义和变量
 一个原文件必须包含名为main的函数，次函数作为程序的起始点
@@ -123,7 +120,7 @@
 
 （易读）把相关的函数和变量集合在单独一个文件中可以帮助明了程序的结构
 （易维护）可以单独对每一个文件进行编译。
-（易复用">
+（易复用）">
 
 
 
@@ -375,8 +372,7 @@
       
 
       
-        <h2 id="15-1-源文件"><a href="#15-1-源文件" class="headerlink" title="15.1    源文件"></a>15.1    源文件</h2><blockquote>
-<p><strong>说明：</strong>可以把程序分割成一定数量的源文件(.c文件和.h文件)。</p>
+        <h2 id="15-1-源文件"><a href="#15-1-源文件" class="headerlink" title="15.1    源文件"></a>15.1    源文件</h2><p><strong>说明：</strong>可以把程序分割成一定数量的源文件(.c文件和.h文件)。</p>
 <ul>
 <li>原文件的扩展名为.c，每个原文件包含程序的部分内容，主要是函数的定义和变量</li>
 <li>一个原文件必须包含名为main的函数，次函数作为程序的起始点</li>
@@ -387,18 +383,13 @@
 <li>（易维护）可以单独对每一个文件进行编译。</li>
 <li>（易复用）当把函数集合在单独的源文件中时，会更容易在其他程序中重新使用这些函数。</li>
 </ul>
-</blockquote>
-<h3 id="案例－计算器："><a href="#案例－计算器：" class="headerlink" title="案例－计算器："></a><em>案例－计算器：</em></h3><blockquote>
-<p><strong>逆波兰符号（Reverse Polish Notation, RPN）：</strong>指运算符都跟在操作数的后边。例如：<code>30 5 - 7 *</code>。<br><strong>思路：</strong>程序逐个读入操作数和运算符，那么利用栈跟踪中间结果这样的方式计算逆波兰表达式是很容易的。</p>
+<h3 id="案例－计算器："><a href="#案例－计算器：" class="headerlink" title="案例－计算器："></a><em>案例－计算器：</em></h3><p><strong>逆波兰符号（Reverse Polish Notation, RPN）：</strong>指运算符都跟在操作数的后边。例如：<code>30 5 - 7 *</code>。<br><strong>思路：</strong>程序逐个读入操作数和运算符，那么利用栈跟踪中间结果这样的方式计算逆波兰表达式是很容易的。</p>
 <ol>
 <li>读取“记号”（数或运算符）</li>
 <li>如果程序读取数，就将此数压入栈</li>
 <li>如果程序读取运算符，那么将从栈顶弹出两个数进行相应的计算。</li>
 </ol>
-</blockquote>
-<h2 id="15-2-头文件"><a href="#15-2-头文件" class="headerlink" title="15.2    头文件"></a>15.2    头文件</h2><blockquote>
-<p><strong>说明：</strong>如果打算几个源文件可以访问相同的信息，那么将把此信息放在文件中，扩展名为<code>.h</code>，然后利用<code>#include</code>指令把文件的内容带进每个源文件中。这样的<code>.h</code>文件就是头文件（或包含文件）。</p>
-</blockquote>
+<h2 id="15-2-头文件"><a href="#15-2-头文件" class="headerlink" title="15.2    头文件"></a>15.2    头文件</h2><p><strong>说明：</strong>如果打算几个源文件可以访问相同的信息，那么将把此信息放在文件中，扩展名为<code>.h</code>，然后利用<code>#include</code>指令把文件的内容带进每个源文件中。这样的<code>.h</code>文件就是头文件（或包含文件）。</p>
 <h3 id="15-2-1-include指令"><a href="#15-2-1-include指令" class="headerlink" title="15.2.1    #include指令"></a>15.2.1    #include指令</h3><p><strong>语法：</strong>有两种格式，其中的<code>文件名</code>可以包含路径或驱动器号。而且预处理器不会讲<code>&quot;文件名&quot;</code>当作字符串处理了，不然DOS路径中的某些字符有可能被当作转义字符。</p>
 <table>
 <thead>
@@ -424,35 +415,24 @@
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="string">"c:\cprogs\utils.h"</span>/*DOS path*/</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="string">"/cprogs/utils.h"</span>/*UNIX path*/</span></span><br></pre></td></tr></table></figure>
 <p><strong>可移植性技巧：</strong>不要在<code>#include</code>指令中包含路径或驱动器信息。</p>
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;sys\stat.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;utils.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;..\include\utils.h&gt;</span></span></span><br></pre></td></tr></table></figure>
-<h3 id="15-2-2-共享宏定义和类型定义"><a href="#15-2-2-共享宏定义和类型定义" class="headerlink" title="15.2.2    共享宏定义和类型定义"></a>15.2.2    共享宏定义和类型定义</h3><blockquote>
-<p><strong>说明：</strong>将通用的宏定义和类型定义放在头文件中有许多明显的好处。</p>
+<h3 id="15-2-2-共享宏定义和类型定义"><a href="#15-2-2-共享宏定义和类型定义" class="headerlink" title="15.2.2    共享宏定义和类型定义"></a>15.2.2    共享宏定义和类型定义</h3><p><strong>说明：</strong>将通用的宏定义和类型定义放在头文件中有许多明显的好处。</p>
 <ul>
 <li>不用频繁复制代码</li>
 <li>易于修改和维护</li>
 <li>避免犹豫原文件包含相同宏或类型的不同定义而导致的矛盾</li>
 </ul>
-</blockquote>
 <p><em>boolean.h</em></p>
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">define</span> TRUE 1</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> FALSE 0</span></span><br><span class="line"><span class="keyword">typedef</span> <span class="keyword">int</span> Bool;</span><br></pre></td></tr></table></figure>
-<h3 id="15-2-3-共享函数原型"><a href="#15-2-3-共享函数原型" class="headerlink" title="15.2.3    共享函数原型"></a>15.2.3    共享函数原型</h3><blockquote>
-<p><strong>说明：</strong>为了共享函数，要把函数的定义放在一个源文件中，然后在需要调用此函数的其他文件中放置声明。<br><strong>技巧：</strong>为了保证函数原型声明一致，声明部分单独放在一个头文件中。然后在定义和调用的源文件中都引入该头文件。<br><strong>注意：</strong>在调用在其他文件中的函数时，要始终确保编译器在调用之前看到函数的原型。</p>
-</blockquote>
-<h4 id="案例－计算器：-1"><a href="#案例－计算器：-1" class="headerlink" title="案例－计算器："></a><em>案例－计算器：</em></h4><p><em>1. 头文件：<code>stack.h</code></em></p>
-<blockquote>
-<p><strong>说明：</strong>包含共享的函数的原型声明。<br><strong>注意：</strong>只在<code>calc.c</code>中使用的的函数不应该定义在该头文件中。</p>
-</blockquote>
+<h3 id="15-2-3-共享函数原型"><a href="#15-2-3-共享函数原型" class="headerlink" title="15.2.3    共享函数原型"></a>15.2.3    共享函数原型</h3><p><strong>说明：</strong>为了共享函数，要把函数的定义放在一个源文件中，然后在需要调用此函数的其他文件中放置声明。<br><strong>技巧：</strong>为了保证函数原型声明一致，声明部分单独放在一个头文件中。然后在定义和调用的源文件中都引入该头文件。<br><strong>注意：</strong>在调用在其他文件中的函数时，要始终确保编译器在调用之前看到函数的原型。</p>
+<h4 id="案例－计算器：-1"><a href="#案例－计算器：-1" class="headerlink" title="案例－计算器："></a><em>案例－计算器：</em></h4><p><em>1. 头文件：<code>stack.h</code></em><br><strong>说明：</strong>包含共享的函数的原型声明。<br><strong>注意：</strong>只在<code>calc.c</code>中使用的的函数不应该定义在该头文件中。</p>
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">make_empty</span><span class="params">(<span class="keyword">void</span>)</span></span>;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">is_empty</span><span class="params">(<span class="keyword">void</span>)</span></span>;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">is_full</span><span class="params">(<span class="keyword">void</span>)</span></span>;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">push</span><span class="params">(<span class="keyword">int</span> i)</span></span>;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">pop</span><span class="params">(<span class="keyword">void</span>)</span></span>;</span><br></pre></td></tr></table></figure>
-<p><em>2. 函数定义：<code>stack.c</code></em></p>
-<blockquote>
-<p><strong>说明：</strong>实现stack.c中声明的所有函数。</p>
-</blockquote>
+<p><em>2. 函数定义：<code>stack.c</code></em><br><strong>说明：</strong>实现stack.c中声明的所有函数。</p>
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="string">"stack.h"</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">int</span> contents[<span class="number">100</span>];</span><br><span class="line"><span class="keyword">int</span> top = <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">make_empty</span><span class="params">(<span class="keyword">void</span>)</span></span>&#123;</span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">"%s\n"</span>, <span class="string">"what"</span>);</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">is_empty</span><span class="params">(<span class="keyword">void</span>)</span></span>&#123;</span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">"%s\n"</span>, <span class="string">"what"</span>);</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">is_full</span><span class="params">(<span class="keyword">void</span>)</span></span>&#123;</span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">"%s\n"</span>, <span class="string">"what"</span>);</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">push</span><span class="params">(<span class="keyword">int</span> i)</span></span>&#123;</span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">"%s\n"</span>, <span class="string">"what"</span>);</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">pop</span><span class="params">(<span class="keyword">void</span>)</span></span>&#123;</span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">"%s\n"</span>, <span class="string">"what"</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p><em>3. 入口文件：<code>calc.c</code></em></p>
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="string">"stack.h"</span></span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">	<span class="comment">//编译器会通过stack.h中make_empty的原型找到对应的定义，从而正确调用</span></span><br><span class="line">	make_empty();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p><em>编译运行</em></p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ gcc -o calc calc.c stack.c</span><br><span class="line">$ ./calc </span><br><span class="line"> what</span><br></pre></td></tr></table></figure>
-<h3 id="15-2-4-共享变量声明"><a href="#15-2-4-共享变量声明" class="headerlink" title="15.2.4    共享变量声明"></a>15.2.4    共享变量声明</h3><blockquote>
-<p><strong>说明：</strong>为了共享变量<code>i</code>，首先把变量i的定义（和初始化）放置在一个文件中，而在其他文件中包含变量<code>i</code>的声明（使用关键字<code>extern</code>）。<br><strong>变量声明：</strong><code>extern</code></p>
+<h3 id="15-2-4-共享变量声明"><a href="#15-2-4-共享变量声明" class="headerlink" title="15.2.4    共享变量声明"></a>15.2.4    共享变量声明</h3><p><strong>说明：</strong>为了共享变量<code>i</code>，首先把变量i的定义（和初始化）放置在一个文件中，而在其他文件中包含变量<code>i</code>的声明（使用关键字<code>extern</code>）。<br><strong>变量声明：</strong><code>extern</code></p>
 <ul>
 <li>类似函数的声明，仅声明变量名和类型（内存不会为其分配空间）</li>
 <li>通常情况下我们不使用<code>extern</code>，这种情况下变量声明和定义同时完成</li>
@@ -461,40 +441,29 @@
 <li>编译器无法检查<code>变量声明</code>是否和<code>变量定义</code>严格匹配，因此有可能出现和声明类型不一致的定义，这会导致程序的异常行为</li>
 </ul>
 <p><strong>技巧：</strong>通常把共享的变量的声明放置在头文件中，需要访问该共享变量的源文件中引入该头文件。同时如果变量的定义在其它源文件（而不是入口文件中），则也需要引入该头文件。<br><strong>扩展：</strong>虽然在文件中共享变量是<code>c</code>语言界的长期惯例，但是它有重大缺陷。<code>19.2</code>节有如何设计不需要共享变量的程序的知识。</p>
-</blockquote>
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//extern提示编译器变量i是在程序的其它位置定义的（同一文件或不同文件）</span></span><br><span class="line"><span class="keyword">extern</span> <span class="keyword">int</span> i;</span><br></pre></td></tr></table></figure>
-<h3 id="15-2-5-嵌套包含"><a href="#15-2-5-嵌套包含" class="headerlink" title="15.2.5    嵌套包含"></a>15.2.5    嵌套包含</h3><blockquote>
-<p><strong>说明：</strong>头文件自身可以包含<code>#include</code>指令。</p>
-</blockquote>
+<h3 id="15-2-5-嵌套包含"><a href="#15-2-5-嵌套包含" class="headerlink" title="15.2.5    嵌套包含"></a>15.2.5    嵌套包含</h3><p><strong>说明：</strong>头文件自身可以包含<code>#include</code>指令。</p>
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="string">"boolean.h"</span></span></span><br><span class="line"></span><br><span class="line"><span class="function">Bool <span class="title">is_empty</span><span class="params">(<span class="keyword">void</span>)</span></span>;</span><br><span class="line"><span class="function">Bool <span class="title">is_full</span><span class="params">(<span class="keyword">void</span>)</span></span>;</span><br></pre></td></tr></table></figure>
-<h3 id="15-2-6-保护头文件"><a href="#15-2-6-保护头文件" class="headerlink" title="15.2.6    保护头文件"></a>15.2.6    保护头文件</h3><blockquote>
-<p><strong>为什么保护：</strong>如果源文件包含同一个文件两次（直接或间接），那么可能（如果包含类型定义）会产生编译错误。</p>
+<h3 id="15-2-6-保护头文件"><a href="#15-2-6-保护头文件" class="headerlink" title="15.2.6    保护头文件"></a>15.2.6    保护头文件</h3><p><strong>为什么保护：</strong>如果源文件包含同一个文件两次（直接或间接），那么可能（如果包含类型定义）会产生编译错误。</p>
 <ul>
 <li>避免由重复的类型定义导致的编译错误</li>
 <li>节约编译时间</li>
 </ul>
 <p><strong>如何保护：</strong>为了防止头文件多次包含导致的多次编译，将用<code>#ifndef</code>和<code>#endif</code>两个指令把文件闭合起来。在预编译阶段去重复掉引入的头文件的代码。</p>
-</blockquote>
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//BOOLEAN_H是按照所在头文件名(BOOLEAN.h)进行命名的，目的是避免和其它头文件中的宏冲突</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">ifndef</span> BOOLEAN_H</span></span><br><span class="line">	<span class="meta">#<span class="meta-keyword">define</span> BOOLEAN_H</span></span><br><span class="line">	<span class="meta">#<span class="meta-keyword">define</span> TRUE 1</span></span><br><span class="line">	<span class="meta">#<span class="meta-keyword">define</span> FALSE 0</span></span><br><span class="line">	<span class="keyword">typedef</span> <span class="keyword">int</span> Bool;</span><br><span class="line"><span class="meta">#<span class="meta-keyword">endif</span></span></span><br></pre></td></tr></table></figure>
-<h3 id="15-2-7-头文件中的-error指令"><a href="#15-2-7-头文件中的-error指令" class="headerlink" title="15.2.7    头文件中的#error指令"></a>15.2.7    头文件中的#error指令</h3><blockquote>
-<p><strong>用途：</strong>放在头文件中用来检查不应该包含头文件的条件。</p>
-</blockquote>
+<h3 id="15-2-7-头文件中的-error指令"><a href="#15-2-7-头文件中的-error指令" class="headerlink" title="15.2.7    头文件中的#error指令"></a>15.2.7    头文件中的#error指令</h3><p><strong>用途：</strong>放在头文件中用来检查不应该包含头文件的条件。</p>
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//只有在DOS程序中才能正常使用</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">ifndef</span> DOS</span></span><br><span class="line">	<span class="comment">//如果非DOS程序试图包含此头文件，那么编译将在#error指令处停止</span></span><br><span class="line">	<span class="meta">#<span class="meta-keyword">error</span> Grapphics supported only under DOS</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">endif</span></span></span><br></pre></td></tr></table></figure>
-<h2 id="15-3-把程序划分成多个文件（程序：文本格式化）"><a href="#15-3-把程序划分成多个文件（程序：文本格式化）" class="headerlink" title="15.3    把程序划分成多个文件（程序：文本格式化）"></a>15.3    把程序划分成多个文件（程序：文本格式化）</h2><blockquote>
-<p><strong>功能分析：</strong>能够将输入的文本格式化的命令行工具。</p>
+<h2 id="15-3-把程序划分成多个文件（程序：文本格式化）"><a href="#15-3-把程序划分成多个文件（程序：文本格式化）" class="headerlink" title="15.3    把程序划分成多个文件（程序：文本格式化）"></a>15.3    把程序划分成多个文件（程序：文本格式化）</h2><p><strong>功能分析：</strong>能够将输入的文本格式化的命令行工具。</p>
 <ul>
 <li>“删除空行、制表符”</li>
 <li>“填充”：添加单词直到再多一个单词就会导致溢出时才停止</li>
 <li>“调整”：除最后一行外，在单词间添加额外的空格以便每行有精确的相同长度（60个字符）</li>
 </ul>
-</blockquote>
-<h2 id="15-4-构建多文件程序"><a href="#15-4-构建多文件程序" class="headerlink" title="15.4    构建多文件程序"></a>15.4    构建多文件程序</h2><blockquote>
-<p><strong>原理：</strong>大多数编译器允许一步完成编译和链接的过程。</p>
+<h2 id="15-4-构建多文件程序"><a href="#15-4-构建多文件程序" class="headerlink" title="15.4    构建多文件程序"></a>15.4    构建多文件程序</h2><p><strong>原理：</strong>大多数编译器允许一步完成编译和链接的过程。</p>
 <ol>
 <li><strong>编译：</strong>对每个源文件（不包括头文件）分别进行编译</li>
 <li><strong>链接：</strong>把上一步产生的目标文件和库函数的代码结合在一起生成可执行的程序。</li>
 </ol>
-</blockquote>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#-o告诉编译器最终的可执行文件的名字</span></span><br><span class="line">$ gcc -o fmt fmt.c line.c word.c</span><br></pre></td></tr></table></figure>
 <h3 id="15-4-1-makefile"><a href="#15-4-1-makefile" class="headerlink" title="15.4.1    makefile"></a>15.4.1    makefile</h3><p><strong>命令行编译的缺点：</strong></p>
 <ul>
@@ -512,8 +481,7 @@
 <p><strong>扩展：</strong>不是每个人都使用makefile，其它程序维护工具正变得流行，包括一些集成开发环境支持的“工程文件”。</p>
 <h4 id="UNIX"><a href="#UNIX" class="headerlink" title="UNIX"></a>UNIX</h4><figure class="highlight makefile"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">fmt:fmt.o word.o line.o</span><br><span class="line">	gcc -o fmt fmt.o word.o line.o</span><br><span class="line">fmt.o:fmt.c word.h line.h</span><br><span class="line">	gcc -c fmt.c</span><br><span class="line">word.o:word.c word.h</span><br><span class="line">	gcc -c word.c</span><br><span class="line">line.o:line.c line.h</span><br><span class="line">	gcc -c line.c</span><br></pre></td></tr></table></figure>
 <h4 id="WIN"><a href="#WIN" class="headerlink" title="WIN"></a>WIN</h4><figure class="highlight makefile"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">fmt.exe:fmt.obj word.obj line.obj</span><br><span class="line">	gcc -o fmt fmt.obj word.obj line.obj</span><br><span class="line">fmt.obj:fmt.c word.h line.h</span><br><span class="line">	gcc -c fmt.c</span><br><span class="line">word.obj:word.c word.h</span><br><span class="line">	gcc -c word.c</span><br><span class="line">line.obj:line.c line.h</span><br><span class="line">	gcc -c line.c</span><br></pre></td></tr></table></figure>
-<h3 id="15-4-2-链接期间的错误"><a href="#15-4-2-链接期间的错误" class="headerlink" title="15.4.2    链接期间的错误"></a>15.4.2    链接期间的错误</h3><blockquote>
-<p><strong>常见错误：</strong></p>
+<h3 id="15-4-2-链接期间的错误"><a href="#15-4-2-链接期间的错误" class="headerlink" title="15.4.2    链接期间的错误"></a>15.4.2    链接期间的错误</h3><p><strong>常见错误：</strong></p>
 <ol>
 <li>Undefined symbol</li>
 <li>Unresollved external reference</li>
@@ -524,18 +492,13 @@
 <li>丢失文件</li>
 <li>丢失库</li>
 </ol>
-</blockquote>
-<h3 id="15-4-3-重新构建程序"><a href="#15-4-3-重新构建程序" class="headerlink" title="15.4.3    重新构建程序"></a>15.4.3    重新构建程序</h3><blockquote>
-<p><strong>两种情况：</strong>无论哪个文件发生变化，重新编译后都需要重新链接整个程序。</p>
+<h3 id="15-4-3-重新构建程序"><a href="#15-4-3-重新构建程序" class="headerlink" title="15.4.3    重新构建程序"></a>15.4.3    重新构建程序</h3><p><strong>两种情况：</strong>无论哪个文件发生变化，重新编译后都需要重新链接整个程序。</p>
 <ol>
 <li>变化影响单独一个源文件：只对此文件进行重新编译</li>
 <li>变化影响头文件：重新编译所有包含此头文件的源文件</li>
 </ol>
 <p><strong>使用makefile重新构建：</strong>通过检查每个文件的日期，makex可以确定从程序最后一次构建后哪些文件发生了变化。然后根据依赖关系判断如何重新编译。</p>
-</blockquote>
-<h3 id="15-4-4-在程序外定义宏"><a href="#15-4-4-在程序外定义宏" class="headerlink" title="15.4.4    在程序外定义宏"></a>15.4.4    在程序外定义宏</h3><blockquote>
-<p><strong>意义：</strong>不需要编辑任何程序文件就对宏的值进行改变。</p>
-</blockquote>
+<h3 id="15-4-4-在程序外定义宏"><a href="#15-4-4-在程序外定义宏" class="headerlink" title="15.4.4    在程序外定义宏"></a>15.4.4    在程序外定义宏</h3><p><strong>意义：</strong>不需要编辑任何程序文件就对宏的值进行改变。</p>
 <table>
 <thead>
 <tr>
