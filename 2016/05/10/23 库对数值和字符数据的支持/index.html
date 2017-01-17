@@ -104,7 +104,7 @@ FLT_RADIX宏说明：指定了基数的形式，最小值是2（二进制）
 <meta property="og:image" content="http://o6ul1xz4z.bkt.clouddn.com/img/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202015-10-09%20%E4%B8%8A%E5%8D%8810.27.34.png">
 <meta property="og:image" content="http://o6ul1xz4z.bkt.clouddn.com/img/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202015-10-13%20%E4%B8%8B%E5%8D%882.01.33.png">
 <meta property="og:image" content="http://o6ul1xz4z.bkt.clouddn.com/img/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202015-10-13%20%E4%B8%8B%E5%8D%882.39.11.png">
-<meta property="og:updated_time" content="2016-09-19T12:13:40.000Z">
+<meta property="og:updated_time" content="2016-12-30T13:31:22.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="23 库对数值和字符数据的支持">
 <meta name="twitter:description" content="23.1    float.h:浮点型的特性说明：提供了用来定义浮点型的范围和精度的宏（没有类型和函数的定义）。应用：由于只有进行数值分析的专家才会对上述float.h中定义的宏感兴趣，这可能是标砖哭中最不常用的宏。
@@ -445,8 +445,9 @@ FLT_RADIX宏说明：指定了基数的形式，最小值是2（二进制）
 </ol>
 <h3 id="23-3-1-错误"><a href="#23-3-1-错误" class="headerlink" title="23.3.1    错误"></a>23.3.1    错误</h3><p><strong>相关库：</strong><code>errno.h</code><br><strong>特点：</strong><code>math.h</code>中，大多数函数会将一个错误代码存储到一个名字为<code>errno</code>（<code>math.h</code>）的特定变量中（这一点不同于其他库）。<br><strong>相关宏：</strong><code>HUGE_VAL</code>(<code>math.h</code>， IEEE标准)</p>
 <blockquote>
-<p><strong>说明：</strong>在<code>math.h</code>中定义，double类型，不一定是一个普通的数，代表无穷大（<a href="">7.2</a>）。<br><strong>用途：</strong>当函数的返回值大于double类型的最大值时，会返回<code>HUGE_VAL</code>。<br><strong>更多错误：</strong><a href="">附录D</a></p>
+<p><strong>说明：</strong>在<code>math.h</code>中定义，double类型，不一定是一个普通的数，代表无穷大（<a href="">7.2</a>）。<br><strong>用途：</strong>当函数的返回值大于double类型的最大值时，会返回<code>HUGE_VAL</code>。</p>
 </blockquote>
+<p><strong>更多错误：</strong><a href="">附录D</a></p>
 <h4 id="参数超出定义域"><a href="#参数超出定义域" class="headerlink" title="参数超出定义域"></a>参数超出定义域</h4><p><strong>描述：</strong>函数的是惨超出了函数的定义域。<br><strong>会被存储到<code>errno</code>中的宏：</strong><code>EDOM</code>(定义域错误)<br><strong>返回值：</strong><code>NAN</code>(<code>math.h</code>， IEEE标准)</p>
 <h4 id="返回值超出取值范围"><a href="#返回值超出取值范围" class="headerlink" title="返回值超出取值范围"></a>返回值超出取值范围</h4><p><strong>描述：</strong>函数的返回值超出了double类型的取值范围。<br><strong>会被存储到<code>errno</code>中的宏：</strong><code>ERANGE</code>(取值范围错误)，绝对值过小（下溢出）的情况又可能不存储<code>ERANGE</code><br><strong>返回值：</strong>分两种情况</p>
 <ol>
@@ -510,19 +511,8 @@ FLT_RADIX宏说明：指定了基数的形式，最小值是2（二进制）
 <h4 id="fmod函数"><a href="#fmod函数" class="headerlink" title="fmod函数"></a>fmod函数</h4><p><strong>说明：</strong>取余（第一个参数除以第二个参数所得的余数）<br><strong>注意：</strong><code>%</code>只能用于整数，不能用于浮点数<br><strong>原型：</strong><code>math.h</code></p>
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/*</span><br><span class="line">* @param &#123;double&#125; x 被除数</span><br><span class="line">* @param &#123;double&#125; y 除数</span><br><span class="line">*/</span></span><br><span class="line"><span class="function"><span class="keyword">double</span> <span class="title">fmod</span><span class="params">(<span class="keyword">double</span> x, <span class="keyword">double</span> y)</span></span>;</span><br></pre></td></tr></table></figure>
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">fmod</span>(<span class="number">5.5</span>, <span class="number">2.2</span>);<span class="comment">// 1.1</span></span><br></pre></td></tr></table></figure>
-<h2 id="23-4-ctype-h：字符处理"><a href="#23-4-ctype-h：字符处理" class="headerlink" title="23.4    ctype.h：字符处理"></a>23.4    <code>ctype.h</code>：字符处理</h2><p><strong>说明：</strong><code>ctype.h</code>提供了两类函数</p>
-<ol>
-<li><p>字符测试函数</p>
-<blockquote>
-<p><strong>举例</strong><br><code>isdigit函数</code>：用来检测一个字符是否是数字</p>
-</blockquote>
-</li>
-<li><p>字符大小写转换函数</p>
-<blockquote>
-<p><strong>举例</strong><br><code>toupper函数</code>：用来将一个小写字母转换成大写字母</p>
-</blockquote>
-</li>
-</ol>
+<h2 id="23-4-ctype-h：字符处理"><a href="#23-4-ctype-h：字符处理" class="headerlink" title="23.4    ctype.h：字符处理"></a>23.4    <code>ctype.h</code>：字符处理</h2><p><strong>说明：</strong><code>ctype.h</code>提供了两类函数<br>一、 字符测试函数<br><strong>举例</strong><br><code>isdigit函数</code>：用来检测一个字符是否是数字</p>
+<p>二、 字符大小写转换函数<br><strong>举例</strong><br><code>toupper函数</code>：用来将一个小写字母转换成大写字母</p>
 <p><strong>技巧：</strong>建议使用<code>ctype.h</code>中提供的函数而不是用其他手段测试字符或进行大小写转换</p>
 <ol>
 <li>性能更好（大多数是用宏实现的）</li>
@@ -640,7 +630,7 @@ FLT_RADIX宏说明：指定了基数的形式，最小值是2（二进制）
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span><br><span class="line">* @param &#123;void *&#125; s1 目的地地址</span><br><span class="line">* @param &#123;void *&#125; s2 源位置地址</span><br><span class="line">* @return &#123;void *&#125; 目的地址</span><br><span class="line">*/</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> *<span class="title">memmove</span><span class="params">(<span class="keyword">void</span> * <span class="keyword">restrict</span> s1, <span class="keyword">const</span> <span class="keyword">void</span> * <span class="keyword">restrict</span> s2, size_t n)</span></span>;</span><br></pre></td></tr></table></figure>
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">char</span> source[] = &#123;<span class="string">'h'</span>, <span class="string">'0'</span>, <span class="string">'t'</span>, <span class="string">'\0'</span>, <span class="string">'t'</span>, <span class="string">'e'</span>, <span class="string">'a'</span>&#125;;</span><br><span class="line"><span class="keyword">char</span> dest[<span class="number">7</span>];</span><br><span class="line"></span><br><span class="line">memmove(dest, source, <span class="number">3</span>);<span class="comment">// h, o, t</span></span><br><span class="line">memmove(dest, source, <span class="number">3</span>);<span class="comment">// h, o, t, \0</span></span><br><span class="line">memmove(dest, source, <span class="number">3</span>);<span class="comment">// h, o, t, \0, t, e, a</span></span><br></pre></td></tr></table></figure>
 <h4 id="strcpy函数"><a href="#strcpy函数" class="headerlink" title="strcpy函数"></a>strcpy函数</h4><hr>
-<p><strong>说明：</strong>将一个以空字符结尾的字符串从源复制到目的，会持续肤质字符，知道遇到一个空字符为止。<br><strong>对源的要求：</strong>要求字符串以空字符结尾。<br><strong>原型：</strong><code>string.h</code></p>
+<p><strong>说明：</strong>将一个以空字符结尾的字符串从源复制到目的，会持续复制字符，直到遇到一个空字符为止。<br><strong>对源的要求：</strong>要求字符串以空字符结尾。<br><strong>原型：</strong><code>string.h</code></p>
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span><br><span class="line">* @param &#123;void *&#125; s1 目的地地址</span><br><span class="line">* @param &#123;void *&#125; s2 源位置地址</span><br><span class="line">* @return &#123;char *&#125; </span><br><span class="line">*/</span></span><br><span class="line"><span class="function"><span class="keyword">char</span> *<span class="title">strcpy</span><span class="params">(<span class="keyword">char</span> * <span class="keyword">restrict</span> s1, <span class="keyword">const</span> <span class="keyword">char</span> * <span class="keyword">restrict</span> s2)</span></span>;</span><br></pre></td></tr></table></figure>
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">char</span> source[] = &#123;<span class="string">'h'</span>, <span class="string">'0'</span>, <span class="string">'t'</span>, <span class="string">'\0'</span>, <span class="string">'t'</span>, <span class="string">'e'</span>, <span class="string">'a'</span>&#125;;</span><br><span class="line"><span class="keyword">char</span> dest[<span class="number">7</span>];</span><br><span class="line"></span><br><span class="line"><span class="built_in">strcpy</span>(dest, souce);<span class="comment">// h, o, t, \0</span></span><br></pre></td></tr></table></figure>
 <h4 id="strncpy函数"><a href="#strncpy函数" class="headerlink" title="strncpy函数"></a>strncpy函数</h4><hr>
@@ -733,9 +723,7 @@ FLT_RADIX宏说明：指定了基数的形式，最小值是2（二进制）
 <h4 id="strtok函数"><a href="#strtok函数" class="headerlink" title="strtok函数"></a>strtok函数</h4><hr>
 <p><strong>说明：</strong>分割出一段子字符串。<br><strong>原理：</strong>在s1中搜索，按照s2指定的分隔符找出一系列非空字符（不包含s2中指定的字符）。<code>strtok函数</code>会写入一个<code>\0</code>来标记字符序列的末尾，并返回指向这个序列的首字符的指针。<br><strong>原型：</strong><code>string.h</code></p>
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span><br><span class="line">* @param &#123;char *&#125; s1 字符串</span><br><span class="line">* @param &#123;char *&#125; s2 字符串（要作为分割字符的字符集合）</span><br><span class="line">* @return &#123;char *&#125; 指向新分割出来的子字符串的指针（指向首字符）</span><br><span class="line">*/</span></span><br><span class="line"><span class="function"><span class="keyword">char</span> *<span class="title">strtok</span><span class="params">(<span class="keyword">char</span> * <span class="keyword">restrict</span> s1, <span class="keyword">const</span> <span class="keyword">char</span> * <span class="keyword">restrict</span> s2)</span></span>;</span><br></pre></td></tr></table></figure>
-<ol>
-<li>原始字符串状态</li>
-</ol>
+<p>(1)  原始字符串状态</p>
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">char</span> *p, str[] = <span class="string">" Apri1  28,1990"</span>;</span><br></pre></td></tr></table></figure>
 <table>
 <thead>
@@ -764,9 +752,7 @@ FLT_RADIX宏说明：指定了基数的形式，最小值是2（二进制）
 </tr>
 </tbody>
 </table>
-<ol>
-<li>月</li>
-</ol>
+<p>(2) 月</p>
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 分割出第一个序列，使用" \t"中的字符作为分隔符</span></span><br><span class="line"><span class="comment">// 月</span></span><br><span class="line">p = strtok(str, <span class="string">" \t"</span>);</span><br></pre></td></tr></table></figure>
 <table>
 <thead>
@@ -795,9 +781,7 @@ FLT_RADIX宏说明：指定了基数的形式，最小值是2（二进制）
 </tr>
 </tbody>
 </table>
-<ol>
-<li>日</li>
-</ol>
+<p>(3) 日</p>
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 从上次结束的位置继续查找</span></span><br><span class="line"><span class="comment">// 日</span></span><br><span class="line">p = strtok(NULL, <span class="string">" \t"</span>);</span><br></pre></td></tr></table></figure>
 <table>
 <thead>
@@ -826,9 +810,7 @@ FLT_RADIX宏说明：指定了基数的形式，最小值是2（二进制）
 </tr>
 </tbody>
 </table>
-<ol>
-<li>年</li>
-</ol>
+<p>(4) 年</p>
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 从上次结束的位置继续查找</span></span><br><span class="line"><span class="comment">// 年</span></span><br><span class="line">p = strtok(NULL, <span class="string">" \t"</span>);</span><br></pre></td></tr></table></figure>
 <table>
 <thead>
@@ -1037,7 +1019,7 @@ FLT_RADIX宏说明：指定了基数的形式，最小值是2（二进制）
         <div class="copyright" >
   
   &copy; 
-  <span itemprop="copyrightYear">2016</span>
+  <span itemprop="copyrightYear">2017</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>
