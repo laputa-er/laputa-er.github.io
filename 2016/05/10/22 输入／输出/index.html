@@ -100,7 +100,7 @@
 <meta property="og:image" content="http://o6ul1xz4z.bkt.clouddn.com/img/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202015-10-06%20%E4%B8%8B%E5%8D%888.07.10.png">
 <meta property="og:image" content="http://o6ul1xz4z.bkt.clouddn.com/img/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202015-10-06%20%E4%B8%8B%E5%8D%888.07.25.png">
 <meta property="og:image" content="http://o6ul1xz4z.bkt.clouddn.com/img/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202015-10-06%20%E4%B8%8B%E5%8D%888.07.38.png">
-<meta property="og:updated_time" content="2016-12-18T05:00:31.000Z">
+<meta property="og:updated_time" content="2017-02-05T13:28:04.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="22 输入/输出">
 <meta name="twitter:description" content="22.1    流说明：在C语言中，术语流意味着任意输入的源或任意输出的目的地。stdio.h中的许多函数不仅可以处理表示成文件的流，还可以处理所有其它形式的流。流：流常常表示为磁盘上的文件，但却可以和其它类型的设备相关联：调制解调器、网络端口、打印机、光盘驱动器等。
@@ -905,7 +905,8 @@
 <h4 id="最小字符宽度❷和精度❸中"><a href="#最小字符宽度❷和精度❸中" class="headerlink" title="最小字符宽度❷和精度❸中*"></a>最小字符宽度❷和精度❸中*</h4><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 最小字符宽度❷和精度❸中*的用法示例</span></span><br><span class="line"><span class="keyword">int</span> i = <span class="number">12345</span>;</span><br><span class="line"></span><br><span class="line"><span class="built_in">printf</span>(<span class="string">"%6.4d"</span>, i); <span class="comment">// ..1234</span></span><br><span class="line"><span class="built_in">printf</span>(<span class="string">"%*.4d"</span>, <span class="number">6</span>, i); <span class="comment">// ..1234</span></span><br><span class="line"><span class="built_in">printf</span>(<span class="string">"%6.*d"</span>, <span class="number">4</span>, i); <span class="comment">// ..1234</span></span><br><span class="line"><span class="built_in">printf</span>(<span class="string">"%*.*d"</span>, <span class="number">6</span>, <span class="number">4</span>, i); <span class="comment">// ..1234</span></span><br><span class="line"><span class="built_in">printf</span>(<span class="string">"%*.*d"</span>, WIDTH, I, i); <span class="comment">// ..1234</span></span><br><span class="line"><span class="built_in">printf</span>(<span class="string">"%*.*d"</span>, page_width/num_cols, I, i); <span class="comment">// ..1234</span></span><br></pre></td></tr></table></figure>
 <h4 id="转换说明p和n"><a href="#转换说明p和n" class="headerlink" title="转换说明p和n"></a>转换说明<code>p</code>和<code>n</code></h4><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// p</span></span><br><span class="line"><span class="built_in">printf</span>(<span class="string">"%p\n"</span>, (void *)ptr); <span class="comment">// 显示指针ptr的值（可能会以8进制或16进制形式显示）</span></span><br></pre></td></tr></table></figure>
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// n</span></span><br><span class="line"><span class="keyword">int</span> len;</span><br><span class="line"><span class="built_in">printf</span>(<span class="string">"%d%n"</span>, <span class="number">123</span>, &amp;len); <span class="comment">// 将printf函数显示的字符数存储到len</span></span><br></pre></td></tr></table></figure>
-<h3 id="22-3-4-…scanf类函数"><a href="#22-3-4-…scanf类函数" class="headerlink" title="22.3.4    …scanf类函数"></a>22.3.4    …scanf类函数</h3><h4 id="scanf函数"><a href="#scanf函数" class="headerlink" title="scanf函数"></a>scanf函数</h4><p><strong>说明：</strong>从<code>stdin</code>（键盘）读入内容，根据格式串中的转换说明进行转换并存储在指针指定的位置上。<br><strong>原型：</strong><code>stdio.h</code><br><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span><br><span class="line">* @param &#123;char *&#125; format 格式串</span><br><span class="line">* @param &#123;...*&#125; 匹配并转换后的内容对应的存储位置</span><br><span class="line">* return &#123;int&#125; 读入并赋值给实参的数据项数量：成功；EOF：失败</span><br><span class="line">*/</span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">scanf</span><span class="params">(<span class="keyword">const</span> chat *format, ...)</span></span>;</span><br></pre></td></tr></table></figure></p>
+<h3 id="22-3-4-…scanf类函数"><a href="#22-3-4-…scanf类函数" class="headerlink" title="22.3.4    …scanf类函数"></a>22.3.4    …scanf类函数</h3><h4 id="scanf函数"><a href="#scanf函数" class="headerlink" title="scanf函数"></a>scanf函数</h4><p><strong>说明：</strong>从<code>stdin</code>（键盘）读入内容，根据格式串中的转换说明进行转换并存储在指针指定的位置上。<br><strong>原型：</strong><code>stdio.h</code></p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span><br><span class="line">* @param &#123;char *&#125; format 格式串</span><br><span class="line">* @param &#123;...*&#125; 匹配并转换后的内容对应的存储位置</span><br><span class="line">* return &#123;int&#125; 读入并赋值给实参的数据项数量：成功；EOF：失败</span><br><span class="line">*/</span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">scanf</span><span class="params">(<span class="keyword">const</span> chat *format, ...)</span></span>;</span><br></pre></td></tr></table></figure>
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 循环读取一串整数，在首个"?"处停止</span></span><br><span class="line"><span class="keyword">while</span> (<span class="built_in">scanf</span>(<span class="string">"%d"</span>, &amp;I) == <span class="number">1</span>) &#123;</span><br><span class="line">	<span class="comment">// </span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <h4 id="fscanf函数"><a href="#fscanf函数" class="headerlink" title="fscanf函数"></a>fscanf函数</h4><p><strong>说明：</strong><code>scanf函数</code>从<code>stdin</code>读入数据，而<code>fscanf函数</code>则从它自己的第一个实参所指定的流中妇孺内容。<br><strong>原型：</strong><code>stdio.h</code></p>
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span><br><span class="line">* @param &#123;FILE *&#125; 指定的流</span><br><span class="line">* @param &#123;char *&#125; format 格式串</span><br><span class="line">* @return &#123;int&#125; 读入并赋值给实参的数据项数量：成功；EOF：失败</span><br><span class="line">*/</span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">scanf</span><span class="params">(FILE *stream, <span class="keyword">const</span> <span class="keyword">char</span> *format, ...)</span></span>;</span><br></pre></td></tr></table></figure>
@@ -942,11 +943,11 @@
 <th>ISBN</th>
 <th>空格</th>
 <th>%d</th>
-<th>-</th>
+<th>—</th>
 <th>%d</th>
-<th>-</th>
+<th>—</th>
 <th>%ld</th>
-<th>-</th>
+<th>—</th>
 <th>%d</th>
 </tr>
 </thead>
@@ -955,11 +956,11 @@
 <td>ISBN</td>
 <td>空白字符（0或多个）</td>
 <td>一个整数</td>
-<td>-</td>
+<td>—</td>
 <td>一个整数</td>
-<td>-</td>
+<td>—</td>
 <td>一个长整数</td>
-<td>-</td>
+<td>—</td>
 <td>一个整数</td>
 </tr>
 <tr>
@@ -1183,7 +1184,7 @@
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span><br><span class="line">* @param &#123;int&#125; c 函数会把char作为int型的值来处理</span><br><span class="line">* @return &#123;int&#125; </span><br><span class="line">int putchar(int c);</span></span><br></pre></td></tr></table></figure>
 <h3 id="22-4-2-输入函数"><a href="#22-4-2-输入函数" class="headerlink" title="22.4.2    输入函数"></a>22.4.2    输入函数</h3><p><strong>注意：</strong><code>Q&amp;A</code>把char型变量与<code>EOF</code>比较可能会产生错误的结果。</p>
 <h4 id="getc宏"><a href="#getc宏" class="headerlink" title="getc宏"></a>getc宏</h4><p><strong>说明：</strong>从指定流中读入一个字符（宏实现）。<br><strong>原型：</strong><code>stdio.h</code></p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span><br><span class="line">* @param &#123;FILE *&#125; stream 文件指针</span><br><span class="line">* @return &#123;int&#125; 读如的字符的int型值</span><br><span class="line">*/</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span><br><span class="line">* @param &#123;FILE *&#125; stream 文件指针</span><br><span class="line">* @return &#123;int&#125; 读如的字符的int型值</span><br><span class="line">*/</span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">getc</span><span class="params">(File *stream)</span></span>;</span><br></pre></td></tr></table></figure>
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 从文件读入字符直到遇到文件末尾</span></span><br><span class="line"><span class="keyword">while</span> ((ch = getc(fp)) != EOF) &#123;</span><br><span class="line">	...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <h4 id="fgetc函数"><a href="#fgetc函数" class="headerlink" title="fgetc函数"></a>fgetc函数</h4><p><strong>说明：</strong>从指定的流中读如一个字符。<br><strong>原型：</strong><code>stdio.h</code></p>
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span><br><span class="line">* @param &#123;FILE *&#125; stream 文件指针</span><br><span class="line">* @return &#123;int&#125; 读如的字符的int型值</span><br><span class="line">*/</span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">fgetc</span><span class="params">(FILE *stream)</span></span>;</span><br></pre></td></tr></table></figure>
@@ -1244,7 +1245,7 @@
 <li><strong>文本文件：</strong>不一定按照字节计数</li>
 </ul>
 <p><strong>用途：</strong>可能会存储返回的值并且稍后将其提供给<code>fseek函数</code><br><strong>原型：</strong><code>stdio.h</code></p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span><br><span class="line">* @param &#123;FILE *&#125; stream 文件指针</span><br><span class="line">* @patam &#123;long int&#125; 当前文件位置：成功；－1L：发生错误（同时会把错误码存储到errno中）</span><br><span class="line">*/</span></span><br><span class="line"><span class="function"><span class="keyword">long</span> <span class="keyword">int</span> <span class="title">ftell</span><span class="params">(FILE *stream)</span></span>;</span><br><span class="line">``` </span><br><span class="line"></span><br><span class="line">```c</span><br><span class="line"><span class="keyword">long</span> <span class="keyword">int</span> file_pos;</span><br><span class="line">...</span><br><span class="line">file_pos = ftell(fp); <span class="comment">// 获取当前文件位置</span></span><br><span class="line">...</span><br><span class="line">fseek(fp, file_pos, SEEK_SET); <span class="comment">// 返回到之前存储下的文件位置处</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span><br><span class="line">* @param &#123;FILE *&#125; stream 文件指针</span><br><span class="line">* @patam &#123;long int&#125; 当前文件位置：成功；－1L：发生错误（同时会把错误码存储到errno中）</span><br><span class="line">*/</span></span><br><span class="line"><span class="function"><span class="keyword">long</span> <span class="keyword">int</span> <span class="title">ftell</span><span class="params">(FILE *stream)</span></span>;</span><br><span class="line"></span><br><span class="line">``` </span><br><span class="line"></span><br><span class="line">```c</span><br><span class="line"><span class="keyword">long</span> <span class="keyword">int</span> file_pos;</span><br><span class="line">...</span><br><span class="line">file_pos = ftell(fp); <span class="comment">// 获取当前文件位置</span></span><br><span class="line">...</span><br><span class="line">fseek(fp, file_pos, SEEK_SET); <span class="comment">// 返回到之前存储下的文件位置处</span></span><br></pre></td></tr></table></figure>
 <h3 id="rewind函数"><a href="#rewind函数" class="headerlink" title="rewind函数"></a>rewind函数</h3><p><strong>说明：</strong>把文件位置设置到文件起始处，几乎等价于<code>fseek(fp, 0L, SEEK_SET)</code>,差异是该函数没有返回值，但会为fp清除掉<code>错误指示器</code>。</p>
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span><br><span class="line">* @param &#123;FILE *&#125; stream 文件指针</span><br><span class="line">*/</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">rewind</span><span class="params">(FILE *stream)</span></span>;</span><br></pre></td></tr></table></figure>
 <h3 id="fgetpos函数"><a href="#fgetpos函数" class="headerlink" title="fgetpos函数"></a>fgetpos函数</h3><p><strong>说明：</strong>将指定流的文件位置存储到fpos_t型变量中<br><strong>原型：</strong></p>
@@ -1368,7 +1369,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">135</span>
+              <span class="site-state-item-count">154</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -1376,7 +1377,7 @@
           
             <div class="site-state-item site-state-categories">
               <a href="/categories">
-                <span class="site-state-item-count">13</span>
+                <span class="site-state-item-count">16</span>
                 <span class="site-state-item-name">分类</span>
               </a>
             </div>
@@ -1385,7 +1386,7 @@
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">12</span>
+                <span class="site-state-item-count">15</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>

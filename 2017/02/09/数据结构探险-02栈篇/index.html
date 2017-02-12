@@ -1,0 +1,838 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="c++数据结构," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1" />
+
+
+
+
+
+
+<meta name="description" content="数据结构探险—栈篇-慕课网
+
+本课程将带领大家体会栈这种数据结构的美妙，并详细讲解从单一数据类型栈到栈模板的升华过程，最后安排数制转换及括号匹配的例子，使学员可以通过例子对栈的知识有更深刻的理解和认识，所有知识均通过编码实践的方式讲解到操作层面，力求即学即会。  
+
+1 栈的工作原理后进先出(LIFO, last in first out )
+
+2 单一数据类型栈12345678910111213">
+<meta property="og:type" content="article">
+<meta property="og:title" content="数据结构探险-02栈篇">
+<meta property="og:url" content="http://laputa-er.github.io/2017/02/09/数据结构探险-02栈篇/index.html">
+<meta property="og:site_name" content="Sean">
+<meta property="og:description" content="数据结构探险—栈篇-慕课网
+
+本课程将带领大家体会栈这种数据结构的美妙，并详细讲解从单一数据类型栈到栈模板的升华过程，最后安排数制转换及括号匹配的例子，使学员可以通过例子对栈的知识有更深刻的理解和认识，所有知识均通过编码实践的方式讲解到操作层面，力求即学即会。  
+
+1 栈的工作原理后进先出(LIFO, last in first out )
+
+2 单一数据类型栈12345678910111213">
+<meta property="og:image" content="http://o6ul1xz4z.bkt.clouddn.com/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E6%8E%A2%E9%99%A9-02%E6%A0%88%E7%AF%87/84F82FBA-D23D-4D20-8194-C09F34D35804.png">
+<meta property="og:image" content="http://o6ul1xz4z.bkt.clouddn.com/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E6%8E%A2%E9%99%A9-02%E6%A0%88%E7%AF%87/9338F503-06DB-4B12-8FB7-BE8456E9C52B.png">
+<meta property="og:updated_time" content="2017-02-12T17:31:56.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="数据结构探险-02栈篇">
+<meta name="twitter:description" content="数据结构探险—栈篇-慕课网
+
+本课程将带领大家体会栈这种数据结构的美妙，并详细讲解从单一数据类型栈到栈模板的升华过程，最后安排数制转换及括号匹配的例子，使学员可以通过例子对栈的知识有更深刻的理解和认识，所有知识均通过编码实践的方式讲解到操作层面，力求即学即会。  
+
+1 栈的工作原理后进先出(LIFO, last in first out )
+
+2 单一数据类型栈12345678910111213">
+<meta name="twitter:image" content="http://o6ul1xz4z.bkt.clouddn.com/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E6%8E%A2%E9%99%A9-02%E6%A0%88%E7%AF%87/84F82FBA-D23D-4D20-8194-C09F34D35804.png">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 0,
+      author: '博主'
+    }
+  };
+</script>
+
+
+
+
+  <link rel="canonical" href="http://laputa-er.github.io/2017/02/09/数据结构探险-02栈篇/"/>
+
+  <title> 数据结构探险-02栈篇 | Sean </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//hm.baidu.com/hm.js?898688f51c5a3d6b37dd23e04441e5bd";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">Sean</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">笔记分享</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup">
+ <span class="search-icon fa fa-search"></span>
+ <input type="text" id="local-search-input">
+ <div id="local-search-result"></div>
+ <span class="popup-btn-close">close</span>
+</div>
+
+
+    </div>
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                数据结构探险-02栈篇
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2017-02-09T01:41:52+08:00" content="2017-02-09">
+              2017-02-09
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/数据结构探险/" itemprop="url" rel="index">
+                    <span itemprop="name">数据结构探险</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2017/02/09/数据结构探险-02栈篇/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2017/02/09/数据结构探险-02栈篇/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p><a href="http://www.imooc.com/learn/611" target="_blank" rel="external">数据结构探险—栈篇-慕课网</a></p>
+<blockquote>
+<p>本课程将带领大家体会栈这种数据结构的美妙，并详细讲解从单一数据类型栈到栈模板的升华过程，最后安排数制转换及括号匹配的例子，使学员可以通过例子对栈的知识有更深刻的理解和认识，所有知识均通过编码实践的方式讲解到操作层面，力求即学即会。  </p>
+</blockquote>
+<h1 id="1-栈的工作原理"><a href="#1-栈的工作原理" class="headerlink" title="1 栈的工作原理"></a>1 栈的工作原理</h1><p>后进先出(LIFO, last in first out )</p>
+<p><img src="http://o6ul1xz4z.bkt.clouddn.com/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E6%8E%A2%E9%99%A9-02%E6%A0%88%E7%AF%87/84F82FBA-D23D-4D20-8194-C09F34D35804.png" alt=""></p>
+<h1 id="2-单一数据类型栈"><a href="#2-单一数据类型栈" class="headerlink" title="2 单一数据类型栈"></a>2 单一数据类型栈</h1><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> MyStack</span><br><span class="line">&#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">	MyStack(<span class="keyword">int</span> size); <span class="comment">// 分配内存初始化栈空间，设定栈容量，指定栈顶</span></span><br><span class="line">	~MyStack(); <span class="comment">// 回收栈空间内存</span></span><br><span class="line">	<span class="function"><span class="keyword">bool</span> <span class="title">stackEmpty</span><span class="params">()</span></span>; <span class="comment">// 判空</span></span><br><span class="line">	<span class="function"><span class="keyword">bool</span> <span class="title">stackFull</span><span class="params">()</span></span>; <span class="comment">// 判满</span></span><br><span class="line">	<span class="function"><span class="keyword">void</span> <span class="title">clearStack</span><span class="params">()</span></span>; <span class="comment">// 清空栈</span></span><br><span class="line">	<span class="function"><span class="keyword">int</span> <span class="title">stackLength</span><span class="params">()</span></span>; <span class="comment">// 已有元素数量</span></span><br><span class="line">	<span class="function"><span class="keyword">bool</span> <span class="title">push</span><span class="params">(<span class="keyword">char</span> elem)</span></span>; <span class="comment">// 元素入栈，栈顶下降</span></span><br><span class="line">	<span class="function"><span class="keyword">bool</span> <span class="title">pop</span><span class="params">(<span class="keyword">char</span> &amp;elem)</span></span>; <span class="comment">// 元素出栈，栈顶下降</span></span><br><span class="line">	<span class="function"><span class="keyword">void</span> <span class="title">stackTraverse</span><span class="params">(<span class="keyword">bool</span> isFromBottom)</span></span>; <span class="comment">// 遍历栈</span></span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">	<span class="keyword">char</span> *m_pBuffer; <span class="comment">// 栈空间指针</span></span><br><span class="line">	<span class="keyword">int</span> m_iSize; <span class="comment">// 栈容量</span></span><br><span class="line">	<span class="keyword">int</span> m_iTop; <span class="comment">// 栈顶位置下标(栈底下标为0)</span></span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">(<span class="keyword">void</span>)</span></span><br><span class="line"></span>&#123;</span><br><span class="line">	<span class="comment">// 创建栈实例</span></span><br><span class="line">	MyStack *pStack = new MyStack(<span class="number">5</span>);</span><br><span class="line"></span><br><span class="line">	<span class="comment">// 判空</span></span><br><span class="line">	<span class="keyword">if</span>(pStack-&gt;stackEmpty())</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="built_in">cout</span> &lt;&lt; <span class="string">"栈为空"</span> &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="comment">// 入栈</span></span><br><span class="line">	pStack-&gt;push(<span class="string">'a'</span>); <span class="comment">// 底</span></span><br><span class="line">	pStack-&gt;push(<span class="string">'b'</span>);</span><br><span class="line">	pStack-&gt;push(<span class="string">'c'</span>);</span><br><span class="line">	pStack-&gt;push(<span class="string">'d'</span>);</span><br><span class="line">	pStack-&gt;push(<span class="string">'e'</span>); <span class="comment">// 顶</span></span><br><span class="line"></span><br><span class="line">	<span class="comment">// 栈长度</span></span><br><span class="line">	<span class="built_in">cout</span> &lt;&lt; pStack-&gt;stackLength() &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">	<span class="comment">// 判满</span></span><br><span class="line">	<span class="keyword">if</span>(pStack-&gt;stackFull())</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="built_in">cout</span> &lt;&lt; <span class="string">"栈为满"</span> &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="comment">// 出栈</span></span><br><span class="line">	<span class="keyword">char</span> elem = <span class="number">0</span>;</span><br><span class="line">	pStack-&gt;pop(elem);</span><br><span class="line">	<span class="built_in">cout</span> &lt;&lt; elem &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line"></span><br><span class="line">	<span class="comment">// 遍历</span></span><br><span class="line">	pStack-&gt;stackTraverse(<span class="literal">true</span>);</span><br><span class="line"></span><br><span class="line">	<span class="keyword">delete</span> pStack;</span><br><span class="line">	pStack = <span class="literal">NULL</span>;</span><br><span class="line">	return <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 构造器（初始化）</span></span><br><span class="line">MyStack::MyStack(<span class="keyword">int</span> size)</span><br><span class="line">&#123;</span><br><span class="line">	m_iSize = size;</span><br><span class="line">	m_pBuffer = new <span class="keyword">char</span>[m_iSize];</span><br><span class="line">	m_iTop = <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 释放内存</span></span><br><span class="line">MyStack::~MyStack()</span><br><span class="line">&#123;</span><br><span class="line">	<span class="keyword">delete</span> []m_pBuffer;</span><br><span class="line">	m_pBuffer = <span class="literal">NULL</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 判空</span></span><br><span class="line"><span class="keyword">bool</span> MyStack::stackEmpty()</span><br><span class="line">&#123;</span><br><span class="line">	return m_iTop == <span class="number">0</span> ? <span class="literal">true</span> : <span class="literal">false</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 栈满</span></span><br><span class="line"><span class="keyword">bool</span> MyStack::stackFull()</span><br><span class="line">&#123;</span><br><span class="line">	return m_iTop == m_iSize ? <span class="literal">true</span> : <span class="literal">false</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 清空栈</span></span><br><span class="line"><span class="keyword">void</span> MyStack::clearStack()</span><br><span class="line">&#123;</span><br><span class="line">	m_iTop = <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 获取栈的大小</span></span><br><span class="line"><span class="keyword">int</span> MyStack::stackLength()</span><br><span class="line">&#123;</span><br><span class="line">	return m_iTop;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 入栈</span></span><br><span class="line"><span class="keyword">bool</span> MyStack::push(<span class="keyword">char</span> elem)</span><br><span class="line">&#123;</span><br><span class="line">	<span class="keyword">if</span>(stackFull())</span><br><span class="line">	&#123;</span><br><span class="line">		return <span class="literal">false</span>; </span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">else</span></span><br><span class="line">	&#123;</span><br><span class="line">		m_pBuffer[m_iTop] = elem;</span><br><span class="line">		m_iTop++;</span><br><span class="line">		return <span class="literal">true</span>;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 出栈</span></span><br><span class="line"><span class="keyword">bool</span> MyStack::pop(<span class="keyword">char</span> &amp;elem)</span><br><span class="line">&#123;</span><br><span class="line">	<span class="keyword">if</span>(stackEmpty())</span><br><span class="line">	&#123;</span><br><span class="line">		return <span class="literal">false</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">else</span></span><br><span class="line">	&#123;</span><br><span class="line">		m_iTop--;</span><br><span class="line">		elem = m_pBuffer[m_iTop];</span><br><span class="line">		return <span class="literal">true</span>;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 遍历</span></span><br><span class="line"><span class="keyword">void</span> MyStack::stackTraverse(<span class="keyword">bool</span> isFromBottom)</span><br><span class="line">&#123;</span><br><span class="line">	<span class="keyword">if</span> (isFromBottom)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; m_iTop; i++)</span><br><span class="line">		&#123;</span><br><span class="line">			<span class="built_in">cout</span> &lt;&lt; m_pBuffer[i] &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">else</span></span><br><span class="line">	&#123;</span><br><span class="line">		<span class="keyword">for</span>(int i = m_iTop - <span class="number">1</span>; i &gt;= <span class="number">0</span>; i--)</span><br><span class="line">		&#123;</span><br><span class="line">			<span class="built_in">cout</span> &lt;&lt; m_pBuffer[i] &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h1 id="3-栈模版"><a href="#3-栈模版" class="headerlink" title="3 栈模版"></a>3 栈模版</h1><p><strong>说明：</strong> 将普通栈改为类模版栈，使其可以适用于任何数据类型。</p>
+<ul>
+<li>类模版定义和实现需要写在同一个文件中，因为有些编译器不支持分开写。</li>
+<li>需要考虑栈元素为复杂的自定义类型的情况，比如是否需要定义拷贝构造函数等。</li>
+<li>使用该栈模版的类型需要重载 <code>&lt;&lt;</code> 运算符。</li>
+</ul>
+<h2 id="MyStack-h"><a href="#MyStack-h" class="headerlink" title="MyStack.h"></a>MyStack.h</h2><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">ifndef</span> MYSTACK_H</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> MYSTACK_H</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="keyword">template</span> &lt;<span class="keyword">typename</span> T&gt;</span><br><span class="line"><span class="keyword">class</span> MyStack</span><br><span class="line">&#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">	MyStack(<span class="keyword">int</span> size); <span class="comment">// 分配内存初始化栈空间，设定栈容量，指定栈顶</span></span><br><span class="line">	~MyStack(); <span class="comment">// 回收栈空间内存</span></span><br><span class="line">	<span class="function"><span class="keyword">bool</span> <span class="title">stackEmpty</span><span class="params">()</span></span>; <span class="comment">// 判空</span></span><br><span class="line">	<span class="function"><span class="keyword">bool</span> <span class="title">stackFull</span><span class="params">()</span></span>; <span class="comment">// 判满</span></span><br><span class="line">	<span class="function"><span class="keyword">void</span> <span class="title">clearStack</span><span class="params">()</span></span>; <span class="comment">// 清空栈</span></span><br><span class="line">	<span class="function"><span class="keyword">int</span> <span class="title">stackLength</span><span class="params">()</span></span>; <span class="comment">// 已有元素数量</span></span><br><span class="line">	<span class="function"><span class="keyword">bool</span> <span class="title">push</span><span class="params">(T elem)</span></span>; <span class="comment">// 元素入栈，栈顶下降</span></span><br><span class="line">	<span class="function"><span class="keyword">bool</span> <span class="title">pop</span><span class="params">(T &amp;elem)</span></span>; <span class="comment">// 元素出栈，栈顶下降</span></span><br><span class="line">	<span class="function"><span class="keyword">void</span> <span class="title">stackTraverse</span><span class="params">(<span class="keyword">bool</span> isFromBottom)</span></span>; <span class="comment">// 遍历栈</span></span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">	T *m_pBuffer; <span class="comment">// 栈空间指针</span></span><br><span class="line">	<span class="keyword">int</span> m_iSize; <span class="comment">// 栈容量</span></span><br><span class="line">	<span class="keyword">int</span> m_iTop; <span class="comment">// 栈顶位置下标(栈底下标为0)</span></span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 构造器（初始化）</span></span><br><span class="line"><span class="keyword">template</span> &lt;<span class="keyword">typename</span> T&gt;</span><br><span class="line">MyStack&lt;T&gt;::MyStack(<span class="keyword">int</span> size)</span><br><span class="line">&#123;</span><br><span class="line">	m_iSize = size;</span><br><span class="line">	m_pBuffer = new T[m_iSize];</span><br><span class="line">	m_iTop = <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 释放内存</span></span><br><span class="line"><span class="keyword">template</span> &lt;<span class="keyword">typename</span> T&gt;</span><br><span class="line">MyStack&lt;T&gt;::~MyStack()</span><br><span class="line">&#123;</span><br><span class="line">	<span class="keyword">delete</span> []m_pBuffer;</span><br><span class="line">	m_pBuffer = <span class="literal">NULL</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 判空</span></span><br><span class="line"><span class="keyword">template</span> &lt;<span class="keyword">typename</span> T&gt;</span><br><span class="line"><span class="keyword">bool</span> MyStack&lt;T&gt;::stackEmpty()</span><br><span class="line">&#123;</span><br><span class="line">	return m_iTop == <span class="number">0</span> ? <span class="literal">true</span> : <span class="literal">false</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 栈满</span></span><br><span class="line"><span class="keyword">template</span> &lt;<span class="keyword">typename</span> T&gt;</span><br><span class="line"><span class="keyword">bool</span> MyStack&lt;T&gt;::stackFull()</span><br><span class="line">&#123;</span><br><span class="line">	return m_iTop == m_iSize ? <span class="literal">true</span> : <span class="literal">false</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 清空栈</span></span><br><span class="line"><span class="keyword">template</span> &lt;<span class="keyword">typename</span> T&gt;</span><br><span class="line"><span class="keyword">void</span> MyStack&lt;T&gt;::clearStack()</span><br><span class="line">&#123;</span><br><span class="line">	m_iTop = <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 获取栈的大小</span></span><br><span class="line"><span class="keyword">template</span> &lt;<span class="keyword">typename</span> T&gt;</span><br><span class="line"><span class="keyword">int</span> MyStack&lt;T&gt;::stackLength()</span><br><span class="line">&#123;</span><br><span class="line">	return m_iTop;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 入栈</span></span><br><span class="line"><span class="keyword">template</span> &lt;<span class="keyword">typename</span> T&gt;</span><br><span class="line"><span class="keyword">bool</span> MyStack&lt;T&gt;::push(T elem)</span><br><span class="line">&#123;</span><br><span class="line">	<span class="keyword">if</span>(stackFull())</span><br><span class="line">	&#123;</span><br><span class="line">		return <span class="literal">false</span>; </span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">else</span></span><br><span class="line">	&#123;</span><br><span class="line">		m_pBuffer[m_iTop] = elem; <span class="comment">// 如果 T 的数据成员有指针等情况，则需要考虑定义拷贝构造函数中</span></span><br><span class="line">		m_iTop++;</span><br><span class="line">		return <span class="literal">true</span>;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 出栈</span></span><br><span class="line"><span class="keyword">template</span> &lt;<span class="keyword">typename</span> T&gt;</span><br><span class="line"><span class="keyword">bool</span> MyStack&lt;T&gt;::pop(T &amp;elem)</span><br><span class="line">&#123;</span><br><span class="line">	<span class="keyword">if</span>(stackEmpty())</span><br><span class="line">	&#123;</span><br><span class="line">		return <span class="literal">false</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">else</span></span><br><span class="line">	&#123;</span><br><span class="line">		m_iTop--;</span><br><span class="line">		elem = m_pBuffer[m_iTop];</span><br><span class="line">		return <span class="literal">true</span>;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 遍历</span></span><br><span class="line"><span class="keyword">template</span> &lt;<span class="keyword">typename</span> T&gt;</span><br><span class="line"><span class="keyword">void</span> MyStack&lt;T&gt;::stackTraverse(<span class="keyword">bool</span> isFromBottom)</span><br><span class="line">&#123;</span><br><span class="line">	<span class="keyword">if</span> (isFromBottom)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; m_iTop; i++)</span><br><span class="line">		&#123;</span><br><span class="line">			<span class="built_in">cout</span> &lt;&lt; m_pBuffer[i];</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">else</span></span><br><span class="line">	&#123;</span><br><span class="line">		<span class="keyword">for</span>(int i = m_iTop - <span class="number">1</span>; i &gt;= <span class="number">0</span>; i--)</span><br><span class="line">		&#123;</span><br><span class="line">			<span class="built_in">cout</span> &lt;&lt; m_pBuffer[i];</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">endif</span></span></span><br></pre></td></tr></table></figure>
+<h2 id="main-cpp"><a href="#main-cpp" class="headerlink" title="main.cpp"></a>main.cpp</h2><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="string">"MyStack.h"</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">(<span class="keyword">void</span>)</span></span><br><span class="line"></span>&#123;</span><br><span class="line">	<span class="comment">// 创建栈实例</span></span><br><span class="line">	MyStack&lt;<span class="keyword">char</span>&gt; *pStack = new MyStack&lt;<span class="keyword">char</span>&gt;(<span class="number">5</span>);</span><br><span class="line">	...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h1 id="4-栈应用"><a href="#4-栈应用" class="headerlink" title="4 栈应用"></a>4 栈应用</h1><h2 id="4-1-进制转换"><a href="#4-1-进制转换" class="headerlink" title="4.1 进制转换"></a>4.1 进制转换</h2><p><strong>描述：</strong> 输入任意的十进制正整数 N ， 分别输出该整数 N 的二进制、八进制、十六进制的数。<br><strong>公式：</strong>  <code>N = (N div d) * d + N mod d</code> (div表示整除， mod 表示求余)</p>
+<p>1348（十进制）= 2504（八进制）= 544（十六进制） = 10101000100（二进制）</p>
+<p><strong>短除法计算过程：</strong> 以 1348 为例，分别转化为 8 进制和 16 进制</p>
+<p><img src="http://o6ul1xz4z.bkt.clouddn.com/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E6%8E%A2%E9%99%A9-02%E6%A0%88%E7%AF%87/9338F503-06DB-4B12-8FB7-BE8456E9C52B.png" alt=""></p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="string">"MyStack.h"</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> BINARY 2</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> OCTONARY 8</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> HEXADECIMAL 16</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">(<span class="keyword">void</span>)</span></span><br><span class="line"></span>&#123;</span><br><span class="line">	<span class="keyword">char</span> num[] = <span class="string">"0123456789ABCDE"</span>;</span><br><span class="line">	MyStack&lt;<span class="keyword">int</span>&gt; *pStack = new MyStack&lt;<span class="keyword">int</span>&gt;(<span class="number">30</span>); <span class="comment">// 栈必须足够大</span></span><br><span class="line"></span><br><span class="line">	<span class="comment">// 使用短除法将十进制转换为十六进制</span></span><br><span class="line">	<span class="keyword">int</span> N = <span class="number">2017</span>;</span><br><span class="line">	<span class="keyword">int</span> mod = <span class="number">0</span>;</span><br><span class="line">	<span class="keyword">while</span>(N != <span class="number">0</span>)</span><br><span class="line">	&#123;</span><br><span class="line">		mod = N % HEXADECIMAL;</span><br><span class="line">		pStack-&gt;push(mod); <span class="comment">// 栈中16进制的 A ~ E 部分还是用的十进制表示的</span></span><br><span class="line">		N = N / HEXADECIMAL;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="comment">// 需要转换为16进制表示方式</span></span><br><span class="line">	<span class="keyword">int</span> elem = <span class="number">0</span>;</span><br><span class="line">	<span class="keyword">while</span>(!pStack-&gt;stackEmpty())</span><br><span class="line">	&#123;</span><br><span class="line">		pStack-&gt;pop(elem);</span><br><span class="line">		<span class="built_in">cout</span> &lt;&lt; num[elem];</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">delete</span> pStack;</span><br><span class="line">	pStack = <span class="literal">NULL</span>;</span><br><span class="line"></span><br><span class="line">	return <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="4-2-括号匹配"><a href="#4-2-括号匹配" class="headerlink" title="4.2 括号匹配"></a>4.2 括号匹配</h2><p>描述：任意输入一组括号，可以判断括号是否匹配。<br>示例：</p>
+<ul>
+<li>[()]       正确</li>
+<li>[()()]     正确</li>
+<li>[()[()]]  正确</li>
+<li>[[()]      错误</li>
+<li>[[()]]]    错误</li>
+</ul>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="string">"MyStack.h"</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">(<span class="keyword">void</span>)</span></span><br><span class="line"></span>&#123;</span><br><span class="line">	MyStack&lt;<span class="keyword">char</span>&gt; *pStack = new MyStack&lt;<span class="keyword">char</span>&gt;(<span class="number">30</span>);</span><br><span class="line">	MyStack&lt;<span class="keyword">char</span>&gt; *pNeedStack = new MyStack&lt;<span class="keyword">char</span>&gt;(<span class="number">30</span>);</span><br><span class="line"></span><br><span class="line">	<span class="keyword">char</span> str[] = <span class="string">"[()([()()()])]"</span>;</span><br><span class="line">	<span class="keyword">char</span> currentNeed = <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="built_in">strlen</span>(str); i++)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="built_in">cout</span> &lt;&lt; i &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">		<span class="keyword">if</span>(str[i] == currentNeed)</span><br><span class="line">		&#123;</span><br><span class="line">			<span class="keyword">char</span> elem;</span><br><span class="line">			pStack-&gt;pop(elem);</span><br><span class="line"></span><br><span class="line">			<span class="comment">// 需要匹配的都匹配尽了，则将 currentNeed 置为 0，后面还有就是多余的</span></span><br><span class="line">			<span class="keyword">if</span>(!pNeedStack-&gt;pop(currentNeed))</span><br><span class="line">			&#123;</span><br><span class="line">				currentNeed = <span class="number">0</span>;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">else</span></span><br><span class="line">		&#123;</span><br><span class="line">			pStack-&gt;push(str[i]);</span><br><span class="line">			<span class="keyword">switch</span>(str[i])</span><br><span class="line">			&#123;</span><br><span class="line">				<span class="keyword">case</span> <span class="string">'['</span>:</span><br><span class="line">					<span class="comment">// 如果当前有字符在期待匹配之前出现的字符，就将它入栈</span></span><br><span class="line">					<span class="keyword">if</span>(<span class="number">0</span> != currentNeed)</span><br><span class="line">					&#123;</span><br><span class="line">						pNeedStack-&gt;push(currentNeed);</span><br><span class="line">					&#125;</span><br><span class="line">					currentNeed = <span class="string">']'</span>;</span><br><span class="line">					<span class="keyword">break</span>;</span><br><span class="line">				<span class="keyword">case</span> <span class="string">'('</span>:</span><br><span class="line">					<span class="keyword">if</span>(<span class="number">0</span> != currentNeed)</span><br><span class="line">					&#123;</span><br><span class="line">						pNeedStack-&gt;push(currentNeed);</span><br><span class="line">					&#125;</span><br><span class="line">					currentNeed = <span class="string">')'</span>;</span><br><span class="line">					<span class="keyword">break</span>;</span><br><span class="line">				<span class="keyword">default</span>:</span><br><span class="line">					<span class="built_in">cout</span> &lt;&lt; <span class="string">"括号不匹配"</span> &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">					return <span class="number">0</span>;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">if</span>(pStack-&gt;stackEmpty())</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="built_in">cout</span> &lt;&lt; <span class="string">"括号匹配"</span> &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">else</span></span><br><span class="line">	&#123;</span><br><span class="line">		<span class="built_in">cout</span> &lt;&lt; <span class="string">"括号不匹配"</span> &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">delete</span> pStack;</span><br><span class="line">	pStack = <span class="literal">NULL</span>;</span><br><span class="line">	<span class="keyword">delete</span> pNeedStack;</span><br><span class="line">	pNeedStack = <span class="literal">NULL</span>;</span><br><span class="line"></span><br><span class="line">	return <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/c-数据结构/" rel="tag">#c++数据结构</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/02/09/数据结构探险-05图篇/" rel="next" title="数据结构探险-05图篇">
+                <i class="fa fa-chevron-left"></i> 数据结构探险-05图篇
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/02/09/数据结构探险-04树篇/" rel="prev" title="数据结构探险-04树篇">
+                数据结构探险-04树篇 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2017/02/09/数据结构探险-02栈篇/"
+           data-title="数据结构探险-02栈篇" data-url="http://laputa-er.github.io/2017/02/09/数据结构探险-02栈篇/">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.gif"
+               alt="Sean" />
+          <p class="site-author-name" itemprop="name">Sean</p>
+          <p class="site-description motion-element" itemprop="description">整理了一批过去一段时间ios相关的笔记，其它的笔记也整理下？源码分享出来？再说吧...反正也只有自己会看吧...</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">154</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">16</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">15</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#1-栈的工作原理"><span class="nav-text">1 栈的工作原理</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#2-单一数据类型栈"><span class="nav-text">2 单一数据类型栈</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#3-栈模版"><span class="nav-text">3 栈模版</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#MyStack-h"><span class="nav-text">MyStack.h</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#main-cpp"><span class="nav-text">main.cpp</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#4-栈应用"><span class="nav-text">4 栈应用</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#4-1-进制转换"><span class="nav-text">4.1 进制转换</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-2-括号匹配"><span class="nav-text">4.2 括号匹配</span></a></li></ol></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Sean</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"lapuda-er"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+    <script src="/vendors/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
+    <script src="/js/src/hook-duoshuo.js"></script>
+  
+
+
+
+
+
+
+  
+  
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length == 0) {
+       search_path = "search.xml";
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    function proceedsearch() {
+      $("body").append('<div class="popoverlay">').css('overflow', 'hidden');
+      $('.popup').toggle();
+
+    }
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+    'use strict';
+    $.ajax({
+        url: path,
+        dataType: "xml",
+        async: true,
+        success: function( xmlResponse ) {
+            // get the contents from search data
+            isfetched = true;
+            $('.popup').detach().appendTo('.header-inner');
+            var datas = $( "entry", xmlResponse ).map(function() {
+                return {
+                    title: $( "title", this ).text(),
+                    content: $("content",this).text(),
+                    url: $( "url" , this).text()
+                };
+            }).get();
+            var $input = document.getElementById(search_id);
+            var $resultContent = document.getElementById(content_id);
+            $input.addEventListener('input', function(){
+                var matchcounts = 0;
+                var str='<ul class=\"search-result-list\">';
+                var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+                $resultContent.innerHTML = "";
+                if (this.value.trim().length > 1) {
+                // perform local searching
+                datas.forEach(function(data) {
+                    var isMatch = true;
+                    var content_index = [];
+                    var data_title = data.title.trim().toLowerCase();
+                    var data_content = data.content.trim().replace(/<[^>]+>/g,"").toLowerCase();
+                    var data_url = data.url;
+                    var index_title = -1;
+                    var index_content = -1;
+                    var first_occur = -1;
+                    // only match artiles with not empty titles and contents
+                    if(data_title != '' && data_content != '') {
+                        keywords.forEach(function(keyword, i) {
+                            index_title = data_title.indexOf(keyword);
+                            index_content = data_content.indexOf(keyword);
+                            if( index_title < 0 && index_content < 0 ){
+                                isMatch = false;
+                            } else {
+                                if (index_content < 0) {
+                                    index_content = 0;
+                                }
+                                if (i == 0) {
+                                    first_occur = index_content;
+                                }
+                            }
+                        });
+                    }
+                    // show search results
+                    if (isMatch) {
+                        matchcounts += 1;
+                        str += "<li><a href='"+ data_url +"' class='search-result-title'>"+ data_title +"</a>";
+                        var content = data.content.trim().replace(/<[^>]+>/g,"");
+                        if (first_occur >= 0) {
+                            // cut out 100 characters
+                            var start = first_occur - 20;
+                            var end = first_occur + 80;
+                            if(start < 0){
+                                start = 0;
+                            }
+                            if(start == 0){
+                                end = 50;
+                            }
+                            if(end > content.length){
+                                end = content.length;
+                            }
+                            var match_content = content.substring(start, end);
+                            // highlight all keywords
+                            keywords.forEach(function(keyword){
+                                var regS = new RegExp(keyword, "gi");
+                                match_content = match_content.replace(regS, "<b class=\"search-keyword\">"+keyword+"</b>");
+                            });
+
+                            str += "<p class=\"search-result\">" + match_content +"...</p>"
+                        }
+                        str += "</li>";
+                    }
+                })};
+                str += "</ul>";
+                if (matchcounts == 0) { str = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>' }
+                if (keywords == "") { str = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>' }
+                $resultContent.innerHTML = str;
+            });
+            proceedsearch();
+        }
+    });}
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched == false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+
+    });
+
+    $('.popup-btn-close').click(function(e){
+      $('.popup').hide();
+      $(".popoverlay").remove();
+      $('body').css('overflow', '');
+    });
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+  </script>
+
+
+  
+
+  
+
+  
+
+</body>
+</html>

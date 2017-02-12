@@ -138,7 +138,7 @@ const volatile
 <meta property="og:image" content="http://o6ul1xz4z.bkt.clouddn.com/img/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202015-09-15%20%E4%B8%8A%E5%8D%8812.08.31.png">
 <meta property="og:image" content="http://o6ul1xz4z.bkt.clouddn.com/img/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202015-09-15%20%E4%B8%8A%E5%8D%8812.08.57.png">
 <meta property="og:image" content="http://o6ul1xz4z.bkt.clouddn.com/img/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202015-09-15%20%E4%B8%8A%E5%8D%8812.09.05.png">
-<meta property="og:updated_time" content="2017-01-17T08:35:52.000Z">
+<meta property="og:updated_time" content="2017-02-04T17:04:02.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="18 声明">
 <meta name="twitter:description" content="说明：通过声明变量和函数，可以再检查程序潜在的错误以及把程序翻译成目标代码两方面为编译器提供至关重要的信息。
@@ -635,7 +635,7 @@ const volatile
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 静态存储期限</span></span><br><span class="line"><span class="comment">// 文件作用域</span></span><br><span class="line"><span class="comment">// 内部链接</span></span><br><span class="line"><span class="keyword">static</span> <span class="keyword">int</span> i;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">f</span><span class="params">(<span class="keyword">void</span>)</span> </span>&#123;</span><br><span class="line">	<span class="comment">// 静态存储期限</span></span><br><span class="line">	<span class="comment">// 块作用域</span></span><br><span class="line">	<span class="comment">// 无链接</span></span><br><span class="line">	<span class="keyword">static</span> <span class="keyword">int</span> j;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span><br><span class="line">* 将10进制的数字转换为16进制的</span><br><span class="line">* param &#123;int&#125; digit 10进制数字（16以内）</span><br><span class="line">* return &#123;char&#125; 表示相应16进制数字的字符</span><br><span class="line">*/</span></span><br><span class="line"><span class="function"><span class="keyword">char</span> <span class="title">digit_to_hex_char</span> <span class="params">(<span class="keyword">int</span> digit)</span> </span>&#123;</span><br><span class="line">	<span class="comment">// 无论函数被调用多少次，只会初始化一次</span></span><br><span class="line">	<span class="keyword">const</span> chat hex_chars[<span class="number">16</span>] = <span class="string">"0123456789ABCDEF"</span>;</span><br><span class="line">	return hex_chars[digit];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <h3 id="18-2-4-extern存储类型"><a href="#18-2-4-extern存储类型" class="headerlink" title="18.2.4    extern存储类型"></a>18.2.4    extern存储类型</h3><p><strong>说明：</strong>只声明变量（不初始化）<br><strong>关键字：</strong><code>extern</code><br><strong>用途：</strong>多文件共享同一个变量<br><strong>性质：</strong></p>
 <ul>
-<li><em>存储期限：</em>使变量具有<code>静态存储期限</code>（即使在块中声明的变量）</li>
+<li><em>存储期限：</em>使变量具有<code>静态存储期限</code>（即使原本是在块中声明的变量）</li>
 <li><em>作用域：</em><code>extern</code>不影响变量作用域（块内声明为块作用域，否则是文件作用域）</li>
 <li><em>链接：</em> 通常情况为<code>外部链接</code>；当同时被<code>static</code>修饰且声明位置为任何函数外部时为<code>内部链接</code></li>
 </ul>
@@ -957,7 +957,7 @@ const volatile
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">135</span>
+              <span class="site-state-item-count">154</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -965,7 +965,7 @@ const volatile
           
             <div class="site-state-item site-state-categories">
               <a href="/categories">
-                <span class="site-state-item-count">13</span>
+                <span class="site-state-item-count">16</span>
                 <span class="site-state-item-name">分类</span>
               </a>
             </div>
@@ -974,7 +974,7 @@ const volatile
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">12</span>
+                <span class="site-state-item-count">15</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
