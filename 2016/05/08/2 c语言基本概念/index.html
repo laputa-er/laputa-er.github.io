@@ -1,0 +1,939 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="c语言基础," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1" />
+
+
+
+
+
+
+<meta name="description" content="2.1    编写一个简单地c程序2.1.1    程序：显示双关语注意：编译器往往要求文件的扩展名为.c
+12345# include &amp;lt;stdio.h&amp;gt;int main()&amp;#123;	printf(&quot;To c, or not to c:that is the question.\n&quot;);&amp;#125;
+2.1.2    编译和链接预处理器（processor）：类似编辑器，它可以给">
+<meta property="og:type" content="article">
+<meta property="og:title" content="2 c语言基本概念">
+<meta property="og:url" content="http://laputa-er.github.io/2016/05/08/2 c语言基本概念/index.html">
+<meta property="og:site_name" content="Sean">
+<meta property="og:description" content="2.1    编写一个简单地c程序2.1.1    程序：显示双关语注意：编译器往往要求文件的扩展名为.c
+12345# include &amp;lt;stdio.h&amp;gt;int main()&amp;#123;	printf(&quot;To c, or not to c:that is the question.\n&quot;);&amp;#125;
+2.1.2    编译和链接预处理器（processor）：类似编辑器，它可以给">
+<meta property="og:image" content="http://o6ul1xz4z.bkt.clouddn.com/img/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202015-06-16%20%E4%B8%8B%E5%8D%882.54.55.png">
+<meta property="og:updated_time" content="2017-02-13T04:26:13.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="2 c语言基本概念">
+<meta name="twitter:description" content="2.1    编写一个简单地c程序2.1.1    程序：显示双关语注意：编译器往往要求文件的扩展名为.c
+12345# include &amp;lt;stdio.h&amp;gt;int main()&amp;#123;	printf(&quot;To c, or not to c:that is the question.\n&quot;);&amp;#125;
+2.1.2    编译和链接预处理器（processor）：类似编辑器，它可以给">
+<meta name="twitter:image" content="http://o6ul1xz4z.bkt.clouddn.com/img/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202015-06-16%20%E4%B8%8B%E5%8D%882.54.55.png">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 0,
+      author: '博主'
+    }
+  };
+</script>
+
+
+
+
+  <link rel="canonical" href="http://laputa-er.github.io/2016/05/08/2 c语言基本概念/"/>
+
+  <title> 2 c语言基本概念 | Sean </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//hm.baidu.com/hm.js?898688f51c5a3d6b37dd23e04441e5bd";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">Sean</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">笔记分享</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup">
+ <span class="search-icon fa fa-search"></span>
+ <input type="text" id="local-search-input">
+ <div id="local-search-result"></div>
+ <span class="popup-btn-close">close</span>
+</div>
+
+
+    </div>
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                2 c语言基本概念
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-05-08T22:24:08+08:00" content="2016-05-08">
+              2016-05-08
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/c语言程序设计－现代方法/" itemprop="url" rel="index">
+                    <span itemprop="name">c语言程序设计－现代方法</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/05/08/2 c语言基本概念/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/05/08/2 c语言基本概念/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="2-1-编写一个简单地c程序"><a href="#2-1-编写一个简单地c程序" class="headerlink" title="2.1    编写一个简单地c程序"></a>2.1    编写一个简单地c程序</h2><h3 id="2-1-1-程序：显示双关语"><a href="#2-1-1-程序：显示双关语" class="headerlink" title="2.1.1    程序：显示双关语"></a>2.1.1    程序：显示双关语</h3><p><strong>注意：</strong>编译器往往要求文件的扩展名为<code>.c</code></p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta"># <span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span><br><span class="line"></span>&#123;</span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">"To c, or not to c:that is the question.\n"</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="2-1-2-编译和链接"><a href="#2-1-2-编译和链接" class="headerlink" title="2.1.2    编译和链接"></a>2.1.2    编译和链接</h3><p><strong>预处理器（processor）：</strong>类似编辑器，它可以给程序添加内容，也可以对程序进行修改。<br><strong>指令（directive）：</strong>以<code>#</code>开头的命令，由预处理器执行为程序文件添加内容。<br><strong>目标代码（object code）：</strong>编译生成的机器指令（需要链接才能运行）<br><strong>编译器（complier）：</strong>在编译阶段将程序翻译成目标代码。比如UNIX下的<code>cc</code>。<br><strong>链接器（linker）：</strong>把编译产生的目标代码和任何其它附加代码整合在一起，生成可执行文件。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">st=&gt;start: 编写程序</span><br><span class="line">e=&gt;end: 执行</span><br><span class="line"></span><br><span class="line">op1=&gt;operation: 预处理：执行指令，引入相关代码</span><br><span class="line">op2=&gt;operation: 编译：将预处理后的代码翻译为目标代码</span><br><span class="line">op3=&gt;operation: 链接：整合目标代码和附加代码（包括库函数），生成完全可执行的程序</span><br><span class="line"></span><br><span class="line">st-&gt;op1-&gt;op2-&gt;op3-&gt;e</span><br></pre></td></tr></table></figure>
+<h4 id="cc"><a href="#cc" class="headerlink" title="cc"></a>cc</h4><table>
+<thead>
+<tr>
+<th>-o</th>
+<th>允许为含有可执行程序的文件命名</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p><strong>使用技巧</strong></p>
+<ul>
+<li><strong>自动链接：</strong>使用<code>cc</code>进行编译时，系统会自动进行链接操作，不需要单独的链接命令</li>
+<li><strong>可执行文件命名：</strong>默认为<code>文件名.out</code></li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ cc -o pun pun.c<span class="comment"># 可执行文件名为pun</span></span><br></pre></td></tr></table></figure>
+<h4 id="gcc-GNU-C-Complier）"><a href="#gcc-GNU-C-Complier）" class="headerlink" title="gcc(GNU C Complier）"></a>gcc(GNU C Complier）</h4><table>
+<thead>
+<tr>
+<th><code>-Wall</code></th>
+<th>使gcc比平常更彻底地检查程序并警告可能发生的问题</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p><strong>简介：</strong>UNIX系统中最常用的编译器之一。<br><strong>自由软件基金会（Free Software Foundation, FSF）：</strong>由<code>Richard M.Stallman</code>创建，旨在对抗UNIX正版软件的使用限制和高额费用。重写了大量UNIX软件并免费发布。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ gcc -Wall -o pun pun.c</span><br></pre></td></tr></table></figure>
+<h2 id="2-2-简单程序的通用形式"><a href="#2-2-简单程序的通用形式" class="headerlink" title="2.2    简单程序的通用形式"></a>2.2    简单程序的通用形式</h2><p><strong>一般形式：</strong></p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">指令</span><br><span class="line">main()&#123;</span><br><span class="line">    语句</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><strong>3个关键语言特性：</strong><code>指令</code> <code>函数</code> <code>语句</code></p>
+<h3 id="2-2-1-指令"><a href="#2-2-1-指令" class="headerlink" title="2.2.1    指令"></a>2.2.1    指令</h3><p><strong>头文件：</strong>都包含一些标准库的内容<br><strong>语法：</strong></p>
+<ol>
+<li>所有的指令都以<code>#</code>开始，用以和c程序的其它代码进行区分</li>
+<li>默认情况下指令是一行</li>
+<li>在每条指令的结尾既没有分号也没有其它特殊标记</li>
+</ol>
+<h3 id="2-2-2-函数"><a href="#2-2-2-函数" class="headerlink" title="2.2.2    函数"></a>2.2.2    函数</h3><p><strong>定义：</strong>一系列组合在一起并且赋予了名字的语句<br><strong>分2类：</strong></p>
+<ul>
+<li>程序员编写的函数</li>
+<li>编译器提供的库函数(<code>library function</code>)</li>
+</ul>
+<h4 id="main函数"><a href="#main函数" class="headerlink" title="main函数"></a><code>main</code>函数</h4><p><strong>简介：</strong>c程序可以包含多个函数，但前置规定必须有一个<code>main</code>函数<br><strong>特点：</strong></p>
+<ul>
+<li>在执行程序时系统会自动调用main函数</li>
+<li>名字<code>main</code>是至关重要的，不能改写为<code>begin</code> <code>start</code>，甚至<code>MAIN</code></li>
+</ul>
+<p><strong>注意：</strong>建议在<code>main</code>函数末尾用一条<code>return</code>结束语句，<code>Q&amp;A</code>如果不这样做，某些编译器可能会产生一条警告信息。</p>
+<h3 id="2-2-3-语句"><a href="#2-2-3-语句" class="headerlink" title="2.2.3    语句"></a>2.2.3    语句</h3><p><strong>定义：</strong>程序运行时执行的命令<br><strong>语法：</strong></p>
+<ul>
+<li>除复合语句和指令除外，每条语句都要用<code>;</code>结尾</li>
+</ul>
+<h3 id="2-2-4-显示字符串"><a href="#2-2-4-显示字符串" class="headerlink" title="2.2.4    显示字符串"></a>2.2.4    显示字符串</h3><p><strong>字符串字面量：</strong>用一对双引号保卫的一系列字符<br><code>printf</code>：不会自动跳转到下一行（除非在末尾添加<code>\n</code>）</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">printf</span>(<span class="string">"To, or not to c:"</span>);</span><br><span class="line"><span class="built_in">printf</span>(<span class="string">"that is the question.\n:"</span>);</span><br></pre></td></tr></table></figure>
+<h2 id="2-3-注释"><a href="#2-3-注释" class="headerlink" title="2.3    注释"></a>2.3    注释</h2><p><strong>语法：</strong><code>/**/</code>，可以出现在程序的任何位置，单独占行或和其它程序放在同一行。</p>
+<h3 id="2-3-1-文档说明"><a href="#2-3-1-文档说明" class="headerlink" title="2.3.1    文档说明"></a>2.3.1    文档说明</h3><h4 id="2-3-1-1-举个栗子"><a href="#2-3-1-1-举个栗子" class="headerlink" title="2.3.1.1    举个栗子"></a>2.3.1.1    举个栗子</h4><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/* Name:	pun.c 			 */</span></span><br><span class="line"><span class="comment">/* Purpose:	Prints a bad pun */</span></span><br><span class="line"><span class="comment">/* Author:	K. N. King		 */</span></span><br><span class="line"><span class="comment">/* Date written:	5/21/95	 */</span></span><br><span class="line"></span><br><span class="line"><span class="meta"># <span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span><br><span class="line"></span>&#123;</span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">"To c, or not to c:that is the question.\n"</span>);</span><br><span class="line">	return <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="2-3-1-2-其它形式"><a href="#2-3-1-2-其它形式" class="headerlink" title="2.3.1.2    其它形式"></a>2.3.1.2    其它形式</h4><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/******************************</span><br><span class="line"> * Name:	pun.c 			  *</span><br><span class="line"> * Purpose:	Prints a bad pun  *</span><br><span class="line"> * Author:	K. N. King		  *</span><br><span class="line"> * Date written:	5/21/95	  *</span><br><span class="line"> * ****************************/</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/*</span><br><span class="line">* Name:	pun.c 	</span><br><span class="line">* Purpose:	Prints a bad pun </span><br><span class="line">* Author:	K. N. King	</span><br><span class="line">* Date written:	5/21/95	 </span><br><span class="line">*/</span></span><br></pre></td></tr></table></figure>
+<h3 id="2-3-2-翼型注释"><a href="#2-3-2-翼型注释" class="headerlink" title="2.3.2    翼型注释"></a>2.3.2    翼型注释</h3><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">main()<span class="comment">/* Beginning of main program */</span></span><br></pre></td></tr></table></figure>
+<h2 id="2-4-变量和赋值"><a href="#2-4-变量和赋值" class="headerlink" title="2.4    变量和赋值"></a>2.4    变量和赋值</h2><h3 id="2-4-1-类型"><a href="#2-4-1-类型" class="headerlink" title="2.4.1    类型"></a>2.4.1    类型</h3><p><strong>简介：</strong>类型用来寿命变量所存储的数据的种类。类型会影响变量的存储方式，所以选择合适的类型非常关键。</p>
+<h4 id="int和float"><a href="#int和float" class="headerlink" title="int和float"></a><code>int</code>和<code>float</code></h4><table>
+<thead>
+<tr>
+<th>类型</th>
+<th>说明</th>
+<th>速度</th>
+<th>存储</th>
+<th>取值特点</th>
+<th>备注</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>int</td>
+<td>整数</td>
+<td>较快</td>
+<td>占用少</td>
+<td>取值范围小</td>
+<td></td>
+</tr>
+<tr>
+<td>float</td>
+<td>浮点数</td>
+<td>较慢</td>
+<td>占用多</td>
+<td>取值范围大</td>
+<td>存储的数值往往只是数值的近似值，存在摄入误差</td>
+</tr>
+</tbody>
+</table>
+<h3 id="2-4-2-声明"><a href="#2-4-2-声明" class="headerlink" title="2.4.2    声明"></a>2.4.2    声明</h3><p><strong>语法：</strong></p>
+<ul>
+<li>每条声明都要以<code>;</code>结尾</li>
+<li>声明多个相同类型的变量时，中间用<code>,</code>隔开</li>
+</ul>
+<p><strong>建议：</strong>在声明和语句之间留出空白。<br><strong>注意：</strong><code>main</code> 函数包含声明时，必须把声明放置在语句之前。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">main()&#123;</span><br><span class="line">  声明</span><br><span class="line">  语句</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="2-4-3-赋值"><a href="#2-4-3-赋值" class="headerlink" title="2.4.3    赋值"></a>2.4.3    赋值</h3><p><strong>语法：</strong><code>变量 = 表达式</code><br><strong>表达式：</strong>赋值运算的右侧的包含常量、变量和运算符的公式。</p>
+<h3 id="2-4-4-显示变量的值"><a href="#2-4-4-显示变量的值" class="headerlink" title="2.4.4    显示变量的值"></a>2.4.4    显示变量的值</h3><blockquote>
+<p><strong>方式：</strong>通过<code>printf</code></p>
+</blockquote>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">printf</span>(<span class="string">"Height: %d Length: %d\n"</span>, height, length);</span><br></pre></td></tr></table></figure>
+<h3 id="2-4-5-程序：计算箱子的空间重量"><a href="#2-4-5-程序：计算箱子的空间重量" class="headerlink" title="2.4.5    程序：计算箱子的空间重量"></a>2.4.5    程序：计算箱子的空间重量</h3><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/* Name:	pun.c 			 */</span></span><br><span class="line"><span class="comment">/* Purpose:	Prints a bad pun */</span></span><br><span class="line"><span class="comment">/* Author:	K. N. King		 */</span></span><br><span class="line"><span class="comment">/* Date written:	5/21/95	 */</span></span><br><span class="line"></span><br><span class="line"><span class="meta"># <span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span><br><span class="line"></span>&#123;</span><br><span class="line">	<span class="keyword">int</span> height, length, width, volume, weight;</span><br><span class="line">	</span><br><span class="line">	height = <span class="number">8</span>;</span><br><span class="line">	length = <span class="number">12</span>;</span><br><span class="line">	width = <span class="number">10</span>;</span><br><span class="line">	volume = height * length * width;</span><br><span class="line">	weight = (volume + <span class="number">165</span>) / <span class="number">166</span>;</span><br><span class="line"></span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">"Dimensions: %dx%dx%d\n"</span>, length, width, height);</span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">"volume(cubic inches):%d\n"</span>, volume);</span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">"Dimensional weight (pounds):%d\n"</span>, weight);</span><br><span class="line"></span><br><span class="line">	return <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">$ gcc -Wall -o pun pun.c</span><br><span class="line">$ ./pun</span><br><span class="line"> Dimensions: 12x10x8</span><br><span class="line"> volume(cubic inches):960</span><br><span class="line"> Dimensional weight (pounds):6</span><br></pre></td></tr></table></figure>
+<h3 id="2-4-6-初始化"><a href="#2-4-6-初始化" class="headerlink" title="2.4.6    初始化"></a>2.4.6    初始化</h3><p><strong>初始化式（initializer）：</strong>在变量声明中加入初始值。<br><strong>注意：</strong>程序开始执行时，默契热情况下某些变量会自动设置为零，而大多数变量则不会。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> height, length = <span class="number">12</span>, width = <span class="number">12</span>;<span class="comment">/*其中第一个个变量的值未知*/</span></span><br></pre></td></tr></table></figure>
+<h3 id="2-4-7-显示表达式的值"><a href="#2-4-7-显示表达式的值" class="headerlink" title="2.4.7    显示表达式的值"></a>2.4.7    显示表达式的值</h3><p><code>在任何需要数值的地方，都可以使用具有相同类型的表达式。</code></p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">prinf(<span class="string">"%d\n"</span>, height * length * width);</span><br></pre></td></tr></table></figure>
+<h2 id="2-5-读入输入"><a href="#2-5-读入输入" class="headerlink" title="2.5    读入输入"></a>2.5    读入输入</h2><p><code>scanf</code>:和<code>printf</code>相对应的c库函数。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">scanf</span>(<span class="string">"%d"</span>, &amp;i);<span class="comment">/*读入一个整数给i*/</span></span><br><span class="line"><span class="built_in">scanf</span>(<span class="string">"%f"</span>, &amp;x);<span class="comment">/*读入一个float数值给x*/</span></span><br></pre></td></tr></table></figure>
+<h3 id="程序：计算箱子的空间重量（改进版）"><a href="#程序：计算箱子的空间重量（改进版）" class="headerlink" title="程序：计算箱子的空间重量（改进版）"></a>程序：计算箱子的空间重量（改进版）</h3><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/*</span><br><span class="line"> * Computes the dimensioal weight of a box</span><br><span class="line"> * from input provided by the user</span><br><span class="line"> */</span></span><br><span class="line"><span class="meta"># <span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">	<span class="keyword">int</span> height, length, width, volume, weight;</span><br><span class="line"></span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">"Enter height of box:"</span>);</span><br><span class="line">	<span class="built_in">scanf</span>(<span class="string">"%d"</span>, &amp;height);</span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">"Enter length of box:"</span>);</span><br><span class="line">	<span class="built_in">scanf</span>(<span class="string">"%d"</span>, &amp;length);</span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">"Enter width of box:"</span>);</span><br><span class="line">	<span class="built_in">scanf</span>(<span class="string">"%d"</span>, &amp;width);</span><br><span class="line"></span><br><span class="line">	volume = height * length * width;</span><br><span class="line">	weight = (volume + <span class="number">165</span>) / <span class="number">166</span>;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">"volume(cubic inches):%d\n"</span>, volume);</span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">"Dimensional weight (pounds):%d\n"</span>, weight);</span><br><span class="line"></span><br><span class="line">	return <span class="number">0</span>;	</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">$ ./dweight2 </span><br><span class="line"> Enter height of box:2</span><br><span class="line"> Enter length of box:3</span><br><span class="line"> Enter width of box:4</span><br><span class="line"> volume(cubic inches):24</span><br><span class="line"> Dimensional weight (pounds):1</span><br></pre></td></tr></table></figure>
+<h2 id="2-6-定义常量"><a href="#2-6-定义常量" class="headerlink" title="2.6    定义常量"></a>2.6    定义常量</h2><p><strong>宏定义（macro definition）：</strong>对程序进行预处理时，预处理器会把每一个宏用其表示的值替换回来。<br><strong>语法：</strong><code># define 宏变量名 字面量或表达式</code><br><strong>注意：</strong></p>
+<ul>
+<li>常量的名字使用大写字母（沿用了10几年的规范）</li>
+<li>当宏包含运算符时，必须使用括号把表达式括起来</li>
+</ul>
+<h3 id="程序：华氏温度转换为摄氏温度"><a href="#程序：华氏温度转换为摄氏温度" class="headerlink" title="程序：华氏温度转换为摄氏温度"></a>程序：华氏温度转换为摄氏温度</h3><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/************************************************</span><br><span class="line"> * Converts a Fahrenheit temperature to Celsius *</span><br><span class="line"> * **********************************************/</span></span><br><span class="line"></span><br><span class="line"> <span class="meta"># <span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"> <span class="meta"># <span class="meta-keyword">define</span> FREEZING_PT  32.0</span></span><br><span class="line"> <span class="meta"># <span class="meta-keyword">define</span> SCALE_FACTOR (5.0 / 9.0)<span class="comment">/*如果是(5/9)结果为0*/</span></span></span><br><span class="line"> <span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line"> 	<span class="keyword">float</span> fahrenheit, celsius;</span><br><span class="line"></span><br><span class="line"> 	<span class="built_in">printf</span>(<span class="string">"Enter Fahrenheit temperature:"</span>);</span><br><span class="line"> 	<span class="built_in">scanf</span>(<span class="string">"%f"</span>, &amp;fahrenheit);</span><br><span class="line"></span><br><span class="line"> 	celsius = (fahrenheit - FREEZING_PT) * SCALE_FACTOR;<span class="comment">/*温度转换*/</span></span><br><span class="line"></span><br><span class="line"> 	<span class="built_in">printf</span>(<span class="string">"Celsius equivalent:%.1f\n"</span>, celsius);<span class="comment">/*保留小数点后一位*/</span></span><br><span class="line"> 	return <span class="number">0</span>;</span><br><span class="line"> &#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ ./celsius </span><br><span class="line"> Enter Fahrenheit temperature:32</span><br><span class="line"> Celsius equivalent:0.0</span><br></pre></td></tr></table></figure>
+<h2 id="2-7-标识符"><a href="#2-7-标识符" class="headerlink" title="2.7    标识符"></a>2.7    标识符</h2><p><strong>定义：</strong>变量、函数、宏和其他实体的名字成为标识符(identifier)。<br><strong>规则：</strong></p>
+<ol>
+<li>可以包含字母、数字和下划线</li>
+<li>必须以字母或者下划线开头</li>
+<li>区分大小写</li>
+<li>对标识符的最大长度没有限制</li>
+<li>不能使用<code>关键字</code>作为标识符<br><img src="http://o6ul1xz4z.bkt.clouddn.com/img/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202015-06-16%20%E4%B8%8B%E5%8D%882.54.55.png" alt="Alt text"></li>
+</ol>
+<h2 id="2-8-c语言程序的布局"><a href="#2-8-c语言程序的布局" class="headerlink" title="2.8    c语言程序的布局"></a>2.8    c语言程序的布局</h2><h3 id="原则"><a href="#原则" class="headerlink" title="原则"></a>原则</h3><ul>
+<li>语句可以划分在任意多行内</li>
+<li>记号间的空格应该便于肉眼区别记号。因此通常在每个运算符的前后都放上一个空格。</li>
+<li>缩进有助于轻松识别程序嵌套</li>
+<li>空行可以把程序划分成逻辑单元，从而使读者更容易辨别程序的结构。</li>
+</ul>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/c语言基础/" rel="tag">#c语言基础</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/05/08/1 c语言概述/" rel="next" title="1 c语言概述">
+                <i class="fa fa-chevron-left"></i> 1 c语言概述
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/05/08/3 格式化输入／输出/" rel="prev" title="3 格式化输入／输出">
+                3 格式化输入／输出 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2016/05/08/2 c语言基本概念/"
+           data-title="2 c语言基本概念" data-url="http://laputa-er.github.io/2016/05/08/2 c语言基本概念/">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.gif"
+               alt="Sean" />
+          <p class="site-author-name" itemprop="name">Sean</p>
+          <p class="site-description motion-element" itemprop="description">整理了一批过去一段时间ios相关的笔记，其它的笔记也整理下？源码分享出来？再说吧...反正也只有自己会看吧...</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">153</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">16</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">15</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#2-1-编写一个简单地c程序"><span class="nav-text">2.1    编写一个简单地c程序</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#2-1-1-程序：显示双关语"><span class="nav-text">2.1.1    程序：显示双关语</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-1-2-编译和链接"><span class="nav-text">2.1.2    编译和链接</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#cc"><span class="nav-text">cc</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#gcc-GNU-C-Complier）"><span class="nav-text">gcc(GNU C Complier）</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-2-简单程序的通用形式"><span class="nav-text">2.2    简单程序的通用形式</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#2-2-1-指令"><span class="nav-text">2.2.1    指令</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-2-2-函数"><span class="nav-text">2.2.2    函数</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#main函数"><span class="nav-text">main函数</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-2-3-语句"><span class="nav-text">2.2.3    语句</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-2-4-显示字符串"><span class="nav-text">2.2.4    显示字符串</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-3-注释"><span class="nav-text">2.3    注释</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#2-3-1-文档说明"><span class="nav-text">2.3.1    文档说明</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#2-3-1-1-举个栗子"><span class="nav-text">2.3.1.1    举个栗子</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-3-1-2-其它形式"><span class="nav-text">2.3.1.2    其它形式</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-3-2-翼型注释"><span class="nav-text">2.3.2    翼型注释</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-4-变量和赋值"><span class="nav-text">2.4    变量和赋值</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#2-4-1-类型"><span class="nav-text">2.4.1    类型</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#int和float"><span class="nav-text">int和float</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-4-2-声明"><span class="nav-text">2.4.2    声明</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-4-3-赋值"><span class="nav-text">2.4.3    赋值</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-4-4-显示变量的值"><span class="nav-text">2.4.4    显示变量的值</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-4-5-程序：计算箱子的空间重量"><span class="nav-text">2.4.5    程序：计算箱子的空间重量</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-4-6-初始化"><span class="nav-text">2.4.6    初始化</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-4-7-显示表达式的值"><span class="nav-text">2.4.7    显示表达式的值</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-5-读入输入"><span class="nav-text">2.5    读入输入</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#程序：计算箱子的空间重量（改进版）"><span class="nav-text">程序：计算箱子的空间重量（改进版）</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-6-定义常量"><span class="nav-text">2.6    定义常量</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#程序：华氏温度转换为摄氏温度"><span class="nav-text">程序：华氏温度转换为摄氏温度</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-7-标识符"><span class="nav-text">2.7    标识符</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-8-c语言程序的布局"><span class="nav-text">2.8    c语言程序的布局</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#原则"><span class="nav-text">原则</span></a></li></ol></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Sean</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"lapuda-er"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+    <script src="/vendors/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
+    <script src="/js/src/hook-duoshuo.js"></script>
+  
+
+
+
+
+
+
+  
+  
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length == 0) {
+       search_path = "search.xml";
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    function proceedsearch() {
+      $("body").append('<div class="popoverlay">').css('overflow', 'hidden');
+      $('.popup').toggle();
+
+    }
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+    'use strict';
+    $.ajax({
+        url: path,
+        dataType: "xml",
+        async: true,
+        success: function( xmlResponse ) {
+            // get the contents from search data
+            isfetched = true;
+            $('.popup').detach().appendTo('.header-inner');
+            var datas = $( "entry", xmlResponse ).map(function() {
+                return {
+                    title: $( "title", this ).text(),
+                    content: $("content",this).text(),
+                    url: $( "url" , this).text()
+                };
+            }).get();
+            var $input = document.getElementById(search_id);
+            var $resultContent = document.getElementById(content_id);
+            $input.addEventListener('input', function(){
+                var matchcounts = 0;
+                var str='<ul class=\"search-result-list\">';
+                var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+                $resultContent.innerHTML = "";
+                if (this.value.trim().length > 1) {
+                // perform local searching
+                datas.forEach(function(data) {
+                    var isMatch = true;
+                    var content_index = [];
+                    var data_title = data.title.trim().toLowerCase();
+                    var data_content = data.content.trim().replace(/<[^>]+>/g,"").toLowerCase();
+                    var data_url = data.url;
+                    var index_title = -1;
+                    var index_content = -1;
+                    var first_occur = -1;
+                    // only match artiles with not empty titles and contents
+                    if(data_title != '' && data_content != '') {
+                        keywords.forEach(function(keyword, i) {
+                            index_title = data_title.indexOf(keyword);
+                            index_content = data_content.indexOf(keyword);
+                            if( index_title < 0 && index_content < 0 ){
+                                isMatch = false;
+                            } else {
+                                if (index_content < 0) {
+                                    index_content = 0;
+                                }
+                                if (i == 0) {
+                                    first_occur = index_content;
+                                }
+                            }
+                        });
+                    }
+                    // show search results
+                    if (isMatch) {
+                        matchcounts += 1;
+                        str += "<li><a href='"+ data_url +"' class='search-result-title'>"+ data_title +"</a>";
+                        var content = data.content.trim().replace(/<[^>]+>/g,"");
+                        if (first_occur >= 0) {
+                            // cut out 100 characters
+                            var start = first_occur - 20;
+                            var end = first_occur + 80;
+                            if(start < 0){
+                                start = 0;
+                            }
+                            if(start == 0){
+                                end = 50;
+                            }
+                            if(end > content.length){
+                                end = content.length;
+                            }
+                            var match_content = content.substring(start, end);
+                            // highlight all keywords
+                            keywords.forEach(function(keyword){
+                                var regS = new RegExp(keyword, "gi");
+                                match_content = match_content.replace(regS, "<b class=\"search-keyword\">"+keyword+"</b>");
+                            });
+
+                            str += "<p class=\"search-result\">" + match_content +"...</p>"
+                        }
+                        str += "</li>";
+                    }
+                })};
+                str += "</ul>";
+                if (matchcounts == 0) { str = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>' }
+                if (keywords == "") { str = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>' }
+                $resultContent.innerHTML = str;
+            });
+            proceedsearch();
+        }
+    });}
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched == false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+
+    });
+
+    $('.popup-btn-close').click(function(e){
+      $('.popup').hide();
+      $(".popoverlay").remove();
+      $('body').css('overflow', '');
+    });
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+  </script>
+
+
+  
+
+  
+
+  
+
+</body>
+</html>

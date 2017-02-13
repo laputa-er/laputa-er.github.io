@@ -1,0 +1,1047 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="c语言基础," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1" />
+
+
+
+
+
+
+<meta name="description" content="19.1    模块说明：模块是一组功能（服务）的集合，其中一些功能可以被程序的其它部分（客户）使用。每个模块都有一个接口来描述所提供的功能。模块的细节，包括这些功能自身的源代码，都包含在模块的实现中。
+
+
+
+文件角色
+说明
+
+
+
+
+接口
+模块名.h(头文件)
+
+
+实现
+对应头文件模块名.c文件
+
+
+客户
+通过#include引入模块的文件
+
+
+
+优点：将程序分割成模块有一系列好处
+
+抽象：不必了">
+<meta property="og:type" content="article">
+<meta property="og:title" content="19 程序设计">
+<meta property="og:url" content="http://laputa-er.github.io/2016/05/10/19 程序设计/index.html">
+<meta property="og:site_name" content="Sean">
+<meta property="og:description" content="19.1    模块说明：模块是一组功能（服务）的集合，其中一些功能可以被程序的其它部分（客户）使用。每个模块都有一个接口来描述所提供的功能。模块的细节，包括这些功能自身的源代码，都包含在模块的实现中。
+
+
+
+文件角色
+说明
+
+
+
+
+接口
+模块名.h(头文件)
+
+
+实现
+对应头文件模块名.c文件
+
+
+客户
+通过#include引入模块的文件
+
+
+
+优点：将程序分割成模块有一系列好处
+
+抽象：不必了">
+<meta property="og:updated_time" content="2017-02-13T04:26:13.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="19 程序设计">
+<meta name="twitter:description" content="19.1    模块说明：模块是一组功能（服务）的集合，其中一些功能可以被程序的其它部分（客户）使用。每个模块都有一个接口来描述所提供的功能。模块的细节，包括这些功能自身的源代码，都包含在模块的实现中。
+
+
+
+文件角色
+说明
+
+
+
+
+接口
+模块名.h(头文件)
+
+
+实现
+对应头文件模块名.c文件
+
+
+客户
+通过#include引入模块的文件
+
+
+
+优点：将程序分割成模块有一系列好处
+
+抽象：不必了">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 0,
+      author: '博主'
+    }
+  };
+</script>
+
+
+
+
+  <link rel="canonical" href="http://laputa-er.github.io/2016/05/10/19 程序设计/"/>
+
+  <title> 19 程序设计 | Sean </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//hm.baidu.com/hm.js?898688f51c5a3d6b37dd23e04441e5bd";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">Sean</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">笔记分享</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup">
+ <span class="search-icon fa fa-search"></span>
+ <input type="text" id="local-search-input">
+ <div id="local-search-result"></div>
+ <span class="popup-btn-close">close</span>
+</div>
+
+
+    </div>
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                19 程序设计
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-05-10T22:00:04+08:00" content="2016-05-10">
+              2016-05-10
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/c语言程序设计－现代方法/" itemprop="url" rel="index">
+                    <span itemprop="name">c语言程序设计－现代方法</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/05/10/19 程序设计/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/05/10/19 程序设计/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="19-1-模块"><a href="#19-1-模块" class="headerlink" title="19.1    模块"></a>19.1    模块</h2><p><strong>说明：</strong><code>模块</code>是一组功能（服务）的集合，其中一些功能可以被程序的其它部分（<code>客户</code>）使用。每个模块都有一个<code>接口</code>来描述所提供的功能。模块的细节，包括这些功能自身的源代码，都包含在模块的<code>实现</code>中。</p>
+<table>
+<thead>
+<tr>
+<th>文件角色</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>接口</td>
+<td><code>模块名.h</code>(头文件)</td>
+</tr>
+<tr>
+<td>实现</td>
+<td>对应头文件<code>模块名.c</code>文件</td>
+</tr>
+<tr>
+<td>客户</td>
+<td>通过<code>#include</code>引入模块的文件</td>
+</tr>
+</tbody>
+</table>
+<p><strong>优点：</strong>将程序分割成模块有一系列好处</p>
+<ul>
+<li>抽象：不必了解功能的实现细节，只需对模块的接口达成一致</li>
+<li>可复用：每个模块都可以在另一个程序中复用</li>
+<li>可维护性（最重要）：当程序出现错误或需要升级时，通常只会影响一个模块</li>
+</ul>
+<p><strong>扩展：</strong><a href="">Fundamental of SoftWare Engineer</a></p>
+<h3 id="19-1-1-内聚性与耦合性"><a href="#19-1-1-内聚性与耦合性" class="headerlink" title="19.1.1    内聚性与耦合性"></a>19.1.1    内聚性与耦合性</h3><p><strong>说明：</strong>一个好的模块接口并不是随意的一组声明，应具有下面两个性质</p>
+<ul>
+<li>高内聚：模块中的元素应该紧密相关</li>
+<li>低耦合：模块之间应该尽可能相互独立</li>
+</ul>
+<h3 id="19-1-2-模块的类型"><a href="#19-1-2-模块的类型" class="headerlink" title="19.1.2    模块的类型"></a>19.1.2    模块的类型</h3><table>
+<thead>
+<tr>
+<th>类型</th>
+<th>说明</th>
+<th>举例</th>
+<th>备注</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>数据池</td>
+<td>一些相关的变量或常量的集合</td>
+<td><code>&lt;float.h&gt;</code>(<a href="">23.1</a>)、 <code>&lt;limits.h&gt;</code>(<a href="">23.2</a>)</td>
+<td>通常不建议将变量放在头文件</td>
+</tr>
+<tr>
+<td>库</td>
+<td>一组相关函数的集合</td>
+<td><code>&lt;string.h&gt;</code></td>
+<td></td>
+</tr>
+<tr>
+<td>抽象对象</td>
+<td>对隐藏的数据结构进行操作的一组函数的集合</td>
+<td></td>
+<td>如果数据是隐藏起来的，那么这个对象那个就是“抽象的”</td>
+</tr>
+<tr>
+<td>抽象数据类型</td>
+<td>将具体数据实现方式隐藏起来的数据类型称为抽象数据类型</td>
+<td></td>
+<td>抽象数据类型在当今的程序设计中起着非常重要的作用</td>
+</tr>
+</tbody>
+</table>
+<h2 id="19-2-信息隐藏"><a href="#19-2-信息隐藏" class="headerlink" title="19.2    信息隐藏"></a>19.2    信息隐藏</h2><p><strong>说明：</strong>一个设计良好的模块经常会对它的客户隐藏一些信息。谨慎的对客户隐藏信息的方法称为信息隐藏。<br><strong>优点：</strong></p>
+<ul>
+<li>安全性：<code>客户</code>只能通过<code>模块</code>自身的函数进行参数</li>
+<li>灵活性：修改模块通常不必修改接口，对<code>客户</code>没有影响</li>
+</ul>
+<p><strong>原理：</strong>使用<code>static</code></p>
+<table>
+<thead>
+<tr>
+<th>修饰</th>
+<th>链接情况</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>函数</td>
+<td>内部链接</td>
+<td>只能在只能被同一文件中被调用</td>
+</tr>
+<tr>
+<td>变量（文件作用域）</td>
+<td>内部链接</td>
+<td>只能被同一文件中的其它函数访问</td>
+</tr>
+</tbody>
+</table>
+<p><strong>技巧：</strong>使用宏定义“公有”和“私有”可以使程序含义更加清晰（尤其是<code>static</code>，因为它在c语言中有许多用法）</p>
+<h3 id="栈模块-实现部分"><a href="#栈模块-实现部分" class="headerlink" title="栈模块(实现部分)"></a>栈模块(实现部分)</h3><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">define</span> PUBLIC  <span class="comment">// 定义为空</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> PRIVATE static</span></span><br><span class="line"></span><br><span class="line">PRIVATE <span class="keyword">int</span> contents[STACK_SIZE] &#123; ... &#125;</span><br><span class="line"></span><br><span class="line">PRIVATE <span class="keyword">int</span> top = <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line"><span class="function">PUBLIC <span class="keyword">int</span> <span class="title">is_empty</span> <span class="params">(<span class="keyword">void</span>)</span> </span>&#123; ... &#125;</span><br><span class="line"></span><br><span class="line"><span class="function">PRIVATE <span class="keyword">int</span> <span class="title">is_full</span> <span class="params">()</span> </span>&#123; ... &#125;</span><br><span class="line"></span><br><span class="line"><span class="function">PUBLIC <span class="keyword">void</span> <span class="title">push</span> <span class="params">(<span class="keyword">void</span>)</span> </span>&#123; ... &#125;</span><br><span class="line"></span><br><span class="line"><span class="function">PUBLIC <span class="keyword">int</span> <span class="title">pop</span> <span class="params">(<span class="keyword">void</span>)</span> </span>&#123; ... &#125;</span><br></pre></td></tr></table></figure>
+<h2 id="19-3-抽象数据类型"><a href="#19-3-抽象数据类型" class="headerlink" title="19.3    抽象数据类型"></a>19.3    抽象数据类型</h2><p><strong>说明：</strong>c语言没有设计专门用于封装类型的特性（<code>class</code>），即无法定义真正的抽象数据类型。<br><strong>案例缺陷：</strong>之前定义的栈模块提供的栈不基于一种抽象数据类型，而是仅仅提供了一个相当于“栈的实例”的数据结构。当需要多个栈实例时就无能为力了。</p>
+<p><em>stack.h</em></p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span><br><span class="line">* 下面定义的Stack不是抽象数据类型，因为stack.h暴露了Stack的具体实现方式（结构体实例的成员是暴露的)</span><br><span class="line">*/</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> STACK_SIZE 100</span></span><br><span class="line"><span class="keyword">typedef</span> <span class="keyword">struct</span> &#123;</span><br><span class="line">	<span class="keyword">int</span> contents[STACK_SIZE];</span><br><span class="line">	<span class="keyword">int</span> top;</span><br><span class="line">&#125; Stack;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">make_empyt</span> <span class="params">(Stack *s)</span></span>;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">is_empty</span> <span class="params">(<span class="keyword">const</span> Stack *s)</span></span>;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">push</span> <span class="params">(Stack *s, <span class="keyword">int</span> i)</span></span>;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">pop</span> <span class="params">(Stack *s)</span></span>;</span><br></pre></td></tr></table></figure>
+<p><em>客户</em></p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="string">"stack.h"</span></span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span> <span class="params">()</span> </span>&#123;</span><br><span class="line">	<span class="comment">// 理想的使用方式</span></span><br><span class="line">	Stack s1, s2;</span><br><span class="line">	make_empty(&amp;s1);</span><br><span class="line">	make_empty(&amp;s2);</span><br><span class="line">	push(&amp;s1, <span class="number">1</span>);</span><br><span class="line">	push(&amp;s2, <span class="number">2</span>);</span><br><span class="line">	<span class="keyword">if</span> (!is_empty(&amp;s1)) &#123;</span><br><span class="line">		<span class="built_in">printf</span>(<span class="string">"%d\n"</span>, pop(&amp;s1)); <span class="comment">// 1</span></span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="comment">// 不理想的方式</span></span><br><span class="line">	Stack s3;</span><br><span class="line">	s3.top = <span class="number">0</span>; <span class="comment">//直接访问了暴露出来的成员</span></span><br><span class="line">	s3.contents[top++] = <span class="number">1</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="19-4-C-语言"><a href="#19-4-C-语言" class="headerlink" title="19.4    C++语言"></a>19.4    C++语言</h2><p><strong>说明：</strong>C++语言是由<code>AT&amp;T</code>贝尔实验室的Bjqrne Stroustrup在20世纪80年代开发出来的C语言的扩展版。<br><strong>新特性（相对C）：</strong></p>
+<ul>
+<li>面向对象：允许从已经存在的类“派生”（继承）出新的类</li>
+<li>运算符重载：为传统的C语言的运算符赋予新的含义</li>
+<li>模版：可以使我们写出通用的、高度可复用的类和函数</li>
+<li>异常处理：一种同一的方式用来检测并响应错误</li>
+</ul>
+<p><strong>兼容C：</strong>C++语言包含了标准C的全部特性，然而不是所有C语言都可以在C++的环境下编译，因为C++语言增加了更多强制限制，比C语言更加安全。</p>
+<h3 id="19-4-1-C语言与C-语言之间的差异"><a href="#19-4-1-C语言与C-语言之间的差异" class="headerlink" title="19.4.1    C语言与C++语言之间的差异"></a>19.4.1    C语言与C++语言之间的差异</h3><h4 id="19-4-1-1-注释"><a href="#19-4-1-1-注释" class="headerlink" title="19.4.1.1    注释"></a>19.4.1.1    注释</h4><p><strong>新特性：</strong>C++语言支持单行注释</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// This is a Comment</span></span><br></pre></td></tr></table></figure>
+<h4 id="19-4-1-2-标记与类型名"><a href="#19-4-1-2-标记与类型名" class="headerlink" title="19.4.1.2    标记与类型名"></a>19.4.1.2    标记与类型名</h4><p><strong>新特性：</strong>标记（结构、联合或枚举的名字）会自动被认为是类型名</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">struct</span> Complex &#123;</span><br><span class="line">	<span class="keyword">double</span> re, im;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="comment">// 相当于下列形式的c语言</span></span><br><span class="line"><span class="comment">/*</span><br><span class="line">typedef struct Complex &#123;</span><br><span class="line">	double re, im;</span><br><span class="line">&#125; Complex;</span><br><span class="line">*/</span></span><br></pre></td></tr></table></figure>
+<h4 id="19-4-1-3-不带参数的函数"><a href="#19-4-1-3-不带参数的函数" class="headerlink" title="19.4.1.3    不带参数的函数"></a>19.4.1.3    不带参数的函数</h4><p><strong>新特性：</strong>在声明或定义一个不带参数的<code>C++</code>函数时，可以不使用<code>void</code></p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">draw</span> <span class="params">(<span class="keyword">void</span>)</span></span>; <span class="comment">// 不带参数</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">draw</span> <span class="params">()</span></span>; <span class="comment">// 和void相同</span></span><br></pre></td></tr></table></figure>
+<h4 id="19-4-1-4-默认实际参数"><a href="#19-4-1-4-默认实际参数" class="headerlink" title="19.4.1.4    默认实际参数"></a>19.4.1.4    默认实际参数</h4><p><strong>新特性：</strong>C++语言允许函数的实际参数有默认值</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 显示任意数量的换行符，如果没有提供参数，默认为1</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">new_line</span> <span class="params">(<span class="keyword">int</span> n = <span class="number">1</span>)</span> </span>&#123;</span><br><span class="line">	<span class="keyword">while</span> (n-- &gt; <span class="number">0</span>) &#123;</span><br><span class="line">		<span class="built_in">putchar</span>(<span class="string">'\n'</span>);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">new_line(<span class="number">3</span>); <span class="comment">// 三个换行</span></span><br><span class="line">new_line(); <span class="comment">//一个换行</span></span><br></pre></td></tr></table></figure>
+<h4 id="19-4-1-5-引用参数"><a href="#19-4-1-5-引用参数" class="headerlink" title="19.4.1.5    引用参数"></a>19.4.1.5    引用参数</h4><p><strong>新特性：</strong>允许实际参数被声明为<code>引用</code>，而不是<code>指针</code>。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// c语言的方式</span></span><br><span class="line"><span class="comment">/*</span><br><span class="line">void swap (int *a, int *b) &#123;</span><br><span class="line">	int temp;</span><br><span class="line">	temp = *a;</span><br><span class="line">	*a = *b;</span><br><span class="line">	*b = temp;</span><br><span class="line">&#125;</span><br><span class="line">swap(&amp;i, &amp;j);</span><br><span class="line">*/</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// c++的方式</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">swap</span> <span class="params">(<span class="keyword">int</span>&amp; a, <span class="keyword">int</span>&amp; b)</span> </span>&#123;</span><br><span class="line">	<span class="keyword">int</span> temp;</span><br><span class="line">	temp = a;</span><br><span class="line">	a = b;</span><br><span class="line">	b = temp;</span><br><span class="line">&#125;</span><br><span class="line">swap(i, j); <span class="comment">// 不需要再参数前加&amp;运算符</span></span><br></pre></td></tr></table></figure>
+<h4 id="19-4-1-6-动态存储分配"><a href="#19-4-1-6-动态存储分配" class="headerlink" title="19.4.1.6    动态存储分配"></a>19.4.1.6    动态存储分配</h4><p><strong>新特性：</strong>使用运算符<code>new</code>（分配空间）、 <code>delete</code>（释放空间）<br><strong>语法：</strong></p>
+<ul>
+<li>分配内存：<code>new 类型说明符</code></li>
+<li>释放内存： <code>delete 指针</code></li>
+</ul>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 声明变量</span></span><br><span class="line"><span class="keyword">int</span> *int_ptr, *int_array;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 分配空间</span></span><br><span class="line">int_ptr = new <span class="keyword">int</span>; <span class="comment">// 为整数分配存储空间</span></span><br><span class="line">int_array = new <span class="keyword">int</span>[<span class="number">10</span>]; <span class="comment">// 为数组分配内存</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 释放空间</span></span><br><span class="line"><span class="keyword">delete</span> int_ptr; <span class="comment">// 为整数空间释放内存</span></span><br><span class="line"><span class="keyword">delete</span> [] int_array; <span class="comment">// 为数组释放空间</span></span><br></pre></td></tr></table></figure>
+<h3 id="19-4-2-类"><a href="#19-4-2-类" class="headerlink" title="19.4.2    类"></a>19.4.2    类</h3><p><strong>类：</strong>一个类从根本上说就是一个<code>抽象数据类型</code>：一组数据以及操作这些数据的函数<br><strong>说明：</strong>这个新数据类型的功能可以同基本数据类型同样强大。<br><strong>类的不足：</strong>类的设计和实现比较复杂，这是易用性必须付出的代价，而这也是计算机领域近几年内的妥协。</p>
+<h3 id="19-4-3-类定义"><a href="#19-4-3-类定义" class="headerlink" title="19.4.3    类定义"></a>19.4.3    类定义</h3><p><strong>类标记（class tag）：</strong>可以直接作为类型名使用，不要求类名以大写开始，但许多C++程序员尊循首字母大写的规范。<br><strong>数据成员（data memeber）：</strong>类似结构的成员（但是默认是隐藏的，即“私有的”）<br><strong>类的实例（instance）：</strong>任何类的实例就是<code>对象</code>（object）<br><strong>访问成员：</strong>使用运算符<code>.</code>或<code>-&gt;</code>来访问公有的成员</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> Fraction &#123;</span><br><span class="line">	<span class="keyword">int</span> id; <span class="comment">// 默认是私有的</span></span><br><span class="line"></span><br><span class="line">	<span class="comment">// 公有成员</span></span><br><span class="line">	<span class="keyword">public</span>:</span><br><span class="line">		<span class="keyword">int</span> numeratitor;</span><br><span class="line"></span><br><span class="line">	<span class="comment">// 私有成员</span></span><br><span class="line">	<span class="keyword">private</span>:</span><br><span class="line">		<span class="keyword">int</span> denominator;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="19-4-4-成员函数"><a href="#19-4-4-成员函数" class="headerlink" title="19.4.4    成员函数"></a>19.4.4    成员函数</h3><p><strong>成员函数（member function）：</strong>属于类的函数称为成员函数，特别的，那些需要访问类的私有数据成员的函数必须声明在类里面。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> Fraction &#123;</span><br><span class="line">	<span class="keyword">public</span>:</span><br><span class="line">		<span class="comment">// 将函数的定义放在类的定义之中</span></span><br><span class="line">		<span class="function"><span class="keyword">void</span> <span class="title">create</span><span class="params">(<span class="keyword">int</span> num, <span class="keyword">int</span> denom)</span> </span>&#123;</span><br><span class="line">			numertor = num;</span><br><span class="line">			denominator = denom;</span><br><span class="line">		&#125;;</span><br><span class="line">		<span class="function"><span class="keyword">void</span> <span class="title">print</span><span class="params">()</span></span>;</span><br><span class="line">		<span class="comment">// 只声明不定义（定义部分放在类外部）</span></span><br><span class="line">		<span class="comment">/**</span><br><span class="line">		* 乘法函数</span><br><span class="line">		* @param &#123;Fraction f&#125; </span><br><span class="line">		*/</span></span><br><span class="line">		<span class="function">Fraction <span class="title">mul</span><span class="params">(Fraction f)</span></span>;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span><br><span class="line">* 乘法函数的定义</span><br><span class="line">* Fraction::前缀是必需的，否则C++编译器会将mul作为一个普通函数</span><br><span class="line">* @param &#123;Fraction f&#125; 分数</span><br><span class="line">*/</span></span><br><span class="line">Fraction Fraction::mul(Fraction f) &#123;</span><br><span class="line">	Fraction result;</span><br><span class="line">	result.numerator = numerator * f.numerator;</span><br><span class="line">	result.denominator = denominator * f.denominator;</span><br><span class="line">	result.reduce();</span><br><span class="line">	return result;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Fraction f1;</span><br><span class="line">f1.create(<span class="number">1</span>, <span class="number">2</span>);</span><br><span class="line">Fraction f2 = f1.mul(f1);</span><br></pre></td></tr></table></figure>
+<h3 id="19-4-5-构造函数"><a href="#19-4-5-构造函数" class="headerlink" title="19.4.5    构造函数"></a>19.4.5    构造函数</h3><p><strong>构造函数（controctor）：</strong></p>
+<ul>
+<li>通常时自动调用的（编译器安排在合适的时机自动调用）</li>
+<li>定义在public成员部分，不需要指定返回值类型</li>
+<li>命名和类名相同</li>
+</ul>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> Fraction &#123;</span><br><span class="line">	<span class="keyword">public</span>: </span><br><span class="line">		Fraction(<span class="keyword">int</span> num = <span class="number">0</span>, <span class="keyword">int</span> denom = <span class="number">1</span>) &#123;</span><br><span class="line">			numerator = num;</span><br><span class="line">			denominator = denom;</span><br><span class="line">		&#125;;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="function">Fraction <span class="title">f1</span><span class="params">(<span class="number">3</span>, <span class="number">4</span>)</span></span>; <span class="comment">// 通过构造函数声明并初始化实例</span></span><br><span class="line"><span class="function">Fraction <span class="title">f2</span><span class="params">(<span class="number">3</span>)</span></span>; <span class="comment">// 等同于Fraction f2(3, 1);</span></span><br><span class="line">Fraction f3; <span class="comment">// 等同于 f3(0, 1);</span></span><br></pre></td></tr></table></figure>
+<h3 id="19-4-6-构造函数和动态存储分配"><a href="#19-4-6-构造函数和动态存储分配" class="headerlink" title="19.4.6    构造函数和动态存储分配"></a>19.4.6    构造函数和动态存储分配</h3><p><strong>说明：</strong>构造函数和析构函数为那些内存分配和回收函数提供了比较合适的时机。<br><strong>举例：</strong>创建自己的<code>String</code>类型</p>
+<table>
+<thead>
+<tr>
+<th>比较</th>
+<th>C++的<code>String</code>（自定义）</th>
+<th>C语言实现方式（<code>char</code>数组）</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>字符串长度</td>
+<td>任意长度</td>
+<td>受限于数组的长度</td>
+</tr>
+<tr>
+<td>获取字符串长度</td>
+<td>O(1)</td>
+<td>O(n)</td>
+</tr>
+<tr>
+<td>扩展性</td>
+<td>需要时可给String类添加操作</td>
+<td>无法修改（就算引入<string.h>，但无法扩展）</string.h></td>
+</tr>
+</tbody>
+</table>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> String&#123;</span><br><span class="line">	<span class="keyword">public</span>:</span><br><span class="line">		<span class="comment">// 声明构造函数</span></span><br><span class="line">		String(<span class="keyword">const</span> <span class="keyword">char</span> *s);</span><br><span class="line">	<span class="keyword">private</span>:</span><br><span class="line">		<span class="keyword">char</span> *text;</span><br><span class="line">		<span class="keyword">int</span> len;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 定义构造函数</span></span><br><span class="line">String::String(<span class="keyword">const</span> <span class="keyword">char</span> *s) &#123;</span><br><span class="line">	<span class="comment">// 计算s所指向的字符串的长度</span></span><br><span class="line">	len = <span class="built_in">strlen</span>(s);</span><br><span class="line">	<span class="comment">// 分配足够大的空间</span></span><br><span class="line">	text = new Char[len + <span class="number">1</span>];</span><br><span class="line">	<span class="comment">// 将字符串复制到刚刚分配的内存中</span></span><br><span class="line">	<span class="built_in">strcpy</span>(text, s);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="19-4-7-析构函数"><a href="#19-4-7-析构函数" class="headerlink" title="19.4.7    析构函数"></a>19.4.7    析构函数</h3><p><strong>析构函数（destructor）：</strong></p>
+<ul>
+<li>名字：<code>~类名</code></li>
+<li>返回值：没有返回值</li>
+<li>参数：没有</li>
+</ul>
+<p><strong>用途：</strong>自动存储期限的类的实例，当其生存期结束后，普通成员的内存会被释放，但在构造函数中分配内存的成员指向的内存不会被释放（内存泄漏）。所以需要析构函数在对象释放时自动调用，清理构造函数动态分配的内存。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> String&#123;</span><br><span class="line">	<span class="keyword">public</span>:</span><br><span class="line">		<span class="comment">// 声明并定义构造函数</span></span><br><span class="line">		String(<span class="keyword">const</span> <span class="keyword">char</span> *s) &#123;</span><br><span class="line">			<span class="comment">// 计算s所指向的字符串的长度</span></span><br><span class="line">			len = <span class="built_in">strlen</span>(s);</span><br><span class="line">			<span class="comment">// 分配足够大的空间</span></span><br><span class="line">			text = new Char[len + <span class="number">1</span>];</span><br><span class="line">			<span class="comment">// 将字符串复制到刚刚分配的内存中</span></span><br><span class="line">			<span class="built_in">strcpy</span>(text, s);</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="comment">// 声明并定义析构函数</span></span><br><span class="line">		~String() &#123;</span><br><span class="line">			<span class="keyword">delete</span> [] text;</span><br><span class="line">		&#125;</span><br><span class="line">	<span class="keyword">private</span>:</span><br><span class="line">		<span class="keyword">char</span> *text;</span><br><span class="line">		<span class="keyword">int</span> len;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<h3 id="19-4-8-重载"><a href="#19-4-8-重载" class="headerlink" title="19.4.8    重载"></a>19.4.8    重载</h3><h4 id="函数重载"><a href="#函数重载" class="headerlink" title="函数重载"></a>函数重载</h4><p><strong>说明：</strong>在同一作用域下存在两个或以上同名但参数不同的函数(包括构造函数)叫做函数的重载。<br><strong>用途：</strong>需要记住更少的函数名，编译器会根据实际参数的情况自动判断调用哪一个函数。<br><strong>默认构造函数：</strong>不带时机参数的构造函数，会在声明对象而没有制定初始值时被调用。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> Sring &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">	<span class="comment">// 构造函数</span></span><br><span class="line">	String(<span class="keyword">const</span> <span class="keyword">char</span> *s);</span><br><span class="line">	</span><br><span class="line">	<span class="comment">/*</span><br><span class="line">	* 重载构造函数（默认）</span><br><span class="line">	* @overload</span><br><span class="line">	*/</span></span><br><span class="line">	String() &#123;</span><br><span class="line">		text = <span class="number">0</span>;</span><br><span class="line">		len = <span class="number">0</span>;</span><br><span class="line">	&#125;;</span><br><span class="line">	<span class="comment">// 析构函数</span></span><br><span class="line">	~String() &#123;</span><br><span class="line">		<span class="keyword">delete</span> [] text;</span><br><span class="line">	&#125;;</span><br><span class="line">	...</span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">	<span class="keyword">char</span> *text;</span><br><span class="line">	<span class="keyword">int</span> len;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">String s; <span class="comment">// 不带实际参数，会调用默认构造函数</span></span><br></pre></td></tr></table></figure>
+<h4 id="运算符重载"><a href="#运算符重载" class="headerlink" title="运算符重载"></a>运算符重载</h4><p><strong>说明：</strong>重载运算符后，根据操作数类型的不同，同样的运算符号可以代表不同的操作。<br><strong>用途：</strong>更易读，更自然（不需要定义一些难以记住的函数名）</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> Fraction &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">	...</span><br><span class="line">	<span class="comment">// 声明重载操作符：*</span></span><br><span class="line">	Fraction <span class="keyword">operator</span>*(Fraction f);</span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">	...</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 定义重载操作符：*</span></span><br><span class="line">Fraction Fraction::operation*(Fraction f) &#123;</span><br><span class="line">	<span class="comment">//代码</span></span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">...</span><br><span class="line">f3 = f1 * f2; <span class="comment">// 定义的*是一个二元运算符(相当于f3 = f1.operator*(f2);)</span></span><br></pre></td></tr></table></figure>
+<h4 id="C-语言的输入／输出（）"><a href="#C-语言的输入／输出（）" class="headerlink" title="C++语言的输入／输出（）"></a>C++语言的输入／输出（<stdio.h>）</stdio.h></h4>
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/c语言基础/" rel="tag">#c语言基础</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/05/10/18 声明/" rel="next" title="18 声明">
+                <i class="fa fa-chevron-left"></i> 18 声明
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/05/10/20 低级程序设计/" rel="prev" title="20 低级程序设计">
+                20 低级程序设计 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2016/05/10/19 程序设计/"
+           data-title="19 程序设计" data-url="http://laputa-er.github.io/2016/05/10/19 程序设计/">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.gif"
+               alt="Sean" />
+          <p class="site-author-name" itemprop="name">Sean</p>
+          <p class="site-description motion-element" itemprop="description">整理了一批过去一段时间ios相关的笔记，其它的笔记也整理下？源码分享出来？再说吧...反正也只有自己会看吧...</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">153</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">16</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">15</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#19-1-模块"><span class="nav-text">19.1    模块</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#19-1-1-内聚性与耦合性"><span class="nav-text">19.1.1    内聚性与耦合性</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#19-1-2-模块的类型"><span class="nav-text">19.1.2    模块的类型</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#19-2-信息隐藏"><span class="nav-text">19.2    信息隐藏</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#栈模块-实现部分"><span class="nav-text">栈模块(实现部分)</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#19-3-抽象数据类型"><span class="nav-text">19.3    抽象数据类型</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#19-4-C-语言"><span class="nav-text">19.4    C++语言</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#19-4-1-C语言与C-语言之间的差异"><span class="nav-text">19.4.1    C语言与C++语言之间的差异</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#19-4-1-1-注释"><span class="nav-text">19.4.1.1    注释</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#19-4-1-2-标记与类型名"><span class="nav-text">19.4.1.2    标记与类型名</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#19-4-1-3-不带参数的函数"><span class="nav-text">19.4.1.3    不带参数的函数</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#19-4-1-4-默认实际参数"><span class="nav-text">19.4.1.4    默认实际参数</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#19-4-1-5-引用参数"><span class="nav-text">19.4.1.5    引用参数</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#19-4-1-6-动态存储分配"><span class="nav-text">19.4.1.6    动态存储分配</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#19-4-2-类"><span class="nav-text">19.4.2    类</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#19-4-3-类定义"><span class="nav-text">19.4.3    类定义</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#19-4-4-成员函数"><span class="nav-text">19.4.4    成员函数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#19-4-5-构造函数"><span class="nav-text">19.4.5    构造函数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#19-4-6-构造函数和动态存储分配"><span class="nav-text">19.4.6    构造函数和动态存储分配</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#19-4-7-析构函数"><span class="nav-text">19.4.7    析构函数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#19-4-8-重载"><span class="nav-text">19.4.8    重载</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#函数重载"><span class="nav-text">函数重载</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#运算符重载"><span class="nav-text">运算符重载</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#C-语言的输入／输出（）"><span class="nav-text">C++语言的输入／输出（）</span></a></li></ol></li></ol></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Sean</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"lapuda-er"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+    <script src="/vendors/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
+    <script src="/js/src/hook-duoshuo.js"></script>
+  
+
+
+
+
+
+
+  
+  
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length == 0) {
+       search_path = "search.xml";
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    function proceedsearch() {
+      $("body").append('<div class="popoverlay">').css('overflow', 'hidden');
+      $('.popup').toggle();
+
+    }
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+    'use strict';
+    $.ajax({
+        url: path,
+        dataType: "xml",
+        async: true,
+        success: function( xmlResponse ) {
+            // get the contents from search data
+            isfetched = true;
+            $('.popup').detach().appendTo('.header-inner');
+            var datas = $( "entry", xmlResponse ).map(function() {
+                return {
+                    title: $( "title", this ).text(),
+                    content: $("content",this).text(),
+                    url: $( "url" , this).text()
+                };
+            }).get();
+            var $input = document.getElementById(search_id);
+            var $resultContent = document.getElementById(content_id);
+            $input.addEventListener('input', function(){
+                var matchcounts = 0;
+                var str='<ul class=\"search-result-list\">';
+                var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+                $resultContent.innerHTML = "";
+                if (this.value.trim().length > 1) {
+                // perform local searching
+                datas.forEach(function(data) {
+                    var isMatch = true;
+                    var content_index = [];
+                    var data_title = data.title.trim().toLowerCase();
+                    var data_content = data.content.trim().replace(/<[^>]+>/g,"").toLowerCase();
+                    var data_url = data.url;
+                    var index_title = -1;
+                    var index_content = -1;
+                    var first_occur = -1;
+                    // only match artiles with not empty titles and contents
+                    if(data_title != '' && data_content != '') {
+                        keywords.forEach(function(keyword, i) {
+                            index_title = data_title.indexOf(keyword);
+                            index_content = data_content.indexOf(keyword);
+                            if( index_title < 0 && index_content < 0 ){
+                                isMatch = false;
+                            } else {
+                                if (index_content < 0) {
+                                    index_content = 0;
+                                }
+                                if (i == 0) {
+                                    first_occur = index_content;
+                                }
+                            }
+                        });
+                    }
+                    // show search results
+                    if (isMatch) {
+                        matchcounts += 1;
+                        str += "<li><a href='"+ data_url +"' class='search-result-title'>"+ data_title +"</a>";
+                        var content = data.content.trim().replace(/<[^>]+>/g,"");
+                        if (first_occur >= 0) {
+                            // cut out 100 characters
+                            var start = first_occur - 20;
+                            var end = first_occur + 80;
+                            if(start < 0){
+                                start = 0;
+                            }
+                            if(start == 0){
+                                end = 50;
+                            }
+                            if(end > content.length){
+                                end = content.length;
+                            }
+                            var match_content = content.substring(start, end);
+                            // highlight all keywords
+                            keywords.forEach(function(keyword){
+                                var regS = new RegExp(keyword, "gi");
+                                match_content = match_content.replace(regS, "<b class=\"search-keyword\">"+keyword+"</b>");
+                            });
+
+                            str += "<p class=\"search-result\">" + match_content +"...</p>"
+                        }
+                        str += "</li>";
+                    }
+                })};
+                str += "</ul>";
+                if (matchcounts == 0) { str = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>' }
+                if (keywords == "") { str = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>' }
+                $resultContent.innerHTML = str;
+            });
+            proceedsearch();
+        }
+    });}
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched == false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+
+    });
+
+    $('.popup-btn-close').click(function(e){
+      $('.popup').hide();
+      $(".popoverlay").remove();
+      $('body').css('overflow', '');
+    });
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+  </script>
+
+
+  
+
+  
+
+  
+
+</body>
+</html>
