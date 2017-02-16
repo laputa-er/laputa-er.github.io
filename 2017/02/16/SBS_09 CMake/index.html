@@ -1,0 +1,1195 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="构造系统,cmake," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1" />
+
+
+
+
+
+
+<meta name="description" content="CMake 官网： https://cmake.org/说明： CMake 是一种描述构造过程的高层次语言，可以通过不同的生成器，转译成原生构造工具自己的语言。
+
+简化构造系统，跨平台
+CMake 有几种生成器，分别运行于不同的构造机器类型
+CMake 的构造描述使用平台无关语言，保存在 CMakeLits.txt 文件中
+
+安装 CMake： brew install cmake
+1 CMak">
+<meta property="og:type" content="article">
+<meta property="og:title" content="SBS_09 CMake">
+<meta property="og:url" content="http://laputa-er.github.io/2017/02/16/SBS_09 CMake/index.html">
+<meta property="og:site_name" content="Sean">
+<meta property="og:description" content="CMake 官网： https://cmake.org/说明： CMake 是一种描述构造过程的高层次语言，可以通过不同的生成器，转译成原生构造工具自己的语言。
+
+简化构造系统，跨平台
+CMake 有几种生成器，分别运行于不同的构造机器类型
+CMake 的构造描述使用平台无关语言，保存在 CMakeLits.txt 文件中
+
+安装 CMake： brew install cmake
+1 CMak">
+<meta property="og:image" content="http://o7m5xjmtl.bkt.clouddn.com/SBS_09%20CMake/FE5584DA-DEE7-41A2-A15C-FB7731310981.png">
+<meta property="og:image" content="http://o7m5xjmtl.bkt.clouddn.com/SBS_09%20CMake/CAD2414E-CE9C-4186-9E7F-D105310562BA.png">
+<meta property="og:image" content="http://o7m5xjmtl.bkt.clouddn.com/SBS_09%20CMake/D0C1804E-886C-4779-B351-6D94F53874A2.png">
+<meta property="og:image" content="http://o7m5xjmtl.bkt.clouddn.com/SBS_09%20CMake/58DBA960-B4BF-4921-B0AF-479FF55FE413.png">
+<meta property="og:image" content="http://o7m5xjmtl.bkt.clouddn.com/SBS_09%20CMake/EED7D2B1-00AF-4BFA-8609-7B5E3C0DE552.png">
+<meta property="og:image" content="http://o7m5xjmtl.bkt.clouddn.com/SBS_09%20CMake/1A592D4D-2C33-4671-9714-F90001788954.png">
+<meta property="og:updated_time" content="2017-02-16T06:07:05.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="SBS_09 CMake">
+<meta name="twitter:description" content="CMake 官网： https://cmake.org/说明： CMake 是一种描述构造过程的高层次语言，可以通过不同的生成器，转译成原生构造工具自己的语言。
+
+简化构造系统，跨平台
+CMake 有几种生成器，分别运行于不同的构造机器类型
+CMake 的构造描述使用平台无关语言，保存在 CMakeLits.txt 文件中
+
+安装 CMake： brew install cmake
+1 CMak">
+<meta name="twitter:image" content="http://o7m5xjmtl.bkt.clouddn.com/SBS_09%20CMake/FE5584DA-DEE7-41A2-A15C-FB7731310981.png">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 0,
+      author: '博主'
+    }
+  };
+</script>
+
+
+
+
+  <link rel="canonical" href="http://laputa-er.github.io/2017/02/16/SBS_09 CMake/"/>
+
+  <title> SBS_09 CMake | Sean </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//hm.baidu.com/hm.js?898688f51c5a3d6b37dd23e04441e5bd";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">Sean</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">笔记分享</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup">
+ <span class="search-icon fa fa-search"></span>
+ <input type="text" id="local-search-input">
+ <div id="local-search-result"></div>
+ <span class="popup-btn-close">close</span>
+</div>
+
+
+    </div>
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                SBS_09 CMake
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2017-02-16T03:10:03+08:00" content="2017-02-16">
+              2017-02-16
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/深入理解软件构造系统-原理与最佳实践/" itemprop="url" rel="index">
+                    <span itemprop="name">深入理解软件构造系统-原理与最佳实践</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2017/02/16/SBS_09 CMake/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2017/02/16/SBS_09 CMake/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p><img src="http://o7m5xjmtl.bkt.clouddn.com/SBS_09%20CMake/FE5584DA-DEE7-41A2-A15C-FB7731310981.png" alt=""></p>
+<p><strong>CMake 官网：</strong> <a href="https://cmake.org/" target="_blank" rel="external">https://cmake.org/</a><br><strong>说明：</strong> CMake 是一种描述构造过程的高层次语言，可以通过不同的生成器，转译成原生构造工具自己的语言。</p>
+<ul>
+<li>简化构造系统，跨平台</li>
+<li>CMake 有几种生成器，分别运行于不同的构造机器类型</li>
+<li>CMake 的构造描述使用平台无关语言，保存在 CMakeLits.txt 文件中</li>
+</ul>
+<p><strong>安装 CMake：</strong> <code>brew install cmake</code></p>
+<h1 id="1-CMake-编程语言"><a href="#1-CMake-编程语言" class="headerlink" title="1 CMake 编程语言"></a>1 CMake 编程语言</h1><h2 id="1-1-CMake-语言基础"><a href="#1-1-CMake-语言基础" class="headerlink" title="1.1 CMake 语言基础"></a>1.1 CMake 语言基础</h2><h3 id="命令"><a href="#命令" class="headerlink" title="命令"></a>命令</h3><p><strong>标准语法：</strong> <code>command (arg1 arg2 …)</code></p>
+<table>
+<thead>
+<tr>
+<th>几个常用命令</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>project</code>)</td>
+<td>为构造系统命名，供需要项目名的原生构造系统（例如 Eclipse） 使用。</td>
+</tr>
+<tr>
+<td><code>set</code></td>
+<td>设置变量</td>
+</tr>
+<tr>
+<td><code>set_property</code></td>
+<td>为指定文件设置属性</td>
+</tr>
+<tr>
+<td><code>get_property</code></td>
+<td>获取指定文件的属性名</td>
+</tr>
+</tbody>
+</table>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># </span></span><br><span class="line"><span class="comment"># 使用 project 命令为构造系统命名，将 "basic-sync C" 作为这个构造系统的唯一标识。供需要项目名的原生构造系统（例如 Eclipse） 使用。</span></span><br><span class="line"><span class="comment"># project(&lt;项目名&gt; &lt;编译的语言(C/C++/Java)&gt;)</span></span><br><span class="line"><span class="comment">#</span></span><br><span class="line">project (basic-sync C)</span><br><span class="line"></span><br><span class="line"><span class="comment">#</span></span><br><span class="line"><span class="comment"># 声明这段构造描述使用的是 CMake 2.6+ 所支持的命令集。</span></span><br><span class="line"><span class="comment"># param1： VERSION 关键字</span></span><br><span class="line"><span class="comment"># param2: 版本号 </span></span><br><span class="line"><span class="comment">#</span></span><br><span class="line">cmake_minimum_required(VERSION 2.6)</span><br><span class="line"></span><br><span class="line"><span class="comment">#</span></span><br><span class="line"><span class="comment"># 创建变量</span></span><br><span class="line"><span class="comment"># set(&lt;变量名&gt; &lt;变量值&gt;)</span></span><br><span class="line"><span class="comment">#</span></span><br><span class="line"><span class="built_in">set</span> (wife Grace)</span><br><span class="line"></span><br><span class="line"><span class="built_in">set</span> (dog Stan)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 输出一行字符串信息（使用 $&#123;&#125; 语法访问变量的值）</span></span><br><span class="line">message (<span class="string">"<span class="variable">$&#123;wifi&#125;</span>, please take <span class="variable">$(dog)</span> for a walk"</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment">#</span></span><br><span class="line"><span class="comment"># 为指定文件设置属性</span></span><br><span class="line"><span class="comment"># set_property(SOURCE &lt;文件名&gt; PROPERTY &lt;属性名&gt; &lt;属性值&gt;)</span></span><br><span class="line"><span class="comment">#</span></span><br><span class="line"><span class="built_in">set</span>_property (SOURCE add.c PROPERTY Author Peter)</span><br><span class="line"><span class="built_in">set</span>_property (SOURCE mult c PROPERTY Author John)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">#</span></span><br><span class="line"><span class="comment"># 获取指定文件的属性名</span></span><br><span class="line"><span class="comment"># get_property(&lt;赋值给哪个变量&gt; SOURCE &lt;文件名&gt; PROPERTY &lt;属性名&gt;)</span></span><br><span class="line"><span class="comment">#</span></span><br><span class="line">get_property (author_name SOURCE add.c PROPERTY Author)</span><br><span class="line"></span><br><span class="line">message (<span class="string">"The author of add.c is <span class="variable">$&#123;author_name&#125;</span>"</span>)</span><br></pre></td></tr></table></figure>
+<h2 id="1-2-构造可执行程序和程序库"><a href="#1-2-构造可执行程序和程序库" class="headerlink" title="1.2 构造可执行程序和程序库"></a>1.2 构造可执行程序和程序库</h2><h3 id="（1）创建可执行程序和程序库"><a href="#（1）创建可执行程序和程序库" class="headerlink" title="（1）创建可执行程序和程序库"></a>（1）创建可执行程序和程序库</h3><table>
+<thead>
+<tr>
+<th>相关命令</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>add_executable</code></td>
+<td>创建可执行程序（生成合适的编译器命令行，把文件名加到依赖关系中）</td>
+</tr>
+<tr>
+<td><code>add_library</code></td>
+<td>编译源文件，归档为程序库</td>
+</tr>
+<tr>
+<td><code>target_link_libraries</code></td>
+<td>链接可执行程序和程序库</td>
+</tr>
+<tr>
+<td><code>include_directories</code></td>
+<td>指定在哪些额外路径搜索头文件</td>
+</tr>
+<tr>
+<td><code>link_directories</code></td>
+<td>指定在哪些路径中搜索程序库</td>
+</tr>
+</tbody>
+</table>
+<p><em>CMakwLists.txt: 情形1，不需要链接程序库的可执行程序</em></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 将 add.c sub.c mult.c calc.c 编译病链接为可执行程序</span></span><br><span class="line">add_executable (calculator add sub mult calc)</span><br></pre></td></tr></table></figure>
+<p><em>CMakwLists.txt: 情形2，需要链接程序库的情况</em></p>
+<figure class="highlight mipsasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 创建静态库</span></span><br><span class="line"><span class="keyword">add_library(math </span>STATIC <span class="keyword">add </span><span class="keyword">sub </span><span class="keyword">mult)</span><br><span class="line"></span></span><br><span class="line"><span class="comment"># 创建可执行程序</span></span><br><span class="line"><span class="keyword">add_executable(calculator </span>calc)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 将上一步生成的可执行程序和静态库链接在一起</span></span><br><span class="line">target_link_libraries (calculator math)</span><br></pre></td></tr></table></figure>
+<h3 id="（2）设置编译标志参数"><a href="#（2）设置编译标志参数" class="headerlink" title="（2）设置编译标志参数"></a>（2）设置编译标志参数</h3><p><strong>说明：</strong> CMake 不鼓励对编译器标志参数进行硬编码，而是通过构造描述来声明需要哪一种类型的输出，并由 CMake 判断采用什么编译器标志参数。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 设置编译过程为调试模式（在 UNIX 系统中，上例生成的结果是把 -g 标志参数加到 C 编译器命令行）。</span></span><br><span class="line"><span class="built_in">set</span>(CMAKE_BUILD_TYPE Debug)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 在编译当前目录中的所有 C 文件时，命令行中添加 TEST=1 选项。</span></span><br><span class="line"><span class="built_in">set</span>_property(DIRECTORY PROPERTY COMPILE_DEFINITIONS TEST=1)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 在对 add.c 进行编译时，命令行中添加 QUICKADD=1 选项。</span></span><br><span class="line"><span class="built_in">set</span>_property(SOURCE add.c PROPERTY COMPILE_DEFINITIONS QUICKADD=1)</span><br></pre></td></tr></table></figure>
+<h3 id="（3）增加定制命令和标的"><a href="#（3）增加定制命令和标的" class="headerlink" title="（3）增加定制命令和标的"></a>（3）增加定制命令和标的</h3><p><strong>说明：</strong> 对于更复杂的构造需求，可以定义新的编译工具，让 CMke 把这些工具加到原生构造系统中。</p>
+<h4 id="add-custom-command"><a href="#add-custom-command" class="headerlink" title="add_custom_command"></a>add_custom_command</h4><p><strong>功能：</strong> 类似 GNU Make 的标准规则。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># -----------------------------------------------</span></span><br><span class="line"><span class="comment"># 定义新的编译工具，让 CMake 把这些工具加到原生构造系统中.</span></span><br><span class="line"><span class="comment"># ----------------------------------------------</span></span><br><span class="line">project(custom_<span class="built_in">command</span>)</span><br><span class="line">cmake_minimum_required(VERSION 2.6)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 定义新编译工具的源文件</span></span><br><span class="line"><span class="built_in">set</span>(input_data_file <span class="variable">$&#123;PROJECT_SOURCE_DIR&#125;</span>/data.dat)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 定义新编译工具的目标文件</span></span><br><span class="line"><span class="built_in">set</span>(output_c_file data.c)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 添加自定义规则</span></span><br><span class="line">add_custom_<span class="built_in">command</span>(</span><br><span class="line">	<span class="comment"># 声明要创建的文件(标的)</span></span><br><span class="line">	OUTPUT <span class="variable">$&#123;output_c_file&#125;</span></span><br><span class="line">	<span class="comment"># shell 命令</span></span><br><span class="line">	COMMAND /tools/bin/make-data-file</span><br><span class="line">		&lt; <span class="variable">$&#123;input_data_file&#125;</span></span><br><span class="line">		&gt; <span class="variable">$&#123;output_c_file&#125;</span> </span><br><span class="line">	<span class="comment"># 规则的依赖列表</span></span><br><span class="line">	DEPENDS <span class="variable">$&#123;input_data_file&#125;</span></span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 顶层标的（创建最终的可执行程序）</span></span><br><span class="line">add_executable(<span class="built_in">print</span>-data <span class="variable">$&#123;output_c_file&#125;</span>)</span><br></pre></td></tr></table></figure>
+<h4 id="add-custom-target"><a href="#add-custom-target" class="headerlink" title="add_custom_target"></a>add_custom_target</h4><p><strong>功能：</strong> 类似 GNU Make 的伪标的。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">project(custom_target)</span><br><span class="line"></span><br><span class="line">cmake_minimum_required(VERSION 2.6)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 添加自定义标的（通过 ALL 关键字声明为默认标的）</span></span><br><span class="line">add_custom_target(<span class="built_in">print</span>-city ALL</span><br><span class="line">	COMMAND <span class="built_in">echo</span> <span class="string">"Vancouver is a nice city"</span></span><br><span class="line">	COMMAND <span class="built_in">echo</span> <span class="string">"Even when it rains"</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 添加标的 print-time</span></span><br><span class="line">add_custom_target(<span class="built_in">print</span>-time</span><br><span class="line">	COMMMAND echi <span class="string">"It is now 2:19pc"</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 添加标的 print-day</span></span><br><span class="line">add_custom_target(<span class="built_in">print</span>-day</span><br><span class="line">	COMMAND <span class="built_in">echo</span> <span class="string">"Today is Monday"</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 声明 print-city 标的依赖 print-time 标的 和 print-day 标的</span></span><br><span class="line">add_dependencies(<span class="built_in">print</span>-city <span class="built_in">print</span>-time <span class="built_in">print</span>-day)</span><br></pre></td></tr></table></figure>
+<h2 id="1-3-控制流"><a href="#1-3-控制流" class="headerlink" title="1.3 控制流"></a>1.3 控制流</h2><h3 id="（1）标准语法"><a href="#（1）标准语法" class="headerlink" title="（1）标准语法"></a>（1）标准语法</h3><p><strong>注意：</strong> end 和 endif 语句后也需要加 <code>()</code></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">set</span>(my_var 1)</span><br><span class="line"><span class="keyword">if</span>(<span class="variable">$&#123;my_var&#125;</span>)</span><br><span class="line">	message(<span class="string">"my_var is true"</span>)</span><br><span class="line"><span class="keyword">else</span>()</span><br><span class="line">	message(<span class="string">"my_var is false"</span>)</span><br><span class="line">endif()</span><br></pre></td></tr></table></figure>
+<h3 id="（2）布尔操作"><a href="#（2）布尔操作" class="headerlink" title="（2）布尔操作"></a>（2）布尔操作</h3><table>
+<thead>
+<tr>
+<th>布尔操作关键字</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>AND</code></td>
+<td>与</td>
+</tr>
+<tr>
+<td><code>OR</code></td>
+<td>或</td>
+</tr>
+<tr>
+<td><code>NOT</code></td>
+<td>非</td>
+</tr>
+<tr>
+<td><code>EQUAL</code></td>
+<td>判等</td>
+</tr>
+<tr>
+<td><code>EXITS</code></td>
+<td>检查文件是否存在</td>
+</tr>
+<tr>
+<td><code>IS_NEWER_THAN</code></td>
+<td>检查文件之间的新旧程度</td>
+</tr>
+<tr>
+<td><code>MATCH</code></td>
+<td>与正则表达式进行匹配</td>
+</tr>
+</tbody>
+</table>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># NOT</span></span><br><span class="line"><span class="keyword">if</span>(NOT my_var) <span class="comment"># 变量不需要使用 $&#123;&#125;</span></span><br><span class="line">	...</span><br><span class="line">endif()</span><br><span class="line"></span><br><span class="line"><span class="comment"># EQUAL</span></span><br><span class="line"><span class="keyword">if</span>($(my_age) EQUAL 40)</span><br><span class="line">	...</span><br><span class="line">endif()</span><br><span class="line"></span><br><span class="line"><span class="comment"># EXISTS</span></span><br><span class="line"><span class="keyword">if</span>(EXISTS file1.txt)</span><br><span class="line">	...</span><br><span class="line">endif()</span><br><span class="line"></span><br><span class="line"><span class="comment"># IS_NEWER_THAN</span></span><br><span class="line"><span class="keyword">if</span>(file1.txt IS_NEWER_THAN file2.txt)</span><br><span class="line">	...</span><br><span class="line">endif()</span><br><span class="line"></span><br><span class="line"><span class="comment"># MATCHS</span></span><br><span class="line"><span class="keyword">if</span>(<span class="variable">$&#123;symbol_name&#125;</span> MATCHES <span class="string">"^[a-z][a-z0-9]*$"</span>)</span><br><span class="line">	...</span><br><span class="line">endif()</span><br></pre></td></tr></table></figure>
+<h3 id="（3）宏结构"><a href="#（3）宏结构" class="headerlink" title="（3）宏结构"></a>（3）宏结构</h3><p><strong>说明：</strong> 类似函数。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">project(macro)</span><br><span class="line">cmake_minimum_required(VERSION 2.6)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 定义宏结构</span></span><br><span class="line">macro(my_macro ARG1 ARG2 ARG3)</span><br><span class="line">	message(<span class="string">"The my_macro macro was passed the following arguments:"</span>)</span><br><span class="line">	message(<span class="string">"<span class="variable">$&#123;ARG1&#125;</span>, <span class="variable">$&#123;ARG2&#125;</span> and <span class="variable">$&#123;ARG3&#125;</span>"</span>)</span><br><span class="line">endmacro(my_macro)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 调用宏结构</span></span><br><span class="line">my_macro(1 2 3)</span><br><span class="line">my_macro(France Germany Russia)</span><br></pre></td></tr></table></figure>
+<h3 id="（4）foreach-循环"><a href="#（4）foreach-循环" class="headerlink" title="（4）foreach 循环"></a>（4）foreach 循环</h3><p><strong>注意：</strong> 循环结构不会转译为原生构造工具的循环结构，而是通过向 makefile 中加入若干不容的规则，从而提供等价的功能。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">project(foreach)</span><br><span class="line">cmake_minimum_required(VERSION 2.6)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 针对每个源文件，为其添加新顶层标的</span></span><br><span class="line">foreach(<span class="built_in">source</span>_file add.c mult.c mult.c calc.c)</span><br><span class="line">	message(<span class="string">"Calculating cksum for <span class="variable">$&#123;source_file&#125;</span>"</span>)</span><br><span class="line">	add_custom_target(cksum-<span class="variable">$&#123;source_file&#125;</span> ALL</span><br><span class="line">		COMMAND cksum <span class="variable">$&#123;PROJECT_SOURCE_DIR&#125;</span>/<span class="variable">$&#123;source_file&#125;</span>)</span><br><span class="line">endforeach(<span class="built_in">source</span>_file)</span><br></pre></td></tr></table></figure>
+<h2 id="1-4-跨平台支持"><a href="#1-4-跨平台支持" class="headerlink" title="1.4 跨平台支持"></a>1.4 跨平台支持</h2><p><strong>说明：</strong>  CMake 具备跨平台的能力，但并不总是如此，需要我们在编写时考虑构造机器的差异。<br><strong>跨平台支持：</strong>CMake 让我们可以找到特定的工具和文件，以及确定地层编译器支持哪些特性。</p>
+<h3 id="（1）在构造机器上查找文件和工具的位置"><a href="#（1）在构造机器上查找文件和工具的位置" class="headerlink" title="（1）在构造机器上查找文件和工具的位置"></a>（1）在构造机器上查找文件和工具的位置</h3><p><strong>说明：</strong> CMake 提供了在标准路径中搜索文件和工具的若干命令。同时也提供了用来查找流行工具和程序库的代码模块，只要引入模块，就自动完成相关库和命令的定位，并记录在相应的变量中。</p>
+<table>
+<thead>
+<tr>
+<th>搜索文件或工具的命令</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>find_program</code></td>
+<td>获取指定程序的路径，并记录在指定变量中</td>
+</tr>
+<tr>
+<td><code>find_file</code></td>
+<td>获取指定文件的完整路径，并记录在指定变量中</td>
+</tr>
+<tr>
+<td><code>find_library</code></td>
+<td>获取指定程序库的完整路径，并记录在指定变量中</td>
+</tr>
+<tr>
+<td><code>include</code></td>
+<td>载入并运行 cmake 模块</td>
+</tr>
+</tbody>
+</table>
+<p><em>CMakeLists.txt： 使用命令寻找</em></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">project(finding)</span><br><span class="line">cmake_minumum_required(VERSION 2.6)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 在标准路径中搜索 ls 工具的绝对路径，并记录在 LS_PATH 变量中</span></span><br><span class="line">find_program(LS_PATH ls)</span><br><span class="line">message(<span class="string">"The path to the ls program is <span class="variable">$&#123;LS_PATH&#125;</span>"</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 在 PATH 环境变量列出的路径中遍历搜索 stdio.h 文件，并将找到的路径记录在 STDIO_H 变量中</span></span><br><span class="line">find_file(STDIO_H PATH stdio.h)</span><br><span class="line">message(<span class="string">"The path to the stdio.h file is <span class="variable">$&#123;STDIO_H_PATH&#125;</span>"</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 在指定路径 /usr/local/lib 和 /usr/lib64 中，寻找 c 语言标准数学运算程序库，并将找到的路径记录在 LIB_MATH_PATH 变量中</span></span><br><span class="line">find_library(LIB_MATH_PATH m /usr/<span class="built_in">local</span>/lib /usr/lib64)</span><br><span class="line">message(<span class="string">"The path to the math library is <span class="variable">$&#123;LIB_MATH_PATH&#125;</span>"</span>)</span><br></pre></td></tr></table></figure>
+<p><em>CMakeLists.txt：利用 CMakeLists 封装的模块简化查找</em></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">project(find-perl)</span><br><span class="line">cmake_minimum_required(VERSION 2.6)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 包含 FindPerl， CMake 自动完成 perl 解释器的查找工作</span></span><br><span class="line">include(FindPerl)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 如果找到了 perl 程序，执行 perl 脚本</span></span><br><span class="line"><span class="keyword">if</span>(PERL_FOUND)</span><br><span class="line">	execute_process(</span><br><span class="line">		COMMAND <span class="variable">$&#123;PERL_EXECUTABLE&#125;</span> <span class="variable">$&#123;PROJECT_SOURCE_DIR&#125;</span>/config.pl</span><br><span class="line">	)</span><br><span class="line"><span class="comment"># 否则就输出错误信息</span></span><br><span class="line"><span class="keyword">else</span>()</span><br><span class="line">	message(SEND_ERROR <span class="string">"There is no perl interpreter on this system"</span>)</span><br><span class="line">endif()</span><br></pre></td></tr></table></figure>
+<h3 id="（2）对源代码进行测试的能力"><a href="#（2）对源代码进行测试的能力" class="headerlink" title="（2）对源代码进行测试的能力"></a>（2）对源代码进行测试的能力</h3><p><strong>说明：</strong> 在编译程序之前，必须判断构造机器的编译器是否提供了所有必要功能和头文件。如果不满足需要的话，就必须用自己的实现版本来进行替换，或甚至放弃构造过程。</p>
+<table>
+<thead>
+<tr>
+<th>对底层编译器进行测试的命令</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>try_compile</code></td>
+<td>测试构造系统能否对程序源码进行正确编译</td>
+</tr>
+<tr>
+<td><code>try_run</code></td>
+<td>测试构造系统构造的程序能够正确运行</td>
+</tr>
+</tbody>
+</table>
+<p><em>CMakeLists.txt</em></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">project(try-compile)</span><br><span class="line">cmake_minimum_required(VERSION 2.6)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 该模块包含 CHECK_FUNCTION_EXISTS 宏，该宏封装了 try_compile 命令，用来检测函数是否定义</span></span><br><span class="line">include(CheckFunctionExists)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 该模块包含 CHECK_STRUCT_HAS_MEMBER 宏，封装了 try_compile 命令，用来检测结构体是否定义了某个成员</span></span><br><span class="line">include(CheckStructHasMember)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 检测 vsnprintf 函数是否存在，并将测试结果记录在 VSNPRINTF_EXISTS</span></span><br><span class="line">CHECK_FUNCTION_EXISTS(vsnprintf VSNPRINTF_EXISTS)</span><br><span class="line"><span class="keyword">if</span>(NOT VSNPRINTF_EXISTS)</span><br><span class="line">	message(SEND_ERROR <span class="string">"vsnprintf not available on this build machine"</span>)</span><br><span class="line">endif()</span><br><span class="line"></span><br><span class="line"><span class="comment"># 检测头文件 wait.h 中定义的结构体 rusage 是否存在成员 ru_time，并将检查结果存放在 HAS_STIME 变量</span></span><br><span class="line">CHECK_STRUCT_HAS_MEMBER(<span class="string">"struct rusage"</span> ru_stime wait.h HAS_STIME)</span><br><span class="line"><span class="keyword">if</span>(NOT HAS_STIME)</span><br><span class="line">	message(SEND_ERROR <span class="string">"ru_stime field not available in struct rusage"</span>)</span><br><span class="line">endif()</span><br></pre></td></tr></table></figure>
+<h2 id="1-5-生成原生构造系统"><a href="#1-5-生成原生构造系统" class="headerlink" title="1.5 生成原生构造系统"></a>1.5 生成原生构造系统</h2><p><strong>说明：</strong> 使用 CMake 完成编译划分为两个阶段，第一个阶段是 CMake 设计的关键部分。<br><strong>注意：</strong> CMake 在生成原生构造系统时增加了许多标准特性，例如自动化依赖关系分析等。</p>
+<p><img src="http://o7m5xjmtl.bkt.clouddn.com/SBS_09%20CMake/CAD2414E-CE9C-4186-9E7F-D105310562BA.png" alt=""></p>
+<h3 id="（1）-生成默认的构造系统"><a href="#（1）-生成默认的构造系统" class="headerlink" title="（1） 生成默认的构造系统"></a>（1） 生成默认的构造系统</h3><p><strong>说明：</strong> 生成系统的最简单办法，是接受默认配置参数。<br><strong>原理：</strong> 开发人员只需创建目标文件目录，然后在该目录调用 cmake 工具即可。<br><strong>特点：</strong> 这一操作不会修改源文件目录中任何文件，从而可以根据同一源树，生成多个目标文件目录。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ <span class="built_in">cd</span> path/to/project</span><br><span class="line">$ cmake ../src <span class="comment"># 使用默认的参数生成原生构造系统</span></span><br></pre></td></tr></table></figure>
+<h3 id="（2）生成非默认的构造系统"><a href="#（2）生成非默认的构造系统" class="headerlink" title="（2）生成非默认的构造系统"></a>（2）生成非默认的构造系统</h3><p><strong>原理：</strong> 通过向 cmake 命令传递 -G  选项，即可覆盖默认选择值。</p>
+<table>
+<thead>
+<tr>
+<th>相关 CMake 选项</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>-G</td>
+<td>指定要生成哪种原生构造系统</td>
+</tr>
+</tbody>
+</table>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 在 windows 系统的构造机器上输入以下命令</span></span><br><span class="line">$ cmake -G <span class="string">"Visual Studio 10"</span> ..\src</span><br><span class="line"></span><br><span class="line"><span class="comment"># 在 Linux 平台上的 Eclipse CDT 4 版本生成一套构造系统</span></span><br><span class="line">$ cmake -G <span class="string">"Eclispe CDT$ - Unix Makefiles"</span> ../src</span><br></pre></td></tr></table></figure>
+<h3 id="（3）对生成步骤进行定制调整"><a href="#（3）对生成步骤进行定制调整" class="headerlink" title="（3）对生成步骤进行定制调整"></a>（3）对生成步骤进行定制调整</h3><p><strong>缓存变量：</strong> 决定如何生成原生构造系统的一系列关键变量，称为 <code>缓存(cache)</code>变量。<br><strong>说明：</strong> 通过提供相关缓存变量值覆盖其默认值，就可以对编译过程进行定制调整。具体地，可以有 3 种方式</p>
+<ol>
+<li>在 CMakeLists.txt 中，使用 set 命令设置缓存变量（需要使用 CACHE 关键字）。</li>
+<li>在 cmake 命令后面，提供相关缓存变量值。</li>
+<li>使用 ccmake 命令取代 cmake，交互式地配置原生构造系统。配置的缓存变量值最中保存在目标文件目录下的 CMakeList.txt 文件中，把它们当作正常的变量来访问（推荐）。</li>
+</ol>
+<table>
+<thead>
+<tr>
+<th>常用缓存变量</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>CMAKE_AR</code></td>
+<td>程序库归档工具的绝对路径</td>
+</tr>
+<tr>
+<td><code>CMAKE_C_COMPILER</code></td>
+<td>C 编译器的绝对路径</td>
+</tr>
+<tr>
+<td><code>CMAKE_LINKER</code></td>
+<td>目标文件链接器的绝对路径</td>
+</tr>
+<tr>
+<td><code>CMAKE_MAKE_PROGRAME</code></td>
+<td>原生构造工具的绝对路径</td>
+</tr>
+<tr>
+<td><code>CMAKE_BUILD_TYPE</code></td>
+<td>待创建的构造树的类型，包括 Debug、Release、RelWithDebInfo、MinSizeRel</td>
+</tr>
+<tr>
+<td><code>CMAKE_C_FLAGS_*</code></td>
+<td>根据 <code>CMAKE__BUILD_TYPE</code>变量的取值， CMake 将使用相应缓存变量(CMAK_C<em>FLAGS</em>*)中列出的 C 编译器标志参数</td>
+</tr>
+</tbody>
+</table>
+<h3 id="（4）从-CMakeLists-txt-转译到原生构造系统"><a href="#（4）从-CMakeLists-txt-转译到原生构造系统" class="headerlink" title="（4）从 CMakeLists.txt 转译到原生构造系统"></a>（4）从 CMakeLists.txt 转译到原生构造系统</h3><p>一个简单但完整的例子， <a href="https://github.com/laputa-er/SOFTWARE_BUILD_SYSTEM_STUDY/tree/master/part2/09_cmake/0901_calculator/src" target="_blank" rel="external">SOFTWARE_BUILD_SYSTEM_STUDY/part2/09_cmake/0901_calculator/src at master · laputa-er/SOFTWARE_BUILD_SYSTEM_STUDY · GitHub</a></p>
+<p>第一步：编写 CMakeLists.txt<br><em>项目目录</em><br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">.</span><br><span class="line">└── src</span><br><span class="line">    ├── CMakeLists.txt <span class="comment"># CMake 描述文件</span></span><br><span class="line">    ├── add.c</span><br><span class="line">    ├── calc.c</span><br><span class="line">    ├── mult.c</span><br><span class="line">    ├── numbers.h</span><br><span class="line">    └── sub.c</span><br><span class="line">1 directory, 6 files</span><br></pre></td></tr></table></figure></p>
+<p><em>CMakeLists.txt</em></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># -----------------------</span></span><br><span class="line"><span class="comment"># 编译两个丹毒的程序：calc 和 calculator，二者使用相同的源文件</span></span><br><span class="line"><span class="comment"># -----------------------</span></span><br><span class="line">project(generating)</span><br><span class="line">cmake_minimum_required(VERSION 2.6)</span><br><span class="line"></span><br><span class="line"><span class="built_in">set</span>(prog1 calculator)</span><br><span class="line"><span class="built_in">set</span>(prog2 calc)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 打印执行程序</span></span><br><span class="line">execute_process(</span><br><span class="line">	<span class="comment"># 执行 date 命令，并将输出信息赋值给变量 TIME_NOW</span></span><br><span class="line">	COMMAND date OUTPUT_VARIABLE TIME_NOW</span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 构建两个应用程序 calculator、calc（其实是一样的）</span></span><br><span class="line">foreach(prog_name <span class="variable">$&#123;prog1&#125;</span> <span class="variable">$&#123;prog2&#125;</span>)</span><br><span class="line">	message(<span class="string">"Constructing programe <span class="variable">$&#123;prog_name&#125;</span> at <span class="variable">$&#123;TIME_NOW&#125;</span>"</span>)</span><br><span class="line">	add_executable(<span class="variable">$&#123;prog_name&#125;</span> add sub mult calc)</span><br><span class="line">endforeach()</span><br></pre></td></tr></table></figure>
+<p>第二步：转译为原生构造系统（GNU Make）</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ cmake src</span><br></pre></td></tr></table></figure>
+<p><em>原生构造系统的目录结构</em></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br></pre></td><td class="code"><pre><span class="line">.</span><br><span class="line">├── CMakeCache.txt</span><br><span class="line">├── CMakeFiles</span><br><span class="line">│   ├── 3.7.2</span><br><span class="line">│   │   ├── CMakeCCompiler.cmake</span><br><span class="line">│   │   ├── CMakeCXXCompiler.cmake</span><br><span class="line">│   │   ├── CMakeDetermineCompilerABI_C.bin</span><br><span class="line">│   │   ├── CMakeDetermineCompilerABI_CXX.bin</span><br><span class="line">│   │   ├── CMakeSystem.cmake</span><br><span class="line">│   │   ├── CompilerIdC</span><br><span class="line">│   │   └── CompilerIdCXX</span><br><span class="line">│   ├── CMakeDirectoryInformation.cmake</span><br><span class="line">│   ├── CMakeOutput.log</span><br><span class="line">│   ├── CMakeTmp</span><br><span class="line">│   ├── Makefile.cmake</span><br><span class="line">│   ├── Makefile2</span><br><span class="line">│   ├── TargetDirectories.txt</span><br><span class="line">│   ├── calc.dir</span><br><span class="line">│   │   ├── DependInfo.cmake</span><br><span class="line">│   │   ├── build.make</span><br><span class="line">│   │   ├── cmake_clean.cmake</span><br><span class="line">│   │   ├── depend.make</span><br><span class="line">│   │   ├── flags.make</span><br><span class="line">│   │   ├── link.txt</span><br><span class="line">│   │   └── progress.make</span><br><span class="line">│   ├── calculator.dir</span><br><span class="line">│   │   ├── DependInfo.cmake</span><br><span class="line">│   │   ├── build.make</span><br><span class="line">│   │   ├── cmake_clean.cmake</span><br><span class="line">│   │   ├── depend.make</span><br><span class="line">│   │   ├── flags.make</span><br><span class="line">│   │   ├── link.txt</span><br><span class="line">│   │   └── progress.make</span><br><span class="line">│   ├── cmake.check_cache</span><br><span class="line">│   ├── feature_tests.bin</span><br><span class="line">│   ├── feature_tests.c</span><br><span class="line">│   ├── feature_tests.cxx</span><br><span class="line">│   └── progress.marks</span><br><span class="line">├── Makefile</span><br><span class="line">├── cmake_install.cmake</span><br><span class="line">└── src</span><br><span class="line">    ├── CMakeLists.txt</span><br><span class="line">    ├── add.c</span><br><span class="line">    ├── calc.c</span><br><span class="line">    ├── mult.c</span><br><span class="line">    ├── numbers.h</span><br><span class="line">    └── sub.c</span><br><span class="line"></span><br><span class="line">8 directories, 38 files</span><br></pre></td></tr></table></figure>
+<p>第三步：完成构造任务</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ make</span><br></pre></td></tr></table></figure>
+<h2 id="1-6-其他有趣的特性以及进一步阅读资料"><a href="#1-6-其他有趣的特性以及进一步阅读资料" class="headerlink" title="1.6 其他有趣的特性以及进一步阅读资料"></a>1.6 其他有趣的特性以及进一步阅读资料</h2><h3 id="CMake-的其它有趣特性"><a href="#CMake-的其它有趣特性" class="headerlink" title="CMake 的其它有趣特性"></a>CMake 的其它有趣特性</h3><ul>
+<li>字符串操作</li>
+<li>列表操作</li>
+<li>文件操作</li>
+<li>数学表达式</li>
+<li>配置数据文件</li>
+<li>测试可执行程序（CTest 模块）</li>
+<li>打包与安装</li>
+<li>平台无关的 shell 命令</li>
+</ul>
+<h3 id="进一步阅读资料"><a href="#进一步阅读资料" class="headerlink" title="进一步阅读资料"></a>进一步阅读资料</h3><ul>
+<li><a href="https://cmake.org/cmake/help/v3.8/index.html" target="_blank" rel="external">官方帮助文档</a></li>
+</ul>
+<h1 id="2-显示世界的构造系统场景"><a href="#2-显示世界的构造系统场景" class="headerlink" title="2 显示世界的构造系统场景"></a>2 显示世界的构造系统场景</h1><h2 id="（1）-源代码放在单个目录中"><a href="#（1）-源代码放在单个目录中" class="headerlink" title="（1） 源代码放在单个目录中"></a>（1） 源代码放在单个目录中</h2><p>例如， <a href="https://github.com/laputa-er/SOFTWARE_BUILD_SYSTEM_STUDY/tree/master/part2/09_cmake/0902_single_dir/src" target="_blank" rel="external">laputa-er</a></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">.</span><br><span class="line">└── src</span><br><span class="line">    ├── CMakeLists.txt</span><br><span class="line">    ├── add.c</span><br><span class="line">    ├── calc.c</span><br><span class="line">    ├── mult.c</span><br><span class="line">    ├── numbers.h</span><br><span class="line">    └── sub.c</span><br></pre></td></tr></table></figure>
+<p><em>CMakeList.txt</em></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># -----------------------</span></span><br><span class="line"><span class="comment"># 编译 calculator</span></span><br><span class="line"><span class="comment"># -----------------------</span></span><br><span class="line">project(generating)</span><br><span class="line">cmake_minimum_required(VERSION 2.6)</span><br><span class="line"></span><br><span class="line">add_executable(calculator add sub mult calc)</span><br></pre></td></tr></table></figure>
+<h2 id="（2）源代码放在多个目录中"><a href="#（2）源代码放在多个目录中" class="headerlink" title="（2）源代码放在多个目录中"></a>（2）源代码放在多个目录中</h2><p>例如， <a href="https://github.com/laputa-er/SOFTWARE_BUILD_SYSTEM_STUDY/tree/master/part2/09_cmake/0902_mult_dir/src" target="_blank" rel="external">lapuya-er</a></p>
+<p><img src="http://o7m5xjmtl.bkt.clouddn.com/SBS_09%20CMake/D0C1804E-886C-4779-B351-6D94F53874A2.png" alt=""></p>
+<h3 id="第一步：编写各个目录下的-CMakeList-txt"><a href="#第一步：编写各个目录下的-CMakeList-txt" class="headerlink" title="第一步：编写各个目录下的 CMakeList.txt"></a>第一步：编写各个目录下的 CMakeList.txt</h3><table>
+<thead>
+<tr>
+<th>新命令</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>add_subdirectory</code></td>
+<td>添加字目录，从而让 CMake 了解有哪些字目录</td>
+</tr>
+</tbody>
+</table>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">.</span><br><span class="line">└── src</span><br><span class="line">    ├── CMakeLists.txt</span><br><span class="line">    ├── calc</span><br><span class="line">    │   ├── CMakeLists.txt</span><br><span class="line">    │   └── calc.c</span><br><span class="line">    ├── libmath</span><br><span class="line">    │   ├── CMakeLists.txt</span><br><span class="line">    │   ├── clock.c</span><br><span class="line">    │   ├── letter.c</span><br><span class="line">    │   └── numbers.c</span><br><span class="line">    └── libprint</span><br><span class="line">        ├── CMakeLists.txt</span><br><span class="line">        ├── banner.c</span><br><span class="line">        ├── center.c</span><br><span class="line">        └── normal.c</span><br></pre></td></tr></table></figure>
+<p><em>src/CMakeLists.txt</em></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># -----------------------------------</span></span><br><span class="line"><span class="comment"># 迭代式地包含字目录中各级构造描述文件的内容</span></span><br><span class="line"><span class="comment"># -----------------------------------</span></span><br><span class="line">project(scenario-2)</span><br><span class="line">cmake_minimum_required(VERSION 2.6)</span><br><span class="line"></span><br><span class="line">add_subdirectory(libmath)</span><br><span class="line">add_subdirectory(libprint)</span><br><span class="line">add_subdirectory(calc)</span><br></pre></td></tr></table></figure>
+<p><em>src/calc/CMakeLists.txt</em></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 创建可执行文件</span></span><br><span class="line">add_executable(calculator calc.c)</span><br><span class="line"><span class="comment"># 与 Math 和 Print 链接</span></span><br><span class="line">target_link_libraries(calculator Math Print)</span><br></pre></td></tr></table></figure>
+<p><em>src/libmath/CMakeLists.txt</em></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 生成静态库 Math</span></span><br><span class="line">add_library(Math clock letter number)</span><br></pre></td></tr></table></figure>
+<p><em>src/libprint/CMakeLists.txt</em></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 生成静态库 Print</span></span><br><span class="line">add_library(Print banner.c center.c normal.c)</span><br></pre></td></tr></table></figure>
+<h3 id="第二步：生成-GNU-Make-构造系统"><a href="#第二步：生成-GNU-Make-构造系统" class="headerlink" title="第二步：生成 GNU Make 构造系统"></a>第二步：生成 GNU Make 构造系统</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ cmake src</span><br></pre></td></tr></table></figure>
+<p>– The C compiler identification is AppleClang 8.0.0.8000042<br>– The CXX compiler identification is AppleClang 8.0.0.8000042<br>– Check for working C compiler: /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc<br>– Check for working C compiler: /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc – works<br>– Detecting C compiler ABI info<br>– Detecting C compiler ABI info - done<br>– Detecting C compile features<br>– Detecting C compile features - done<br>– Check for working CXX compiler: /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++<br>– Check for working CXX compiler: /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ – works<br>– Detecting CXX compiler ABI info<br>– Detecting CXX compiler ABI info - done<br>– Detecting CXX compile features<br>– Detecting CXX compile features - done<br>– Configuring done<br>– Generating done<br>– Build files have been written to: /Users/tonyearth/Projects/SOFTWARE_BUILD_SYSTEM_STUDY/part2/09_cmake/0902_mult_dir</p>
+<h3 id="第三步：完成构造过程"><a href="#第三步：完成构造过程" class="headerlink" title="第三步：完成构造过程"></a>第三步：完成构造过程</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ make</span><br></pre></td></tr></table></figure>
+<p>Scanning dependencies of target Math<br>[ 10%] Building C object libmath/CMakeFiles/Math.dir/clock.c.o<br>[ 20%] Building C object libmath/CMakeFiles/Math.dir/letter.c.o<br>[ 30%] Building C object libmath/CMakeFiles/Math.dir/number.c.o<br>[ 40%] Linking C static library libMath.a<br>[ 40%] Built target Math<br>Scanning dependencies of target Print<br>[ 50%] Building C object libprint/CMakeFiles/Print.dir/banner.c.o<br>[ 60%] Building C object libprint/CMakeFiles/Print.dir/center.c.o<br>[ 70%] Building C object libprint/CMakeFiles/Print.dir/normal.c.o<br>[ 80%] Linking C static library libPrint.a<br>[ 80%] Built target Print<br>Scanning dependencies of target calculator<br>[ 90%] Building C object calc/CMakeFiles/calculator.dir/calc.c.o<br>[100%] Linking C executable calculator<br>[100%] Built target calculator</p>
+<h2 id="（3）定义新的编译工具"><a href="#（3）定义新的编译工具" class="headerlink" title="（3）定义新的编译工具"></a>（3）定义新的编译工具</h2><table>
+<thead>
+<tr>
+<th>新命令</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>separate_arguments</code></td>
+<td>将字符串中的空格替换为分号</td>
+</tr>
+</tbody>
+</table>
+<p>例如， <a href="https://github.com/laputa-er/SOFTWARE_BUILD_SYSTEM_STUDY/tree/master/part2/09_cmake/0902_new_compiler" target="_blank" rel="external">SOFTWARE_BUILD_SYSTEM_STUDY/part2/09_cmake/0902_new_compiler at master · laputa-er/SOFTWARE_BUILD_SYSTEM_STUDY · GitHub</a></p>
+<p>假想的 mathcomp 编译器功能如下，<br><img src="http://o7m5xjmtl.bkt.clouddn.com/SBS_09%20CMake/58DBA960-B4BF-4921-B0AF-479FF55FE413.png" alt=""></p>
+<p>需要生成的原生构造系的统构造需求如下，<br><img src="http://o7m5xjmtl.bkt.clouddn.com/SBS_09%20CMake/EED7D2B1-00AF-4BFA-8609-7B5E3C0DE552.png" alt=""></p>
+<h3 id="第一步：编写-CMakeLists-txt"><a href="#第一步：编写-CMakeLists-txt" class="headerlink" title="第一步：编写 CMakeLists.txt"></a>第一步：编写 CMakeLists.txt</h3><p><strong>扩展：</strong> 如果使用了 <code>add_custom_command</code> 命令， C/C++ 可以通过 <code>IMPLICIT_DEPENDS</code> 选项实现依赖关系图的自动更新。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">.</span><br><span class="line">└── src</span><br><span class="line">    ├── CMakeLists.txt</span><br><span class="line">    ├── calculator.c</span><br><span class="line">    ├── equ1.mathinc</span><br><span class="line">    ├── equ2.mathinc</span><br><span class="line">    └── equations.math</span><br></pre></td></tr></table></figure>
+<p><em>CMakeLists.txt</em></p>
+<ul>
+<li>.c 文件编译过程会加入自动依赖分析功能</li>
+<li>.math 文件编译过程的依赖信息是和原生构造系统本身一起生成的，因此这部分依赖关系图不会自动更新</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># -----------------------------------------</span></span><br><span class="line"><span class="comment"># 把 mathcomp 编译器加到基于 CMake 的构造系统中</span></span><br><span class="line"><span class="comment"># -----------------------------------------</span></span><br><span class="line">project(scenario-3)</span><br><span class="line">cmake_minimum_required(VERSION 2.6)</span><br><span class="line"></span><br><span class="line"><span class="comment">#</span></span><br><span class="line"><span class="comment"># 定义一个宏，封装对第三方编译器的调用逻辑</span></span><br><span class="line"><span class="comment"># &#123;name&#125; mathcomp</span></span><br><span class="line"><span class="comment"># &#123;param&#125; FUNC_NAME 编译方式</span></span><br><span class="line"><span class="comment"># &#123;param&#125; INPUT_FILE 输入文件（.math 文件）</span></span><br><span class="line"><span class="comment"># &#123;param&#125; OUTPUT_FILE 输出文件（.c 文件）</span></span><br><span class="line"><span class="comment">#</span></span><br><span class="line">macro(mathcomp FUNC_NAME INPUT_FILE OUTPUT_FILE)</span><br><span class="line">	<span class="comment"># 在原生构造系统生成前，mathcomp 就通过 -d 选项解析出了依赖规则，并存储在了 DEPS 变量中</span></span><br><span class="line">	execute_process(</span><br><span class="line">		COMMAND /tools/bin/mathcomp <span class="_">-d</span> <span class="variable">$&#123;INPUT_FILE&#125;</span> <span class="comment"># shell 命令（编译 .math 文件）</span></span><br><span class="line">		OUTPUT_VARIABLE DEPS <span class="comment"># 标的依赖列表</span></span><br><span class="line">	)</span><br><span class="line">	message(DEPS)</span><br><span class="line">	<span class="comment"># DEPS 变量中记录的，将以空格分割的多个依赖规则转换为以分号分隔</span></span><br><span class="line">	separate_arguments(DEPS)</span><br><span class="line"></span><br><span class="line">	<span class="comment"># 添加通过 .math 文件生成 .c 文件的规则</span></span><br><span class="line">	add_custom_<span class="built_in">command</span>(</span><br><span class="line">		OUTPUT <span class="variable">$&#123;OUTPUT_FILE&#125;</span> <span class="comment"># 标的（.c 文件）</span></span><br><span class="line">		COMMAND /tools/bin/mathcomp -c -o <span class="variable">$&#123;OUTPUT_FILE&#125;</span> <span class="_">-f</span> <span class="variable">$&#123;FUNC_NAME&#125;</span> <span class="variable">$&#123;INPUT_FILE&#125;</span> <span class="comment"># shell 命令（编译生成 .c 文件）</span></span><br><span class="line">		DEPENDS <span class="variable">$&#123;DEPS&#125;</span> <span class="comment"># 规则的依赖列表</span></span><br><span class="line">	)</span><br><span class="line">endmacro(mathcomp)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 调用上面定义的宏,完成设计 mathcomp 编译器的 GNU Make 规则的建立</span></span><br><span class="line">mathcomp(equations <span class="variable">$&#123;PROJECT_SOURCE_DIR&#125;</span>/equations.math equations.c)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 构造可执行文件 calculator</span></span><br><span class="line">add_executable(calculator calculator.c equations.c)</span><br></pre></td></tr></table></figure>
+<h3 id="第二步：生成-GNU-Make-构造系统-1"><a href="#第二步：生成-GNU-Make-构造系统-1" class="headerlink" title="第二步：生成 GNU Make 构造系统"></a>第二步：生成 GNU Make 构造系统</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ cmake src</span><br></pre></td></tr></table></figure>
+<h3 id="第三步：完成构造"><a href="#第三步：完成构造" class="headerlink" title="第三步：完成构造"></a>第三步：完成构造</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ make</span><br></pre></td></tr></table></figure>
+<h2 id="（4）针对多个变量进行构造"><a href="#（4）针对多个变量进行构造" class="headerlink" title="（4）针对多个变量进行构造"></a>（4）针对多个变量进行构造</h2><p><strong>原理：</strong> 利用配置缓存来实现。比如，在配置缓存时，用户可以指出要针对哪种类型的 CPU 进行编译。<br><strong>配置缓存：</strong> 配置缓存有两种实现方式</p>
+<ol>
+<li>set 命令配合 CACHE 关键字。</li>
+<li>使用 ccmake，它提供更交互式的用户体验。</li>
+</ol>
+<p>例如， <a href="https://github.com/laputa-er/SOFTWARE_BUILD_SYSTEM_STUDY/tree/master/part2/09_cmake/0902_mult_var" target="_blank" rel="external">SOFTWARE_BUILD_SYSTEM_STUDY/part2/09_cmake/0902_mult_var at master · laputa-er/SOFTWARE_BUILD_SYSTEM_STUDY · GitHub</a>，该例使用 set 命令来配置缓存。</p>
+<p><img src="http://o7m5xjmtl.bkt.clouddn.com/SBS_09%20CMake/1A592D4D-2C33-4671-9714-F90001788954.png" alt=""></p>
+<h3 id="第一步：编写-CMakeLists-txt-1"><a href="#第一步：编写-CMakeLists-txt-1" class="headerlink" title="第一步：编写 CMakeLists.txt"></a>第一步：编写 CMakeLists.txt</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">.</span><br><span class="line">└── src</span><br><span class="line">    ├── CMakeLists.txt</span><br><span class="line">    ├── add.c</span><br><span class="line">    ├── calc.c</span><br><span class="line">    ├── mult.c</span><br><span class="line">    ├── numbers.h</span><br><span class="line">    └── sub.c</span><br></pre></td></tr></table></figure>
+<p><em>CMakeLists.txt</em></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line">SRCS := add.c calc.c mult.c sub.c</span><br><span class="line">PROG := calculator</span><br><span class="line">CFLAGS := -g</span><br><span class="line"></span><br><span class="line"><span class="comment"># 提供了 PLATFORM 默认值，用户不在命令行指定的话，默认 i386(其实也可以用 = ，因为在命令行定义的任何变量都会自动覆盖 make file中的值)</span></span><br><span class="line">PLATFORM ?= i386</span><br><span class="line"></span><br><span class="line"><span class="comment"># 有效平台列表</span></span><br><span class="line">VALID_PLATFORMS := i386 powerpc alpha</span><br><span class="line"></span><br><span class="line"><span class="comment"># 对 $(PLATFORM) 的值的有效性进行检验，如果不在有效平台列表中，则显示相应的错误提示</span></span><br><span class="line">ifeq ($(filter $(PLATFORM), $(VALID_PLATFORMS)),)</span><br><span class="line">	$(error Invalid PLATFORM: $(PLATFORM))</span><br><span class="line">endif</span><br><span class="line"></span><br><span class="line"><span class="comment"># 将不同架构平台的目标文件放在与架构关联的目录中</span></span><br><span class="line">OBJDIR := obj/$(PLATFORM)</span><br><span class="line"><span class="comment"># 确保对应架构的目标文件的存放目录存在</span></span><br><span class="line">$(shell mkdir -p $(OBJDIR))</span><br><span class="line"></span><br><span class="line"><span class="comment"># 使用合适的编译器</span></span><br><span class="line">CC := gcc-$(PLATFORM)</span><br><span class="line"><span class="comment"># 目标文件清单</span></span><br><span class="line">OBJS := $(addprefix $(OBJDIR)/, $(SRCS:.c=.o))</span><br><span class="line"></span><br><span class="line">$(OBJDIR)/$(PROG): $(OBJS)</span><br><span class="line">	gcc $(CFLAGS) -o <span class="variable">$@</span> $^</span><br><span class="line"></span><br><span class="line">$(OBJDIR)/%o: %c</span><br><span class="line">	gcc -c -o <span class="variable">$@</span> $&lt;</span><br><span class="line"></span><br><span class="line">$(OBJS): numbers.h</span><br><span class="line"></span><br><span class="line">.PHONY = clean</span><br><span class="line">clean:</span><br><span class="line">	rm -rf obj</span><br></pre></td></tr></table></figure>
+<h3 id="第二步：生成-GNU-Make-构造系统-2"><a href="#第二步：生成-GNU-Make-构造系统-2" class="headerlink" title="第二步：生成 GNU Make 构造系统"></a>第二步：生成 GNU Make 构造系统</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ mkdir obj-alpha &amp;&amp; <span class="built_in">cd</span> obj-alpha <span class="comment"># 针对 alpha 的构造系统生成到这个文件夹</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ cmake -D PLATFORM=alpha ../src <span class="comment"># 创建专门针对 alpha 的构造系统</span></span><br></pre></td></tr></table></figure>
+<p>cmake -D PLATFORM=alpha ../src<br>– The C compiler identification is AppleClang 8.0.0.8000042<br>– The CXX compiler identification is AppleClang 8.0.0.8000042<br>– Check for working C compiler: /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc<br>– Check for working C compiler: /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc – works<br>– Detecting C compiler ABI info<br>– Detecting C compiler ABI info - done<br>– Detecting C compile features<br>– Detecting C compile features - done<br>– Check for working CXX compiler: /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++<br>– Check for working CXX compiler: /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ – works<br>– Detecting CXX compiler ABI info<br>– Detecting CXX compiler ABI info - done<br>– Detecting CXX compile features<br>– Detecting CXX compile features - done<br>Compiling code for platform alpha<br>– Configuring done<br>– Generating done<br>– Build files have been written to: /Users/tonyearth/Projects/SOFTWARE_BUILD_SYSTEM_STUDY/part2/09_cmake/0902_mult_var/obj-alpha</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ tree</span><br></pre></td></tr></table></figure>
+<p>.<br>├── obj-alpha<br>│   ├── CMakeCache.txt<br>│   ├── CMakeFiles<br>│   ├── Makefile<br>│   └── cmake_install.cmake<br>└── src<br>    ├── CMakeLists.txt<br>    ├── add.c<br>    ├── calc.c<br>    ├── mult.c<br>    ├── numbers.h<br>    └── sub.c</p>
+<h3 id="第三步：完成构造-1"><a href="#第三步：完成构造-1" class="headerlink" title="第三步：完成构造"></a>第三步：完成构造</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ make</span><br></pre></td></tr></table></figure>
+<h2 id="（5）清除构造树"><a href="#（5）清除构造树" class="headerlink" title="（5）清除构造树"></a>（5）清除构造树</h2><p><strong>说明：</strong> CMake 创建的原生构造系统默认已经支持了<code>clean</code>标的，用于对它已知的各个目标文件进行清除。<br><strong>原理：</strong> 如果在编译源文件时使用了 <code>add_executable</code> 或 <code>add_library</code> 命令，那么 CMake 就已经知道了可执行程序或程序库文件的名字，以及任何中间过度目标文件的名字。<br><strong>技巧：</strong> 对于未能自动检测到的那些已生成文件，可以把它们的文件名列在 <code>ADDITIONAL_MAKE_CLEAN_FILES</code> 属性中。这个属性每个目录都有，其中包含该目录要删除的文件名清单。</p>
+<h2 id="（6）对不正确的构造系统进行测试"><a href="#（6）对不正确的构造系统进行测试" class="headerlink" title="（6）对不正确的构造系统进行测试"></a>（6）对不正确的构造系统进行测试</h2><h3 id="CMake-工具提供的调试功能"><a href="#CMake-工具提供的调试功能" class="headerlink" title="CMake 工具提供的调试功能"></a>CMake 工具提供的调试功能</h3><table>
+<thead>
+<tr>
+<th>cmake 参数</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>—system-infomation</code></td>
+<td>对构造机器在执行 cmake 命令时的转储信息进行了深入展示。</td>
+</tr>
+<tr>
+<td><code>—trace</code></td>
+<td>对 CMake 执行过程提供了逐行跟踪。</td>
+</tr>
+</tbody>
+</table>
+<h3 id="使用原生构造工具的调试特性"><a href="#使用原生构造工具的调试特性" class="headerlink" title="使用原生构造工具的调试特性"></a>使用原生构造工具的调试特性</h3><h3 id="修复-CMake-工具本身可能的错误"><a href="#修复-CMake-工具本身可能的错误" class="headerlink" title="修复 CMake 工具本身可能的错误"></a>修复 CMake 工具本身可能的错误</h3><h1 id="3-赞扬与批评"><a href="#3-赞扬与批评" class="headerlink" title="3 赞扬与批评"></a>3 赞扬与批评</h1><h2 id="3-1-赞扬"><a href="#3-1-赞扬" class="headerlink" title="3.1 赞扬"></a>3.1 赞扬</h2><ul>
+<li>跨平台。</li>
+<li>简单易用。</li>
+<li>质量高。</li>
+<li>集成了 CPack（用于打包和安装）和 CTest（用于对覆盖全过程的完整构造系统进行测试）。</li>
+<li>构造描述语言是内置的，不需要额外安装语言解释器。</li>
+</ul>
+<h2 id="3-2-批评"><a href="#3-2-批评" class="headerlink" title="3.2 批评"></a>3.2 批评</h2><ul>
+<li>没有提供预期的完整能力。</li>
+<li>引入了另一种语言，增加了学习成本。</li>
+<li>文档支持差。</li>
+<li>某些情况下跨平台能力有限。</li>
+</ul>
+<h2 id="3-3-评价"><a href="#3-3-评价" class="headerlink" title="3.3 评价"></a>3.3 评价</h2><p>C/C++ 项目的最佳选择。</p>
+<ul>
+<li>易用性： 良</li>
+<li>正确性：优</li>
+<li>性能：优</li>
+<li>可伸缩性：优</li>
+</ul>
+<h1 id="4-其它类似工具"><a href="#4-其它类似工具" class="headerlink" title="4 其它类似工具"></a>4 其它类似工具</h1><h2 id="4-1-Automake"><a href="#4-1-Automake" class="headerlink" title="4.1 Automake"></a>4.1 Automake</h2><p><strong>说明：</strong> Autotools 套装软件的组成部分之一。<br><strong>适用平台：</strong> UNIX 类系统。<br><strong>建议：</strong> 一般认为 CMake 可以去取代 Autotools 套装软件，特别是那些运行在非 UNIX 系统的软件。<br>举个例子来说明其用法，</p>
+<p><em>第一步：创建 Makefile.am 文件</em></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 用户通过 make install 安装时， calculator 程序应当安装到 bin 默认目录</span></span><br><span class="line">bin_PROGRAMS = calculator</span><br><span class="line"></span><br><span class="line"><span class="comment"># 提供要编译和链接到 calculator 程序中的文件清单</span></span><br><span class="line">calculator_SOURCES = add.c sub.c mult.c calc.c</span><br></pre></td></tr></table></figure>
+<p><em>第二步：生成 Makefile</em></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ automake</span><br></pre></td></tr></table></figure>
+<p><em>第三步：编译 &amp;&amp; 安装</em></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ make</span><br><span class="line">$ make install</span><br></pre></td></tr></table></figure>
+<h2 id="4-2-Qmake"><a href="#4-2-Qmake" class="headerlink" title="4.2 Qmake"></a>4.2 Qmake</h2><p><strong>说明：</strong> Qt 开发环境的组成部分之一，专用于 Qt 开发人员，因此在生成的构造系统中，将自动包含 Qt 类应用程序所必要的 C/C++ 头文件目录和程序库。<br><strong>建议：</strong> 如果要开发跨平台应用，Qt 和 Qmake  都是值得研究的工具。</p>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/构造系统/" rel="tag">#构造系统</a>
+          
+            <a href="/tags/cmake/" rel="tag">#cmake</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/02/13/c++远征06之模板篇/" rel="next" title="c++远征06之模板篇">
+                <i class="fa fa-chevron-left"></i> c++远征06之模板篇
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2017/02/16/SBS_09 CMake/"
+           data-title="SBS_09 CMake" data-url="http://laputa-er.github.io/2017/02/16/SBS_09 CMake/">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.gif"
+               alt="Sean" />
+          <p class="site-author-name" itemprop="name">Sean</p>
+          <p class="site-description motion-element" itemprop="description">整理了一批过去一段时间ios相关的笔记，其它的笔记也整理下？源码分享出来？再说吧...反正也只有自己会看吧...</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">155</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">16</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">16</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#1-CMake-编程语言"><span class="nav-text">1 CMake 编程语言</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-1-CMake-语言基础"><span class="nav-text">1.1 CMake 语言基础</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#命令"><span class="nav-text">命令</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-2-构造可执行程序和程序库"><span class="nav-text">1.2 构造可执行程序和程序库</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#（1）创建可执行程序和程序库"><span class="nav-text">（1）创建可执行程序和程序库</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#（2）设置编译标志参数"><span class="nav-text">（2）设置编译标志参数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#（3）增加定制命令和标的"><span class="nav-text">（3）增加定制命令和标的</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#add-custom-command"><span class="nav-text">add_custom_command</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#add-custom-target"><span class="nav-text">add_custom_target</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-3-控制流"><span class="nav-text">1.3 控制流</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#（1）标准语法"><span class="nav-text">（1）标准语法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#（2）布尔操作"><span class="nav-text">（2）布尔操作</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#（3）宏结构"><span class="nav-text">（3）宏结构</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#（4）foreach-循环"><span class="nav-text">（4）foreach 循环</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-4-跨平台支持"><span class="nav-text">1.4 跨平台支持</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#（1）在构造机器上查找文件和工具的位置"><span class="nav-text">（1）在构造机器上查找文件和工具的位置</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#（2）对源代码进行测试的能力"><span class="nav-text">（2）对源代码进行测试的能力</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-5-生成原生构造系统"><span class="nav-text">1.5 生成原生构造系统</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#（1）-生成默认的构造系统"><span class="nav-text">（1） 生成默认的构造系统</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#（2）生成非默认的构造系统"><span class="nav-text">（2）生成非默认的构造系统</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#（3）对生成步骤进行定制调整"><span class="nav-text">（3）对生成步骤进行定制调整</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#（4）从-CMakeLists-txt-转译到原生构造系统"><span class="nav-text">（4）从 CMakeLists.txt 转译到原生构造系统</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-6-其他有趣的特性以及进一步阅读资料"><span class="nav-text">1.6 其他有趣的特性以及进一步阅读资料</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#CMake-的其它有趣特性"><span class="nav-text">CMake 的其它有趣特性</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#进一步阅读资料"><span class="nav-text">进一步阅读资料</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#2-显示世界的构造系统场景"><span class="nav-text">2 显示世界的构造系统场景</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#（1）-源代码放在单个目录中"><span class="nav-text">（1） 源代码放在单个目录中</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#（2）源代码放在多个目录中"><span class="nav-text">（2）源代码放在多个目录中</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#第一步：编写各个目录下的-CMakeList-txt"><span class="nav-text">第一步：编写各个目录下的 CMakeList.txt</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#第二步：生成-GNU-Make-构造系统"><span class="nav-text">第二步：生成 GNU Make 构造系统</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#第三步：完成构造过程"><span class="nav-text">第三步：完成构造过程</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#（3）定义新的编译工具"><span class="nav-text">（3）定义新的编译工具</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#第一步：编写-CMakeLists-txt"><span class="nav-text">第一步：编写 CMakeLists.txt</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#第二步：生成-GNU-Make-构造系统-1"><span class="nav-text">第二步：生成 GNU Make 构造系统</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#第三步：完成构造"><span class="nav-text">第三步：完成构造</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#（4）针对多个变量进行构造"><span class="nav-text">（4）针对多个变量进行构造</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#第一步：编写-CMakeLists-txt-1"><span class="nav-text">第一步：编写 CMakeLists.txt</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#第二步：生成-GNU-Make-构造系统-2"><span class="nav-text">第二步：生成 GNU Make 构造系统</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#第三步：完成构造-1"><span class="nav-text">第三步：完成构造</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#（5）清除构造树"><span class="nav-text">（5）清除构造树</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#（6）对不正确的构造系统进行测试"><span class="nav-text">（6）对不正确的构造系统进行测试</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#CMake-工具提供的调试功能"><span class="nav-text">CMake 工具提供的调试功能</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#使用原生构造工具的调试特性"><span class="nav-text">使用原生构造工具的调试特性</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#修复-CMake-工具本身可能的错误"><span class="nav-text">修复 CMake 工具本身可能的错误</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#3-赞扬与批评"><span class="nav-text">3 赞扬与批评</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#3-1-赞扬"><span class="nav-text">3.1 赞扬</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-2-批评"><span class="nav-text">3.2 批评</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-3-评价"><span class="nav-text">3.3 评价</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#4-其它类似工具"><span class="nav-text">4 其它类似工具</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#4-1-Automake"><span class="nav-text">4.1 Automake</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-2-Qmake"><span class="nav-text">4.2 Qmake</span></a></li></ol></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Sean</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"lapuda-er"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+    <script src="/vendors/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
+    <script src="/js/src/hook-duoshuo.js"></script>
+  
+
+
+
+
+
+
+  
+  
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length == 0) {
+       search_path = "search.xml";
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    function proceedsearch() {
+      $("body").append('<div class="popoverlay">').css('overflow', 'hidden');
+      $('.popup').toggle();
+
+    }
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+    'use strict';
+    $.ajax({
+        url: path,
+        dataType: "xml",
+        async: true,
+        success: function( xmlResponse ) {
+            // get the contents from search data
+            isfetched = true;
+            $('.popup').detach().appendTo('.header-inner');
+            var datas = $( "entry", xmlResponse ).map(function() {
+                return {
+                    title: $( "title", this ).text(),
+                    content: $("content",this).text(),
+                    url: $( "url" , this).text()
+                };
+            }).get();
+            var $input = document.getElementById(search_id);
+            var $resultContent = document.getElementById(content_id);
+            $input.addEventListener('input', function(){
+                var matchcounts = 0;
+                var str='<ul class=\"search-result-list\">';
+                var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+                $resultContent.innerHTML = "";
+                if (this.value.trim().length > 1) {
+                // perform local searching
+                datas.forEach(function(data) {
+                    var isMatch = true;
+                    var content_index = [];
+                    var data_title = data.title.trim().toLowerCase();
+                    var data_content = data.content.trim().replace(/<[^>]+>/g,"").toLowerCase();
+                    var data_url = data.url;
+                    var index_title = -1;
+                    var index_content = -1;
+                    var first_occur = -1;
+                    // only match artiles with not empty titles and contents
+                    if(data_title != '' && data_content != '') {
+                        keywords.forEach(function(keyword, i) {
+                            index_title = data_title.indexOf(keyword);
+                            index_content = data_content.indexOf(keyword);
+                            if( index_title < 0 && index_content < 0 ){
+                                isMatch = false;
+                            } else {
+                                if (index_content < 0) {
+                                    index_content = 0;
+                                }
+                                if (i == 0) {
+                                    first_occur = index_content;
+                                }
+                            }
+                        });
+                    }
+                    // show search results
+                    if (isMatch) {
+                        matchcounts += 1;
+                        str += "<li><a href='"+ data_url +"' class='search-result-title'>"+ data_title +"</a>";
+                        var content = data.content.trim().replace(/<[^>]+>/g,"");
+                        if (first_occur >= 0) {
+                            // cut out 100 characters
+                            var start = first_occur - 20;
+                            var end = first_occur + 80;
+                            if(start < 0){
+                                start = 0;
+                            }
+                            if(start == 0){
+                                end = 50;
+                            }
+                            if(end > content.length){
+                                end = content.length;
+                            }
+                            var match_content = content.substring(start, end);
+                            // highlight all keywords
+                            keywords.forEach(function(keyword){
+                                var regS = new RegExp(keyword, "gi");
+                                match_content = match_content.replace(regS, "<b class=\"search-keyword\">"+keyword+"</b>");
+                            });
+
+                            str += "<p class=\"search-result\">" + match_content +"...</p>"
+                        }
+                        str += "</li>";
+                    }
+                })};
+                str += "</ul>";
+                if (matchcounts == 0) { str = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>' }
+                if (keywords == "") { str = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>' }
+                $resultContent.innerHTML = str;
+            });
+            proceedsearch();
+        }
+    });}
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched == false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+
+    });
+
+    $('.popup-btn-close').click(function(e){
+      $('.popup').hide();
+      $(".popoverlay").remove();
+      $('body').css('overflow', '');
+    });
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+  </script>
+
+
+  
+
+  
+
+  
+
+</body>
+</html>
