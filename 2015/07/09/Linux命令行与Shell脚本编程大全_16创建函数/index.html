@@ -1,0 +1,882 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="shell," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1" />
+
+
+
+
+
+
+<meta name="description" content="函数（function）：可以起个名字并在代码中的任何位置重用的代码块。
+1    基本的简本函数1.1    创建函数规则：
+
+函数定义不必是shell脚本中最前面的事
+如果在函数被定义前使用函数，会收到一条错误信息
+函数名必须是唯一的，因为如果重新定义了函数，新定义将会覆盖原来函数的定义，而不会产生任何错误信息。两种方式格式一：采用关键字function，后跟分配给该代码的函数名。
+
+123f">
+<meta property="og:type" content="article">
+<meta property="og:title" content="16	创建函数">
+<meta property="og:url" content="http://laputa-er.github.io/2015/07/09/Linux命令行与Shell脚本编程大全_16创建函数/index.html">
+<meta property="og:site_name" content="Sean">
+<meta property="og:description" content="函数（function）：可以起个名字并在代码中的任何位置重用的代码块。
+1    基本的简本函数1.1    创建函数规则：
+
+函数定义不必是shell脚本中最前面的事
+如果在函数被定义前使用函数，会收到一条错误信息
+函数名必须是唯一的，因为如果重新定义了函数，新定义将会覆盖原来函数的定义，而不会产生任何错误信息。两种方式格式一：采用关键字function，后跟分配给该代码的函数名。
+
+123f">
+<meta property="og:updated_time" content="2017-03-17T05:13:29.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="16	创建函数">
+<meta name="twitter:description" content="函数（function）：可以起个名字并在代码中的任何位置重用的代码块。
+1    基本的简本函数1.1    创建函数规则：
+
+函数定义不必是shell脚本中最前面的事
+如果在函数被定义前使用函数，会收到一条错误信息
+函数名必须是唯一的，因为如果重新定义了函数，新定义将会覆盖原来函数的定义，而不会产生任何错误信息。两种方式格式一：采用关键字function，后跟分配给该代码的函数名。
+
+123f">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 0,
+      author: '博主'
+    }
+  };
+</script>
+
+
+
+
+  <link rel="canonical" href="http://laputa-er.github.io/2015/07/09/Linux命令行与Shell脚本编程大全_16创建函数/"/>
+
+  <title> 16	创建函数 | Sean </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//hm.baidu.com/hm.js?898688f51c5a3d6b37dd23e04441e5bd";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">Sean</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">笔记分享</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup">
+ <span class="search-icon fa fa-search"></span>
+ <input type="text" id="local-search-input">
+ <div id="local-search-result"></div>
+ <span class="popup-btn-close">close</span>
+</div>
+
+
+    </div>
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                16	创建函数
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2015-07-09T21:33:00+08:00" content="2015-07-09">
+              2015-07-09
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/Linux命令行和Shell脚本编程大全/" itemprop="url" rel="index">
+                    <span itemprop="name">Linux命令行和Shell脚本编程大全</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2015/07/09/Linux命令行与Shell脚本编程大全_16创建函数/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2015/07/09/Linux命令行与Shell脚本编程大全_16创建函数/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p><strong>函数（function）：</strong>可以起个名字并在代码中的任何位置重用的代码块。</p>
+<h1 id="1-基本的简本函数"><a href="#1-基本的简本函数" class="headerlink" title="1    基本的简本函数"></a>1    基本的简本函数</h1><h2 id="1-1-创建函数"><a href="#1-1-创建函数" class="headerlink" title="1.1    创建函数"></a>1.1    创建函数</h2><p><strong>规则：</strong></p>
+<ul>
+<li>函数定义不必是shell脚本中最前面的事</li>
+<li>如果在函数被定义前使用函数，会收到一条错误信息</li>
+<li>函数名必须是唯一的，因为如果重新定义了函数，新定义将会覆盖原来函数的定义，而不会产生任何错误信息。<h3 id="两种方式"><a href="#两种方式" class="headerlink" title="两种方式"></a>两种方式</h3><em>格式一</em>：采用关键字<code>function</code>，后跟分配给该代码的函数名。</li>
+</ul>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> name&#123;</span><br><span class="line">	commands</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><em>格式二</em>：函数名后跟圆括号</p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">name()&#123;</span><br><span class="line">	commands</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="1-2-使用函数"><a href="#1-2-使用函数" class="headerlink" title="1.2    使用函数"></a>1.2    使用函数</h2><p><strong>注意：</strong>函数定义不必是shell脚本中最前面的事，但如果在函数被定义前使用函数，会收到一条错误信息。</p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">!/bin/bash</span><br><span class="line"></span><br><span class="line"><span class="keyword">function</span> func1&#123;</span><br><span class="line">	echo <span class="string">"This is an example of a function"</span></span><br><span class="line">&#125;</span><br><span class="line">count = <span class="number">1</span></span><br><span class="line"><span class="keyword">while</span> [<span class="variable">$count</span> <span class="nomarkup">-le</span> <span class="number">5</span>]</span><br><span class="line"><span class="keyword">do</span></span><br><span class="line">	func1</span><br><span class="line">	count=$[<span class="variable">$count</span> + <span class="number">1</span>]</span><br><span class="line">done</span><br><span class="line"></span><br><span class="line">echo <span class="string">"This is the end of the loop"</span></span><br><span class="line">func1</span><br><span class="line">echo <span class="string">"Now this is the end of the script"</span></span><br></pre></td></tr></table></figure>
+<h1 id="2-返回值"><a href="#2-返回值" class="headerlink" title="2    返回值"></a>2    返回值</h1><p><strong>状态码：</strong>bash shell会把函数但做小型脚本，运行结束时回返回一个退出状态码。有3种不同的方式来为函数生成退出状态码。</p>
+<h2 id="2-1-默认退出状态码"><a href="#2-1-默认退出状态码" class="headerlink" title="2.1    默认退出状态码"></a>2.1    默认退出状态码</h2><p><strong>说明：</strong>默认情况下，函数的退出状态码是函数中最后一条命令返回的退出状态码。在函数执行结束后，你可以用标准的<code>$?</code>变量来决定函数的退出状态码。<br><strong>注意：</strong>使用函数默认退出状态码是很危险的，因为无法判断函数中其它命令是否运行成功。</p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">!/bin/bash</span><br><span class="line"></span><br><span class="line">func1()&#123;</span><br><span class="line">	ls -l badfile</span><br><span class="line">	echo <span class="string">"This was a test of a bad command"</span></span><br><span class="line">&#125;</span><br><span class="line">echo <span class="string">"testing the function:"</span></span><br><span class="line">func1</span><br><span class="line">echo <span class="string">"The exit status is: $?"</span></span><br></pre></td></tr></table></figure>
+<h2 id="2-2-使用return命令"><a href="#2-2-使用return命令" class="headerlink" title="2.2    使用return命令"></a>2.2    使用return命令</h2><p><strong>说明:</strong>bash shell允许使用return命令退出函数并返回特定的退出状态码。return命令允许制定一个整数值来定义函数的退出状态码，从而提供了编程设定函数退出状态码的简便途径。<br><strong>限制：</strong></p>
+<ul>
+<li>函数一结束就取返回值，如果在用<code>$?</code>提取函数返回值之前执行了其他命令，函数的返回值可能会丢失。</li>
+<li>退出状态码必须在0~255之间</li>
+</ul>
+<p><strong>注意：</strong>如果要返回较大的整数值或者字符串的值的话，就不能用这种返回值的方法了。</p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">!/bin/bash</span><br><span class="line"></span><br><span class="line"><span class="keyword">function</span> db1&#123;</span><br><span class="line">	read - p <span class="string">"Enter a value:"</span> value</span><br><span class="line">	echo <span class="string">"doubling the value"</span></span><br><span class="line">	<span class="keyword">return</span> $[<span class="variable">$value</span> * <span class="number">2</span>]</span><br><span class="line">&#125;</span><br><span class="line">db1</span><br><span class="line">echo <span class="string">"The new value is $?"</span></span><br></pre></td></tr></table></figure>
+<h2 id="2-3-使用函数输出"><a href="#2-3-使用函数输出" class="headerlink" title="2.3    使用函数输出"></a>2.3    使用函数输出</h2><p><strong>说明：</strong>使用变量捕捉函数的输出而不是看函数的退出状态码。<br><strong>推荐：</strong>通过这种方法，还可以返回浮点数和字符串值。这让它非常适合返回函数值。</p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">!/bin/bash</span><br><span class="line"></span><br><span class="line"><span class="keyword">function</span> db1&#123;</span><br><span class="line">	read - p <span class="string">"Enter a value:"</span> value</span><br><span class="line">	echo $[<span class="variable">$value</span> * <span class="number">2</span>]</span><br><span class="line">&#125;</span><br><span class="line">result = `db1`</span><br><span class="line">echo <span class="string">"The new value is <span class="variable">$result</span>"</span></span><br></pre></td></tr></table></figure>
+<h1 id="3-在函数中使用变量"><a href="#3-在函数中使用变量" class="headerlink" title="3    在函数中使用变量"></a>3    在函数中使用变量</h1><h2 id="3-1-向函数传递参数"><a href="#3-1-向函数传递参数" class="headerlink" title="3.1     向函数传递参数"></a>3.1     向函数传递参数</h2><p><em>在脚本中完成参数的传递</em></p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">!/bin/bash</span><br><span class="line"></span><br><span class="line">没有参数或多于两个参数：显示-<span class="number">1</span></span><br><span class="line">一个参数：会计算其自身和自身相加</span><br><span class="line">两个参数：计算两个参数的和</span><br><span class="line"><span class="keyword">function</span> addem&#123;</span><br><span class="line">	<span class="keyword">if</span> [ $<span class="comment"># -eq 0 ]|| [ $# -gt 2 ]</span></span><br><span class="line">	then</span><br><span class="line">		echo -<span class="number">1</span></span><br><span class="line">	elif [ $<span class="comment"># -eq 1 ]</span></span><br><span class="line">	then </span><br><span class="line">		echo $[ <span class="variable">$1</span> + <span class="variable">$1</span> ]</span><br><span class="line">	<span class="keyword">else</span></span><br><span class="line">		echo $[ <span class="variable">$1</span> + <span class="variable">$2</span> ]</span><br><span class="line">	fi</span><br><span class="line">&#125;</span><br><span class="line">计算<span class="number">10</span>+<span class="number">15</span>并将结果赋给value</span><br><span class="line">echo -n <span class="string">"Adding 10 and 15:"</span></span><br><span class="line">value = `addem <span class="number">10</span> <span class="number">15</span>`</span><br><span class="line">查看结果</span><br><span class="line">echo <span class="variable">$value</span></span><br></pre></td></tr></table></figure>
+<p><em>在命令行完成参数的传递</em><br><strong>注意：</strong>要在函数中使用命令行传递的参数，必须在脚本中手动将其传递进去。</p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">!/bin/bash</span><br><span class="line">trying to access script paarameters inside a <span class="keyword">function</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">function</span> func7&#123;</span><br><span class="line">	echo $[ <span class="variable">$1</span> * <span class="variable">$2</span> ]</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">if[ $<span class="comment"># -eq 2 ]</span></span><br><span class="line">then</span><br><span class="line">	value=`badfunc1`</span><br><span class="line">	echo <span class="string">"The result is <span class="variable">$value</span>"</span></span><br><span class="line"><span class="keyword">else</span></span><br><span class="line">	echo <span class="string">"Usage:badtest1 a b"</span></span><br><span class="line">fi</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">$ ./<span class="built_in">test</span>7</span><br><span class="line">	Usage:badtest1 a b</span><br><span class="line">$ ./<span class="built_in">test</span>7 10 15</span><br><span class="line">	The result is 150</span><br></pre></td></tr></table></figure>
+<h2 id="3-2-在函数中处理函数"><a href="#3-2-在函数中处理函数" class="headerlink" title="3.2    在函数中处理函数"></a>3.2    在函数中处理函数</h2><p><strong>函数作用域：</strong>函数中定义的变量可以跟普通变量的作用域不同。<br><strong>变量类型：</strong></p>
+<ul>
+<li><strong>全局变量</strong>：在shell脚本中任何地方都有效的变量</li>
+<li><strong>局部变量</strong>：函数内部的任何变量都可以通过<code>local</code>声明为局部变量<h3 id="全局变量"><a href="#全局变量" class="headerlink" title="全局变量"></a>全局变量</h3><strong>说明：</strong>默认情况下，你在脚本中定义的任何变量都是全局变量。在函数外定义的变量可在函数内正常访问。</li>
+</ul>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">!/bin/bash</span><br><span class="line"> using a global variable to pass a value</span><br><span class="line"></span><br><span class="line"><span class="keyword">function</span> db1&#123;</span><br><span class="line">	value = $[ <span class="variable">$value</span> * <span class="number">2</span> ]</span><br><span class="line">&#125;</span><br><span class="line">read -p <span class="string">"Enter a value: "</span> value</span><br><span class="line">db1</span><br><span class="line">echo <span class="string">"The new value is : <span class="variable">$value</span>"</span></span><br></pre></td></tr></table></figure>
+<h3 id="局部变量"><a href="#局部变量" class="headerlink" title="局部变量"></a>局部变量</h3><p><strong>声明方式：</strong><code>local 变量名</code><br><strong>声明位置：</strong>函数内部<br><strong>规则：</strong></p>
+<ul>
+<li>local关键字保证了变量只据现在该函数中</li>
+<li>如果脚本中在该函数之外有同样名字的变量，那么shell将会保持这两个变量的值是分离的</li>
+</ul>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">!/bin/bash</span><br><span class="line"> demonstrating the local keyword</span><br><span class="line"></span><br><span class="line"><span class="keyword">function</span> func1&#123;</span><br><span class="line">	<span class="comment">#不会影响在主体脚本中赋给$temp变量的值</span></span><br><span class="line">	local temp=$[ <span class="variable">$value</span> + <span class="number">5</span> ]</span><br><span class="line">	result = $[ <span class="variable">$temp</span> * <span class="number">2</span> ]</span><br><span class="line">&#125;</span><br><span class="line">temp=<span class="number">4</span></span><br><span class="line">value=<span class="number">6</span></span><br><span class="line"></span><br><span class="line">func1</span><br><span class="line">echo <span class="string">"The result is <span class="variable">$result</span>"</span></span><br><span class="line"><span class="keyword">if</span> [ <span class="variable">$temp</span> <span class="nomarkup">-gt</span> <span class="variable">$value</span> ]</span><br><span class="line">then </span><br><span class="line">	echo <span class="string">"temp is larger"</span></span><br><span class="line"><span class="keyword">else</span></span><br><span class="line">	echo <span class="string">"temp is smaller"</span></span><br><span class="line">fi</span><br></pre></td></tr></table></figure>
+<h1 id="4-数组变量和函数"><a href="#4-数组变量和函数" class="headerlink" title="4    数组变量和函数"></a>4    数组变量和函数</h1><p><strong>说明：</strong>在函数中使用数组变量值稍微麻烦一些，而且需要做一些特殊考虑。</p>
+<h2 id="4-1-向函数传数组参数"><a href="#4-1-向函数传数组参数" class="headerlink" title="4.1    向函数传数组参数"></a>4.1    向函数传数组参数</h2><p><strong>规则：</strong></p>
+<ul>
+<li>将数组变量当作单个参数传递的话，它不会起作用</li>
+<li>需要将数组的所有单个值放在函数后面作为参数</li>
+<li>在函数内部，数组仍然可以像其他数组一样使用</li>
+</ul>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">!/bin/bash</span><br><span class="line"> adding values <span class="keyword">in</span> an array</span><br><span class="line"></span><br><span class="line">计算数组元素的和</span><br><span class="line"><span class="keyword">function</span> addArr &#123;</span><br><span class="line">	local sum=<span class="number">0</span></span><br><span class="line">	local newarray</span><br><span class="line">	<span class="comment">#获得命令行中的所有参数</span></span><br><span class="line">	newarray=(`echo <span class="string">"$@"</span>`)</span><br><span class="line">	</span><br><span class="line">	<span class="comment">#遍历数组求和</span></span><br><span class="line">	<span class="keyword">for</span> value <span class="keyword">in</span> $&#123;newarray[*]&#125;</span><br><span class="line">	<span class="keyword">do</span> </span><br><span class="line">		sum=$[ <span class="variable">$um</span> + <span class="variable">$value</span> ] </span><br><span class="line">	done</span><br><span class="line">	<span class="comment">#显示计算结果</span></span><br><span class="line">	echo <span class="variable">$sum</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">myarray=(<span class="number">1</span> <span class="number">2</span> <span class="number">3</span> <span class="number">4</span> <span class="number">5</span>)</span><br><span class="line">echo <span class="string">"The original array is: $&#123;myarray[*]&#125;"</span></span><br><span class="line"></span><br><span class="line">将数组转换为参数形式（以空格作为间隔的字符串）</span><br><span class="line">arg1=`echo $&#123;myarray[*]&#125;`</span><br><span class="line"></span><br><span class="line">调用函数</span><br><span class="line">result=`addArray <span class="variable">$arg1</span>`</span><br></pre></td></tr></table></figure>
+<h2 id="4-2-从函数返回数组"><a href="#4-2-从函数返回数组" class="headerlink" title="4.2    从函数返回数组"></a>4.2    从函数返回数组</h2><p><strong>说明：</strong>函数用<code>echo</code>语句来按正确顺序输出单个数组值，然后脚本再将它们重新放进一个新的数组变量中。</p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">!/bin/bash</span><br><span class="line"> returning an array value</span><br><span class="line"><span class="keyword">function</span> arraydblr&#123;</span><br><span class="line">	local origarray</span><br><span class="line">	local newarray</span><br><span class="line">	local elements</span><br><span class="line">	local i</span><br><span class="line">	origarray=(`echo <span class="string">"$@"</span>`)</span><br><span class="line">	newarray=(`echo <span class="string">"$@"</span>`)</span><br><span class="line">	elements=$[ $<span class="comment"># - 1  ]	#命令行中所有参数的个数减去1（也就是数组的最大下标）</span></span><br><span class="line"></span><br><span class="line">	<span class="comment">#将原本数组的每一项的2倍放到新的数组中</span></span><br><span class="line">	<span class="keyword">for</span>(( i = <span class="number">0</span>; i&lt;= <span class="variable">$elements</span>; i++))&#123;</span><br><span class="line">		newarray[<span class="variable">$i</span>]=$[ $&#123;origarray[<span class="variable">$i</span>]&#125; * <span class="number">2</span> ]</span><br><span class="line">	&#125;</span><br><span class="line">	echo $&#123;newarray[*]&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">echo <span class="string">"The original array is: $&#123;myarray[*]&#125;"</span></span><br><span class="line"></span><br><span class="line">原数组的参数形式</span><br><span class="line">arg1=`echo $&#123;myarray[*]&#125;`</span><br><span class="line"></span><br><span class="line">调用函数，返回新数组</span><br><span class="line">result=(`arraydblr <span class="variable">$arg1</span>`)</span><br><span class="line"></span><br><span class="line">echo <span class="string">"The new array is: $&#123;result[*]&#125;"</span></span><br></pre></td></tr></table></figure>
+<h1 id="5-函数递归"><a href="#5-函数递归" class="headerlink" title="5    函数递归"></a>5    函数递归</h1><p><strong>说明：</strong>局部函数变量提供的一个特性是自成体系（self-containment）。<br><strong>递归：</strong>通常递归函数都有一个最终可以迭代的基准值。许多高级数学算法用递归来一级一级地降解复杂的方程，知道基准值定义的那级。<br><strong>自成体系（seelf-containment）：</strong>自成体系的函数不需要使用任何外部资源，除了脚本在命令行上传给它的变量。</p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> factorial&#123;</span><br><span class="line">	<span class="keyword">if</span> [ <span class="variable">$1</span> <span class="nomarkup">-eq</span> <span class="number">1</span> ]</span><br><span class="line">	then</span><br><span class="line">		echo <span class="number">1</span></span><br><span class="line">	<span class="keyword">else</span></span><br><span class="line">		local temp=$[ <span class="variable">$1</span> - <span class="number">1</span> ]</span><br><span class="line">		local result=`factorial <span class="variable">$temp</span>`</span><br><span class="line">		echo $[ <span class="variable">$result</span> * <span class="variable">$1</span> ]</span><br><span class="line">	fi</span><br><span class="line">&#125;</span><br><span class="line">read -p <span class="string">"Enter value: "</span> value</span><br><span class="line">result=`factorial <span class="variable">$value</span>`</span><br><span class="line">echo <span class="string">"The factorial <span class="variable">$value</span> is: <span class="variable">$result</span>"</span></span><br></pre></td></tr></table></figure>
+<h1 id="6-创建库"><a href="#6-创建库" class="headerlink" title="6    创建库"></a>6    创建库</h1><p><strong>说明：</strong>bash shell允许创建函数库文件，然后再需要时再多个脚本中引用该文件。使用函数库的关键在于<code>source</code>命令。<br><strong>引入库文件：</strong>可以使用<code>source</code>命令来再<code>shell</code>脚本中运行库文件脚本。<code>source</code>命令会在再当前的shell上下文中执行命令，而不是创建一个新的shell来执行命令。<br><strong>点操作符（dot operator）：</strong><code>source</code>命令有个快捷别名，称作点操作符，使用方式：<code>. ./myfuncs</code>。<br><strong>注意：</strong>如果给函数起了个跟内建命令或另一个命令相同的名字，函数将会覆盖原来的名字。<br><em>myfuncs.sh</em></p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> addem&#123;</span><br><span class="line">	echo $[ <span class="variable">$1</span> + <span class="variable">$2</span> ]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><em>test.sh</em></p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">!/bin/bash</span><br><span class="line">using functions defined <span class="keyword">in</span> a library file</span><br><span class="line">. ./myfuncs	<span class="comment">#执行库文件</span></span><br><span class="line"></span><br><span class="line">result=`addem <span class="number">10</span> <span class="number">15</span>`</span><br><span class="line">echo <span class="string">"The result is <span class="variable">$result</span>"</span></span><br></pre></td></tr></table></figure>
+<h1 id="7-在命令行使用函数"><a href="#7-在命令行使用函数" class="headerlink" title="7    在命令行使用函数"></a>7    在命令行使用函数</h1><h2 id="7-1-在命令行上创建函数"><a href="#7-1-在命令行上创建函数" class="headerlink" title="7.1    在命令行上创建函数"></a>7.1    在命令行上创建函数</h2><p><strong>缺点：</strong>当退出shell时，函数就消失了。</p>
+<h3 id="方法1-在一行内定义整个函数"><a href="#方法1-在一行内定义整个函数" class="headerlink" title="方法1:在一行内定义整个函数"></a><em>方法1:</em>在一行内定义整个函数</h3><p><strong>说明：</strong>每个命令后面要加个<code>;</code>，这样shell就能知道在哪里分开命令了。</p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">定义</span><br><span class="line">$ <span class="keyword">function</span> doubleit&#123; read -p <span class="string">"Enter value:"</span> value ; echo $[ <span class="variable">$value</span> * <span class="number">2</span> ]; &#125;</span><br><span class="line"></span><br><span class="line">调用</span><br><span class="line">$ doubleit</span><br><span class="line">	Enter value :<span class="number">20</span></span><br><span class="line">	<span class="number">40</span></span><br></pre></td></tr></table></figure>
+<h3 id="方法2-用多行定义函数"><a href="#方法2-用多行定义函数" class="headerlink" title="方法2:用多行定义函数"></a><em>方法2:</em>用多行定义函数</h3><p><strong>说明：</strong></p>
+<ul>
+<li>bash shell会使用次提示符来提示输入更多命令</li>
+<li>不必再每个命令后面添加<code>;</code></li>
+<li>在函数的尾部使用<code>}</code>，shell就会知道你已经完成了函数的定义</li>
+</ul>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">$ <span class="keyword">function</span> multem&#123;</span><br><span class="line"> echo $[ <span class="variable">$1</span> * <span class="variable">$2</span> ]</span><br><span class="line">&#125;</span><br><span class="line">$ multem <span class="number">2</span> <span class="number">5</span></span><br><span class="line">	<span class="number">10</span></span><br></pre></td></tr></table></figure>
+<h2 id="7-2-在-bashrc文件中定义函数"><a href="#7-2-在-bashrc文件中定义函数" class="headerlink" title="7.2    在.bashrc文件中定义函数"></a>7.2    在.bashrc文件中定义函数</h2><p><strong>说明：</strong>bash shell会在每次启动时在主目录查找这个文件，不管是交互式的函数从现有shell中启动一个新的shell。<br><strong>特点：</strong>shell还会将定义号的函数传给子shell进程，这样这些函数在该shell会话中的任何shell脚本中也可以用。</p>
+<h3 id="1-直接定义函数"><a href="#1-直接定义函数" class="headerlink" title="1.    直接定义函数"></a>1.    直接定义函数</h3><p><strong>注意：</strong>许多Linux发行版已经在.bashrc文件中定义了一些东西了，所以注意别删掉这些内容，只要在已有文件的末尾加上你写的函数就行。</p>
+<p><em>.bashrc</em></p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"> Source global definitions</span><br><span class="line"><span class="keyword">if</span> [ -r /etc/bashrc ]:then</span><br><span class="line">	. /etc/bashrc</span><br><span class="line">fi</span><br><span class="line"></span><br><span class="line"><span class="keyword">function</span> adden&#123;</span><br><span class="line">	echo $[ <span class="variable">$1</span> + <span class="variable">$2</span> ]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="2-读取函数文件"><a href="#2-读取函数文件" class="headerlink" title="2.读取函数文件"></a>2.读取函数文件</h3><p><strong>注意：</strong>确保引用库文件路径正确。</p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"> Source global definitions</span><br><span class="line"><span class="keyword">if</span> [ -r /etc/bashrc ]:then</span><br><span class="line">	. /etc/bashrc</span><br><span class="line">fi</span><br><span class="line"></span><br><span class="line">. /home/rich/libraries/myfuncs</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/shell/" rel="tag">#shell</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2015/07/08/es6_11 Set 和 Map 数据结构/" rel="next" title="11 Set 和 Map 数据结构(ECMAScript6入门)">
+                <i class="fa fa-chevron-left"></i> 11 Set 和 Map 数据结构(ECMAScript6入门)
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2015/07/09/Linux命令行与Shell脚本编程大全_5使用Linux环境变量/" rel="prev" title="5 使用Linux环境变量">
+                5 使用Linux环境变量 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2015/07/09/Linux命令行与Shell脚本编程大全_16创建函数/"
+           data-title="16	创建函数" data-url="http://laputa-er.github.io/2015/07/09/Linux命令行与Shell脚本编程大全_16创建函数/">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.gif"
+               alt="Sean" />
+          <p class="site-author-name" itemprop="name">Sean</p>
+          <p class="site-description motion-element" itemprop="description">整理了一批过去一段时间ios相关的笔记，其它的笔记也整理下？源码分享出来？再说吧...反正也只有自己会看吧...</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">163</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">17</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">23</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#1-基本的简本函数"><span class="nav-text">1    基本的简本函数</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-1-创建函数"><span class="nav-text">1.1    创建函数</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#两种方式"><span class="nav-text">两种方式</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-2-使用函数"><span class="nav-text">1.2    使用函数</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#2-返回值"><span class="nav-text">2    返回值</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#2-1-默认退出状态码"><span class="nav-text">2.1    默认退出状态码</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-2-使用return命令"><span class="nav-text">2.2    使用return命令</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-3-使用函数输出"><span class="nav-text">2.3    使用函数输出</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#3-在函数中使用变量"><span class="nav-text">3    在函数中使用变量</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#3-1-向函数传递参数"><span class="nav-text">3.1     向函数传递参数</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-2-在函数中处理函数"><span class="nav-text">3.2    在函数中处理函数</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#全局变量"><span class="nav-text">全局变量</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#局部变量"><span class="nav-text">局部变量</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#4-数组变量和函数"><span class="nav-text">4    数组变量和函数</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#4-1-向函数传数组参数"><span class="nav-text">4.1    向函数传数组参数</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-2-从函数返回数组"><span class="nav-text">4.2    从函数返回数组</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#5-函数递归"><span class="nav-text">5    函数递归</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#6-创建库"><span class="nav-text">6    创建库</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#7-在命令行使用函数"><span class="nav-text">7    在命令行使用函数</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#7-1-在命令行上创建函数"><span class="nav-text">7.1    在命令行上创建函数</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#方法1-在一行内定义整个函数"><span class="nav-text">方法1:在一行内定义整个函数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#方法2-用多行定义函数"><span class="nav-text">方法2:用多行定义函数</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#7-2-在-bashrc文件中定义函数"><span class="nav-text">7.2    在.bashrc文件中定义函数</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-直接定义函数"><span class="nav-text">1.    直接定义函数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-读取函数文件"><span class="nav-text">2.读取函数文件</span></a></li></ol></li></ol></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Sean</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"lapuda-er"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+    <script src="/vendors/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
+    <script src="/js/src/hook-duoshuo.js"></script>
+  
+
+
+
+
+
+
+  
+  
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length == 0) {
+       search_path = "search.xml";
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    function proceedsearch() {
+      $("body").append('<div class="popoverlay">').css('overflow', 'hidden');
+      $('.popup').toggle();
+
+    }
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+    'use strict';
+    $.ajax({
+        url: path,
+        dataType: "xml",
+        async: true,
+        success: function( xmlResponse ) {
+            // get the contents from search data
+            isfetched = true;
+            $('.popup').detach().appendTo('.header-inner');
+            var datas = $( "entry", xmlResponse ).map(function() {
+                return {
+                    title: $( "title", this ).text(),
+                    content: $("content",this).text(),
+                    url: $( "url" , this).text()
+                };
+            }).get();
+            var $input = document.getElementById(search_id);
+            var $resultContent = document.getElementById(content_id);
+            $input.addEventListener('input', function(){
+                var matchcounts = 0;
+                var str='<ul class=\"search-result-list\">';
+                var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+                $resultContent.innerHTML = "";
+                if (this.value.trim().length > 1) {
+                // perform local searching
+                datas.forEach(function(data) {
+                    var isMatch = true;
+                    var content_index = [];
+                    var data_title = data.title.trim().toLowerCase();
+                    var data_content = data.content.trim().replace(/<[^>]+>/g,"").toLowerCase();
+                    var data_url = data.url;
+                    var index_title = -1;
+                    var index_content = -1;
+                    var first_occur = -1;
+                    // only match artiles with not empty titles and contents
+                    if(data_title != '' && data_content != '') {
+                        keywords.forEach(function(keyword, i) {
+                            index_title = data_title.indexOf(keyword);
+                            index_content = data_content.indexOf(keyword);
+                            if( index_title < 0 && index_content < 0 ){
+                                isMatch = false;
+                            } else {
+                                if (index_content < 0) {
+                                    index_content = 0;
+                                }
+                                if (i == 0) {
+                                    first_occur = index_content;
+                                }
+                            }
+                        });
+                    }
+                    // show search results
+                    if (isMatch) {
+                        matchcounts += 1;
+                        str += "<li><a href='"+ data_url +"' class='search-result-title'>"+ data_title +"</a>";
+                        var content = data.content.trim().replace(/<[^>]+>/g,"");
+                        if (first_occur >= 0) {
+                            // cut out 100 characters
+                            var start = first_occur - 20;
+                            var end = first_occur + 80;
+                            if(start < 0){
+                                start = 0;
+                            }
+                            if(start == 0){
+                                end = 50;
+                            }
+                            if(end > content.length){
+                                end = content.length;
+                            }
+                            var match_content = content.substring(start, end);
+                            // highlight all keywords
+                            keywords.forEach(function(keyword){
+                                var regS = new RegExp(keyword, "gi");
+                                match_content = match_content.replace(regS, "<b class=\"search-keyword\">"+keyword+"</b>");
+                            });
+
+                            str += "<p class=\"search-result\">" + match_content +"...</p>"
+                        }
+                        str += "</li>";
+                    }
+                })};
+                str += "</ul>";
+                if (matchcounts == 0) { str = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>' }
+                if (keywords == "") { str = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>' }
+                $resultContent.innerHTML = str;
+            });
+            proceedsearch();
+        }
+    });}
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched == false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+
+    });
+
+    $('.popup-btn-close').click(function(e){
+      $('.popup').hide();
+      $(".popoverlay").remove();
+      $('body').css('overflow', '');
+    });
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+  </script>
+
+
+  
+
+  
+
+  
+
+</body>
+</html>
