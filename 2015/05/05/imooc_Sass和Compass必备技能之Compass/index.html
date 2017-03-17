@@ -99,7 +99,7 @@ Compass是什么：简单的说，就是在sass的基础上构建起的一整套
 ##2.1    Compass核心模块当我的巴特农神庙建起来的时候，我在这遥远的地方也能感受到它的辉煌。
 ###2.1.1    核心模块|模块|用途|引入||—–|—-|——-||Reset|浏">
 <meta property="og:image" content="http://o6ul1xz4z.bkt.clouddn.com/imooc/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202015-05-17%20%E4%B8%8B%E5%8D%881.09.57.png">
-<meta property="og:updated_time" content="2017-03-17T15:27:10.000Z">
+<meta property="og:updated_time" content="2017-03-17T17:57:21.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Sass和Compass必备技能之Compass">
 <meta name="twitter:description" content="#1    课程介绍人们走进喧闹中去，是为了忘却污迹。
@@ -364,10 +364,82 @@ Compass是什么：简单的说，就是在sass的基础上构建起的一整套
 <p>#2    Compass核心模块概述&amp;Reset模块</p>
 <p>##2.1    Compass核心模块<br><code>当我的巴特农神庙建起来的时候，我在这遥远的地方也能感受到它的辉煌。</code></p>
 <p>###2.1.1    核心模块<br>|模块|用途|引入|<br>|—–|—-|——-|<br>|Reset|浏览器重置模块，用来减少不同浏览器之间的差异。|<code>@import &quot;compass/reset&quot;</code>|<br>|Layout|提供页面布局的控制能力|<code>@import &quot;compass/layout&quot;</code>|</p>
-<p>###2.1.2    其它模块<br><strong>引入方式：</strong><code>@import &quot;compass&quot;</code><br>|模块|用途|<br>|—–|—-|<br>|CSS3|提供跨浏览器的CSS3能力|<br>|Helpers|包含一些列函数，丰富强大|<br>|Typography|修饰文本样式|<br>|Utilities|辅助工具模块|<br>|Browser|控制浏览器的适配，会影响其它所有模块|</p>
+<p>###2.1.2    其它模块<br><strong>引入方式：</strong><code>@import &quot;compass&quot;</code></p>
+<table>
+<thead>
+<tr>
+<th>模块</th>
+<th>用途</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>CSS3</td>
+<td>提供跨浏览器的CSS3能力</td>
+</tr>
+<tr>
+<td>Helpers</td>
+<td>包含一些列函数，丰富强大</td>
+</tr>
+<tr>
+<td>Typography</td>
+<td>修饰文本样式</td>
+</tr>
+<tr>
+<td>Utilities</td>
+<td>辅助工具模块</td>
+</tr>
+<tr>
+<td>Browser</td>
+<td>控制浏览器的适配，会影响其它所有模块</td>
+</tr>
+</tbody>
+</table>
 <p>###2.1.3    安装插件获得额外模块<br><strong>注意：</strong>sass中使用<code>@import</code>引入模块是简单粗暴的，重复<code>@import</code>会导致性能问题。<br><strong>以引入<code>normalize</code>模块为例</strong></p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">$ cd learn-sass-syntax</span><br><span class="line">#安装normalize插件</span><br><span class="line">$ gem install compass-normalize</span><br><span class="line"></span><br><span class="line">#在配置中引入插件</span><br><span class="line">$ vim config.rb</span><br><span class="line">require &apos;compass-normalize&apos;</span><br><span class="line"></span><br><span class="line">#在scss文件中引入normalize模块</span><br><span class="line">$ vim sass/screen.scss</span><br><span class="line">@(慕课网学习笔记)import &quot;normalize&quot;;</span><br><span class="line"></span><br><span class="line">$ compass watch</span><br></pre></td></tr></table></figure>
-<p>###2.2        Normalize核心模块<br><strong>自模块引入方式：</strong><code>@import &quot;normalize/[子模块名]&quot;</code><br><strong>注意：</strong>以子路径的方式引入子模块依赖于<code>@import &quot;normalize-version&quot;</code><br>|核心模块|用途|<br>|——|—–|<br>|base|文字大小、边距等|<br>|html5|统一h5中新增标签的样式：<code>article</code>,<code>aside</code>,<code>section</code>,<code>time</code>等|<br>|links|统一a标签的样式|<br>|typography|统一<code>b</code>,<code>strong</code>,<code>h1</code>,<code>sub</code>,<code>sup</code>等段落文本的样式修饰|<br>|embeds|统一<code>img</code>,<code>svg</code>等标签的样式修饰|<br>|groups|统一<code>figure</code>,<code>pre</code>,<code>code</code>等标签的样式|<br>|forms|统一<code>button</code>,<code>input</code>,<code>textarea</code>等表单相关标签的样式|<br>|tables|统一表格相关标签相关的样式<code>tr</code>,<code>td</code>,<code>th</code>等|</p>
+<p>###2.2        Normalize核心模块<br><strong>自模块引入方式：</strong><code>@import &quot;normalize/[子模块名]&quot;</code><br><strong>注意：</strong>以子路径的方式引入子模块依赖于<code>@import &quot;normalize-version&quot;</code></p>
+<table>
+<thead>
+<tr>
+<th>核心模块</th>
+<th>用途</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>base</td>
+<td>文字大小、边距等</td>
+</tr>
+<tr>
+<td>html5</td>
+<td>统一h5中新增标签的样式：<code>article</code>,<code>aside</code>,<code>section</code>,<code>time</code>等</td>
+</tr>
+<tr>
+<td>links</td>
+<td>统一a标签的样式</td>
+</tr>
+<tr>
+<td>typography</td>
+<td>统一<code>b</code>,<code>strong</code>,<code>h1</code>,<code>sub</code>,<code>sup</code>等段落文本的样式修饰</td>
+</tr>
+<tr>
+<td>embeds</td>
+<td>统一<code>img</code>,<code>svg</code>等标签的样式修饰</td>
+</tr>
+<tr>
+<td>groups</td>
+<td>统一<code>figure</code>,<code>pre</code>,<code>code</code>等标签的样式</td>
+</tr>
+<tr>
+<td>forms</td>
+<td>统一<code>button</code>,<code>input</code>,<code>textarea</code>等表单相关标签的样式</td>
+</tr>
+<tr>
+<td>tables</td>
+<td>统一表格相关标签相关的样式<code>tr</code>,<code>td</code>,<code>th</code>等</td>
+</tr>
+</tbody>
+</table>
 <figure class="highlight scss"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">@<span class="keyword">import</span> <span class="string">"normalize-version"</span>;</span><br><span class="line"><span class="comment">/*分割线1*/</span></span><br><span class="line">@<span class="keyword">import</span> <span class="string">"normalize/base"</span>;</span><br><span class="line"><span class="comment">/*分割线2*/</span></span><br><span class="line">@<span class="keyword">import</span> <span class="string">"normalize/html5"</span>;</span><br><span class="line"><span class="comment">/*分割线3*/</span></span><br><span class="line">@<span class="keyword">import</span> <span class="string">"normalize/links"</span>;</span><br></pre></td></tr></table></figure>
 <p>###2.3        探究compass本身的子模块加载方式</p>
 <figure class="highlight scss"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">@<span class="keyword">import</span> <span class="string">"compass/reset"</span></span><br></pre></td></tr></table></figure>
@@ -640,7 +712,7 @@ Compass是什么：简单的说，就是在sass的基础上构建起的一整套
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">171</span>
+              <span class="site-state-item-count">175</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -648,7 +720,7 @@ Compass是什么：简单的说，就是在sass的基础上构建起的一整套
           
             <div class="site-state-item site-state-categories">
               <a href="/categories">
-                <span class="site-state-item-count">19</span>
+                <span class="site-state-item-count">20</span>
                 <span class="site-state-item-name">分类</span>
               </a>
             </div>
@@ -657,7 +729,7 @@ Compass是什么：简单的说，就是在sass的基础上构建起的一整套
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">25</span>
+                <span class="site-state-item-count">27</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
