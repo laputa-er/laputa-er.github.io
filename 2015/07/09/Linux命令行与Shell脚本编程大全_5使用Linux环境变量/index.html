@@ -92,7 +92,7 @@
 <meta property="og:site_name" content="Sean">
 <meta property="og:description" content="7    可变数组说明：环境变量的值可以是一个数组。声明：把值放在括号里，值与值之间用空格隔开。删除数组中的某个值或整个数组：unset
 12345678910111213141516171819202122#声明数组mytest = (one two three four five)#只能显示第一个值echo $mytest	#one#显示下标为2的元素echo $&amp;#123;mytest[2]">
-<meta property="og:updated_time" content="2017-03-17T05:14:13.000Z">
+<meta property="og:updated_time" content="2017-03-20T08:35:41.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="5 使用Linux环境变量">
 <meta name="twitter:description" content="7    可变数组说明：环境变量的值可以是一个数组。声明：把值放在括号里，值与值之间用空格隔开。删除数组中的某个值或整个数组：unset
@@ -349,7 +349,7 @@
 
       
         <h1 id="7-可变数组"><a href="#7-可变数组" class="headerlink" title="7    可变数组"></a>7    可变数组</h1><p><strong>说明：</strong>环境变量的值可以是一个数组。<br><strong>声明：</strong>把值放在括号里，值与值之间用空格隔开。<br><strong>删除数组中的某个值或整个数组：</strong><code>unset</code></p>
-<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#声明数组</span></span><br><span class="line">mytest = (one two three four five)</span><br><span class="line"></span><br><span class="line"><span class="comment">#只能显示第一个值</span></span><br><span class="line">echo <span class="variable">$mytest</span>	<span class="comment">#one</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#显示下标为2的元素</span></span><br><span class="line">echo $&#123;mytest[<span class="number">2</span>]&#125;	<span class="comment">#three</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#显示整个数组的变量</span></span><br><span class="line">echo $&#123;mytest[*]&#125;	<span class="comment">#one two three four five</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#设置某个元素</span></span><br><span class="line">mytest[<span class="number">2</span>]=seven</span><br><span class="line"></span><br><span class="line"><span class="comment">#删除数组中的某个值</span></span><br><span class="line">unset mytest[<span class="number">2</span>]</span><br><span class="line">echo $&#123;mytest[*]&#125;	<span class="comment">#one two four five</span></span><br><span class="line">echo $&#123;mytest[<span class="number">2</span>]&#125;	<span class="comment">#虽然删除了，但使用被删除的元素的索引仍然能访问到，只不过该位置值是空的</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#删除整个数组</span></span><br><span class="line">unset mytest</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#声明数组</span></span><br><span class="line">mytest = (one two three four five)</span><br><span class="line"></span><br><span class="line"><span class="comment">#只能显示第一个值</span></span><br><span class="line"><span class="built_in">echo</span> <span class="variable">$mytest</span>	<span class="comment">#one</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#显示下标为2的元素</span></span><br><span class="line"><span class="built_in">echo</span> <span class="variable">$&#123;mytest[2]&#125;</span>	<span class="comment">#three</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#显示整个数组的变量</span></span><br><span class="line"><span class="built_in">echo</span> <span class="variable">$&#123;mytest[*]&#125;</span>	<span class="comment">#one two three four five</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#设置某个元素</span></span><br><span class="line">mytest[2]=seven</span><br><span class="line"></span><br><span class="line"><span class="comment">#删除数组中的某个值</span></span><br><span class="line"><span class="built_in">unset</span> mytest[2]</span><br><span class="line"><span class="built_in">echo</span> <span class="variable">$&#123;mytest[*]&#125;</span>	<span class="comment">#one two four five</span></span><br><span class="line"><span class="built_in">echo</span> <span class="variable">$&#123;mytest[2]&#125;</span>	<span class="comment">#虽然删除了，但使用被删除的元素的索引仍然能访问到，只不过该位置值是空的</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#删除整个数组</span></span><br><span class="line"><span class="built_in">unset</span> mytest</span><br></pre></td></tr></table></figure>
 
       
     </div>
@@ -381,16 +381,16 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2015/07/08/es6_11 Set 和 Map 数据结构/" rel="next" title="11 Set 和 Map 数据结构(ECMAScript6入门)">
-                <i class="fa fa-chevron-left"></i> 11 Set 和 Map 数据结构(ECMAScript6入门)
+              <a href="/2015/07/09/Linux命令行与Shell脚本编程大全_16创建函数/" rel="next" title="16	创建函数">
+                <i class="fa fa-chevron-left"></i> 16	创建函数
               </a>
             
           </div>
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2015/07/09/Linux命令行与Shell脚本编程大全_16创建函数/" rel="prev" title="16	创建函数">
-                16	创建函数 <i class="fa fa-chevron-right"></i>
+              <a href="/2016/05/08/1 c语言概述/" rel="prev" title="1 c语言概述">
+                1 c语言概述 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -463,7 +463,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">175</span>
+              <span class="site-state-item-count">176</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
