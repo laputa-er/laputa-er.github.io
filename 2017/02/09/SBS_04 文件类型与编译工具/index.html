@@ -95,7 +95,7 @@ C++ 语言简介面世：1980年代早期诞生定位：为基">
 1 c/c++ C 语言简介面世：1969诞生定位：UNIX 操作系统的语言最新版本：C99特点：不提供垃圾回收、多线程支持等功能，也没有任何内置的复杂数据类型，是一门紧凑而高效的语言。应用：目前新开发的 c 代码最常用于 CPU 性能要求高，或直接操作计算机硬件的场合，比如嵌入式设备。
 C++ 语言简介面世：1980年代早期诞生定位：为基">
 <meta property="og:image" content="http://o6ul1xz4z.bkt.clouddn.com/SBS_04%20%E6%96%87%E4%BB%B6%E7%B1%BB%E5%9E%8B%E4%B8%8E%E7%BC%96%E8%AF%91%E5%B7%A5%E5%85%B7/E5ADC1DD-4985-413D-B2A2-49935E2C4992.png">
-<meta property="og:updated_time" content="2017-02-12T17:27:55.000Z">
+<meta property="og:updated_time" content="2017-03-22T18:34:51.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="SBS_04 文件类型与编译工具">
 <meta name="twitter:description" content="传统编译型软件的总体示意图，展示了源文件被编译成目标文件
@@ -407,7 +407,7 @@ C++ 语言简介面世：1980年代早期诞生定位：为基">
 <li><code>-t</code>：还可以检查归档文件的内容</li>
 </ul>
 <p>还有一些选项可以把目标文件从静态程序库中摘取出来，或把目标文件内容写回到磁盘文件（但对构造系统来说不是常用操作）。</p>
-<h3 id="1-6-2-创建静态库"><a href="#1-6-2-创建静态库" class="headerlink" title="1.6.2 创建静态库"></a>1.6.2 创建静态库</h3><p><a href="https://github.com/laputa-er/C_STUDY/tree/master/c_programming_a_modern_approach/15/fmt" target="_blank" rel="external">C_STUDY/c_programming_a_modern_approach/15/fmt at master · laputa-er/C_STUDY · GitHub</a><br>这是我在另一本书看到的一个例子，写了一个 demo，提供了更健壮的对流读取和写入。我准备将其中 4 个文件做成一个静态库，依次是，</p>
+<h3 id="1-6-2-创建静态库"><a href="#1-6-2-创建静态库" class="headerlink" title="1.6.2 创建静态库"></a>1.6.2 创建静态库</h3><p><a href="https://github.com/laputa-er/c_demos/tree/master/c_programming_a_modern_approach/15/fmt" target="_blank" rel="external">c_demos/c_programming_a_modern_approach/15/fmt at master · laputa-er/c_demos · GitHub</a><br>这是我在另一本书看到的一个例子，写了一个 demo，提供了更健壮的对流读取和写入。我准备将其中 4 个文件做成一个静态库，依次是，</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">.</span><br><span class="line">├── word.c</span><br><span class="line">├── word.h</span><br><span class="line">├── line.c</span><br><span class="line">└── line.h</span><br></pre></td></tr></table></figure>
 <p>下面是制作静态库的整个过程，</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 生成目标文件</span></span><br><span class="line">$ gcc -c word.c</span><br><span class="line">$ gcc -c line.c</span><br><span class="line"></span><br><span class="line"><span class="comment"># 创建静态库归档文件</span></span><br><span class="line">$ ar -rs myReadLine.a line.o word.o</span><br><span class="line">$ tree</span><br><span class="line">.</span><br><span class="line">├── line.c</span><br><span class="line">├── line.h</span><br><span class="line">├── line.o</span><br><span class="line">├── word.c</span><br><span class="line">├── word.h</span><br><span class="line">├── word.o</span><br><span class="line">└── myReadLine.a</span><br></pre></td></tr></table></figure>
@@ -510,8 +510,8 @@ C++ 语言简介面世：1980年代早期诞生定位：为基">
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2017/02/09/SBS_02 基于 make  的构造系统/" rel="prev" title="SBS_02 基于 make  的构造系统">
-                SBS_02 基于 make  的构造系统 <i class="fa fa-chevron-right"></i>
+              <a href="/2017/02/09/SBS_prefaceOfPart2/" rel="prev" title="SBS_prefaceOfPart2">
+                SBS_prefaceOfPart2 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -584,7 +584,7 @@ C++ 语言简介面世：1980年代早期诞生定位：为基">
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">176</span>
+              <span class="site-state-item-count">181</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -592,7 +592,7 @@ C++ 语言简介面世：1980年代早期诞生定位：为基">
           
             <div class="site-state-item site-state-categories">
               <a href="/categories">
-                <span class="site-state-item-count">20</span>
+                <span class="site-state-item-count">21</span>
                 <span class="site-state-item-name">分类</span>
               </a>
             </div>
@@ -601,7 +601,7 @@ C++ 语言简介面世：1980年代早期诞生定位：为基">
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">27</span>
+                <span class="site-state-item-count">28</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
