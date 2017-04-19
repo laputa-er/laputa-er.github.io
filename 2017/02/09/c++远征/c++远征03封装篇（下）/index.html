@@ -1,0 +1,1085 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="c++语言," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1" />
+
+
+
+
+
+
+<meta name="description" content="C++远征之封装篇(下)-慕课网
+1 概述
+对象数组
+
+
+对象成员
+深拷贝 vs. 浅拷贝
+对象指针 vs. 对象指针成员
+this 指针
+const + 对象 -&amp;gt; 常对象
+const + 函数 -&amp;gt; 常成员函数
+const + 对象成员 -&amp;gt; 常对象成员
+
+2 对象数组2.1 对象数组说明：堆中实例化的数组需要手动销毁释放内存，在栈中实例化的数组，系统自动回收内存。
+定义形式">
+<meta property="og:type" content="article">
+<meta property="og:title" content="c++远征03封装篇（下）">
+<meta property="og:url" content="http://laputa-er.github.io/2017/02/09/c++远征/c++远征03封装篇（下）/index.html">
+<meta property="og:site_name" content="Sean">
+<meta property="og:description" content="C++远征之封装篇(下)-慕课网
+1 概述
+对象数组
+
+
+对象成员
+深拷贝 vs. 浅拷贝
+对象指针 vs. 对象指针成员
+this 指针
+const + 对象 -&amp;gt; 常对象
+const + 函数 -&amp;gt; 常成员函数
+const + 对象成员 -&amp;gt; 常对象成员
+
+2 对象数组2.1 对象数组说明：堆中实例化的数组需要手动销毁释放内存，在栈中实例化的数组，系统自动回收内存。
+定义形式">
+<meta property="og:image" content="http://o6ul1xz4z.bkt.clouddn.com/c++%E8%BF%9C%E5%BE%8103%E5%B0%81%E8%A3%85%E7%AF%87%EF%BC%88%E4%B8%8B%EF%BC%89/F5680972-44CA-43C1-9DE3-2E809A2657BD.png">
+<meta property="og:image" content="http://o6ul1xz4z.bkt.clouddn.com/c++%E8%BF%9C%E5%BE%8103%E5%B0%81%E8%A3%85%E7%AF%87%EF%BC%88%E4%B8%8B%EF%BC%89/2991BA11-2CFD-42A7-877E-FA4E905266B6.png">
+<meta property="og:image" content="http://o6ul1xz4z.bkt.clouddn.com/c++%E8%BF%9C%E5%BE%8103%E5%B0%81%E8%A3%85%E7%AF%87%EF%BC%88%E4%B8%8B%EF%BC%89/AE736337-EDA8-4EBE-8888-FD158B0F18CB.png">
+<meta property="og:image" content="http://o6ul1xz4z.bkt.clouddn.com/c++%E8%BF%9C%E5%BE%8103%E5%B0%81%E8%A3%85%E7%AF%87%EF%BC%88%E4%B8%8B%EF%BC%89/CE9EF2CA-3189-4CD5-B895-1A9F496C8D45.png">
+<meta property="og:image" content="http://o6ul1xz4z.bkt.clouddn.com/c++%E8%BF%9C%E5%BE%8103%E5%B0%81%E8%A3%85%E7%AF%87%EF%BC%88%E4%B8%8B%EF%BC%89/F784DF45-4026-4950-8DCE-CB710AEE7313.png">
+<meta property="og:image" content="http://o6ul1xz4z.bkt.clouddn.com/c++%E8%BF%9C%E5%BE%8103%E5%B0%81%E8%A3%85%E7%AF%87%EF%BC%88%E4%B8%8B%EF%BC%89/4549331C-1061-485E-BAC9-07C7FB5BED4A.png">
+<meta property="og:image" content="http://o6ul1xz4z.bkt.clouddn.com/c++%E8%BF%9C%E5%BE%8103%E5%B0%81%E8%A3%85%E7%AF%87%EF%BC%88%E4%B8%8B%EF%BC%89/96ADC583-4240-41EE-8BE9-77A4A009092A.png">
+<meta property="og:image" content="http://o6ul1xz4z.bkt.clouddn.com/c++%E8%BF%9C%E5%BE%8103%E5%B0%81%E8%A3%85%E7%AF%87%EF%BC%88%E4%B8%8B%EF%BC%89/jk_cpp_maze.gif">
+<meta property="og:updated_time" content="2017-02-12T17:23:43.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="c++远征03封装篇（下）">
+<meta name="twitter:description" content="C++远征之封装篇(下)-慕课网
+1 概述
+对象数组
+
+
+对象成员
+深拷贝 vs. 浅拷贝
+对象指针 vs. 对象指针成员
+this 指针
+const + 对象 -&amp;gt; 常对象
+const + 函数 -&amp;gt; 常成员函数
+const + 对象成员 -&amp;gt; 常对象成员
+
+2 对象数组2.1 对象数组说明：堆中实例化的数组需要手动销毁释放内存，在栈中实例化的数组，系统自动回收内存。
+定义形式">
+<meta name="twitter:image" content="http://o6ul1xz4z.bkt.clouddn.com/c++%E8%BF%9C%E5%BE%8103%E5%B0%81%E8%A3%85%E7%AF%87%EF%BC%88%E4%B8%8B%EF%BC%89/F5680972-44CA-43C1-9DE3-2E809A2657BD.png">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 0,
+      author: '博主'
+    }
+  };
+</script>
+
+
+
+
+  <link rel="canonical" href="http://laputa-er.github.io/2017/02/09/c++远征/c++远征03封装篇（下）/"/>
+
+  <title> c++远征03封装篇（下） | Sean </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//hm.baidu.com/hm.js?898688f51c5a3d6b37dd23e04441e5bd";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">Sean</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">笔记分享</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup">
+ <span class="search-icon fa fa-search"></span>
+ <input type="text" id="local-search-input">
+ <div id="local-search-result"></div>
+ <span class="popup-btn-close">close</span>
+</div>
+
+
+    </div>
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                c++远征03封装篇（下）
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2017-02-09T01:43:01+08:00" content="2017-02-09">
+              2017-02-09
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/c-远征/" itemprop="url" rel="index">
+                    <span itemprop="name">c++远征</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2017/02/09/c++远征/c++远征03封装篇（下）/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2017/02/09/c++远征/c++远征03封装篇（下）/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p><a href="http://www.imooc.com/learn/405" target="_blank" rel="external">C++远征之封装篇(下)-慕课网</a></p>
+<h1 id="1-概述"><a href="#1-概述" class="headerlink" title="1 概述"></a>1 概述</h1><ul>
+<li>对象数组</li>
+</ul>
+<ul>
+<li>对象成员</li>
+<li>深拷贝 vs. 浅拷贝</li>
+<li>对象指针 vs. 对象指针成员</li>
+<li>this 指针</li>
+<li>const + 对象 -&gt; 常对象</li>
+<li>const + 函数 -&gt; 常成员函数</li>
+<li>const + 对象成员 -&gt; 常对象成员</li>
+</ul>
+<h1 id="2-对象数组"><a href="#2-对象数组" class="headerlink" title="2 对象数组"></a>2 对象数组</h1><h2 id="2-1-对象数组"><a href="#2-1-对象数组" class="headerlink" title="2.1 对象数组"></a>2.1 对象数组</h2><p><strong>说明：</strong>堆中实例化的数组需要手动销毁释放内存，在栈中实例化的数组，系统自动回收内存。</p>
+<p>定义形式|内存管理<br>—|—<br>在栈中定义|系统管理<br>在堆中定义|手动管理</p>
+<p><strong>注意：</strong> 和其它类型的数组一样，栈中定义的对象数组和指针之间也有着密切的联系！</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="keyword">class</span> Coordinate</span><br><span class="line">&#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="keyword">int</span> m_iX;</span><br><span class="line">    <span class="keyword">int</span> m_iY;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">(<span class="keyword">void</span>)</span></span><br><span class="line"></span>&#123;</span><br><span class="line">    <span class="comment">// 在栈中定义</span></span><br><span class="line">    Coordinate coord[<span class="number">3</span>];</span><br><span class="line">    coord[<span class="number">0</span>].m_iX = <span class="number">90</span>;</span><br><span class="line">    coord[<span class="number">1</span>].m_iX = <span class="number">10</span>;</span><br><span class="line">    coord[<span class="number">2</span>].m_iY = <span class="number">17</span>;</span><br><span class="line">    <span class="built_in">cout</span> &lt;&lt; <span class="string">"(*coord).m_iX"</span> &lt;&lt; (*coord).m_iX &lt;&lt; <span class="built_in">endl</span>; <span class="comment">// 数组名可以当作指针处理</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">// 在堆中定义</span></span><br><span class="line">    Coordinate *p = new Coordinate[<span class="number">3</span>];</span><br><span class="line">    p[<span class="number">0</span>].m_iY = <span class="number">7</span>;</span><br><span class="line">    p-&gt;m_iY = <span class="number">9</span>; <span class="comment">// p 实际指向数组的第一个元素 p[0]</span></span><br><span class="line">    Coordinate *q = p; <span class="comment">// 为了防止对 p 的操作导致不指向数组第一个元素，声明一个副本</span></span><br><span class="line">    q++;</span><br><span class="line">    q-&gt;m_iY = <span class="number">17</span>; <span class="comment">// p[1]</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">3</span>; i++)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="built_in">cout</span> &lt;&lt; <span class="string">"coord:("</span> &lt;&lt; coord[i].m_iX &lt;&lt; <span class="string">", "</span> &lt;&lt; coord[i].m_iY &lt;&lt; <span class="string">")"</span>&lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">0</span>; j &lt; <span class="number">3</span>; j++)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="built_in">cout</span> &lt;&lt; <span class="string">"p:("</span> &lt;&lt; p[j].m_iX &lt;&lt; <span class="string">", "</span> &lt;&lt; p[j].m_iY &lt;&lt; <span class="string">")"</span> &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">delete</span> []p;</span><br><span class="line">    p = q = <span class="literal">NULL</span>;</span><br><span class="line"></span><br><span class="line">    return <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="2-2-对象成员"><a href="#2-2-对象成员" class="headerlink" title="2.2 对象成员"></a>2.2 对象成员</h2><p><strong>实例化过程</strong></p>
+<ol>
+<li>先按照定义的顺序依次实例化对象成员；</li>
+<li>最后在实例化对象成员所在的对象。</li>
+</ol>
+<p><strong>扩展：</strong> 当所在对象被销毁时，顺序和实例化过程相反。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"> .</span><br><span class="line">├── Coordinate.cpp <span class="comment"># 坐标类实现</span></span><br><span class="line">├── Coordinate.h <span class="comment"># 坐标类头文件</span></span><br><span class="line">├── Line.cpp <span class="comment"># 线段类实现</span></span><br><span class="line">├── Line.h <span class="comment"># 线段类头文件</span></span><br><span class="line">├── main.cpp <span class="comment"># 入口</span></span><br><span class="line">├── makefile</span><br><span class="line">└── <span class="built_in">test</span></span><br></pre></td></tr></table></figure>
+<p><em>makefile</em></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">LIBS=-lm</span><br><span class="line">OBJS=main.o Coordinate.o Line.o</span><br><span class="line">CFLAGS=-Wall</span><br><span class="line">SO=<span class="built_in">test</span></span><br><span class="line">main: <span class="variable">$&#123;OBJS&#125;</span></span><br><span class="line">	g++ -o <span class="variable">$&#123;SO&#125;</span> <span class="variable">$&#123;OBJS&#125;</span></span><br><span class="line">main.o: main.cpp Line.cpp</span><br><span class="line">	g++ -c main.cpp <span class="variable">$&#123;CFLAGS&#125;</span></span><br><span class="line">Line.o:Line.cpp Line.h</span><br><span class="line">	g++ -c Line.cpp</span><br><span class="line">Coordinate.o:Coordinate.cpp Coordinate.h</span><br><span class="line">	g++ -c Coordinate.cpp</span><br><span class="line">clean:</span><br><span class="line">	rm <span class="_">-f</span> <span class="variable">$&#123;OBJS&#125;</span> <span class="variable">$&#123;SO&#125;</span></span><br></pre></td></tr></table></figure>
+<p><em>main.cpp</em><br><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="string">"Line.h"</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">(<span class="keyword">void</span>)</span></span><br><span class="line"></span>&#123;</span><br><span class="line">    <span class="comment">// Line *p = new Line(2, 3, 5, 8);</span></span><br><span class="line">    Line * p = new Line();</span><br><span class="line">    <span class="keyword">delete</span> p;</span><br><span class="line">    p = <span class="literal">NULL</span>;</span><br><span class="line">    return <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p><em>Line.h</em></p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="string">"Coordinate.h"</span></span></span><br><span class="line"><span class="keyword">class</span> Line</span><br><span class="line">&#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    Line(<span class="keyword">int</span> x1=<span class="number">0</span>, <span class="keyword">int</span> y1=<span class="number">0</span>, <span class="keyword">int</span> x2=<span class="number">0</span>, <span class="keyword">int</span> y2=<span class="number">0</span>);</span><br><span class="line">    ~Line();</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">setA</span><span class="params">(<span class="keyword">int</span> x, <span class="keyword">int</span> y)</span></span>;</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">setB</span><span class="params">(<span class="keyword">int</span> x, <span class="keyword">int</span> y)</span></span>;</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">printInfo</span><span class="params">()</span></span>;</span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">    Coordinate m_coorA;</span><br><span class="line">    Coordinate m_coorB;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p><em>Line.cpp</em><br><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="string">"Line.h"</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line">Line::Line(<span class="keyword">int</span> x1, <span class="keyword">int</span> y1, <span class="keyword">int</span> x2, <span class="keyword">int</span> y2):m_coorA(x1, y1),m_coorB(x2, y2)</span><br><span class="line">&#123;</span><br><span class="line">    <span class="built_in">cout</span> &lt;&lt; <span class="string">"Line(int x1, int y1, int x2, int y2)"</span> &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">Line::~Line()</span><br><span class="line">&#123;</span><br><span class="line">    <span class="built_in">cout</span> &lt;&lt; <span class="string">"~Line()"</span> &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">void</span> Line::setA(<span class="keyword">int</span> x, <span class="keyword">int</span> y)</span><br><span class="line">&#123;</span><br><span class="line">    m_coorA.setX(x);</span><br><span class="line">    m_coorA.setY(y);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">void</span> Line::setB(<span class="keyword">int</span> x, <span class="keyword">int</span> y)</span><br><span class="line">&#123;</span><br><span class="line">    m_coorB.setX(x);</span><br><span class="line">    m_coorB.setY(y);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">void</span> Line::printInfo()</span><br><span class="line">&#123;</span><br><span class="line">    <span class="built_in">cout</span> &lt;&lt; <span class="string">"("</span> &lt;&lt; m_coorA.getX() &lt;&lt; <span class="string">", "</span> &lt;&lt; m_coorA.getY()&lt;&lt;<span class="string">")"</span> &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">    <span class="built_in">cout</span> &lt;&lt; <span class="string">"("</span> &lt;&lt; m_coorB.getX() &lt;&lt; <span class="string">", "</span> &lt;&lt; m_coorB.getY()&lt;&lt;<span class="string">")"</span> &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h1 id="3-深拷贝与浅拷贝"><a href="#3-深拷贝与浅拷贝" class="headerlink" title="3 深拷贝与浅拷贝"></a>3 深拷贝与浅拷贝</h1><h2 id="3-1-深拷贝浅拷贝"><a href="#3-1-深拷贝浅拷贝" class="headerlink" title="3.1 深拷贝浅拷贝"></a>3.1 深拷贝浅拷贝</h2><p><strong>说明：</strong>简单了解下深拷贝和浅拷贝</p>
+<ul>
+<li>当数据成员中含有指针时，<code>浅拷贝</code>会使两个对象的成员指针指向相同的内存地址。</li>
+</ul>
+<ul>
+<li>深拷贝不是简单的值拷贝，而是将指针成员指向的内存数据也进行拷贝。</li>
+</ul>
+<p><strong>技巧：</strong> 不是所有的对象都需哟啊深拷贝，应根据情况合理使用。如果对象的数据成员有引用类型（指针），则建议采用深拷贝！否则，会存在如下隐患</p>
+<ul>
+<li>原对象和副本中任何一个，引用类型数据成员指向的内存数据发生变化，则共享该变化；</li>
+</ul>
+<ul>
+<li>对同一内存空间的重复回收，会导致程序的崩溃。</li>
+</ul>
+<p><em>浅拷贝 Demo</em></p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> Array</span><br><span class="line">&#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">	<span class="comment">// 构造函数</span></span><br><span class="line">	Array()</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="built_in">cout</span> &lt;&lt; <span class="string">"Array()"</span> &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">		m_iCount = <span class="number">5</span>;</span><br><span class="line">		m_pArr = new <span class="keyword">int</span>[m_iCount];</span><br><span class="line"></span><br><span class="line">	&#125;</span><br><span class="line">	<span class="comment">// 拷贝构造函数</span></span><br><span class="line">	Array(<span class="keyword">const</span> Array&amp; <span class="built_in">array</span>)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="built_in">cout</span> &lt;&lt; <span class="string">"Array(const Array&amp; array)"</span> &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">		m_iCount = <span class="built_in">array</span>.m_iCount;</span><br><span class="line">		m_pArr = <span class="built_in">array</span>.m_pArr; <span class="comment">// 副本和原对象，该数据成员指向同一地址，有可能出现潜在问题</span></span><br><span class="line">	&#125;</span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">	<span class="keyword">int</span> m_iCount;</span><br><span class="line">	<span class="keyword">int</span> *m_pArr;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">(<span class="keyword">void</span>)</span></span><br><span class="line"></span>&#123;</span><br><span class="line">	Array arr1;</span><br><span class="line">	Array arr2 = arr1;</span><br><span class="line"></span><br><span class="line">	return <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><em>深拷贝 Demo</em></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">.</span><br><span class="line">├── Array.cpp</span><br><span class="line">├── Array.h</span><br><span class="line">├── main.cpp</span><br><span class="line">└── makefile</span><br></pre></td></tr></table></figure>
+<p><em>main.cpp</em></p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="string">"Array.h"</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">(<span class="keyword">void</span>)</span></span><br><span class="line"></span>&#123;</span><br><span class="line">	<span class="function">Array <span class="title">arr1</span><span class="params">(<span class="number">5</span>)</span></span>;</span><br><span class="line">	<span class="function">Array <span class="title">arr2</span><span class="params">(arr1)</span></span>;</span><br><span class="line"></span><br><span class="line">	<span class="built_in">cout</span> &lt;&lt; <span class="string">"arr1-&gt;"</span> &lt;&lt; arr1.printArr() &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">	<span class="built_in">cout</span> &lt;&lt; <span class="string">"arr2-&gt;"</span> &lt;&lt; arr2.printArr() &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">	return <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// Array()</span></span><br><span class="line"><span class="comment">// Array(const Array&amp; array)</span></span><br><span class="line"><span class="comment">// arr1-&gt;m_pArr:0x7f9b7a500000</span></span><br><span class="line"><span class="comment">// -246491552</span></span><br><span class="line"><span class="comment">// arr2-&gt;m_pArr:0x7f9b7a402830</span></span><br><span class="line"><span class="comment">// -246491552</span></span><br><span class="line"><span class="comment">// ~Array()</span></span><br><span class="line"><span class="comment">// ~Array()</span></span><br></pre></td></tr></table></figure>
+<p><em>Array.h</em></p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> Array</span><br><span class="line">&#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">	Array(<span class="keyword">int</span> count = <span class="number">0</span>);</span><br><span class="line">	Array(<span class="keyword">const</span> Array&amp; <span class="built_in">array</span>);</span><br><span class="line">	~Array();</span><br><span class="line">	<span class="function"><span class="keyword">void</span> <span class="title">setCount</span><span class="params">(<span class="keyword">int</span> count)</span></span>;</span><br><span class="line">	<span class="function"><span class="keyword">int</span> <span class="title">getCount</span><span class="params">()</span></span>;</span><br><span class="line">	<span class="function"><span class="keyword">void</span> <span class="title">printArr</span><span class="params">()</span></span>;</span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">	<span class="keyword">int</span> m_iCount;</span><br><span class="line">	<span class="keyword">int</span> *m_pArr;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p><em>Array.cpp</em></p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="string">"Array.h"</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 构造函数</span></span><br><span class="line">Array::Array(<span class="keyword">int</span> count):m_iCount(count)</span><br><span class="line">&#123;</span><br><span class="line">	<span class="built_in">cout</span> &lt;&lt; <span class="string">"Array()"</span> &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">	m_pArr = new <span class="keyword">int</span>[m_iCount];</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 析构函数</span></span><br><span class="line">Array::~Array()</span><br><span class="line">&#123;</span><br><span class="line">	<span class="keyword">delete</span> []m_pArr;</span><br><span class="line">	m_pArr = <span class="literal">NULL</span>;</span><br><span class="line">	<span class="built_in">cout</span> &lt;&lt; <span class="string">"~Array()"</span> &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 拷贝构造函数</span></span><br><span class="line">Array::Array(<span class="keyword">const</span> Array&amp; <span class="built_in">array</span>)</span><br><span class="line">&#123;</span><br><span class="line">	<span class="built_in">cout</span> &lt;&lt; <span class="string">"Array(const Array&amp; array)"</span> &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">	m_iCount = <span class="built_in">array</span>.m_iCount;</span><br><span class="line">	m_pArr = new <span class="keyword">int</span>[m_iCount];</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; m_iCount; i++)</span><br><span class="line">	&#123;</span><br><span class="line">		m_pArr[i] = <span class="built_in">array</span>.m_pArr[i];</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">int</span> Array::printArr()</span><br><span class="line">&#123;</span><br><span class="line">	<span class="comment">// 打印数组在内存中的地址</span></span><br><span class="line">	<span class="built_in">cout</span> &lt;&lt; <span class="string">"m_pArr:"</span> &lt;&lt; m_pArr &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">void</span> Array::setCount(<span class="keyword">int</span> count)</span><br><span class="line">&#123;</span><br><span class="line">	m_iCount = count;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">int</span> Array::getCount()</span><br><span class="line">&#123;</span><br><span class="line">	return m_iCount;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h1 id="4-对象指针"><a href="#4-对象指针" class="headerlink" title="4 对象指针"></a>4 对象指针</h1><h2 id="4-1-对象指针"><a href="#4-1-对象指针" class="headerlink" title="4.1 对象指针"></a>4.1 对象指针</h2><p><strong>说明：</strong>分两大类</p>
+<ul>
+<li>实际上就是通过通过 <code>new</code> 或 <code>malloc</code> 等方式在堆中创建对象实例，返回的指针就是<code>对象指针</code>（需要手动管理内存）</li>
+<li>在栈中创建对象，然后通过创建相应的指针指向这个栈中的对象（不需要手动管理内存）</li>
+</ul>
+<h3 id="在堆中创建"><a href="#在堆中创建" class="headerlink" title="在堆中创建"></a>在堆中创建</h3><ul>
+<li><code>new</code>（推荐） ： 会自动调用相应的构造函数</li>
+</ul>
+<ul>
+<li><code>malloc</code> 等：不会调用任何构造函数</li>
+</ul>
+<p><em>简单示例</em><br><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> Coordinate</span><br><span class="line">&#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">	<span class="keyword">int</span> m_iX;</span><br><span class="line">	<span class="keyword">int</span> m_iY;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">(<span class="keyword">void</span>)</span></span><br><span class="line"></span>&#123;</span><br><span class="line">	Coordinate *p = new Coordinate; <span class="comment">// Coordinate *p = new Coordinate();</span></span><br><span class="line">	p-&gt;m_iX = <span class="number">10</span>; <span class="comment">// (*p).m_iX = 10;</span></span><br><span class="line">	p-&gt;m_iY = <span class="number">20</span>; <span class="comment">// (*p).m_iY = 20;</span></span><br><span class="line"></span><br><span class="line">	<span class="keyword">delete</span> p;</span><br><span class="line">	p = <span class="literal">NULL</span>;</span><br><span class="line">	return <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p><img src="http://o6ul1xz4z.bkt.clouddn.com/c++%E8%BF%9C%E5%BE%8103%E5%B0%81%E8%A3%85%E7%AF%87%EF%BC%88%E4%B8%8B%EF%BC%89/F5680972-44CA-43C1-9DE3-2E809A2657BD.png" alt=""></p>
+<h3 id="在栈中创建"><a href="#在栈中创建" class="headerlink" title="在栈中创建"></a>在栈中创建</h3><p><em>简单示例</em></p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> Coordinate</span><br><span class="line">&#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">	<span class="keyword">int</span> m_iX;</span><br><span class="line">	<span class="keyword">int</span> m_iY;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">(<span class="keyword">void</span>)</span></span><br><span class="line"></span>&#123;</span><br><span class="line">	Coordinate coor;</span><br><span class="line">	Coordinate *p = &amp;coor;</span><br><span class="line">	p-&gt;m_iX = <span class="number">10</span>; <span class="comment">// (*p).m_iX = 10;</span></span><br><span class="line">	p-&gt;m_iY = <span class="number">20</span>; <span class="comment">// (*p).m_iY = 20;</span></span><br><span class="line">	</span><br><span class="line">	return <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="对象指针-Demo"><a href="#对象指针-Demo" class="headerlink" title="对象指针 Demo"></a>对象指针 Demo</h3><p><strong>说明：</strong> 展示对象指针的<code>定义</code>和<code>使用</code>方法(以在堆中创建为例)</p>
+<ul>
+<li>定义 Coordinate 类，数据成员 m_iX 和 m_iY</li>
+</ul>
+<ul>
+<li>声明对象指针，并通过指针操控对象</li>
+<li>计算两个点，横、纵坐标的和</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">.</span><br><span class="line">├── Coordinate.cpp</span><br><span class="line">├── Coordinate.h</span><br><span class="line">├── main.cpp <span class="comment"># 要点在这里</span></span><br><span class="line">└── makefile</span><br></pre></td></tr></table></figure>
+<p><em>main.c</em></p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="string">"Coordinate.h"</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">(<span class="keyword">void</span>)</span></span><br><span class="line"></span>&#123;</span><br><span class="line">	<span class="comment">// 创建对象指针</span></span><br><span class="line">	Coordinate *p1 = new Coordinate;</span><br><span class="line">	Coordinate *p2 = new Coordinate();</span><br><span class="line"></span><br><span class="line">	<span class="comment">// 对象数据成员赋值</span></span><br><span class="line">	p1-&gt;m_iX = <span class="number">10</span>;</span><br><span class="line">	p2-&gt;m_iY = <span class="number">20</span>;</span><br><span class="line">	(*p1).m_iX = <span class="number">30</span>;</span><br><span class="line">	(*p2).m_iY = <span class="number">40</span>;</span><br><span class="line"></span><br><span class="line">	<span class="comment">// 打印计算结果</span></span><br><span class="line">	<span class="built_in">cout</span> &lt;&lt; p1-&gt; m_iX + (*p2).m_iX &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">	<span class="built_in">cout</span> &lt;&lt; p1-&gt; m_iY + (*p2).m_iY &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">	</span><br><span class="line">	<span class="comment">// 回收堆中的内存</span></span><br><span class="line">	<span class="keyword">delete</span> p1;</span><br><span class="line">	p1 = <span class="literal">NULL</span>;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">delete</span> p2;</span><br><span class="line">	p2 = <span class="literal">NULL</span>;</span><br><span class="line"></span><br><span class="line">	return <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><em>Coordinate.h</em></p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> Coordinate</span><br><span class="line">&#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    Coordinate(<span class="keyword">int</span> x=<span class="number">0</span>, <span class="keyword">int</span> y=<span class="number">0</span>);</span><br><span class="line">    ~Coordinate();</span><br><span class="line">    <span class="keyword">int</span> m_iX;</span><br><span class="line">    <span class="keyword">int</span> m_iY;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p><em>Coordinate.cpp</em></p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="string">"Coordinate.h"</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"></span><br><span class="line">Coordinate::Coordinate(<span class="keyword">int</span> x, <span class="keyword">int</span> y):m_iX(x),m_iY(y)</span><br><span class="line">&#123;</span><br><span class="line">    <span class="built_in">cout</span> &lt;&lt; <span class="string">"Coordinate(int x, int y):m_iX(x),m_iY(y)"</span> &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">Coordinate::~Coordinate()</span><br><span class="line">&#123;</span><br><span class="line">    <span class="built_in">cout</span> &lt;&lt; <span class="string">"~Coordinate()"</span> &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="4-2-对象成员指针"><a href="#4-2-对象成员指针" class="headerlink" title="4.2 对象成员指针"></a>4.2 对象成员指针</h2><p><strong>说明：</strong> 前面有关于对象成员的讨论，这里的<code>对象成员指针</code>，指的就是将<code>对象指针</code>作为对象的成员。</p>
+<ul>
+<li>需要在<code>构造函数</code>或<code>构造函数列表</code>中创建对象实例，为<code>对象成员指针</code>赋值。</li>
+<li>需要在析构函数中释放对象成员指针指向的堆中的对象。</li>
+</ul>
+<p><em>在初始化列表中初始化</em></p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Line::Line():m_pCoorA(<span class="literal">NULL</span>), m_pCoorB(<span class="literal">NULL</span>)</span><br><span class="line">&#123;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><em>在构造函数中初始化</em></p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">Line::Line()</span><br><span class="line">&#123;</span><br><span class="line">	m_pCoorA = new Coordinate(<span class="number">0</span>, <span class="number">0</span>);</span><br><span class="line">	m_pCoorB = new Coordinate(<span class="number">0</span>, <span class="number">0</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><em>在析构函数中释放资源</em></p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">Line::~Line()</span><br><span class="line">&#123;</span><br><span class="line">	<span class="keyword">delete</span> m_pCoorA;</span><br><span class="line">	<span class="keyword">delete</span> m_pCoorB;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><strong>注意：</strong> 由于是将指针作为数据成员，所以使用 sizeof 计算数据成员大小时，是指针本身的大小，而不是指向的对象的大小！</p>
+<h3 id="对象成员指针Demo"><a href="#对象成员指针Demo" class="headerlink" title="对象成员指针Demo"></a>对象成员指针Demo</h3><p><strong>说明：</strong> 演示对象成员指针的使用和要注意的事项。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">.</span><br><span class="line">├── Coordinate.cpp</span><br><span class="line">├── Coordinate.h <span class="comment"># 坐标类</span></span><br><span class="line">├── Line.cpp <span class="comment">#要点</span></span><br><span class="line">├── Line.h <span class="comment"># 线段类</span></span><br><span class="line">├── main.cpp</span><br><span class="line">└── makefile</span><br></pre></td></tr></table></figure>
+<p><em>main.cpp</em></p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="string">"Line.h"</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">(<span class="keyword">void</span>)</span></span><br><span class="line"></span>&#123;</span><br><span class="line">    Line * p = new Line(<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>);</span><br><span class="line">    <span class="keyword">delete</span> p;</span><br><span class="line">    p = <span class="literal">NULL</span>;</span><br><span class="line">    return <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><em>Line.h</em></p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="string">"Coordinate.h"</span></span></span><br><span class="line"><span class="keyword">class</span> Line</span><br><span class="line">&#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    Line(<span class="keyword">int</span> x1=<span class="number">0</span>, <span class="keyword">int</span> y1=<span class="number">0</span>, <span class="keyword">int</span> x2=<span class="number">0</span>, <span class="keyword">int</span> y2=<span class="number">0</span>);</span><br><span class="line">    ~Line();</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">setA</span><span class="params">(<span class="keyword">int</span> x, <span class="keyword">int</span> y)</span></span>;</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">setB</span><span class="params">(<span class="keyword">int</span> x, <span class="keyword">int</span> y)</span></span>;</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">printInfo</span><span class="params">()</span></span>;</span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">    Coordinate *m_pCoorA;</span><br><span class="line">    Coordinate *m_pCoorB;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p><em>Line.cpp</em></p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="string">"Line.h"</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="comment">// 在构造函数中初始化对象指针</span></span><br><span class="line">Line::Line(<span class="keyword">int</span> x1, <span class="keyword">int</span> y1, <span class="keyword">int</span> x2, <span class="keyword">int</span> y2)</span><br><span class="line">&#123;</span><br><span class="line">    m_pCoorA = new Coordinate(x1, y1);</span><br><span class="line">    m_pCoorB = new Coordinate(x2, y2);</span><br><span class="line">    <span class="built_in">cout</span> &lt;&lt; <span class="string">"Line(int x1, int y1, int x2, int y2)"</span> &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 在析构函数中回收对象指针指向的内存资源</span></span><br><span class="line">Line::~Line()</span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">delete</span> m_pCoorA;</span><br><span class="line">    <span class="keyword">delete</span> m_pCoorB;</span><br><span class="line">    m_pCoorA = <span class="literal">NULL</span>;</span><br><span class="line">    m_pCoorB = <span class="literal">NULL</span>;</span><br><span class="line"></span><br><span class="line">    <span class="built_in">cout</span> &lt;&lt; <span class="string">"~Line()"</span> &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">void</span> Line::setA(<span class="keyword">int</span> x, <span class="keyword">int</span> y)</span><br><span class="line">&#123;</span><br><span class="line">    m_pCoorA-&gt;setX(x);</span><br><span class="line">    m_pCoorA-&gt;setY(y);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">void</span> Line::setB(<span class="keyword">int</span> x, <span class="keyword">int</span> y)</span><br><span class="line">&#123;</span><br><span class="line">    m_pCoorB-&gt;setX(x);</span><br><span class="line">    m_pCoorB-&gt;setY(y);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">void</span> Line::printInfo()</span><br><span class="line">&#123;</span><br><span class="line">    <span class="built_in">cout</span> &lt;&lt; <span class="string">"("</span> &lt;&lt; m_pCoorA-&gt;getX() &lt;&lt; <span class="string">", "</span> &lt;&lt; m_pCoorA-&gt;getY()&lt;&lt;<span class="string">")"</span> &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">    <span class="built_in">cout</span> &lt;&lt; <span class="string">"("</span> &lt;&lt; m_pCoorB-&gt;getX() &lt;&lt; <span class="string">", "</span> &lt;&lt; m_pCoorB-&gt;getY()&lt;&lt;<span class="string">")"</span> &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><em>Coordinate.h</em></p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> Coordinate</span><br><span class="line">&#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    Coordinate(<span class="keyword">int</span> x=<span class="number">0</span>, <span class="keyword">int</span> y=<span class="number">0</span>);</span><br><span class="line">    ~Coordinate();</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">setX</span><span class="params">(<span class="keyword">int</span> x)</span></span>;</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">getX</span><span class="params">()</span></span>;</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">setY</span><span class="params">(<span class="keyword">int</span> y)</span></span>;</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">getY</span><span class="params">()</span></span>;</span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">    <span class="keyword">int</span> m_iX;</span><br><span class="line">    <span class="keyword">int</span> m_iY;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p><em>Coordinate.cpp</em></p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="string">"Coordinate.h"</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"></span><br><span class="line">Coordinate::Coordinate(<span class="keyword">int</span> x, <span class="keyword">int</span> y):m_iX(x),m_iY(y)</span><br><span class="line">&#123;</span><br><span class="line">    <span class="built_in">cout</span> &lt;&lt; <span class="string">"Coordinate(int x, int y):m_iX(x),m_iY(y)"</span> &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">Coordinate::~Coordinate()</span><br><span class="line">&#123;</span><br><span class="line">    <span class="built_in">cout</span> &lt;&lt; <span class="string">"~Coordinate()"</span> &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">void</span> Coordinate::setX(<span class="keyword">int</span> x)</span><br><span class="line">&#123;</span><br><span class="line">    m_iX = x;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">int</span> Coordinate::getX()</span><br><span class="line">&#123;</span><br><span class="line">    return m_iX;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">void</span> Coordinate::setY(<span class="keyword">int</span> y)</span><br><span class="line">&#123;</span><br><span class="line">    m_iY = y;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">int</span> Coordinate::getY()</span><br><span class="line">&#123;</span><br><span class="line">    return m_iY;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="4-3-this-指针"><a href="#4-3-this-指针" class="headerlink" title="4.3 this 指针"></a>4.3 this 指针</h2><p><strong>说明：</strong> <code>this</code> 指针在对象中的方法中使用，指向对象自身。</p>
+<ul>
+<li>this指针无需用户定义，是编译器自动产生的。</li>
+</ul>
+<ul>
+<li>同一个类的两个对象的this指针指向各自对象位置的内存。</li>
+<li>this 指针也是指针类型，所以在32位编译器下也占用4个基本的内存单元，即sizeof(this)的结果为4。</li>
+</ul>
+<p><strong>用途</strong></p>
+<ul>
+<li><strong>显式指出变量是对象成员：</strong>当成员函数的参数或临时变量与数据成员同名时，可以使用this指针区分同名的数据成员。</li>
+<li><strong>编译器隐式使用 this：</strong>类中的成员函数存储在代码区，一个类的所有实例共享成员函数。内部通过隐式 this 指针保证访问正确的数据成员。</li>
+<li><strong>实现链式调用：</strong>成员方法可以返回 <code>*this</code>或<code>this</code>来实现链式链式调用（注意，如果返回的是<code>*this</code>，除非返回显式说明返回引用，否则函数的返回值是副本）。</li>
+</ul>
+<p><em>返回对象本身的引用</em></p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">Array&amp; Array::printInfo()</span><br><span class="line">&#123;</span><br><span class="line">	<span class="built_in">cout</span> &lt;&lt; <span class="string">"len = "</span> &lt;&lt; len &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">	return *<span class="keyword">this</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><em>直接返回指针</em></p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">Array* Array::printInfo()</span><br><span class="line">&#123;</span><br><span class="line">	<span class="built_in">cout</span> &lt;&lt; <span class="string">"len = "</span> &lt;&lt; len &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">	return <span class="keyword">this</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="this-指针-Demo"><a href="#this-指针-Demo" class="headerlink" title="this 指针 Demo"></a>this 指针 Demo</h3><p><strong>要点</strong></p>
+<ul>
+<li>链式调用</li>
+</ul>
+<ul>
+<li>显式明确变量为对象成员（而不是参数）</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">.</span><br><span class="line">├── Array.cpp</span><br><span class="line">├── Array.h</span><br><span class="line">├── main.cpp</span><br><span class="line">└── makefile</span><br></pre></td></tr></table></figure>
+<p><em>main.cpp</em></p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="string">"Array.h"</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">(<span class="keyword">void</span>)</span></span><br><span class="line"></span>&#123;</span><br><span class="line">	<span class="function">Array <span class="title">arr1</span><span class="params">(<span class="number">1</span>)</span></span>;</span><br><span class="line">	<span class="comment">// 链式调用</span></span><br><span class="line">	arr1.printInfo().setLen(<span class="number">2</span>).printInfo();</span><br><span class="line">	return <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><em>Array.h</em></p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> Array</span><br><span class="line">&#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">	Array(<span class="keyword">int</span> len);</span><br><span class="line">	~Array();</span><br><span class="line">	<span class="function"><span class="keyword">int</span> <span class="title">getLen</span><span class="params">()</span></span>;</span><br><span class="line">	<span class="function">Array&amp; <span class="title">setLen</span><span class="params">(<span class="keyword">int</span> len)</span></span>;</span><br><span class="line">	<span class="function">Array&amp; <span class="title">printInfo</span><span class="params">()</span></span>;</span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">	<span class="keyword">int</span> len;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p><em>Array.cpp</em></p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="string">"Array.h"</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"></span><br><span class="line">Array::Array(<span class="keyword">int</span> len)</span><br><span class="line">&#123;</span><br><span class="line">	<span class="keyword">this</span>-&gt;len = len;</span><br><span class="line">&#125;</span><br><span class="line">Array::~Array()</span><br><span class="line">&#123;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">int</span> Array::getLen()</span><br><span class="line">&#123;</span><br><span class="line">	return len;</span><br><span class="line">&#125;</span><br><span class="line">Array&amp; Array::setLen(<span class="keyword">int</span> len)</span><br><span class="line">&#123;</span><br><span class="line">	<span class="keyword">this</span>-&gt;len = len;</span><br><span class="line">	return *<span class="keyword">this</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">Array&amp; Array::printInfo()</span><br><span class="line">&#123;</span><br><span class="line">	<span class="built_in">cout</span> &lt;&lt; <span class="string">"len = "</span> &lt;&lt; len &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">	return *<span class="keyword">this</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h1 id="5-const-再现江湖"><a href="#5-const-再现江湖" class="headerlink" title="5 const 再现江湖"></a>5 const 再现江湖</h1><h2 id="5-1-const-对象成员和const-成员函数"><a href="#5-1-const-对象成员和const-成员函数" class="headerlink" title="5.1 const 对象成员和const 成员函数"></a>5.1 const 对象成员和const 成员函数</h2><p><strong>说明：</strong> 当用 const 修饰 <code>对象数据成员</code> 或 <code>成员函数</code>时，它们就变成了</p>
+<ul>
+<li>常对象成员</li>
+<li>常成员函数</li>
+</ul>
+<h3 id="常对象成员"><a href="#常对象成员" class="headerlink" title="常对象成员"></a>常对象成员</h3><p><em>简单示例</em></p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> Coordinate</span><br><span class="line">&#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">	Coordinate(<span class="keyword">int</span> x, <span class="keyword">int</span> y):m_iX(x), m_iY(y)</span><br><span class="line">	&#123;	</span><br><span class="line">	&#125;</span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">	<span class="keyword">const</span> <span class="keyword">int</span> m_iX;</span><br><span class="line">	<span class="keyword">const</span> <span class="keyword">int</span> m_iY;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> Line</span><br><span class="line">&#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">	Line(<span class="keyword">int</span> x1, <span class="keyword">int</span> y1, <span class="keyword">int</span> x2, <span class="keyword">int</span> y2);</span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">	<span class="comment">// 常对象成员</span></span><br><span class="line">	<span class="keyword">const</span> Coordinate m_coorA;</span><br><span class="line">	<span class="keyword">const</span> Coordinate m_coorB;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 常对象成员和普通 const 数据成员一样，只能在初始化列表中赋值</span></span><br><span class="line">Line::Line(<span class="keyword">int</span> x1, <span class="keyword">int</span> y1, <span class="keyword">int</span> x2, <span class="keyword">int</span> y2):m_coorA(x1, y1), m_coorB(x2, y2)</span><br><span class="line">&#123;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">(<span class="keyword">void</span>)</span></span><br><span class="line"></span>&#123;</span><br><span class="line">	Line *p = new Line(<span class="number">2</span>, <span class="number">1</span>, <span class="number">6</span>, <span class="number">4</span>);</span><br><span class="line"></span><br><span class="line">	<span class="keyword">delete</span> p;</span><br><span class="line">	p = <span class="literal">NULL</span>;</span><br><span class="line">	return <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="常成员函数"><a href="#常成员函数" class="headerlink" title="常成员函数"></a>常成员函数</h3><p><strong>说明：</strong>特性如下</p>
+<ul>
+<li>常成员函数中可以使用普通的数据成员，但是不能改变对象成员的值</li>
+</ul>
+<ul>
+<li>普通成员函数可以被常对象或普通对象调用，单通过常对象才能够调用常成员函数</li>
+</ul>
+<ul>
+<li>可以和同名同参的普通成员函数共存（互为重载，但不建议这样使用）</li>
+</ul>
+<p><img src="http://o6ul1xz4z.bkt.clouddn.com/c++%E8%BF%9C%E5%BE%8103%E5%B0%81%E8%A3%85%E7%AF%87%EF%BC%88%E4%B8%8B%EF%BC%89/2991BA11-2CFD-42A7-877E-FA4E905266B6.png" alt=""></p>
+<p><strong>限制：</strong>常成员函数中的 this 指针是被 const 修饰的，因此无法通过该指针对原对象的数据成员进行修改。</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> Coordinate</span><br><span class="line">&#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">	Coordinate(<span class="keyword">int</span> x, <span class="keyword">int</span> y);</span><br><span class="line">	<span class="comment">// 常成员函数(只能通过常对象调用)</span></span><br><span class="line">	<span class="function"><span class="keyword">void</span> <span class="title">changeX</span><span class="params">()</span> <span class="keyword">const</span></span>;</span><br><span class="line">	<span class="comment">// 和上面的同名同参的常成员函数互为重载</span></span><br><span class="line">	<span class="function"><span class="keyword">void</span> <span class="title">changeX</span><span class="params">()</span></span>;</span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">	<span class="keyword">int</span> m_iX;</span><br><span class="line">	<span class="keyword">int</span> m_iY;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">Coordinate::Coordinate(<span class="keyword">int</span> x, <span class="keyword">int</span> y)</span><br><span class="line">&#123;</span><br><span class="line">	m_iX = x;</span><br><span class="line">	m_iY = y;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">void</span> Coordinate::changeX() <span class="keyword">const</span></span><br><span class="line">&#123;</span><br><span class="line">	<span class="comment">// m_iX = 10;(会报错)</span></span><br><span class="line">	<span class="built_in">cout</span> &lt;&lt; <span class="string">"changeX()"</span> &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">void</span> Coordinate::changeX()</span><br><span class="line">&#123;</span><br><span class="line">	m_iX = <span class="number">20</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">(<span class="keyword">void</span>)</span></span><br><span class="line"></span>&#123;</span><br><span class="line">	<span class="comment">// 常对象</span></span><br><span class="line">	<span class="function"><span class="keyword">const</span> Coordinate <span class="title">coor</span><span class="params">(<span class="number">3</span>, <span class="number">5</span>)</span></span>;</span><br><span class="line">	<span class="comment">// 通过常对象才能调用常成员函数</span></span><br><span class="line">	coor.changeX();</span><br><span class="line">	</span><br><span class="line">	return <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="5-2-const-对象成员和const-成员函数-Demo"><a href="#5-2-const-对象成员和const-成员函数-Demo" class="headerlink" title="5.2 const 对象成员和const 成员函数 Demo"></a>5.2 const 对象成员和const 成员函数 Demo</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">.</span><br><span class="line">├── Coordinate.cpp</span><br><span class="line">├── Coordinate.h <span class="comment"># getX 和 getY 为常对象和普通对象分别进行了定义</span></span><br><span class="line">├── Line.cpp </span><br><span class="line">├── Line.h</span><br><span class="line">├── main.cpp</span><br><span class="line">└── makefile</span><br></pre></td></tr></table></figure>
+<p><em>main.cpp</em></p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="string">"Line.h"</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">(<span class="keyword">void</span>)</span></span><br><span class="line"></span>&#123;</span><br><span class="line">    <span class="function">Line <span class="title">l</span><span class="params">(<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>)</span></span>;</span><br><span class="line">    l.printInfo();</span><br><span class="line">    return <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><em>Line.h</em></p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="string">"Coordinate.h"</span></span></span><br><span class="line"><span class="keyword">class</span> Line</span><br><span class="line">&#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    Line(<span class="keyword">int</span> x1=<span class="number">0</span>, <span class="keyword">int</span> y1=<span class="number">0</span>, <span class="keyword">int</span> x2=<span class="number">0</span>, <span class="keyword">int</span> y2=<span class="number">0</span>);</span><br><span class="line">    ~Line();</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">printInfo</span><span class="params">()</span></span>;</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">printInfo</span><span class="params">()</span> <span class="keyword">const</span></span>;</span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">    <span class="keyword">const</span> Coordinate m_coorA;</span><br><span class="line">    <span class="keyword">const</span> Coordinate m_coorB;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p><em>Line.cpp</em></p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="string">"Line.h"</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="comment">// 在构造函数中初始化对象指针</span></span><br><span class="line">Line::Line(<span class="keyword">int</span> x1, <span class="keyword">int</span> y1, <span class="keyword">int</span> x2, <span class="keyword">int</span> y2):m_coorA(x1, y1), m_coorB(x2, y2)</span><br><span class="line">&#123;</span><br><span class="line">    <span class="built_in">cout</span> &lt;&lt; <span class="string">"Line(int x1, int y1, int x2, int y2)"</span> &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 在析构函数中回收对象指针指向的内存资源</span></span><br><span class="line">Line::~Line()</span><br><span class="line">&#123;</span><br><span class="line">    <span class="built_in">cout</span> &lt;&lt; <span class="string">"~Line()"</span> &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">void</span> Line::printInfo()</span><br><span class="line">&#123;</span><br><span class="line">    <span class="built_in">cout</span> &lt;&lt; <span class="string">"("</span> &lt;&lt; m_coorA.getX() &lt;&lt; <span class="string">", "</span> &lt;&lt; m_coorA.getY()&lt;&lt;<span class="string">")"</span> &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">    <span class="built_in">cout</span> &lt;&lt; <span class="string">"("</span> &lt;&lt; m_coorB.getX() &lt;&lt; <span class="string">", "</span> &lt;&lt; m_coorB.getY()&lt;&lt;<span class="string">")"</span> &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">void</span> Line::printInfo() <span class="keyword">const</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="built_in">cout</span> &lt;&lt; <span class="string">"Line::printInfo() const"</span> &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">    <span class="built_in">cout</span> &lt;&lt; <span class="string">"("</span> &lt;&lt; m_coorA.getX() &lt;&lt; <span class="string">", "</span> &lt;&lt; m_coorA.getY()&lt;&lt;<span class="string">")"</span> &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">    <span class="built_in">cout</span> &lt;&lt; <span class="string">"("</span> &lt;&lt; m_coorB.getX() &lt;&lt; <span class="string">", "</span> &lt;&lt; m_coorB.getY()&lt;&lt;<span class="string">")"</span> &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><em>Coordinate.h</em></p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> Coordinate</span><br><span class="line">&#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    Coordinate(<span class="keyword">int</span> x=<span class="number">0</span>, <span class="keyword">int</span> y=<span class="number">0</span>);</span><br><span class="line">    ~Coordinate();</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">setX</span><span class="params">(<span class="keyword">int</span> x)</span></span>;</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">getX</span><span class="params">()</span> <span class="keyword">const</span></span>; <span class="comment">// for 常对象</span></span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">getX</span><span class="params">()</span></span>;</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">setY</span><span class="params">(<span class="keyword">int</span> y)</span></span>;</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">getY</span><span class="params">()</span> <span class="keyword">const</span></span>; <span class="comment">// for 常对象</span></span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">getY</span><span class="params">()</span></span>;</span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">    <span class="keyword">int</span> m_iX;</span><br><span class="line">    <span class="keyword">int</span> m_iY;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p><em>Coordinate.cpp</em></p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="string">"Coordinate.h"</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 在初始化列表中对常对象成员进行初始化</span></span><br><span class="line">Coordinate::Coordinate(<span class="keyword">int</span> x, <span class="keyword">int</span> y):m_iX(x),m_iY(y)</span><br><span class="line">&#123;</span><br><span class="line">    <span class="built_in">cout</span> &lt;&lt; <span class="string">"Coordinate(int x, int y):m_iX(x),m_iY(y)"</span> &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">Coordinate::~Coordinate()</span><br><span class="line">&#123;</span><br><span class="line">    <span class="built_in">cout</span> &lt;&lt; <span class="string">"~Coordinate()"</span> &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">void</span> Coordinate::setX(<span class="keyword">int</span> x)</span><br><span class="line">&#123;</span><br><span class="line">    m_iX = x;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">int</span> Coordinate::getX() <span class="keyword">const</span></span><br><span class="line">&#123;</span><br><span class="line">    return m_iX;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">int</span> Coordinate::getX()</span><br><span class="line">&#123;</span><br><span class="line">    return m_iX;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">void</span> Coordinate::setY(<span class="keyword">int</span> y)</span><br><span class="line">&#123;</span><br><span class="line">    m_iY = y;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">int</span> Coordinate::getY() <span class="keyword">const</span></span><br><span class="line">&#123;</span><br><span class="line">    return m_iY;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">int</span> Coordinate::getY()</span><br><span class="line">&#123;</span><br><span class="line">    return m_iY;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="5-4-对象常指针和对象常引用"><a href="#5-4-对象常指针和对象常引用" class="headerlink" title="5.4 对象常指针和对象常引用"></a>5.4 对象常指针和对象常引用</h2><p><img src="http://o6ul1xz4z.bkt.clouddn.com/c++%E8%BF%9C%E5%BE%8103%E5%B0%81%E8%A3%85%E7%AF%87%EF%BC%88%E4%B8%8B%EF%BC%89/AE736337-EDA8-4EBE-8888-FD158B0F18CB.png" alt=""></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">.</span><br><span class="line">├── Coordinate.cpp</span><br><span class="line">├── Coordinate.h</span><br><span class="line">├── main.cpp</span><br><span class="line">└── makefile</span><br></pre></td></tr></table></figure>
+<p><em>main.cpp</em></p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="string">"Coordinate.h"</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">(<span class="keyword">void</span>)</span></span><br><span class="line"></span>&#123;</span><br><span class="line">    <span class="comment">// 在栈中创建对象实例</span></span><br><span class="line">    <span class="function">Coordinate <span class="title">coor1</span><span class="params">(<span class="number">3</span>, <span class="number">5</span>)</span></span>;</span><br><span class="line">    <span class="comment">//1---------------</span></span><br><span class="line">    <span class="comment">// 对象引用</span></span><br><span class="line">    Coordinate &amp;coor2 = coor1;</span><br><span class="line">    coor2.printInfo(); <span class="comment">// (3, 5)</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">// 对象指针</span></span><br><span class="line">    Coordinate *pCoor1 = &amp;coor1;</span><br><span class="line">    pCoor1-&gt;printInfo(); <span class="comment">// (3, 5)</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">//2---------------</span></span><br><span class="line">    <span class="comment">// 对象常引用(只能调用常成员函数)</span></span><br><span class="line">    <span class="keyword">const</span> Coordinate &amp;coor3 = coor1;</span><br><span class="line">    coor3.printInfo(); <span class="comment">// (3, 5)</span></span><br><span class="line">    <span class="comment">// coor3.getX(); （报错，getX 的 this 需要有读写权限）</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">// 常对象指针(智能调用常成员函数)</span></span><br><span class="line">    <span class="keyword">const</span> Coordinate *pCoor2 = &amp;coor1;</span><br><span class="line">    pCoor2-&gt;printInfo(); <span class="comment">// (3, 5)</span></span><br><span class="line">    <span class="comment">// pCoor2.getX(); （报错，getX 的 this 需要有读写权限）</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">//3---------------</span></span><br><span class="line">    <span class="function">Coordinate <span class="title">coor4</span><span class="params">(<span class="number">3</span>, <span class="number">9</span>)</span></span>;</span><br><span class="line">    <span class="comment">// 对象常指针(对指向的对象仍然有读写权限，但本身地址不可修改)</span></span><br><span class="line">    Coordinate * <span class="keyword">const</span> pCoor3 = &amp;coor1;</span><br><span class="line">    pCoor3-&gt;getY();</span><br><span class="line">    <span class="comment">// pCoor3 = &amp;coor4;(报错，指针本身只读)</span></span><br><span class="line">    pCoor3-&gt;printInfo();</span><br><span class="line">    return <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><em>Coordinate.h</em></p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> Coordinate</span><br><span class="line">&#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    Coordinate(<span class="keyword">int</span> x=<span class="number">0</span>, <span class="keyword">int</span> y=<span class="number">0</span>);</span><br><span class="line">    ~Coordinate();</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">getX</span><span class="params">()</span></span>;</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">getY</span><span class="params">()</span></span>;</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">printInfo</span><span class="params">()</span> <span class="keyword">const</span></span>;</span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">    <span class="keyword">int</span> m_iX;</span><br><span class="line">    <span class="keyword">int</span> m_iY;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p><em>Coordinate.cpp</em></p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="string">"Coordinate.h"</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"></span><br><span class="line">Coordinate::Coordinate(<span class="keyword">int</span> x, <span class="keyword">int</span> y):m_iX(x),m_iY(y)</span><br><span class="line">&#123;</span><br><span class="line">    <span class="built_in">cout</span> &lt;&lt; <span class="string">"Coordinate(int x, int y):m_iX(x),m_iY(y)"</span> &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">Coordinate::~Coordinate()</span><br><span class="line">&#123;</span><br><span class="line">    <span class="built_in">cout</span> &lt;&lt; <span class="string">"~Coordinate()"</span> &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">int</span> Coordinate::getX()</span><br><span class="line">&#123;</span><br><span class="line">    return m_iX;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">int</span> Coordinate::getY()</span><br><span class="line">&#123;</span><br><span class="line">    return m_iY;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">void</span> Coordinate::printInfo() <span class="keyword">const</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="built_in">cout</span> &lt;&lt; <span class="string">"("</span> &lt;&lt; m_iX &lt;&lt; <span class="string">","</span> &lt;&lt; m_iY &lt;&lt; <span class="string">")"</span> &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="5-3-单元巩固"><a href="#5-3-单元巩固" class="headerlink" title="5.3 单元巩固"></a>5.3 单元巩固</h2><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="keyword">class</span> Coordinate</span><br><span class="line">&#123;</span><br><span class="line">    </span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">	Coordinate(<span class="keyword">int</span> x, <span class="keyword">int</span> y)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="comment">// 设置X,Y的坐标</span></span><br><span class="line">		m_iX = x;</span><br><span class="line">		m_iY = y;</span><br><span class="line">	&#125;</span><br><span class="line">    <span class="comment">// 实现常成员函数</span></span><br><span class="line">	<span class="function"><span class="keyword">void</span> <span class="title">printInfo</span><span class="params">()</span> <span class="keyword">const</span></span><br><span class="line">	</span>&#123;</span><br><span class="line">	    <span class="built_in">cout</span> &lt;&lt; <span class="string">"("</span> &lt;&lt; m_iX &lt;&lt; <span class="string">","</span> &lt;&lt; m_iY &lt;&lt;<span class="string">")"</span>;</span><br><span class="line">	&#125;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">	<span class="keyword">int</span> m_iX;</span><br><span class="line">	<span class="keyword">int</span> m_iY;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">(<span class="keyword">void</span>)</span></span><br><span class="line"></span>&#123;</span><br><span class="line">	<span class="function"><span class="keyword">const</span> Coordinate <span class="title">coor</span><span class="params">(<span class="number">3</span>, <span class="number">5</span>)</span></span>;</span><br><span class="line"></span><br><span class="line">	<span class="comment">// 创建常指针p</span></span><br><span class="line">	<span class="keyword">const</span> Coordinate *p = &amp;coor;</span><br><span class="line">    <span class="comment">// 创建常引用c</span></span><br><span class="line">    <span class="keyword">const</span> Coordinate &amp;c = coor;</span><br><span class="line">	</span><br><span class="line">	coor.printInfo();</span><br><span class="line">	p-&gt;printInfo();</span><br><span class="line">	c.printInfo();  </span><br><span class="line">	</span><br><span class="line">	return <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h1 id="6-学以致用"><a href="#6-学以致用" class="headerlink" title="6 学以致用"></a>6 学以致用</h1><h2 id="6-1-开篇案例"><a href="#6-1-开篇案例" class="headerlink" title="6.1 开篇案例"></a>6.1 开篇案例</h2><h3 id="6-1-1-案例描述"><a href="#6-1-1-案例描述" class="headerlink" title="6.1.1 案例描述"></a>6.1.1 案例描述</h3><p>走出迷宫。迷宫可以有单个出口，也可以有多个出口。</p>
+<p><img src="http://o6ul1xz4z.bkt.clouddn.com/c++%E8%BF%9C%E5%BE%8103%E5%B0%81%E8%A3%85%E7%AF%87%EF%BC%88%E4%B8%8B%EF%BC%89/CE9EF2CA-3189-4CD5-B895-1A9F496C8D45.png" alt="">  <img src="http://o6ul1xz4z.bkt.clouddn.com/c++%E8%BF%9C%E5%BE%8103%E5%B0%81%E8%A3%85%E7%AF%87%EF%BC%88%E4%B8%8B%EF%BC%89/F784DF45-4026-4950-8DCE-CB710AEE7313.png" alt=""></p>
+<h3 id="6-1-2-算法"><a href="#6-1-2-算法" class="headerlink" title="6.1.2 算法"></a>6.1.2 算法</h3><p>无论怎样，都可以通过<code>左右规则</code>或<code>右手规则</code>扶着墙走出来。</p>
+<p><img src="http://o6ul1xz4z.bkt.clouddn.com/c++%E8%BF%9C%E5%BE%8103%E5%B0%81%E8%A3%85%E7%AF%87%EF%BC%88%E4%B8%8B%EF%BC%89/4549331C-1061-485E-BAC9-07C7FB5BED4A.png" alt=""></p>
+<h3 id="6-1-3-程序结构"><a href="#6-1-3-程序结构" class="headerlink" title="6.1.3 程序结构"></a>6.1.3 程序结构</h3><h4 id="程序设计"><a href="#程序设计" class="headerlink" title="程序设计"></a>程序设计</h4><hr>
+<p> <strong>迷宫类（MazeMap）</strong></p>
+<p><img src="http://o6ul1xz4z.bkt.clouddn.com/c++%E8%BF%9C%E5%BE%8103%E5%B0%81%E8%A3%85%E7%AF%87%EF%BC%88%E4%B8%8B%EF%BC%89/96ADC583-4240-41EE-8BE9-77A4A009092A.png" alt=""></p>
+<p><em>数据成员</em></p>
+<ul>
+<li>墙壁字符</li>
+</ul>
+<ul>
+<li>通路字符</li>
+<li>迷宫数组（二维）</li>
+</ul>
+<p><em>成员函数</em></p>
+<ul>
+<li>构造函数</li>
+<li>数据封装函数</li>
+<li>迷宫回执函数</li>
+<li>迷宫边界检查函数</li>
+</ul>
+<hr>
+<p><strong>人（MazePerson）</strong><br><em>数据成员</em></p>
+<ul>
+<li>人的字符</li>
+</ul>
+<ul>
+<li>人的朝向</li>
+<li>人当前位置</li>
+<li>人前一个位置</li>
+<li>人的速度</li>
+</ul>
+<p><em>成员函数</em></p>
+<ul>
+<li>构造函数</li>
+</ul>
+<ul>
+<li>数据封装函数</li>
+<li>向不同函数前进的函数</li>
+<li>转弯函数</li>
+<li>开始函数</li>
+</ul>
+<hr>
+<p>动画控制</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">void</span> MazePerson::gotoxy(<span class="keyword">int</span> x, <span class="keyword">int</span> y)</span><br><span class="line">&#123;</span><br><span class="line">	COORD cd;</span><br><span class="line">	cd.X = x;</span><br><span class="line">	cd.Y = y;</span><br><span class="line">	HANDLE handle = GetStdHandle(STD_OUTPUT_HANDLE);</span><br><span class="line">	SetConsoleCursorPosition(handle, cd);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<hr>
+<p><strong>注意事项</strong></p>
+<ul>
+<li>枚举类型：方向</li>
+<li>常量定义：宏定义或 const</li>
+</ul>
+<h4 id="程序实现"><a href="#程序实现" class="headerlink" title="程序实现"></a>程序实现</h4><p><a href="https://github.com/laputa-er/C-PLUS-PLUS_STUDY/tree/master/JK_C-PLUS-PLUS/l03_class_encapsulation_two/0601" target="_blank" rel="external">C-PLUS-PLUS_STUDY/JK_C-PLUS-PLUS/l03_class_encapsulation_two/0601 at master · laputa-er/C-PLUS-PLUS_STUDY · GitHub</a></p>
+<p><strong>说明：</strong>为了模拟人（字符）在终端中的移动，使用到，<code>windows.h</code> 头文件，这个头文件是 windows 系统独有的，因此该程序只能在 windows 环境运行。开发运行环境如下</p>
+<ul>
+<li>win10 64</li>
+</ul>
+<ul>
+<li>VSCode</li>
+<li>c/c++ extension for VSCode</li>
+<li>MSYS2 + MinGW 64</li>
+</ul>
+<p><img src="http://o6ul1xz4z.bkt.clouddn.com/c++%E8%BF%9C%E5%BE%8103%E5%B0%81%E8%A3%85%E7%AF%87%EF%BC%88%E4%B8%8B%EF%BC%89/jk_cpp_maze.gif" alt=""></p>
+<p><strong>注意：</strong> 代码文件是 UTF-8 编码，在 win10 下编译后乱码，因此用 g++  编译时指定了编码的转换。</p>
+<p><strong>程序目录结构</strong></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">.</span><br><span class="line">├── MazeMap.cpp</span><br><span class="line">├── MazeMap.h <span class="comment"># 地图类</span></span><br><span class="line">├── MazePerson.cpp</span><br><span class="line">├── MazePerson.h <span class="comment"># 迷宫行者类</span></span><br><span class="line">├── MyMazeMap.cpp</span><br><span class="line">├── MyMazeMap.h <span class="comment"># 地图类的封装</span></span><br><span class="line">├── MyMazePerson.cpp</span><br><span class="line">├── MyMazePerson.h <span class="comment"># 迷宫行者类的封装</span></span><br><span class="line">├── Public.h <span class="comment"># 全局常量</span></span><br><span class="line">├── makefile <span class="comment"># 使用 make 来定义</span></span><br><span class="line">├── maze.cpp <span class="comment"># 程序入口</span></span><br><span class="line">└── test.exe <span class="comment"># 编译打包好的命令行程序</span></span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/c-语言/" rel="tag">#c++语言</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/02/09/c++远征/c++远征04之继承篇/" rel="next" title="c++远征04之继承篇">
+                <i class="fa fa-chevron-left"></i> c++远征04之继承篇
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/02/09/c++远征/c++远征01启航篇/" rel="prev" title="c++远征01启航篇">
+                c++远征01启航篇 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2017/02/09/c++远征/c++远征03封装篇（下）/"
+           data-title="c++远征03封装篇（下）" data-url="http://laputa-er.github.io/2017/02/09/c++远征/c++远征03封装篇（下）/">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.gif"
+               alt="Sean" />
+          <p class="site-author-name" itemprop="name">Sean</p>
+          <p class="site-description motion-element" itemprop="description">整理了一批过去一段时间ios相关的笔记，其它的笔记也整理下？源码分享出来？再说吧...反正也只有自己会看吧...</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">200</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">22</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">31</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#1-概述"><span class="nav-text">1 概述</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#2-对象数组"><span class="nav-text">2 对象数组</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#2-1-对象数组"><span class="nav-text">2.1 对象数组</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-2-对象成员"><span class="nav-text">2.2 对象成员</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#3-深拷贝与浅拷贝"><span class="nav-text">3 深拷贝与浅拷贝</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#3-1-深拷贝浅拷贝"><span class="nav-text">3.1 深拷贝浅拷贝</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#4-对象指针"><span class="nav-text">4 对象指针</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#4-1-对象指针"><span class="nav-text">4.1 对象指针</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#在堆中创建"><span class="nav-text">在堆中创建</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#在栈中创建"><span class="nav-text">在栈中创建</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#对象指针-Demo"><span class="nav-text">对象指针 Demo</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-2-对象成员指针"><span class="nav-text">4.2 对象成员指针</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#对象成员指针Demo"><span class="nav-text">对象成员指针Demo</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-3-this-指针"><span class="nav-text">4.3 this 指针</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#this-指针-Demo"><span class="nav-text">this 指针 Demo</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#5-const-再现江湖"><span class="nav-text">5 const 再现江湖</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#5-1-const-对象成员和const-成员函数"><span class="nav-text">5.1 const 对象成员和const 成员函数</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#常对象成员"><span class="nav-text">常对象成员</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#常成员函数"><span class="nav-text">常成员函数</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5-2-const-对象成员和const-成员函数-Demo"><span class="nav-text">5.2 const 对象成员和const 成员函数 Demo</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5-4-对象常指针和对象常引用"><span class="nav-text">5.4 对象常指针和对象常引用</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5-3-单元巩固"><span class="nav-text">5.3 单元巩固</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#6-学以致用"><span class="nav-text">6 学以致用</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#6-1-开篇案例"><span class="nav-text">6.1 开篇案例</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#6-1-1-案例描述"><span class="nav-text">6.1.1 案例描述</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#6-1-2-算法"><span class="nav-text">6.1.2 算法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#6-1-3-程序结构"><span class="nav-text">6.1.3 程序结构</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#程序设计"><span class="nav-text">程序设计</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#程序实现"><span class="nav-text">程序实现</span></a></li></ol></li></ol></li></ol></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Sean</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"lapuda-er"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+    <script src="/vendors/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
+    <script src="/js/src/hook-duoshuo.js"></script>
+  
+
+
+
+
+
+
+  
+  
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length == 0) {
+       search_path = "search.xml";
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    function proceedsearch() {
+      $("body").append('<div class="popoverlay">').css('overflow', 'hidden');
+      $('.popup').toggle();
+
+    }
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+    'use strict';
+    $.ajax({
+        url: path,
+        dataType: "xml",
+        async: true,
+        success: function( xmlResponse ) {
+            // get the contents from search data
+            isfetched = true;
+            $('.popup').detach().appendTo('.header-inner');
+            var datas = $( "entry", xmlResponse ).map(function() {
+                return {
+                    title: $( "title", this ).text(),
+                    content: $("content",this).text(),
+                    url: $( "url" , this).text()
+                };
+            }).get();
+            var $input = document.getElementById(search_id);
+            var $resultContent = document.getElementById(content_id);
+            $input.addEventListener('input', function(){
+                var matchcounts = 0;
+                var str='<ul class=\"search-result-list\">';
+                var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+                $resultContent.innerHTML = "";
+                if (this.value.trim().length > 1) {
+                // perform local searching
+                datas.forEach(function(data) {
+                    var isMatch = true;
+                    var content_index = [];
+                    var data_title = data.title.trim().toLowerCase();
+                    var data_content = data.content.trim().replace(/<[^>]+>/g,"").toLowerCase();
+                    var data_url = data.url;
+                    var index_title = -1;
+                    var index_content = -1;
+                    var first_occur = -1;
+                    // only match artiles with not empty titles and contents
+                    if(data_title != '' && data_content != '') {
+                        keywords.forEach(function(keyword, i) {
+                            index_title = data_title.indexOf(keyword);
+                            index_content = data_content.indexOf(keyword);
+                            if( index_title < 0 && index_content < 0 ){
+                                isMatch = false;
+                            } else {
+                                if (index_content < 0) {
+                                    index_content = 0;
+                                }
+                                if (i == 0) {
+                                    first_occur = index_content;
+                                }
+                            }
+                        });
+                    }
+                    // show search results
+                    if (isMatch) {
+                        matchcounts += 1;
+                        str += "<li><a href='"+ data_url +"' class='search-result-title'>"+ data_title +"</a>";
+                        var content = data.content.trim().replace(/<[^>]+>/g,"");
+                        if (first_occur >= 0) {
+                            // cut out 100 characters
+                            var start = first_occur - 20;
+                            var end = first_occur + 80;
+                            if(start < 0){
+                                start = 0;
+                            }
+                            if(start == 0){
+                                end = 50;
+                            }
+                            if(end > content.length){
+                                end = content.length;
+                            }
+                            var match_content = content.substring(start, end);
+                            // highlight all keywords
+                            keywords.forEach(function(keyword){
+                                var regS = new RegExp(keyword, "gi");
+                                match_content = match_content.replace(regS, "<b class=\"search-keyword\">"+keyword+"</b>");
+                            });
+
+                            str += "<p class=\"search-result\">" + match_content +"...</p>"
+                        }
+                        str += "</li>";
+                    }
+                })};
+                str += "</ul>";
+                if (matchcounts == 0) { str = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>' }
+                if (keywords == "") { str = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>' }
+                $resultContent.innerHTML = str;
+            });
+            proceedsearch();
+        }
+    });}
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched == false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+
+    });
+
+    $('.popup-btn-close').click(function(e){
+      $('.popup').hide();
+      $(".popoverlay").remove();
+      $('body').css('overflow', '');
+    });
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+  </script>
+
+
+  
+
+  
+
+  
+
+</body>
+</html>

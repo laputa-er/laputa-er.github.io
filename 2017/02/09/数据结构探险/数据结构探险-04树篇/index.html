@@ -1,0 +1,862 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="c++数据结构," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1" />
+
+
+
+
+
+
+<meta name="description" content="数据结构探险之树篇-慕课网C-PLUS-PLUS_STUDY/IMOOC_DATA_STRUCTOR_EXPLORE_CPP/l04_tree at master · laputa-er/C-PLUS-PLUS_STUDY · GitHub
+
+课程从树的实现原理角度讲解了树的相关概念，着重讲解了二叉树三种遍历方式的原理，并通过编码实践，进一步说明二叉树使用数组和链表方式的编程技巧，以及前序遍历、中">
+<meta property="og:type" content="article">
+<meta property="og:title" content="数据结构探险-04树篇">
+<meta property="og:url" content="http://laputa-er.github.io/2017/02/09/数据结构探险/数据结构探险-04树篇/index.html">
+<meta property="og:site_name" content="Sean">
+<meta property="og:description" content="数据结构探险之树篇-慕课网C-PLUS-PLUS_STUDY/IMOOC_DATA_STRUCTOR_EXPLORE_CPP/l04_tree at master · laputa-er/C-PLUS-PLUS_STUDY · GitHub
+
+课程从树的实现原理角度讲解了树的相关概念，着重讲解了二叉树三种遍历方式的原理，并通过编码实践，进一步说明二叉树使用数组和链表方式的编程技巧，以及前序遍历、中">
+<meta property="og:image" content="http://o6ul1xz4z.bkt.clouddn.com/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E6%8E%A2%E9%99%A9-04%E6%A0%91%E7%AF%87/3576089A-428C-40F2-8EF1-2F72082139A7.png">
+<meta property="og:image" content="http://o6ul1xz4z.bkt.clouddn.com/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E6%8E%A2%E9%99%A9-04%E6%A0%91%E7%AF%87/D377CF74-1E59-4EB1-B069-C5686F8EF6D8.png">
+<meta property="og:image" content="http://o6ul1xz4z.bkt.clouddn.com/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E6%8E%A2%E9%99%A9-04%E6%A0%91%E7%AF%87/CD79DC30-2D34-4C04-B142-D4532EAF3F0C.png">
+<meta property="og:image" content="http://o6ul1xz4z.bkt.clouddn.com/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E6%8E%A2%E9%99%A9-04%E6%A0%91%E7%AF%87/A09548AE-ABA2-4D9A-B0A0-D310DDD96BBF.png">
+<meta property="og:image" content="http://o6ul1xz4z.bkt.clouddn.com/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E6%8E%A2%E9%99%A9-04%E6%A0%91%E7%AF%87/B5A37ABF-A20C-48A2-BA94-CFD1075A4F47.png">
+<meta property="og:image" content="http://o6ul1xz4z.bkt.clouddn.com/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E6%8E%A2%E9%99%A9-04%E6%A0%91%E7%AF%87/F05B3896-810D-41DC-9B33-7A43C0ECD55C.png">
+<meta property="og:image" content="http://o6ul1xz4z.bkt.clouddn.com/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E6%8E%A2%E9%99%A9-04%E6%A0%91%E7%AF%87/CD0EF4B3-520E-4274-A53B-E4D68B703E54.png">
+<meta property="og:image" content="http://o6ul1xz4z.bkt.clouddn.com/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E6%8E%A2%E9%99%A9-04%E6%A0%91%E7%AF%87/PreorderTraversal.gif">
+<meta property="og:image" content="http://o6ul1xz4z.bkt.clouddn.com/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E6%8E%A2%E9%99%A9-04%E6%A0%91%E7%AF%87/6F9683D5-A68F-4CD3-99D5-B30CE4E2FAA6.png">
+<meta property="og:image" content="http://o6ul1xz4z.bkt.clouddn.com/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E6%8E%A2%E9%99%A9-04%E6%A0%91%E7%AF%87/InorderTraversal.gif">
+<meta property="og:image" content="http://o6ul1xz4z.bkt.clouddn.com/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E6%8E%A2%E9%99%A9-04%E6%A0%91%E7%AF%87/ECB6B260-7FA5-4ED3-A509-679C4C387291.png">
+<meta property="og:image" content="http://o6ul1xz4z.bkt.clouddn.com/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E6%8E%A2%E9%99%A9-04%E6%A0%91%E7%AF%87/PostorderTraversal.gif">
+<meta property="og:updated_time" content="2017-02-12T17:31:58.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="数据结构探险-04树篇">
+<meta name="twitter:description" content="数据结构探险之树篇-慕课网C-PLUS-PLUS_STUDY/IMOOC_DATA_STRUCTOR_EXPLORE_CPP/l04_tree at master · laputa-er/C-PLUS-PLUS_STUDY · GitHub
+
+课程从树的实现原理角度讲解了树的相关概念，着重讲解了二叉树三种遍历方式的原理，并通过编码实践，进一步说明二叉树使用数组和链表方式的编程技巧，以及前序遍历、中">
+<meta name="twitter:image" content="http://o6ul1xz4z.bkt.clouddn.com/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E6%8E%A2%E9%99%A9-04%E6%A0%91%E7%AF%87/3576089A-428C-40F2-8EF1-2F72082139A7.png">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 0,
+      author: '博主'
+    }
+  };
+</script>
+
+
+
+
+  <link rel="canonical" href="http://laputa-er.github.io/2017/02/09/数据结构探险/数据结构探险-04树篇/"/>
+
+  <title> 数据结构探险-04树篇 | Sean </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//hm.baidu.com/hm.js?898688f51c5a3d6b37dd23e04441e5bd";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">Sean</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">笔记分享</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup">
+ <span class="search-icon fa fa-search"></span>
+ <input type="text" id="local-search-input">
+ <div id="local-search-result"></div>
+ <span class="popup-btn-close">close</span>
+</div>
+
+
+    </div>
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                数据结构探险-04树篇
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2017-02-09T01:41:52+08:00" content="2017-02-09">
+              2017-02-09
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/数据结构探险/" itemprop="url" rel="index">
+                    <span itemprop="name">数据结构探险</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2017/02/09/数据结构探险/数据结构探险-04树篇/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2017/02/09/数据结构探险/数据结构探险-04树篇/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p><a href="http://www.imooc.com/learn/673" target="_blank" rel="external">数据结构探险之树篇-慕课网</a><br><a href="https://github.com/laputa-er/C-PLUS-PLUS_STUDY/tree/master/IMOOC_DATA_STRUCTOR_EXPLORE_CPP/l04_tree" target="_blank" rel="external">C-PLUS-PLUS_STUDY/IMOOC_DATA_STRUCTOR_EXPLORE_CPP/l04_tree at master · laputa-er/C-PLUS-PLUS_STUDY · GitHub</a></p>
+<blockquote>
+<p>课程从树的实现原理角度讲解了树的相关概念，着重讲解了二叉树三种遍历方式的原理，并通过编码实践，进一步说明二叉树使用数组和链表方式的编程技巧，以及前序遍历、中序遍历和后序遍历递归实现  </p>
+</blockquote>
+<h1 id="1-树的基本概念"><a href="#1-树的基本概念" class="headerlink" title="1 树的基本概念"></a>1 树的基本概念</h1><p>树是节点的有限集合。</p>
+<h2 id="1-1-基础概念"><a href="#1-1-基础概念" class="headerlink" title="1.1 基础概念"></a>1.1 基础概念</h2><p><img src="http://o6ul1xz4z.bkt.clouddn.com/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E6%8E%A2%E9%99%A9-04%E6%A0%91%E7%AF%87/3576089A-428C-40F2-8EF1-2F72082139A7.png" alt=""><br><strong>孩子：</strong>一个节点的直接子节点称为这个节点的孩子。<br><strong>双亲：</strong>节点的父节点，称为这个节点的双亲。<br><strong>度：</strong>一个节点的字节点的数量。<br><strong>叶子：</strong>终端节点。<br><strong>根：</strong>外界能访问到的这个树数据结构的入口节点。<br><strong>祖先：</strong> 一个节点从父节点往上一直到跟节点之间的所有节点都是这个节点的祖先。<br><strong>子孙：</strong> 一个节点从子节点往下一直到叶子节点都是它的子孙。</p>
+<p><img src="http://o6ul1xz4z.bkt.clouddn.com/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E6%8E%A2%E9%99%A9-04%E6%A0%91%E7%AF%87/D377CF74-1E59-4EB1-B069-C5686F8EF6D8.png" alt=""><br><strong>节点深度：</strong> 一个节点所在的层数。<br><strong>树的深度：</strong> 一个树中深度最大的节点的深度就是这个树的深度。</p>
+<p><img src="http://o6ul1xz4z.bkt.clouddn.com/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E6%8E%A2%E9%99%A9-04%E6%A0%91%E7%AF%87/CD79DC30-2D34-4C04-B142-D4532EAF3F0C.png" alt=""><br><strong>森林：</strong>多个树的集合构成森林。</p>
+<h2 id="1-2-二叉树"><a href="#1-2-二叉树" class="headerlink" title="1.2 二叉树"></a>1.2 二叉树</h2><p><strong>描述：</strong>二叉树是一种特殊的树，它的所有节点的度都小于等于2。</p>
+<p><img src="http://o6ul1xz4z.bkt.clouddn.com/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E6%8E%A2%E9%99%A9-04%E6%A0%91%E7%AF%87/A09548AE-ABA2-4D9A-B0A0-D310DDD96BBF.png" alt=""></p>
+<h3 id="1-2-1-二叉树遍历"><a href="#1-2-1-二叉树遍历" class="headerlink" title="1.2.1 二叉树遍历"></a>1.2.1 二叉树遍历</h3><p><img src="http://o6ul1xz4z.bkt.clouddn.com/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E6%8E%A2%E9%99%A9-04%E6%A0%91%E7%AF%87/B5A37ABF-A20C-48A2-BA94-CFD1075A4F47.png" alt=""></p>
+<p><strong>前序遍历：</strong> 根 -&gt; 左子 -&gt; 右子。<br><strong>中序遍历：</strong> 左子 -&gt; 根 -&gt; 右子<br><strong>后序遍历：</strong> 左子 -&gt; 右子 -&gt; 根</p>
+<h2 id="1-3-用途"><a href="#1-3-用途" class="headerlink" title="1.3 用途"></a>1.3 用途</h2><ul>
+<li>压缩软件：赫夫曼编码。</li>
+<li>象棋、围棋等游戏软件</li>
+</ul>
+<h1 id="2-二叉树数组实现"><a href="#2-二叉树数组实现" class="headerlink" title="2 二叉树数组实现"></a>2 二叉树数组实现</h1><h2 id="2-1-原理"><a href="#2-1-原理" class="headerlink" title="2.1 原理"></a>2.1 原理</h2><blockquote>
+<p>如果一个树是完全二叉树，就很容易转换为数组，反过来也可以将数组还原为二叉树。为了让所有二叉树都可以可以和数组相互转换，可以用一个“空”值填上二叉树中“缺失”的节点，从而构成一个完全二叉树。  </p>
+</blockquote>
+<p>例如，[3, 5, 8, 2, 6, 0, 7]，构建的树如下<br><img src="http://o6ul1xz4z.bkt.clouddn.com/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E6%8E%A2%E9%99%A9-04%E6%A0%91%E7%AF%87/F05B3896-810D-41DC-9B33-7A43C0ECD55C.png" alt=""></p>
+<p>这时，下标为 N 的父节点，左子节点为 N <em> 2 + 1，右子节点下标为 N </em> 2 + 2。</p>
+<h2 id="2-2-实现"><a href="#2-2-实现" class="headerlink" title="2.2 实现"></a>2.2 实现</h2><p><a href="https://github.com/laputa-er/C-PLUS-PLUS_STUDY/tree/master/IMOOC_DATA_STRUCTOR_EXPLORE_CPP/l04_tree/0301_with_array" target="_blank" rel="external">C-PLUS-PLUS_STUDY/IMOOC_DATA_STRUCTOR_EXPLORE_CPP/l04_tree/0301_with_array at master · laputa-er/C-PLUS-PLUS_STUDY · GitHub</a></p>
+<ul>
+<li>树的创建和销毁</li>
+<li>树中节点的搜索</li>
+<li>树中节点的添加和删除</li>
+<li>树中节点的遍历</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">.</span><br><span class="line">├── Tree.cpp</span><br><span class="line">├── Tree.h</span><br><span class="line">├── main.cpp</span><br><span class="line">└── makefile</span><br></pre></td></tr></table></figure>
+<h3 id="Tree-h"><a href="#Tree-h" class="headerlink" title="Tree.h"></a>Tree.h</h3><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">ifndef</span> TREE_H</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> TREE_H</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> Tree</span><br><span class="line">&#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">	Tree(<span class="keyword">int</span> size, <span class="keyword">int</span> *pRoot); <span class="comment">// 创建树</span></span><br><span class="line">	~Tree(); <span class="comment">// 销毁树</span></span><br><span class="line">	<span class="function"><span class="keyword">int</span> *<span class="title">SearchNode</span><span class="params">(<span class="keyword">int</span> nodeIndex)</span></span>; <span class="comment">// 根据索引寻找节点</span></span><br><span class="line">	<span class="function"><span class="keyword">bool</span> <span class="title">AddNode</span><span class="params">(<span class="keyword">int</span> nodeIndex, <span class="keyword">int</span> direction, <span class="keyword">int</span> *pNode)</span></span>; <span class="comment">// 添加节点</span></span><br><span class="line">	<span class="function"><span class="keyword">bool</span> <span class="title">DeleteNode</span><span class="params">(<span class="keyword">int</span> nodeIndex, <span class="keyword">int</span> *pNode)</span></span>; <span class="comment">// 删除节点</span></span><br><span class="line">	<span class="function"><span class="keyword">void</span> <span class="title">TreeTraverse</span><span class="params">()</span></span>; <span class="comment">// 遍历节点</span></span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">	<span class="keyword">int</span> *m_pTree;</span><br><span class="line">	<span class="keyword">int</span> m_iSize;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">endif</span></span></span><br></pre></td></tr></table></figure>
+<h3 id="Tree-cpp"><a href="#Tree-cpp" class="headerlink" title="Tree.cpp"></a>Tree.cpp</h3><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="string">"Tree.h"</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"></span><br><span class="line">Tree::Tree(<span class="keyword">int</span> size, <span class="keyword">int</span> *pRoot)</span><br><span class="line">&#123;</span><br><span class="line">	m_iSize = size;</span><br><span class="line">	m_pTree = new <span class="keyword">int</span>[size];</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; size; i++)</span><br><span class="line">	&#123;</span><br><span class="line">		m_pTree[i] = <span class="number">0</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	m_pTree[<span class="number">0</span>] = *pRoot;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">Tree::~Tree()</span><br><span class="line">&#123;</span><br><span class="line">	<span class="keyword">delete</span> m_pTree;</span><br><span class="line">	m_pTree = <span class="literal">NULL</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">int</span> *Tree::SearchNode(<span class="keyword">int</span> nodeIndex)</span><br><span class="line">&#123;</span><br><span class="line">	<span class="comment">// 下标不在有效范围内</span></span><br><span class="line">	<span class="keyword">if</span>(nodeIndex &lt; <span class="number">0</span> || nodeIndex &gt;= m_iSize)</span><br><span class="line">	&#123;</span><br><span class="line">		return <span class="literal">NULL</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="comment">// 值为 0 代表没有节点</span></span><br><span class="line">	<span class="keyword">if</span>(m_pTree[nodeIndex] == <span class="number">0</span>)</span><br><span class="line">	&#123;</span><br><span class="line">		return <span class="literal">NULL</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	return &amp;m_pTree[nodeIndex];</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/*</span><br><span class="line">* param&#123;int&#125; nodeIndex 要插入哪个节点下面</span><br><span class="line">* param&#123;int&#125; direction 0 左节点，1 右节点</span><br><span class="line">* param&#123;int *&#125; pNode 要插入的节点的指针</span><br><span class="line">* return&#123;bool&#125; true 插入成功， false 插入失败</span><br><span class="line">*/</span></span><br><span class="line"><span class="keyword">bool</span> Tree::AddNode(<span class="keyword">int</span> nodeIndex, <span class="keyword">int</span> direction, <span class="keyword">int</span> *pNode)</span><br><span class="line">&#123;</span><br><span class="line">	<span class="comment">// 下标不在有效范围内</span></span><br><span class="line">	<span class="keyword">if</span>(nodeIndex &lt; <span class="number">0</span> || nodeIndex &gt;= m_iSize)</span><br><span class="line">	&#123;</span><br><span class="line">		return <span class="literal">false</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="comment">// 要插入的地方的父节点不存在</span></span><br><span class="line">	<span class="keyword">if</span>(m_pTree[nodeIndex] == <span class="number">0</span>)</span><br><span class="line">	&#123;</span><br><span class="line">		return <span class="literal">false</span>;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="comment">// 如果作为左节点插入</span></span><br><span class="line">	<span class="keyword">if</span>(direction == <span class="number">0</span>)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="keyword">int</span> leftChildIndex = nodeIndex * <span class="number">2</span> + <span class="number">1</span>;</span><br><span class="line">		<span class="keyword">if</span>(leftChildIndex &gt;= m_iSize)</span><br><span class="line">		&#123;</span><br><span class="line">			return <span class="literal">false</span>;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="comment">// 左子节点已经有数据了</span></span><br><span class="line">		<span class="keyword">if</span>(m_pTree[leftChildIndex] != <span class="number">0</span>)</span><br><span class="line">		&#123;</span><br><span class="line">			return <span class="literal">false</span>;</span><br><span class="line">		&#125;</span><br><span class="line">		m_pTree[leftChildIndex] = *pNode;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="comment">// 如果作为右节点插入</span></span><br><span class="line">	<span class="keyword">if</span>(direction == <span class="number">1</span>)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="keyword">int</span> rightChildIndex = nodeIndex * <span class="number">2</span> + <span class="number">2</span>;</span><br><span class="line">		<span class="keyword">if</span>(rightChildIndex &gt;= m_iSize)</span><br><span class="line">		&#123;</span><br><span class="line">			return <span class="literal">false</span>;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="comment">// 左子节点已经有数据了</span></span><br><span class="line">		<span class="keyword">if</span>(m_pTree[rightChildIndex] != <span class="number">0</span>)</span><br><span class="line">		&#123;</span><br><span class="line">			return <span class="literal">false</span>;</span><br><span class="line">		&#125;</span><br><span class="line">		m_pTree[rightChildIndex] = *pNode;</span><br><span class="line">	&#125;</span><br><span class="line">	return <span class="literal">true</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">bool</span> Tree::DeleteNode(<span class="keyword">int</span> nodeIndex, <span class="keyword">int</span> *pNode)</span><br><span class="line">&#123;</span><br><span class="line">	<span class="comment">// 节点下标不在合法范围中</span></span><br><span class="line">	<span class="keyword">if</span>(nodeIndex &lt; <span class="number">0</span> || nodeIndex &gt;= m_iSize)</span><br><span class="line">	&#123;</span><br><span class="line">		return <span class="literal">false</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="comment">// 没有这个节点</span></span><br><span class="line">	<span class="keyword">if</span>(m_pTree[nodeIndex] == <span class="number">0</span>)</span><br><span class="line">	&#123;</span><br><span class="line">		return <span class="literal">false</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	*pNode = m_pTree[nodeIndex];</span><br><span class="line">	m_pTree[nodeIndex] = <span class="number">0</span>;</span><br><span class="line">	return <span class="literal">true</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">void</span> Tree::TreeTraverse()</span><br><span class="line">&#123;</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; m_iSize; i++)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="built_in">cout</span> &lt;&lt; m_pTree[i] &lt;&lt; <span class="string">" "</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="built_in">cout</span> &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="main-cpp"><a href="#main-cpp" class="headerlink" title="main.cpp"></a>main.cpp</h3><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="string">"Tree.h"</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">(<span class="keyword">void</span>)</span></span><br><span class="line"></span>&#123;</span><br><span class="line">	<span class="comment">// 创建（构造器要设置好根节点）</span></span><br><span class="line">	<span class="keyword">int</span> root = <span class="number">3</span>;</span><br><span class="line">	Tree *pTree = new Tree(<span class="number">10</span>, &amp;root);</span><br><span class="line"></span><br><span class="line">	<span class="comment">// 插入节点</span></span><br><span class="line">	<span class="keyword">int</span> node1 = <span class="number">5</span>;</span><br><span class="line">	<span class="keyword">int</span> node2 = <span class="number">8</span>;</span><br><span class="line">	<span class="keyword">int</span> node3 = <span class="number">2</span>;</span><br><span class="line">	<span class="keyword">int</span> node4 = <span class="number">6</span>;</span><br><span class="line">	<span class="keyword">int</span> node5 = <span class="number">0</span>;</span><br><span class="line">	<span class="keyword">int</span> node6 = <span class="number">7</span>;</span><br><span class="line"></span><br><span class="line">	pTree-&gt;AddNode(<span class="number">0</span>, <span class="number">0</span>, &amp;node1);</span><br><span class="line">	pTree-&gt;AddNode(<span class="number">0</span>, <span class="number">1</span>, &amp;node2);</span><br><span class="line">	pTree-&gt;AddNode(<span class="number">1</span>, <span class="number">0</span>, &amp;node3);</span><br><span class="line">	pTree-&gt;AddNode(<span class="number">1</span>, <span class="number">1</span>, &amp;node4);</span><br><span class="line">	pTree-&gt;AddNode(<span class="number">2</span>, <span class="number">0</span>, &amp;node5);</span><br><span class="line">	pTree-&gt;AddNode(<span class="number">2</span>, <span class="number">1</span>, &amp;node6);</span><br><span class="line"></span><br><span class="line">	<span class="comment">// 遍历</span></span><br><span class="line">	pTree-&gt;TreeTraverse();</span><br><span class="line"></span><br><span class="line">	<span class="comment">// 搜索</span></span><br><span class="line">	<span class="keyword">int</span> *p = pTree-&gt;SearchNode(<span class="number">2</span>);</span><br><span class="line">	<span class="built_in">cout</span> &lt;&lt; <span class="string">"SearchNode:"</span> &lt;&lt; *p &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line"></span><br><span class="line">	<span class="comment">// 删除</span></span><br><span class="line">	<span class="keyword">int</span> node = <span class="number">0</span>;</span><br><span class="line">	<span class="keyword">bool</span> isDeleteSuccess = pTree-&gt;DeleteNode(<span class="number">0</span>, &amp;node);</span><br><span class="line">	<span class="built_in">cout</span> &lt;&lt; (isDeleteSuccess ? <span class="string">"true"</span> : <span class="string">"false"</span>) &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">	pTree-&gt;TreeTraverse();</span><br><span class="line"></span><br><span class="line">	return <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h1 id="3-二叉树链表实现"><a href="#3-二叉树链表实现" class="headerlink" title="3 二叉树链表实现"></a>3 二叉树链表实现</h1><h2 id="3-1-原理"><a href="#3-1-原理" class="headerlink" title="3.1 原理"></a>3.1 原理</h2><p><strong>说明：</strong> 和使用数组相比，使用链表来实现树存在以下区别</p>
+<ul>
+<li>删除一个节点必须同时删除其子孙节点</li>
+<li>清空树需要遍历整个树分别释放每个节点的内存</li>
+<li>遍历方式分前序、中序、后序三种（数组实现只有一种，不是这三种的任何一种）</li>
+</ul>
+<p><strong>建议：</strong>不在树的第一个节点上放有意义的值。</p>
+<h3 id="3-1-1-节点要素"><a href="#3-1-1-节点要素" class="headerlink" title="3.1.1  节点要素"></a>3.1.1  节点要素</h3><ul>
+<li>索引</li>
+<li>数据</li>
+<li>左孩子指针</li>
+<li>右孩子指针</li>
+</ul>
+<h3 id="3-1-2-遍历"><a href="#3-1-2-遍历" class="headerlink" title="3.1.2 遍历"></a>3.1.2 遍历</h3><p>前序：根 -&gt; 左子 -&gt; 右子<br><img src="http://o6ul1xz4z.bkt.clouddn.com/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E6%8E%A2%E9%99%A9-04%E6%A0%91%E7%AF%87/CD0EF4B3-520E-4274-A53B-E4D68B703E54.png" alt=""><br><img src="http://o6ul1xz4z.bkt.clouddn.com/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E6%8E%A2%E9%99%A9-04%E6%A0%91%E7%AF%87/PreorderTraversal.gif" alt=""></p>
+<p>中序：左子 -&gt; 根 -&gt; 右子<br><img src="http://o6ul1xz4z.bkt.clouddn.com/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E6%8E%A2%E9%99%A9-04%E6%A0%91%E7%AF%87/6F9683D5-A68F-4CD3-99D5-B30CE4E2FAA6.png" alt=""><br><img src="http://o6ul1xz4z.bkt.clouddn.com/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E6%8E%A2%E9%99%A9-04%E6%A0%91%E7%AF%87/InorderTraversal.gif" alt=""></p>
+<p>后序：右子 -&gt; 左子 -&gt; 根<br><img src="http://o6ul1xz4z.bkt.clouddn.com/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E6%8E%A2%E9%99%A9-04%E6%A0%91%E7%AF%87/ECB6B260-7FA5-4ED3-A509-679C4C387291.png" alt=""><br><img src="http://o6ul1xz4z.bkt.clouddn.com/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E6%8E%A2%E9%99%A9-04%E6%A0%91%E7%AF%87/PostorderTraversal.gif" alt=""></p>
+<h2 id="3-2-实现"><a href="#3-2-实现" class="headerlink" title="3.2 实现"></a>3.2 实现</h2><p><a href="https://github.com/laputa-er/C-PLUS-PLUS_STUDY/tree/master/IMOOC_DATA_STRUCTOR_EXPLORE_CPP/l04_tree/0401_with_list" target="_blank" rel="external">C-PLUS-PLUS_STUDY/IMOOC_DATA_STRUCTOR_EXPLORE_CPP/l04_tree/0401_with_list at master · laputa-er/C-PLUS-PLUS_STUDY · GitHub</a></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">.</span><br><span class="line">├── main.cpp</span><br><span class="line">├── Tree.h</span><br><span class="line">├── Tree.cpp</span><br><span class="line">├── Node.h</span><br><span class="line">├── Node.cpp</span><br><span class="line">└── makefile</span><br></pre></td></tr></table></figure>
+<h3 id="main-cpp-1"><a href="#main-cpp-1" class="headerlink" title="main.cpp"></a>main.cpp</h3><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="string">"Tree.h"</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">(<span class="keyword">void</span>)</span></span><br><span class="line"></span>&#123;</span><br><span class="line">	<span class="comment">/*</span><br><span class="line">	* 创建二叉树</span><br><span class="line">	*				0(0)</span><br><span class="line">	*</span><br><span class="line">	*		5(1)			8(2)</span><br><span class="line">	*</span><br><span class="line">	*	2(3)	6(4)	7(5)	9(6)</span><br><span class="line">	*/</span></span><br><span class="line">	Tree *tree = new Tree();</span><br><span class="line"></span><br><span class="line">	Node *node1 = new Node(<span class="number">1</span>, <span class="number">5</span>);</span><br><span class="line">	Node *node2 = new Node(<span class="number">2</span>, <span class="number">8</span>);</span><br><span class="line">	Node *node3 = new Node(<span class="number">3</span>, <span class="number">2</span>);</span><br><span class="line">	Node *node4 = new Node(<span class="number">4</span>, <span class="number">6</span>);</span><br><span class="line">	Node *node5 = new Node(<span class="number">5</span>, <span class="number">7</span>);</span><br><span class="line">	Node *node6 = new Node(<span class="number">6</span>, <span class="number">9</span>);</span><br><span class="line"></span><br><span class="line">	tree-&gt;AddNode(<span class="number">0</span>, <span class="number">0</span>, node1);</span><br><span class="line">	tree-&gt;AddNode(<span class="number">0</span>, <span class="number">1</span>, node2);</span><br><span class="line">	tree-&gt;AddNode(<span class="number">1</span>, <span class="number">0</span>, node3);</span><br><span class="line">	tree-&gt;AddNode(<span class="number">1</span>, <span class="number">1</span>, node4);</span><br><span class="line">	tree-&gt;AddNode(<span class="number">2</span>, <span class="number">0</span>, node5);</span><br><span class="line">	tree-&gt;AddNode(<span class="number">2</span>, <span class="number">1</span>, node6);</span><br><span class="line"></span><br><span class="line">	<span class="comment">// 前序</span></span><br><span class="line">	tree-&gt;PreorderTraversal(); <span class="comment">// (0) 5(1) 2(3) 6(4) 8(2) 7(5) 9(6)</span></span><br><span class="line">	<span class="comment">// 中序</span></span><br><span class="line">	tree-&gt;InorderTraversal(); <span class="comment">// 2(3) 5(1) 6(4) 0(0) 7(5) 8(2) 9(6)</span></span><br><span class="line">	<span class="comment">// 后序</span></span><br><span class="line">	tree-&gt;PostorderTraversal(); <span class="comment">// 2(3) 6(4) 5(1) 7(5) 9(6) 8(2) 0(0)</span></span><br><span class="line"></span><br><span class="line">	<span class="comment">// 删除节点</span></span><br><span class="line">	tree-&gt;DeleteNode(<span class="number">2</span>, <span class="literal">NULL</span>);</span><br><span class="line">	tree-&gt;PreorderTraversal();</span><br><span class="line">	</span><br><span class="line">	<span class="keyword">delete</span> tree;</span><br><span class="line">	tree = <span class="literal">NULL</span>;</span><br><span class="line">	return <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="Tree-h-1"><a href="#Tree-h-1" class="headerlink" title="Tree.h"></a>Tree.h</h3><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">ifndef</span> TREE_H</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> TREE_H</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="string">"Node.h"</span></span></span><br><span class="line"><span class="keyword">class</span> Tree</span><br><span class="line">&#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">	Tree(); <span class="comment">// 创建树</span></span><br><span class="line">	~Tree(); <span class="comment">// 销毁树</span></span><br><span class="line">	<span class="function">Node *<span class="title">SearchNode</span><span class="params">(<span class="keyword">int</span> nodeIndex)</span></span>; <span class="comment">// 搜索节点</span></span><br><span class="line">	<span class="function"><span class="keyword">bool</span> <span class="title">AddNode</span><span class="params">(<span class="keyword">int</span> nodeIndex, <span class="keyword">int</span> direction, Node *pNode)</span></span>; <span class="comment">// 添加节点</span></span><br><span class="line">	<span class="function"><span class="keyword">bool</span> <span class="title">DeleteNode</span><span class="params">(<span class="keyword">int</span> nodeIndex, Node *pNode)</span></span>; <span class="comment">// 删除节点</span></span><br><span class="line">	<span class="function"><span class="keyword">void</span> <span class="title">PreorderTraversal</span><span class="params">()</span></span>; <span class="comment">// 前序遍历</span></span><br><span class="line">	<span class="function"><span class="keyword">void</span> <span class="title">InorderTraversal</span><span class="params">()</span></span>; <span class="comment">// 中序遍历</span></span><br><span class="line">	<span class="function"><span class="keyword">void</span> <span class="title">PostorderTraversal</span><span class="params">()</span></span>; <span class="comment">// 后序遍历</span></span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">	Node *m_pRoot;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">endif</span></span></span><br></pre></td></tr></table></figure>
+<h3 id="Tree-cpp-1"><a href="#Tree-cpp-1" class="headerlink" title="Tree.cpp"></a>Tree.cpp</h3><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="string">"Tree.h"</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"></span><br><span class="line">Tree::Tree()</span><br><span class="line">&#123;</span><br><span class="line">	m_pRoot = new Node();</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">Tree::~Tree()</span><br><span class="line">&#123;</span><br><span class="line">	<span class="comment">// DeleteNode(0, NULL);</span></span><br><span class="line">	m_pRoot-&gt;DeleteNode();</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">bool</span> Tree::AddNode(<span class="keyword">int</span> nodeIndex, <span class="keyword">int</span> direction, Node *pNode)</span><br><span class="line">&#123;</span><br><span class="line">	<span class="comment">// 要挂载的位置不存在</span></span><br><span class="line">	Node *temp = SearchNode(nodeIndex);</span><br><span class="line">	<span class="keyword">if</span>(temp == <span class="literal">NULL</span>)</span><br><span class="line">	&#123;</span><br><span class="line">		return <span class="literal">false</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="comment">// 创建挂载上去的节点</span></span><br><span class="line">	Node *node = new Node();</span><br><span class="line">	<span class="comment">// 申请空间失败</span></span><br><span class="line">	<span class="keyword">if</span>(node == <span class="literal">NULL</span>)</span><br><span class="line">	&#123;</span><br><span class="line">		return <span class="literal">false</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	node-&gt;index = pNode-&gt;index;</span><br><span class="line">	node-&gt;data = pNode-&gt;data;</span><br><span class="line">	node-&gt;pParent = temp;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">if</span>(direction == <span class="number">0</span>)</span><br><span class="line">	&#123;</span><br><span class="line">		temp-&gt;pLChild = node;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">if</span>(direction == <span class="number">1</span>)</span><br><span class="line">	&#123;</span><br><span class="line">		temp-&gt;pRChild = node;</span><br><span class="line">	&#125;</span><br><span class="line">	return <span class="literal">true</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">Node *Tree::SearchNode(<span class="keyword">int</span> nodeIndex)</span><br><span class="line">&#123;</span><br><span class="line">	return m_pRoot-&gt;SearchNode(nodeIndex);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">bool</span> Tree::DeleteNode(<span class="keyword">int</span> nodeIndex, Node *pNode)</span><br><span class="line">&#123;</span><br><span class="line">	Node *temp = SearchNode(nodeIndex);</span><br><span class="line">	<span class="keyword">if</span>(temp == <span class="literal">NULL</span>)</span><br><span class="line">	&#123;</span><br><span class="line">		return <span class="literal">false</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">if</span>(pNode != <span class="literal">NULL</span>)</span><br><span class="line">	&#123;</span><br><span class="line">		pNode-&gt;data = temp-&gt;data;</span><br><span class="line">	&#125;</span><br><span class="line">	temp-&gt;DeleteNode();	</span><br><span class="line">	return <span class="literal">true</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">void</span> Tree::PreorderTraversal()</span><br><span class="line">&#123;</span><br><span class="line">	m_pRoot-&gt;PreorderTraversal();</span><br><span class="line">	<span class="built_in">cout</span> &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">void</span> Tree::InorderTraversal()</span><br><span class="line">&#123;</span><br><span class="line">	m_pRoot-&gt;InorderTraversal();</span><br><span class="line">	<span class="built_in">cout</span> &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">void</span> Tree::PostorderTraversal()</span><br><span class="line">&#123;</span><br><span class="line">	m_pRoot-&gt;PostorderTraversal();</span><br><span class="line">	<span class="built_in">cout</span> &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="Node-h"><a href="#Node-h" class="headerlink" title="Node.h"></a>Node.h</h3><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">ifndef</span> NODE_H</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> NODE_H</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> Node</span><br><span class="line">&#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">	Node(<span class="keyword">int</span> index = <span class="number">0</span>, <span class="keyword">int</span> data = <span class="number">0</span>);</span><br><span class="line">	<span class="function">Node *<span class="title">SearchNode</span><span class="params">(<span class="keyword">int</span> nodeIndex)</span></span>; <span class="comment">// 递归寻找节点</span></span><br><span class="line">	<span class="function"><span class="keyword">void</span> <span class="title">DeleteNode</span><span class="params">()</span></span>; <span class="comment">// 递归删除节点</span></span><br><span class="line">	<span class="function"><span class="keyword">void</span> <span class="title">PreorderTraversal</span><span class="params">()</span></span>; <span class="comment">// 后序</span></span><br><span class="line">	<span class="function"><span class="keyword">void</span> <span class="title">InorderTraversal</span><span class="params">()</span></span>; <span class="comment">// 中序</span></span><br><span class="line">	<span class="function"><span class="keyword">void</span> <span class="title">PostorderTraversal</span><span class="params">()</span></span>; <span class="comment">// 后序</span></span><br><span class="line">	<span class="keyword">int</span> index;</span><br><span class="line">	<span class="keyword">int</span> data;</span><br><span class="line">	Node *pLChild;</span><br><span class="line">	Node *pRChild;</span><br><span class="line">	Node *pParent;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">endif</span></span></span><br></pre></td></tr></table></figure>
+<h3 id="Node-cpp"><a href="#Node-cpp" class="headerlink" title="Node.cpp"></a>Node.cpp</h3><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="string">"Node.h"</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line">Node::Node(<span class="keyword">int</span> index, <span class="keyword">int</span> data)</span><br><span class="line">&#123;</span><br><span class="line">	<span class="keyword">this</span>-&gt;index = index;</span><br><span class="line">	<span class="keyword">this</span>-&gt;data = data;</span><br><span class="line">	pLChild = <span class="literal">NULL</span>;</span><br><span class="line">	pRChild = <span class="literal">NULL</span>;</span><br><span class="line">	pParent = <span class="literal">NULL</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">Node *Node::SearchNode(<span class="keyword">int</span> nodeIndex)</span><br><span class="line">&#123;</span><br><span class="line">	Node *temp = <span class="literal">NULL</span>;</span><br><span class="line">	<span class="comment">// 判断当前节点数据</span></span><br><span class="line">	<span class="keyword">if</span>(<span class="keyword">this</span>-&gt;index == nodeIndex)</span><br><span class="line">	&#123;</span><br><span class="line">		return <span class="keyword">this</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="comment">// 递归左节点数据</span></span><br><span class="line">	<span class="keyword">if</span>(<span class="keyword">this</span>-&gt;pLChild != <span class="literal">NULL</span>)</span><br><span class="line">	&#123;</span><br><span class="line">		temp = <span class="keyword">this</span>-&gt;pLChild-&gt;SearchNode(nodeIndex);</span><br><span class="line">		<span class="keyword">if</span>(temp != <span class="literal">NULL</span>)</span><br><span class="line">		&#123;</span><br><span class="line">			return temp;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="comment">// 递归右节点数据</span></span><br><span class="line">	<span class="keyword">if</span>(<span class="keyword">this</span>-&gt;pRChild != <span class="literal">NULL</span>)</span><br><span class="line">	&#123;</span><br><span class="line">		temp = <span class="keyword">this</span>-&gt;pRChild-&gt;SearchNode(nodeIndex);</span><br><span class="line">		<span class="keyword">if</span>(temp != <span class="literal">NULL</span>)</span><br><span class="line">		&#123;</span><br><span class="line">			return temp;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	return <span class="literal">NULL</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">void</span> Node::DeleteNode()</span><br><span class="line">&#123;</span><br><span class="line">	<span class="keyword">if</span>(<span class="keyword">this</span>-&gt;pLChild != <span class="literal">NULL</span>)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="keyword">this</span>-&gt;pLChild-&gt;DeleteNode();</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">if</span>(<span class="keyword">this</span>-&gt;pRChild != <span class="literal">NULL</span>)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="keyword">this</span>-&gt;pRChild-&gt;DeleteNode();</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">if</span>(<span class="keyword">this</span>-&gt;pParent != <span class="literal">NULL</span>)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="keyword">if</span>(<span class="keyword">this</span>-&gt;pParent-&gt;pLChild == <span class="keyword">this</span>)</span><br><span class="line">		&#123;</span><br><span class="line">			<span class="keyword">this</span>-&gt;pParent-&gt;pLChild = <span class="literal">NULL</span>;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">if</span>(<span class="keyword">this</span>-&gt;pParent-&gt;pRChild == <span class="keyword">this</span>)</span><br><span class="line">		&#123;</span><br><span class="line">			<span class="keyword">this</span>-&gt;pParent-&gt;pRChild = <span class="literal">NULL</span>;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">delete</span> <span class="keyword">this</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">void</span> Node::PreorderTraversal()</span><br><span class="line">&#123;</span><br><span class="line">	<span class="comment">// 根</span></span><br><span class="line">	<span class="built_in">cout</span> &lt;&lt; <span class="keyword">this</span>-&gt;data &lt;&lt; <span class="string">"("</span> &lt;&lt; <span class="keyword">this</span>-&gt;index &lt;&lt; <span class="string">")"</span> &lt;&lt; <span class="string">" "</span>;</span><br><span class="line">	<span class="comment">// 左</span></span><br><span class="line">	<span class="keyword">if</span>(<span class="keyword">this</span>-&gt;pLChild != <span class="literal">NULL</span>)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="keyword">this</span>-&gt;pLChild-&gt;PreorderTraversal();</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="comment">// 右</span></span><br><span class="line">	<span class="keyword">if</span>(<span class="keyword">this</span>-&gt;pRChild != <span class="literal">NULL</span>)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="keyword">this</span>-&gt;pRChild-&gt;PreorderTraversal();</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">void</span> Node::InorderTraversal()</span><br><span class="line">&#123;</span><br><span class="line">	<span class="comment">// 左</span></span><br><span class="line">	<span class="keyword">if</span>(<span class="keyword">this</span>-&gt;pLChild != <span class="literal">NULL</span>)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="keyword">this</span>-&gt;pLChild-&gt;InorderTraversal();</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="comment">// 根</span></span><br><span class="line">	<span class="built_in">cout</span> &lt;&lt; <span class="keyword">this</span>-&gt;data &lt;&lt; <span class="string">"("</span> &lt;&lt; <span class="keyword">this</span>-&gt;index &lt;&lt; <span class="string">")"</span> &lt;&lt; <span class="string">" "</span>;</span><br><span class="line">	<span class="comment">// 右</span></span><br><span class="line">	<span class="keyword">if</span>(<span class="keyword">this</span>-&gt;pRChild != <span class="literal">NULL</span>)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="keyword">this</span>-&gt;pRChild-&gt;InorderTraversal();</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">void</span> Node::PostorderTraversal()</span><br><span class="line">&#123;</span><br><span class="line">	<span class="comment">// 左</span></span><br><span class="line">	<span class="keyword">if</span>(<span class="keyword">this</span>-&gt;pLChild != <span class="literal">NULL</span>)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="keyword">this</span>-&gt;pLChild-&gt;PostorderTraversal();</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="comment">// 右</span></span><br><span class="line">	<span class="keyword">if</span>(<span class="keyword">this</span>-&gt;pRChild != <span class="literal">NULL</span>)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="keyword">this</span>-&gt;pRChild-&gt;PostorderTraversal();</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="comment">// 根</span></span><br><span class="line">	<span class="built_in">cout</span> &lt;&lt; <span class="keyword">this</span>-&gt;data &lt;&lt; <span class="string">"("</span> &lt;&lt; <span class="keyword">this</span>-&gt;index &lt;&lt; <span class="string">")"</span> &lt;&lt; <span class="string">" "</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/c-数据结构/" rel="tag">#c++数据结构</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/02/09/数据结构探险/数据结构探险-02栈篇/" rel="next" title="数据结构探险-02栈篇">
+                <i class="fa fa-chevron-left"></i> 数据结构探险-02栈篇
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/02/09/c++远征/c++远征05之多态篇/" rel="prev" title="c++远征05之多态篇">
+                c++远征05之多态篇 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2017/02/09/数据结构探险/数据结构探险-04树篇/"
+           data-title="数据结构探险-04树篇" data-url="http://laputa-er.github.io/2017/02/09/数据结构探险/数据结构探险-04树篇/">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.gif"
+               alt="Sean" />
+          <p class="site-author-name" itemprop="name">Sean</p>
+          <p class="site-description motion-element" itemprop="description">整理了一批过去一段时间ios相关的笔记，其它的笔记也整理下？源码分享出来？再说吧...反正也只有自己会看吧...</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">200</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">22</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">31</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#1-树的基本概念"><span class="nav-text">1 树的基本概念</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-1-基础概念"><span class="nav-text">1.1 基础概念</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-2-二叉树"><span class="nav-text">1.2 二叉树</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-2-1-二叉树遍历"><span class="nav-text">1.2.1 二叉树遍历</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-3-用途"><span class="nav-text">1.3 用途</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#2-二叉树数组实现"><span class="nav-text">2 二叉树数组实现</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#2-1-原理"><span class="nav-text">2.1 原理</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-2-实现"><span class="nav-text">2.2 实现</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Tree-h"><span class="nav-text">Tree.h</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Tree-cpp"><span class="nav-text">Tree.cpp</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#main-cpp"><span class="nav-text">main.cpp</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#3-二叉树链表实现"><span class="nav-text">3 二叉树链表实现</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#3-1-原理"><span class="nav-text">3.1 原理</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#3-1-1-节点要素"><span class="nav-text">3.1.1  节点要素</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-1-2-遍历"><span class="nav-text">3.1.2 遍历</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-2-实现"><span class="nav-text">3.2 实现</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#main-cpp-1"><span class="nav-text">main.cpp</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Tree-h-1"><span class="nav-text">Tree.h</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Tree-cpp-1"><span class="nav-text">Tree.cpp</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Node-h"><span class="nav-text">Node.h</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Node-cpp"><span class="nav-text">Node.cpp</span></a></li></ol></li></ol></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Sean</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"lapuda-er"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+    <script src="/vendors/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
+    <script src="/js/src/hook-duoshuo.js"></script>
+  
+
+
+
+
+
+
+  
+  
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length == 0) {
+       search_path = "search.xml";
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    function proceedsearch() {
+      $("body").append('<div class="popoverlay">').css('overflow', 'hidden');
+      $('.popup').toggle();
+
+    }
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+    'use strict';
+    $.ajax({
+        url: path,
+        dataType: "xml",
+        async: true,
+        success: function( xmlResponse ) {
+            // get the contents from search data
+            isfetched = true;
+            $('.popup').detach().appendTo('.header-inner');
+            var datas = $( "entry", xmlResponse ).map(function() {
+                return {
+                    title: $( "title", this ).text(),
+                    content: $("content",this).text(),
+                    url: $( "url" , this).text()
+                };
+            }).get();
+            var $input = document.getElementById(search_id);
+            var $resultContent = document.getElementById(content_id);
+            $input.addEventListener('input', function(){
+                var matchcounts = 0;
+                var str='<ul class=\"search-result-list\">';
+                var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+                $resultContent.innerHTML = "";
+                if (this.value.trim().length > 1) {
+                // perform local searching
+                datas.forEach(function(data) {
+                    var isMatch = true;
+                    var content_index = [];
+                    var data_title = data.title.trim().toLowerCase();
+                    var data_content = data.content.trim().replace(/<[^>]+>/g,"").toLowerCase();
+                    var data_url = data.url;
+                    var index_title = -1;
+                    var index_content = -1;
+                    var first_occur = -1;
+                    // only match artiles with not empty titles and contents
+                    if(data_title != '' && data_content != '') {
+                        keywords.forEach(function(keyword, i) {
+                            index_title = data_title.indexOf(keyword);
+                            index_content = data_content.indexOf(keyword);
+                            if( index_title < 0 && index_content < 0 ){
+                                isMatch = false;
+                            } else {
+                                if (index_content < 0) {
+                                    index_content = 0;
+                                }
+                                if (i == 0) {
+                                    first_occur = index_content;
+                                }
+                            }
+                        });
+                    }
+                    // show search results
+                    if (isMatch) {
+                        matchcounts += 1;
+                        str += "<li><a href='"+ data_url +"' class='search-result-title'>"+ data_title +"</a>";
+                        var content = data.content.trim().replace(/<[^>]+>/g,"");
+                        if (first_occur >= 0) {
+                            // cut out 100 characters
+                            var start = first_occur - 20;
+                            var end = first_occur + 80;
+                            if(start < 0){
+                                start = 0;
+                            }
+                            if(start == 0){
+                                end = 50;
+                            }
+                            if(end > content.length){
+                                end = content.length;
+                            }
+                            var match_content = content.substring(start, end);
+                            // highlight all keywords
+                            keywords.forEach(function(keyword){
+                                var regS = new RegExp(keyword, "gi");
+                                match_content = match_content.replace(regS, "<b class=\"search-keyword\">"+keyword+"</b>");
+                            });
+
+                            str += "<p class=\"search-result\">" + match_content +"...</p>"
+                        }
+                        str += "</li>";
+                    }
+                })};
+                str += "</ul>";
+                if (matchcounts == 0) { str = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>' }
+                if (keywords == "") { str = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>' }
+                $resultContent.innerHTML = str;
+            });
+            proceedsearch();
+        }
+    });}
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched == false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+
+    });
+
+    $('.popup-btn-close').click(function(e){
+      $('.popup').hide();
+      $(".popoverlay").remove();
+      $('body').css('overflow', '');
+    });
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+  </script>
+
+
+  
+
+  
+
+  
+
+</body>
+</html>

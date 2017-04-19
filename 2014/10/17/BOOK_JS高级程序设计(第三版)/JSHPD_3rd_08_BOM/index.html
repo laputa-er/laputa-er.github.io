@@ -1,0 +1,1282 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="js," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1" />
+
+
+
+
+
+
+<meta name="description" content="8.1 window对象说明：
+
+JavaScript访问浏览器窗口的一个接口
+ECMAScript规定的Global对象8.1.1 全局作用域全局变量定义全局变量
+
+
+
+
+定义方式
+delete操作
+
+
+
+
+直接定义在全局或不使用var(非严格模式)
+可以
+
+
+在window对象上定义属性
+不能，因为[[Confifurable]]值为false
+
+
+
+技巧：通过查询window对象，知道某个未">
+<meta property="og:type" content="article">
+<meta property="og:title" content="08 BOM">
+<meta property="og:url" content="http://laputa-er.github.io/2014/10/17/BOOK_JS高级程序设计(第三版)/JSHPD_3rd_08_BOM/index.html">
+<meta property="og:site_name" content="Sean">
+<meta property="og:description" content="8.1 window对象说明：
+
+JavaScript访问浏览器窗口的一个接口
+ECMAScript规定的Global对象8.1.1 全局作用域全局变量定义全局变量
+
+
+
+
+定义方式
+delete操作
+
+
+
+
+直接定义在全局或不使用var(非严格模式)
+可以
+
+
+在window对象上定义属性
+不能，因为[[Confifurable]]值为false
+
+
+
+技巧：通过查询window对象，知道某个未">
+<meta property="og:image" content="http://o6ul1xz4z.bkt.clouddn.com/1435053808143.png">
+<meta property="og:image" content="http://o6ul1xz4z.bkt.clouddn.com/1435055363375.png">
+<meta property="og:image" content="http://o6ul1xz4z.bkt.clouddn.com/1435058568055.png">
+<meta property="og:image" content="http://o6ul1xz4z.bkt.clouddn.com/屏幕快照 2015-06-23 下午9.32.00.png">
+<meta property="og:image" content="http://o6ul1xz4z.bkt.clouddn.com/屏幕快照 2015-06-23 下午9.32.25.png">
+<meta property="og:image" content="http://o6ul1xz4z.bkt.clouddn.com/屏幕快照 2015-06-24 下午12.30.06.png">
+<meta property="og:image" content="http://o6ul1xz4z.bkt.clouddn.com/屏幕快照 2015-06-24 下午12.31.25.png">
+<meta property="og:updated_time" content="2017-03-31T04:59:22.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="08 BOM">
+<meta name="twitter:description" content="8.1 window对象说明：
+
+JavaScript访问浏览器窗口的一个接口
+ECMAScript规定的Global对象8.1.1 全局作用域全局变量定义全局变量
+
+
+
+
+定义方式
+delete操作
+
+
+
+
+直接定义在全局或不使用var(非严格模式)
+可以
+
+
+在window对象上定义属性
+不能，因为[[Confifurable]]值为false
+
+
+
+技巧：通过查询window对象，知道某个未">
+<meta name="twitter:image" content="http://o6ul1xz4z.bkt.clouddn.com/1435053808143.png">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 0,
+      author: '博主'
+    }
+  };
+</script>
+
+
+
+
+  <link rel="canonical" href="http://laputa-er.github.io/2014/10/17/BOOK_JS高级程序设计(第三版)/JSHPD_3rd_08_BOM/"/>
+
+  <title> 08 BOM | Sean </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//hm.baidu.com/hm.js?898688f51c5a3d6b37dd23e04441e5bd";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">Sean</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">笔记分享</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup">
+ <span class="search-icon fa fa-search"></span>
+ <input type="text" id="local-search-input">
+ <div id="local-search-result"></div>
+ <span class="popup-btn-close">close</span>
+</div>
+
+
+    </div>
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                08 BOM
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2014-10-17T23:45:56+08:00" content="2014-10-17">
+              2014-10-17
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/JS高级程序设计-第三版/" itemprop="url" rel="index">
+                    <span itemprop="name">JS高级程序设计(第三版)</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2014/10/17/BOOK_JS高级程序设计(第三版)/JSHPD_3rd_08_BOM/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2014/10/17/BOOK_JS高级程序设计(第三版)/JSHPD_3rd_08_BOM/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="8-1-window对象"><a href="#8-1-window对象" class="headerlink" title="8.1 window对象"></a>8.1 window对象</h2><p><strong>说明：</strong></p>
+<ul>
+<li>JavaScript访问浏览器窗口的一个接口</li>
+<li>ECMAScript规定的Global对象<h3 id="8-1-1-全局作用域"><a href="#8-1-1-全局作用域" class="headerlink" title="8.1.1 全局作用域"></a>8.1.1 全局作用域</h3><em>全局变量</em><br><strong>定义全局变量</strong></li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>定义方式</th>
+<th>delete操作</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>直接定义在全局或不使用<code>var</code>(非严格模式)</td>
+<td>可以</td>
+</tr>
+<tr>
+<td>在window对象上定义属性</td>
+<td>不能，因为[[Confifurable]]值为false</td>
+</tr>
+</tbody>
+</table>
+<p><strong>技巧：</strong>通过查询window对象，知道某个未声明的变量是否存在。<br><strong>兼容性：</strong><code>Windows Mobile</code>平台<code>IE</code>不允许通过<code>window.property = value</code>的形式在<code>window</code>对象上创建新的属性和方法。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> age = <span class="number">29</span>;</span><br><span class="line"><span class="built_in">window</span>.color = <span class="string">"red"</span>;</span><br><span class="line"><span class="comment">//IE8-抛出错误，其它返回false</span></span><br><span class="line"><span class="keyword">delete</span> <span class="built_in">window</span>.age;</span><br><span class="line"><span class="comment">//IE8-抛出错误，其它返回true</span></span><br><span class="line"><span class="keyword">delete</span> <span class="built_in">window</span>.color;</span><br><span class="line">alert(<span class="built_in">window</span>.age);    <span class="comment">//29</span></span><br><span class="line">alert(<span class="built_in">window</span>.color);  <span class="comment">//undefined</span></span><br></pre></td></tr></table></figure>
+<h3 id="8-1-2-窗口关系及框架"><a href="#8-1-2-窗口关系及框架" class="headerlink" title="8.1.2 窗口关系及框架"></a>8.1.2 窗口关系及框架</h3><table>
+<thead>
+<tr>
+<th>框架相关window对象属性</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>top</td>
+<td>指向最外层的框架（浏览器窗口）</td>
+</tr>
+<tr>
+<td>parent</td>
+<td>指向当前框架的直接上层框架</td>
+</tr>
+<tr>
+<td>name</td>
+<td>除非最高层窗口通过window.open()打开，否则window.name不会包含任何值</td>
+</tr>
+</tbody>
+</table>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">html</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">title</span>&gt;</span>Frameset Example<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">frameset</span> <span class="attr">rows</span>=<span class="string">"160,*"</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">frame</span> <span class="attr">src</span>=<span class="string">"framee.html"</span> <span class="attr">name</span>=<span class="string">"leftFrame"</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">frameset</span> <span class="attr">cols</span>=<span class="string">"50%,50%"</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">frame</span> <span class="attr">src</span>=<span class="string">"anotherframe.html"</span> <span class="attr">name</span>=<span class="string">"leftFrame"</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">frame</span> <span class="attr">src</span>=<span class="string">"yetanotherframe.html"</span> <span class="attr">name</span>=<span class="string">"rightFrame"</span>&gt;</span>    </span><br><span class="line">        <span class="tag">&lt;/<span class="name">frameset</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">frameset</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p><img src="http://o6ul1xz4z.bkt.clouddn.com/1435053808143.png" alt="Alt text"></p>
+<h3 id="8-1-3-窗口位置"><a href="#8-1-3-窗口位置" class="headerlink" title="8.1.3 窗口位置"></a>8.1.3 窗口位置</h3><table>
+<thead>
+<tr>
+<th>和框架位置相关的属性（无法跨浏览器获得精确坐标</th>
+<th>含义</th>
+<th>最返回外层框架坐标</th>
+<th>返回框架相对屏幕精确坐标</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>screenLeft、screenTop</td>
+<td>窗口相对屏幕左边、上边的位置</td>
+<td>Safari、Chrome</td>
+<td>IE、Opera</td>
+</tr>
+<tr>
+<td>screenX、screenY</td>
+<td>窗口相对屏幕左边、上边的位置</td>
+<td>FireFox、Safari、Chrome</td>
+<td>Opera(有问题)</td>
+</tr>
+</tbody>
+</table>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> leftPos = (<span class="keyword">typeof</span> <span class="built_in">window</span>.screenLeft == <span class="string">'number'</span>) ? <span class="built_in">window</span>.screenLeft : <span class="built_in">window</span>.screenX;</span><br><span class="line"><span class="keyword">var</span> topPos = (<span class="keyword">typeof</span> <span class="built_in">window</span>.screenTop == <span class="string">'number'</span>)? <span class="built_in">window</span>.screenTop : <span class="built_in">window</span>.screenY;</span><br></pre></td></tr></table></figure>
+<p>####框架移动方法<br><strong>局限性：</strong>只能对最外层window对象使用；Opera和IE7+中默认是禁用的。</p>
+<table>
+<thead>
+<tr>
+<th>moveTo()方法</th>
+<th>通过坐标移动到新位置，参数（新位置x，新位置y）</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>moveBy()方法</strong></td>
+<td><strong>通过设置移动的像素移动到新位置（水平移动像素数，垂直移动像素数）</strong></td>
+</tr>
+</tbody>
+</table>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//将窗口移动到屏幕左上角</span></span><br><span class="line"><span class="built_in">window</span>.moveTot(<span class="number">0</span>,<span class="number">0</span>);</span><br><span class="line"><span class="comment">//将窗口向下移动100像素</span></span><br><span class="line"><span class="built_in">window</span>.moveNy(<span class="number">0</span>,<span class="number">100</span>);</span><br><span class="line"><span class="comment">//将窗口移动到(200,300)</span></span><br><span class="line"><span class="built_in">window</span>.moveTo(<span class="number">200</span>,<span class="number">300</span>);</span><br><span class="line"><span class="comment">//将窗口项坐移动50像素</span></span><br><span class="line"><span class="built_in">window</span>.moveNy(<span class="number">-50</span>,<span class="number">0</span>);</span><br></pre></td></tr></table></figure>
+<h3 id="8-1-4-窗口大小"><a href="#8-1-4-窗口大小" class="headerlink" title="8.1.4 窗口大小"></a>8.1.4 窗口大小</h3><p><strong>页面视图容器：</strong>单个标签页对应的浏览器窗口<br><strong>注：</strong>移动设备的情况比较复杂！</p>
+<table>
+<thead>
+<tr>
+<th>属性</th>
+<th>含义</th>
+<th>浏览器</th>
+<th>实际行为</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>innerWidth、innerHeight</td>
+<td>容器页面视图区大小（减去边框宽度）</td>
+<td>IE9+、Safari、FireFox、Chrome</td>
+<td>返回视图大小</td>
+</tr>
+<tr>
+<td>outerWidth、outerHeight</td>
+<td>浏览器窗口本身大小</td>
+<td>IE9+、Safari、FireFox<code>/</code>chrome(返回视图大小)</td>
+<td>浏览器窗口本身的大小</td>
+</tr>
+<tr>
+<td>document.documentElement.clientWidth、document.documentElement.clientHeight</td>
+<td>视图大小</td>
+<td>IE(IE6必须是标准模式)、Firefox、Safari、Opera、Chrome（标准模式或混杂模式）</td>
+<td>视图大小</td>
+</tr>
+<tr>
+<td>document.body.clientWidth、document.body.clientHeight</td>
+<td>视图大小</td>
+<td>IE6混杂模式、Chrome(包括混杂模式)</td>
+<td>视图大小</td>
+</tr>
+</tbody>
+</table>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> pageWidth = <span class="built_in">window</span>.innerWidth,</span><br><span class="line">    pageHeight = <span class="built_in">window</span>.innerWidth;</span><br><span class="line"><span class="keyword">if</span>(<span class="keyword">typeof</span> pageWidth != <span class="string">'number'</span>)&#123;</span><br><span class="line">    <span class="keyword">if</span>(<span class="built_in">document</span>.cpmpatMode == <span class="string">'CSS1Compat'</span>)&#123;</span><br><span class="line">        pageWidth = <span class="built_in">document</span>.documentElement.clientWidth;</span><br><span class="line">        pageHeight = <span class="built_in">document</span>.documentElement.clientHeight;</span><br><span class="line">    &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">        pageWidth = <span class="built_in">document</span>.body.clientWidth;</span><br><span class="line">        pageHeight = <span class="built_in">document</span>.body.clientHeight;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>####调整浏览器窗口大小<br><strong>局限：</strong>只能对最外层window对象使用；Opera和IE7+中默认是禁用的</p>
+<table>
+<thead>
+<tr>
+<th>resizeTo()</th>
+<th>参数（新高度，新宽度）</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>resizeBy()</strong></td>
+<td><strong>参数（新窗口与原窗口宽度之差，新窗口与原窗口高度之差）</strong></td>
+</tr>
+</tbody>
+</table>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//调整到100x100</span></span><br><span class="line"><span class="built_in">window</span>.resizeTo(<span class="number">100</span>,<span class="number">100</span>);</span><br><span class="line"><span class="comment">//调整到200 x 150</span></span><br><span class="line"><span class="built_in">window</span>.resizeBy(<span class="number">100</span>,<span class="number">50</span>);</span><br><span class="line"><span class="comment">//调整到300x300</span></span><br><span class="line"><span class="built_in">window</span>.resizeTo(<span class="number">300</span>, <span class="number">300</span>);</span><br></pre></td></tr></table></figure>
+<h3 id="8-1-5-导航和打开窗口"><a href="#8-1-5-导航和打开窗口" class="headerlink" title="8.1.5 导航和打开窗口"></a>8.1.5 导航和打开窗口</h3><p>####window.open():导航到一个特定的URL或打开一个新的浏览器窗口<br><strong>参数（4）：</strong>要加载的URL、窗口目标、特性字符串（第二个参数不是已经存在的窗口或框架时才会起作用）、新页面是否取代浏览器历史记录中当前加载页面<br><strong>返回值：</strong>返回一个指向新窗口的引用，通过这个返回的对象可以向操作其它窗口一样操作心打开的窗口<br><strong>注意：</strong></p>
+<ul>
+<li>第三个参数没有传入的话将会根据浏览器的默认设置打开一个默认的新窗口或新标签</li>
+<li>有些浏览器在默认情况下可能不允许针对浏览器主窗口调整大小或移动位置，但对window.open()创建的窗口可以</li>
+<li>主窗口无法通过close()关闭，但window.open()创建的窗口可以</li>
+<li>弹出的窗口通过close()关闭后窗口引用还在，但只能用于监测closed属性</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//等同于&lt;a href="http://www.wrox.com" target="topFrame" &gt;&lt;/a&gt;</span></span><br><span class="line"><span class="built_in">window</span>.open(<span class="string">'http://www.wrox.com'</span>, topFrame);    <span class="comment">//如果有一个名为'topFrame'的窗口或框架，就会在该窗口或框架加载这个URL；否则就会创建一个新窗口并将其命名为'topFrame'</span></span><br></pre></td></tr></table></figure>
+<h4 id="8-1-5-1-弹出窗口"><a href="#8-1-5-1-弹出窗口" class="headerlink" title="8.1.5.1 弹出窗口"></a>8.1.5.1 弹出窗口</h4><p><strong>特性字符串（第3个参数）</strong><br><img src="http://o6ul1xz4z.bkt.clouddn.com/1435055363375.png" alt="Alt text"><br><strong>相关属性</strong></p>
+<table>
+<thead>
+<tr>
+<th>closed属性</th>
+<th>窗口是否已经关闭布尔值</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>opener属性</strong></td>
+<td><strong>保存着指向打开它的原始窗口对象，该值设置为null会使新建的窗口标签在页在独立的进程运行（导致标签夜间无法通信）</strong></td>
+</tr>
+</tbody>
+</table>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//打开一个新的可以调整大小的窗口，窗口出事大小问哦400 x 400像素u，并且距屏幕上沿和左边各10像素</span></span><br><span class="line"><span class="keyword">var</span> wroxWin = <span class="built_in">window</span>.open(<span class="string">'http://www.wrox.com/'</span>, <span class="string">'wroxWindow'</span>, <span class="string">'height=400,width=400,top=10,resizeable=yes'</span> );</span><br><span class="line"><span class="comment">//调整大小</span></span><br><span class="line">wroxWin.resizeTo(<span class="number">500</span>, <span class="number">500</span>);</span><br><span class="line"><span class="comment">//移动位置</span></span><br><span class="line">wrox.moveTo(<span class="number">100</span>, <span class="number">100</span>);</span><br><span class="line"><span class="comment">//关闭这个窗口</span></span><br><span class="line">wrox.close();</span><br><span class="line"><span class="comment">//检查closed属性</span></span><br><span class="line">alert(wrox.closed);    <span class="comment">//true</span></span><br><span class="line"><span class="comment">//查看opener属性</span></span><br><span class="line">alert(wrox.opener == <span class="built_in">window</span>);</span><br></pre></td></tr></table></figure>
+<h4 id="8-5-1-2-安全限制"><a href="#8-5-1-2-安全限制" class="headerlink" title="8.5.1.2   安全限制"></a>8.5.1.2   安全限制</h4><p><strong>注意：</strong>打开计算机硬盘上的网页时IE会解除对弹出窗口的某些限制</p>
+<table>
+<thead>
+<tr>
+<th>限制</th>
+<th>浏览器</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>不允许屏幕之外创建弹出窗</td>
+<td>IE6+</td>
+</tr>
+<tr>
+<td>不允许将弹出窗口移动到屏幕以外</td>
+<td>IE6+</td>
+</tr>
+<tr>
+<td>不允许关闭状态栏</td>
+<td>IE6+</td>
+</tr>
+<tr>
+<td>不允许关闭地址栏</td>
+<td>IE7+</td>
+</tr>
+<tr>
+<td>不允许移动弹出窗口或调整其大小</td>
+<td>IE7+</td>
+</tr>
+<tr>
+<td>不允许修改状态栏（特性字符串无效）</td>
+<td>FireFox</td>
+</tr>
+<tr>
+<td>强制始终在弹出窗口中显示地址栏</td>
+<td>FireFox 3</td>
+</tr>
+<tr>
+<td>值允许在主浏览器窗口中打开弹出窗口</td>
+<td>Opera</td>
+</tr>
+<tr>
+<td>不允许出现在可能与系统对话框混淆的地方</td>
+<td>Opera</td>
+</tr>
+<tr>
+<td>只允许通过用户操作弹出窗口（页面加载完后window.open()才有效）</td>
+<td>某些</td>
+</tr>
+<tr>
+<td>非用户操作弹出的窗口只显示标题栏，并放在浏览器窗口的右下角</td>
+<td>Chrome</td>
+</tr>
+</tbody>
+</table>
+<h4 id="8-5-1-3-弹出窗口屏蔽程序"><a href="#8-5-1-3-弹出窗口屏蔽程序" class="headerlink" title="8.5.1.3    弹出窗口屏蔽程序"></a>8.5.1.3    弹出窗口屏蔽程序</h4><p><strong>屏蔽方式：</strong></p>
+<ul>
+<li>浏览器内置弹出窗口屏蔽程序</li>
+<li>浏览器扩展或其他程序阻止的弹出窗口<br>#####检测打开的弹出窗口窗口是否被屏蔽<br><strong>注意：</strong>不会阻止浏览器显示与被屏蔽的弹出窗口有关的消息</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> blocked = <span class="literal">false</span>;</span><br><span class="line"><span class="keyword">try</span>&#123;</span><br><span class="line">    <span class="keyword">var</span> wrox = <span class="built_in">window</span>.open(<span class="string">"http://www.wrox.com"</span>, <span class="string">"_blank"</span> );</span><br><span class="line">    <span class="keyword">if</span>(wrox == <span class="literal">null</span>)&#123;</span><br><span class="line">        blocked = <span class="literal">true</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;<span class="keyword">catch</span>(ex)&#123;</span><br><span class="line">    blocked = <span class="literal">true</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">if</span>(blocked)&#123;</span><br><span class="line">    alert(<span class="string">"The popup was blocked!"</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="8-1-6-间歇调用和超时调用"><a href="#8-1-6-间歇调用和超时调用" class="headerlink" title="8.1.6 间歇调用和超时调用"></a>8.1.6 间歇调用和超时调用</h3><h4 id="8-1-6-1-超时调用"><a href="#8-1-6-1-超时调用" class="headerlink" title="8.1.6.1    超时调用"></a>8.1.6.1    超时调用</h4><p>#####window.setTimeout()方法<br><strong>说明：</strong>超时调用，在指定的时间过后执行代码<br><strong>参数（2）：</strong>要执行的代码、以毫秒表示的时间<br><strong>返回值：</strong>一个数值ID，是计划执行代码的唯一标识<br><strong>注意：</strong></p>
+<ul>
+<li>第一个参数传递字符串肯恩工会导致性能损失，因此不建议第一个参数使用字符串</li>
+<li>第二个参数指的是JS再过多长时间把当前任务添加带JS任务队列，如果队列非空，和等前面的任务执行完成后再执行</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//不建议传递字符串</span></span><br><span class="line">setTimeout(<span class="string">"alert('Hello world!')"</span>, <span class="number">1000</span>);</span><br><span class="line"><span class="comment">//推荐的调用方式</span></span><br><span class="line">setTimeout(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    alert(<span class="string">"Hello world!"</span>);</span><br><span class="line">&#125;, <span class="number">1000</span>);</span><br><span class="line"><span class="built_in">window</span>.clearTimeout()方法：取消尚未执行的超时调用计划</span><br><span class="line">参数：超时调用ID</span><br><span class="line">注意：超时调用的代码都在全局作用域中执行，因此函数中的<span class="keyword">this</span>值在非严格模式下为<span class="built_in">window</span>对象，严格模式下位<span class="literal">undefined</span></span><br><span class="line"><span class="comment">//设置超时调用</span></span><br><span class="line"><span class="keyword">var</span> timeoutId = setTimeout(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    alert(<span class="string">"Hello world!"</span>);</span><br><span class="line">&#125;, <span class="number">1000</span>);</span><br><span class="line"><span class="comment">//取消</span></span><br><span class="line">clearTimeout(timoutId);</span><br></pre></td></tr></table></figure>
+<h4 id="8-1-6-2-间歇调用"><a href="#8-1-6-2-间歇调用" class="headerlink" title="8.1.6.2    间歇调用"></a>8.1.6.2    间歇调用</h4><p>#####windwo.setInterval()方法<br><strong>说明：</strong>间歇调用，每隔一段指定的时间就执行一次代码<br><strong>参数（2）：</strong>要执行的代码、以毫秒表示的时间<br><strong>返回值：</strong>一个数值ID，是间歇执行代码的唯一标识<br><strong>注意：</strong>间歇调用每隔一定时间将代码插入任务队列，有可能后一个间歇调用在上一次调用没完成就启动。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//不建议传递字符串</span></span><br><span class="line">setInterval(<span class="string">"alert('Hello world!')"</span>, <span class="number">1000</span>);</span><br><span class="line"><span class="comment">//推荐的调用方式</span></span><br><span class="line">setInterval(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    alert(<span class="string">"Hello world!"</span>);</span><br><span class="line">&#125;, <span class="number">1000</span>);</span><br></pre></td></tr></table></figure>
+<p>#####window.clearTimeout()方法：终止间歇调用</p>
+<h4 id="8-1-6-3-超时调用模拟间歇调用（推荐）"><a href="#8-1-6-3-超时调用模拟间歇调用（推荐）" class="headerlink" title="8.1.6.3    超时调用模拟间歇调用（推荐）"></a>8.1.6.3    超时调用模拟间歇调用（推荐）</h4><p><em>间歇调用</em></p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> num = <span class="number">0</span>;</span><br><span class="line"><span class="keyword">var</span> max = <span class="number">10</span>;</span><br><span class="line"><span class="keyword">var</span> intervalId = <span class="literal">null</span>;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">increateNumber</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    num++;</span><br><span class="line">    <span class="comment">//如果执行次数达到了max设定的值，则取消后续尚未执行的调用</span></span><br><span class="line">    <span class="keyword">if</span>(num == max)&#123;</span><br><span class="line">        clearInterval(intervalId);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">intervalId = setInterval(increamentNumber, <span class="number">500</span>);</span><br></pre></td></tr></table></figure>
+<p><em>模拟间歇调用</em></p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> num = <span class="number">0</span>;</span><br><span class="line"><span class="keyword">var</span> max = <span class="number">10</span>;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">incrementNumber</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    num++;</span><br><span class="line"> </span><br><span class="line">    <span class="comment">//如果执行次数未达到max设定的值，则设置另一次超时调用</span></span><br><span class="line">    <span class="keyword">if</span>(num &lt; max)&#123;</span><br><span class="line">        setTimeout(incrementNumber, <span class="number">500</span>);</span><br><span class="line">    &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">        alert(<span class="string">"Done"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">setTimeout(increatementNumber, <span class="number">500</span>);</span><br></pre></td></tr></table></figure>
+<h3 id="8-1-7-系统对话框"><a href="#8-1-7-系统对话框" class="headerlink" title="8.1.7 系统对话框"></a>8.1.7 系统对话框</h3><table>
+<thead>
+<tr>
+<th>类型</th>
+<th>包含</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>同步</td>
+<td><code>alert</code> <code>prompt</code> <code>confirm</code></td>
+</tr>
+<tr>
+<td>异步</td>
+<td><code>print</code> <code>find</code></td>
+</tr>
+</tbody>
+</table>
+<p>####alert():警告对话框<br><strong>用途：</strong>显示一些用户无法控制的信息，例如错误消息</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">alert(<span class="string">"System err!"</span>);</span><br><span class="line">confirm():确认对话框</span><br><span class="line">用途：让用户决定是否执行给定的操作</span><br><span class="line"><span class="keyword">if</span>(confirm(<span class="string">'Are you sure?'</span>))&#123;</span><br><span class="line">    <span class="comment">//点击了"OK"</span></span><br><span class="line">&#125;<span class="keyword">else</span>&#123;</span><br><span class="line">    <span class="comment">//点击了"cancel"</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>####prompt():提示输入框<br><strong>用途：</strong>提示用户输入一些文本</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> result = prompt(<span class="string">"What is your name?"</span>, <span class="string">""</span>);</span><br><span class="line"><span class="keyword">if</span>(result != <span class="literal">null</span>)&#123;</span><br><span class="line">    alert(<span class="string">"Welcome, "</span> + result);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>####print():显示“打印”对话框（异步）</p>
+<p>####find()：显示“查找”对话框（异步）</p>
+<h2 id="8-2-location对象"><a href="#8-2-location对象" class="headerlink" title="8.2 location对象"></a>8.2 location对象</h2><p><img src="http://o6ul1xz4z.bkt.clouddn.com/1435058568055.png" alt="Alt text"></p>
+<h3 id="8-2-1-查询字符串参数"><a href="#8-2-1-查询字符串参数" class="headerlink" title="8.2.1 查询字符串参数"></a>8.2.1 查询字符串参数</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span><br><span class="line"> * 获取查询字符串参数</span><br><span class="line"> */</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">getQueryStringArgs</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="comment">//取得查询字符串并去掉开头的问好</span></span><br><span class="line">    <span class="keyword">var</span> qs = (location.search.length &gt; <span class="number">0</span> ? location.search.substring(<span class="number">1</span>) : <span class="string">""</span>),</span><br><span class="line">    <span class="comment">//保存数据的对象</span></span><br><span class="line">    args = &#123;&#125;,</span><br><span class="line">    <span class="comment">//取得每一项</span></span><br><span class="line">    items = qs.length ? qs.split(<span class="string">"&amp;"</span>) : [],</span><br><span class="line">    item = <span class="literal">null</span>,</span><br><span class="line">    name = <span class="literal">null</span>,</span><br><span class="line">    value = <span class="literal">null</span>,</span><br><span class="line">    i = <span class="number">0</span>,</span><br><span class="line">    len = items.length;</span><br><span class="line">    <span class="keyword">for</span>(i = <span class="number">0</span>; i &lt; len; i++)&#123;</span><br><span class="line">        item = items[i].split(<span class="string">"="</span>);</span><br><span class="line">        name = <span class="built_in">decodeURIComponent</span>(item[<span class="number">0</span>]);</span><br><span class="line">        value = <span class="built_in">decodeURIComponent</span>(item[<span class="number">1</span>]);</span><br><span class="line">        <span class="keyword">if</span>(name.length)&#123;</span><br><span class="line">            args[name] = value;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> args;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="8-2-2-位置操作"><a href="#8-2-2-位置操作" class="headerlink" title="8.2.2    位置操作"></a>8.2.2    位置操作</h3><p><strong>说明：</strong>location对象可以通过很多方式改变浏览器的位置。</p>
+<h4 id="8-2-2-1-通过方法修改位置"><a href="#8-2-2-1-通过方法修改位置" class="headerlink" title="8.2.2.1    通过方法修改位置"></a>8.2.2.1    通过方法修改位置</h4><table>
+<thead>
+<tr>
+<th>location的方法</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>assign方法</td>
+<td>通过传递一个url作为参数，立即打开新URL并在浏览器的历史纪录中生成一条记录</td>
+</tr>
+<tr>
+<td>replace方法</td>
+<td>用法同assign，但不会留下历史纪录，也就无法通过前进/后退导航。</td>
+</tr>
+<tr>
+<td>reload方法</td>
+<td>重新加载当前显示的页面</td>
+</tr>
+</tbody>
+</table>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">location.assign(<span class="string">"http://www.wrox.com"</span>);</span><br><span class="line">location.reload();<span class="comment">//重新加载（有可能从缓存中记载）</span></span><br><span class="line">location.reload(<span class="literal">true</span>);<span class="comment">//重新加载（从服务器重新加载）</span></span><br></pre></td></tr></table></figure>
+<h4 id="8-2-2-2-通过属性"><a href="#8-2-2-2-通过属性" class="headerlink" title="8.2.2.2    通过属性"></a>8.2.2.2    通过属性</h4><p><strong>注意：</strong>底层仍然使调用location.assign方法。<br><strong>浏览器差异：</strong>ie早起版本修改hash不会生成一条新的历史纪录。</p>
+<table>
+<thead>
+<tr>
+<th><code>window.location</code> <code>location.href</code></th>
+<th><code>hash</code></th>
+<th><code>search</code></th>
+<th><code>search</code></th>
+<th><code>hostname</code></th>
+<th><code>pathname</code></th>
+<th><code>port</code></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td></td>
+</tr>
+</tbody>
+</table>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//假设初始URL为“http://www.wrox.com/WileyCDA/”</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//将url修改为“http://www.wrox.com/WileyCDA/#search1”</span></span><br><span class="line">location.hash = <span class="string">"#search1"</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">//将url修改为“http://www.wrox.com/WileyCDZ/?q=javascript”</span></span><br><span class="line">location.search = <span class="string">"?q=javascript"</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">//将url修改为“http://www.yahoo.com/WileyCDA/”</span></span><br><span class="line">location.hostname = <span class="string">"www.yahoo.com"</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">//将url修改为“http://www.yahoo.com/mydir/”</span></span><br><span class="line">location.pathname = <span class="string">"mydir"</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">//将url修改为“http://www.yahoo.com:8080/WileyCDA/”</span></span><br><span class="line">location.port = <span class="number">8080</span>;</span><br></pre></td></tr></table></figure>
+<h2 id="8-3-navigator对象"><a href="#8-3-navigator对象" class="headerlink" title="8.3    navigator对象"></a>8.3    navigator对象</h2><p><strong>历史：</strong>最早由Netscape Navigator2.0引入，现在已经成为识别客户端浏览器的事实标准。<br><strong>兼容性：</strong>所有浏览器都支持。<br><strong>其它类似对象：</strong></p>
+<table>
+<thead>
+<tr>
+<th>类似对象</th>
+<th>浏览器</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>window.clientInformation</td>
+<td>IE</td>
+</tr>
+<tr>
+<td>window.opera</td>
+<td>Opera</td>
+</tr>
+</tbody>
+</table>
+<h3 id="属性"><a href="#属性" class="headerlink" title="属性"></a>属性</h3><p><strong>注意：</strong>通常用于检测显示网页的浏览器类型。<br><img src="http://o6ul1xz4z.bkt.clouddn.com/屏幕快照 2015-06-23 下午9.32.00.png" alt="Alt text"><br><img src="http://o6ul1xz4z.bkt.clouddn.com/屏幕快照 2015-06-23 下午9.32.25.png" alt="Alt text"></p>
+<h3 id="8-3-1-检测插件"><a href="#8-3-1-检测插件" class="headerlink" title="8.3.1    检测插件"></a>8.3.1    检测插件</h3><h4 id="8-3-1-1-navigator-plugins数组"><a href="#8-3-1-1-navigator-plugins数组" class="headerlink" title="8.3.1.1    navigator.plugins数组"></a>8.3.1.1    navigator.plugins数组</h4><p><strong>说明：</strong>数组中的每一项都包含下列属性。<br><strong>兼容性：</strong>非IE</p>
+<table>
+<thead>
+<tr>
+<th>属性名</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>name</td>
+<td>插件的名字</td>
+</tr>
+<tr>
+<td>description</td>
+<td>插件的描述</td>
+</tr>
+<tr>
+<td>filename</td>
+<td>插件的文件名</td>
+</tr>
+<tr>
+<td>length</td>
+<td>插件所处理的MIME类型数量</td>
+</tr>
+</tbody>
+</table>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//检测插件</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">hasPlugin</span>(<span class="params">name</span>)</span>&#123;</span><br><span class="line">	name = name.toLowerCase();</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">var</span> i = <span class="number">0</span>; i &lt; navigator.plugins.length; i++)&#123;</span><br><span class="line">		<span class="keyword">if</span>(navigator.plugins[i].name.toLowerCase().indexOf(name) &gt; <span class="number">-1</span>)&#123;</span><br><span class="line">			<span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//检测Flash</span></span><br><span class="line">alert(hasPlugin(<span class="string">"Flash"</span>));</span><br><span class="line"></span><br><span class="line"><span class="comment">//检测"QuickTime"</span></span><br><span class="line">alert(hasPlugin(<span class="string">"Flash"</span>));</span><br></pre></td></tr></table></figure>
+<h4 id="8-3-1-2-ActiveXObject对象"><a href="#8-3-1-2-ActiveXObject对象" class="headerlink" title="8.3.1.2    ActiveXObject对象"></a>8.3.1.2    ActiveXObject对象</h4><p><strong>说明：</strong>IE不支持Netscape式的插件。只能通过尝试使用专有的ActiveXObject类型创建一个特定插件的实例。<br><strong>唯一标识符：</strong>IE是以<code>COM</code>对象的方式实现插件的，而 com对象使用唯一表示来标识。例如Flash的标识符<code>ShockwaveFlash.ShockwaveFlash</code>。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//检查IE中的插件</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">hasIEPlugin</span>(<span class="params">name</span>)</span>&#123;</span><br><span class="line">	<span class="keyword">try</span>&#123;</span><br><span class="line">		<span class="keyword">new</span> ActiveXObject(name);</span><br><span class="line">		<span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">	&#125;<span class="keyword">catch</span>(ex)&#123;</span><br><span class="line">		<span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//检测Flash</span></span><br><span class="line">alert(hasIEPlugin(<span class="string">"ShockwaveFlash.ShockwaveFlash"</span>));</span><br><span class="line"></span><br><span class="line"><span class="comment">//检测QuickTime</span></span><br><span class="line">alert(hasIEPlugin(<span class="string">"QuickTime.QuickTime"</span>));</span><br></pre></td></tr></table></figure>
+<h4 id="8-3-1-3-兼容处理"><a href="#8-3-1-3-兼容处理" class="headerlink" title="8.3.1.3    兼容处理"></a>8.3.1.3    兼容处理</h4><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//检测所有浏览器中的Flash</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">hasFlash</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">	<span class="keyword">var</span> result = hasFlash(<span class="string">"Flash"</span>);</span><br><span class="line">	<span class="keyword">if</span>(!result)&#123;</span><br><span class="line">		result = hasIEPlugin(<span class="string">"ShockwaveFlash.ShockwaveFlash"</span>);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> result;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//检测所有浏览器中的QuickTime</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">hasQuickTime</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">	<span class="keyword">var</span> result = hasFlash(<span class="string">"QuickTime"</span>);</span><br><span class="line">	<span class="keyword">if</span>(!result)&#123;</span><br><span class="line">		result = hasIEPlugin(<span class="string">"QuickTime.QuickTime"</span>);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> result;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//检测 Flash</span></span><br><span class="line">alert(hasFlash());</span><br><span class="line"></span><br><span class="line"><span class="comment">//检测QuickTime</span></span><br><span class="line">alert(hasQuickTime());</span><br></pre></td></tr></table></figure>
+<h4 id="8-3-1-4-navigator-plugins-refresh方法：刷新插件集合"><a href="#8-3-1-4-navigator-plugins-refresh方法：刷新插件集合" class="headerlink" title="8.3.1.4    navigator.plugins.refresh方法：刷新插件集合"></a>8.3.1.4    navigator.plugins.refresh方法：刷新插件集合</h4><p><strong>参数：</strong>是否重新加载包含页面的所有页面的一个布尔值。</p>
+<h3 id="8-3-2-注册处理程序"><a href="#8-3-2-注册处理程序" class="headerlink" title="8.3.2    注册处理程序"></a>8.3.2    注册处理程序</h3><p><strong>说明：</strong>随着RSS阅读器和在线电子邮件程序的兴起，注册处理程序就为像使用桌面程序一样默认使用这些在线应用程序提供了一种方式。</p>
+<h4 id="8-3-2-1-registerContentHandler-方法"><a href="#8-3-2-1-registerContentHandler-方法" class="headerlink" title="8.3.2.1    registerContentHandler()方法"></a>8.3.2.1    registerContentHandler()方法</h4><p><strong>用途：</strong>为一个站点指明它可以处理的特定类型的信息。<br><strong>参数（3）：</strong>要处理的<code>MIME</code>类型、可以处理该<code>MIME</code>类型的页面的URL、应用程序的名称。<br><strong>限制：</strong>firefox4之前的版本只允许再该方法中使用三种<code>MIME</code>类型</p>
+<table>
+<thead>
+<tr>
+<th>可用的<code>MIME</code></th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>application/rss+xml</td>
+<td>RSS</td>
+</tr>
+<tr>
+<td>application/atom+xml</td>
+<td>ATOM</td>
+</tr>
+<tr>
+<td>application/vnd.mozilla.maybe.feed</td>
+<td>feed</td>
+</tr>
+</tbody>
+</table>
+<p><strong>举个栗子：</strong>将一个站点注册为处理RSS源的处理程序</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//URL中的%s标识RSS源URL,由浏览器自动插入。下一次请求RSS源时，浏览器会打开插入的那个RSS源URL，相应的Web应用程序将会以适当的方式处理该请求。</span></span><br><span class="line">navigator.registerContentHandler(<span class="string">"application/rss+xml"</span>,</span><br><span class="line"><span class="string">"http://www.somereader.com?feed=%s"</span>, <span class="string">"Some Reader"</span>);</span><br></pre></td></tr></table></figure>
+<h4 id="8-3-2-2-registerProtocolHandler-方法"><a href="#8-3-2-2-registerProtocolHandler-方法" class="headerlink" title="8.3.2.2    registerProtocolHandler()方法"></a>8.3.2.2    registerProtocolHandler()方法</h4><p><strong>用途：</strong>为一个站点指明它可以处理那种协议的请求。<br><strong>参数（3）：</strong>要处理的协议（mailto、ftp等）、处理该协议个页面的URL、应用程序的名称。<br><strong>局限：</strong>Firefox2实现了改方法，但不能用，Firefox3才将其完整实现。<br><strong>举个栗子：</strong>注册一个<code>mailto</code>协议的处理程序，该程序指向一个基于<code>Web</code>的电子邮件客户端。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">navigator.registerProtocolHandler(<span class="string">"mailto"</span>, <span class="string">"http://www.somemailclient.com?cmd=%s"</span>, <span class="string">"Some Mail Client"</span>);</span><br></pre></td></tr></table></figure>
+<h2 id="8-4-screen对象"><a href="#8-4-screen对象" class="headerlink" title="8.4    screen对象"></a>8.4    screen对象</h2><p><strong>用途：</strong>多用来表明客户端的能力，其中包括浏览器窗口外部的显示器的信息，如像素宽度和高度等。<br><strong>属性：</strong><br><img src="http://o6ul1xz4z.bkt.clouddn.com/屏幕快照 2015-06-24 下午12.30.06.png" alt="Alt text"><br><img src="http://o6ul1xz4z.bkt.clouddn.com/屏幕快照 2015-06-24 下午12.31.25.png" alt="Alt text"><br><strong>举个栗子：</strong>调整浏览器窗口的大小，使其占据屏幕的可用空间。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//许多浏览器会禁用调整浏览器窗口大小的能力，因此下面的代码不一定起作用</span></span><br><span class="line"><span class="built_in">window</span>.resizeTo(screen.availWidth, screen.availHeight)</span><br></pre></td></tr></table></figure>
+<h2 id="8-5-history对象"><a href="#8-5-history对象" class="headerlink" title="8.5    history对象"></a>8.5    history对象</h2><p><strong>说明：</strong>window对象的属性，每个浏览器窗口、每个标签页乃至每个框架都有自己的history对象。<br><strong>局限：</strong>处于安全方面的考虑，开发人员无法得知用户浏览过的URL。</p>
+<h3 id="8-5-1-go方法"><a href="#8-5-1-go方法" class="headerlink" title="8.5.1    go方法"></a>8.5.1    go方法</h3><p><strong>用途：</strong>在用户的历史纪录中任意跳转。<br><strong>参数：</strong>一个整数值(负数表示向后，整数表示向前)或字符串(跳转到历史纪录中包含改字符串的第一个位置，可能向前也可能向后)<br><strong>简写方法：</strong></p>
+<table>
+<thead>
+<tr>
+<th>方法</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>back</td>
+<td>模范浏览器的“后退”</td>
+</tr>
+<tr>
+<td>forward</td>
+<td>模仿浏览器的“向前”</td>
+</tr>
+</tbody>
+</table>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//后退一页</span></span><br><span class="line">history.go(<span class="number">-1</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">//前进一页</span></span><br><span class="line">history.go(<span class="number">1</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">//前进两页</span></span><br><span class="line">history.go(<span class="number">2</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">//跳转到最近的wrox.com页面</span></span><br><span class="line">history.go(<span class="string">"wrox.com"</span>);</span><br></pre></td></tr></table></figure>
+<h3 id="8-5-2-length属性"><a href="#8-5-2-length属性" class="headerlink" title="8.5.2    length属性"></a>8.5.2    length属性</h3><p><strong>用途：</strong>创建自定义的“后退”和“前进按钮”<br><strong>说明：</strong>保存着历史纪录的数值。<br><strong>技巧：</strong>对于加载到窗口、标签页或框架中的第一个页面而言，值为0.</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//确定用户是否一开始就打开了你的页面</span></span><br><span class="line"><span class="keyword">if</span>(history.length == <span class="number">0</span>)&#123;</span><br><span class="line">	<span class="comment">//这应该是用户打开窗口后的第一个页面</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/js/" rel="tag">#js</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2014/10/08/BOOK_JS高级程序设计(第三版)/JSHPD_3rd_04_变量、作用域和内存问题/" rel="next" title="4 变量、作用域和内存问题">
+                <i class="fa fa-chevron-left"></i> 4 变量、作用域和内存问题
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2014/10/29/BOOK_nodejs开发指南/nodejs开发指南_1_nodejs简介/" rel="prev" title="1 nodejs简介">
+                1 nodejs简介 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2014/10/17/BOOK_JS高级程序设计(第三版)/JSHPD_3rd_08_BOM/"
+           data-title="08 BOM" data-url="http://laputa-er.github.io/2014/10/17/BOOK_JS高级程序设计(第三版)/JSHPD_3rd_08_BOM/">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.gif"
+               alt="Sean" />
+          <p class="site-author-name" itemprop="name">Sean</p>
+          <p class="site-description motion-element" itemprop="description">整理了一批过去一段时间ios相关的笔记，其它的笔记也整理下？源码分享出来？再说吧...反正也只有自己会看吧...</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">200</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">22</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">31</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#8-1-window对象"><span class="nav-text">8.1 window对象</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#8-1-1-全局作用域"><span class="nav-text">8.1.1 全局作用域</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#8-1-2-窗口关系及框架"><span class="nav-text">8.1.2 窗口关系及框架</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#8-1-3-窗口位置"><span class="nav-text">8.1.3 窗口位置</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#8-1-4-窗口大小"><span class="nav-text">8.1.4 窗口大小</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#8-1-5-导航和打开窗口"><span class="nav-text">8.1.5 导航和打开窗口</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#8-1-5-1-弹出窗口"><span class="nav-text">8.1.5.1 弹出窗口</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#8-5-1-2-安全限制"><span class="nav-text">8.5.1.2   安全限制</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#8-5-1-3-弹出窗口屏蔽程序"><span class="nav-text">8.5.1.3    弹出窗口屏蔽程序</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#8-1-6-间歇调用和超时调用"><span class="nav-text">8.1.6 间歇调用和超时调用</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#8-1-6-1-超时调用"><span class="nav-text">8.1.6.1    超时调用</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#8-1-6-2-间歇调用"><span class="nav-text">8.1.6.2    间歇调用</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#8-1-6-3-超时调用模拟间歇调用（推荐）"><span class="nav-text">8.1.6.3    超时调用模拟间歇调用（推荐）</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#8-1-7-系统对话框"><span class="nav-text">8.1.7 系统对话框</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#8-2-location对象"><span class="nav-text">8.2 location对象</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#8-2-1-查询字符串参数"><span class="nav-text">8.2.1 查询字符串参数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#8-2-2-位置操作"><span class="nav-text">8.2.2    位置操作</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#8-2-2-1-通过方法修改位置"><span class="nav-text">8.2.2.1    通过方法修改位置</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#8-2-2-2-通过属性"><span class="nav-text">8.2.2.2    通过属性</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#8-3-navigator对象"><span class="nav-text">8.3    navigator对象</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#属性"><span class="nav-text">属性</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#8-3-1-检测插件"><span class="nav-text">8.3.1    检测插件</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#8-3-1-1-navigator-plugins数组"><span class="nav-text">8.3.1.1    navigator.plugins数组</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#8-3-1-2-ActiveXObject对象"><span class="nav-text">8.3.1.2    ActiveXObject对象</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#8-3-1-3-兼容处理"><span class="nav-text">8.3.1.3    兼容处理</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#8-3-1-4-navigator-plugins-refresh方法：刷新插件集合"><span class="nav-text">8.3.1.4    navigator.plugins.refresh方法：刷新插件集合</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#8-3-2-注册处理程序"><span class="nav-text">8.3.2    注册处理程序</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#8-3-2-1-registerContentHandler-方法"><span class="nav-text">8.3.2.1    registerContentHandler()方法</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#8-3-2-2-registerProtocolHandler-方法"><span class="nav-text">8.3.2.2    registerProtocolHandler()方法</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#8-4-screen对象"><span class="nav-text">8.4    screen对象</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#8-5-history对象"><span class="nav-text">8.5    history对象</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#8-5-1-go方法"><span class="nav-text">8.5.1    go方法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#8-5-2-length属性"><span class="nav-text">8.5.2    length属性</span></a></li></ol></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Sean</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"lapuda-er"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+    <script src="/vendors/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
+    <script src="/js/src/hook-duoshuo.js"></script>
+  
+
+
+
+
+
+
+  
+  
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length == 0) {
+       search_path = "search.xml";
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    function proceedsearch() {
+      $("body").append('<div class="popoverlay">').css('overflow', 'hidden');
+      $('.popup').toggle();
+
+    }
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+    'use strict';
+    $.ajax({
+        url: path,
+        dataType: "xml",
+        async: true,
+        success: function( xmlResponse ) {
+            // get the contents from search data
+            isfetched = true;
+            $('.popup').detach().appendTo('.header-inner');
+            var datas = $( "entry", xmlResponse ).map(function() {
+                return {
+                    title: $( "title", this ).text(),
+                    content: $("content",this).text(),
+                    url: $( "url" , this).text()
+                };
+            }).get();
+            var $input = document.getElementById(search_id);
+            var $resultContent = document.getElementById(content_id);
+            $input.addEventListener('input', function(){
+                var matchcounts = 0;
+                var str='<ul class=\"search-result-list\">';
+                var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+                $resultContent.innerHTML = "";
+                if (this.value.trim().length > 1) {
+                // perform local searching
+                datas.forEach(function(data) {
+                    var isMatch = true;
+                    var content_index = [];
+                    var data_title = data.title.trim().toLowerCase();
+                    var data_content = data.content.trim().replace(/<[^>]+>/g,"").toLowerCase();
+                    var data_url = data.url;
+                    var index_title = -1;
+                    var index_content = -1;
+                    var first_occur = -1;
+                    // only match artiles with not empty titles and contents
+                    if(data_title != '' && data_content != '') {
+                        keywords.forEach(function(keyword, i) {
+                            index_title = data_title.indexOf(keyword);
+                            index_content = data_content.indexOf(keyword);
+                            if( index_title < 0 && index_content < 0 ){
+                                isMatch = false;
+                            } else {
+                                if (index_content < 0) {
+                                    index_content = 0;
+                                }
+                                if (i == 0) {
+                                    first_occur = index_content;
+                                }
+                            }
+                        });
+                    }
+                    // show search results
+                    if (isMatch) {
+                        matchcounts += 1;
+                        str += "<li><a href='"+ data_url +"' class='search-result-title'>"+ data_title +"</a>";
+                        var content = data.content.trim().replace(/<[^>]+>/g,"");
+                        if (first_occur >= 0) {
+                            // cut out 100 characters
+                            var start = first_occur - 20;
+                            var end = first_occur + 80;
+                            if(start < 0){
+                                start = 0;
+                            }
+                            if(start == 0){
+                                end = 50;
+                            }
+                            if(end > content.length){
+                                end = content.length;
+                            }
+                            var match_content = content.substring(start, end);
+                            // highlight all keywords
+                            keywords.forEach(function(keyword){
+                                var regS = new RegExp(keyword, "gi");
+                                match_content = match_content.replace(regS, "<b class=\"search-keyword\">"+keyword+"</b>");
+                            });
+
+                            str += "<p class=\"search-result\">" + match_content +"...</p>"
+                        }
+                        str += "</li>";
+                    }
+                })};
+                str += "</ul>";
+                if (matchcounts == 0) { str = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>' }
+                if (keywords == "") { str = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>' }
+                $resultContent.innerHTML = str;
+            });
+            proceedsearch();
+        }
+    });}
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched == false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+
+    });
+
+    $('.popup-btn-close').click(function(e){
+      $('.popup').hide();
+      $(".popoverlay").remove();
+      $('body').css('overflow', '');
+    });
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+  </script>
+
+
+  
+
+  
+
+  
+
+</body>
+</html>

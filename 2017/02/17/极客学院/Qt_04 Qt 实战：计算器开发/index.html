@@ -1,0 +1,981 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Qt," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1" />
+
+
+
+
+
+
+<meta name="description" content="前面的课程中我们已经讲解了如何使用 Qt 创建简单的程序以及 Qt 的核心特性：信号槽的使用，但是一个程序中用到的内容实际比这要复杂的多。本次课程我们就来创建一个真正意义上的 Qt 程序：一个功能相对完整的计算器 。 
+学习网站地址
+[laputa-er](https://github.com/laputa-er/qt_demos
+
+c语言基础/tree/master/l04_Calculator">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Qt_04 Qt 实战：计算器开发">
+<meta property="og:url" content="http://laputa-er.github.io/2017/02/17/极客学院/Qt_04 Qt 实战：计算器开发/index.html">
+<meta property="og:site_name" content="Sean">
+<meta property="og:description" content="前面的课程中我们已经讲解了如何使用 Qt 创建简单的程序以及 Qt 的核心特性：信号槽的使用，但是一个程序中用到的内容实际比这要复杂的多。本次课程我们就来创建一个真正意义上的 Qt 程序：一个功能相对完整的计算器 。 
+学习网站地址
+[laputa-er](https://github.com/laputa-er/qt_demos
+
+c语言基础/tree/master/l04_Calculator">
+<meta property="og:image" content="http://o6ul1xz4z.bkt.clouddn.com/14873383910393.jpg">
+<meta property="og:image" content="http://o6ul1xz4z.bkt.clouddn.com/14873400203497.jpg">
+<meta property="og:image" content="http://o6ul1xz4z.bkt.clouddn.com/14873401305761.jpg">
+<meta property="og:image" content="http://o6ul1xz4z.bkt.clouddn.com/14873402208021.jpg">
+<meta property="og:image" content="http://o6ul1xz4z.bkt.clouddn.com/14874017664942.jpg">
+<meta property="og:image" content="http://o6ul1xz4z.bkt.clouddn.com/14874133704353.jpg">
+<meta property="og:image" content="http://o6ul1xz4z.bkt.clouddn.com/14874133477049.jpg">
+<meta property="og:image" content="http://o6ul1xz4z.bkt.clouddn.com/14874152312734.jpg">
+<meta property="og:image" content="http://o6ul1xz4z.bkt.clouddn.com/14874156502621.jpg">
+<meta property="og:image" content="http://o6ul1xz4z.bkt.clouddn.com/14874156723226.jpg">
+<meta property="og:image" content="http://o6ul1xz4z.bkt.clouddn.com/14874163570181.jpg">
+<meta property="og:image" content="http://o6ul1xz4z.bkt.clouddn.com/14874160951796.jpg">
+<meta property="og:image" content="http://o6ul1xz4z.bkt.clouddn.com/14874488994950.jpg">
+<meta property="og:image" content="http://o6ul1xz4z.bkt.clouddn.com/14874485257306.jpg">
+<meta property="og:image" content="http://o6ul1xz4z.bkt.clouddn.com/14874485876862.jpg">
+<meta property="og:updated_time" content="2017-03-23T09:43:56.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Qt_04 Qt 实战：计算器开发">
+<meta name="twitter:description" content="前面的课程中我们已经讲解了如何使用 Qt 创建简单的程序以及 Qt 的核心特性：信号槽的使用，但是一个程序中用到的内容实际比这要复杂的多。本次课程我们就来创建一个真正意义上的 Qt 程序：一个功能相对完整的计算器 。 
+学习网站地址
+[laputa-er](https://github.com/laputa-er/qt_demos
+
+c语言基础/tree/master/l04_Calculator">
+<meta name="twitter:image" content="http://o6ul1xz4z.bkt.clouddn.com/14873383910393.jpg">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 0,
+      author: '博主'
+    }
+  };
+</script>
+
+
+
+
+  <link rel="canonical" href="http://laputa-er.github.io/2017/02/17/极客学院/Qt_04 Qt 实战：计算器开发/"/>
+
+  <title> Qt_04 Qt 实战：计算器开发 | Sean </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//hm.baidu.com/hm.js?898688f51c5a3d6b37dd23e04441e5bd";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">Sean</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">笔记分享</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup">
+ <span class="search-icon fa fa-search"></span>
+ <input type="text" id="local-search-input">
+ <div id="local-search-result"></div>
+ <span class="popup-btn-close">close</span>
+</div>
+
+
+    </div>
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                Qt_04 Qt 实战：计算器开发
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2017-02-17T20:43:46+08:00" content="2017-02-17">
+              2017-02-17
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/极客学院-Qt/" itemprop="url" rel="index">
+                    <span itemprop="name">极客学院_Qt</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2017/02/17/极客学院/Qt_04 Qt 实战：计算器开发/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2017/02/17/极客学院/Qt_04 Qt 实战：计算器开发/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>前面的课程中我们已经讲解了如何使用 Qt 创建简单的程序以及 Qt 的核心特性：信号槽的使用，但是一个程序中用到的内容实际比这要复杂的多。本次课程我们就来创建一个真正意义上的 Qt 程序：一个功能相对完整的计算器 。 </p>
+<p><a href="http://www.jikexueyuan.com/course/1440.html" target="_blank" rel="external">学习网站地址</a></p>
+<p>[laputa-er](<a href="https://github.com/laputa-er/qt_demos" target="_blank" rel="external">https://github.com/laputa-er/qt_demos</a></p>
+<ul>
+<li>c语言基础/tree/master/l04_Calculator)</li>
+</ul>
+<h1 id="1-程序开发的准备工作"><a href="#1-程序开发的准备工作" class="headerlink" title="1 程序开发的准备工作"></a>1 程序开发的准备工作</h1><p>介绍在开始写一个程序前的必要准备工作，这样能使程序写起来更有条理，增加效率。</p>
+<h2 id="计算器程序分析与设计"><a href="#计算器程序分析与设计" class="headerlink" title="计算器程序分析与设计"></a>计算器程序分析与设计</h2><p><strong>说明：</strong>简单的软件开发流程</p>
+<ul>
+<li>分析（做什么）</li>
+<li>设计（怎么做）</li>
+<li>编程</li>
+<li>测试</li>
+<li>维护</li>
+</ul>
+<h3 id="软件需求分析"><a href="#软件需求分析" class="headerlink" title="软件需求分析"></a>软件需求分析</h3><p><strong>UI</strong></p>
+<ul>
+<li>主要部分</li>
+<li>菜单栏</li>
+<li>标题栏</li>
+<li>状态栏</li>
+</ul>
+<p><strong>功能</strong></p>
+<ul>
+<li>基本运算</li>
+<li>单位转换</li>
+</ul>
+<h3 id="设计"><a href="#设计" class="headerlink" title="设计"></a>设计</h3><p><strong>UI</strong></p>
+<ul>
+<li>QMainWindow</li>
+<li>显示框，按钮</li>
+</ul>
+<p><strong>功能</strong></p>
+<ul>
+<li>基本运算</li>
+<li>单位转换</li>
+</ul>
+<h3 id="QtCreator-完成界面设计"><a href="#QtCreator-完成界面设计" class="headerlink" title="QtCreator 完成界面设计"></a>QtCreator 完成界面设计</h3><h4 id="第一步：在属性列表中设置属性"><a href="#第一步：在属性列表中设置属性" class="headerlink" title="第一步：在属性列表中设置属性"></a>第一步：在属性列表中设置属性</h4><p><strong>geometry</strong></p>
+<ul>
+<li>宽度：250</li>
+<li>高度：360</li>
+</ul>
+<p><strong>windowTitle</strong>：计算器</p>
+<h4 id="第二步：在对象列表中删除多余的组件"><a href="#第二步：在对象列表中删除多余的组件" class="headerlink" title="第二步：在对象列表中删除多余的组件"></a>第二步：在对象列表中删除多余的组件</h4><p><img src="http://o6ul1xz4z.bkt.clouddn.com/14873383910393.jpg" alt=""></p>
+<h4 id="第三步：菜单栏"><a href="#第三步：菜单栏" class="headerlink" title="第三步：菜单栏"></a>第三步：菜单栏</h4><p><img src="http://o6ul1xz4z.bkt.clouddn.com/14873400203497.jpg" alt=""></p>
+<p><img src="http://o6ul1xz4z.bkt.clouddn.com/14873401305761.jpg" alt=""></p>
+<p><img src="http://o6ul1xz4z.bkt.clouddn.com/14873402208021.jpg" alt=""></p>
+<h3 id="第四步：按钮布局"><a href="#第四步：按钮布局" class="headerlink" title="第四步：按钮布局"></a>第四步：按钮布局</h3><ul>
+<li>同时设置按钮的 minimumSize 和 maximumSize 中的高度和宽度改变按钮的大小</li>
+<li>通过拉伸组件，覆盖多个 cell，就可以实现 grid layout 中 cell 的合并</li>
+<li><code>alt + 拖动按钮</code> 实现按钮的复制</li>
+<li>按钮比较多，因此重新命名为容易区分的名字，在程序中会用到</li>
+</ul>
+<p><img src="http://o6ul1xz4z.bkt.clouddn.com/14874017664942.jpg" alt=""></p>
+<h2 id="命名法简介"><a href="#命名法简介" class="headerlink" title="命名法简介"></a>命名法简介</h2><p>Qt API 采用的是 <code>驼峰命名法</code>，因此建议 Qt  程序统一都使用驼峰命名法。</p>
+<h3 id="驼峰命名法"><a href="#驼峰命名法" class="headerlink" title="驼峰命名法"></a>驼峰命名法</h3><ul>
+<li>大驼峰：My_VarName</li>
+<li>小驼峰：my_VarName</li>
+</ul>
+<h3 id="匈牙利命名法"><a href="#匈牙利命名法" class="headerlink" title="匈牙利命名法"></a>匈牙利命名法</h3><p>微软员工发名的一种标识符命名法，<code>[标识符分类]_[标识符类型][实际含义]</code>.例如，<code>s_szMyName</code></p>
+<table>
+<thead>
+<tr>
+<th>标识符分类</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>s_</code></td>
+<td>静态变量</td>
+</tr>
+<tr>
+<td><code>m_</code></td>
+<td>C++ 成员变量</td>
+</tr>
+<tr>
+<td><code>sz_</code></td>
+<td>字符串</td>
+</tr>
+<tr>
+<td><code>fn_</code></td>
+<td>函数</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>系统匈牙利命名法</li>
+<li>匈牙利应用命名法</li>
+</ul>
+<h1 id="2-Qt-窗口与对话框"><a href="#2-Qt-窗口与对话框" class="headerlink" title="2 Qt 窗口与对话框"></a>2 Qt 窗口与对话框</h1><p>一个程序中 UI 是 interface，那么窗口自然就是骨架。在开发程序前，对 Qt 的窗口类有一些了解是必须的。</p>
+<h2 id="2-1-QMainWindow"><a href="#2-1-QMainWindow" class="headerlink" title="2.1 QMainWindow"></a>2.1 QMainWindow</h2><h3 id="动作-Action"><a href="#动作-Action" class="headerlink" title="动作(Action)"></a>动作(Action)</h3><p>Qt 使用 <code>Action</code> 简化对菜单和工具栏的使用。动作是一个可以添加到任意数量的菜单和工具栏上面的项，只需要创建并设置动作，然后创建菜单或工具栏，最后把动作添加到上面就可以了。</p>
+<h3 id="QMainWindow-的使用"><a href="#QMainWindow-的使用" class="headerlink" title="QMainWindow 的使用"></a>QMainWindow 的使用</h3><p><strong>注意：</strong>QMainWindow 继承自 QWidget ，因此可以使用继承自 QWidget 的各种属性和方法。</p>
+<h3 id="案例"><a href="#案例" class="headerlink" title="案例"></a>案例</h3><p><img src="http://o6ul1xz4z.bkt.clouddn.com/14874133704353.jpg" alt=""></p>
+<p><img src="http://o6ul1xz4z.bkt.clouddn.com/14874133477049.jpg" alt=""></p>
+<p><strong>要点</strong></p>
+<ul>
+<li><ol>
+<li>添加菜单，并为菜单绑定触发时的动作</li>
+</ol>
+</li>
+<li><ol>
+<li>在状态栏显示信息</li>
+</ol>
+</li>
+</ul>
+<p><strong>用到的 QMainWindow 方法的</strong></p>
+<ul>
+<li>menuBar()：获取菜单栏引用</li>
+<li>statusBar()：获取状态栏引用</li>
+</ul>
+<p><strong>其他类</strong></p>
+<ul>
+<li>QAction</li>
+<li>QMenu</li>
+<li>QTimer</li>
+</ul>
+<p><em>头文件/mainwindow.h</em></p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">ifndef</span> MAINWINDOW_H</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> MAINWINDOW_H</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;QMainWindow&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;QLabel&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">namespace</span> Ui &#123;</span><br><span class="line"><span class="keyword">class</span> MainWindow;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> MainWindow : <span class="keyword">public</span> QMainWindow</span><br><span class="line">&#123;</span><br><span class="line">    Q_OBJECT</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">explicit</span> <span class="title">MainWindow</span><span class="params">(QWidget *parent = <span class="number">0</span>)</span></span>;</span><br><span class="line">    ~MainWindow();</span><br><span class="line"></span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">    Ui::MainWindow *ui;</span><br><span class="line">    QLabel *bar1;</span><br><span class="line">    QLabel *bar2;</span><br><span class="line"><span class="keyword">public</span> slots:</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">saveActionClicked</span><span class="params">()</span></span>;</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">showMessage</span><span class="params">(<span class="keyword">const</span> QString &amp;message, <span class="keyword">int</span> timeOut)</span></span>;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">endif</span> <span class="comment">// MAINWINDOW_H</span></span></span><br></pre></td></tr></table></figure>
+<p><em>源文件/mainwindow.cpp</em></p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="string">"mainwindow.h"</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="string">"ui_mainwindow.h"</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;QAction&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;QMenuBar&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;QTimer&gt;</span></span></span><br><span class="line"></span><br><span class="line">MainWindow::MainWindow(QWidget *parent) :</span><br><span class="line">    QMainWindow(parent),</span><br><span class="line">    ui(new Ui::MainWindow)</span><br><span class="line">&#123;</span><br><span class="line">    ui-&gt;setupUi(<span class="keyword">this</span>);</span><br><span class="line"></span><br><span class="line">    <span class="comment">/*  测试添加菜单(并添加一个动作) */</span></span><br><span class="line">    <span class="comment">// 创建动作(Save)</span></span><br><span class="line">    QAction *newAction = new QAction(<span class="string">"Save"</span>, this);</span><br><span class="line"></span><br><span class="line">    newAction-&gt;setShortcut(QKeySequence::Save); <span class="comment">// 设置快捷键</span></span><br><span class="line">    newAction-&gt;setToolTip(<span class="string">"Save"</span>); <span class="comment">// 设置提示</span></span><br><span class="line">    newAction-&gt;setStatusTip(<span class="string">"Save Now"</span>); <span class="comment">// 设置工具栏提示（鼠标悬浮时显示的提示内容）</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">// 创建一个新菜单（New）</span></span><br><span class="line">    QMenu *newMenu = menuBar()-&gt;addMenu(<span class="string">"New"</span>); <span class="comment">// menuBar 是 继承自 QMainWindow 的方法</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">// 将动作 Save 添加到菜单 New</span></span><br><span class="line">    newMenu-&gt;addAction(newAction);</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 关联动作的触发信号到槽</span></span><br><span class="line">    connect(newAction, &amp;QAction::triggered, <span class="keyword">this</span>, &amp;MainWindow::saveActionClicked);</span><br><span class="line">    <span class="comment">// connect(newAction, SIGNAL(triggered(bool)), this, SLOT(savaActionClicked()));</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">/* 测试给状态栏添加状态信息 */</span></span><br><span class="line">    bar1 = new QLabel(<span class="string">"Bar1"</span>);</span><br><span class="line">    bar2 = new QLabel(<span class="string">"Bar2"</span>);</span><br><span class="line"></span><br><span class="line">    statusBar()-&gt;addWidget(bar1);</span><br><span class="line">    statusBar()-&gt;addWidget(bar2, <span class="number">1</span>); <span class="comment">// 填满余下的空间</span></span><br><span class="line"></span><br><span class="line">    bar1-&gt;show(); <span class="comment">// 一直显示</span></span><br><span class="line"></span><br><span class="line">    showMessage(<span class="string">"TestMsg"</span>, <span class="number">3000</span>); <span class="comment">// bar2 显示 3s</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">MainWindow::~MainWindow()</span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">delete</span> ui;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 动作被触发时关联的槽（关闭软件）</span></span><br><span class="line"><span class="keyword">void</span> MainWindow::saveActionClicked()</span><br><span class="line">&#123;</span><br><span class="line">    qApp-&gt;quit();</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 测试状态栏（显示信息，并在指定时候后关闭）</span></span><br><span class="line"><span class="keyword">void</span> MainWindow::showMessage(<span class="keyword">const</span> QString &amp;message, <span class="keyword">int</span> timeOut)</span><br><span class="line">&#123;</span><br><span class="line">    bar2-&gt;setText(message);</span><br><span class="line">    QTimer *timer = new QTimer;</span><br><span class="line">    timer-&gt;singleShot(timeOut, bar2, SLOT(clear()));</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="2-2-QDialog"><a href="#2-2-QDialog" class="headerlink" title="2.2 QDialog"></a>2.2 QDialog</h2><p><strong>说明：</strong>程序的大部分内容都在主窗口显示，但有些内容不适合在主窗口显示，这是就有可能用到对话框。</p>
+<p><strong>顶层窗口和非顶层窗口</strong><br>QDialog 实例创建时可以指定父窗口。</p>
+<ul>
+<li>如果没有指定父窗口，会作为一个顶层窗口打开；</li>
+<li>如果指定了父窗口，则在父窗口上打开，并以父窗口的中心作为自己的中心。</li>
+</ul>
+<p><strong>注意：</strong>在 windows 中，顶层窗口在任务栏中又一个位置，非顶层窗口则没有。</p>
+<h3 id="2-2-1-通过代码创建对话框"><a href="#2-2-1-通过代码创建对话框" class="headerlink" title="2.2.1 通过代码创建对话框"></a>2.2.1 通过代码创建对话框</h3><p><img src="http://o6ul1xz4z.bkt.clouddn.com/14874152312734.jpg" alt=""></p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/* 需要指定对话框的父对象</span><br><span class="line">* 如果没有指定父窗口，会作为一个顶层窗口打开；</span><br><span class="line">* 如果指定了父窗口，则在父窗口上打开，并以父窗口的中心作为自己的中心。</span><br><span class="line">*/</span></span><br><span class="line"><span class="function">QDialog <span class="title">dialog</span><span class="params">(<span class="keyword">this</span>)</span></span>;</span><br><span class="line">QLabel *label = new QLabel(<span class="string">"Text"</span>, &amp;dialog);</span><br><span class="line">dialog.exec();</span><br></pre></td></tr></table></figure>
+<h3 id="2-2-2-通过-Designer-创建对话框"><a href="#2-2-2-通过-Designer-创建对话框" class="headerlink" title="2.2.2 通过 Designer 创建对话框"></a>2.2.2 通过 Designer 创建对话框</h3><p>相比主窗口，对话框没有菜单栏、工具栏和状态栏。</p>
+<p><strong>第一步：</strong> 创建对话框的 UI 文件<br><img src="http://o6ul1xz4z.bkt.clouddn.com/14874156502621.jpg" alt=""></p>
+<p><img src="http://o6ul1xz4z.bkt.clouddn.com/14874156723226.jpg" alt=""></p>
+<p>上面选择的模版对应的对话框，如下</p>
+<p><img src="http://o6ul1xz4z.bkt.clouddn.com/14874163570181.jpg" alt=""></p>
+<p><strong>第二步：</strong> 在需要对话框的地方引入前面生成的头文件</p>
+<p><img src="http://o6ul1xz4z.bkt.clouddn.com/14874160951796.jpg" alt=""></p>
+<p><em>源文件/mainwindow.cpp</em></p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="string">"dialog.h"</span></span></span><br><span class="line"></span><br><span class="line">...</span><br><span class="line">Dialog dialog;</span><br><span class="line"><span class="comment">// 如果打开的对话框中，用户点击了确认</span></span><br><span class="line"><span class="keyword">if</span>(dialog.exec() == QDialog::Accepted)</span><br><span class="line">&#123;</span><br><span class="line">   <span class="comment">// 推出程序</span></span><br><span class="line">   qApp-&gt;quit();</span><br><span class="line">&#125;</span><br><span class="line">...</span><br></pre></td></tr></table></figure>
+<h3 id="2-2-3-其他"><a href="#2-2-3-其他" class="headerlink" title="2.2.3 其他"></a>2.2.3 其他</h3><p>Qt 提供了多种类型的对话框，比如</p>
+<ul>
+<li>消息对话框</li>
+<li>文件对话框</li>
+<li>选择对话框</li>
+</ul>
+<p>等。</p>
+<p>延伸的知识点还包括</p>
+<ul>
+<li>模态对话框</li>
+<li>非模态对话框</li>
+<li>如何防治对话框内存泄漏</li>
+</ul>
+<p>等。</p>
+<h1 id="3-计算器程序实现"><a href="#3-计算器程序实现" class="headerlink" title="3 计算器程序实现"></a>3 计算器程序实现</h1><p>主要是基于 Qt 的计算器程序的代码实现及讲解。</p>
+<p><img src="http://o6ul1xz4z.bkt.clouddn.com/14874488994950.jpg" alt=""></p>
+<h1 id="4-附加功能实现"><a href="#4-附加功能实现" class="headerlink" title="4 附加功能实现"></a>4 附加功能实现</h1><p>给计算器程序增加额外的附加功能。</p>
+<h2 id="4-1-QDialog-简单应用"><a href="#4-1-QDialog-简单应用" class="headerlink" title="4.1 QDialog 简单应用"></a>4.1 QDialog 简单应用</h2><p>通过给上面的计算器应用添加单位转换功能演示 Dialog 使用.</p>
+<p><strong>第一步：</strong> 在菜单中添加入口<br><img src="http://o6ul1xz4z.bkt.clouddn.com/14874485257306.jpg" alt=""></p>
+<p><strong>第二步：</strong> <code>选择单位</code>会自动生成对应的动作，为其命名</p>
+<p><img src="http://o6ul1xz4z.bkt.clouddn.com/14874485876862.jpg" alt=""></p>
+<p><strong>第三步：</strong> 声明并实现相关的槽</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="comment">// 选择单位</span></span><br><span class="line"><span class="keyword">void</span> MainWindow::unitSelect()</span><br><span class="line">&#123;</span><br><span class="line">    selectDialog = new QDialog(this);</span><br><span class="line">    QDialogButtonBox *buttonBox;</span><br><span class="line">    QGroupBox *groupBox;</span><br><span class="line">    QGroupBox *groupBox_2;</span><br><span class="line">    QLabel *displayLabel;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 设置对话框的大小</span></span><br><span class="line">    selectDialog-&gt;resize(<span class="number">400</span>, <span class="number">150</span>);</span><br><span class="line"></span><br><span class="line">    buttonBox = new QDialogButtonBox(selectDialog);</span><br><span class="line">    buttonBox-&gt;setGeometry(<span class="number">30</span>, <span class="number">100</span>, <span class="number">341</span>, <span class="number">32</span>); <span class="comment">// 相对父窗口的坐标和大小</span></span><br><span class="line">    buttonBox-&gt;setStandardButtons(QDialogButtonBox::Cancel|QDialogButtonBox::Ok); <span class="comment">// 对话框添加两个按钮</span></span><br><span class="line"></span><br><span class="line">    groupBox = new QGroupBox(selectDialog);</span><br><span class="line">    groupBox-&gt;setGeometry(<span class="number">10</span>, <span class="number">10</span>, <span class="number">180</span>, <span class="number">80</span>);</span><br><span class="line">    groupBox-&gt;setTitle(<span class="string">"要转换的数值"</span>);</span><br><span class="line"></span><br><span class="line">    groupBox_2 = new QGroupBox(selectDialog);</span><br><span class="line">    groupBox_2-&gt;setGeometry(<span class="number">210</span>, <span class="number">10</span>, <span class="number">180</span>, <span class="number">80</span>);</span><br><span class="line">    groupBox_2-&gt;setTitle(<span class="string">"转换后的单位"</span>);</span><br><span class="line"></span><br><span class="line">    displayLabel = new QLabel(ui-&gt;label-&gt;text(), groupBox);</span><br><span class="line">    displayLabel-&gt;setGeometry(<span class="number">10</span>, <span class="number">40</span>, <span class="number">120</span>, <span class="number">16</span>);</span><br><span class="line"></span><br><span class="line">    selectCombo = new QComboBox(groupBox_2);</span><br><span class="line">    selectCombo-&gt;setGeometry(<span class="number">10</span>, <span class="number">140</span>, <span class="number">120</span>, <span class="number">26</span>);</span><br><span class="line">    selectCombo-&gt;clear();</span><br><span class="line">    selectCombo-&gt;insertItem(<span class="number">0</span>, <span class="string">"米-&gt;厘米"</span>);</span><br><span class="line">    selectCombo-&gt;insertItem(<span class="number">1</span>, <span class="string">"米-&gt;平方米"</span>);</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 对话框中点击 Cancel</span></span><br><span class="line">    connect(buttonBox, SIGNAL(rejected()), selectDialog, SLOT(deleteLater()));</span><br><span class="line">    <span class="comment">// 对话框中点击 Ok</span></span><br><span class="line">    connect(buttonBox, SIGNAL(accepted()), <span class="keyword">this</span>, SLOT(unitCalc()));</span><br><span class="line"></span><br><span class="line">    selectDialog-&gt;exec();</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 单位换算</span></span><br><span class="line"><span class="keyword">void</span> MainWindow::unitCalc()</span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">switch</span>(selectCombo-&gt;currentIndex())</span><br><span class="line">    &#123;</span><br><span class="line">    <span class="comment">// 米-&gt;厘米</span></span><br><span class="line">    <span class="keyword">case</span> <span class="number">0</span>:</span><br><span class="line">        currentNumber = QString::number(currentNumber.toDouble() * <span class="number">100</span>);</span><br><span class="line">        <span class="keyword">break</span>;</span><br><span class="line">    <span class="comment">// 米-&gt;平方米</span></span><br><span class="line">    <span class="keyword">case</span> <span class="number">1</span>:</span><br><span class="line">        currentNumber = QString::number(pow(currentNumber.toDouble(), <span class="number">2</span>));</span><br><span class="line">    <span class="keyword">default</span>:</span><br><span class="line">        <span class="keyword">break</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    selectDialog-&gt;deleteLater(); <span class="comment">// 计算完成后关闭 selectDialog 并删除</span></span><br><span class="line">    displayNumber();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><strong>第四步：</strong> 关联动作和槽</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">connect(ui-&gt;actionUnitSelect, SIGNAL(triggered(bool)), <span class="keyword">this</span>, SLOT(unitSelect()));</span><br></pre></td></tr></table></figure>
+<h2 id="4-2-常用的-Qt-静态函数"><a href="#4-2-常用的-Qt-静态函数" class="headerlink" title="4.2 常用的 Qt 静态函数"></a>4.2 常用的 Qt 静态函数</h2><h3 id="setWindowFlags"><a href="#setWindowFlags" class="headerlink" title="setWindowFlags"></a>setWindowFlags</h3><p><strong>功能：</strong>设置窗口标记，比如标题栏的属性。</p>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Qt/" rel="tag">#Qt</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/02/17/极客学院/Qt_03 Qt 组件与信号链接/" rel="next" title="Qt_03 Qt 组件与信号链接">
+                <i class="fa fa-chevron-left"></i> Qt_03 Qt 组件与信号链接
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/02/19/极客学院/Qt_05 Qt 模块与类/" rel="prev" title="Qt_05 Qt 模块与类">
+                Qt_05 Qt 模块与类 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2017/02/17/极客学院/Qt_04 Qt 实战：计算器开发/"
+           data-title="Qt_04 Qt 实战：计算器开发" data-url="http://laputa-er.github.io/2017/02/17/极客学院/Qt_04 Qt 实战：计算器开发/">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.gif"
+               alt="Sean" />
+          <p class="site-author-name" itemprop="name">Sean</p>
+          <p class="site-description motion-element" itemprop="description">整理了一批过去一段时间ios相关的笔记，其它的笔记也整理下？源码分享出来？再说吧...反正也只有自己会看吧...</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">200</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">22</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">31</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#1-程序开发的准备工作"><span class="nav-text">1 程序开发的准备工作</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#计算器程序分析与设计"><span class="nav-text">计算器程序分析与设计</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#软件需求分析"><span class="nav-text">软件需求分析</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#设计"><span class="nav-text">设计</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#QtCreator-完成界面设计"><span class="nav-text">QtCreator 完成界面设计</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#第一步：在属性列表中设置属性"><span class="nav-text">第一步：在属性列表中设置属性</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#第二步：在对象列表中删除多余的组件"><span class="nav-text">第二步：在对象列表中删除多余的组件</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#第三步：菜单栏"><span class="nav-text">第三步：菜单栏</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#第四步：按钮布局"><span class="nav-text">第四步：按钮布局</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#命名法简介"><span class="nav-text">命名法简介</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#驼峰命名法"><span class="nav-text">驼峰命名法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#匈牙利命名法"><span class="nav-text">匈牙利命名法</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#2-Qt-窗口与对话框"><span class="nav-text">2 Qt 窗口与对话框</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#2-1-QMainWindow"><span class="nav-text">2.1 QMainWindow</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#动作-Action"><span class="nav-text">动作(Action)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#QMainWindow-的使用"><span class="nav-text">QMainWindow 的使用</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#案例"><span class="nav-text">案例</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-2-QDialog"><span class="nav-text">2.2 QDialog</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#2-2-1-通过代码创建对话框"><span class="nav-text">2.2.1 通过代码创建对话框</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-2-2-通过-Designer-创建对话框"><span class="nav-text">2.2.2 通过 Designer 创建对话框</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-2-3-其他"><span class="nav-text">2.2.3 其他</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#3-计算器程序实现"><span class="nav-text">3 计算器程序实现</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#4-附加功能实现"><span class="nav-text">4 附加功能实现</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#4-1-QDialog-简单应用"><span class="nav-text">4.1 QDialog 简单应用</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-2-常用的-Qt-静态函数"><span class="nav-text">4.2 常用的 Qt 静态函数</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#setWindowFlags"><span class="nav-text">setWindowFlags</span></a></li></ol></li></ol></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Sean</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"lapuda-er"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+    <script src="/vendors/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
+    <script src="/js/src/hook-duoshuo.js"></script>
+  
+
+
+
+
+
+
+  
+  
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length == 0) {
+       search_path = "search.xml";
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    function proceedsearch() {
+      $("body").append('<div class="popoverlay">').css('overflow', 'hidden');
+      $('.popup').toggle();
+
+    }
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+    'use strict';
+    $.ajax({
+        url: path,
+        dataType: "xml",
+        async: true,
+        success: function( xmlResponse ) {
+            // get the contents from search data
+            isfetched = true;
+            $('.popup').detach().appendTo('.header-inner');
+            var datas = $( "entry", xmlResponse ).map(function() {
+                return {
+                    title: $( "title", this ).text(),
+                    content: $("content",this).text(),
+                    url: $( "url" , this).text()
+                };
+            }).get();
+            var $input = document.getElementById(search_id);
+            var $resultContent = document.getElementById(content_id);
+            $input.addEventListener('input', function(){
+                var matchcounts = 0;
+                var str='<ul class=\"search-result-list\">';
+                var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+                $resultContent.innerHTML = "";
+                if (this.value.trim().length > 1) {
+                // perform local searching
+                datas.forEach(function(data) {
+                    var isMatch = true;
+                    var content_index = [];
+                    var data_title = data.title.trim().toLowerCase();
+                    var data_content = data.content.trim().replace(/<[^>]+>/g,"").toLowerCase();
+                    var data_url = data.url;
+                    var index_title = -1;
+                    var index_content = -1;
+                    var first_occur = -1;
+                    // only match artiles with not empty titles and contents
+                    if(data_title != '' && data_content != '') {
+                        keywords.forEach(function(keyword, i) {
+                            index_title = data_title.indexOf(keyword);
+                            index_content = data_content.indexOf(keyword);
+                            if( index_title < 0 && index_content < 0 ){
+                                isMatch = false;
+                            } else {
+                                if (index_content < 0) {
+                                    index_content = 0;
+                                }
+                                if (i == 0) {
+                                    first_occur = index_content;
+                                }
+                            }
+                        });
+                    }
+                    // show search results
+                    if (isMatch) {
+                        matchcounts += 1;
+                        str += "<li><a href='"+ data_url +"' class='search-result-title'>"+ data_title +"</a>";
+                        var content = data.content.trim().replace(/<[^>]+>/g,"");
+                        if (first_occur >= 0) {
+                            // cut out 100 characters
+                            var start = first_occur - 20;
+                            var end = first_occur + 80;
+                            if(start < 0){
+                                start = 0;
+                            }
+                            if(start == 0){
+                                end = 50;
+                            }
+                            if(end > content.length){
+                                end = content.length;
+                            }
+                            var match_content = content.substring(start, end);
+                            // highlight all keywords
+                            keywords.forEach(function(keyword){
+                                var regS = new RegExp(keyword, "gi");
+                                match_content = match_content.replace(regS, "<b class=\"search-keyword\">"+keyword+"</b>");
+                            });
+
+                            str += "<p class=\"search-result\">" + match_content +"...</p>"
+                        }
+                        str += "</li>";
+                    }
+                })};
+                str += "</ul>";
+                if (matchcounts == 0) { str = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>' }
+                if (keywords == "") { str = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>' }
+                $resultContent.innerHTML = str;
+            });
+            proceedsearch();
+        }
+    });}
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched == false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+
+    });
+
+    $('.popup-btn-close').click(function(e){
+      $('.popup').hide();
+      $(".popoverlay").remove();
+      $('body').css('overflow', '');
+    });
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+  </script>
+
+
+  
+
+  
+
+  
+
+</body>
+</html>

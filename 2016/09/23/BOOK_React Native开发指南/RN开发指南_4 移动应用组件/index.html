@@ -1,0 +1,905 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="ReactNative," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1" />
+
+
+
+
+
+
+<meta name="description" content="4.1 类比 HTML 元素与原生组件说明：在React Native中,我们不使用HTML元素，但使用类似于它们的各种组件。注意：虽然这些元素有相似的作用,但它们不可以相互替换
+类比 HTML 和原生组件HTML|React Native-|-div|Viewimg|Imagespan,p|Textul/ol,li|ListView, child items
+4.1.1 文本组件
+
+
+标签
+说明">
+<meta property="og:type" content="article">
+<meta property="og:title" content="4 移动应用组件(React Native开发指南)">
+<meta property="og:url" content="http://laputa-er.github.io/2016/09/23/BOOK_React Native开发指南/RN开发指南_4 移动应用组件/index.html">
+<meta property="og:site_name" content="Sean">
+<meta property="og:description" content="4.1 类比 HTML 元素与原生组件说明：在React Native中,我们不使用HTML元素，但使用类似于它们的各种组件。注意：虽然这些元素有相似的作用,但它们不可以相互替换
+类比 HTML 和原生组件HTML|React Native-|-div|Viewimg|Imagespan,p|Textul/ol,li|ListView, child items
+4.1.1 文本组件
+
+
+标签
+说明">
+<meta property="og:image" content="http://o6ul1xz4z.bkt.clouddn.com/img/1474365554788.png">
+<meta property="og:image" content="http://o6ul1xz4z.bkt.clouddn.com/img/panresponder.gif">
+<meta property="og:updated_time" content="2016-09-22T17:07:23.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="4 移动应用组件(React Native开发指南)">
+<meta name="twitter:description" content="4.1 类比 HTML 元素与原生组件说明：在React Native中,我们不使用HTML元素，但使用类似于它们的各种组件。注意：虽然这些元素有相似的作用,但它们不可以相互替换
+类比 HTML 和原生组件HTML|React Native-|-div|Viewimg|Imagespan,p|Textul/ol,li|ListView, child items
+4.1.1 文本组件
+
+
+标签
+说明">
+<meta name="twitter:image" content="http://o6ul1xz4z.bkt.clouddn.com/img/1474365554788.png">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 0,
+      author: '博主'
+    }
+  };
+</script>
+
+
+
+
+  <link rel="canonical" href="http://laputa-er.github.io/2016/09/23/BOOK_React Native开发指南/RN开发指南_4 移动应用组件/"/>
+
+  <title> 4 移动应用组件(React Native开发指南) | Sean </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//hm.baidu.com/hm.js?898688f51c5a3d6b37dd23e04441e5bd";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">Sean</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">笔记分享</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup">
+ <span class="search-icon fa fa-search"></span>
+ <input type="text" id="local-search-input">
+ <div id="local-search-result"></div>
+ <span class="popup-btn-close">close</span>
+</div>
+
+
+    </div>
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                4 移动应用组件(React Native开发指南)
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-09-23T00:58:06+08:00" content="2016-09-23">
+              2016-09-23
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/React-Native开发指南/" itemprop="url" rel="index">
+                    <span itemprop="name">React Native开发指南</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/09/23/BOOK_React Native开发指南/RN开发指南_4 移动应用组件/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/09/23/BOOK_React Native开发指南/RN开发指南_4 移动应用组件/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="4-1-类比-HTML-元素与原生组件"><a href="#4-1-类比-HTML-元素与原生组件" class="headerlink" title="4.1 类比 HTML 元素与原生组件"></a>4.1 类比 HTML 元素与原生组件</h2><p><strong>说明：</strong>在React Native中,我们不使用HTML元素，但使用类似于它们的各种组件。<br><strong>注意：</strong>虽然这些元素有相似的作用,但它们不可以相互替换</p>
+<p><strong>类比 HTML 和原生组件</strong><br>HTML|React Native<br>-|-<br>div|View<br>img|Image<br>span,p|Text<br>ul/ol,li|ListView, child items</p>
+<h3 id="4-1-1-文本组件"><a href="#4-1-1-文本组件" class="headerlink" title="4.1.1 文本组件"></a>4.1.1 文本组件</h3><table>
+<thead>
+<tr>
+<th>标签</th>
+<th>说明</th>
+<th>备注</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>&lt;Text&gt;</code></td>
+<td>文本组件</td>
+<td>在 <code>React Native</code> 中,仅有 <code>&lt;Text&gt;</code> 组件可以将纯文本作为子节点</td>
+</tr>
+</tbody>
+</table>
+<h4 id="为文本样式创建可复用组件"><a href="#为文本样式创建可复用组件" class="headerlink" title="为文本样式创建可复用组件"></a>为文本样式创建可复用组件</h4><p><strong>说明：</strong><code>React Native</code>坚持自己的偏好,提倡样式组件的复用而不是样式的复用</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span><br><span class="line"> * 封装一些样式组件</span><br><span class="line"> */</span></span><br><span class="line"><span class="keyword">import</span> React, &#123; Component &#125; <span class="keyword">from</span> <span class="string">'react'</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> &#123;</span><br><span class="line">	StyleSheet,</span><br><span class="line">	Text,</span><br><span class="line">	View</span><br><span class="line">&#125; <span class="keyword">from</span> <span class="string">'react-native'</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> styles = StyleSheet.create(&#123;</span><br><span class="line">	bold: &#123;</span><br><span class="line">		fontWeight: <span class="string">'bold'</span></span><br><span class="line">	&#125;,</span><br><span class="line">	italic: &#123;</span><br><span class="line">		fontStyle: <span class="string">'italic'</span></span><br><span class="line">	&#125;,</span><br><span class="line">	title: &#123;</span><br><span class="line">		fontSize: <span class="number">20</span>,</span><br><span class="line">	&#125;</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Strong</span> <span class="keyword">extends</span> <span class="title">Component</span> </span>&#123;</span><br><span class="line">	render() &#123;</span><br><span class="line">		<span class="keyword">return</span> (</span><br><span class="line">			<span class="xml"><span class="tag">&lt;<span class="name">Text</span> <span class="attr">style</span>=<span class="string">&#123;styles.bold&#125;</span>&gt;</span></span><br><span class="line">				&#123;this.props.children&#125;</span><br><span class="line">			<span class="tag">&lt;/<span class="name">Text</span>&gt;</span></span></span><br><span class="line">		);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Title</span> <span class="keyword">extends</span> <span class="title">Component</span> </span>&#123;</span><br><span class="line">	render() &#123;</span><br><span class="line">		<span class="keyword">return</span> (</span><br><span class="line">			<span class="xml"><span class="tag">&lt;<span class="name">Text</span> <span class="attr">style</span>=<span class="string">&#123;[styles.title,</span> <span class="attr">styles.bold</span>]&#125;&gt;</span></span><br><span class="line">				&#123;this.props.children&#125;</span><br><span class="line">			<span class="tag">&lt;/<span class="name">Text</span>&gt;</span></span></span><br><span class="line">		)</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Em</span> <span class="keyword">extends</span> <span class="title">Component</span> </span>&#123;</span><br><span class="line">	render() &#123;</span><br><span class="line">		<span class="keyword">return</span> (</span><br><span class="line">			<span class="xml"><span class="tag">&lt;<span class="name">Text</span> <span class="attr">style</span>=<span class="string">&#123;styles.italic&#125;</span>&gt;</span></span><br><span class="line">				&#123;this.props.children&#125;</span><br><span class="line">			<span class="tag">&lt;/<span class="name">Text</span>&gt;</span></span></span><br><span class="line">		);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> &#123; Strong, Em, Title &#125;</span><br></pre></td></tr></table></figure>
+<h3 id="4-1-2-图片组件"><a href="#4-1-2-图片组件" class="headerlink" title="4.1.2 图片组件"></a>4.1.2 图片组件</h3><p><strong>声明：</strong>书中的做法还可以继续用，但0.14版本之后提供了更佳的方式，见<a href="http://reactnative.cn/docs/0.31/images.html#content" target="_blank" rel="external">中文文档</a></p>
+<h2 id="4-2-处理触摸和手势"><a href="#4-2-处理触摸和手势" class="headerlink" title="4.2 处理触摸和手势"></a>4.2 处理触摸和手势</h2><p><strong>说明：</strong><code>React Native</code>提供了许多<code>API</code>,你可以使用这些<code>API</code>开发可触摸的界面。</p>
+<h3 id="4-2-1-使用-TouchableHighlight"><a href="#4-2-1-使用-TouchableHighlight" class="headerlink" title="4.2.1 使用 TouchableHighlight"></a>4.2.1 使用 TouchableHighlight</h3><p><strong>说明：</strong>任何能响应用户触摸事件的界面元素(按钮、控制元素等)通常都需要用 <code>&lt;TouchableHighlight&gt;</code>包装起来</p>
+<ul>
+<li>基础的用法就是用它将组件包装起来,之后按下它时就会产生 一个简单的叠层效果</li>
+<li>为像 <code>onPressIn</code>、<code>onPressOut</code>、 <code>onLongPress</code> 这样的事件提供了钩子</li>
+</ul>
+<p><strong>用途：</strong>无论哪里需要 一个类似 Web 平台上的按钮或者链接,你都可以使用 <code>&lt;TouchableHighlight&gt;</code></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> React, &#123; Component &#125; <span class="keyword">from</span> <span class="string">'react'</span>;</span><br><span class="line"><span class="keyword">import</span> &#123;</span><br><span class="line">	StyleSheet,</span><br><span class="line">	Text,</span><br><span class="line">	View,</span><br><span class="line">	TouchableHighlight</span><br><span class="line">&#125; <span class="keyword">from</span> <span class="string">'react-native'</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> &#123;</span><br><span class="line">	Title</span><br><span class="line">&#125; <span class="keyword">from</span> <span class="string">'./common'</span>;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Button</span> <span class="keyword">extends</span> <span class="title">Component</span> </span>&#123;</span><br><span class="line">	<span class="keyword">constructor</span>(props) &#123;</span><br><span class="line">		<span class="keyword">super</span>(props);</span><br><span class="line">		<span class="keyword">this</span>.state = &#123;</span><br><span class="line">			pressing: <span class="literal">false</span></span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	_onPressIn() &#123;</span><br><span class="line">		<span class="keyword">this</span>.setState(&#123;</span><br><span class="line">			pressing: <span class="literal">true</span></span><br><span class="line">		&#125;)</span><br><span class="line">	&#125;</span><br><span class="line">	_onPressOut() &#123;</span><br><span class="line">		<span class="keyword">this</span>.setState(&#123;</span><br><span class="line">			pressing: <span class="literal">false</span></span><br><span class="line">		&#125;)</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	render() &#123;</span><br><span class="line">		<span class="keyword">return</span> (</span><br><span class="line">			<span class="xml"><span class="tag">&lt;<span class="name">View</span>&gt;</span></span><br><span class="line">				<span class="tag">&lt;<span class="name">Title</span>&gt;</span>4.2.1 使用TouchableHighlight<span class="tag">&lt;/<span class="name">Title</span>&gt;</span></span><br><span class="line">				<span class="tag">&lt;<span class="name">View</span> <span class="attr">style</span>=<span class="string">&#123;styles.container&#125;</span>&gt;</span></span><br><span class="line">					<span class="tag">&lt;<span class="name">TouchableHighlight</span></span><br><span class="line">						<span class="attr">onPressIn</span>=<span class="string">&#123;this._onPressIn.bind(this)&#125;</span></span><br><span class="line">						<span class="attr">onPressOut</span>=<span class="string">&#123;this._onPressOut.bind(this)&#125;</span></span><br><span class="line">						<span class="attr">style</span>=<span class="string">&#123;styles.touchable&#125;</span>&gt;</span></span><br><span class="line"></span><br><span class="line">						<span class="tag">&lt;<span class="name">View</span> <span class="attr">style</span>=<span class="string">&#123;styles.button&#125;</span>&gt;</span></span><br><span class="line">							<span class="tag">&lt;<span class="name">Text</span> <span class="attr">style</span>=<span class="string">&#123;styles.welcome&#125;</span>&gt;</span></span><br><span class="line">								&#123;this.state.pressing ? 'EEK' : 'PUSH ME'&#125;</span><br><span class="line">							<span class="tag">&lt;/<span class="name">Text</span>&gt;</span></span><br><span class="line">						<span class="tag">&lt;/<span class="name">View</span>&gt;</span></span><br><span class="line">					<span class="tag">&lt;/<span class="name">TouchableHighlight</span>&gt;</span></span><br><span class="line">				<span class="tag">&lt;/<span class="name">View</span>&gt;</span></span><br><span class="line">			<span class="tag">&lt;/<span class="name">View</span>&gt;</span></span></span><br><span class="line">		)</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> styles = StyleSheet.create(&#123;</span><br><span class="line">	container: &#123;</span><br><span class="line">		flex: <span class="number">1</span>,</span><br><span class="line">		justifyContent: <span class="string">'center'</span>,</span><br><span class="line">		alignItems: <span class="string">'center'</span>,</span><br><span class="line">		backgroundColor: <span class="string">'#FFFFFF'</span>,</span><br><span class="line">	&#125;,</span><br><span class="line">	welcome: &#123;</span><br><span class="line">		fontSize: <span class="number">20</span>,</span><br><span class="line">		textAlign: <span class="string">'center'</span>,</span><br><span class="line">		margin: <span class="number">10</span>,</span><br><span class="line">		color: <span class="string">'#FFFFFF'</span>,</span><br><span class="line">	&#125;,</span><br><span class="line">	touchable: &#123;</span><br><span class="line">		borderRadius: <span class="number">100</span>,</span><br><span class="line">		height: <span class="number">200</span>,</span><br><span class="line">		width: <span class="number">200</span>,</span><br><span class="line">		justifyContent: <span class="string">'center'</span>,</span><br><span class="line">	&#125;,</span><br><span class="line">	button: &#123;</span><br><span class="line">		backgroundColor: <span class="string">'#ff0000'</span>,</span><br><span class="line">		borderRadius: <span class="number">100</span>,</span><br><span class="line">		height: <span class="number">200</span>,</span><br><span class="line">		width: <span class="number">200</span>,</span><br><span class="line">		justifyContent: <span class="string">'center'</span></span><br><span class="line">	&#125;</span><br><span class="line">&#125;);</span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> Button;</span><br></pre></td></tr></table></figure>
+<h3 id="4-2-2-GestureResponder-系统"><a href="#4-2-2-GestureResponder-系统" class="headerlink" title="4.2.2 GestureResponder 系统"></a>4.2.2 GestureResponder 系统</h3><p><strong>说明：</strong><code>PanResponder</code> 接口的基础，一个低层的接口<br><strong>技巧：</strong>这是相当低层的接口,如果你想使用这种方法进行手势的检测和响应,可能需要一些时间 来调整正确的参数,并弄懂哪些值是你应该关注的</p>
+<hr>
+<p><strong>触摸响应器(touch responder)</strong><br><strong>说明：</strong>处理特定触摸事件的视图。通过<code>GestureResponder</code>系统，可以指定自己的组件为<code>触摸响应器</code>。</p>
+<hr>
+<p><strong>触摸事件有三个主要的生命周期阶段</strong><br>阶段|类比 web<br>-|-<br>开始|mouseDown<br>移动|mouseMove<br>释放|mouseUp</p>
+<p><strong>申请<code>响应状态</code>流程</strong><br>控制响应状态的函数|说明<br>-|-<br>View.props.onStartShouldSetResponder|是否在<code>开始</code>阶段请求成为<code>触摸响应器</code>？<br>View.props.onMoveShouldSetResponder|是否在<code>移动</code>阶段请求成为<code>触摸响应器</code>？<br>View.props.onResponderGrant|图现在正在响应触摸事件。这个时候要高亮标明并显示给用户正在发生的事情<br>View.props.onResponderReject|其它的视图获得了响应并且不会释放<br>View.props.onStartShouldSetResponderCapture|是否防止子视图在触摸<code>开始</code>时成为应答器？<br>View.props.onMoveShouldSetResponderCapture|是否防止子视图在触摸<code>移动</code>时成为应答器？<br><img src="http://o6ul1xz4z.bkt.clouddn.com/img/1474365554788.png" alt="Alt text"></p>
+<hr>
+<p><strong>事件处理钩子</strong><br>钩子|说明<br>-|-<br>View.props.onResponderMove|用户正在移动手指<br>View.props.onResponderRelease|触摸结束被调用(也就是<code>touchUp</code>)<br>View.props.onResponderTerminationRequest|其他元素想成为响应器。当前视图应该释放吗?返回 <code>true</code> 则允许释放<br>View.props.onResponderTerminate|响应器被收回之后调用。它可能被其他视图通过调用 onResponderTerminationRequest|收回,或被操作系统强制收回(iOS 的控制中心或消息通知)</p>
+<hr>
+<p><strong>触摸事件对象</strong><br>触摸事件属性|说明<br>-|-<br>changedTouches|在上一次事件之后,所有发生变化的触摸事件的数组集合<br>identifier|触摸点的标识符<br>locationX|触摸点相对于父元素的横坐标<br>locationY|触摸点相对于父元素的纵坐标<br>pageX|触摸点相对于屏幕的横坐标<br>pageY|触摸点相对于屏幕的纵坐标<br>target|接受触摸事件的元素节点的标识符<br>timestamp|触摸事件的时间戳,可用于移动速度的计算<br>touches|当前屏幕上所有触摸点的集合</p>
+<h3 id="4-2-3-PanResponder"><a href="#4-2-3-PanResponder" class="headerlink" title="4.2.3 PanResponder"></a>4.2.3 PanResponder</h3><p><strong>说明：</strong>不像<code>&lt;TouchableHighlight&gt;</code>,<code>PanResponder</code>并不是一个组件,而是<code>React Native</code>的一个类, 它提供了处理原生事件相对高层的接口<br>gestureState的属性|说明<br>-|-<br>stateID|gestureState 的标识符(只要屏幕上至少有一个触摸点就会被保留)<br>moveX|最近一次触摸移动时的屏幕横坐标<br>moveY|最近一次触摸移动时的屏幕纵坐标<br>x0|当响应器产生时的屏幕坐标<br>y0|当响应器产生时的屏幕坐标<br>dx|从触摸操作开始时的累计横向路程<br>dy|从触摸操作开始时的累计纵向路程<br>vx|当前的横向移动速度<br>vy|当前的纵向移动速度<br>numberActiveTouches|当前屏幕上的有效触摸点数量</p>
+<h4 id="实例"><a href="#实例" class="headerlink" title="实例"></a>实例</h4><p><img src="http://o6ul1xz4z.bkt.clouddn.com/img/panresponder.gif" alt="Alt text"></p>
+<h3 id="4-2-4-PK"><a href="#4-2-4-PK" class="headerlink" title="4.2.4 PK"></a>4.2.4 PK</h3><table>
+<thead>
+<tr>
+<th>PanResponder</th>
+<th>PanResponder(基于GestureResponder)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>为了给用户提供基础的反馈,指明一个按钮或其他元素是可触摸的</td>
+<td>实现自己定制的触摸界面,你可以使用原始的<code>GestureResponder</code>或 <code>PanResponder</code>(更常用)</td>
+</tr>
+</tbody>
+</table>
+<h2 id="4-3-使用结构化组件"><a href="#4-3-使用结构化组件" class="headerlink" title="4.3 使用结构化组件"></a>4.3 使用结构化组件</h2><h3 id="4-3-1-使用-ListView"><a href="#4-3-1-使用-ListView" class="headerlink" title="4.3.1 使用 ListView"></a>4.3.1 使用 ListView</h3><p><strong>说明：</strong><code>&lt;ListView&gt;</code>其实就是一系列视图的集合,通过它可以选择性地添加一些 特殊视图,如分隔符、头部和尾部<br><strong>技巧：</strong><code>&lt;ListView&gt;</code> 的头 部和尾部不是固定不动的,它们也会跟随列表一起滚动。如果你需要一个固定不动的头部 和尾部,最简单的办法就是在 <code>&lt;ListView&gt;</code>组件之外单独渲染<br><strong>注意：</strong><code>&lt;ListView&gt;</code>元素通常都是被高度优化的,因此渲染可以流畅 无卡顿。但如果你打算在 <code>&lt;ListView&gt;</code> 中渲染大量的列表项,最好保证子视图相对简洁,来尝 试减少卡顿</p>
+<table>
+<thead>
+<tr>
+<th>两个 ListView 的 prop</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>dataSource</td>
+<td>一个数据源实例(通过<code>ListView.DataSource()</code>构造器创建)，包含需要被渲染的源数据信息</td>
+</tr>
+<tr>
+<td>renderRow</td>
+<td>一个函数，基于每一行的数据来返回一些 <code>JSX</code></td>
+</tr>
+</tbody>
+</table>
+<h4 id="cloneWithRows"><a href="#cloneWithRows" class="headerlink" title="cloneWithRows()"></a><code>cloneWithRows()</code></h4><p><strong>说明：</strong><code>dataSource</code> 的实例方法，参数为一个数组，返回一个包含了数组信息的<code>dataSource</code>实例。</p>
+<h3 id="4-3-2-使用-Navigator"><a href="#4-3-2-使用-Navigator" class="headerlink" title="4.3.2 使用 Navigator"></a>4.3.2 使用 Navigator</h3><p><strong>说明：</strong><code>&lt;Navigator&gt;</code>允许你的应用在不同屏幕之间切换(通常叫作“场景”)。它维护了一个<code>栈</code> 路由,因此可以推入(<code>push</code>)、弹出(<code>pop</code>)和替换(<code>replace</code>)场景。你可以将其类比为浏览器的 <code>history</code> 接口。一个“路由”就是场景的名称和索引。<br><strong>扩展：</strong>实际上有两个 <code>Navigator</code> 可供选择:跨平台<code>&lt;Navigator&gt;</code> 组件和 <code>&lt;NavigatorIOS&gt;</code> 组 件。本书中,我们选择使用 <code>&lt;Navigator&gt;</code>。</p>
+<h3 id="4-3-3-其他结构化组件"><a href="#4-3-3-其他结构化组件" class="headerlink" title="4.3.3 其他结构化组件"></a>4.3.3 其他结构化组件</h3><p><strong>说明：</strong>为特定平台的 UI元素封装的原生接口以特定平台的名称为后缀命名，比如</p>
+<ul>
+<li><code>&lt;TabBarIOS&gt;</code></li>
+<li><code>&lt;SegmentedControlIOS&gt;</code></li>
+<li><code>&lt;DrawerLayoutAndroid&gt;</code> </li>
+<li><code>&lt;ToolbarAndroid&gt;</code></li>
+</ul>
+<h2 id="4-4-平台特定组件"><a href="#4-4-平台特定组件" class="headerlink" title="4.4 平台特定组件"></a>4.4 平台特定组件</h2><h3 id="4-4-1-iOS-或-Android-特定组件"><a href="#4-4-1-iOS-或-Android-特定组件" class="headerlink" title="4.4.1 iOS 或 Android 特定组件"></a>4.4.1 iOS 或 Android 特定组件</h3><p><strong>说明：</strong>平台特定的组件命名为<code>文件名.ios.js</code> 或 <code>文件名.android.js</code>,比如</p>
+<ul>
+<li>SwitchIOS</li>
+<li>SwitchAndroid</li>
+</ul>
+<p><strong>注意：</strong>如果你尝试在错误的平台引入组件,应用将会崩溃<br><strong>扩展：</strong>组件也可以拥有平台特定的属性,这些都在文档中有专门的标注,还有它们的用法，比如<code>TextInput</code></p>
+<h3 id="4-4-2-平台特定版本的组件"><a href="#4-4-2-平台特定版本的组件" class="headerlink" title="4.4.2 平台特定版本的组件"></a>4.4.2 平台特定版本的组件</h3><p><strong>说明：</strong>任何文件都 可以使用<code>组件名.android.js</code>或<code>组件名.ios.js</code>命名规范针对 <code>Android</code> 或 <code>iOS</code> 进行不同的实现。<code>React</code> 包管理器将会自动基于平台选择正确的实现</p>
+<h3 id="4-4-3-何时使用平台特定组件"><a href="#4-4-3-何时使用平台特定组件" class="headerlink" title="4.4.3 何时使用平台特定组件"></a>4.4.3 何时使用平台特定组件</h3><p><strong>Apple 和 Google 都为各自的平台提供了人机界面指南</strong> </p>
+<ul>
+<li>iOS 人机界面指南(<a href="https://developer.apple.com/library/ios/documentation/UserExperience/" target="_blank" rel="external">https://developer.apple.com/library/ios/documentation/UserExperience/</a> Conceptual/MobileHIG/)</li>
+<li>Android设计参考(<a href="https://developer.android.com/design/index.html" target="_blank" rel="external">https://developer.android.com/design/index.html</a>)</li>
+</ul>
+<p><strong>建议：</strong>通过创建平台特定版本的组件,可以更好地实现代码复用和平台定制之间的平衡。大部 分情况下,为了同时支持<code>iOS</code> 和 <code>Android</code> 平台,可能只需要用到少数分别支持特定平台 的组件</p>
+<h2 id="4-5-小结"><a href="#4-5-小结" class="headerlink" title="4.5 小结"></a>4.5 小结</h2>
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/ReactNative/" rel="tag">#ReactNative</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/09/19/BOOK_ECMAScript6入门/es6_19 Module/" rel="next" title="19 Module(ECMAScript6入门)">
+                <i class="fa fa-chevron-left"></i> 19 Module(ECMAScript6入门)
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/09/26/BOOK_React Native开发指南/RN开发指南_5 样式/" rel="prev" title="5 样式(React Native开发指南)">
+                5 样式(React Native开发指南) <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2016/09/23/BOOK_React Native开发指南/RN开发指南_4 移动应用组件/"
+           data-title="4 移动应用组件(React Native开发指南)" data-url="http://laputa-er.github.io/2016/09/23/BOOK_React Native开发指南/RN开发指南_4 移动应用组件/">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.gif"
+               alt="Sean" />
+          <p class="site-author-name" itemprop="name">Sean</p>
+          <p class="site-description motion-element" itemprop="description">整理了一批过去一段时间ios相关的笔记，其它的笔记也整理下？源码分享出来？再说吧...反正也只有自己会看吧...</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">200</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">22</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">31</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#4-1-类比-HTML-元素与原生组件"><span class="nav-text">4.1 类比 HTML 元素与原生组件</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#4-1-1-文本组件"><span class="nav-text">4.1.1 文本组件</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#为文本样式创建可复用组件"><span class="nav-text">为文本样式创建可复用组件</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-1-2-图片组件"><span class="nav-text">4.1.2 图片组件</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-2-处理触摸和手势"><span class="nav-text">4.2 处理触摸和手势</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#4-2-1-使用-TouchableHighlight"><span class="nav-text">4.2.1 使用 TouchableHighlight</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-2-2-GestureResponder-系统"><span class="nav-text">4.2.2 GestureResponder 系统</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-2-3-PanResponder"><span class="nav-text">4.2.3 PanResponder</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#实例"><span class="nav-text">实例</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-2-4-PK"><span class="nav-text">4.2.4 PK</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-3-使用结构化组件"><span class="nav-text">4.3 使用结构化组件</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#4-3-1-使用-ListView"><span class="nav-text">4.3.1 使用 ListView</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#cloneWithRows"><span class="nav-text">cloneWithRows()</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-3-2-使用-Navigator"><span class="nav-text">4.3.2 使用 Navigator</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-3-3-其他结构化组件"><span class="nav-text">4.3.3 其他结构化组件</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-4-平台特定组件"><span class="nav-text">4.4 平台特定组件</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#4-4-1-iOS-或-Android-特定组件"><span class="nav-text">4.4.1 iOS 或 Android 特定组件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-4-2-平台特定版本的组件"><span class="nav-text">4.4.2 平台特定版本的组件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-4-3-何时使用平台特定组件"><span class="nav-text">4.4.3 何时使用平台特定组件</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-5-小结"><span class="nav-text">4.5 小结</span></a></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Sean</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"lapuda-er"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+    <script src="/vendors/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
+    <script src="/js/src/hook-duoshuo.js"></script>
+  
+
+
+
+
+
+
+  
+  
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length == 0) {
+       search_path = "search.xml";
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    function proceedsearch() {
+      $("body").append('<div class="popoverlay">').css('overflow', 'hidden');
+      $('.popup').toggle();
+
+    }
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+    'use strict';
+    $.ajax({
+        url: path,
+        dataType: "xml",
+        async: true,
+        success: function( xmlResponse ) {
+            // get the contents from search data
+            isfetched = true;
+            $('.popup').detach().appendTo('.header-inner');
+            var datas = $( "entry", xmlResponse ).map(function() {
+                return {
+                    title: $( "title", this ).text(),
+                    content: $("content",this).text(),
+                    url: $( "url" , this).text()
+                };
+            }).get();
+            var $input = document.getElementById(search_id);
+            var $resultContent = document.getElementById(content_id);
+            $input.addEventListener('input', function(){
+                var matchcounts = 0;
+                var str='<ul class=\"search-result-list\">';
+                var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+                $resultContent.innerHTML = "";
+                if (this.value.trim().length > 1) {
+                // perform local searching
+                datas.forEach(function(data) {
+                    var isMatch = true;
+                    var content_index = [];
+                    var data_title = data.title.trim().toLowerCase();
+                    var data_content = data.content.trim().replace(/<[^>]+>/g,"").toLowerCase();
+                    var data_url = data.url;
+                    var index_title = -1;
+                    var index_content = -1;
+                    var first_occur = -1;
+                    // only match artiles with not empty titles and contents
+                    if(data_title != '' && data_content != '') {
+                        keywords.forEach(function(keyword, i) {
+                            index_title = data_title.indexOf(keyword);
+                            index_content = data_content.indexOf(keyword);
+                            if( index_title < 0 && index_content < 0 ){
+                                isMatch = false;
+                            } else {
+                                if (index_content < 0) {
+                                    index_content = 0;
+                                }
+                                if (i == 0) {
+                                    first_occur = index_content;
+                                }
+                            }
+                        });
+                    }
+                    // show search results
+                    if (isMatch) {
+                        matchcounts += 1;
+                        str += "<li><a href='"+ data_url +"' class='search-result-title'>"+ data_title +"</a>";
+                        var content = data.content.trim().replace(/<[^>]+>/g,"");
+                        if (first_occur >= 0) {
+                            // cut out 100 characters
+                            var start = first_occur - 20;
+                            var end = first_occur + 80;
+                            if(start < 0){
+                                start = 0;
+                            }
+                            if(start == 0){
+                                end = 50;
+                            }
+                            if(end > content.length){
+                                end = content.length;
+                            }
+                            var match_content = content.substring(start, end);
+                            // highlight all keywords
+                            keywords.forEach(function(keyword){
+                                var regS = new RegExp(keyword, "gi");
+                                match_content = match_content.replace(regS, "<b class=\"search-keyword\">"+keyword+"</b>");
+                            });
+
+                            str += "<p class=\"search-result\">" + match_content +"...</p>"
+                        }
+                        str += "</li>";
+                    }
+                })};
+                str += "</ul>";
+                if (matchcounts == 0) { str = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>' }
+                if (keywords == "") { str = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>' }
+                $resultContent.innerHTML = str;
+            });
+            proceedsearch();
+        }
+    });}
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched == false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+
+    });
+
+    $('.popup-btn-close').click(function(e){
+      $('.popup').hide();
+      $(".popoverlay").remove();
+      $('body').css('overflow', '');
+    });
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+  </script>
+
+
+  
+
+  
+
+  
+
+</body>
+</html>

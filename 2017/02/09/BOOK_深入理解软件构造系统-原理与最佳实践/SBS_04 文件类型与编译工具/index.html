@@ -1,0 +1,914 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="构造系统," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1" />
+
+
+
+
+
+
+<meta name="description" content="传统编译型软件的总体示意图，展示了源文件被编译成目标文件
+1 c/c++ C 语言简介面世：1969诞生定位：UNIX 操作系统的语言最新版本：C99特点：不提供垃圾回收、多线程支持等功能，也没有任何内置的复杂数据类型，是一门紧凑而高效的语言。应用：目前新开发的 c 代码最常用于 CPU 性能要求高，或直接操作计算机硬件的场合，比如嵌入式设备。
+C++ 语言简介面世：1980年代早期诞生定位：为基">
+<meta property="og:type" content="article">
+<meta property="og:title" content="SBS_04 文件类型与编译工具">
+<meta property="og:url" content="http://laputa-er.github.io/2017/02/09/BOOK_深入理解软件构造系统-原理与最佳实践/SBS_04 文件类型与编译工具/index.html">
+<meta property="og:site_name" content="Sean">
+<meta property="og:description" content="传统编译型软件的总体示意图，展示了源文件被编译成目标文件
+1 c/c++ C 语言简介面世：1969诞生定位：UNIX 操作系统的语言最新版本：C99特点：不提供垃圾回收、多线程支持等功能，也没有任何内置的复杂数据类型，是一门紧凑而高效的语言。应用：目前新开发的 c 代码最常用于 CPU 性能要求高，或直接操作计算机硬件的场合，比如嵌入式设备。
+C++ 语言简介面世：1980年代早期诞生定位：为基">
+<meta property="og:image" content="http://o6ul1xz4z.bkt.clouddn.com/SBS_04%20%E6%96%87%E4%BB%B6%E7%B1%BB%E5%9E%8B%E4%B8%8E%E7%BC%96%E8%AF%91%E5%B7%A5%E5%85%B7/E5ADC1DD-4985-413D-B2A2-49935E2C4992.png">
+<meta property="og:updated_time" content="2017-03-22T18:34:51.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="SBS_04 文件类型与编译工具">
+<meta name="twitter:description" content="传统编译型软件的总体示意图，展示了源文件被编译成目标文件
+1 c/c++ C 语言简介面世：1969诞生定位：UNIX 操作系统的语言最新版本：C99特点：不提供垃圾回收、多线程支持等功能，也没有任何内置的复杂数据类型，是一门紧凑而高效的语言。应用：目前新开发的 c 代码最常用于 CPU 性能要求高，或直接操作计算机硬件的场合，比如嵌入式设备。
+C++ 语言简介面世：1980年代早期诞生定位：为基">
+<meta name="twitter:image" content="http://o6ul1xz4z.bkt.clouddn.com/SBS_04%20%E6%96%87%E4%BB%B6%E7%B1%BB%E5%9E%8B%E4%B8%8E%E7%BC%96%E8%AF%91%E5%B7%A5%E5%85%B7/E5ADC1DD-4985-413D-B2A2-49935E2C4992.png">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 0,
+      author: '博主'
+    }
+  };
+</script>
+
+
+
+
+  <link rel="canonical" href="http://laputa-er.github.io/2017/02/09/BOOK_深入理解软件构造系统-原理与最佳实践/SBS_04 文件类型与编译工具/"/>
+
+  <title> SBS_04 文件类型与编译工具 | Sean </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//hm.baidu.com/hm.js?898688f51c5a3d6b37dd23e04441e5bd";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">Sean</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">笔记分享</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup">
+ <span class="search-icon fa fa-search"></span>
+ <input type="text" id="local-search-input">
+ <div id="local-search-result"></div>
+ <span class="popup-btn-close">close</span>
+</div>
+
+
+    </div>
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                SBS_04 文件类型与编译工具
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2017-02-09T01:44:45+08:00" content="2017-02-09">
+              2017-02-09
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/深入理解软件构造系统-原理与最佳实践/" itemprop="url" rel="index">
+                    <span itemprop="name">深入理解软件构造系统-原理与最佳实践</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2017/02/09/BOOK_深入理解软件构造系统-原理与最佳实践/SBS_04 文件类型与编译工具/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2017/02/09/BOOK_深入理解软件构造系统-原理与最佳实践/SBS_04 文件类型与编译工具/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>传统编译型软件的总体示意图，展示了源文件被编译成目标文件<br><img src="http://o6ul1xz4z.bkt.clouddn.com/SBS_04%20%E6%96%87%E4%BB%B6%E7%B1%BB%E5%9E%8B%E4%B8%8E%E7%BC%96%E8%AF%91%E5%B7%A5%E5%85%B7/E5ADC1DD-4985-413D-B2A2-49935E2C4992.png" alt=""></p>
+<h1 id="1-c-c"><a href="#1-c-c" class="headerlink" title="1 c/c++"></a>1 c/c++</h1><p> <strong>C 语言简介</strong><br>面世：1969<br>诞生定位：UNIX 操作系统的语言<br>最新版本：C99<br>特点：不提供垃圾回收、多线程支持等功能，也没有任何内置的复杂数据类型，是一门紧凑而高效的语言。<br>应用：目前新开发的 c 代码最常用于 CPU 性能要求高，或直接操作计算机硬件的场合，比如嵌入式设备。</p>
+<p><strong>C++ 语言简介</strong><br>面世：1980年代早期<br>诞生定位：为基本的 C 语言增加面相对象的概念， C 的超集。<br>特点：包含了类、继承、模版的概念，以及标准 C 语言中未提供的复杂数据结构。<br>应用：相比 C，C++ 更适合编程开发，当谈它仍然支持嵌入式系统和高性能计算的开发。</p>
+<h2 id="1-1-编译工具"><a href="#1-1-编译工具" class="headerlink" title="1.1 编译工具"></a>1.1 编译工具</h2><p>通常，能够编译 C 语言的编译器同时也支持 C++，比如：</p>
+<ul>
+<li>GCC（GNU 工具集，GNV Compiler Collection）</li>
+<li>微软的 Visual Studio C++ 编译器</li>
+<li>Green Hills 编译器</li>
+<li>Intel C++ 编译器</li>
+</ul>
+<h3 id="GCC"><a href="#GCC" class="headerlink" title="GCC"></a>GCC</h3><p><strong>发布：</strong> 发布于 1987 年<br><strong>地位：</strong> 编译开源软件的事实标准，并广泛用于商业软件开发。<br><strong>优势：</strong> 可以生成多种 CPU 类型的目标代码。</p>
+<h3 id="GCC-的工具链"><a href="#GCC-的工具链" class="headerlink" title="GCC 的工具链"></a>GCC 的工具链</h3><p>按必要顺序调用相关工具，这个过程构成一个链条，称为<code>工具链</code> 方法。组成部分有</p>
+<p>1）C 预处理器（C Preprocessor），用于扩展宏定义。<br>2）C 编译器（C Compiler），用于把源代码转译成汇编语言<br>3）汇编器（assembler），用于把汇编语言转译成目标文件<br>4）链接器（linker），用于把不同的目标文件联结成单个可执行程序</p>
+<h2 id="1-2-源文件"><a href="#1-2-源文件" class="headerlink" title="1.2 源文件"></a>1.2 源文件</h2><p><strong>说明：</strong> C 语言有两种类型的文件</p>
+<ul>
+<li>C 源文件（.c）：包含对函数和全局变量的定义</li>
+<li>C 头文件（.h）：包含类型、宏、常量定义和函数声明</li>
+</ul>
+<h3 id="1-2-1-示例代码"><a href="#1-2-1-示例代码" class="headerlink" title="1.2.1 示例代码"></a>1.2.1 示例代码</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">.</span><br><span class="line">├── hello.c <span class="comment"># c source file</span></span><br><span class="line">├── hello.h <span class="comment"># c header file</span></span><br><span class="line">├── main.c <span class="comment"># c source file</span></span><br><span class="line">└── makefile</span><br></pre></td></tr></table></figure>
+<h4 id="main-c"><a href="#main-c" class="headerlink" title="main.c"></a>main.c</h4><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="string">"hello.h"</span></span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">(<span class="keyword">int</span> argc, <span class="keyword">char</span> *argv[])</span></span><br><span class="line"></span>&#123;</span><br><span class="line">	<span class="keyword">if</span> (MAX(<span class="number">1</span>, <span class="number">2</span>) == <span class="number">2</span>)</span><br><span class="line">	&#123;</span><br><span class="line">		hello(<span class="string">"Hello"</span>);</span><br><span class="line">	&#125;</span><br><span class="line">	return <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="hello-h"><a href="#hello-h" class="headerlink" title="hello.h"></a>hello.h</h4><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// extern 暗示这个函数可能在别的源文件里定义, 这样一来就是，在程序中取代include “*.h”来声明函数</span></span><br><span class="line"><span class="comment">// 在一些复杂的项目中，比较习惯在所有的函数声明前添加 extern 修饰，以防止遗漏包含头文件而导致的编译错误。</span></span><br><span class="line"><span class="comment">// 如果在函数定义的地方带有关键字extern，表示该函数会提供给外部文件使用，其实有些编译器是默认每个函数都是extern类型的，反之是static类型</span></span><br><span class="line"><span class="function"><span class="keyword">extern</span> <span class="keyword">void</span> <span class="title">hello</span><span class="params">(<span class="keyword">const</span> <span class="keyword">char</span> *<span class="built_in">string</span>)</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> MAX(a, b)((a) &gt; (b) ? (a) : (b))</span></span><br></pre></td></tr></table></figure>
+<h4 id="hello-c"><a href="#hello-c" class="headerlink" title="hello.c"></a>hello.c</h4><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="string">"hello.h"</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">hello</span><span class="params">(<span class="keyword">const</span> <span class="keyword">char</span> *<span class="built_in">string</span>)</span></span><br><span class="line"></span>&#123;</span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">"Hello %s\n"</span>, <span class="built_in">string</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="makefile"><a href="#makefile" class="headerlink" title="makefile"></a>makefile</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">SRCS = main.c hello.c</span><br><span class="line">OBJS = $(SRCS:.c=.o)</span><br><span class="line">PROG = demo</span><br><span class="line">CC = gcc</span><br><span class="line">CFLAGS = -c</span><br><span class="line"></span><br><span class="line">$(PROG): $(OBJS)</span><br><span class="line">	$(CC) -o <span class="variable">$@</span> $^</span><br><span class="line">main.o: main.c hello.h</span><br><span class="line">	$(CC) $(CFLAGS)  main.c</span><br><span class="line">hello.o: hello.c hello.h</span><br><span class="line">	$(CC) $(CFLAGS) hello.c</span><br><span class="line">clean:</span><br><span class="line">	rm <span class="_">-f</span> $(OBJS) $(PROG)</span><br></pre></td></tr></table></figure>
+<h3 id="1-2-2-c-选项"><a href="#1-2-2-c-选项" class="headerlink" title="1.2.2 -c 选项"></a>1.2.2 -c 选项</h3><p><strong>功能：</strong> 将源文件编译为目标文件。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 编译前</span></span><br><span class="line">$ tree</span><br><span class="line">.</span><br><span class="line">├── hello.c</span><br><span class="line">├── hello.h</span><br><span class="line">├── main.c</span><br><span class="line">└── makefile</span><br><span class="line"></span><br><span class="line"><span class="comment"># 编译</span></span><br><span class="line">$ gcc -c hello.c</span><br><span class="line">$ gcc -c main.c</span><br><span class="line"></span><br><span class="line"><span class="comment"># 编译后</span></span><br><span class="line">$ tree</span><br><span class="line">.</span><br><span class="line">├── hello.c</span><br><span class="line">├── hello.h</span><br><span class="line">├── hello.o <span class="comment"># 目标文件</span></span><br><span class="line">├── main.c</span><br><span class="line">├── main.o <span class="comment"># 目标文件</span></span><br><span class="line">└── makefile</span><br></pre></td></tr></table></figure>
+<h3 id="1-2-3-E-选项"><a href="#1-2-3-E-选项" class="headerlink" title="1.2.3 -E 选项"></a>1.2.3 -E 选项</h3><p><strong>功能：</strong> 输入源文件，只处理 <code>include</code> 指令和宏扩展，不进行实际的编译。将处理后的文本在终端输出。<br><strong>应用：</strong> 对预处理器的输出内容进行检查，可以查看貌似由宏、类型或常量定义产生的问题。</p>
+<p>例如，<code>gcc -E main.c</code>，输出如下：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta"># 1 <span class="string">"main.c"</span></span></span><br><span class="line"><span class="meta"># 1 <span class="string">"&lt;built-in&gt;"</span> 1</span></span><br><span class="line"><span class="meta"># 1 <span class="string">"&lt;built-in&gt;"</span> 3</span></span><br><span class="line"><span class="meta"># 330 <span class="string">"&lt;built-in&gt;"</span> 3</span></span><br><span class="line"><span class="meta"># 1 <span class="string">"&lt;command line&gt;"</span> 1</span></span><br><span class="line"><span class="meta"># 1 <span class="string">"&lt;built-in&gt;"</span> 2</span></span><br><span class="line"><span class="meta"># 1 <span class="string">"main.c"</span> 2</span></span><br><span class="line"><span class="meta"># 1 <span class="string">"./hello.h"</span> 1</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">extern</span> <span class="keyword">void</span> <span class="title">hello</span><span class="params">(<span class="keyword">const</span> <span class="keyword">char</span> *<span class="built_in">string</span>)</span></span>;</span><br><span class="line"><span class="meta"># 2 <span class="string">"main.c"</span> 2</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">(<span class="keyword">int</span> argc, <span class="keyword">char</span> *argv[])</span></span><br><span class="line"></span>&#123;</span><br><span class="line"> <span class="keyword">if</span> (((<span class="number">1</span>) &gt; (<span class="number">2</span>) ? (<span class="number">1</span>) : (<span class="number">2</span>)) == <span class="number">2</span>)</span><br><span class="line"> &#123;</span><br><span class="line">  hello(<span class="string">"Hello"</span>);</span><br><span class="line"> &#125;</span><br><span class="line"> return <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="1-3-汇编语言文件"><a href="#1-3-汇编语言文件" class="headerlink" title="1.3 汇编语言文件"></a>1.3 汇编语言文件</h2><h3 id="S-选项"><a href="#S-选项" class="headerlink" title="-S 选项"></a>-S 选项</h3><p><strong>功能：</strong> 输入源文件，输出汇编语言文件（.s）。<br><strong>应用：</strong>如果怀疑编译器编译代码出错，而且你了解汇编语言，则可以通过这个选项判断是否编译器有问题。</p>
+<p>例如，<code>gcc -S hello.c</code> ，生成 <code>hello.s</code>，该文件内容如下</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line">        .section        __TEXT,__text,regular,pure_instructions</span><br><span class="line">        .macosx_version_min 10, 12</span><br><span class="line">        .globl  _hello</span><br><span class="line">        .align  4, 0x90</span><br><span class="line">_hello:                                 ## @hello</span><br><span class="line">        .cfi_startproc</span><br><span class="line">## BB#0:</span><br><span class="line">        pushq   %rbp</span><br><span class="line">Ltmp0:</span><br><span class="line">        .cfi_def_cfa_offset 16</span><br><span class="line">Ltmp1:</span><br><span class="line">        .cfi_offset %rbp, -16</span><br><span class="line">        movq    %rsp, %rbp</span><br><span class="line">Ltmp2:</span><br><span class="line">        .cfi_def_cfa_register %rbp</span><br><span class="line">        subq    $16, %rsp</span><br><span class="line">        leaq    L_.str(%rip), %rax</span><br><span class="line">        movq    %rdi, -8(%rbp)</span><br><span class="line">        movq    -8(%rbp), %rsi</span><br><span class="line">        movq    %rax, %rdi</span><br><span class="line">        movb    $0, %al</span><br><span class="line">        callq   _printf</span><br><span class="line">        movl    %eax, -12(%rbp)         ## 4-byte Spill</span><br><span class="line">        addq    $16, %rsp</span><br><span class="line">        popq    %rbp</span><br><span class="line">        retq</span><br><span class="line">        .cfi_endproc</span><br><span class="line"></span><br><span class="line">        .section        __TEXT,__cstring,cstring_literals</span><br><span class="line">L_.str:                                 ## @.str</span><br><span class="line">        .asciz  &quot;Hello %s\n&quot;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">.subsections_via_symbols</span><br></pre></td></tr></table></figure>
+<h2 id="1-4-目标文件"><a href="#1-4-目标文件" class="headerlink" title="1.4 目标文件"></a>1.4 目标文件</h2><p><strong>说明：</strong> 目标文件是机器码指令的容器，它不具备在计算机上执行的条件，因为还需要与其他目标文件以及所有必需的库文件进行链接。</p>
+<h3 id="1-4-1-c-选项"><a href="#1-4-1-c-选项" class="headerlink" title="1.4.1 -c 选项"></a>1.4.1 -c 选项</h3><p><strong>功能：</strong> 输入源文件，生成目标文件。</p>
+<p>例如，<code>gcc -c hello.c</code>，生成 <code>hello.o</code></p>
+<h3 id="1-4-2-分析目标文件-file-指令"><a href="#1-4-2-分析目标文件-file-指令" class="headerlink" title="1.4.2 分析目标文件 - file 指令"></a>1.4.2 分析目标文件 - file 指令</h3><p><strong>功能：</strong> 输入文件，输出文件的高层次信息。</p>
+<p>例如，<code>file hello.o</code>，输出如下</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hello.o: Mach-O 64-bit object x86_64</span><br></pre></td></tr></table></figure>
+<h3 id="1-4-3-分析目标文件-nm-命令"><a href="#1-4-3-分析目标文件-nm-命令" class="headerlink" title="1.4.3 分析目标文件 - nm 命令"></a>1.4.3 分析目标文件 - nm 命令</h3><p><strong>功能：</strong> 输入目标文件，输出函数或变量的定义情况。<br><strong>应用：</strong> 通过对多有目标文件运行 nm 命令，就可以定位缺失的负号是在哪里引用的，在哪里定义的。</p>
+<p>例如，<code>nm hello.o</code>，输出如下</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">0000000000000000 T _hello <span class="comment"># hello.o 中包含 hello 函数的定义</span></span><br><span class="line">                 U _<span class="built_in">printf</span> <span class="comment"># 要求 printf 函数应当定义在某些其他目标文件中，因为该文件中未定义</span></span><br></pre></td></tr></table></figure>
+<h3 id="1-4-4-分析目标文件-objdump-命令"><a href="#1-4-4-分析目标文件-objdump-命令" class="headerlink" title="1.4.4 分析目标文件 - objdump 命令"></a>1.4.4 分析目标文件 - objdump 命令</h3><p><strong>功能：</strong> objdump 命令有许多不同选项，可以提供目标文件更详细的信息，是 file 和 nm 命令的超集;  也提供了把机器码反汇编成汇编语言的能力。<br><strong>应用：</strong> 如果怀疑汇编器生成的机器码指令有错，就可以用它进行检查。</p>
+<h3 id="1-4-5-分析目标文件-hexdump-命令"><a href="#1-4-5-分析目标文件-hexdump-命令" class="headerlink" title="1.4.5 分析目标文件 - hexdump 命令"></a>1.4.5 分析目标文件 - hexdump 命令</h3><p><strong>功能：</strong>检查文件的每一个原始字节，这种方法是比较原始的。<br><strong>应用：</strong>如果由于某种原因（例如文件损坏了）导致 objjump 命令实效，那么 hexdump 命令可能就是最后的希望。</p>
+<h2 id="1-5-可执行程序"><a href="#1-5-可执行程序" class="headerlink" title="1.5 可执行程序"></a>1.5 可执行程序</h2><h3 id="1-5-1-o-选项"><a href="#1-5-1-o-选项" class="headerlink" title="1.5.1 -o 选项"></a>1.5.1 -o 选项</h3><p><strong>功能：</strong> 该选项可以只完成链接工作，也可以一次执行整个工具链。</p>
+<h4 id="仅完成链接"><a href="#仅完成链接" class="headerlink" title="仅完成链接"></a>仅完成链接</h4><p><strong>说明：</strong>用 -o 选项来提供程序名，并列出要链接的所有目标文件。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ gcc -o hello hello.o main.o</span><br></pre></td></tr></table></figure>
+<h4 id="执行整个工具链"><a href="#执行整个工具链" class="headerlink" title="执行整个工具链"></a>执行整个工具链</h4><p><strong>说明：</strong>用 -o 选项来提供程序名，并列出要链接的所有源文件。<br><strong>限制：</strong>小程序可以，大型构造系统不会这么做。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ gcc -o hello hello.c main.c</span><br></pre></td></tr></table></figure>
+<h2 id="1-6-静态程序库"><a href="#1-6-静态程序库" class="headerlink" title="1.6 静态程序库"></a>1.6 静态程序库</h2><p><strong>说明：</strong> 静态程序库知识镀铬目标文件的归档文件，可以通过 ar 命令创建静态程序库。</p>
+<h3 id="1-6-1-ar-命令"><a href="#1-6-1-ar-命令" class="headerlink" title="1.6.1 ar 命令"></a>1.6.1 ar 命令</h3><p><strong>功能：</strong> 处理静态库的工具，比如</p>
+<ul>
+<li><code>-rs</code>：负责将目标文件归档为静态链接库文件</li>
+<li><code>-t</code>：还可以检查归档文件的内容</li>
+</ul>
+<p>还有一些选项可以把目标文件从静态程序库中摘取出来，或把目标文件内容写回到磁盘文件（但对构造系统来说不是常用操作）。</p>
+<h3 id="1-6-2-创建静态库"><a href="#1-6-2-创建静态库" class="headerlink" title="1.6.2 创建静态库"></a>1.6.2 创建静态库</h3><p><a href="https://github.com/laputa-er/c_demos/tree/master/c_programming_a_modern_approach/15/fmt" target="_blank" rel="external">c_demos/c_programming_a_modern_approach/15/fmt at master · laputa-er/c_demos · GitHub</a><br>这是我在另一本书看到的一个例子，写了一个 demo，提供了更健壮的对流读取和写入。我准备将其中 4 个文件做成一个静态库，依次是，</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">.</span><br><span class="line">├── word.c</span><br><span class="line">├── word.h</span><br><span class="line">├── line.c</span><br><span class="line">└── line.h</span><br></pre></td></tr></table></figure>
+<p>下面是制作静态库的整个过程，</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 生成目标文件</span></span><br><span class="line">$ gcc -c word.c</span><br><span class="line">$ gcc -c line.c</span><br><span class="line"></span><br><span class="line"><span class="comment"># 创建静态库归档文件</span></span><br><span class="line">$ ar -rs myReadLine.a line.o word.o</span><br><span class="line">$ tree</span><br><span class="line">.</span><br><span class="line">├── line.c</span><br><span class="line">├── line.h</span><br><span class="line">├── line.o</span><br><span class="line">├── word.c</span><br><span class="line">├── word.h</span><br><span class="line">├── word.o</span><br><span class="line">└── myReadLine.a</span><br></pre></td></tr></table></figure>
+<h3 id="1-6-3-使用静态库"><a href="#1-6-3-使用静态库" class="headerlink" title="1.6.3 使用静态库"></a>1.6.3 使用静态库</h3><p><strong>链接静态库</strong><br>示例如下，其中fmt.c 使用了上一步创建的静态库，用来完成对文本的格式化（具体功能可参考《C 语言程序设计-现代方法 15章》）</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">├── fmt.c</span><br><span class="line">└── myReadLine.a</span><br></pre></td></tr></table></figure>
+<p>编译主程序，然后将目标文件和静态库进行链接。注意，GCC 只会把静态库中真正用到的目标文件链接到可执行程序中。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ gcc -c fmt.c <span class="comment"># 主程序</span></span><br><span class="line">$ gcc -o fmt myReadLine.a fmt.o <span class="comment"># 链接主程序和用到的静态库</span></span><br></pre></td></tr></table></figure>
+<p><strong>测试可执行程序</strong></p>
+<p>原始文本放在 test.txt 文件中，</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">to <span class="built_in">test</span> whether the program fmt		work well.       </span><br><span class="line">this <span class="built_in">test</span></span><br><span class="line"></span><br><span class="line">writen <span class="keyword">in</span></span><br><span class="line">2016, changed <span class="keyword">in</span> 2017-  2-5 22:00</span><br><span class="line">hope</span><br></pre></td></tr></table></figure>
+<p>使用程序 fmt 整理 test.txt 的格式，并将整理好的文本输出，如下</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ ./fmt &lt; test.txt</span><br><span class="line">to <span class="built_in">test</span> whether the program fmt work well. this <span class="built_in">test</span>  writen</span><br><span class="line"><span class="keyword">in</span> 2016, changed <span class="keyword">in</span> 2017- 2-5 22:00 hope</span><br></pre></td></tr></table></figure>
+<h2 id="1-7-动态链接库"><a href="#1-7-动态链接库" class="headerlink" title="1.7 动态链接库"></a>1.7 动态链接库</h2><p><strong>案例：</strong> 仍然使用上一节提到的例子。</p>
+<h3 id="1-7-1-创建动态程序库"><a href="#1-7-1-创建动态程序库" class="headerlink" title="1.7.1 创建动态程序库"></a>1.7.1 创建动态程序库</h3><table>
+<thead>
+<tr>
+<th>相关 GCC 选项</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>-fPIC</td>
+<td>创建位置无关的目标文件（这种目标文件才能链接成动态链接库）</td>
+</tr>
+<tr>
+<td>-shared</td>
+<td>链接过程中使用该选项，告诉编译器链接出动态程序库。</td>
+</tr>
+</tbody>
+</table>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 编译出目标文件</span></span><br><span class="line">$ gcc -c <span class="_">-f</span>PIC word.c</span><br><span class="line">$ gcc -c <span class="_">-f</span>PIC line.c</span><br><span class="line"></span><br><span class="line"><span class="comment"># 创建动态程序库</span></span><br><span class="line">$ gcc -shared -o libmystream.so word.o line.o</span><br><span class="line"></span><br><span class="line"><span class="comment"># 检查动态程序库归档文件</span></span><br><span class="line">$ file libmystream.so</span><br><span class="line">libmystream.so: Mach-O 64-bit dynamically linked shared library x86_64</span><br></pre></td></tr></table></figure>
+<h3 id="1-7-2-使用动态程序库"><a href="#1-7-2-使用动态程序库" class="headerlink" title="1.7.2 使用动态程序库"></a>1.7.2 使用动态程序库</h3><table>
+<thead>
+<tr>
+<th>相关 GCC 选项</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>-L</code></td>
+<td>告诉链接器动态链接库所在目录</td>
+</tr>
+<tr>
+<td><code>-l</code></td>
+<td>告诉链接器动态链接库的名字</td>
+</tr>
+</tbody>
+</table>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ gcc -c fmt.c <span class="comment"># 主程序</span></span><br><span class="line">$ gcc -o fmt fmt.o -L . <span class="_">-l</span> mystream <span class="comment"># 链接主程序用到的动态链接库（不能直接用 libmystream.so 这个名字，而是 lmystream）</span></span><br></pre></td></tr></table></figure>
+<p><strong>注意：</strong> <code>·l</code>选项后面使用的并不是动态链接库的文件本身的名字，需要有所变化，比如 <code>libmystream.so</code>，使用时要写成 <code>mystream</code>！</p>
+<h3 id="1-7-3-查看程序用到的动态程序库"><a href="#1-7-3-查看程序用到的动态程序库" class="headerlink" title="1.7.3 查看程序用到的动态程序库"></a>1.7.3 查看程序用到的动态程序库</h3><h4 id="ldd-命令"><a href="#ldd-命令" class="headerlink" title="ldd 命令"></a>ldd 命令</h4><p><strong>功能：</strong> 查看主程序执行时，需要把那个动态程序库载入内存。<br><strong>扩展：</strong> mac 上没有这个命令，对应的命令是 <code>otool</code></p>
+<p><em>linux 环境</em></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ <span class="built_in">export</span> LD_LIBRARY_PATH=. <span class="comment"># 指出自定义的动态链接库所在目录，注意在实际编码时使用相对路径会有安全漏洞</span></span><br><span class="line">$ ldd fmt</span><br></pre></td></tr></table></figure>
+<p><em>mac 环境</em></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">$ otool -L fmt</span><br><span class="line">fmt:</span><br><span class="line">        libmystream.so (compatibility version 0.0.0, current version 0.0.0)</span><br><span class="line">        /usr/lib/libSystem.B.dylib (compatibility version 1.0.0, current version 1238.0.0)</span><br></pre></td></tr></table></figure>
+<h2 id="1-8-c-编译"><a href="#1-8-c-编译" class="headerlink" title="1.8 c++ 编译"></a>1.8 c++ 编译</h2><h3 id="g-vs-gcc"><a href="#g-vs-gcc" class="headerlink" title="g++ vs. gcc"></a>g++ vs. gcc</h3><ul>
+<li>gcc 也可以编译 c++ ，但更推荐使用 g++ 来编译 c++。</li>
+<li>gcc 和 g++ 相比，编译阶段几乎是相同的，链接阶段g++默认链接c++库，gcc不会。</li>
+<li>也可以用gcc编译cpp文件，但后面需要加一个选项-lstdc++，作用是链接c++库。</li>
+</ul>
+<h3 id="c-类型检查"><a href="#c-类型检查" class="headerlink" title="c++ 类型检查"></a>c++ 类型检查</h3><p>c++ 可以在链接时执行类型检查，而 c 程序则必须在编译时进行所有的类型检查。</p>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/构造系统/" rel="tag">#构造系统</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/02/09/BOOK_深入理解软件构造系统-原理与最佳实践/SBS_prefaceOfPart2/" rel="next" title="SBS_prefaceOfPart2">
+                <i class="fa fa-chevron-left"></i> SBS_prefaceOfPart2
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/02/09/BOOK_深入理解软件构造系统-原理与最佳实践/SBS_03 程序的运行时视图/" rel="prev" title="SBS_03 程序的运行时视图">
+                SBS_03 程序的运行时视图 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2017/02/09/BOOK_深入理解软件构造系统-原理与最佳实践/SBS_04 文件类型与编译工具/"
+           data-title="SBS_04 文件类型与编译工具" data-url="http://laputa-er.github.io/2017/02/09/BOOK_深入理解软件构造系统-原理与最佳实践/SBS_04 文件类型与编译工具/">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.gif"
+               alt="Sean" />
+          <p class="site-author-name" itemprop="name">Sean</p>
+          <p class="site-description motion-element" itemprop="description">整理了一批过去一段时间ios相关的笔记，其它的笔记也整理下？源码分享出来？再说吧...反正也只有自己会看吧...</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">200</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">22</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">31</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#1-c-c"><span class="nav-text">1 c/c++</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-1-编译工具"><span class="nav-text">1.1 编译工具</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#GCC"><span class="nav-text">GCC</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#GCC-的工具链"><span class="nav-text">GCC 的工具链</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-2-源文件"><span class="nav-text">1.2 源文件</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-2-1-示例代码"><span class="nav-text">1.2.1 示例代码</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#main-c"><span class="nav-text">main.c</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#hello-h"><span class="nav-text">hello.h</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#hello-c"><span class="nav-text">hello.c</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#makefile"><span class="nav-text">makefile</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-2-2-c-选项"><span class="nav-text">1.2.2 -c 选项</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-2-3-E-选项"><span class="nav-text">1.2.3 -E 选项</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-3-汇编语言文件"><span class="nav-text">1.3 汇编语言文件</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#S-选项"><span class="nav-text">-S 选项</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-4-目标文件"><span class="nav-text">1.4 目标文件</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-4-1-c-选项"><span class="nav-text">1.4.1 -c 选项</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-4-2-分析目标文件-file-指令"><span class="nav-text">1.4.2 分析目标文件 - file 指令</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-4-3-分析目标文件-nm-命令"><span class="nav-text">1.4.3 分析目标文件 - nm 命令</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-4-4-分析目标文件-objdump-命令"><span class="nav-text">1.4.4 分析目标文件 - objdump 命令</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-4-5-分析目标文件-hexdump-命令"><span class="nav-text">1.4.5 分析目标文件 - hexdump 命令</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-5-可执行程序"><span class="nav-text">1.5 可执行程序</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-5-1-o-选项"><span class="nav-text">1.5.1 -o 选项</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#仅完成链接"><span class="nav-text">仅完成链接</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#执行整个工具链"><span class="nav-text">执行整个工具链</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-6-静态程序库"><span class="nav-text">1.6 静态程序库</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-6-1-ar-命令"><span class="nav-text">1.6.1 ar 命令</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-6-2-创建静态库"><span class="nav-text">1.6.2 创建静态库</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-6-3-使用静态库"><span class="nav-text">1.6.3 使用静态库</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-7-动态链接库"><span class="nav-text">1.7 动态链接库</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-7-1-创建动态程序库"><span class="nav-text">1.7.1 创建动态程序库</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-7-2-使用动态程序库"><span class="nav-text">1.7.2 使用动态程序库</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-7-3-查看程序用到的动态程序库"><span class="nav-text">1.7.3 查看程序用到的动态程序库</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#ldd-命令"><span class="nav-text">ldd 命令</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-8-c-编译"><span class="nav-text">1.8 c++ 编译</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#g-vs-gcc"><span class="nav-text">g++ vs. gcc</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#c-类型检查"><span class="nav-text">c++ 类型检查</span></a></li></ol></li></ol></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Sean</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"lapuda-er"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+    <script src="/vendors/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
+    <script src="/js/src/hook-duoshuo.js"></script>
+  
+
+
+
+
+
+
+  
+  
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length == 0) {
+       search_path = "search.xml";
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    function proceedsearch() {
+      $("body").append('<div class="popoverlay">').css('overflow', 'hidden');
+      $('.popup').toggle();
+
+    }
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+    'use strict';
+    $.ajax({
+        url: path,
+        dataType: "xml",
+        async: true,
+        success: function( xmlResponse ) {
+            // get the contents from search data
+            isfetched = true;
+            $('.popup').detach().appendTo('.header-inner');
+            var datas = $( "entry", xmlResponse ).map(function() {
+                return {
+                    title: $( "title", this ).text(),
+                    content: $("content",this).text(),
+                    url: $( "url" , this).text()
+                };
+            }).get();
+            var $input = document.getElementById(search_id);
+            var $resultContent = document.getElementById(content_id);
+            $input.addEventListener('input', function(){
+                var matchcounts = 0;
+                var str='<ul class=\"search-result-list\">';
+                var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+                $resultContent.innerHTML = "";
+                if (this.value.trim().length > 1) {
+                // perform local searching
+                datas.forEach(function(data) {
+                    var isMatch = true;
+                    var content_index = [];
+                    var data_title = data.title.trim().toLowerCase();
+                    var data_content = data.content.trim().replace(/<[^>]+>/g,"").toLowerCase();
+                    var data_url = data.url;
+                    var index_title = -1;
+                    var index_content = -1;
+                    var first_occur = -1;
+                    // only match artiles with not empty titles and contents
+                    if(data_title != '' && data_content != '') {
+                        keywords.forEach(function(keyword, i) {
+                            index_title = data_title.indexOf(keyword);
+                            index_content = data_content.indexOf(keyword);
+                            if( index_title < 0 && index_content < 0 ){
+                                isMatch = false;
+                            } else {
+                                if (index_content < 0) {
+                                    index_content = 0;
+                                }
+                                if (i == 0) {
+                                    first_occur = index_content;
+                                }
+                            }
+                        });
+                    }
+                    // show search results
+                    if (isMatch) {
+                        matchcounts += 1;
+                        str += "<li><a href='"+ data_url +"' class='search-result-title'>"+ data_title +"</a>";
+                        var content = data.content.trim().replace(/<[^>]+>/g,"");
+                        if (first_occur >= 0) {
+                            // cut out 100 characters
+                            var start = first_occur - 20;
+                            var end = first_occur + 80;
+                            if(start < 0){
+                                start = 0;
+                            }
+                            if(start == 0){
+                                end = 50;
+                            }
+                            if(end > content.length){
+                                end = content.length;
+                            }
+                            var match_content = content.substring(start, end);
+                            // highlight all keywords
+                            keywords.forEach(function(keyword){
+                                var regS = new RegExp(keyword, "gi");
+                                match_content = match_content.replace(regS, "<b class=\"search-keyword\">"+keyword+"</b>");
+                            });
+
+                            str += "<p class=\"search-result\">" + match_content +"...</p>"
+                        }
+                        str += "</li>";
+                    }
+                })};
+                str += "</ul>";
+                if (matchcounts == 0) { str = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>' }
+                if (keywords == "") { str = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>' }
+                $resultContent.innerHTML = str;
+            });
+            proceedsearch();
+        }
+    });}
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched == false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+
+    });
+
+    $('.popup-btn-close').click(function(e){
+      $('.popup').hide();
+      $(".popoverlay").remove();
+      $('body').css('overflow', '');
+    });
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+  </script>
+
+
+  
+
+  
+
+  
+
+</body>
+</html>

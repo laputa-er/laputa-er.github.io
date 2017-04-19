@@ -1,0 +1,991 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="grunt," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1" />
+
+
+
+
+
+
+<meta name="description" content="第一章        课程介绍1.1    课程目标和学习内容介绍前端集成解决方案
+
+什么是前端集成解决方案？草根派：解决前端工程的根本问题。学院派：一套包含框架和工具，便于开发者快速构建美丽实用的web应用程序的工作流，同时这套工作流必须是健壮的。
+
+解决哪些前端问题？
+
+
+
+开发团队代码风格不同意，如何强制开发规范
+前期开发的组件库如何维护和使用
+如何模块化前端项目
+服务器部署前必须的压缩、检">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Grunt-beginner前端自动化工具">
+<meta property="og:url" content="http://laputa-er.github.io/2015/05/02/慕课网/imooc_Grunt-beginner前端自动化工具/index.html">
+<meta property="og:site_name" content="Sean">
+<meta property="og:description" content="第一章        课程介绍1.1    课程目标和学习内容介绍前端集成解决方案
+
+什么是前端集成解决方案？草根派：解决前端工程的根本问题。学院派：一套包含框架和工具，便于开发者快速构建美丽实用的web应用程序的工作流，同时这套工作流必须是健壮的。
+
+解决哪些前端问题？
+
+
+
+开发团队代码风格不同意，如何强制开发规范
+前期开发的组件库如何维护和使用
+如何模块化前端项目
+服务器部署前必须的压缩、检">
+<meta property="og:updated_time" content="2017-03-17T15:25:15.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Grunt-beginner前端自动化工具">
+<meta name="twitter:description" content="第一章        课程介绍1.1    课程目标和学习内容介绍前端集成解决方案
+
+什么是前端集成解决方案？草根派：解决前端工程的根本问题。学院派：一套包含框架和工具，便于开发者快速构建美丽实用的web应用程序的工作流，同时这套工作流必须是健壮的。
+
+解决哪些前端问题？
+
+
+
+开发团队代码风格不同意，如何强制开发规范
+前期开发的组件库如何维护和使用
+如何模块化前端项目
+服务器部署前必须的压缩、检">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 0,
+      author: '博主'
+    }
+  };
+</script>
+
+
+
+
+  <link rel="canonical" href="http://laputa-er.github.io/2015/05/02/慕课网/imooc_Grunt-beginner前端自动化工具/"/>
+
+  <title> Grunt-beginner前端自动化工具 | Sean </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//hm.baidu.com/hm.js?898688f51c5a3d6b37dd23e04441e5bd";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">Sean</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">笔记分享</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup">
+ <span class="search-icon fa fa-search"></span>
+ <input type="text" id="local-search-input">
+ <div id="local-search-result"></div>
+ <span class="popup-btn-close">close</span>
+</div>
+
+
+    </div>
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                Grunt-beginner前端自动化工具
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2015-05-02T23:01:00+08:00" content="2015-05-02">
+              2015-05-02
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/慕课网学习笔记/" itemprop="url" rel="index">
+                    <span itemprop="name">慕课网学习笔记</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2015/05/02/慕课网/imooc_Grunt-beginner前端自动化工具/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2015/05/02/慕课网/imooc_Grunt-beginner前端自动化工具/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="第一章-课程介绍"><a href="#第一章-课程介绍" class="headerlink" title="第一章        课程介绍"></a>第一章        课程介绍</h1><h2 id="1-1-课程目标和学习内容介绍"><a href="#1-1-课程目标和学习内容介绍" class="headerlink" title="1.1    课程目标和学习内容介绍"></a>1.1    课程目标和学习内容介绍</h2><p><strong>前端集成解决方案</strong></p>
+<ul>
+<li><p><strong>什么是前端集成解决方案？</strong><br>草根派：解决前端工程的根本问题。<br>学院派：一套包含框架和工具，便于开发者快速构建美丽实用的web应用程序的工作流，同时这套工作流必须是健壮的。</p>
+</li>
+<li><p><strong>解决哪些前端问题？</strong></p>
+</li>
+</ul>
+<ol>
+<li>开发团队代码风格不同意，如何强制开发规范</li>
+<li>前期开发的组件库如何维护和使用</li>
+<li>如何模块化前端项目</li>
+<li>服务器部署前必须的压缩、检查流程如何简化，流程如何完善.</li>
+</ol>
+<ul>
+<li><strong>主流的方式有哪几种？</strong></li>
+</ul>
+<ol>
+<li>Yeoman</li>
+<li>Bower</li>
+<li>Grount|Gulp<br>CodeKit:https//inclient57.com/codekit/    —-仅限于os x<br>FIS:<a href="http://fis.baidu.com/" target="_blank" rel="external">http://fis.baidu.com/</a><br>Spirit:<a href="http://alloyteam.github.io/Spirit" target="_blank" rel="external">http://alloyteam.github.io/Spirit</a></li>
+</ol>
+<ul>
+<li><strong>目前Grunt的竞争者？</strong></li>
+</ul>
+<ol>
+<li>Buildy</li>
+<li>jasy</li>
+<li>Gmake</li>
+</ol>
+<h1 id="第2章-准备工作"><a href="#第2章-准备工作" class="headerlink" title="第2章        准备工作"></a>第2章        准备工作</h1><h2 id="2-1-nodejs简介"><a href="#2-1-nodejs简介" class="headerlink" title="2.1        nodejs简介"></a>2.1        nodejs简介</h2><h2 id="2-2-Yeoman-Bower-Grunt简介及安装"><a href="#2-2-Yeoman-Bower-Grunt简介及安装" class="headerlink" title="2.2        Yeoman,Bower,Grunt简介及安装"></a>2.2        Yeoman,Bower,Grunt简介及安装</h2><ul>
+<li><strong>Yeoman</strong></li>
+</ul>
+<p>简介：在Web项目的立项阶段，使用yeoman来生成项目的文件、代码结构。Yeoman自动将最佳实践和工具整合进来，大大加速和方便了后续的开发。<br>官方站点：<a href="http://yeoman.io/" target="_blank" rel="external">http://yeoman.io/</a></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo npm install -g yo</span><br><span class="line">yo -v</span><br></pre></td></tr></table></figure>
+<ul>
+<li><strong>Bower</strong></li>
+</ul>
+<p>简介：跟踪管理web站点的框架 、库、公共部分等<br>官方站点：<a href="http://bower.io/" target="_blank" rel="external">http://bower.io/</a></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo npm i -g bower</span><br><span class="line">bower -v</span><br></pre></td></tr></table></figure>
+<ul>
+<li><strong>Grount</strong></li>
+</ul>
+<p><strong>简介：</strong>Build tool，实现开发自动化（减少像压缩、编译、单元测试、代码校验这种重复且无业务关联的工作。）<br><strong>官方站点：</strong><a href="http://gruntjs.com" target="_blank" rel="external">http://gruntjs.com</a><br><strong>优点：</strong>生态庞大</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo npm i -g grunt-cli</span><br></pre></td></tr></table></figure>
+<h1 id="第3章-Yeoman实践"><a href="#第3章-Yeoman实践" class="headerlink" title="第3章        Yeoman实践"></a>第3章        Yeoman实践</h1><h2 id="3-1-Yeoman实践"><a href="#3-1-Yeoman实践" class="headerlink" title="3.1        Yeoman实践"></a>3.1        Yeoman实践</h2><p><strong>Generator:</strong>各式各样的模具<br><strong>安装模具：</strong><code>npm i -g generator-[框架或工具的名称]</code><br><strong>案例：</strong>angular项目</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br></pre></td><td class="code"><pre><span class="line">sudo npm install -g generator-angular    ----安装angular的模具</span><br><span class="line">cd ~/Study/Grunt</span><br><span class="line">mkdir -p yo-in-action/angular-in-action    ----创建项目目录</span><br><span class="line">cd yo-in-action/angular-in-action</span><br><span class="line">yo angular learnangular    ----受用angular模具初始化项目</span><br><span class="line">tree -L 2</span><br><span class="line">.</span><br><span class="line">├── app    ----自己的代码</span><br><span class="line">│   ├── 404.html</span><br><span class="line">│   ├── favicon.ico</span><br><span class="line">│   ├── images</span><br><span class="line">│   ├── index.html</span><br><span class="line">│   ├── robots.txt</span><br><span class="line">│   ├── scripts</span><br><span class="line">│   ├── styles</span><br><span class="line">│   └── views</span><br><span class="line">├── bower.json    ----bower以来管理配置文件</span><br><span class="line">├── Gruntfile.js    ----Grunt配置文件</span><br><span class="line">├── node_modules    ----node平台的依赖包安装位置</span><br><span class="line">│   ├── grunt</span><br><span class="line">│   ├── grunt-autoprefixer</span><br><span class="line">│   ├── grunt-concurrent</span><br><span class="line">│   ├── grunt-contrib-clean</span><br><span class="line">│   ├── grunt-contrib-compass</span><br><span class="line">│   ├── grunt-contrib-concat</span><br><span class="line">│   ├── grunt-contrib-connect</span><br><span class="line">│   ├── grunt-contrib-copy</span><br><span class="line">│   ├── grunt-contrib-cssmin</span><br><span class="line">│   ├── grunt-contrib-htmlmin</span><br><span class="line">│   ├── grunt-contrib-imagemin</span><br><span class="line">│   ├── grunt-contrib-jshint</span><br><span class="line">│   ├── grunt-contrib-uglify</span><br><span class="line">│   ├── grunt-contrib-watch</span><br><span class="line">│   ├── grunt-filerev</span><br><span class="line">│   ├── grunt-google-cdn</span><br><span class="line">│   ├── grunt-newer</span><br><span class="line">│   ├── grunt-ng-annotate</span><br><span class="line">│   ├── grunt-svgmin</span><br><span class="line">│   ├── grunt-usemin</span><br><span class="line">│   ├── grunt-wiredep</span><br><span class="line">│   ├── jshint-stylish</span><br><span class="line">│   ├── load-grunt-tasks</span><br><span class="line">│   └── time-grunt</span><br><span class="line">├── package.json    ----npm配置文件（npm install）</span><br><span class="line">├── README.md</span><br><span class="line">└── test    ----测试</span><br><span class="line">    ├── karma.conf.js</span><br><span class="line">    └── spec</span><br></pre></td></tr></table></figure>
+<h1 id="第4章-Bower实践"><a href="#第4章-Bower实践" class="headerlink" title="第4章    Bower实践"></a>第4章    Bower实践</h1><p><strong>基本使用：</strong>bower install [框架和工具名 | github短写 | github仓库 | url]：会从bower服务器上下载</p>
+<ol>
+<li>一般情况<br><code>bower install jquery</code></li>
+<li>通过github短写（github网站上显示的项目的github短语）<br><code>bower install jquery/jquery</code></li>
+<li>通过github完整仓库地址安装<br><code>bower install  https://github.com/jquery/jquery.git</code></li>
+<li>直接通过URL安装(使用的框架或组件，没有在github上的情况)<br><code>bower install http://lib.sinaapp.com/js/jquery/1.7.2/jquery.min.js</code></li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">mkdir bower-in-action &amp;&amp; cd bower-in-action     ----bower测试目录</span><br><span class="line">mkdir jquery-bootstrap-in-action &amp;&amp;cd jquery-bootstrap-in-action    ----测试项目</span><br><span class="line">bower install jquery    ----安装jquery</span><br><span class="line">bower配置文件</span><br><span class="line">bower init    ----在当前目录生成bower.json配置文件（有点像package.json）</span><br></pre></td></tr></table></figure>
+<h2 id="4-1-bower-json-配置项目依赖"><a href="#4-1-bower-json-配置项目依赖" class="headerlink" title="4.1    bower.json:配置项目依赖"></a>4.1    bower.json:配置项目依赖</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br></pre></td><td class="code"><pre><span class="line">$ bower install jquery    ----在没有配置文件的情况下先安装jquery</span><br><span class="line">$ bower init </span><br><span class="line">$ cat bower.json</span><br><span class="line">&#123;</span><br><span class="line">  &quot;name&quot;: &quot;bower-in-action&quot;,</span><br><span class="line">  &quot;version&quot;: &quot;0.0.0&quot;,</span><br><span class="line">  &quot;authors&quot;: [</span><br><span class="line">    &quot;enter &lt;eli01linux@aliyun.com&gt;&quot;</span><br><span class="line">  ],</span><br><span class="line">  &quot;keywords&quot;: [</span><br><span class="line">    &quot;jquery&quot;</span><br><span class="line">  ],</span><br><span class="line">  &quot;license&quot;: &quot;MIT&quot;,</span><br><span class="line">  &quot;ignore&quot;: [</span><br><span class="line">    &quot;**/.*&quot;,</span><br><span class="line">    &quot;node_modules&quot;,</span><br><span class="line">    &quot;bower_components&quot;,</span><br><span class="line">    &quot;test&quot;,</span><br><span class="line">    &quot;tests&quot;</span><br><span class="line">  ],</span><br><span class="line">  &quot;dependencies&quot;: &#123;</span><br><span class="line">    &quot;jquery&quot;: &quot;~2.1.3&quot;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line">$ bower install jquery --save-dev    ----安装并配置到bower.json的devDependences</span><br><span class="line">&#123;</span><br><span class="line">    ...</span><br><span class="line">    ...</span><br><span class="line">  &quot;dependencies&quot;: &#123;</span><br><span class="line">    &quot;jquery&quot;: &quot;~2.1.3&quot;</span><br><span class="line">  &#125;,</span><br><span class="line">  &quot;devDependencies&quot;: &#123;</span><br><span class="line">    &quot;bootstrap&quot;: &quot;~3.3.2&quot;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line">$ bower install angular --save    ----  安装angular并配置到bower.json的dependences</span><br><span class="line">&#123;</span><br><span class="line">    ...</span><br><span class="line">    ...</span><br><span class="line">&quot;dependencies&quot;: &#123;</span><br><span class="line">    &quot;jquery&quot;: &quot;~2.1.3&quot;,</span><br><span class="line">    &quot;angular&quot;: &quot;~1.3.14&quot;</span><br><span class="line">  &#125;,</span><br><span class="line">  &quot;devDependencies&quot;: &#123;</span><br><span class="line">    &quot;bootstrap&quot;: &quot;~3.3.2&quot;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="4-2-bowerrc-bower本身相关的配置"><a href="#4-2-bowerrc-bower本身相关的配置" class="headerlink" title="4.2    .bowerrc:bower本身相关的配置"></a>4.2    .bowerrc:bower本身相关的配置</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line">$ vim .bowerrc</span><br><span class="line">&#123;</span><br><span class="line">    &quot;directory&quot;:&quot;bower_components&quot;,    ----组件或框架的安装目录</span><br><span class="line">    &quot;proxy&quot;:&quot;http://proxy.tencent.com:8080&quot;,    ----http代理</span><br><span class="line">    &quot;https-proxy&quot;:&quot;https://proxy.tencent.com:8080&quot;,    ----https代理</span><br><span class="line">    &quot;timeout&quot;:60000    ----根据自己的网络情况调整</span><br><span class="line">&#125;</span><br><span class="line">$ mkdir app &amp;&amp; cd app</span><br><span class="line">$ vim index.html</span><br><span class="line">&lt;!DOCTYPE html&gt;</span><br><span class="line">&lt;html lang=&quot;en&quot;&gt;</span><br><span class="line">&lt;head&gt;</span><br><span class="line">    &lt;meta charset=&quot;UTF-8&quot;&gt;</span><br><span class="line">    &lt;title&gt;Document&lt;/title&gt;</span><br><span class="line">&lt;/head&gt;</span><br><span class="line">&lt;body&gt;</span><br><span class="line">    &lt;!--结合grunt可以简化路径--&gt;</span><br><span class="line">    &lt;script src=&quot;../bower_components/jquery.min/index.js&quot;&gt;&lt;/script&gt;</span><br><span class="line">&lt;/body&gt;</span><br><span class="line">&lt;/html&gt;</span><br><span class="line">$ tree -L 2</span><br><span class="line">.</span><br><span class="line">├── app</span><br><span class="line">│   └── index.html</span><br><span class="line">├── bower_components</span><br><span class="line">│   ├── angular</span><br><span class="line">│   ├── bootstrap</span><br><span class="line">│   └── jquery</span><br><span class="line">└── bower.json</span><br></pre></td></tr></table></figure>
+<h1 id="第5章-Grunt实践"><a href="#第5章-Grunt实践" class="headerlink" title="第5章    Grunt实践"></a>第5章    Grunt实践</h1><h2 id="5-1-Grunt的task-target和options"><a href="#5-1-Grunt的task-target和options" class="headerlink" title="5.1    Grunt的task,target和options"></a>5.1    Grunt的task,target和options</h2><p><strong>命令：</strong></p>
+<ol>
+<li><code>grunt {task}:{target}</code>：执行某个<code>task</code>中的某个<code>target</code></li>
+<li><p><code>grunt {task}</code>：执行整个<code>task</code></p>
+<p><strong>配置文件：</strong></p>
+</li>
+</ol>
+<ul>
+<li><code>grunt.initConfig({Object})</code>：定义单个task</li>
+<li><code>grunt.registerTask({String}, {String}, {function})</code>或<code>grunt.registerTask({Array})</code>：组合已有的task集合为一个新的task<br><strong>案例：</strong>配合Yeoman</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br></pre></td><td class="code"><pre><span class="line">$ mkdir -p grunt-in-action/grunt-by-yo &amp;&amp; cd grunt-in-action/grunt-by-yo</span><br><span class="line">$ sudo npm install generator-webapp</span><br><span class="line">$ yo webapp grunt-by-yo</span><br><span class="line">$ tree -L 2</span><br><span class="line"></span><br><span class="line">$ brew install ruby</span><br><span class="line">$ gem sources --remove https://rubygems.org/</span><br><span class="line">$ gem sources -a https://ruby.taobao.org/</span><br><span class="line">$ gem install sass</span><br><span class="line">$ vim Gruntfile.js</span><br><span class="line">&apos;use strict&apos;;</span><br><span class="line">module.exports = function (grunt) &#123;</span><br><span class="line">  require(&apos;time-grunt&apos;)(grunt);</span><br><span class="line">  require(&apos;load-grunt-tasks&apos;)(grunt);</span><br><span class="line">  var config = &#123;</span><br><span class="line">    app: &apos;app&apos;,</span><br><span class="line">    dist: &apos;dist&apos;</span><br><span class="line">  &#125;;</span><br><span class="line">  grunt.initConfig(&#123;</span><br><span class="line">	config: config,</span><br><span class="line">	...</span><br><span class="line">	sass: &#123;</span><br><span class="line">      options: &#123;</span><br><span class="line">        loadPath: &apos;bower_components&apos;</span><br><span class="line">      &#125;,</span><br><span class="line">      dist: &#123;</span><br><span class="line">        files: [&#123;</span><br><span class="line">          expand: true,</span><br><span class="line">          cwd: &apos;&lt;%= config.app %&gt;/styles&apos;,</span><br><span class="line">          src: [&apos;*.&#123;scss,sass&#125;&apos;],</span><br><span class="line">          dest: &apos;dist/styles&apos;,</span><br><span class="line">          ext: &apos;.css&apos;</span><br><span class="line">        &#125;]</span><br><span class="line">      &#125;,</span><br><span class="line">      server: &#123;</span><br><span class="line">        files: [&#123;</span><br><span class="line">          expand: true,</span><br><span class="line">          cwd: &apos;&lt;%= config.app %&gt;/styles&apos;,</span><br><span class="line">          src: [&apos;*.&#123;scss,sass&#125;&apos;],</span><br><span class="line">          dest: &apos;.tmp/styles&apos;,</span><br><span class="line">          ext: &apos;.css&apos;</span><br><span class="line">        &#125;]</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;,</span><br><span class="line">  &#125;);</span><br><span class="line">  grunt.registerTask(&apos;serve&apos;, &apos;start the server and preview your app, --allow-remote for remote access&apos;, function (target) &#123;</span><br><span class="line">	...</span><br><span class="line">  &#125;);</span><br><span class="line">  ...</span><br><span class="line">&#125;;</span><br><span class="line">$ grunt sass</span><br></pre></td></tr></table></figure>
+<h2 id="5-2-从无到有构建grunt项目"><a href="#5-2-从无到有构建grunt项目" class="headerlink" title="5.2    从无到有构建grunt项目"></a>5.2    从无到有构建grunt项目</h2><p><code>多少年的老规矩了。        ----霸王别姬</code></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">$ mkdir -p grunt-empty/js</span><br><span class="line">$ cd grunt-empty</span><br><span class="line">$ js/index.js</span><br><span class="line">//生成package.json文件（npm包管理文件）</span><br><span class="line">$ npm init</span><br><span class="line">//安装Grunt和相关插件</span><br><span class="line">$ npm install grunt --save-dev</span><br><span class="line">$ vim package.json </span><br><span class="line">$ npm install load-grunt-tasks --save-dev</span><br><span class="line">$ npm install time-grunt --save-dev</span><br><span class="line">$ cat package.json </span><br><span class="line">//创建Gruntfile配置文件</span><br><span class="line">$ touch Gruntfile.js</span><br></pre></td></tr></table></figure>
+<h2 id="5-3-初识Grunt-Files处理方式"><a href="#5-3-初识Grunt-Files处理方式" class="headerlink" title="5.3    初识Grunt Files处理方式"></a>5.3    初识Grunt Files处理方式</h2><h3 id="5-3-1-初始化环境"><a href="#5-3-1-初始化环境" class="headerlink" title="5.3.1    初始化环境"></a>5.3.1    初始化环境</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">$ npm install grunt-contrib-copy --save-dev    ----grunt复制文件的工具</span><br><span class="line">$ npm install grunt-contrib-clean --save-dev    ----grunt删除文件的工具</span><br><span class="line">$ mkdir app &amp;&amp; mv js index.html app/    ----修正目录结构</span><br><span class="line">$ tree -L 2</span><br><span class="line">.</span><br><span class="line">├── app</span><br><span class="line">│   ├── index.html</span><br><span class="line">│   └── js</span><br><span class="line">├── Gruntfile.js</span><br><span class="line">├── node_modules</span><br><span class="line">│   ├── grunt</span><br><span class="line">│   ├── grunt-contrib-clean</span><br><span class="line">│   ├── grunt-contrib-copy</span><br><span class="line">│   ├── load-grunt-tasks</span><br><span class="line">│   └── time-grunt</span><br><span class="line">└── package.json</span><br></pre></td></tr></table></figure>
+<h3 id="5-3-2-编写Gruntfile"><a href="#5-3-2-编写Gruntfile" class="headerlink" title="5.3.2    编写Gruntfile"></a>5.3.2    编写Gruntfile</h3><p><strong>在target中定义简单的task：</strong>使用src、dest、files</p>
+<p><strong>案例1:自定义复制和清除任务</strong></p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br></pre></td><td class="code"><pre><span class="line">$ vim Gruntfile.js</span><br><span class="line"><span class="meta">'use strict'</span>;</span><br><span class="line"> </span><br><span class="line"><span class="built_in">module</span>.exports = <span class="function"><span class="keyword">function</span>(<span class="params">grunt</span>)</span>&#123;</span><br><span class="line">    <span class="built_in">require</span>(<span class="string">'load-grunt-tasks'</span>)(grunt);</span><br><span class="line">    <span class="built_in">require</span>(<span class="string">'time-grunt'</span>);</span><br><span class="line"> </span><br><span class="line">    <span class="comment">//配置路径</span></span><br><span class="line">    <span class="keyword">var</span> config = &#123;</span><br><span class="line">        app:<span class="string">'app'</span>,</span><br><span class="line">        dist:<span class="string">'dist'</span></span><br><span class="line">    &#125;</span><br><span class="line"> </span><br><span class="line">    grunt.initConfig(&#123;</span><br><span class="line">        config:config,</span><br><span class="line">        <span class="comment">//target</span></span><br><span class="line">        copy:&#123;</span><br><span class="line">            <span class="comment">//task</span></span><br><span class="line">            dist:&#123;</span><br><span class="line">                <span class="comment">/**</span><br><span class="line">                 * 源文件:可以引用config中的配置</span><br><span class="line">                 * @type &#123;string|array&#125;</span><br><span class="line">                 */</span></span><br><span class="line">                src:<span class="string">'&lt;%= config.app%&gt;/index.html'</span>,</span><br><span class="line">                <span class="comment">/**</span><br><span class="line">                 * 目标文件</span><br><span class="line">                 * @type &#123;string|array&#125;</span><br><span class="line">                 */</span></span><br><span class="line">                dest:<span class="string">'&lt;%= config.dist%&gt;/index.html'</span></span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;);</span><br><span class="line">&#125;</span><br><span class="line">$ grunt copy    ----测试copy这个task(文件复制)</span><br><span class="line">$ tree -L <span class="number">2</span></span><br><span class="line">.</span><br><span class="line">├── app</span><br><span class="line">│   ├── index.html</span><br><span class="line">│   └── js</span><br><span class="line">├── dist</span><br><span class="line">│   └── index.html</span><br><span class="line">├── Gruntfile.js</span><br><span class="line">├── node_modules</span><br><span class="line">│   ├── grunt</span><br><span class="line">│   ├── grunt-contrib-clean</span><br><span class="line">│   ├── grunt-contrib-copy</span><br><span class="line">│   ├── load-grunt-tasks</span><br><span class="line">│   └── time-grunt</span><br><span class="line">└── package.json</span><br><span class="line">$ grunt clean</span><br><span class="line">$ tree -L <span class="number">2</span></span><br><span class="line">.</span><br><span class="line">├── app</span><br><span class="line">│   ├── index.html</span><br><span class="line">│   └── js</span><br><span class="line">├── dist</span><br><span class="line">├── Gruntfile.js</span><br><span class="line">├── node_modules</span><br><span class="line">│   ├── grunt</span><br><span class="line">│   ├── grunt-contrib-clean</span><br><span class="line">│   ├── grunt-contrib-copy</span><br><span class="line">│   ├── load-grunt-tasks</span><br><span class="line">│   └── time-grunt</span><br><span class="line">└── package.json</span><br></pre></td></tr></table></figure>
+<p> <strong>案例2：在案例一的基础上细化任务</strong></p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line">$ vim Gruntfile.js</span><br><span class="line"><span class="meta">'use strict'</span>;</span><br><span class="line"> </span><br><span class="line"><span class="built_in">module</span>.exports = <span class="function"><span class="keyword">function</span>(<span class="params">grunt</span>)</span>&#123;</span><br><span class="line">    ...</span><br><span class="line">    grunt.initConfig(&#123;</span><br><span class="line">        config:config,</span><br><span class="line">        <span class="comment">//复制文件</span></span><br><span class="line">        copy:&#123;</span><br><span class="line">            <span class="comment">//复制html文件</span></span><br><span class="line">            dist_html:&#123;</span><br><span class="line">                <span class="comment">/**</span><br><span class="line">                 * 源文件:可以引用config中的配置</span><br><span class="line">                 * @type &#123;string|array&#125;</span><br><span class="line">                 */</span></span><br><span class="line">                src:<span class="string">'&lt;%= config.app %&gt;/index.html'</span>,</span><br><span class="line">                <span class="comment">/**</span><br><span class="line">                 * 目标文件</span><br><span class="line">                 * @type &#123;string|array&#125;</span><br><span class="line">                 */</span></span><br><span class="line">                dest:<span class="string">'&lt;%= config.dist %&gt;/index.html'</span></span><br><span class="line">            &#125;,</span><br><span class="line">            <span class="comment">//复制js文件</span></span><br><span class="line">            dist_js:&#123;</span><br><span class="line">                src:<span class="string">'&lt;%= config.app %&gt;/js/index.js'</span>,</span><br><span class="line">                dest:<span class="string">'&lt;%= config.dist %&gt;/js/index.js'</span></span><br><span class="line">            &#125;</span><br><span class="line">        &#125;,</span><br><span class="line">        <span class="comment">//清理文件</span></span><br><span class="line">        clean:&#123;</span><br><span class="line">          ...</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><strong>案例3：在案例一的基础上使用files增加复制的文件，比案例二更精简</strong><br><strong>files：</strong>成对设置原文件和目标文件（数组方式）</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br></pre></td><td class="code"><pre><span class="line">vim Gruntfile.js</span><br><span class="line"><span class="meta">'use strict'</span>;</span><br><span class="line"> </span><br><span class="line"><span class="built_in">module</span>.exports = <span class="function"><span class="keyword">function</span>(<span class="params">grunt</span>)</span>&#123;</span><br><span class="line">    ...</span><br><span class="line">    grunt.initConfig(&#123;</span><br><span class="line">        config:config,</span><br><span class="line">        <span class="comment">//复制文件</span></span><br><span class="line">        copy:&#123;</span><br><span class="line">            dist:&#123;</span><br><span class="line">                files:[</span><br><span class="line">                    &#123;</span><br><span class="line">                        src:<span class="string">'&lt;%= config.app %&gt;/index.html'</span>,</span><br><span class="line">                        dest:<span class="string">'&lt;%= config.dist %&gt;/index.html'</span></span><br><span class="line">                    &#125;,</span><br><span class="line">                    &#123;</span><br><span class="line">                        src:<span class="string">'&lt;%= config.app %&gt;/js/index.js'</span>,</span><br><span class="line">                        dest:<span class="string">'&lt;%= config.dist %&gt;/js/index.js'</span></span><br><span class="line">                    &#125;</span><br><span class="line">                ]</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;,</span><br><span class="line">        <span class="comment">//清理文件</span></span><br><span class="line">        clean:&#123;</span><br><span class="line">            ...</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="string">``</span><span class="string">` </span><br><span class="line"></span><br><span class="line">**案例4：在案例三的基础上使用&#123;目标文件：源文件&#125;的方式进一步改进，这种情况下不支持额外参数**</span><br><span class="line">&gt;**files：**成对设置原文件和目标文件（键值对方式）</span><br><span class="line"></span><br><span class="line">`</span><span class="string">``</span>js</span><br><span class="line">$ vim Gruntfile.js</span><br><span class="line"><span class="meta">'use strict'</span>;</span><br><span class="line"> </span><br><span class="line"><span class="built_in">module</span>.exports = <span class="function"><span class="keyword">function</span>(<span class="params">grunt</span>)</span>&#123;</span><br><span class="line">    ...</span><br><span class="line">    grunt.initConfig(&#123;</span><br><span class="line">        config:config,</span><br><span class="line">        <span class="comment">//复制文件</span></span><br><span class="line">        copy:&#123;</span><br><span class="line">            dist:&#123;</span><br><span class="line">                files:&#123;</span><br><span class="line">                    <span class="string">'&lt;%= config.dist %&gt;/index.html'</span>:<span class="string">'&lt;%= config.app %&gt;/index.html'</span>,</span><br><span class="line">                    <span class="string">'&lt;%= config.dist %&gt;/js/index.js'</span>:<span class="string">'&lt;%= config.app %&gt;/js/index.js'</span></span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;,</span><br><span class="line">        ...</span><br><span class="line">    &#125;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><strong>案例五：使用通配符和其它options简化案例四</strong></p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">$ vim Gruntfile.js</span><br><span class="line"><span class="meta"> 'use strict'</span>;</span><br><span class="line"><span class="built_in">module</span>.exports = <span class="function"><span class="keyword">function</span>(<span class="params">grunt</span>)</span>&#123;</span><br><span class="line">    ...</span><br><span class="line">    grunt.initConfig(&#123;</span><br><span class="line">       ...</span><br><span class="line">        <span class="comment">//清理文件</span></span><br><span class="line">        clean:&#123;</span><br><span class="line">            dist:&#123;</span><br><span class="line">                src:[</span><br><span class="line">	                <span class="comment">//*:任意字符（/除外）</span></span><br><span class="line">	                <span class="comment">//**:任意数量的任意字符</span></span><br><span class="line">	                <span class="comment">//!:取反</span></span><br><span class="line">                    <span class="string">'&lt;%= config.dist%&gt;/**/*'</span></span><br><span class="line">                ],</span><br><span class="line">                <span class="comment">//不删除文件夹</span></span><br><span class="line">                filter:<span class="string">'isFile'</span></span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>或</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">vim Gruntfile.js</span><br><span class="line"><span class="meta">'use strict'</span>;</span><br><span class="line"><span class="built_in">module</span>.exports = <span class="function"><span class="keyword">function</span>(<span class="params">grunt</span>)</span>&#123;</span><br><span class="line">    ...</span><br><span class="line">    grunt.initConfig(&#123;</span><br><span class="line">       ...</span><br><span class="line">        <span class="comment">//清理文件</span></span><br><span class="line">        clean:&#123;</span><br><span class="line">            dist:&#123;</span><br><span class="line">                src:[</span><br><span class="line">                    <span class="string">'&lt;%= config.dist%&gt;/**/*'</span></span><br><span class="line">                ],</span><br><span class="line">                <span class="comment">//不删除文件夹</span></span><br><span class="line">                filter:<span class="function"><span class="keyword">function</span>(<span class="params">filepath</span>)</span>&#123;</span><br><span class="line">                    <span class="keyword">return</span> !grunt.file.isDir(filepath)</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><strong>案例6：综合使用各种options</strong><br><strong>使用通配符和其它options</strong></p>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">序号</th>
+<th style="text-align:right">options</th>
+<th style="text-align:center">功能</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">filter</td>
+<td style="text-align:right">指定过滤方式(可以是函数)</td>
+</tr>
+<tr>
+<td style="text-align:left">dot[Boolean]</td>
+<td style="text-align:right">true代表命中以.开头的文件</td>
+</tr>
+<tr>
+<td style="text-align:left">matchBase[Boolean]</td>
+<td style="text-align:right">true代表只匹配路径的最后一级的名称</td>
+</tr>
+<tr>
+<td style="text-align:left">expand[Boolean]</td>
+<td style="text-align:right">true代表动态处理src到desc的文件映射</td>
+</tr>
+<tr>
+<td style="text-align:left">cwd[string]</td>
+<td style="text-align:right">源文件根目录</td>
+</tr>
+<tr>
+<td style="text-align:left">src[string]</td>
+<td style="text-align:right">匹配源文件</td>
+</tr>
+<tr>
+<td style="text-align:left">ext[string]</td>
+<td style="text-align:right">修改源文件的后缀</td>
+</tr>
+<tr>
+<td style="text-align:left">extDot[string]</td>
+<td style="text-align:right">从源文件的何处开始替换后缀（first\</td>
+<td style="text-align:center">last）</td>
+</tr>
+<tr>
+<td style="text-align:left">flatten[Boolean]</td>
+<td style="text-align:right">是否将中间各层目录去掉</td>
+</tr>
+<tr>
+<td style="text-align:left">rename[Function(dest,src)]</td>
+<td style="text-align:right">对生成的目标文件进一步进行处理</td>
+</tr>
+</tbody>
+</table>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br></pre></td><td class="code"><pre><span class="line">vim Gruntfile.js</span><br><span class="line"><span class="meta">'use strict'</span>;</span><br><span class="line"> </span><br><span class="line"><span class="built_in">module</span>.exports = <span class="function"><span class="keyword">function</span>(<span class="params">grunt</span>)</span>&#123;</span><br><span class="line">    <span class="built_in">require</span>(<span class="string">'load-grunt-tasks'</span>)(grunt);</span><br><span class="line">    <span class="built_in">require</span>(<span class="string">'time-grunt'</span>);</span><br><span class="line"> </span><br><span class="line">    <span class="comment">//配置路径</span></span><br><span class="line">    <span class="keyword">var</span> config = &#123;</span><br><span class="line">        app:<span class="string">'app'</span>,</span><br><span class="line">        dist:<span class="string">'dist'</span></span><br><span class="line">    &#125;</span><br><span class="line"> </span><br><span class="line">    grunt.initConfig(&#123;</span><br><span class="line">        config:config,</span><br><span class="line">        <span class="comment">//target</span></span><br><span class="line">        copy:&#123;</span><br><span class="line">            <span class="comment">//task</span></span><br><span class="line">            dist:&#123;</span><br><span class="line">                files:[</span><br><span class="line">                    &#123;</span><br><span class="line">                        expand:<span class="literal">true</span>,<span class="comment">//制定动态处理</span></span><br><span class="line">                        cwd:<span class="string">'&lt;%=config.app%&gt;/'</span>,<span class="comment">//在那个文件夹匹配</span></span><br><span class="line">                        src:<span class="string">'*.html'</span>,<span class="comment">//匹配文件</span></span><br><span class="line">                        dest:<span class="string">'&lt;%=config.dist%&gt;/'</span>,<span class="comment">//目标目录</span></span><br><span class="line">                        ext:<span class="string">'.min.html'</span>,<span class="comment">//修改文件后缀</span></span><br><span class="line">                        extDot:<span class="string">'last'</span>,<span class="comment">//first：第一个点后面都是后缀；last：最后一个点是后缀</span></span><br><span class="line">                        flatten:<span class="literal">true</span>,<span class="comment">//去除中间个层目录</span></span><br><span class="line">                        rename:<span class="function"><span class="keyword">function</span>(<span class="params">dest,src</span>)</span>&#123;</span><br><span class="line">                            <span class="keyword">return</span> dest+<span class="string">'js/'</span>+src;／／添加被移除的中间目录</span><br><span class="line">                        &#125;</span><br><span class="line">                    &#125;</span><br><span class="line">                ]</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;,</span><br><span class="line">         <span class="comment">//清理文件</span></span><br><span class="line">        clean:&#123;</span><br><span class="line">            dist:&#123;</span><br><span class="line">                src:[</span><br><span class="line">                    <span class="string">'&lt;%= config.dist%&gt;/**/*'</span></span><br><span class="line">                ],</span><br><span class="line">                <span class="comment">//不删除文件夹</span></span><br><span class="line">                filter:<span class="function"><span class="keyword">function</span>(<span class="params">filepath</span>)</span>&#123;</span><br><span class="line">                    <span class="keyword">return</span> !grunt.file.isDir(filepath)</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="5-4-5-5-剖析Grunt-Tasks-Grunt-serve"><a href="#5-4-5-5-剖析Grunt-Tasks-Grunt-serve" class="headerlink" title="5.4-5.5    剖析Grunt Tasks-Grunt serve"></a>5.4-5.5    剖析Grunt Tasks-Grunt serve</h2><p><code>我，胡汉三，又回来啦！        ----《闪闪的红星》</code><br><strong>hostname配置项：</strong>设置server的hostname(0.0.0.0代表允许外部访问)<br><strong>Grunt原子插件搜索</strong>：<a href="https://github.com/search?utf8=%E2%9C%93&amp;Q=GRUNT" target="_blank" rel="external">https://github.com/search?utf8=%E2%9C%93&amp;Q=GRUNT</a><br><strong>注意：</strong>参数配置</p>
+<ol>
+<li><strong>动态注入：</strong><code>grunt {task}:abc:def:ghi</code>：动态地在<code>{task}</code>的注册函数(<code>grunt.registerMultitask</code>除外)体内的<code>this</code>对象的<code>flags</code>对象中创建属性，相当于</li>
+</ol>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">module</span>.exports = <span class="function"><span class="keyword">function</span> (<span class="params">grunt</span>) </span>&#123;</span><br><span class="line">  grunt.registerTask(<span class="string">'&#123;task&#125;'</span>,<span class="string">'...'</span>,funtion(task)&#123;</span><br><span class="line">    <span class="keyword">this</span>.flags = &#123;</span><br><span class="line">        abc:<span class="literal">true</span>,</span><br><span class="line">        def:<span class="literal">true</span>,</span><br><span class="line">        ghi:<span class="literal">true</span></span><br><span class="line">    &#125;</span><br><span class="line">    ...</span><br><span class="line">  &#125;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ol>
+<li><strong>参数访问优先级</strong><br>以<code>connect:dist:keepalive</code>为例：</li>
+</ol>
+<ul>
+<li>connect task中的<code>this.flags.keepalive</code></li>
+<li><code>options.keepalive</code></li>
+</ul>
+<ol>
+<li><code>grunt.registerMultitask</code>：允许配置为多个task配置参数</li>
+<li>相关target的属性</li>
+</ol>
+<table>
+<thead>
+<tr>
+<th>options</th>
+<th>前提</th>
+<th>用途</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>server</code></td>
+<td>只能用于没有设置<code>dest</code>的<code>target</code></td>
+<td>用于设置需要进行清理的文件夹的路径</td>
+</tr>
+</tbody>
+</table>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">$ mkdir grunt-yo-webapp &amp;&amp; cd grunt-yo-webapp</span><br><span class="line">$ yo webapp grunt-yo-webapp</span><br><span class="line">//运行serve(组合task)：启动服务，运行项目并在浏览器中打开</span><br><span class="line">$ grunt serve</span><br><span class="line">//$ grunt serve --allow-remote	//允许远程访问</span><br></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br></pre></td><td class="code"><pre><span class="line">$ cat Gruntfile.js</span><br><span class="line"><span class="built_in">module</span>.exports = <span class="function"><span class="keyword">function</span> (<span class="params">grunt</span>) </span>&#123;</span><br><span class="line">  grunt.initConfig(&#123;</span><br><span class="line">    ...</span><br><span class="line">    <span class="comment">// Watches files for changes and runs tasks based on the changed files</span></span><br><span class="line">    watch: &#123;</span><br><span class="line">	  <span class="comment">/**</span><br><span class="line">	  *files:监听的文件</span><br><span class="line">	  *tasks:被监听的文件发生变化时执行的task</span><br><span class="line">	  */</span></span><br><span class="line">      bower: &#123;</span><br><span class="line">        files: [<span class="string">'bower.json'</span>],</span><br><span class="line">        tasks: [<span class="string">'wiredep'</span>]</span><br><span class="line">      &#125;,</span><br><span class="line">      js: &#123;</span><br><span class="line">        files: [<span class="string">'&lt;%= config.app %&gt;/scripts/&#123;,*/&#125;*.js'</span>],</span><br><span class="line">        tasks: [<span class="string">'jshint'</span>],<span class="comment">//检查代码规范</span></span><br><span class="line">        options: &#123;</span><br><span class="line">          livereload: <span class="literal">true</span><span class="comment">//代码发生变化则reload server</span></span><br><span class="line">        &#125;</span><br><span class="line">      &#125;,</span><br><span class="line">      jstest: &#123;</span><br><span class="line">        files: [<span class="string">'test/spec/&#123;,*/&#125;*.js'</span>],</span><br><span class="line">        tasks: [<span class="string">'test:watch'</span>]</span><br><span class="line">      &#125;,</span><br><span class="line">      gruntfile: &#123;</span><br><span class="line">        files: [<span class="string">'Gruntfile.js'</span>]</span><br><span class="line">      &#125;,</span><br><span class="line">      sass: &#123;</span><br><span class="line">        files: [<span class="string">'&lt;%= config.app %&gt;/styles/&#123;,*/&#125;*.&#123;scss,sass&#125;'</span>],</span><br><span class="line">        tasks: [<span class="string">'sass:server'</span>, <span class="string">'autoprefixer'</span>]</span><br><span class="line">      &#125;,</span><br><span class="line">      styles: &#123;</span><br><span class="line">        files: [<span class="string">'&lt;%= config.app %&gt;/styles/&#123;,*/&#125;*.css'</span>],</span><br><span class="line">        tasks: [<span class="string">'newer:copy:styles'</span>, <span class="string">'autoprefixer'</span>]<span class="comment">//使用grunt-newer插件，执行copy:styles这个target时只针对最新修改的文件进行</span></span><br><span class="line">      &#125;,</span><br><span class="line">      livereload: &#123;</span><br><span class="line">        options: &#123;</span><br><span class="line">          livereload: <span class="string">'&lt;%= connect.options.livereload %&gt;'</span></span><br><span class="line">        &#125;,</span><br><span class="line">        <span class="comment">//以下文件发生变化时，触发load</span></span><br><span class="line">        files: [</span><br><span class="line">          <span class="string">'&lt;%= config.app %&gt;/&#123;,*/&#125;*.html'</span>,</span><br><span class="line">          <span class="string">'.tmp/styles/&#123;,*/&#125;*.css'</span>,</span><br><span class="line">          <span class="string">'&lt;%= config.app %&gt;/images/&#123;,*/&#125;*'</span></span><br><span class="line">        ]</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;,</span><br><span class="line">    connect: &#123;</span><br><span class="line">      options: &#123;</span><br><span class="line">        port: <span class="number">9000</span>,</span><br><span class="line">        open: <span class="literal">true</span>,</span><br><span class="line">        livereload: <span class="number">35729</span>,<span class="comment">//livereload占用的端口号</span></span><br><span class="line">        <span class="comment">// Change this to '0.0.0.0' to access the server from outside</span></span><br><span class="line">        hostname: <span class="string">'localhost'</span><span class="comment">//web项目hostname配置项</span></span><br><span class="line">      &#125;,</span><br><span class="line">      <span class="comment">//启动web server</span></span><br><span class="line">      livereload: &#123;</span><br><span class="line">        options: &#123;</span><br><span class="line">	      <span class="comment">/**</span><br><span class="line">	      *type:&#123;array|function&#125;</span><br><span class="line">	      *return &#123;array&#125;</span><br><span class="line">	      */</span></span><br><span class="line">          middleware: <span class="function"><span class="keyword">function</span>(<span class="params">connect</span>) </span>&#123;</span><br><span class="line">            <span class="keyword">return</span> [</span><br><span class="line">              connect.static(<span class="string">'.tmp'</span>),<span class="comment">//根路径匹配的文件夹</span></span><br><span class="line">              connect().use(<span class="string">'/bower_components'</span>, connect.static(<span class="string">'./bower_components'</span>)),<span class="comment">//为bower_components指定路径匹配</span></span><br><span class="line">              connect.static(config.app)<span class="comment">//根路径匹配的文件夹</span></span><br><span class="line">            ];</span><br><span class="line">          &#125;</span><br><span class="line">        &#125;</span><br><span class="line">      &#125;,</span><br><span class="line">      ...</span><br><span class="line">      dist: &#123;</span><br><span class="line">        options: &#123;</span><br><span class="line">          base: <span class="string">'&lt;%= config.dist %&gt;'</span>,</span><br><span class="line">          livereload: <span class="literal">false</span>,</span><br><span class="line">          keepalive:<span class="literal">true</span><span class="comment">//打开网页后是否关闭server</span></span><br><span class="line">        &#125;</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;,</span><br><span class="line">    ...</span><br><span class="line">    <span class="comment">// Automatically inject Bower components into the HTML file</span></span><br><span class="line">    wiredep: &#123;</span><br><span class="line">      app: &#123;</span><br><span class="line">        ignorePath: <span class="regexp">/^\/|\.\.\//</span>,<span class="comment">//去掉部分路径（因为当前的相对路径在经过其它task近一步处理后会发生变化，即被注入文件和bower component会在同一级目录下）</span></span><br><span class="line">        src: [<span class="string">'&lt;%= config.app %&gt;/index.html'</span>],<span class="comment">//要注入到哪些html 文件</span></span><br><span class="line">        exclude: [<span class="string">'bower_components/bootstrap-sass-official/assets/javascripts/bootstrap.js'</span>] <span class="comment">//在注入的文件中排除部分文件</span></span><br><span class="line">      &#125;,</span><br><span class="line">      sass: &#123;</span><br><span class="line">        src: [<span class="string">'&lt;%= config.app %&gt;/styles/&#123;,*/&#125;*.&#123;scss,sass&#125;'</span>],<span class="comment">//注入到哪些sass文件</span></span><br><span class="line">        ignorePath: <span class="regexp">/(\.\.\/)&#123;1,2&#125;bower_components\//</span></span><br><span class="line">      &#125;</span><br><span class="line">    &#125;,</span><br><span class="line">    ...</span><br><span class="line">    <span class="comment">//serve task</span></span><br><span class="line">	grunt.registerTask(<span class="string">'serve'</span>, <span class="string">'start the server and preview your app, -	-allow-remote for remote access'</span>, <span class="function"><span class="keyword">function</span> (<span class="params">target</span>) </span>&#123;</span><br><span class="line">		<span class="comment">//target:该组合task当前正在执行的的task成员</span></span><br><span class="line">	    <span class="keyword">if</span> (grunt.option(<span class="string">'allow-remote'</span>)) &#123;</span><br><span class="line">		  <span class="comment">//如果option中配置了allow-remote</span></span><br><span class="line">	      grunt.config.set(<span class="string">'connect.options.hostname'</span>, <span class="string">'0.0.0.0'</span>);</span><br><span class="line">	    &#125;</span><br><span class="line">	    <span class="keyword">if</span> (target === <span class="string">'dist'</span>) &#123;</span><br><span class="line">		  <span class="comment">//当执行dist这个task成员的时候</span></span><br><span class="line">	      <span class="keyword">return</span> grunt.task.run([<span class="string">'build'</span>, <span class="string">'connect:dist:keepalive'</span>]);<span class="comment">//测试完成后server不退出（在connect这个task中的dist中寻找keepalivez参数）</span></span><br><span class="line">	    &#125;	</span><br><span class="line">	    grunt.task.run([</span><br><span class="line">	      <span class="string">'clean:server'</span>,<span class="comment">//清除server运行时产生的文件</span></span><br><span class="line">	      <span class="string">'wiredep'</span>,<span class="comment">//自动将Bower components注入到html</span></span><br><span class="line">	      <span class="string">'concurrent:server'</span>,<span class="comment">//并行处理不依赖其它task的task(编译sass文件并将编译好的css放在.tmp/style文件夹下)</span></span><br><span class="line">	      <span class="string">'autoprefixer'</span>,<span class="comment">//为css文件添加浏览器前缀</span></span><br><span class="line">	      <span class="string">'connect:livereload'</span>,<span class="comment">//在本地启动web server</span></span><br><span class="line">	      <span class="string">'watch'</span></span><br><span class="line">	    ]);</span><br><span class="line">	  &#125;);</span><br><span class="line">  &#125;);</span><br></pre></td></tr></table></figure>
+<h2 id="5-6-剖析Grunt-Tasks-grunt-test"><a href="#5-6-剖析Grunt-Tasks-grunt-test" class="headerlink" title="5.6    剖析Grunt Tasks-grunt test"></a>5.6    剖析Grunt Tasks-grunt test</h2><h2 id="5-7-剖析Grunt-Tasks-grunt-build"><a href="#5-7-剖析Grunt-Tasks-grunt-build" class="headerlink" title="5.7    剖析Grunt Tasks-grunt build"></a>5.7    剖析Grunt Tasks-grunt build</h2><h2 id="5-8-剖析Grunt-Tasks-grunt-build"><a href="#5-8-剖析Grunt-Tasks-grunt-build" class="headerlink" title="5.8    剖析Grunt Tasks-grunt build"></a>5.8    剖析Grunt Tasks-grunt build</h2><h2 id="5-9-剖析Grunt-Tasks-grunt-build"><a href="#5-9-剖析Grunt-Tasks-grunt-build" class="headerlink" title="5.9    剖析Grunt Tasks-grunt build"></a>5.9    剖析Grunt Tasks-grunt build</h2>
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/grunt/" rel="tag">#grunt</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2015/03/16/慕课网/imooc_svg/" rel="next" title="svg 入门">
+                <i class="fa fa-chevron-left"></i> svg 入门
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2015/05/02/慕课网/imooc_FIS初级教程/" rel="prev" title="FIS初级教程">
+                FIS初级教程 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2015/05/02/慕课网/imooc_Grunt-beginner前端自动化工具/"
+           data-title="Grunt-beginner前端自动化工具" data-url="http://laputa-er.github.io/2015/05/02/慕课网/imooc_Grunt-beginner前端自动化工具/">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.gif"
+               alt="Sean" />
+          <p class="site-author-name" itemprop="name">Sean</p>
+          <p class="site-description motion-element" itemprop="description">整理了一批过去一段时间ios相关的笔记，其它的笔记也整理下？源码分享出来？再说吧...反正也只有自己会看吧...</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">200</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">22</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">31</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#第一章-课程介绍"><span class="nav-text">第一章        课程介绍</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-1-课程目标和学习内容介绍"><span class="nav-text">1.1    课程目标和学习内容介绍</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#第2章-准备工作"><span class="nav-text">第2章        准备工作</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#2-1-nodejs简介"><span class="nav-text">2.1        nodejs简介</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-2-Yeoman-Bower-Grunt简介及安装"><span class="nav-text">2.2        Yeoman,Bower,Grunt简介及安装</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#第3章-Yeoman实践"><span class="nav-text">第3章        Yeoman实践</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#3-1-Yeoman实践"><span class="nav-text">3.1        Yeoman实践</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#第4章-Bower实践"><span class="nav-text">第4章    Bower实践</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#4-1-bower-json-配置项目依赖"><span class="nav-text">4.1    bower.json:配置项目依赖</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-2-bowerrc-bower本身相关的配置"><span class="nav-text">4.2    .bowerrc:bower本身相关的配置</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#第5章-Grunt实践"><span class="nav-text">第5章    Grunt实践</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#5-1-Grunt的task-target和options"><span class="nav-text">5.1    Grunt的task,target和options</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5-2-从无到有构建grunt项目"><span class="nav-text">5.2    从无到有构建grunt项目</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5-3-初识Grunt-Files处理方式"><span class="nav-text">5.3    初识Grunt Files处理方式</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#5-3-1-初始化环境"><span class="nav-text">5.3.1    初始化环境</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-3-2-编写Gruntfile"><span class="nav-text">5.3.2    编写Gruntfile</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5-4-5-5-剖析Grunt-Tasks-Grunt-serve"><span class="nav-text">5.4-5.5    剖析Grunt Tasks-Grunt serve</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5-6-剖析Grunt-Tasks-grunt-test"><span class="nav-text">5.6    剖析Grunt Tasks-grunt test</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5-7-剖析Grunt-Tasks-grunt-build"><span class="nav-text">5.7    剖析Grunt Tasks-grunt build</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5-8-剖析Grunt-Tasks-grunt-build"><span class="nav-text">5.8    剖析Grunt Tasks-grunt build</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5-9-剖析Grunt-Tasks-grunt-build"><span class="nav-text">5.9    剖析Grunt Tasks-grunt build</span></a></li></ol></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Sean</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"lapuda-er"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+    <script src="/vendors/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
+    <script src="/js/src/hook-duoshuo.js"></script>
+  
+
+
+
+
+
+
+  
+  
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length == 0) {
+       search_path = "search.xml";
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    function proceedsearch() {
+      $("body").append('<div class="popoverlay">').css('overflow', 'hidden');
+      $('.popup').toggle();
+
+    }
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+    'use strict';
+    $.ajax({
+        url: path,
+        dataType: "xml",
+        async: true,
+        success: function( xmlResponse ) {
+            // get the contents from search data
+            isfetched = true;
+            $('.popup').detach().appendTo('.header-inner');
+            var datas = $( "entry", xmlResponse ).map(function() {
+                return {
+                    title: $( "title", this ).text(),
+                    content: $("content",this).text(),
+                    url: $( "url" , this).text()
+                };
+            }).get();
+            var $input = document.getElementById(search_id);
+            var $resultContent = document.getElementById(content_id);
+            $input.addEventListener('input', function(){
+                var matchcounts = 0;
+                var str='<ul class=\"search-result-list\">';
+                var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+                $resultContent.innerHTML = "";
+                if (this.value.trim().length > 1) {
+                // perform local searching
+                datas.forEach(function(data) {
+                    var isMatch = true;
+                    var content_index = [];
+                    var data_title = data.title.trim().toLowerCase();
+                    var data_content = data.content.trim().replace(/<[^>]+>/g,"").toLowerCase();
+                    var data_url = data.url;
+                    var index_title = -1;
+                    var index_content = -1;
+                    var first_occur = -1;
+                    // only match artiles with not empty titles and contents
+                    if(data_title != '' && data_content != '') {
+                        keywords.forEach(function(keyword, i) {
+                            index_title = data_title.indexOf(keyword);
+                            index_content = data_content.indexOf(keyword);
+                            if( index_title < 0 && index_content < 0 ){
+                                isMatch = false;
+                            } else {
+                                if (index_content < 0) {
+                                    index_content = 0;
+                                }
+                                if (i == 0) {
+                                    first_occur = index_content;
+                                }
+                            }
+                        });
+                    }
+                    // show search results
+                    if (isMatch) {
+                        matchcounts += 1;
+                        str += "<li><a href='"+ data_url +"' class='search-result-title'>"+ data_title +"</a>";
+                        var content = data.content.trim().replace(/<[^>]+>/g,"");
+                        if (first_occur >= 0) {
+                            // cut out 100 characters
+                            var start = first_occur - 20;
+                            var end = first_occur + 80;
+                            if(start < 0){
+                                start = 0;
+                            }
+                            if(start == 0){
+                                end = 50;
+                            }
+                            if(end > content.length){
+                                end = content.length;
+                            }
+                            var match_content = content.substring(start, end);
+                            // highlight all keywords
+                            keywords.forEach(function(keyword){
+                                var regS = new RegExp(keyword, "gi");
+                                match_content = match_content.replace(regS, "<b class=\"search-keyword\">"+keyword+"</b>");
+                            });
+
+                            str += "<p class=\"search-result\">" + match_content +"...</p>"
+                        }
+                        str += "</li>";
+                    }
+                })};
+                str += "</ul>";
+                if (matchcounts == 0) { str = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>' }
+                if (keywords == "") { str = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>' }
+                $resultContent.innerHTML = str;
+            });
+            proceedsearch();
+        }
+    });}
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched == false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+
+    });
+
+    $('.popup-btn-close').click(function(e){
+      $('.popup').hide();
+      $(".popoverlay").remove();
+      $('body').css('overflow', '');
+    });
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+  </script>
+
+
+  
+
+  
+
+  
+
+</body>
+</html>

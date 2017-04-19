@@ -1,0 +1,828 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1" />
+
+
+
+
+
+
+<meta name="description" content="3.1    iOS API视频的播放和录制
+注意：MPMoviePlayerViewController在iOS9中过时了
+
+3.1.1    播放视频
+12345678910111213import UIKitimport MediaPlayerclass ViewController: UIViewController &amp;#123;        var pc:MPMoviePlayerVi">
+<meta property="og:type" content="article">
+<meta property="og:title" content="3 音频视频处理">
+<meta property="og:url" content="http://laputa-er.github.io/2016/05/14/极客学院/JK_IOS高级_3  音频视频处理/index.html">
+<meta property="og:site_name" content="Sean">
+<meta property="og:description" content="3.1    iOS API视频的播放和录制
+注意：MPMoviePlayerViewController在iOS9中过时了
+
+3.1.1    播放视频
+12345678910111213import UIKitimport MediaPlayerclass ViewController: UIViewController &amp;#123;        var pc:MPMoviePlayerVi">
+<meta property="og:image" content="http://o6ul1xz4z.bkt.clouddn.com/img/JK_IOS_video1.gif">
+<meta property="og:updated_time" content="2016-09-19T12:06:04.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="3 音频视频处理">
+<meta name="twitter:description" content="3.1    iOS API视频的播放和录制
+注意：MPMoviePlayerViewController在iOS9中过时了
+
+3.1.1    播放视频
+12345678910111213import UIKitimport MediaPlayerclass ViewController: UIViewController &amp;#123;        var pc:MPMoviePlayerVi">
+<meta name="twitter:image" content="http://o6ul1xz4z.bkt.clouddn.com/img/JK_IOS_video1.gif">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 0,
+      author: '博主'
+    }
+  };
+</script>
+
+
+
+
+  <link rel="canonical" href="http://laputa-er.github.io/2016/05/14/极客学院/JK_IOS高级_3  音频视频处理/"/>
+
+  <title> 3 音频视频处理 | Sean </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//hm.baidu.com/hm.js?898688f51c5a3d6b37dd23e04441e5bd";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">Sean</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">笔记分享</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup">
+ <span class="search-icon fa fa-search"></span>
+ <input type="text" id="local-search-input">
+ <div id="local-search-result"></div>
+ <span class="popup-btn-close">close</span>
+</div>
+
+
+    </div>
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                3 音频视频处理
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-05-14T09:03:52+08:00" content="2016-05-14">
+              2016-05-14
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/极客学院-ios高级/" itemprop="url" rel="index">
+                    <span itemprop="name">极客学院_ios高级</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/05/14/极客学院/JK_IOS高级_3  音频视频处理/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/05/14/极客学院/JK_IOS高级_3  音频视频处理/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="3-1-iOS-API视频的播放和录制"><a href="#3-1-iOS-API视频的播放和录制" class="headerlink" title="3.1    iOS API视频的播放和录制"></a>3.1    iOS API视频的播放和录制</h2><blockquote>
+<p><strong>注意：</strong><code>MPMoviePlayerViewController</code>在<code>iOS9中</code>过时了</p>
+</blockquote>
+<h3 id="3-1-1-播放视频"><a href="#3-1-1-播放视频" class="headerlink" title="3.1.1    播放视频"></a>3.1.1    播放视频</h3><p><img src="http://o6ul1xz4z.bkt.clouddn.com/img/JK_IOS_video1.gif" alt="Alt text|200x350"></p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> UIKit</span><br><span class="line"><span class="keyword">import</span> MediaPlayer</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">ViewController</span>: <span class="title">UIViewController</span> </span>&#123;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">var</span> pc:<span class="type">MPMoviePlayerViewController</span>!</span><br><span class="line"></span><br><span class="line">    <span class="meta">@IBAction</span> <span class="function"><span class="keyword">func</span> <span class="title">playVideoBtnClicked</span><span class="params">(sender: AnyObject)</span></span> &#123;</span><br><span class="line">        </span><br><span class="line">        pc = <span class="type">MPMoviePlayerViewController</span>(contentURL: <span class="type">NSBundle</span>.mainBundle().<span class="type">URLForResource</span>(<span class="string">"video"</span>, withExtension: <span class="string">"mp4"</span>))</span><br><span class="line">        presentViewController(pc, animated: <span class="literal">true</span>, completion: <span class="literal">nil</span>)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="3-1-2-录制视频"><a href="#3-1-2-录制视频" class="headerlink" title="3.1.2    录制视频"></a>3.1.2    录制视频</h3><blockquote>
+<p><strong>注意：</strong> xcode 的虚拟机不支持使用相机，模拟使用相机只能选择真机！<br><strong>技巧：</strong>调试时可以通过<code>window-&gt;Devices</code>，在设备管理面板选择要管理的设备进行操作（比如截屏）。</p>
+</blockquote>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> UIKit</span><br><span class="line"><span class="keyword">import</span> MobileCoreServices<span class="comment">// 录制视频使用到的库</span></span><br><span class="line"><span class="keyword">import</span> MediaPlayer<span class="comment">// 播放视频用到的库</span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">ViewController</span>: <span class="title">UIViewController</span>, <span class="title">UIImagePickerControllerDelegate</span>, <span class="title">UINavigationControllerDelegate</span> </span>&#123;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">// 图片选择器</span></span><br><span class="line">    <span class="keyword">var</span> picker:<span class="type">UIImagePickerController</span>!<span class="comment">// 可以选择从图库或摄像头中选择图片或视频（源为摄像头意味着拍照或视频）</span></span><br><span class="line">    </span><br><span class="line">    <span class="keyword">var</span> videoUrl:<span class="type">NSURL</span>?</span><br><span class="line">    <span class="keyword">var</span> player:<span class="type">MPMoviePlayerViewController</span>!</span><br><span class="line">    </span><br><span class="line">    <span class="comment">// 开始录制</span></span><br><span class="line">    <span class="meta">@IBAction</span> <span class="function"><span class="keyword">func</span> <span class="title">recVideoBtnClicked</span><span class="params">(sender: AnyObject)</span></span> &#123;</span><br><span class="line">        picker = <span class="type">UIImagePickerController</span>()</span><br><span class="line">        picker.mediaTypes = [kUTTypeMovie <span class="keyword">as</span> <span class="type">String</span>]</span><br><span class="line">        picker.sourceType = <span class="type">UIImagePickerControllerSourceType</span>.<span class="type">Camera</span><span class="comment">// 设置源通过摄像头</span></span><br><span class="line">        picker.cameraCaptureMode = <span class="type">UIImagePickerControllerCameraCaptureMode</span>.<span class="type">Video</span><span class="comment">// 设置摄像头为录制视频模式</span></span><br><span class="line">        picker.delegate = <span class="keyword">self</span></span><br><span class="line">        presentViewController(picker, animated: <span class="literal">true</span>, completion: <span class="literal">nil</span>)</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">// 开始播放</span></span><br><span class="line">    <span class="meta">@IBAction</span> <span class="function"><span class="keyword">func</span> <span class="title">playVideoBtnClicked</span><span class="params">(sender: AnyObject)</span></span> &#123;</span><br><span class="line">        <span class="keyword">if</span> <span class="keyword">let</span> url = videoUrl &#123;</span><br><span class="line">            player = <span class="type">MPMoviePlayerViewController</span>(contentURL: url)</span><br><span class="line">            presentViewController(player, animated: <span class="literal">true</span>, completion: <span class="literal">nil</span>)</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">// 选中了视频时（录制完成后）被调用</span></span><br><span class="line">    <span class="function"><span class="keyword">func</span> <span class="title">imagePickerController</span><span class="params">(picker: UIImagePickerController, didFinishPickingImage image: UIImage, editingInfo: [String : AnyObject]?)</span></span> &#123;</span><br><span class="line">        <span class="comment">// 获取录制好的视频资源的url地址</span></span><br><span class="line">        videoUrl = editingInfo![<span class="type">UIImagePickerControllerMediaURL</span>] <span class="keyword">as</span>? <span class="type">NSURL</span></span><br><span class="line">        <span class="comment">// 关闭录制视频的视图控制器</span></span><br><span class="line">        picker.dismissViewControllerAnimated(<span class="literal">true</span>, completion: <span class="literal">nil</span>)</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">// 取消录制视频时被调用</span></span><br><span class="line">    <span class="function"><span class="keyword">func</span> <span class="title">imagePickerControllerDidCancel</span><span class="params">(picker: UIImagePickerController)</span></span> &#123;</span><br><span class="line">        <span class="comment">// 关闭录制视频的视图控制器</span></span><br><span class="line">        picker.dismissViewControllerAnimated(<span class="literal">true</span>, completion: <span class="literal">nil</span>)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="3-2-iOS音频相关-API-的使用"><a href="#3-2-iOS音频相关-API-的使用" class="headerlink" title="3.2    iOS音频相关 API 的使用"></a>3.2    iOS音频相关 API 的使用</h2><h3 id="3-2-1-播放声音"><a href="#3-2-1-播放声音" class="headerlink" title="3.2.1    播放声音"></a>3.2.1    播放声音</h3><blockquote>
+<p><strong>说明：</strong>给出两种方式</p>
+<ul>
+<li>使用<code>AVAudioPlayer</code>播放音乐文件</li>
+<li>使用<code>MediaPlayer</code>播放音乐</li>
+</ul>
+</blockquote>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> UIKit</span><br><span class="line"><span class="keyword">import</span> AVFoundation</span><br><span class="line"><span class="keyword">import</span> MediaPlayer</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">ViewController</span>: <span class="title">UIViewController</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">var</span> aPlayer:<span class="type">AVAudioPlayer</span>!</span><br><span class="line">    <span class="comment">// 播放</span></span><br><span class="line">    <span class="meta">@IBAction</span> <span class="function"><span class="keyword">func</span> <span class="title">playBtnClicked</span><span class="params">(sender: AnyObject)</span></span> &#123;</span><br><span class="line">        aPlayer.play()</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">// 暂定</span></span><br><span class="line">    <span class="meta">@IBAction</span> <span class="function"><span class="keyword">func</span> <span class="title">pauseBtnClicked</span><span class="params">(sender: AnyObject)</span></span> &#123;</span><br><span class="line">        aPlayer.pause()<span class="comment">// 暂停后音乐仍然处在准备播放的状态</span></span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">// 停止</span></span><br><span class="line">    <span class="meta">@IBAction</span> <span class="function"><span class="keyword">func</span> <span class="title">stopBtnClicked</span><span class="params">(sender: AnyObject)</span></span> &#123;</span><br><span class="line">        aPlayer.stop()<span class="comment">// 通知后音乐不会处在准备播放状态，但会记住停止时的位置</span></span><br><span class="line">        aPlayer.currentTime = <span class="number">0</span></span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">// 另一种方式播放音乐</span></span><br><span class="line">    <span class="meta">@IBAction</span> <span class="function"><span class="keyword">func</span> <span class="title">playSongBtnClicked</span><span class="params">(sender: AnyObject)</span></span> &#123;</span><br><span class="line">        <span class="comment">// 初始化播放控制器</span></span><br><span class="line">        <span class="keyword">let</span> p = <span class="type">MPMoviePlayerViewController</span>(contentURL: <span class="type">NSURL</span>(fileURLWithPath: <span class="type">NSBundle</span>.mainBundle().pathForResource(<span class="string">"sound"</span>, ofType: <span class="string">"mp3"</span>)!))</span><br><span class="line">        <span class="comment">// 开始播放</span></span><br><span class="line">        presentViewController(p, animated: <span class="literal">true</span>, completion: <span class="literal">nil</span>)</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">override</span> <span class="function"><span class="keyword">func</span> <span class="title">viewDidLoad</span><span class="params">()</span></span> &#123;</span><br><span class="line">        <span class="keyword">super</span>.viewDidLoad()</span><br><span class="line">        <span class="comment">// Do any additional setup after loading the view, typically from a nib.</span></span><br><span class="line">        <span class="keyword">do</span> &#123;</span><br><span class="line">            <span class="comment">// 初始化 AVAudioPlayer</span></span><br><span class="line">            aPlayer = <span class="keyword">try</span> <span class="type">AVAudioPlayer</span>(contentsOfURL: <span class="type">NSURL</span>(fileURLWithPath: <span class="type">NSBundle</span>.mainBundle().pathForResource(<span class="string">"sound"</span>, ofType: <span class="string">"mp3"</span>)!))</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">catch</span> &#123;</span><br><span class="line">            <span class="built_in">print</span>(<span class="string">"failed"</span>)</span><br><span class="line">        &#125;       </span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="3-2-2-播放乐库音乐"><a href="#3-2-2-播放乐库音乐" class="headerlink" title="3.2.2    播放乐库音乐"></a>3.2.2    播放乐库音乐</h3><blockquote>
+<p><strong>说明：</strong>要点如下</p>
+<ol>
+<li>（<code>ViewController</code>）采纳<code>MPMediaPickerControllerDelegate</code>协议</li>
+<li>初始化媒体选择控制器（<code>MPMediaPickerController</code>）和音乐播放控制器（<code>MPMusicPlayerController</code>）</li>
+<li>实现采纳协议的相关方法</li>
+</ol>
+<p><strong>注意：</strong>在虚拟机中是不能使用音乐库的</p>
+</blockquote>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> UIKit</span><br><span class="line"><span class="keyword">import</span> MediaPlayer</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">ViewController</span>: <span class="title">UIViewController</span>, <span class="title">MPMediaPickerControllerDelegate</span> </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> picker:<span class="type">MPMediaPickerController</span>!<span class="comment">// 选择音乐控制器</span></span><br><span class="line">    <span class="keyword">var</span> player:<span class="type">MPMusicPlayerController</span>!<span class="comment">// 播放音乐控制器</span></span><br><span class="line">    </span><br><span class="line">    <span class="comment">// 选择音乐</span></span><br><span class="line">    <span class="meta">@IBAction</span> <span class="function"><span class="keyword">func</span> <span class="title">btnSelectMusicClicked</span><span class="params">(sender: AnyObject)</span></span> &#123;</span><br><span class="line">        presentViewController(picker, animated: <span class="literal">true</span>, completion: <span class="literal">nil</span>)</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">// 选择音乐完成后调用</span></span><br><span class="line">    <span class="function"><span class="keyword">func</span> <span class="title">mediaPicker</span><span class="params">(mediaPicker: MPMediaPickerController, didPickMediaItems mediaItemCollection: MPMediaItemCollection)</span></span> &#123;</span><br><span class="line">        <span class="comment">// 关闭视频选择控制器</span></span><br><span class="line">        mediaPicker.dismissViewControllerAnimated(<span class="literal">true</span>, completion: <span class="literal">nil</span>)</span><br><span class="line">        <span class="comment">// 将选中的音乐加入到播放列表</span></span><br><span class="line">        player.setQueueWithItemCollection(mediaItemCollection)</span><br><span class="line">        <span class="comment">// 开始播放</span></span><br><span class="line">        player.play()</span><br><span class="line">        </span><br><span class="line">        <span class="comment">// 获取选中的第一首歌的名字</span></span><br><span class="line">        <span class="keyword">let</span> firstName:<span class="type">AnyObject</span> = mediaItemCollection.items[<span class="number">0</span>].valueForProperty(<span class="type">MPMediaItemPropertyTitle</span>)!</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">"\(firstName)"</span>)</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">// 取消播放时调用</span></span><br><span class="line">    <span class="function"><span class="keyword">func</span> <span class="title">mediaPickerDidCancel</span><span class="params">(mediaPicker: MPMediaPickerController)</span></span> &#123;</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">"Cancel"</span>)</span><br><span class="line">        mediaPicker.dismissViewControllerAnimated(<span class="literal">true</span>, completion: <span class="literal">nil</span>)</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">override</span> <span class="function"><span class="keyword">func</span> <span class="title">viewDidLoad</span><span class="params">()</span></span> &#123;</span><br><span class="line">        <span class="keyword">super</span>.viewDidLoad()</span><br><span class="line"></span><br><span class="line">        picker = <span class="type">MPMediaPickerController</span>(mediaTypes: <span class="type">MPMediaType</span>.<span class="type">Music</span>)</span><br><span class="line">        picker.allowsPickingMultipleItems = <span class="literal">true</span><span class="comment">// 可以选择多个</span></span><br><span class="line">        picker.delegate = <span class="keyword">self</span></span><br><span class="line">        </span><br><span class="line">        player = <span class="type">MPMusicPlayerController</span>.systemMusicPlayer()<span class="comment">// 创建全局音乐播放器(程序退出后仍可以播放)</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="3-2-3-录制声音"><a href="#3-2-3-录制声音" class="headerlink" title="3.2.3    录制声音"></a>3.2.3    录制声音</h3><blockquote>
+<p><strong>疑问：</strong>下面程序找到的<code>Documents</code>文件夹路径不可用，竟然在<code>Library</code>下面，但下面其实没有<code>Documents</code></p>
+</blockquote>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#file:///Users/tonyearth/Library/Developer/CoreSimulator/Devices/5A05DBF7-F5EC-4B5B-ABF0-EA396DA417DB/data/Containers/Data/Application/3483064B-0B9F-4E73-B193-D0829300D43E/Library/Documentation/</span></span><br><span class="line"></span><br><span class="line"><span class="variable">$cd</span> /Users/tonyearth/Library/Developer/CoreSimulator/Devices/5A05DBF7-F5EC-4B5B-ABF0-EA396DA417DB/data/Containers/Data/Application/3483064B-0B9F-4E73-B193-D0829300D43E</span><br><span class="line"></span><br><span class="line">$ tree</span><br><span class="line">.</span><br><span class="line">├── Documents</span><br><span class="line">├── Library</span><br><span class="line">│   ├── Caches</span><br><span class="line">│   │   └── Snapshots</span><br><span class="line">│   │       └── com.earth.L0204-----</span><br><span class="line">│   │           ├── 50998B49-4017-4DAA-A8BB-49F0A32325DD@2x.png</span><br><span class="line">│   │           └── C0EB8483-DCD1-41F9-8F4D-1AADC05666E1@2x.png</span><br><span class="line">│   └── Preferences</span><br><span class="line">└── tmp</span><br></pre></td></tr></table></figure>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> UIKit</span><br><span class="line"><span class="keyword">import</span> AVFoundation</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">ViewController</span>: <span class="title">UIViewController</span> </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> avRec:<span class="type">AVAudioRecorder</span>!<span class="comment">// 录音器</span></span><br><span class="line">    <span class="keyword">var</span> audioFileUrl:<span class="type">NSURL</span>!<span class="comment">// 保存地址</span></span><br><span class="line">    <span class="keyword">var</span> avPlayer:<span class="type">AVAudioPlayer</span>!<span class="comment">// 播放器</span></span><br><span class="line">    </span><br><span class="line">    <span class="comment">// 开始录音</span></span><br><span class="line">    <span class="meta">@IBAction</span> <span class="function"><span class="keyword">func</span> <span class="title">startRectBtnClicked</span><span class="params">(sender: AnyObject)</span></span> &#123;</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">"start rec"</span>)</span><br><span class="line">        avRec.record()</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">// 停止录音</span></span><br><span class="line">    <span class="meta">@IBAction</span> <span class="function"><span class="keyword">func</span> <span class="title">stopRecBtnClicked</span><span class="params">(sender: AnyObject)</span></span> &#123;</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">"stop rec"</span>)</span><br><span class="line">        avRec.stop()</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">// 播放音乐</span></span><br><span class="line">    <span class="meta">@IBAction</span> <span class="function"><span class="keyword">func</span> <span class="title">playRectBtnClicked</span><span class="params">(sender: AnyObject)</span></span> &#123;</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">"play rec：\(audioFileUrl)"</span>)</span><br><span class="line">        avPlayer = <span class="keyword">try</span>? <span class="type">AVAudioPlayer</span>(contentsOfURL: audioFileUrl)</span><br><span class="line">        avPlayer.prepareToPlay()</span><br><span class="line">        avPlayer.play()</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">override</span> <span class="function"><span class="keyword">func</span> <span class="title">viewDidLoad</span><span class="params">()</span></span> &#123;</span><br><span class="line">        <span class="keyword">super</span>.viewDidLoad()</span><br><span class="line">        <span class="comment">// Do any additional setup after loading the view, typically from a nib.</span></span><br><span class="line">        audioFileUrl = (<span class="type">NSFileManager</span>.defaultManager().<span class="type">URLsForDirectory</span>(<span class="type">NSSearchPathDirectory</span>.<span class="type">DocumentationDirectory</span>, inDomains: <span class="type">NSSearchPathDomainMask</span>.<span class="type">AllDomainsMask</span>)[<span class="number">0</span>] <span class="keyword">as</span> <span class="type">NSURL</span>).<span class="type">URLByAppendingPathComponent</span>(<span class="string">"rec"</span>)</span><br><span class="line">        avRec = <span class="keyword">try</span>? <span class="type">AVAudioRecorder</span>(<span class="type">URL</span>: audioFileUrl,</span><br><span class="line">                                        settings: [:])</span><br><span class="line">        avRec.prepareToRecord()</span><br><span class="line"><span class="comment">// 查看文件路径</span></span><br><span class="line">        <span class="keyword">let</span> sp = <span class="type">NSFileManager</span>.defaultManager().<span class="type">URLsForDirectory</span>(<span class="type">NSSearchPathDirectory</span>.<span class="type">DocumentationDirectory</span>, inDomains: <span class="type">NSSearchPathDomainMask</span>.<span class="type">AllDomainsMask</span>)</span><br><span class="line">        <span class="keyword">for</span> item <span class="keyword">in</span> sp &#123;</span><br><span class="line">            <span class="built_in">print</span>(<span class="string">"\(item)"</span>)</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/05/14/极客学院/JK_IOS高级_2  网络通信/" rel="next" title="2 网络通信">
+                <i class="fa fa-chevron-left"></i> 2 网络通信
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/06/03/极客学院/JK_IOS高级_4 设计模式/" rel="prev" title="4 设计模式">
+                4 设计模式 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2016/05/14/极客学院/JK_IOS高级_3  音频视频处理/"
+           data-title="3 音频视频处理" data-url="http://laputa-er.github.io/2016/05/14/极客学院/JK_IOS高级_3  音频视频处理/">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.gif"
+               alt="Sean" />
+          <p class="site-author-name" itemprop="name">Sean</p>
+          <p class="site-description motion-element" itemprop="description">整理了一批过去一段时间ios相关的笔记，其它的笔记也整理下？源码分享出来？再说吧...反正也只有自己会看吧...</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">200</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">22</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">31</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#3-1-iOS-API视频的播放和录制"><span class="nav-text">3.1    iOS API视频的播放和录制</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#3-1-1-播放视频"><span class="nav-text">3.1.1    播放视频</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-1-2-录制视频"><span class="nav-text">3.1.2    录制视频</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-2-iOS音频相关-API-的使用"><span class="nav-text">3.2    iOS音频相关 API 的使用</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#3-2-1-播放声音"><span class="nav-text">3.2.1    播放声音</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-2-2-播放乐库音乐"><span class="nav-text">3.2.2    播放乐库音乐</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-2-3-录制声音"><span class="nav-text">3.2.3    录制声音</span></a></li></ol></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Sean</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"lapuda-er"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+    <script src="/vendors/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
+    <script src="/js/src/hook-duoshuo.js"></script>
+  
+
+
+
+
+
+
+  
+  
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length == 0) {
+       search_path = "search.xml";
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    function proceedsearch() {
+      $("body").append('<div class="popoverlay">').css('overflow', 'hidden');
+      $('.popup').toggle();
+
+    }
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+    'use strict';
+    $.ajax({
+        url: path,
+        dataType: "xml",
+        async: true,
+        success: function( xmlResponse ) {
+            // get the contents from search data
+            isfetched = true;
+            $('.popup').detach().appendTo('.header-inner');
+            var datas = $( "entry", xmlResponse ).map(function() {
+                return {
+                    title: $( "title", this ).text(),
+                    content: $("content",this).text(),
+                    url: $( "url" , this).text()
+                };
+            }).get();
+            var $input = document.getElementById(search_id);
+            var $resultContent = document.getElementById(content_id);
+            $input.addEventListener('input', function(){
+                var matchcounts = 0;
+                var str='<ul class=\"search-result-list\">';
+                var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+                $resultContent.innerHTML = "";
+                if (this.value.trim().length > 1) {
+                // perform local searching
+                datas.forEach(function(data) {
+                    var isMatch = true;
+                    var content_index = [];
+                    var data_title = data.title.trim().toLowerCase();
+                    var data_content = data.content.trim().replace(/<[^>]+>/g,"").toLowerCase();
+                    var data_url = data.url;
+                    var index_title = -1;
+                    var index_content = -1;
+                    var first_occur = -1;
+                    // only match artiles with not empty titles and contents
+                    if(data_title != '' && data_content != '') {
+                        keywords.forEach(function(keyword, i) {
+                            index_title = data_title.indexOf(keyword);
+                            index_content = data_content.indexOf(keyword);
+                            if( index_title < 0 && index_content < 0 ){
+                                isMatch = false;
+                            } else {
+                                if (index_content < 0) {
+                                    index_content = 0;
+                                }
+                                if (i == 0) {
+                                    first_occur = index_content;
+                                }
+                            }
+                        });
+                    }
+                    // show search results
+                    if (isMatch) {
+                        matchcounts += 1;
+                        str += "<li><a href='"+ data_url +"' class='search-result-title'>"+ data_title +"</a>";
+                        var content = data.content.trim().replace(/<[^>]+>/g,"");
+                        if (first_occur >= 0) {
+                            // cut out 100 characters
+                            var start = first_occur - 20;
+                            var end = first_occur + 80;
+                            if(start < 0){
+                                start = 0;
+                            }
+                            if(start == 0){
+                                end = 50;
+                            }
+                            if(end > content.length){
+                                end = content.length;
+                            }
+                            var match_content = content.substring(start, end);
+                            // highlight all keywords
+                            keywords.forEach(function(keyword){
+                                var regS = new RegExp(keyword, "gi");
+                                match_content = match_content.replace(regS, "<b class=\"search-keyword\">"+keyword+"</b>");
+                            });
+
+                            str += "<p class=\"search-result\">" + match_content +"...</p>"
+                        }
+                        str += "</li>";
+                    }
+                })};
+                str += "</ul>";
+                if (matchcounts == 0) { str = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>' }
+                if (keywords == "") { str = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>' }
+                $resultContent.innerHTML = str;
+            });
+            proceedsearch();
+        }
+    });}
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched == false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+
+    });
+
+    $('.popup-btn-close').click(function(e){
+      $('.popup').hide();
+      $(".popoverlay").remove();
+      $('body').css('overflow', '');
+    });
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+  </script>
+
+
+  
+
+  
+
+  
+
+</body>
+</html>

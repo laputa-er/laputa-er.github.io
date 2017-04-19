@@ -1,0 +1,870 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Qt," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1" />
+
+
+
+
+
+
+<meta name="description" content="由于 Qt 支持跨平台开发,开发者可以在一个平台上完成应用程序的开发,并在其他不同的平台上编译部署,因此需要学习者掌握在各个不同的平台上搭建 Qt 开发环境.  
+视频
+1 Qt 介绍1.1 什么是 Qt？一个跨平台的 c++ 和 GUI 开发框架。
+1.2 Qt 的历史
+1991 年，Haavard Nord 与 Eirik Chambe-Eng 开始合作开发 Qt
+1992 年，Eirik 提">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Qt_01 介绍与跨平台基本环境搭建">
+<meta property="og:url" content="http://laputa-er.github.io/2017/02/09/极客学院/Qt_01 介绍与跨平台基本环境搭建/index.html">
+<meta property="og:site_name" content="Sean">
+<meta property="og:description" content="由于 Qt 支持跨平台开发,开发者可以在一个平台上完成应用程序的开发,并在其他不同的平台上编译部署,因此需要学习者掌握在各个不同的平台上搭建 Qt 开发环境.  
+视频
+1 Qt 介绍1.1 什么是 Qt？一个跨平台的 c++ 和 GUI 开发框架。
+1.2 Qt 的历史
+1991 年，Haavard Nord 与 Eirik Chambe-Eng 开始合作开发 Qt
+1992 年，Eirik 提">
+<meta property="og:image" content="http://o6ul1xz4z.bkt.clouddn.com/32C01147-B9AC-478E-AA18-C2C8F09CC213.png">
+<meta property="og:updated_time" content="2017-03-23T09:43:08.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Qt_01 介绍与跨平台基本环境搭建">
+<meta name="twitter:description" content="由于 Qt 支持跨平台开发,开发者可以在一个平台上完成应用程序的开发,并在其他不同的平台上编译部署,因此需要学习者掌握在各个不同的平台上搭建 Qt 开发环境.  
+视频
+1 Qt 介绍1.1 什么是 Qt？一个跨平台的 c++ 和 GUI 开发框架。
+1.2 Qt 的历史
+1991 年，Haavard Nord 与 Eirik Chambe-Eng 开始合作开发 Qt
+1992 年，Eirik 提">
+<meta name="twitter:image" content="http://o6ul1xz4z.bkt.clouddn.com/32C01147-B9AC-478E-AA18-C2C8F09CC213.png">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 0,
+      author: '博主'
+    }
+  };
+</script>
+
+
+
+
+  <link rel="canonical" href="http://laputa-er.github.io/2017/02/09/极客学院/Qt_01 介绍与跨平台基本环境搭建/"/>
+
+  <title> Qt_01 介绍与跨平台基本环境搭建 | Sean </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//hm.baidu.com/hm.js?898688f51c5a3d6b37dd23e04441e5bd";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">Sean</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">笔记分享</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup">
+ <span class="search-icon fa fa-search"></span>
+ <input type="text" id="local-search-input">
+ <div id="local-search-result"></div>
+ <span class="popup-btn-close">close</span>
+</div>
+
+
+    </div>
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                Qt_01 介绍与跨平台基本环境搭建
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2017-02-09T01:43:17+08:00" content="2017-02-09">
+              2017-02-09
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/极客学院-Qt/" itemprop="url" rel="index">
+                    <span itemprop="name">极客学院_Qt</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2017/02/09/极客学院/Qt_01 介绍与跨平台基本环境搭建/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2017/02/09/极客学院/Qt_01 介绍与跨平台基本环境搭建/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>由于 Qt 支持跨平台开发,开发者可以在一个平台上完成应用程序的开发,并在其他不同的平台上编译部署,因此需要学习者掌握在各个不同的平台上搭建 Qt 开发环境.  </p>
+<p><a href="http://www.jikexueyuan.com/course/812.html" target="_blank" rel="external">视频</a></p>
+<h1 id="1-Qt-介绍"><a href="#1-Qt-介绍" class="headerlink" title="1 Qt 介绍"></a>1 Qt 介绍</h1><h2 id="1-1-什么是-Qt？"><a href="#1-1-什么是-Qt？" class="headerlink" title="1.1 什么是 Qt？"></a>1.1 什么是 Qt？</h2><p>一个跨平台的 c++ 和 GUI 开发框架。</p>
+<h2 id="1-2-Qt-的历史"><a href="#1-2-Qt-的历史" class="headerlink" title="1.2 Qt 的历史"></a>1.2 Qt 的历史</h2><ul>
+<li>1991 年，<code>Haavard Nord</code> 与 <code>Eirik Chambe-Eng</code> 开始合作开发 Qt</li>
+<li>1992 年，<code>Eirik</code> 提出了“信号与槽”的设想</li>
+<li>1996 年，Qt 1.0 发布</li>
+<li>2000 年，Qt 嵌入式版本发布</li>
+<li>2008 年，Nokia 收购 TrollTech</li>
+<li>2009 年，Qt Creator 发布</li>
+<li>2010 年，Qt Quick 发布</li>
+<li>2012 年，Digia 公司收购 Qt</li>
+</ul>
+<h2 id="1-3-为什么选择-Qt-？"><a href="#1-3-为什么选择-Qt-？" class="headerlink" title="1.3 为什么选择 Qt ？"></a>1.3 为什么选择 Qt ？</h2><ul>
+<li><p>Qt 拥有<br>一个模块化的 c++ 类库<br>Qt Creator - 集成开发环境<br>Qt Designer - 所见即所得的设计工具<br>Qt Assistant - 文档查询工具<br>Qt Linguist - 语言转换等本地化支持</p>
+</li>
+<li><p>跨平台：一次编写，到处部署<br><em>Qt 支持的平台：</em><br>windows/ OS X/ Linux<br>Android/ iOS / WP 等移动设备操作系统<br>嵌入式操作系统 等</p>
+</li>
+</ul>
+<p><em>QtEveryWhere</em><br>只需一次开发，就可跨不同桌面和嵌入式系统部署<br>使用单一源代码库定位多个操作系统<br>开发者无需在 API 上花费太多精力</p>
+<ul>
+<li>其它优势与特性<br><em>丰富易用的开发工具</em><br>Qt Creator<br>Qt Designer<br><em>优美的信号槽机制</em><br><em>Qt 很容易扩展，并且允许真正的组件编程</em></li>
+</ul>
+<h2 id="1-4-Qt-前景"><a href="#1-4-Qt-前景" class="headerlink" title="1.4 Qt 前景"></a>1.4 Qt 前景</h2><h3 id="Qt-vs-MFC"><a href="#Qt-vs-MFC" class="headerlink" title="Qt vs MFC"></a>Qt vs MFC</h3><p><em>优势</em><br>Qt 开发效率高<br>容易上手<br>简化的内存回收机制</p>
+<p><em>不足</em><br>界面效果依赖本地引擎<br>信号槽机制比回调慢（由于类型检查与参数安全）<br>国际化需要手动指定编码</p>
+<h3 id="Qt-授权协议"><a href="#Qt-授权协议" class="headerlink" title="Qt 授权协议"></a>Qt 授权协议</h3><p><em>开源协议</em><br>为开源开发和开发者提供自由</p>
+<p><em>商业授权</em><br>适用于不同需求的多重价格模式</p>
+<h3 id="应用举例"><a href="#应用举例" class="headerlink" title="应用举例"></a>应用举例</h3><p><img src="http://o6ul1xz4z.bkt.clouddn.com/32C01147-B9AC-478E-AA18-C2C8F09CC213.png" alt=""></p>
+<h1 id="2-Qt-学习入门"><a href="#2-Qt-学习入门" class="headerlink" title="2 Qt 学习入门"></a>2 Qt 学习入门</h1><h2 id="2-1-学习-Qt-需要具备的知识"><a href="#2-1-学习-Qt-需要具备的知识" class="headerlink" title="2.1 学习 Qt 需要具备的知识"></a>2.1 学习 Qt 需要具备的知识</h2><h3 id="Qt-入门需求"><a href="#Qt-入门需求" class="headerlink" title="Qt 入门需求"></a>Qt 入门需求</h3><ul>
+<li>了解 c++</li>
+<li>会使用循环，判断，选择，顺序等基本语法</li>
+</ul>
+<h3 id="进阶需求"><a href="#进阶需求" class="headerlink" title="进阶需求"></a>进阶需求</h3><ul>
+<li>熟悉 c++ 的 OOP 特性</li>
+<li>熟悉 c++ 的疯转，继承和多态</li>
+<li>熟悉 c++ 模版</li>
+<li>会使用容器（vector、set、map等）</li>
+<li>熟悉 c++ 内存管理，可灵活使用指针</li>
+</ul>
+<h3 id="高级需求"><a href="#高级需求" class="headerlink" title="高级需求"></a>高级需求</h3><ul>
+<li>熟悉使用 c++</li>
+<li>熟悉 c++ 11 语法</li>
+<li>了解 Qt 的元对象系统</li>
+</ul>
+<h2 id="2-2-如何更好地学习-Qt"><a href="#2-2-如何更好地学习-Qt" class="headerlink" title="2.2 如何更好地学习 Qt"></a>2.2 如何更好地学习 Qt</h2><h3 id="学习之前"><a href="#学习之前" class="headerlink" title="学习之前"></a>学习之前</h3><ul>
+<li>了解 c++</li>
+<li>了解 Qt，知道 Qt 是什么</li>
+</ul>
+<h3 id="高效学习"><a href="#高效学习" class="headerlink" title="高效学习"></a>高效学习</h3><ul>
+<li>学会使用 Qt 文档</li>
+<li>熟练使用开发工具与 Qt 的 GUI 组件</li>
+<li>代码书写规范</li>
+</ul>
+<h3 id="多做，多问（最重要的一点）"><a href="#多做，多问（最重要的一点）" class="headerlink" title="多做，多问（最重要的一点）"></a>多做，多问（最重要的一点）</h3><h2 id="2-3-为什么要使用跨平台"><a href="#2-3-为什么要使用跨平台" class="headerlink" title="2.3 为什么要使用跨平台"></a>2.3 为什么要使用跨平台</h2><p><em>Qt 跨平台与其他语言的区别</em><br>一次编写，多处编译部署。</p>
+<h1 id="3-Windows-桌面基本开发环境搭建"><a href="#3-Windows-桌面基本开发环境搭建" class="headerlink" title="3 Windows 桌面基本开发环境搭建"></a>3 Windows 桌面基本开发环境搭建</h1><blockquote>
+<p>本课时会详细演示 Windows 平台下的 Qt 桌面开发环境搭建，Windows 下的 Android 与 Windows Phone 开发环境我们会在后面的课程中演示.  </p>
+</blockquote>
+<h1 id="4-OS-X-桌面基本开发环境搭建"><a href="#4-OS-X-桌面基本开发环境搭建" class="headerlink" title="4 OS X 桌面基本开发环境搭建"></a>4 OS X 桌面基本开发环境搭建</h1><blockquote>
+<p>本课时我们会详细演示 OS X 平台下的 Qt 桌面开发环境搭建,另外 OS X 下 iOS 与 Android 的环境搭建我们会在后面的课程中再演示.  </p>
+</blockquote>
+<h2 id="依赖"><a href="#依赖" class="headerlink" title="依赖"></a>依赖</h2><p> xcode</p>
+<h2 id="安装目录"><a href="#安装目录" class="headerlink" title="安装目录"></a>安装目录</h2><p><code>/Applications/Qt</code>，安装在别的地方在 launchpad 中看不到图标。</p>
+<h2 id="环境变量"><a href="#环境变量" class="headerlink" title="环境变量"></a>环境变量</h2><p>~/.bash_profile</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">export</span> QTDIR=/Applications/Qt/5.8/clang_64</span><br><span class="line"><span class="built_in">export</span> LD_LIBRARY_PATH=<span class="variable">$LD_LIBRARY_PATH</span>:<span class="variable">$QTDIR</span>/lib</span><br><span class="line"><span class="built_in">export</span> PATH=<span class="variable">$PATH</span>:<span class="variable">$QTDIR</span>/bin</span><br></pre></td></tr></table></figure>
+<h1 id="5-Linux-桌面基本开发环境搭建"><a href="#5-Linux-桌面基本开发环境搭建" class="headerlink" title="5 Linux 桌面基本开发环境搭建"></a>5 Linux 桌面基本开发环境搭建</h1><p>依赖 g++</p>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Qt/" rel="tag">#Qt</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/02/09/极客学院/Qt_02 创建第一个 Qt 程序/" rel="next" title="Qt_02 创建第一个 Qt 程序">
+                <i class="fa fa-chevron-left"></i> Qt_02 创建第一个 Qt 程序
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/02/09/BOOK_深入理解软件构造系统-原理与最佳实践/SBS_05 子标的与构造函数/" rel="prev" title="SBS_05 子标的与构造函数">
+                SBS_05 子标的与构造函数 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2017/02/09/极客学院/Qt_01 介绍与跨平台基本环境搭建/"
+           data-title="Qt_01 介绍与跨平台基本环境搭建" data-url="http://laputa-er.github.io/2017/02/09/极客学院/Qt_01 介绍与跨平台基本环境搭建/">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.gif"
+               alt="Sean" />
+          <p class="site-author-name" itemprop="name">Sean</p>
+          <p class="site-description motion-element" itemprop="description">整理了一批过去一段时间ios相关的笔记，其它的笔记也整理下？源码分享出来？再说吧...反正也只有自己会看吧...</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">200</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">22</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">31</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#1-Qt-介绍"><span class="nav-text">1 Qt 介绍</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-1-什么是-Qt？"><span class="nav-text">1.1 什么是 Qt？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-2-Qt-的历史"><span class="nav-text">1.2 Qt 的历史</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-3-为什么选择-Qt-？"><span class="nav-text">1.3 为什么选择 Qt ？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-4-Qt-前景"><span class="nav-text">1.4 Qt 前景</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Qt-vs-MFC"><span class="nav-text">Qt vs MFC</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Qt-授权协议"><span class="nav-text">Qt 授权协议</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#应用举例"><span class="nav-text">应用举例</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#2-Qt-学习入门"><span class="nav-text">2 Qt 学习入门</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#2-1-学习-Qt-需要具备的知识"><span class="nav-text">2.1 学习 Qt 需要具备的知识</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Qt-入门需求"><span class="nav-text">Qt 入门需求</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#进阶需求"><span class="nav-text">进阶需求</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#高级需求"><span class="nav-text">高级需求</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-2-如何更好地学习-Qt"><span class="nav-text">2.2 如何更好地学习 Qt</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#学习之前"><span class="nav-text">学习之前</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#高效学习"><span class="nav-text">高效学习</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#多做，多问（最重要的一点）"><span class="nav-text">多做，多问（最重要的一点）</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-3-为什么要使用跨平台"><span class="nav-text">2.3 为什么要使用跨平台</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#3-Windows-桌面基本开发环境搭建"><span class="nav-text">3 Windows 桌面基本开发环境搭建</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#4-OS-X-桌面基本开发环境搭建"><span class="nav-text">4 OS X 桌面基本开发环境搭建</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#依赖"><span class="nav-text">依赖</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#安装目录"><span class="nav-text">安装目录</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#环境变量"><span class="nav-text">环境变量</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#5-Linux-桌面基本开发环境搭建"><span class="nav-text">5 Linux 桌面基本开发环境搭建</span></a></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Sean</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"lapuda-er"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+    <script src="/vendors/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
+    <script src="/js/src/hook-duoshuo.js"></script>
+  
+
+
+
+
+
+
+  
+  
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length == 0) {
+       search_path = "search.xml";
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    function proceedsearch() {
+      $("body").append('<div class="popoverlay">').css('overflow', 'hidden');
+      $('.popup').toggle();
+
+    }
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+    'use strict';
+    $.ajax({
+        url: path,
+        dataType: "xml",
+        async: true,
+        success: function( xmlResponse ) {
+            // get the contents from search data
+            isfetched = true;
+            $('.popup').detach().appendTo('.header-inner');
+            var datas = $( "entry", xmlResponse ).map(function() {
+                return {
+                    title: $( "title", this ).text(),
+                    content: $("content",this).text(),
+                    url: $( "url" , this).text()
+                };
+            }).get();
+            var $input = document.getElementById(search_id);
+            var $resultContent = document.getElementById(content_id);
+            $input.addEventListener('input', function(){
+                var matchcounts = 0;
+                var str='<ul class=\"search-result-list\">';
+                var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+                $resultContent.innerHTML = "";
+                if (this.value.trim().length > 1) {
+                // perform local searching
+                datas.forEach(function(data) {
+                    var isMatch = true;
+                    var content_index = [];
+                    var data_title = data.title.trim().toLowerCase();
+                    var data_content = data.content.trim().replace(/<[^>]+>/g,"").toLowerCase();
+                    var data_url = data.url;
+                    var index_title = -1;
+                    var index_content = -1;
+                    var first_occur = -1;
+                    // only match artiles with not empty titles and contents
+                    if(data_title != '' && data_content != '') {
+                        keywords.forEach(function(keyword, i) {
+                            index_title = data_title.indexOf(keyword);
+                            index_content = data_content.indexOf(keyword);
+                            if( index_title < 0 && index_content < 0 ){
+                                isMatch = false;
+                            } else {
+                                if (index_content < 0) {
+                                    index_content = 0;
+                                }
+                                if (i == 0) {
+                                    first_occur = index_content;
+                                }
+                            }
+                        });
+                    }
+                    // show search results
+                    if (isMatch) {
+                        matchcounts += 1;
+                        str += "<li><a href='"+ data_url +"' class='search-result-title'>"+ data_title +"</a>";
+                        var content = data.content.trim().replace(/<[^>]+>/g,"");
+                        if (first_occur >= 0) {
+                            // cut out 100 characters
+                            var start = first_occur - 20;
+                            var end = first_occur + 80;
+                            if(start < 0){
+                                start = 0;
+                            }
+                            if(start == 0){
+                                end = 50;
+                            }
+                            if(end > content.length){
+                                end = content.length;
+                            }
+                            var match_content = content.substring(start, end);
+                            // highlight all keywords
+                            keywords.forEach(function(keyword){
+                                var regS = new RegExp(keyword, "gi");
+                                match_content = match_content.replace(regS, "<b class=\"search-keyword\">"+keyword+"</b>");
+                            });
+
+                            str += "<p class=\"search-result\">" + match_content +"...</p>"
+                        }
+                        str += "</li>";
+                    }
+                })};
+                str += "</ul>";
+                if (matchcounts == 0) { str = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>' }
+                if (keywords == "") { str = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>' }
+                $resultContent.innerHTML = str;
+            });
+            proceedsearch();
+        }
+    });}
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched == false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+
+    });
+
+    $('.popup-btn-close').click(function(e){
+      $('.popup').hide();
+      $(".popoverlay").remove();
+      $('body').css('overflow', '');
+    });
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+  </script>
+
+
+  
+
+  
+
+  
+
+</body>
+</html>

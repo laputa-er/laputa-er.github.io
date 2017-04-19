@@ -1,0 +1,1233 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1" />
+
+
+
+
+
+
+<meta name="description" content="说明：Cocoa的几个重要框架
+
+
+
+
+框架
+说明
+兼容
+备注
+
+
+
+
+Foundation Kit
+两类UI框架的基础，包含很多有用的、面向数据的简单类和数据类型
+ios和OS X
+基于CoreFoundation框架
+
+
+Application Kit(Appkit)
+包含所有用户界面对象和高级类
+OS X
+16章
+
+
+User Interface Kit(UIKit)
+用户界面
+ios
+1">
+<meta property="og:type" content="article">
+<meta property="og:title" content="8 Foundation Kit介绍">
+<meta property="og:url" content="http://laputa-er.github.io/2016/05/13/BOOK_Objective-C基础教程第二版/o-c基础教程第二版_08  Foundation Kit介绍/index.html">
+<meta property="og:site_name" content="Sean">
+<meta property="og:description" content="说明：Cocoa的几个重要框架
+
+
+
+
+框架
+说明
+兼容
+备注
+
+
+
+
+Foundation Kit
+两类UI框架的基础，包含很多有用的、面向数据的简单类和数据类型
+ios和OS X
+基于CoreFoundation框架
+
+
+Application Kit(Appkit)
+包含所有用户界面对象和高级类
+OS X
+16章
+
+
+User Interface Kit(UIKit)
+用户界面
+ios
+1">
+<meta property="og:updated_time" content="2016-09-19T12:06:04.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="8 Foundation Kit介绍">
+<meta name="twitter:description" content="说明：Cocoa的几个重要框架
+
+
+
+
+框架
+说明
+兼容
+备注
+
+
+
+
+Foundation Kit
+两类UI框架的基础，包含很多有用的、面向数据的简单类和数据类型
+ios和OS X
+基于CoreFoundation框架
+
+
+Application Kit(Appkit)
+包含所有用户界面对象和高级类
+OS X
+16章
+
+
+User Interface Kit(UIKit)
+用户界面
+ios
+1">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 0,
+      author: '博主'
+    }
+  };
+</script>
+
+
+
+
+  <link rel="canonical" href="http://laputa-er.github.io/2016/05/13/BOOK_Objective-C基础教程第二版/o-c基础教程第二版_08  Foundation Kit介绍/"/>
+
+  <title> 8 Foundation Kit介绍 | Sean </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//hm.baidu.com/hm.js?898688f51c5a3d6b37dd23e04441e5bd";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">Sean</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">笔记分享</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup">
+ <span class="search-icon fa fa-search"></span>
+ <input type="text" id="local-search-input">
+ <div id="local-search-result"></div>
+ <span class="popup-btn-close">close</span>
+</div>
+
+
+    </div>
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                8 Foundation Kit介绍
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-05-13T10:38:55+08:00" content="2016-05-13">
+              2016-05-13
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/Objective-C基础教程第二版/" itemprop="url" rel="index">
+                    <span itemprop="name">Objective-C基础教程第二版</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/05/13/BOOK_Objective-C基础教程第二版/o-c基础教程第二版_08  Foundation Kit介绍/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/05/13/BOOK_Objective-C基础教程第二版/o-c基础教程第二版_08  Foundation Kit介绍/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <blockquote>
+<p><strong>说明：</strong><code>Cocoa</code>的几个重要框架</p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>框架</th>
+<th>说明</th>
+<th>兼容</th>
+<th>备注</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Foundation Kit</td>
+<td>两类UI框架的基础，包含很多有用的、面向数据的简单类和数据类型</td>
+<td>ios和OS X</td>
+<td>基于CoreFoundation框架</td>
+</tr>
+<tr>
+<td>Application Kit(Appkit)</td>
+<td>包含所有用户界面对象和高级类</td>
+<td>OS X</td>
+<td><a href="">16章</a></td>
+</tr>
+<tr>
+<td>User Interface Kit(UIKit)</td>
+<td>用户界面</td>
+<td>ios</td>
+<td><a href="">15章</a></td>
+</tr>
+</tbody>
+</table>
+<h2 id="8-1-稳固的-Foundation"><a href="#8-1-稳固的-Foundation" class="headerlink" title="8.1    稳固的 Foundation"></a>8.1    稳固的 Foundation</h2><blockquote>
+<p><strong>说明：</strong>两类UI框架的基础，包含很多有用的、面向数据的简单类和数据类型。包含<code>NSString</code>、<code>NSArray</code>、<code>NSEnumerator</code>、和<code>NSNumber</code>等100多个类。<br><strong>扩展：</strong><code>Foundation</code>框架以<code>CoreFoundation</code>框架为（纯C编写）基础，<code>CoreFoundation</code>中的函数和变量的名称以<code>CF</code>开头。</p>
+</blockquote>
+<h2 id="8-2-使用项目样本代码"><a href="#8-2-使用项目样本代码" class="headerlink" title="8.2    使用项目样本代码"></a>8.2    使用项目样本代码</h2><figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#import <span class="meta-string">&lt;Foundation/Foundation.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">int</span> main(<span class="keyword">int</span> argc, <span class="keyword">const</span> <span class="keyword">char</span> * argv[]) &#123;</span><br><span class="line">    <span class="keyword">@autoreleasepool</span> &#123;</span><br><span class="line">        <span class="comment">// insert code here...</span></span><br><span class="line">        <span class="built_in">NSLog</span>(<span class="string">@"Hello, World!"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="8-3-一些有用的数据类型"><a href="#8-3-一些有用的数据类型" class="headerlink" title="8.3    一些有用的数据类型"></a>8.3    一些有用的数据类型</h2><h3 id="8-3-1-范围"><a href="#8-3-1-范围" class="headerlink" title="8.3.1    范围"></a>8.3.1    范围</h3><blockquote>
+<p><strong>类型：</strong><code>NSRange</code><br><strong>原型描述：</strong><code>Foundation.h</code></p>
+</blockquote>
+<figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&gt;<span class="keyword">typedef</span> <span class="keyword">struct</span> _<span class="built_in">NSRange</span> &#123;</span><br><span class="line">&gt;    <span class="keyword">unsigned</span> <span class="keyword">int</span> location;</span><br><span class="line">&gt;    <span class="keyword">unsigned</span> <span class="keyword">int</span> length;</span><br><span class="line">&gt;&#125; <span class="built_in">NSRange</span>;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p><strong>说明：</strong>用来表示相关事物的范围，通常是字符串里字符范围或者数组里的元素范围。有<code>3</code>中创建方式</p>
+</blockquote>
+<figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 方式一：直接给字段赋值</span></span><br><span class="line"><span class="built_in">NSRange</span> range1;</span><br><span class="line">range.location = <span class="number">17</span>;</span><br><span class="line">range.length = <span class="number">4</span>;</span><br><span class="line"><span class="comment">// 方式二：利用c语言的聚合结构赋值机制</span></span><br><span class="line"><span class="built_in">NSRange</span> range2 = &#123;<span class="number">17</span>, <span class="number">4</span>&#125;;</span><br><span class="line"><span class="comment">// 方式三：Cocoa提供的一个快捷函数NSMakeRange，优点是能够在任何能够使用函数的地方使用</span></span><br><span class="line"><span class="built_in">NSRange</span> range3 = <span class="built_in">NSMakeRange</span>(<span class="number">17</span>, <span class="number">4</span>);</span><br></pre></td></tr></table></figure>
+<h3 id="8-3-2-几何数据类型"><a href="#8-3-2-几何数据类型" class="headerlink" title="8.3.2    几何数据类型"></a>8.3.2    几何数据类型</h3><blockquote>
+<p><strong>源：</strong><code>Cocoa</code>（引用<code>C</code>语言编写的<code>Core Graphics</code>框架）<br><strong>说明：</strong>包括一些用来处理图形的<code>数据类型</code>和创建这些数据类型的<code>快捷方法</code>。<br><strong>原型：</strong></p>
+</blockquote>
+<figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">struct</span> <span class="built_in">CGPoint</span> &#123;</span><br><span class="line">	<span class="keyword">float</span> x;</span><br><span class="line">	<span class="keyword">float</span> y;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="keyword">struct</span> <span class="built_in">CGSize</span> &#123;</span><br><span class="line">	<span class="keyword">float</span> width;</span><br><span class="line">	<span class="keyword">float</span> height;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="keyword">struct</span> <span class="built_in">CGRect</span> &#123;</span><br><span class="line">	<span class="built_in">CGPoint</span> origin;</span><br><span class="line">	<span class="built_in">CGSize</span> size;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p><strong>扩展：</strong>所有的<code>O-C</code>对象都是动态分配的，而动态分配是一个代价较大的操作，会消耗大量的时间。所以为了性能，<code>GUI</code>程序更倾向使用结构体。</p>
+</blockquote>
+<figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#import <span class="meta-string">&lt;Foundation/Foundation.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">int</span> main(<span class="keyword">int</span> argc, <span class="keyword">const</span> <span class="keyword">char</span> * argv[]) &#123;</span><br><span class="line">    <span class="comment">// 矩形原点</span></span><br><span class="line">    <span class="built_in">CGPoint</span> point = <span class="built_in">CGPointMake</span>(<span class="number">0</span>, <span class="number">0</span>);</span><br><span class="line">    <span class="comment">// 矩形大小</span></span><br><span class="line">    <span class="built_in">CGSize</span> size = <span class="built_in">CGSizeMake</span>(<span class="number">8</span>, <span class="number">10</span>);</span><br><span class="line">    </span><br><span class="line">    <span class="comment">// 矩形</span></span><br><span class="line">    <span class="built_in">CGRect</span> rect = <span class="built_in">CGRectMake</span>(<span class="number">0</span>, <span class="number">0</span>, <span class="number">8</span>, <span class="number">10</span>);</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="8-4-字符串"><a href="#8-4-字符串" class="headerlink" title="8.4    字符串"></a>8.4    字符串</h2><h3 id="8-4-1-创建字符串"><a href="#8-4-1-创建字符串" class="headerlink" title="8.4.1    创建字符串"></a>8.4.1    创建字符串</h3><h4 id="stringWithFormat方法"><a href="#stringWithFormat方法" class="headerlink" title="stringWithFormat方法"></a>stringWithFormat方法</h4><blockquote>
+<p><strong>说明：</strong>通过格式字符串和参数来创建<code>NSString</code><br><strong>原型：</strong><code>NSString</code></p>
+</blockquote>
+<figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span><br><span class="line">* @param &#123;NSString *&#125; format 格式串</span><br><span class="line">* @param &#123;...&#125; 对应参数</span><br><span class="line">* @reuturn &#123;id&#125; NSString对象</span><br><span class="line">*/</span></span><br><span class="line">+ (<span class="keyword">id</span>) stringWithFormat: (<span class="built_in">NSString</span> *) format, ...;</span><br></pre></td></tr></table></figure>
+<figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">NSString</span> *height;</span><br><span class="line">height = [<span class="built_in">NSString</span> stringWithFormat:<span class="string">@"Your height is %d feet, %d inches"</span>, <span class="number">5</span>, <span class="number">11</span>];</span><br></pre></td></tr></table></figure>
+<h3 id="8-4-2-类方法"><a href="#8-4-2-类方法" class="headerlink" title="8.4.2    类方法"></a>8.4.2    类方法</h3><blockquote>
+<p><strong>说明：</strong>如果在声明方法时添加了<code>+</code>，就是把这个方法定义为<code>类方法(class method)</code>。</p>
+<ul>
+<li>通常用于工厂方法</li>
+<li>也可以用来访问全局数据</li>
+</ul>
+<p><strong>原理：</strong><code>Objective-C</code>运行时生成一个类的时候，会创建一个代表该类的<code>类对象（class object）</code>，包含了指向超类、类名和类方法列表的指针，还包含一个<code>long</code>类型的数据，为新创建的实例对象指定大小（以字节为单位）。</p>
+<p><strong>扩展：</strong>类方法和实例方法</p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>标识</th>
+<th>方法</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>+</td>
+<td>类方法</td>
+<td>属于类的方法</td>
+</tr>
+<tr>
+<td>-</td>
+<td>实例方法</td>
+<td>将会在指定的对象实例中起作用</td>
+</tr>
+</tbody>
+</table>
+<figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// UIColor的类方法：redColor（访问全局数据）</span></span><br><span class="line"><span class="built_in">NSColor</span> *haveTheBlues = [<span class="built_in">NSColor</span> blueColor];</span><br><span class="line"><span class="built_in">UIColor</span> *blueMan = [<span class="built_in">UIColor</span> blueColor];</span><br></pre></td></tr></table></figure>
+<h3 id="8-4-4-关于大小"><a href="#8-4-4-关于大小" class="headerlink" title="8.4.4    关于大小"></a>8.4.4    关于大小</h3><h4 id="length实例方法"><a href="#length实例方法" class="headerlink" title="length实例方法"></a>length实例方法</h4><blockquote>
+<p><strong>说明：</strong>返回字符串中字符的个数，能够准确无误地处理各种语言的字符串。<br><strong>原型：</strong><code>NSString</code></p>
+</blockquote>
+<figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&gt;<span class="comment">/**</span><br><span class="line">&gt;* @return &#123;NSUInter&#125; 字符串中字符的数目</span><br><span class="line">&gt;*/</span></span><br><span class="line">&gt;- (<span class="built_in">NSUInter</span>) length;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p><strong>扩展：</strong>在C语言中处理这些国际字符串很麻烦，因为一个字符占用的空间可能多于一个字节，使用<code>strlen</code>只能计算字节数的函数会返回错误的数值。</p>
+</blockquote>
+<figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">NSString</span> height = <span class="string">@"Hello world!"</span>;</span><br><span class="line"><span class="keyword">if</span> ([height length] &gt; <span class="number">35</span>) &#123;</span><br><span class="line">	<span class="built_in">NSLog</span>(<span class="string">@"wow, you're really tail!"</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="8-4-4-字符串比较"><a href="#8-4-4-字符串比较" class="headerlink" title="8.4.4    字符串比较"></a>8.4.4    字符串比较</h3><h4 id="isEqualToString实例方法"><a href="#isEqualToString实例方法" class="headerlink" title="isEqualToString实例方法"></a>isEqualToString实例方法</h4><blockquote>
+<p><strong>说明：</strong>比较接收方和作为参数传递过来的字符串。<br><strong>原型：</strong><code>NSString</code></p>
+</blockquote>
+<figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span><br><span class="line">* @param &#123;NSString *&#125; aString 字符串</span><br><span class="line">* @return &#123;BOOL&#125; YES 内容相同，NO 内容不同</span><br><span class="line">*/</span></span><br><span class="line">- (<span class="built_in">BOOL</span>) isEqualToString: (<span class="built_in">NSString</span> *) aString</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p><strong>扩展：</strong><code>==</code>运算符用来检查两个对象是否为同一事物；<code>isEqualToString</code>用来检查两个字符串的内容是否相等。</p>
+</blockquote>
+<figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 字符串比较</span></span><br><span class="line"><span class="built_in">NSString</span> *thing1 = <span class="string">@"hello 5"</span>;</span><br><span class="line"><span class="built_in">NSString</span> *thing2 = [<span class="built_in">NSString</span> stringWithFormat:<span class="string">@"hello %d"</span>, <span class="number">5</span>];</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> ([thing1 isEqualToString:thing2]) &#123;</span><br><span class="line">    <span class="built_in">NSLog</span>(<span class="string">@"They are the same."</span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="compare实例方法"><a href="#compare实例方法" class="headerlink" title="compare实例方法"></a>compare实例方法</h4><blockquote>
+<p><strong>说明：</strong>将接收对象和传递过来的字符串逐个进行比较</p>
+<ul>
+<li>区分大小写</li>
+<li>返回一个显示比较结果的枚举类型</li>
+</ul>
+<p><strong>原型：</strong><code>NSString</code></p>
+</blockquote>
+<figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span><br><span class="line">* @param &#123;NSString *&#125; aString 字符串</span><br><span class="line">* @return &#123;NSComparisonResult&#125; 包含比较结果的枚举类型</span><br><span class="line">*/</span></span><br><span class="line">- (<span class="built_in">NSComparisonResult</span>) compare: (<span class="built_in">NSString</span> *) aString;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p><strong>返回值原型：</strong></p>
+</blockquote>
+<figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">enum</span> &#123;</span><br><span class="line">    <span class="built_in">NSOrderedAscending</span> = <span class="number">-1</span>;<span class="comment">// 左侧小于右侧</span></span><br><span class="line">    <span class="built_in">NSOrderdSame</span>,<span class="comment">// 两侧字符串相同</span></span><br><span class="line">    <span class="built_in">NSOrderdDescending</span><span class="comment">// 左侧大于右侧</span></span><br><span class="line">&#125;;</span><br><span class="line"><span class="keyword">typedef</span> <span class="built_in">NSInteger</span> <span class="built_in">NSComparisonResult</span>;</span><br></pre></td></tr></table></figure>
+<h3 id="8-4-5-不区分大小写的比较"><a href="#8-4-5-不区分大小写的比较" class="headerlink" title="8.4.5    不区分大小写的比较"></a>8.4.5    不区分大小写的比较</h3><h4 id="compare实例方法（2个参数）"><a href="#compare实例方法（2个参数）" class="headerlink" title="compare实例方法（2个参数）"></a>compare实例方法（2个参数）</h4><blockquote>
+<p><strong>说明：</strong>比较字符串，有更多选择权，可以使用<code>位</code>或<code>bitwise-OR远端符（|）</code>来添加选项标记。</p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>选项标记</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>NSCaseInsensitiveSearch</td>
+<td>不区分大小写字符</td>
+</tr>
+<tr>
+<td>NSLiteralSearch</td>
+<td>进行完全比较，区分大小写</td>
+</tr>
+<tr>
+<td>NSNumericSearch</td>
+<td>比较字符串的字符个数，而不是字符串值</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p><strong>原型：</strong><code>NSString</code></p>
+</blockquote>
+<figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span><br><span class="line">* @param &#123;NSString *&#125; aString 字符串</span><br><span class="line">* @option &#123;NSStringCompareOption&#125; mask 比较选项</span><br><span class="line">* @return &#123;NSComparisonResult&#125; 包含比较结果的枚举类型</span><br><span class="line">*/</span></span><br><span class="line">- (<span class="built_in">NSComparisonResult</span>) compare: (<span class="built_in">NSString</span> *) aString</span><br><span class="line">options: (<span class="built_in">NSStringCompareOption</span>) mask;</span><br></pre></td></tr></table></figure>
+<figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 不区分大小写、比较字符串的字符个数（而不是值）</span></span><br><span class="line"><span class="keyword">if</span> ([thing1 compare:thing2 options:<span class="built_in">NSCaseInsensitiveSearch</span> | <span class="built_in">NSNumericSearch</span>] == <span class="built_in">NSOrderedSame</span>) &#123;</span><br><span class="line">    <span class="built_in">NSLog</span>(<span class="string">@"They match!"</span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="8-4-6-字符串是否还包含别的字符串"><a href="#8-4-6-字符串是否还包含别的字符串" class="headerlink" title="8.4.6    字符串是否还包含别的字符串"></a>8.4.6    字符串是否还包含别的字符串</h3><h3 id="hasPrefix实例方法"><a href="#hasPrefix实例方法" class="headerlink" title="hasPrefix实例方法"></a>hasPrefix实例方法</h3><blockquote>
+<p><strong>说明：</strong>检查字符串是否是以另一个字符串开头<br><strong>原型：</strong><code>NSString</code></p>
+</blockquote>
+<figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span><br><span class="line">*@param &#123;NSString *&#125; aString 子字符串</span><br><span class="line">*@return &#123;BOOL&#125; YES， NO</span><br><span class="line">*/</span></span><br><span class="line">- (<span class="built_in">BOOL</span>) hasPrefix: (<span class="built_in">NSString</span> *) aString;</span><br></pre></td></tr></table></figure>
+<h3 id="hasSuffix实例方法"><a href="#hasSuffix实例方法" class="headerlink" title="hasSuffix实例方法"></a>hasSuffix实例方法</h3><blockquote>
+<p><strong>说明：</strong>检查字符串是否是以另一个字符串结尾<br><strong>原型：</strong><code>NSString</code></p>
+</blockquote>
+<figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span><br><span class="line">*@param &#123;NSString *&#125; aString 子字符串</span><br><span class="line">*@return &#123;BOOL&#125; YES ， NO</span><br><span class="line">*/</span></span><br><span class="line">- (<span class="built_in">BOOL</span>) hasSuffix: (<span class="built_in">NSString</span> *) aString;</span><br></pre></td></tr></table></figure>
+<figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">NSString</span> *fileName = <span class="string">@"draft-chapter.pages"</span>;</span><br><span class="line"><span class="keyword">if</span> ([fileName hasPrefix:<span class="string">@"draft"</span>]) &#123;</span><br><span class="line">    <span class="built_in">NSLog</span>(<span class="string">@"this is a draft."</span>);</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">else</span> ([fileName hasSuffix:<span class="string">@".mov"</span>]) &#123;</span><br><span class="line">    <span class="built_in">NSLog</span>(<span class="string">@"this is a movie"</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="rangeOfString实例方法"><a href="#rangeOfString实例方法" class="headerlink" title="rangeOfString实例方法"></a>rangeOfString实例方法</h4><blockquote>
+<p><strong>说明：</strong>查看字符串的某处是否包含指定子字符串。<br><strong>原型：</strong><code>NSString</code></p>
+</blockquote>
+<figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span><br><span class="line">* @param &#123;NSString *&#125; rangeOfString 子字符串</span><br><span class="line">* @return &#123;NSRange&#125; 包含匹配的位置信息和能够匹配上的字符个数</span><br><span class="line">*/</span></span><br><span class="line">- (<span class="built_in">NSRange</span>) rangeOfString: (<span class="built_in">NSString</span> *) aString;</span><br></pre></td></tr></table></figure>
+<figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 任意位置</span></span><br><span class="line"><span class="built_in">NSRange</span> range = [fileName rangeOfString:<span class="string">@"chapter"</span>];</span><br><span class="line"><span class="built_in">NSLog</span>(<span class="string">@"range.location:%d, range.length: %d"</span>, range.location, range.length);</span><br></pre></td></tr></table></figure>
+<h3 id="8-4-7-可变性"><a href="#8-4-7-可变性" class="headerlink" title="8.4.7    可变性"></a>8.4.7    可变性</h3><blockquote>
+<p><strong>说明：</strong><code>NSString</code>是不可变（不能通过删除字符或添加字符的方式改变它）。的，<code>NSMutableString</code>是可变的。<br><strong>注意：</strong><code>NSMutableString</code>是<code>NSString</code>的子类。</p>
+</blockquote>
+<h4 id="stringWithCapacity类方法"><a href="#stringWithCapacity类方法" class="headerlink" title="stringWithCapacity类方法"></a>stringWithCapacity类方法</h4><blockquote>
+<p><strong>说明：</strong>创建一个新的<code>NSMutableString</code></p>
+<ul>
+<li><strong>参数：</strong>字符串的大小并不限于所提供的容量，这个容量仅是最优值，用来预分配一块内存，这样后续操作的速度会快很多。</li>
+</ul>
+<p><strong>原型：</strong><code>NSString</code></p>
+</blockquote>
+<figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span><br><span class="line">* @param &#123;NSInteger&#125; 最优容量</span><br><span class="line">* @return &#123;id&#125; NSMutable对象</span><br><span class="line">*/</span></span><br><span class="line">+ <span class="keyword">id</span> stringWithCapacity: (<span class="built_in">NSUInteger</span>) capacity;</span><br></pre></td></tr></table></figure>
+<figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 创建可变字符串对象</span></span><br><span class="line"><span class="built_in">NSMutableString</span> *string = [<span class="built_in">NSMutableString</span> stringWithCapacity: <span class="number">42</span>];</span><br></pre></td></tr></table></figure>
+<h4 id="appendString实例方法"><a href="#appendString实例方法" class="headerlink" title="appendString实例方法"></a>appendString实例方法</h4><blockquote>
+<p><strong>说明：</strong>接收参数<code>aString</code>，然后将其复制到接收对象的末尾。<br><strong>原型：</strong><code>NSString</code></p>
+</blockquote>
+<figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span><br><span class="line">* @param &#123;NSString *&#125; aString 子字符串</span><br><span class="line">*/</span></span><br><span class="line">- (<span class="keyword">void</span>) appendString: (<span class="built_in">NSString</span> *) aString;</span><br></pre></td></tr></table></figure>
+<h4 id="appendFormat实例方法"><a href="#appendFormat实例方法" class="headerlink" title="appendFormat实例方法"></a>appendFormat实例方法</h4><blockquote>
+<p><strong>说明：</strong>将格式化的字符串附加在接收字符串的末尾<br><strong>原型：</strong><code>NSString</code></p>
+</blockquote>
+<figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span><br><span class="line">* @param &#123;NSString *&#125; format 格式串</span><br><span class="line">* @param &#123;...&#125; 格式串对应的值</span><br><span class="line">*/</span></span><br><span class="line">- (<span class="keyword">void</span>) appendFormat: (<span class="built_in">NSString</span> *) format, ...;</span><br></pre></td></tr></table></figure>
+<figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 可变字符串方法</span></span><br><span class="line"><span class="built_in">NSMutableString</span> *mString = [<span class="built_in">NSMutableString</span> stringWithCapacity:<span class="number">50</span>];</span><br><span class="line">[mString appendString:<span class="string">@"Hello there!"</span>];</span><br><span class="line">[mString appendFormat:<span class="string">@"human %d"</span>, <span class="number">42</span>];</span><br></pre></td></tr></table></figure>
+<h4 id="deleteCharactersInRange实例方法"><a href="#deleteCharactersInRange实例方法" class="headerlink" title="deleteCharactersInRange实例方法"></a>deleteCharactersInRange实例方法</h4><blockquote>
+<p><strong>说明：</strong>删除字符串中的字符。<br><strong>原型：</strong><code>NSString</code></p>
+</blockquote>
+<figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span><br><span class="line">* @param &#123;NSRange&#125; aRange 指定删除的部分坐在的区域</span><br><span class="line">*/</span></span><br><span class="line">- (<span class="keyword">void</span>) deleteCharactersInRange: (<span class="built_in">NSRange</span>) aRange;</span><br></pre></td></tr></table></figure>
+<figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 创建可变字符串对象</span></span><br><span class="line"><span class="built_in">NSMutableString</span> *friends = [<span class="built_in">NSMutableString</span> stringWithCapacity: <span class="number">50</span>];</span><br><span class="line"><span class="comment">// 查找子串</span></span><br><span class="line"><span class="built_in">NSRange</span> jackRange = [friends tangeOfString: <span class="string">@"Jack"</span>];</span><br><span class="line">jackRange.length++;<span class="comment">// eat the space that follows</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 删除"Jack"</span></span><br><span class="line">[friends deleteCharactersInRange: jackRange];</span><br><span class="line"></span><br><span class="line"><span class="comment">// 使用继承自NSString的实例方法</span></span><br><span class="line"><span class="built_in">NSMutableString</span> *string = [<span class="built_in">NSMutableString</span> strringWithFormat: <span class="string">@"jo%dy"</span>, <span class="number">2</span>];</span><br></pre></td></tr></table></figure>
+<h2 id="8-5-集合大家族"><a href="#8-5-集合大家族" class="headerlink" title="8.5    集合大家族"></a>8.5    集合大家族</h2><h3 id="8-5-1-NSArray"><a href="#8-5-1-NSArray" class="headerlink" title="8.5.1    NSArray"></a>8.5.1    NSArray</h3><blockquote>
+<p><strong>说明：</strong>一个<code>Cocoa</code>类，用来存储对象的有序列表</p>
+<ul>
+<li>通过<code>工厂方法</code>创建</li>
+<li>通过<code>字面量</code>创建（不需要在结尾处不上<code>nil</code>）</li>
+</ul>
+<p><strong>限制：</strong>有2个限制</p>
+<ul>
+<li>只能存储<code>Object-C</code>对象，不能存储原始的C语言基础数据类型</li>
+<li>不能使用<code>nil（对象的零值）</code></li>
+</ul>
+<p><strong>技巧：</strong>可以通过一些<code>NSArray</code>的方法避开这些限制<br><strong>注意：</strong>为什么不能在<code>NSArray</code>中存放<code>nil</code>？</p>
+<ul>
+<li>使用工厂方法创建数组时，最后一个参数<code>nil</code>用来表示参数列表的末尾</li>
+<li>没有办法判断<code>nil</code>是存储在数组中的数值还是代表循环结束的标志。</li>
+</ul>
+</blockquote>
+<h4 id="arrayWithObjects类方法"><a href="#arrayWithObjects类方法" class="headerlink" title="arrayWithObjects类方法"></a>arrayWithObjects类方法</h4><blockquote>
+<p><strong>说明：</strong>创建一个新的<code>NSArray</code>，可以发送一个以<code>,</code>分隔的对象列表，在列表结尾添加<code>nil</code>代表列表结束。<br><strong>原型：</strong><code>NSArray</code></p>
+</blockquote>
+<figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span><br><span class="line">* @param &#123;id ...&#125; 对象列表</span><br><span class="line">* @return &#123;NSArray&#125; 数组</span><br><span class="line">*/</span></span><br><span class="line">+ (<span class="built_in">NSArray</span>) arrayWithObjects(<span class="keyword">id</span> ...);</span><br></pre></td></tr></table></figure>
+<figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 通过工厂方法创建数组</span></span><br><span class="line"><span class="built_in">NSArray</span> *array = [<span class="built_in">NSArray</span> arrayWithObjects: <span class="string">@"one"</span>, <span class="string">@"two"</span>, <span class="string">@"three"</span>, <span class="literal">nil</span>];</span><br><span class="line"></span><br><span class="line"><span class="comment">// 通过字面量创建数组</span></span><br><span class="line"><span class="built_in">NSArray</span> *array2 = @[<span class="string">@"one"</span>, <span class="string">@"two"</span>, <span class="string">@"three"</span>];</span><br></pre></td></tr></table></figure>
+<h4 id="objectAtIndex实例方法"><a href="#objectAtIndex实例方法" class="headerlink" title="objectAtIndex实例方法"></a>objectAtIndex实例方法</h4><blockquote>
+<p><strong>说明：</strong>索引数组元素。</p>
+</blockquote>
+<figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 访问数组中的对象</span></span><br><span class="line"><span class="keyword">id</span> *myObject = array1[<span class="number">1</span>];</span><br><span class="line"><span class="keyword">for</span> (NAInteger i = <span class="number">0</span>; i &lt; [array count]; i++) &#123;</span><br><span class="line">    <span class="comment">// 通过方法索引</span></span><br><span class="line">    <span class="built_in">NSLog</span>(<span class="string">@"index %d has %@."</span>, i, [array1 objectAtIndex:i]);</span><br><span class="line">    <span class="comment">// 通过下标（字面量方式）索引</span></span><br><span class="line">    <span class="built_in">NSLog</span>(<span class="string">@"index %d has %@."</span>, i, array1[i]);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="切分数组"><a href="#切分数组" class="headerlink" title="切分数组"></a>切分数组</h3><h4 id="componentsSepartedByString实例方法"><a href="#componentsSepartedByString实例方法" class="headerlink" title="componentsSepartedByString实例方法"></a>componentsSepartedByString实例方法</h4><blockquote>
+<p><strong>说明：</strong>将字符串切分为数组。</p>
+</blockquote>
+<h4 id="componentsJoinedByString实例方法"><a href="#componentsJoinedByString实例方法" class="headerlink" title="componentsJoinedByString实例方法"></a>componentsJoinedByString实例方法</h4><blockquote>
+<p><strong>说明：</strong>合并<code>NSArray</code>中的元素并创建字符串。</p>
+</blockquote>
+<figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">NSString</span> *string = <span class="string">@"oop:ack:bork:greeble:poines"</span>;</span><br><span class="line"><span class="built_in">NSArray</span> *chunks = [string componentsSeparatedByString:<span class="string">@":"</span>];</span><br><span class="line">string = [chunks componentsJoinedByString:<span class="string">@":-)"</span>];</span><br></pre></td></tr></table></figure>
+<h3 id="8-5-2-可变数组"><a href="#8-5-2-可变数组" class="headerlink" title="8.5.2    可变数组"></a>8.5.2    可变数组</h3><blockquote>
+<p><strong>说明：</strong><code>NSArray</code>是不可变对象的数组，<code>NSMutableArray</code>是可变数组。<br><strong>注意：</strong>没有可以用来创建<code>NSMutableArray</code>对象的字面量语法。</p>
+</blockquote>
+<h4 id="arrayWithCapacity类方法"><a href="#arrayWithCapacity类方法" class="headerlink" title="arrayWithCapacity类方法"></a>arrayWithCapacity类方法</h4><blockquote>
+<p><strong>说明：</strong>创建新的可变数组。<br><strong>原型：</strong><code>NSMutableString</code></p>
+</blockquote>
+<figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span><br><span class="line">* @param &#123;NSInteger&#125; 容量</span><br><span class="line">* @return &#123;id&#125; 可变数组</span><br><span class="line">*/</span></span><br><span class="line">+ (<span class="keyword">id</span>) arrayWithCapacity: (<span class="built_in">NSInteger</span>) numItems;</span><br></pre></td></tr></table></figure>
+<h4 id="removeObjectAtIndex实例方法"><a href="#removeObjectAtIndex实例方法" class="headerlink" title="removeObjectAtIndex实例方法"></a>removeObjectAtIndex实例方法</h4><blockquote>
+<p><strong>说明：</strong>删除指定索引处的对象。<br><strong>原型：</strong><code>NSArray</code></p>
+</blockquote>
+<figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span><br><span class="line">* @param &#123;NSUInteger&#125; index 下标</span><br><span class="line">*/</span></span><br><span class="line">- (<span class="keyword">void</span>) removeObjectAtIndex: (<span class="built_in">NSUInteger</span>) index;</span><br></pre></td></tr></table></figure>
+<h3 id="8-5-3-遍历"><a href="#8-5-3-遍历" class="headerlink" title="8.5.3    遍历"></a>8.5.3    遍历</h3><blockquote>
+<p><strong>说明：</strong>有<code>4</code>种方式</p>
+<ul>
+<li>从0到<code>[array count]</code>循环</li>
+<li>使用迭代器：<code>NSEnumerator</code></li>
+<li>使用快速迭代：<code>for-in</code>（10.5+）</li>
+<li>使用代码块（依赖苹果最新的编译器：基于<code>CLang</code>和<code>LLVM</code>项目）</li>
+</ul>
+</blockquote>
+<h4 id="NSEnumerator"><a href="#NSEnumerator" class="headerlink" title="NSEnumerator"></a>NSEnumerator</h4><blockquote>
+<p><strong>说明：</strong>迭代器，<code>Cocoa</code>用它来表示集合中迭代出的对象。</p>
+</blockquote>
+<h4 id="objectEnumerator实例方法"><a href="#objectEnumerator实例方法" class="headerlink" title="objectEnumerator实例方法"></a>objectEnumerator实例方法</h4><blockquote>
+<p><strong>说明：</strong>获取数组对应的迭代器(从前往后迭代)。<br><strong>原型：</strong><code>NSArray</code></p>
+</blockquote>
+<figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span><br><span class="line">* @return &#123;NSEnumerator *&#125; 迭代器</span><br><span class="line">*/</span></span><br><span class="line">- (<span class="built_in">NSEnumerator</span> *)objectEnumerator;</span><br></pre></td></tr></table></figure>
+<h4 id="reverseObjectEnumerator实例方法"><a href="#reverseObjectEnumerator实例方法" class="headerlink" title="reverseObjectEnumerator实例方法"></a>reverseObjectEnumerator实例方法</h4><blockquote>
+<p><strong>说明：</strong>获取数组对应的迭代器(从后往前迭代)。<br><strong>原型：</strong><code>NSArray</code></p>
+</blockquote>
+<figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span><br><span class="line">* @return &#123;NSEnumerator *&#125; 迭代器</span><br><span class="line">*/</span></span><br><span class="line">- (<span class="built_in">NSEnumerator</span> *)reverseObjectEnumerator;</span><br></pre></td></tr></table></figure>
+<h4 id="nextObject实例方法"><a href="#nextObject实例方法" class="headerlink" title="nextObject实例方法"></a>nextObject实例方法</h4><blockquote>
+<p><strong>说明：</strong>请求迭代器的下一个对象，返回<code>nil</code>时迭代结束。<br><strong>原型：</strong><code>NSEnumerator</code></p>
+</blockquote>
+<figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span><br><span class="line">* @return &#123;id&#125; 迭代器迭代的一个对象</span><br><span class="line">*/</span></span><br><span class="line">- (<span class="keyword">id</span>) nextObject;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p><strong>限制：</strong>获取<code>可变数组</code>的迭代器后，如果再通过添加或删除对象<code>改变了数组的容量</code>，枚举起就会出现混乱。</p>
+</blockquote>
+<figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 通过字面量创建数组</span></span><br><span class="line"><span class="built_in">NSArray</span> *array = @[<span class="string">@"one"</span>, <span class="string">@"two"</span>, <span class="string">@"three"</span>];</span><br><span class="line"><span class="comment">// 获取迭代器</span></span><br><span class="line"><span class="built_in">NSEnumerator</span> *enumerator = [array objectEnumerator];</span><br><span class="line"><span class="comment">// 使用迭代器遍历</span></span><br><span class="line"><span class="keyword">while</span> (<span class="keyword">id</span> thingie = [enumerator nextObject]) &#123;</span><br><span class="line">	<span class="built_in">NSLog</span>(<span class="string">@"I found %@"</span>, thingie);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="8-5-4-快速迭代"><a href="#8-5-4-快速迭代" class="headerlink" title="8.5.4    快速迭代"></a>8.5.4    快速迭代</h3><blockquote>
+<p><strong>说明：</strong>在<code>Mac OS x 10.5</code>，<code>O-C</code>升级到<code>2.0</code>，引入了<code>快速枚举（迭代）</code>，类似一些脚本语言的<code>for-in</code></p>
+</blockquote>
+<figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> (<span class="built_in">NSString</span> *string <span class="keyword">in</span> array) &#123;</span><br><span class="line">	<span class="built_in">NSLog</span>(<span class="string">@"I found %@"</span>, string);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="enumerateObjectsUsingBlock实例方法"><a href="#enumerateObjectsUsingBlock实例方法" class="headerlink" title="enumerateObjectsUsingBlock实例方法"></a>enumerateObjectsUsingBlock实例方法</h4><blockquote>
+<p><strong>说明：</strong>为了支持C语言的代码块功能，苹果公司添加了一个能在<code>NSArray</code>中通过<code>代码块</code>迭代对象的方法。<br><strong>优点：</strong>通过代码块可以让循环操作并发执行，而通过快速枚举，执行操作要一项项线性完成。<br><strong>原型：</strong><code>NSArray</code></p>
+</blockquote>
+<figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span><br><span class="line">* @param &#123;NSString *&#125; string 迭代项</span><br><span class="line">* @param &#123;NSUInteger&#125; index 下标</span><br><span class="line">* @param &#123;BOOL *&#125; stop </span><br><span class="line">*/</span></span><br><span class="line">- (<span class="keyword">void</span>) enumerateObjectUsingBlock:^(<span class="built_in">NSString</span> *string, <span class="built_in">NSUInteger</span> index, <span class="built_in">BOOL</span> *stop);</span><br></pre></td></tr></table></figure>
+<figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">[array enumerateObjectsUsingBlock:^(<span class="built_in">NSString</span> *string, <span class="built_in">NSUInteger</span> index, <span class="built_in">BOOL</span> *stop) &#123;</span><br><span class="line">	<span class="built_in">NSLog</span>(<span class="string">@"I found %@"</span>, string);</span><br><span class="line">&#125;];</span><br></pre></td></tr></table></figure>
+<h3 id="8-5-5-NSDictionary"><a href="#8-5-5-NSDictionary" class="headerlink" title="8.5.5    NSDictionary"></a>8.5.5    NSDictionary</h3><blockquote>
+<p><strong>说明：</strong>字典是关键字及其定义的合集。<br><strong>扩展：</strong>字典使用的是键查询的优化方式，可以立即找到要查询的数据，而不需要遍历整个数组。</p>
+</blockquote>
+<h4 id="字面量"><a href="#字面量" class="headerlink" title="字面量"></a>字面量</h4><blockquote>
+<p><strong>说明：</strong>创建字典最简单的方式就是用字典字面量。<br><strong>语法：</strong><code>@{key: value, ...}</code></p>
+</blockquote>
+<h4 id="dictionaryWithObjectsAndKeys类方法"><a href="#dictionaryWithObjectsAndKeys类方法" class="headerlink" title="dictionaryWithObjectsAndKeys类方法"></a>dictionaryWithObjectsAndKeys类方法</h4><blockquote>
+<p><strong>说明：</strong>创建字典对象<br><strong>原型：</strong><code>NSDictionary</code></p>
+</blockquote>
+<figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span><br><span class="line">* @param &#123;id ...&#125; 键值对列表</span><br><span class="line">* @return &#123;id&#125; 字典对象</span><br><span class="line">*/</span></span><br><span class="line">+ (<span class="keyword">id</span>) dictionaryWithObjectsAndKeys: (<span class="keyword">id</span>) firstObject, ...;</span><br></pre></td></tr></table></figure>
+<h4 id="objectForKey实例方法"><a href="#objectForKey实例方法" class="headerlink" title="objectForKey实例方法"></a>objectForKey实例方法</h4><blockquote>
+<p><strong>说明：</strong>根据<code>关键字</code>访问字典中的<code>值</code>。<br><strong>原型：</strong><code>NSDictionary</code></p>
+</blockquote>
+<figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span><br><span class="line">* @param &#123;id&#125; aKey 键</span><br><span class="line">* @return &#123;id&#125; 值</span><br><span class="line">*/</span></span><br><span class="line">- (<span class="keyword">id</span>) objectForKey: (<span class="keyword">id</span>) aKey;</span><br></pre></td></tr></table></figure>
+<figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 对象实例</span></span><br><span class="line">Tire *t1 = [Tire new];</span><br><span class="line">Tire *t2 = [Tire new];</span><br><span class="line">Tire *t3 = [Tire new];</span><br><span class="line">Tire *t4 = [Tire new];</span><br><span class="line"></span><br><span class="line"><span class="comment">// 使用对象实例构建字典（工厂方法）</span></span><br><span class="line"><span class="built_in">NSDictionary</span> *tires1 = [<span class="built_in">NSDictionary</span> dictionaryWithObjectsAndKeys: t1, <span class="string">@"front-left"</span>, t2, <span class="string">@"front-right"</span>, t3, <span class="string">@"back-left"</span>, t3, <span class="string">@"back-left"</span>, t4, <span class="string">@"back-right"</span>, <span class="literal">nil</span>];</span><br><span class="line"><span class="comment">// 使用对象实例构建字典（字面量）</span></span><br><span class="line"><span class="built_in">NSDictionary</span> *tires2 = @&#123;<span class="string">@"front-left"</span>: t1, <span class="string">@"front-right"</span>: t2, <span class="string">@"back-left"</span>: t3, <span class="string">@"back-right"</span>: t4&#125;;</span><br><span class="line"><span class="comment">// 通过方法索引</span></span><br><span class="line">Tire *tire = [tires objectForKey: <span class="string">@"back-right"</span>];</span><br><span class="line"><span class="comment">// 通过字面量索引</span></span><br><span class="line">tire = tires[<span class="string">@"back-right"</span>];</span><br></pre></td></tr></table></figure>
+<h4 id="可变字典"><a href="#可变字典" class="headerlink" title="可变字典"></a>可变字典</h4><blockquote>
+<p><strong>说明：</strong><code>NSDictionary</code>容量是不可变的，<code>NSMutableDictionary</code>是可变的。<br><strong>注意：</strong>没有适用于<code>NSMutableDictionary</code>的字面量初始化语法。</p>
+</blockquote>
+<h5 id="dictionary类方法"><a href="#dictionary类方法" class="headerlink" title="dictionary类方法"></a>dictionary类方法</h5><blockquote>
+<p><strong>说明：</strong>创建<code>NSMutableDictionary</code>实例。<br><strong>原型：</strong><code>NSMutableDictionary</code></p>
+</blockquote>
+<figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span><br><span class="line">* @return &#123;id&#125; NSMutableDictionary实例</span><br><span class="line">*/</span></span><br><span class="line">+ (<span class="keyword">id</span>) dictionary;</span><br></pre></td></tr></table></figure>
+<h5 id="dictionaryWithCapacity类方法"><a href="#dictionaryWithCapacity类方法" class="headerlink" title="dictionaryWithCapacity类方法"></a>dictionaryWithCapacity类方法</h5><blockquote>
+<p><strong>说明：</strong>创建新的可变字典并告诉<code>Cocoa</code>该字典的最优大小。<br><strong>原型：</strong><code>NSMutableDictionary</code></p>
+</blockquote>
+<figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span><br><span class="line">* @param &#123;NSUInteger&#125; numItems 最优容量</span><br><span class="line">*/</span></span><br><span class="line">- (<span class="keyword">void</span>) dictionaryWithCapacity: (<span class="built_in">NSUInteger</span>) numItems;</span><br></pre></td></tr></table></figure>
+<h5 id="setObject实例方法"><a href="#setObject实例方法" class="headerlink" title="setObject实例方法"></a>setObject实例方法</h5><blockquote>
+<p><strong>说明：</strong>为字典添加（设置）元素<br><strong>原型：</strong><code>NSMutableDictionary</code></p>
+</blockquote>
+<figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span><br><span class="line">* @param &#123;id&#125; anObject 值</span><br><span class="line">* @param &#123;id&#125; aKey  键</span><br><span class="line">*/</span></span><br><span class="line">- (<span class="keyword">void</span>) setObject: (<span class="keyword">id</span>)anObject forKey: (<span class="keyword">id</span>)aKey;</span><br></pre></td></tr></table></figure>
+<h5 id="removeObjectForKey实例方法"><a href="#removeObjectForKey实例方法" class="headerlink" title="removeObjectForKey实例方法"></a>removeObjectForKey实例方法</h5><blockquote>
+<p><strong>说明：</strong>在可变字典中删除元素<br><strong>原型：</strong><code>NSMutableDictionary</code></p>
+</blockquote>
+<figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span><br><span class="line">* @param &#123;id&#125; aKey 要删除的元素的键</span><br><span class="line">*/</span></span><br><span class="line">- (<span class="keyword">void</span>) removeObjectForKey: (<span class="keyword">id</span>) aKey;</span><br></pre></td></tr></table></figure>
+<figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 创建可变字典</span></span><br><span class="line"><span class="built_in">NSMutableDictionary</span> *tires = [<span class="built_in">NSMutableDictionary</span> dictionary];</span><br><span class="line"><span class="comment">// 对象实例</span></span><br><span class="line">Tire *t1 = [Tire new];</span><br><span class="line">Tire *t2 = [Tire new];</span><br><span class="line">Tire *t3 = [Tire new];</span><br><span class="line">Tire *t4 = [Tire new];</span><br><span class="line"><span class="comment">// 为字典添加元素</span></span><br><span class="line">[tires setObject: t1 forKey: <span class="string">@"front-left"</span>];</span><br><span class="line">[tires setObject: t2 forKey: <span class="string">@"front-right"</span>];</span><br><span class="line">[tires setObject: t3 forKey: <span class="string">@"back-left"</span>];</span><br><span class="line">[tires setObject: t4 forKey: <span class="string">@"back-right"</span>];</span><br><span class="line"></span><br><span class="line"><span class="comment">// 删除元素</span></span><br><span class="line">[tires removeObjectForKey: <span class="string">@"back-left"</span>];</span><br></pre></td></tr></table></figure>
+<h3 id="8-5-6-请不要乱来"><a href="#8-5-6-请不要乱来" class="headerlink" title="8.5.6    请不要乱来"></a>8.5.6    请不要乱来</h3><blockquote>
+<p><strong>类蔟：</strong>一群隐藏在通用接口之下与实现相关的类。<br><strong>说明：</strong>在<code>Cocoa</code>中，许多类实际上是以<code>类蔟</code>的方式实现。比如，创建<code>NSString</code>对象时，实际上获得的可能是<code>NSLiteralString</code>、<code>NSCFString</code>、<code>NSSimpleCString</code>、<code>NSBallOfString</code>或者其他未写入文档的与实现相关的对象。<br><strong>技巧：</strong>不要尝试给一个<code>类蔟</code>创建子类，可以将<code>NSString</code>或<code>NSArray</code>复合到某个类中或者使用别类。</p>
+</blockquote>
+<h2 id="8-6-其他数值"><a href="#8-6-其他数值" class="headerlink" title="8.6    其他数值"></a>8.6    其他数值</h2><blockquote>
+<p><strong>说明：</strong><code>NSArray</code>和<code>NSDictionary</code>只能存储对象，而不能直接存储任何基本类型的数据，如<code>int</code>、<code>float</code>和<code>struct</code>。<br><strong>技巧：</strong>可以用对象封装基本数据类型，然后再放入<code>NSArray</code>或<code>NSDictionary</code>。<br><strong>注意：</strong><code>Objective-C</code>不支持<code>自动开箱</code>和<code>自动装箱</code>。</p>
+</blockquote>
+<h3 id="8-6-1-NSNumber"><a href="#8-6-1-NSNumber" class="headerlink" title="8.6.1    NSNumber"></a>8.6.1    NSNumber</h3><blockquote>
+<p><strong>说明：</strong>可以用来封装和数字相关的一些基本数据类型。<br><strong>工厂方法：</strong>以最常用的为例</p>
+<ul>
+<li><code>+ (NSNumber *) numberWithChar: (char) value;</code></li>
+<li><code>+ (NSNumber *) numberWithInt: (int) value;</code></li>
+<li><code>+ (NSNumber *) numberWithFloat: (float) value;</code></li>
+<li><code>+ (NSNumber *) numberWithBool: (BOOL) value;</code></li>
+</ul>
+<p><strong>实例方法：</strong>从<code>NSNumber</code>中提取数值</p>
+<ul>
+<li><code>- (char) charValue</code></li>
+<li><code>- (int) intValue</code></li>
+<li><code>- (float) floatValue</code></li>
+<li><code>- (BOOL) boolValue</code></li>
+<li><code>- (NSString *) stringValue</code></li>
+</ul>
+<p><strong>字面量：</strong>可以使用字面量语法创建<code>NSNumber</code>对象</p>
+</blockquote>
+<figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 封装几本类型</span></span><br><span class="line"><span class="built_in">NSNumber</span> *number;</span><br><span class="line">number = @<span class="string">'X'</span>;<span class="comment">// 字符型</span></span><br><span class="line">number = @<span class="number">12345</span>;<span class="comment">// 整型</span></span><br><span class="line">number = @<span class="number">12345</span>ul;<span class="comment">// 无符号长整数</span></span><br><span class="line">number = @<span class="number">12345</span>ll;<span class="comment">// long long</span></span><br><span class="line">number = @<span class="number">123</span>,<span class="number">45</span>f;<span class="comment">// 浮点型</span></span><br><span class="line">number = @<span class="number">123</span>,<span class="number">45</span>;<span class="comment">// 双浮点型</span></span><br><span class="line">number = @YES;<span class="comment">// 布尔值</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">NSMutableArray</span> *array = [<span class="built_in">NSMutableArray</span> arrayWithCapacity];</span><br><span class="line"><span class="comment">// 存储到数组中</span></span><br><span class="line">[array addObject number];</span><br><span class="line">[dictionary setObject: number forKey: @:<span class="string">"Bork"</span>];</span><br></pre></td></tr></table></figure>
+<h3 id="8-6-2-NSValue"><a href="#8-6-2-NSValue" class="headerlink" title="8.6.2    NSValue"></a>8.6.2    NSValue</h3><blockquote>
+<p><strong>说明：</strong><code>NSValue</code>可以封装任意值。<br><strong>扩展：</strong><code>NSNumber</code>是<code>NSValue</code>的子类。</p>
+</blockquote>
+<h4 id="valueWithBytes类方法"><a href="#valueWithBytes类方法" class="headerlink" title="valueWithBytes类方法"></a>valueWithBytes类方法</h4><blockquote>
+<p><strong>说明：</strong>创建新的<code>NSValue</code>对象。<br><strong>原型：</strong><code>NSValue</code></p>
+</blockquote>
+<figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span><br><span class="line">* @param &#123;const void *&#125; value 要存储的变量的地址</span><br><span class="line">* @param &#123;const char *&#125; type 描述数据类的字符串</span><br><span class="line">* @return &#123;NSValue *&#125; NSValue对象</span><br><span class="line">*/</span></span><br><span class="line">+ (<span class="built_in">NSValue</span> *) valueWithBytes: (<span class="keyword">const</span> <span class="keyword">void</span> *) value objCType: (<span class="keyword">const</span> <span class="keyword">char</span> *) type;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p><strong>工厂方法：</strong><code>NSValue</code>，举例</p>
+<ul>
+<li><code>(NSValue *)valueWithPoint: (NSPoint) aPoint;</code></li>
+<li><code>(NSValue *)valueWithSize: (NSSize) size;</code></li>
+<li><code>(NSValue *)valueWithRect: (NSRect);</code></li>
+</ul>
+<p><strong>实例方法：</strong><code>NSValue</code>, 会进行类型转换</p>
+<ul>
+<li><code>(NSPoint)pointValue;</code></li>
+<li><code>(NSSize)sizeValue;</code></li>
+<li><code>(NSRect)rectValue;</code></li>
+</ul>
+</blockquote>
+<h4 id="getValue实例方法"><a href="#getValue实例方法" class="headerlink" title="getValue实例方法"></a>getValue实例方法</h4><blockquote>
+<p><strong>说明：</strong>提取数值，返回一个<code>NSValue</code>型值。<br><strong>注意：</strong>方法名中使用了<code>get</code>，表明我们提供的是一个指针，而指针所指向的空间则用来存储该方法生成的数据。</p>
+</blockquote>
+<figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 创建一个对象（struct）</span></span><br><span class="line"><span class="built_in">NSRect</span> rect = <span class="built_in">NSMakeRect</span>(<span class="number">1</span>, <span class="number">2</span>, <span class="number">30</span>, <span class="number">40</span>);</span><br><span class="line"><span class="comment">// 包装包NSValue型值中</span></span><br><span class="line"><span class="built_in">NSValue</span> *value = [<span class="built_in">NSValue</span> valueWithBytes:&amp;rect objCType:@encode(<span class="built_in">NSRect</span>)];</span><br><span class="line"><span class="comment">// 添加到数组中</span></span><br><span class="line">[array addObject:value];</span><br><span class="line">value = [array objectAtIndex:<span class="number">0</span>];</span><br><span class="line"><span class="comment">// 提取数值</span></span><br><span class="line">[value getValue:&amp;rect];</span><br><span class="line"></span><br><span class="line"><span class="comment">// 疯转NSRect</span></span><br><span class="line">value = [<span class="built_in">NSValue</span> valueWithRect:rect];</span><br><span class="line"><span class="comment">// 添加到数组</span></span><br><span class="line">[array addObject:value];</span><br><span class="line"><span class="comment">// 提取NSRect型值</span></span><br><span class="line"><span class="built_in">NSRect</span> anotherRect = [value rectValue];</span><br></pre></td></tr></table></figure>
+<h3 id="8-6-3-NSNull"><a href="#8-6-3-NSNull" class="headerlink" title="8.6.3    NSNull"></a>8.6.3    NSNull</h3><blockquote>
+<p><strong>说明：</strong>集合中不能放入<code>nil</code>，但可以放入<code>NSNull</code>。</p>
+</blockquote>
+<h4 id="null类方法"><a href="#null类方法" class="headerlink" title="null类方法"></a>null类方法</h4><blockquote>
+<p><strong>说明：</strong>创建一个<code>NSNull</code>实例<br><strong>原型：</strong><code>NSNull</code></p>
+</blockquote>
+<figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span><br><span class="line">* @return &#123;NSNull *&#125; NSNull实例</span><br><span class="line">*/</span></span><br><span class="line">+ (<span class="built_in">NSNull</span> *) null;</span><br></pre></td></tr></table></figure>
+<figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 想通讯录中加入一条信息（没有传真号）</span></span><br><span class="line">[contact setObject: [<span class="built_in">NSNull</span> null] forKey: <span class="string">@"home fax machine"</span>];</span><br><span class="line"></span><br><span class="line"><span class="comment">// 索引这条信息</span></span><br><span class="line"><span class="keyword">id</span> homefax = [contact objectForKey: <span class="string">@"home fax machine"</span>];</span><br><span class="line"><span class="keyword">if</span> (homefax == [<span class="built_in">NSNull</span> null]) &#123;</span><br><span class="line">	<span class="comment">// 确实没有传真机</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="8-7-示例：查找文件"><a href="#8-7-示例：查找文件" class="headerlink" title="8.7    示例：查找文件"></a>8.7    示例：查找文件</h2><h3 id="8-7-1-使用迭代器的版本"><a href="#8-7-1-使用迭代器的版本" class="headerlink" title="8.7.1    使用迭代器的版本"></a>8.7.1    使用迭代器的版本</h3><figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#import <span class="meta-string">&lt;Foundation/Foundation.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">int</span> main(<span class="keyword">int</span> argc, <span class="keyword">const</span> <span class="keyword">char</span> * argv[])</span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">@autoreleasepool</span> </span><br><span class="line">    &#123;</span><br><span class="line">        <span class="comment">// 创建文件管理器</span></span><br><span class="line">        <span class="built_in">NSFileManager</span> *manager;</span><br><span class="line">        manager = [<span class="built_in">NSFileManager</span> defaultManager];</span><br><span class="line">        </span><br><span class="line">        <span class="comment">// 将~替换为相应的绝对目录</span></span><br><span class="line">        <span class="built_in">NSString</span> *home;</span><br><span class="line">        home = [<span class="string">@"~"</span> stringByExpandingTildeInPath];</span><br><span class="line">        </span><br><span class="line">        <span class="comment">// 获取相应路径下文件集合的迭代器</span></span><br><span class="line">        <span class="built_in">NSDirectoryEnumerator</span> *direnum;</span><br><span class="line">        direnum = [manager enumeratorAtPath:home];</span><br><span class="line">        </span><br><span class="line">        <span class="comment">// 创建存放文件的可变数组</span></span><br><span class="line">        <span class="built_in">NSMutableArray</span> *files;</span><br><span class="line">        files = [<span class="built_in">NSMutableArray</span> arrayWithCapacity:<span class="number">42</span>];</span><br><span class="line">        </span><br><span class="line">        <span class="comment">// 通过迭代器遍历寻找目标文件</span></span><br><span class="line">        <span class="built_in">NSString</span> *filename;</span><br><span class="line">        <span class="keyword">while</span> (filename = [direnum nextObject])</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="comment">// 查看扩展名是否匹配</span></span><br><span class="line">            <span class="keyword">if</span> ([[filename pathExtension] isEqualTo: <span class="string">@"jpg"</span>]) &#123;</span><br><span class="line">                [files addObject: filename];</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">        <span class="comment">// 通过迭代器遍历匹配到的文件的文件名</span></span><br><span class="line">        <span class="built_in">NSEnumerator</span> *fileenum;</span><br><span class="line">        fileenum = [files objectEnumerator];</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">while</span> (filename = [fileenum nextObject])</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="built_in">NSLog</span> (<span class="string">@"%@"</span>, filename);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="8-7-2-使用快速迭代的版本"><a href="#8-7-2-使用快速迭代的版本" class="headerlink" title="8.7.2    使用快速迭代的版本"></a>8.7.2    使用快速迭代的版本</h3><blockquote>
+<p><strong>说明：</strong>不支持<code>Leopard</code>之前的版本。</p>
+</blockquote>
+<figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<h2 id="8-8-小结"><a href="#8-8-小结" class="headerlink" title="8.8    小结"></a>8.8    小结</h2>
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/05/13/BOOK_Objective-C基础教程第二版/o-c基础教程第二版_07  深入了解Xcode/" rel="next" title="7 深入了解Xcode">
+                <i class="fa fa-chevron-left"></i> 7 深入了解Xcode
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/05/13/BOOK_Objective-C基础教程第二版/o-c基础教程第二版_09  内存管理/" rel="prev" title="9 内存管理">
+                9 内存管理 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2016/05/13/BOOK_Objective-C基础教程第二版/o-c基础教程第二版_08  Foundation Kit介绍/"
+           data-title="8 Foundation Kit介绍" data-url="http://laputa-er.github.io/2016/05/13/BOOK_Objective-C基础教程第二版/o-c基础教程第二版_08  Foundation Kit介绍/">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.gif"
+               alt="Sean" />
+          <p class="site-author-name" itemprop="name">Sean</p>
+          <p class="site-description motion-element" itemprop="description">整理了一批过去一段时间ios相关的笔记，其它的笔记也整理下？源码分享出来？再说吧...反正也只有自己会看吧...</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">200</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">22</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">31</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#8-1-稳固的-Foundation"><span class="nav-text">8.1    稳固的 Foundation</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#8-2-使用项目样本代码"><span class="nav-text">8.2    使用项目样本代码</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#8-3-一些有用的数据类型"><span class="nav-text">8.3    一些有用的数据类型</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#8-3-1-范围"><span class="nav-text">8.3.1    范围</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#8-3-2-几何数据类型"><span class="nav-text">8.3.2    几何数据类型</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#8-4-字符串"><span class="nav-text">8.4    字符串</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#8-4-1-创建字符串"><span class="nav-text">8.4.1    创建字符串</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#stringWithFormat方法"><span class="nav-text">stringWithFormat方法</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#8-4-2-类方法"><span class="nav-text">8.4.2    类方法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#8-4-4-关于大小"><span class="nav-text">8.4.4    关于大小</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#length实例方法"><span class="nav-text">length实例方法</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#8-4-4-字符串比较"><span class="nav-text">8.4.4    字符串比较</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#isEqualToString实例方法"><span class="nav-text">isEqualToString实例方法</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#compare实例方法"><span class="nav-text">compare实例方法</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#8-4-5-不区分大小写的比较"><span class="nav-text">8.4.5    不区分大小写的比较</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#compare实例方法（2个参数）"><span class="nav-text">compare实例方法（2个参数）</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#8-4-6-字符串是否还包含别的字符串"><span class="nav-text">8.4.6    字符串是否还包含别的字符串</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#hasPrefix实例方法"><span class="nav-text">hasPrefix实例方法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#hasSuffix实例方法"><span class="nav-text">hasSuffix实例方法</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#rangeOfString实例方法"><span class="nav-text">rangeOfString实例方法</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#8-4-7-可变性"><span class="nav-text">8.4.7    可变性</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#stringWithCapacity类方法"><span class="nav-text">stringWithCapacity类方法</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#appendString实例方法"><span class="nav-text">appendString实例方法</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#appendFormat实例方法"><span class="nav-text">appendFormat实例方法</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#deleteCharactersInRange实例方法"><span class="nav-text">deleteCharactersInRange实例方法</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#8-5-集合大家族"><span class="nav-text">8.5    集合大家族</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#8-5-1-NSArray"><span class="nav-text">8.5.1    NSArray</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#arrayWithObjects类方法"><span class="nav-text">arrayWithObjects类方法</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#objectAtIndex实例方法"><span class="nav-text">objectAtIndex实例方法</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#切分数组"><span class="nav-text">切分数组</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#componentsSepartedByString实例方法"><span class="nav-text">componentsSepartedByString实例方法</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#componentsJoinedByString实例方法"><span class="nav-text">componentsJoinedByString实例方法</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#8-5-2-可变数组"><span class="nav-text">8.5.2    可变数组</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#arrayWithCapacity类方法"><span class="nav-text">arrayWithCapacity类方法</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#removeObjectAtIndex实例方法"><span class="nav-text">removeObjectAtIndex实例方法</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#8-5-3-遍历"><span class="nav-text">8.5.3    遍历</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#NSEnumerator"><span class="nav-text">NSEnumerator</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#objectEnumerator实例方法"><span class="nav-text">objectEnumerator实例方法</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#reverseObjectEnumerator实例方法"><span class="nav-text">reverseObjectEnumerator实例方法</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#nextObject实例方法"><span class="nav-text">nextObject实例方法</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#8-5-4-快速迭代"><span class="nav-text">8.5.4    快速迭代</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#enumerateObjectsUsingBlock实例方法"><span class="nav-text">enumerateObjectsUsingBlock实例方法</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#8-5-5-NSDictionary"><span class="nav-text">8.5.5    NSDictionary</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#字面量"><span class="nav-text">字面量</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#dictionaryWithObjectsAndKeys类方法"><span class="nav-text">dictionaryWithObjectsAndKeys类方法</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#objectForKey实例方法"><span class="nav-text">objectForKey实例方法</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#可变字典"><span class="nav-text">可变字典</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#dictionary类方法"><span class="nav-text">dictionary类方法</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#dictionaryWithCapacity类方法"><span class="nav-text">dictionaryWithCapacity类方法</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#setObject实例方法"><span class="nav-text">setObject实例方法</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#removeObjectForKey实例方法"><span class="nav-text">removeObjectForKey实例方法</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#8-5-6-请不要乱来"><span class="nav-text">8.5.6    请不要乱来</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#8-6-其他数值"><span class="nav-text">8.6    其他数值</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#8-6-1-NSNumber"><span class="nav-text">8.6.1    NSNumber</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#8-6-2-NSValue"><span class="nav-text">8.6.2    NSValue</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#valueWithBytes类方法"><span class="nav-text">valueWithBytes类方法</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#getValue实例方法"><span class="nav-text">getValue实例方法</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#8-6-3-NSNull"><span class="nav-text">8.6.3    NSNull</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#null类方法"><span class="nav-text">null类方法</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#8-7-示例：查找文件"><span class="nav-text">8.7    示例：查找文件</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#8-7-1-使用迭代器的版本"><span class="nav-text">8.7.1    使用迭代器的版本</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#8-7-2-使用快速迭代的版本"><span class="nav-text">8.7.2    使用快速迭代的版本</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#8-8-小结"><span class="nav-text">8.8    小结</span></a></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Sean</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"lapuda-er"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+    <script src="/vendors/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
+    <script src="/js/src/hook-duoshuo.js"></script>
+  
+
+
+
+
+
+
+  
+  
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length == 0) {
+       search_path = "search.xml";
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    function proceedsearch() {
+      $("body").append('<div class="popoverlay">').css('overflow', 'hidden');
+      $('.popup').toggle();
+
+    }
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+    'use strict';
+    $.ajax({
+        url: path,
+        dataType: "xml",
+        async: true,
+        success: function( xmlResponse ) {
+            // get the contents from search data
+            isfetched = true;
+            $('.popup').detach().appendTo('.header-inner');
+            var datas = $( "entry", xmlResponse ).map(function() {
+                return {
+                    title: $( "title", this ).text(),
+                    content: $("content",this).text(),
+                    url: $( "url" , this).text()
+                };
+            }).get();
+            var $input = document.getElementById(search_id);
+            var $resultContent = document.getElementById(content_id);
+            $input.addEventListener('input', function(){
+                var matchcounts = 0;
+                var str='<ul class=\"search-result-list\">';
+                var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+                $resultContent.innerHTML = "";
+                if (this.value.trim().length > 1) {
+                // perform local searching
+                datas.forEach(function(data) {
+                    var isMatch = true;
+                    var content_index = [];
+                    var data_title = data.title.trim().toLowerCase();
+                    var data_content = data.content.trim().replace(/<[^>]+>/g,"").toLowerCase();
+                    var data_url = data.url;
+                    var index_title = -1;
+                    var index_content = -1;
+                    var first_occur = -1;
+                    // only match artiles with not empty titles and contents
+                    if(data_title != '' && data_content != '') {
+                        keywords.forEach(function(keyword, i) {
+                            index_title = data_title.indexOf(keyword);
+                            index_content = data_content.indexOf(keyword);
+                            if( index_title < 0 && index_content < 0 ){
+                                isMatch = false;
+                            } else {
+                                if (index_content < 0) {
+                                    index_content = 0;
+                                }
+                                if (i == 0) {
+                                    first_occur = index_content;
+                                }
+                            }
+                        });
+                    }
+                    // show search results
+                    if (isMatch) {
+                        matchcounts += 1;
+                        str += "<li><a href='"+ data_url +"' class='search-result-title'>"+ data_title +"</a>";
+                        var content = data.content.trim().replace(/<[^>]+>/g,"");
+                        if (first_occur >= 0) {
+                            // cut out 100 characters
+                            var start = first_occur - 20;
+                            var end = first_occur + 80;
+                            if(start < 0){
+                                start = 0;
+                            }
+                            if(start == 0){
+                                end = 50;
+                            }
+                            if(end > content.length){
+                                end = content.length;
+                            }
+                            var match_content = content.substring(start, end);
+                            // highlight all keywords
+                            keywords.forEach(function(keyword){
+                                var regS = new RegExp(keyword, "gi");
+                                match_content = match_content.replace(regS, "<b class=\"search-keyword\">"+keyword+"</b>");
+                            });
+
+                            str += "<p class=\"search-result\">" + match_content +"...</p>"
+                        }
+                        str += "</li>";
+                    }
+                })};
+                str += "</ul>";
+                if (matchcounts == 0) { str = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>' }
+                if (keywords == "") { str = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>' }
+                $resultContent.innerHTML = str;
+            });
+            proceedsearch();
+        }
+    });}
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched == false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+
+    });
+
+    $('.popup-btn-close').click(function(e){
+      $('.popup').hide();
+      $(".popoverlay").remove();
+      $('body').css('overflow', '');
+    });
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+  </script>
+
+
+  
+
+  
+
+  
+
+</body>
+</html>

@@ -1,0 +1,890 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="js," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1" />
+
+
+
+
+
+
+<meta name="description" content="2.1  script元素历史：   由Netscape创造并在Netscape Navigator 2中首先实现。之后被加入HTML规范。元素（HTML4.01）:   6个，全部非必需
+
+async：    异步方式下载脚本
+
+
+charset：    使用src属性指定的字符集，大多数浏览器会忽略这个值，很少用
+defer:   立即下载，但 延迟到文档被完全解析和显示之后（遇到）执行。只对">
+<meta property="og:type" content="article">
+<meta property="og:title" content="02 在HTML中使用JavaScript">
+<meta property="og:url" content="http://laputa-er.github.io/2017/03/31/BOOK_JS高级程序设计(第三版)/JSHPD_3rd_02_在HTML中使用JavaScript/index.html">
+<meta property="og:site_name" content="Sean">
+<meta property="og:description" content="2.1  script元素历史：   由Netscape创造并在Netscape Navigator 2中首先实现。之后被加入HTML规范。元素（HTML4.01）:   6个，全部非必需
+
+async：    异步方式下载脚本
+
+
+charset：    使用src属性指定的字符集，大多数浏览器会忽略这个值，很少用
+defer:   立即下载，但 延迟到文档被完全解析和显示之后（遇到）执行。只对">
+<meta property="og:image" content="http://o6ul1xz4z.bkt.clouddn.com/1450428411211.png">
+<meta property="og:image" content="http://o6ul1xz4z.bkt.clouddn.com/1450428430947.png">
+<meta property="og:image" content="http://o6ul1xz4z.bkt.clouddn.com/1450428447412.png">
+<meta property="og:image" content="http://o6ul1xz4z.bkt.clouddn.com/1450428543661.png">
+<meta property="og:image" content="http://o6ul1xz4z.bkt.clouddn.com/1450428919678.png">
+<meta property="og:image" content="http://o6ul1xz4z.bkt.clouddn.com/1450428816811.png">
+<meta property="og:image" content="http://o6ul1xz4z.bkt.clouddn.com/1450428869793.png">
+<meta property="og:updated_time" content="2017-03-31T03:56:45.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="02 在HTML中使用JavaScript">
+<meta name="twitter:description" content="2.1  script元素历史：   由Netscape创造并在Netscape Navigator 2中首先实现。之后被加入HTML规范。元素（HTML4.01）:   6个，全部非必需
+
+async：    异步方式下载脚本
+
+
+charset：    使用src属性指定的字符集，大多数浏览器会忽略这个值，很少用
+defer:   立即下载，但 延迟到文档被完全解析和显示之后（遇到）执行。只对">
+<meta name="twitter:image" content="http://o6ul1xz4z.bkt.clouddn.com/1450428411211.png">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 0,
+      author: '博主'
+    }
+  };
+</script>
+
+
+
+
+  <link rel="canonical" href="http://laputa-er.github.io/2017/03/31/BOOK_JS高级程序设计(第三版)/JSHPD_3rd_02_在HTML中使用JavaScript/"/>
+
+  <title> 02 在HTML中使用JavaScript | Sean </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//hm.baidu.com/hm.js?898688f51c5a3d6b37dd23e04441e5bd";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">Sean</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">笔记分享</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup">
+ <span class="search-icon fa fa-search"></span>
+ <input type="text" id="local-search-input">
+ <div id="local-search-result"></div>
+ <span class="popup-btn-close">close</span>
+</div>
+
+
+    </div>
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                02 在HTML中使用JavaScript
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2017-03-31T10:48:38+08:00" content="2017-03-31">
+              2017-03-31
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/JS高级程序设计-第三版/" itemprop="url" rel="index">
+                    <span itemprop="name">JS高级程序设计(第三版)</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2017/03/31/BOOK_JS高级程序设计(第三版)/JSHPD_3rd_02_在HTML中使用JavaScript/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2017/03/31/BOOK_JS高级程序设计(第三版)/JSHPD_3rd_02_在HTML中使用JavaScript/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="2-1-script元素"><a href="#2-1-script元素" class="headerlink" title="2.1  script元素"></a>2.1  script元素</h2><p><strong>历史：</strong>   由Netscape创造并在Netscape Navigator 2中首先实现。之后被加入HTML规范。<br><strong>元素（HTML4.01）:</strong>   6个，全部非必需</p>
+<ul>
+<li>async：    异步方式下载脚本</li>
+</ul>
+<ul>
+<li>charset：    使用src属性指定的字符集，大多数浏览器会忽略这个值，很少用</li>
+<li>defer:   立即下载，但 延迟到文档被完全解析和显示之后（遇到）执行。只对外部文件有效</li>
+<li>language:    使用的脚本语言，已废弃</li>
+<li>src：执行代码的外部文件</li>
+<li>type:    默认死type/javascript</li>
+</ul>
+<p><strong>使用方式：</strong></p>
+<ul>
+<li>直接嵌入：指定type属性，js代码中不能出现’‘</li>
+<li>包含外部文件：src属性必需，可以跨域，不能混合嵌入代码，在xhtml中可以自闭合（不推荐）</li>
+</ul>
+<h3 id="2-1-1-标签的位置"><a href="#2-1-1-标签的位置" class="headerlink" title="2.1.1    标签的位置"></a>2.1.1    标签的位置</h3><p><strong>惯例：</strong><head>元素中（浏览器遇到</head><body>标签时才会开始呈现内容，因而会有延迟）</body></p>
+<p><strong>推荐：</strong><code>&lt;body&gt;</code>元素中页面的内容后面</p>
+<h3 id="2-1-2-延迟脚本"><a href="#2-1-2-延迟脚本" class="headerlink" title="2.1.2    延迟脚本"></a>2.1.2    延迟脚本</h3><p><strong>方式：</strong></p>
+<ul>
+<li><strong>HTML：</strong><code>&lt;script type=&quot;text/javascript&quot;defer&gt;&lt;/script&gt;</code></li>
+<li><strong>XHTML：</strong><code>&lt;script type=&quot;text/javascript&quot;defer=&quot;defer&quot;&gt;&lt;/script&gt;</code>   </li>
+</ul>
+<p><strong>规范行为（HTML5）：</strong></p>
+<ul>
+<li>脚本会延迟到浏览器遇到标签后再按照出现的顺序执行，但都先于DOMContentLoaded事件触发前执行；</li>
+<li>只适用于外部脚本文件；</li>
+</ul>
+<p><strong>现实行为：</strong></p>
+<ul>
+<li>延迟的脚本不一定会在DOMContentLoaded事件触发前执行，也不一定按照顺序执行，为了避免加载顺序的混乱，建议只有一个defer脚本；</li>
+<li>IE4-IE7支持对嵌入脚本的defer属性，IE8等支持HTML5实现的浏览器则会忽略这个属性。</li>
+</ul>
+<h3 id="2-1-3-异步脚本-HTML5"><a href="#2-1-3-异步脚本-HTML5" class="headerlink" title="2.1.3    异步脚本 (HTML5)"></a>2.1.3    异步脚本 (HTML5)</h3><p><strong>方式：</strong></p>
+<ul>
+<li><strong>HTML：</strong><code>&lt;script type=&quot;text/javascript&quot; async&gt;&lt;/script&gt;</code>   </li>
+<li><strong>XHTML：</strong><code>&lt;script type=&quot;text/javascript&quot; async=&quot;async&quot;&gt;&lt;/script&gt;</code> </li>
+</ul>
+<p><strong>行为：</strong><br>只是用外部文件；</p>
+<ul>
+<li>立即异步下载，页面不会等待下载完毕和执行；</li>
+<li>不保证顺序，因此确保异步脚本之间彼此不依赖；</li>
+<li>页面load事件前执行，DOMContentLoaded事件之前或之后；</li>
+</ul>
+<p>支持情况：</p>
+<h3 id="2-1-4-在XHTML中的用法（可以跳过这一节，因为HTML5标准正快速占领市场）"><a href="#2-1-4-在XHTML中的用法（可以跳过这一节，因为HTML5标准正快速占领市场）" class="headerlink" title="2.1.4    在XHTML中的用法（可以跳过这一节，因为HTML5标准正快速占领市场）"></a>2.1.4    在XHTML中的用法（可以跳过这一节，因为HTML5标准正快速占领市场）</h3><p><strong>错误方式：</strong>&lt;(小于号)在XHTML中被当作开始一个新标签来解析。<br><img src="http://o6ul1xz4z.bkt.clouddn.com/1450428411211.png" alt="Alt text"></p>
+<p><strong>正确方式</strong>   </p>
+<ul>
+<li><p>方式一：    使用HTML实体替代尖括号（比如&amp;lt替换&lt;）<br><img src="http://o6ul1xz4z.bkt.clouddn.com/1450428430947.png" alt="Alt text"></p>
+</li>
+<li><p>方式二：    CData片段+JavaScript注释<br><img src="http://o6ul1xz4z.bkt.clouddn.com/1450428447412.png" alt="Alt text"></p>
+</li>
+</ul>
+<h3 id="2-1-5-不推荐使用的语法（早期）"><a href="#2-1-5-不推荐使用的语法（早期）" class="headerlink" title="2.1.5    不推荐使用的语法（早期）"></a>2.1.5    不推荐使用的语法（早期）</h3><p><img src="http://o6ul1xz4z.bkt.clouddn.com/1450428543661.png" alt="Alt text"></p>
+<h2 id="2-2-嵌入代码与外部文件"><a href="#2-2-嵌入代码与外部文件" class="headerlink" title="2.2    嵌入代码与外部文件"></a>2.2    嵌入代码与外部文件</h2><p><strong>外部文件优点：</strong></p>
+<ul>
+<li>可维护性</li>
+<li>可缓存（复用）</li>
+<li>适应未来：    HTML和XHTML包含的外部文件的语法相同</li>
+</ul>
+<h2 id="2-3-文档模式（IE提出，其它效仿）"><a href="#2-3-文档模式（IE提出，其它效仿）" class="headerlink" title="2.3    文档模式（IE提出，其它效仿）"></a>2.3    文档模式（IE提出，其它效仿）</h2><p>注意：主要影响css呈现，某些情况下也会影响js。</p>
+<p><strong>类型：</strong></p>
+<ul>
+<li><p>混杂模式：   不推荐，如果不适用hack技术，不同浏览器差异可能非常大<br><img src="http://o6ul1xz4z.bkt.clouddn.com/1450428919678.png" alt="Alt text"></p>
+</li>
+<li><p>标准模式：    行为相对一致<br><img src="http://o6ul1xz4z.bkt.clouddn.com/1450428816811.png" alt="Alt text"></p>
+</li>
+<li><p>准标准模式：    有两种触发方式，和标准模式非常接近，行为符合标准（处理图片间隙除外）<br><img src="http://o6ul1xz4z.bkt.clouddn.com/1450428869793.png" alt="Alt text"></p>
+</li>
+</ul>
+<h2 id="2-4-noscript-元素：-不支持JS的浏览器平稳退化的方式"><a href="#2-4-noscript-元素：-不支持JS的浏览器平稳退化的方式" class="headerlink" title="2.4   noscript 元素：    不支持JS的浏览器平稳退化的方式"></a>2.4   noscript 元素：    不支持JS的浏览器平稳退化的方式</h2><p><strong>用法：</strong>    <code>&lt;body&gt;</code>中的任何标签中都可以使用</p>
+<p><strong>行为：</strong>    下列情况下浏览器才会显示其中的内容</p>
+<ul>
+<li>浏览器不支持脚本；</li>
+<li>浏览器支持脚本但脚本被禁用；</li>
+</ul>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/js/" rel="tag">#js</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/02/19/极客学院/Qt_05 Qt 模块与类/" rel="next" title="Qt_05 Qt 模块与类">
+                <i class="fa fa-chevron-left"></i> Qt_05 Qt 模块与类
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/03/31/BOOK_JS高级程序设计(第三版)/JSHPD_3rd_03_基本概念/" rel="prev" title="03 基本概念">
+                03 基本概念 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2017/03/31/BOOK_JS高级程序设计(第三版)/JSHPD_3rd_02_在HTML中使用JavaScript/"
+           data-title="02 在HTML中使用JavaScript" data-url="http://laputa-er.github.io/2017/03/31/BOOK_JS高级程序设计(第三版)/JSHPD_3rd_02_在HTML中使用JavaScript/">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.gif"
+               alt="Sean" />
+          <p class="site-author-name" itemprop="name">Sean</p>
+          <p class="site-description motion-element" itemprop="description">整理了一批过去一段时间ios相关的笔记，其它的笔记也整理下？源码分享出来？再说吧...反正也只有自己会看吧...</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">200</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">22</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">31</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#2-1-script元素"><span class="nav-text">2.1  script元素</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#2-1-1-标签的位置"><span class="nav-text">2.1.1    标签的位置</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-1-2-延迟脚本"><span class="nav-text">2.1.2    延迟脚本</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-1-3-异步脚本-HTML5"><span class="nav-text">2.1.3    异步脚本 (HTML5)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-1-4-在XHTML中的用法（可以跳过这一节，因为HTML5标准正快速占领市场）"><span class="nav-text">2.1.4    在XHTML中的用法（可以跳过这一节，因为HTML5标准正快速占领市场）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-1-5-不推荐使用的语法（早期）"><span class="nav-text">2.1.5    不推荐使用的语法（早期）</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-2-嵌入代码与外部文件"><span class="nav-text">2.2    嵌入代码与外部文件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-3-文档模式（IE提出，其它效仿）"><span class="nav-text">2.3    文档模式（IE提出，其它效仿）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-4-noscript-元素：-不支持JS的浏览器平稳退化的方式"><span class="nav-text">2.4   noscript 元素：    不支持JS的浏览器平稳退化的方式</span></a></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Sean</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"lapuda-er"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+    <script src="/vendors/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
+    <script src="/js/src/hook-duoshuo.js"></script>
+  
+
+
+
+
+
+
+  
+  
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length == 0) {
+       search_path = "search.xml";
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    function proceedsearch() {
+      $("body").append('<div class="popoverlay">').css('overflow', 'hidden');
+      $('.popup').toggle();
+
+    }
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+    'use strict';
+    $.ajax({
+        url: path,
+        dataType: "xml",
+        async: true,
+        success: function( xmlResponse ) {
+            // get the contents from search data
+            isfetched = true;
+            $('.popup').detach().appendTo('.header-inner');
+            var datas = $( "entry", xmlResponse ).map(function() {
+                return {
+                    title: $( "title", this ).text(),
+                    content: $("content",this).text(),
+                    url: $( "url" , this).text()
+                };
+            }).get();
+            var $input = document.getElementById(search_id);
+            var $resultContent = document.getElementById(content_id);
+            $input.addEventListener('input', function(){
+                var matchcounts = 0;
+                var str='<ul class=\"search-result-list\">';
+                var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+                $resultContent.innerHTML = "";
+                if (this.value.trim().length > 1) {
+                // perform local searching
+                datas.forEach(function(data) {
+                    var isMatch = true;
+                    var content_index = [];
+                    var data_title = data.title.trim().toLowerCase();
+                    var data_content = data.content.trim().replace(/<[^>]+>/g,"").toLowerCase();
+                    var data_url = data.url;
+                    var index_title = -1;
+                    var index_content = -1;
+                    var first_occur = -1;
+                    // only match artiles with not empty titles and contents
+                    if(data_title != '' && data_content != '') {
+                        keywords.forEach(function(keyword, i) {
+                            index_title = data_title.indexOf(keyword);
+                            index_content = data_content.indexOf(keyword);
+                            if( index_title < 0 && index_content < 0 ){
+                                isMatch = false;
+                            } else {
+                                if (index_content < 0) {
+                                    index_content = 0;
+                                }
+                                if (i == 0) {
+                                    first_occur = index_content;
+                                }
+                            }
+                        });
+                    }
+                    // show search results
+                    if (isMatch) {
+                        matchcounts += 1;
+                        str += "<li><a href='"+ data_url +"' class='search-result-title'>"+ data_title +"</a>";
+                        var content = data.content.trim().replace(/<[^>]+>/g,"");
+                        if (first_occur >= 0) {
+                            // cut out 100 characters
+                            var start = first_occur - 20;
+                            var end = first_occur + 80;
+                            if(start < 0){
+                                start = 0;
+                            }
+                            if(start == 0){
+                                end = 50;
+                            }
+                            if(end > content.length){
+                                end = content.length;
+                            }
+                            var match_content = content.substring(start, end);
+                            // highlight all keywords
+                            keywords.forEach(function(keyword){
+                                var regS = new RegExp(keyword, "gi");
+                                match_content = match_content.replace(regS, "<b class=\"search-keyword\">"+keyword+"</b>");
+                            });
+
+                            str += "<p class=\"search-result\">" + match_content +"...</p>"
+                        }
+                        str += "</li>";
+                    }
+                })};
+                str += "</ul>";
+                if (matchcounts == 0) { str = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>' }
+                if (keywords == "") { str = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>' }
+                $resultContent.innerHTML = str;
+            });
+            proceedsearch();
+        }
+    });}
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched == false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+
+    });
+
+    $('.popup-btn-close').click(function(e){
+      $('.popup').hide();
+      $(".popoverlay").remove();
+      $('body').css('overflow', '');
+    });
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+  </script>
+
+
+  
+
+  
+
+  
+
+</body>
+</html>
