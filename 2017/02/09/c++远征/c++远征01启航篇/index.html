@@ -1,0 +1,970 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="c++语言," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1" />
+
+
+
+
+
+
+<meta name="description" content="本课程是 c++ 的初级课程，是在 c 语言基础上的一个延伸，讲述了包括新增数据类型、命名空间等内容，最后通过一个通俗易懂的例子讲所述知识点融会贯通，以达到知识灵活运用，最终得以升华的目的。  
+C++远征之起航篇-慕课网
+1 c++ 简介c++那些事儿# 诞生地： 贝尔实验室（Bell Lab）
+c++ 之父：比亚尼.斯特劳斯特鲁普博士为人低调，有问必答。
+
+c++ 社区排行榜TIOBE Ind">
+<meta property="og:type" content="article">
+<meta property="og:title" content="c++远征01启航篇">
+<meta property="og:url" content="http://laputa-er.github.io/2017/02/09/c++远征/c++远征01启航篇/index.html">
+<meta property="og:site_name" content="Sean">
+<meta property="og:description" content="本课程是 c++ 的初级课程，是在 c 语言基础上的一个延伸，讲述了包括新增数据类型、命名空间等内容，最后通过一个通俗易懂的例子讲所述知识点融会贯通，以达到知识灵活运用，最终得以升华的目的。  
+C++远征之起航篇-慕课网
+1 c++ 简介c++那些事儿# 诞生地： 贝尔实验室（Bell Lab）
+c++ 之父：比亚尼.斯特劳斯特鲁普博士为人低调，有问必答。
+
+c++ 社区排行榜TIOBE Ind">
+<meta property="og:image" content="http://o6ul1xz4z.bkt.clouddn.com/c++%E8%BF%9C%E5%BE%8101%E5%90%AF%E8%88%AA%E7%AF%87/%E7%B2%98%E8%B4%B4%E5%9B%BE%E7%89%87.png">
+<meta property="og:image" content="http://o6ul1xz4z.bkt.clouddn.com/c++%E8%BF%9C%E5%BE%8101%E5%90%AF%E8%88%AA%E7%AF%87/%E7%B2%98%E8%B4%B4%E5%9B%BE%E7%89%87%201.png">
+<meta property="og:image" content="http://o6ul1xz4z.bkt.clouddn.com/c++%E8%BF%9C%E5%BE%8101%E5%90%AF%E8%88%AA%E7%AF%87/426F2479-3F7B-4EB8-9161-7AA0E88FA86E.png">
+<meta property="og:image" content="http://o6ul1xz4z.bkt.clouddn.com/c++%E8%BF%9C%E5%BE%8101%E5%90%AF%E8%88%AA%E7%AF%87/305FFB89-957B-4F05-A119-8021834B6FD9.png">
+<meta property="og:image" content="http://o6ul1xz4z.bkt.clouddn.com/c++%E8%BF%9C%E5%BE%8101%E5%90%AF%E8%88%AA%E7%AF%87/%E7%B2%98%E8%B4%B4%E5%9B%BE%E7%89%87%202.png">
+<meta property="og:image" content="http://o6ul1xz4z.bkt.clouddn.com/c++%E8%BF%9C%E5%BE%8101%E5%90%AF%E8%88%AA%E7%AF%87/%E7%B2%98%E8%B4%B4%E5%9B%BE%E7%89%87%203.png">
+<meta property="og:image" content="http://o6ul1xz4z.bkt.clouddn.com/c++%E8%BF%9C%E5%BE%8101%E5%90%AF%E8%88%AA%E7%AF%87/29741204-19B0-4AFA-A8DB-06DDFCA85E76.png">
+<meta property="og:image" content="http://o6ul1xz4z.bkt.clouddn.com/c++%E8%BF%9C%E5%BE%8101%E5%90%AF%E8%88%AA%E7%AF%87/2A5D291D-056A-4480-AE2B-E693E8DF75AC.png">
+<meta property="og:image" content="http://o6ul1xz4z.bkt.clouddn.com/c++%E8%BF%9C%E5%BE%8101%E5%90%AF%E8%88%AA%E7%AF%87/B2354F41-1272-425E-A6C4-D81C23B3486E.png">
+<meta property="og:updated_time" content="2017-02-18T08:39:41.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="c++远征01启航篇">
+<meta name="twitter:description" content="本课程是 c++ 的初级课程，是在 c 语言基础上的一个延伸，讲述了包括新增数据类型、命名空间等内容，最后通过一个通俗易懂的例子讲所述知识点融会贯通，以达到知识灵活运用，最终得以升华的目的。  
+C++远征之起航篇-慕课网
+1 c++ 简介c++那些事儿# 诞生地： 贝尔实验室（Bell Lab）
+c++ 之父：比亚尼.斯特劳斯特鲁普博士为人低调，有问必答。
+
+c++ 社区排行榜TIOBE Ind">
+<meta name="twitter:image" content="http://o6ul1xz4z.bkt.clouddn.com/c++%E8%BF%9C%E5%BE%8101%E5%90%AF%E8%88%AA%E7%AF%87/%E7%B2%98%E8%B4%B4%E5%9B%BE%E7%89%87.png">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 0,
+      author: '博主'
+    }
+  };
+</script>
+
+
+
+
+  <link rel="canonical" href="http://laputa-er.github.io/2017/02/09/c++远征/c++远征01启航篇/"/>
+
+  <title> c++远征01启航篇 | Sean </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//hm.baidu.com/hm.js?898688f51c5a3d6b37dd23e04441e5bd";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">Sean</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">笔记分享</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup">
+ <span class="search-icon fa fa-search"></span>
+ <input type="text" id="local-search-input">
+ <div id="local-search-result"></div>
+ <span class="popup-btn-close">close</span>
+</div>
+
+
+    </div>
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                c++远征01启航篇
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2017-02-09T01:43:01+08:00" content="2017-02-09">
+              2017-02-09
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/c-远征/" itemprop="url" rel="index">
+                    <span itemprop="name">c++远征</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2017/02/09/c++远征/c++远征01启航篇/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2017/02/09/c++远征/c++远征01启航篇/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>本课程是 c++ 的初级课程，是在 c 语言基础上的一个延伸，讲述了包括新增数据类型、命名空间等内容，最后通过一个通俗易懂的例子讲所述知识点融会贯通，以达到知识灵活运用，最终得以升华的目的。  </p>
+<p><a href="http://www.imooc.com/learn/342" target="_blank" rel="external">C++远征之起航篇-慕课网</a></p>
+<h1 id="1-c-简介"><a href="#1-c-简介" class="headerlink" title="1 c++ 简介"></a>1 c++ 简介</h1><h2 id="c-那些事儿"><a href="#c-那些事儿" class="headerlink" title="c++那些事儿"></a>c++那些事儿</h2><p><strong># 诞生地：</strong> 贝尔实验室（Bell Lab）<br><img src="http://o6ul1xz4z.bkt.clouddn.com/c++%E8%BF%9C%E5%BE%8101%E5%90%AF%E8%88%AA%E7%AF%87/%E7%B2%98%E8%B4%B4%E5%9B%BE%E7%89%87.png" alt=""></p>
+<p><strong>c++ 之父：</strong><code>比亚尼.斯特劳斯特鲁普</code>博士<br>为人低调，有问必答。</p>
+<p><img src="http://o6ul1xz4z.bkt.clouddn.com/c++%E8%BF%9C%E5%BE%8101%E5%90%AF%E8%88%AA%E7%AF%87/%E7%B2%98%E8%B4%B4%E5%9B%BE%E7%89%87%201.png" alt=""></p>
+<p><strong>c++ 社区排行榜</strong><br><a href="http://www.tiobe.com/tiobe-index//" target="_blank" rel="external">TIOBE Index | TIOBE - The Software Quality Company</a></p>
+<p><img src="http://o6ul1xz4z.bkt.clouddn.com/c++%E8%BF%9C%E5%BE%8101%E5%90%AF%E8%88%AA%E7%AF%87/426F2479-3F7B-4EB8-9161-7AA0E88FA86E.png" alt=""></p>
+<p><strong>c++ 语言的应用领域</strong></p>
+<p><code>快、省</code></p>
+<ul>
+<li>嵌入式</li>
+</ul>
+<ul>
+<li>游戏编程</li>
+<li>网络编程</li>
+<li>系统编程</li>
+</ul>
+<p><strong>c和c++的关系</strong></p>
+<ul>
+<li>c 是 c++ 的子集</li>
+<li>c++ 是从 c 的基础上发展而来的</li>
+</ul>
+<ul>
+<li>c 语言 面向过程</li>
+<li>c++支持 面向过程+ 面向对象</li>
+</ul>
+<h1 id="2-c-IDE-环境搭建"><a href="#2-c-IDE-环境搭建" class="headerlink" title="2 c++ IDE 环境搭建"></a>2 c++ IDE 环境搭建</h1><p><strong>什么是 IDE？</strong><br>IDE(integrated development environment) ，集成卡法环境，一般包括:</p>
+<ul>
+<li>编辑器</li>
+</ul>
+<ul>
+<li>编译器</li>
+<li>调试器</li>
+<li>图形用户界面工具</li>
+</ul>
+<ul>
+<li>…</li>
+</ul>
+<p><strong>工欲善其事，必先利其器</strong></p>
+<ul>
+<li>windows: visual studio 2015 +  <a href="http://jingyan.baidu.com/article/9f7e7ec0adf4a06f28155405.html" target="_blank" rel="external">visual assist x for visual studio</a> - <a href="http://www.wholetomato.com/" target="_blank" rel="external">Visual Assist - a Visual Studio extension by Whole Tomato Software</a></li>
+</ul>
+<ul>
+<li>mac: <a href="https://www.visualstudio.com/vs/visual-studio-mac/" target="_blank" rel="external">New Release Preview: Visual Studio for Mac | Visual Studio</a></li>
+</ul>
+<h1 id="3-c-之初体验"><a href="#3-c-之初体验" class="headerlink" title="3 c++ 之初体验"></a>3 c++ 之初体验</h1><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span> // 包含 c++ 标准输入输出库</span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;    <span class="comment">// 使用 std namespace </span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span><br><span class="line"></span>&#123;</span><br><span class="line">   <span class="built_in">cout</span>&lt;&lt;<span class="string">"Hello C++"</span>&lt;&lt;<span class="built_in">endl</span>;  <span class="comment">// 输出语句</span></span><br><span class="line">   return <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h1 id="4-c-语言新特性"><a href="#4-c-语言新特性" class="headerlink" title="4 c++ 语言新特性"></a>4 c++ 语言新特性</h1><h2 id="4-1-c-的特性"><a href="#4-1-c-的特性" class="headerlink" title="4.1 c++ 的特性"></a>4.1 c++ 的特性</h2><ul>
+<li>新的数据类型</li>
+</ul>
+<ul>
+<li>新的初始化方法</li>
+<li>随用随定义</li>
+</ul>
+<h3 id="新的数据类型"><a href="#新的数据类型" class="headerlink" title="新的数据类型"></a>新的数据类型</h3><p><strong>c语言数据类型</strong><br><img src="http://o6ul1xz4z.bkt.clouddn.com/c++%E8%BF%9C%E5%BE%8101%E5%90%AF%E8%88%AA%E7%AF%87/305FFB89-957B-4F05-A119-8021834B6FD9.png" alt=""></p>
+<p><strong>c++ 中新的数据类型: bool</strong></p>
+<blockquote>
+<p>相比 c 逻辑判断的方式，使用 bool 类型语义更加明确，程序更易读。  </p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>c or c++</th>
+<th>逻辑类型</th>
+<th>真</th>
+<th>假</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>c</td>
+<td>没提供</td>
+<td>非0</td>
+<td>0</td>
+</tr>
+<tr>
+<td>c++</td>
+<td>bool</td>
+<td>true</td>
+<td>false</td>
+</tr>
+</tbody>
+</table>
+<p><em>c语言</em></p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> flag = <span class="number">0</span>;</span><br><span class="line"><span class="keyword">if</span> (flag == <span class="number">1</span>) &#123;</span><br><span class="line">	<span class="comment">// to do</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">else</span> &#123;</span><br><span class="line">	<span class="comment">// to do</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><em>c++</em></p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">bool</span> flag = <span class="number">0</span>;</span><br><span class="line"><span class="keyword">if</span> (flag) &#123;</span><br><span class="line">	<span class="comment">// to do</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">else</span> &#123;</span><br><span class="line">	<span class="comment">// to do</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="新的初始化方法"><a href="#新的初始化方法" class="headerlink" title="新的初始化方法"></a>新的初始化方法</h3><p><strong>c 语言提供的初始化方法</strong></p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 复制初始化 </span></span><br><span class="line"><span class="keyword">int</span> x = <span class="number">1024</span>;</span><br></pre></td></tr></table></figure>
+<p><strong>c++ 提供两种初始化方法</strong></p>
+<ul>
+<li>复制初始化</li>
+</ul>
+<ul>
+<li>直接初始化</li>
+</ul>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 直接初始化</span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">x</span><span class="params">(<span class="number">1024</span>)</span></span></span><br></pre></td></tr></table></figure>
+<h3 id="随用随定义"><a href="#随用随定义" class="headerlink" title="随用随定义"></a>随用随定义</h3><ul>
+<li>c 语言： 所有变量定义必须位于函数体的最前面</li>
+</ul>
+<ul>
+<li>c++ ：所有变量随用随定义</li>
+</ul>
+<p><em>c语言</em></p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span> <span class="params">()</span> </span>&#123;</span><br><span class="line">	<span class="keyword">int</span> c1 = <span class="number">3</span>;</span><br><span class="line">	<span class="keyword">int</span> v2 = <span class="number">4</span>;</span><br><span class="line"></span><br><span class="line">	v1 = v1 + <span class="number">2</span>;</span><br><span class="line">	v2 = v2 + v1;</span><br><span class="line"></span><br><span class="line">	return <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><em>c++</em></p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span> <span class="params">()</span> </span>&#123;</span><br><span class="line">	<span class="keyword">int</span> c1 = <span class="number">3</span>;</span><br><span class="line">	v1 = v1 + <span class="number">2</span>;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">int</span> v2 = <span class="number">4</span>;</span><br><span class="line">	v2 = v2 + v1;</span><br><span class="line"></span><br><span class="line">	return <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="4-2-练习（略）"><a href="#4-2-练习（略）" class="headerlink" title="4.2 练习（略）"></a>4.2 练习（略）</h2><h2 id="4-3-c-的输入输出方式"><a href="#4-3-c-的输入输出方式" class="headerlink" title="4.3 c++ 的输入输出方式"></a>4.3 c++ 的输入输出方式</h2><p> <strong>c 语言的 I/O 方式</strong></p>
+<p>输入过程<br><img src="http://o6ul1xz4z.bkt.clouddn.com/c++%E8%BF%9C%E5%BE%8101%E5%90%AF%E8%88%AA%E7%AF%87/%E7%B2%98%E8%B4%B4%E5%9B%BE%E7%89%87%202.png" alt=""></p>
+<p>输出过程<br><img src="http://o6ul1xz4z.bkt.clouddn.com/c++%E8%BF%9C%E5%BE%8101%E5%90%AF%E8%88%AA%E7%AF%87/%E7%B2%98%E8%B4%B4%E5%9B%BE%E7%89%87%203.png" alt=""></p>
+<p><strong>c++  语言的输入输出方式</strong></p>
+<ul>
+<li>不用关注占位符</li>
+</ul>
+<ul>
+<li>不用关注数据类型</li>
+<li>不容易出现问题</li>
+</ul>
+<p>输入过程<br><img src="http://o6ul1xz4z.bkt.clouddn.com/c++%E8%BF%9C%E5%BE%8101%E5%90%AF%E8%88%AA%E7%AF%87/29741204-19B0-4AFA-A8DB-06DDFCA85E76.png" alt=""></p>
+<p>输出过程<br><img src="http://o6ul1xz4z.bkt.clouddn.com/c++%E8%BF%9C%E5%BE%8101%E5%90%AF%E8%88%AA%E7%AF%87/2A5D291D-056A-4480-AE2B-E693E8DF75AC.png" alt=""></p>
+<p><strong>cin 语法形式</strong></p>
+<ul>
+<li>使用 &gt;&gt; 指定写入哪个变量</li>
+</ul>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cin</span> &gt;&gt; x;</span><br><span class="line"><span class="built_in">cin</span> &gt;&gt; x &gt;&gt; y;</span><br></pre></td></tr></table></figure>
+<p><strong>cout 语法形式</strong></p>
+<ul>
+<li>使用 &lt;&lt; 来拼接</li>
+<li>endl 代表回车，可以省略</li>
+</ul>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cout</span> &lt;&lt; x &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line"></span><br><span class="line"><span class="built_in">cout</span> &lt;&lt; <span class="string">"x + y = "</span> &lt;&lt; x + y &lt;&lt; <span class="built_in">endl</span>;</span><br></pre></td></tr></table></figure>
+<h2 id="4-4-练习（略）"><a href="#4-4-练习（略）" class="headerlink" title="4.4 练习（略）"></a>4.4 练习（略）</h2><h2 id="4-5-c-新特性以及输入输出演示"><a href="#4-5-c-新特性以及输入输出演示" class="headerlink" title="4.5 c++ 新特性以及输入输出演示"></a>4.5 c++ 新特性以及输入输出演示</h2><blockquote>
+<p>以 mac 环境为例。  </p>
+</blockquote>
+<p>项目目录</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">$ tree <span class="_">-a</span> -I .git</span><br><span class="line">.</span><br><span class="line">├── .DS_Store</span><br><span class="line">├── .vscode</span><br><span class="line">│   ├── c_cpp_properties.json <span class="comment"># 配置 include path（激活代码补全和代码导航）</span></span><br><span class="line">│   ├── launch.json <span class="comment"># 配置 debugging 时需要执行的程序</span></span><br><span class="line">│   └── tasks.json <span class="comment"># 配置编译过程</span></span><br><span class="line">└── JK_C-PLUS-PLUS</span><br><span class="line">    ├── .DS_Store</span><br><span class="line">    ├── build</span><br><span class="line">    │   └── IODemo.out</span><br><span class="line">    └── l01_<span class="built_in">set</span>Sail</span><br><span class="line">        └── 0405</span><br><span class="line">            └── IODemo.cpp</span><br></pre></td></tr></table></figure>
+<hr>
+<p><em>c_cpp_properties.json</em></p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    "configurations": [</span><br><span class="line">        &#123;</span><br><span class="line">            "name": "Mac",</span><br><span class="line">            "includePath": ["/usr/include"],// include path</span><br><span class="line">            "browse" : &#123;</span><br><span class="line">                "limitSymbolsToIncludedHeaders" : true,</span><br><span class="line">                "databaseFilename" : ""</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;,</span><br><span class="line">        &#123;</span><br><span class="line">            "name": "Linux",</span><br><span class="line">            "includePath": ["/usr/include"],</span><br><span class="line">            "browse" : &#123;</span><br><span class="line">                "limitSymbolsToIncludedHeaders" : true,</span><br><span class="line">                "databaseFilename" : ""</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;,</span><br><span class="line">        &#123;</span><br><span class="line">            "name": "Win32",</span><br><span class="line">            "includePath": ["c:/Program Files (x86)/Microsoft Visual Studio 14.0/VC/include"],</span><br><span class="line">            "browse" : &#123;</span><br><span class="line">                "limitSymbolsToIncludedHeaders" : true,</span><br><span class="line">                "databaseFilename" : ""</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    ]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><em>launch.json</em></p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    "version": "0.2.0",</span><br><span class="line">    "configurations": [</span><br><span class="line">        &#123;</span><br><span class="line">            "name": "C++ Launch",</span><br><span class="line">            "type": "cppdbg",</span><br><span class="line">            "request": "launch",</span><br><span class="line">            "program": "$&#123;workspaceRoot&#125;/JK_C-PLUS-PLUS/build/IODemo.out",// 要 debug 的程序的路径</span><br><span class="line">            "stopAtEntry": false,</span><br><span class="line">            "cwd": "$&#123;workspaceRoot&#125;",</span><br><span class="line">            "externalConsole": true,</span><br><span class="line">            "preLaunchTask": "g++", // 每次 debug 前都应用 tasks 中的 g++ 任务编译一次</span><br><span class="line">            "linux": &#123;</span><br><span class="line">                "MIMode": "gdb",</span><br><span class="line">                "setupCommands": [</span><br><span class="line">                    &#123;</span><br><span class="line">                        "description": "Enable pretty-printing for gdb",</span><br><span class="line">                        "text": "-enable-pretty-printing",</span><br><span class="line">                        "ignoreFailures": true</span><br><span class="line">                    &#125;</span><br><span class="line">                ]</span><br><span class="line">            &#125;,</span><br><span class="line">            "osx": &#123;</span><br><span class="line">                "MIMode": "lldb"</span><br><span class="line">            &#125;,</span><br><span class="line">            "windows": &#123;</span><br><span class="line">                "MIMode": "gdb",</span><br><span class="line">                "setupCommands": [</span><br><span class="line">                    &#123;</span><br><span class="line">                        "description": "Enable pretty-printing for gdb",</span><br><span class="line">                        "text": "-enable-pretty-printing",</span><br><span class="line">                        "ignoreFailures": true</span><br><span class="line">                    &#125;</span><br><span class="line">                ]</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;,</span><br><span class="line">        &#123;</span><br><span class="line">            "name": "C++ Attach",</span><br><span class="line">            "type": "cppdbg",</span><br><span class="line">            "request": "attach",</span><br><span class="line">            "program": "$&#123;workspaceRoot&#125;/build/IODemo.out",</span><br><span class="line">            "processId": "$&#123;command.pickProcess&#125;",</span><br><span class="line">            "linux": &#123;</span><br><span class="line">                "MIMode": "gdb",</span><br><span class="line">                "setupCommands": [</span><br><span class="line">                    &#123;</span><br><span class="line">                        "description": "Enable pretty-printing for gdb",</span><br><span class="line">                        "text": "-enable-pretty-printing",</span><br><span class="line">                        "ignoreFailures": true</span><br><span class="line">                    &#125;</span><br><span class="line">                ]</span><br><span class="line">            &#125;,</span><br><span class="line">            "osx": &#123;</span><br><span class="line">                "MIMode": "lldb"</span><br><span class="line">            &#125;,</span><br><span class="line">            "windows": &#123;</span><br><span class="line">                "MIMode": "gdb",</span><br><span class="line">                "setupCommands": [</span><br><span class="line">                    &#123;</span><br><span class="line">                        "description": "Enable pretty-printing for gdb",</span><br><span class="line">                        "text": "-enable-pretty-printing",</span><br><span class="line">                        "ignoreFailures": true</span><br><span class="line">                    &#125;</span><br><span class="line">                ]</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    ]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><em>tasks.json</em></p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    // See https://go.microsoft.com/fwlink/?LinkId=733558</span><br><span class="line">    // for the documentation about the tasks.json format</span><br><span class="line">    "version": "0.1.0",</span><br><span class="line">    "command": "g++",</span><br><span class="line">    "isShellCommand": true,</span><br><span class="line">    "args": ["$&#123;workspaceRoot&#125;/JK_C-PLUS-PLUS/l01_setSail/0405/IODemo.cpp", "-o", "$&#123;workspaceRoot&#125;/JK_C-PLUS-PLUS/build/IODemo.out"],// g++ 命令参数</span><br><span class="line">    "showOutput": "always"</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>调试运行</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">Launching: <span class="string">'/Users/tonyearth/Projects/C-PLUS-PLUS_STUDY/JK_C-PLUS-PLUS/build/IODemo.out'</span></span><br><span class="line">Working directory: <span class="string">'/Users/tonyearth/Projects/C-PLUS-PLUS_STUDY'</span></span><br><span class="line">1 arguments:</span><br><span class="line">argv[0] = <span class="string">'/Users/tonyearth/Projects/C-PLUS-PLUS_STUDY/JK_C-PLUS-PLUS/build/IODemo.out'</span></span><br><span class="line">请输入一个整数：</span><br><span class="line">2358</span><br><span class="line">4466</span><br><span class="line">2358</span><br><span class="line">936</span><br><span class="line">请输入一个布尔值（0或1）：</span><br><span class="line">0</span><br><span class="line"><span class="literal">false</span></span><br><span class="line">Process exited with status 0</span><br><span class="line"></span><br><span class="line">[进程已完成]</span><br></pre></td></tr></table></figure>
+<h2 id="4-6-c-之-namespace"><a href="#4-6-c-之-namespace" class="headerlink" title="4.6 c++ 之 namespace"></a>4.6 c++ 之 namespace</h2><p>注意：命名空间的名字不可以重复！  </p>
+<p><img src="http://o6ul1xz4z.bkt.clouddn.com/c++%E8%BF%9C%E5%BE%8101%E5%90%AF%E8%88%AA%E7%AF%87/B2354F41-1272-425E-A6C4-D81C23B3486E.png" alt=""></p>
+<p>A 程序库</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">namespace</span> A &#123;</span><br><span class="line">	<span class="keyword">int</span> x = <span class="number">0</span>;</span><br><span class="line">	<span class="function"><span class="keyword">void</span> <span class="title">f1</span><span class="params">()</span></span>;</span><br><span class="line">	<span class="function"><span class="keyword">void</span> <span class="title">f2</span><span class="params">()</span></span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>B 程序库</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">namespace</span> B &#123;</span><br><span class="line">	<span class="keyword">int</span> x = <span class="number">2</span>;</span><br><span class="line">	<span class="function"><span class="keyword">void</span> <span class="title">f1</span><span class="params">()</span></span>;</span><br><span class="line">	<span class="function"><span class="keyword">void</span> <span class="title">f3</span><span class="params">()</span></span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>使用</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cout</span> &lt;&lt; A::x &lt;&lt; <span class="built_in">endl</span>;<span class="comment">// 使用 A 库的 x 变量</span></span><br><span class="line">B::f1();<span class="comment">// 使用 B 库的 f1 函数</span></span><br></pre></td></tr></table></figure>
+<h2 id="4-7-练习（略）"><a href="#4-7-练习（略）" class="headerlink" title="4.7 练习（略）"></a>4.7 练习（略）</h2><h2 id="4-8-namespace-的演示"><a href="#4-8-namespace-的演示" class="headerlink" title="4.8 namespace 的演示"></a>4.8 namespace 的演示</h2><p><strong>说明：</strong> 调用某些命名空间下的变量或函数时，有两种方式</p>
+<h3 id="指定默认的命名空间"><a href="#指定默认的命名空间" class="headerlink" title="指定默认的命名空间"></a>指定默认的命名空间</h3><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdlib.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>; <span class="comment">// std 这个命名空间是在 iostream 中定义的</span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> B;</span><br><span class="line"></span><br><span class="line"><span class="keyword">namespace</span> A</span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">int</span> x = <span class="number">1</span>;</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">fun</span><span class="params">()</span></span><br><span class="line">    </span>&#123;</span><br><span class="line">        <span class="built_in">cout</span> &lt;&lt; <span class="string">"A"</span> &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">namespace</span> B</span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">int</span> x = <span class="number">2</span>;</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">fun</span><span class="params">()</span></span><br><span class="line">    </span>&#123;</span><br><span class="line">        <span class="built_in">cout</span> &lt;&lt; <span class="string">"B"</span> &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">fun2</span><span class="params">()</span></span><br><span class="line">    </span>&#123;</span><br><span class="line">        <span class="built_in">cout</span> &lt;&lt; <span class="string">"BB"</span> &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">(<span class="keyword">void</span>)</span></span><br><span class="line"></span>&#123;</span><br><span class="line">    <span class="built_in">cout</span> &lt;&lt; A::x &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">    fun(); <span class="comment">// "B::" 可以省略</span></span><br><span class="line">    fun2();</span><br><span class="line">    return <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="每次调用都指定命名空间"><a href="#每次调用都指定命名空间" class="headerlink" title="每次调用都指定命名空间"></a>每次调用都指定命名空间</h3><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdlib.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">namespace</span> A</span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">int</span> x = <span class="number">1</span>;</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">fun</span><span class="params">()</span></span><br><span class="line">    </span>&#123;</span><br><span class="line">        <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; <span class="string">"A"</span> &lt;&lt; <span class="built_in">std</span>::<span class="built_in">endl</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">namespace</span> B</span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">int</span> x = <span class="number">2</span>;</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">fun</span><span class="params">()</span></span><br><span class="line">    </span>&#123;</span><br><span class="line">        <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; <span class="string">"B"</span> &lt;&lt; <span class="built_in">std</span>::<span class="built_in">endl</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">fun2</span><span class="params">()</span></span><br><span class="line">    </span>&#123;</span><br><span class="line">        <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; <span class="string">"BB"</span> &lt;&lt; <span class="built_in">std</span>::<span class="built_in">endl</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">(<span class="keyword">void</span>)</span></span><br><span class="line"></span>&#123;</span><br><span class="line">    <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; A::x &lt;&lt; <span class="built_in">std</span>::<span class="built_in">endl</span>;</span><br><span class="line">    B::fun();</span><br><span class="line">    B::fun2();</span><br><span class="line">    return <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="4-9-章节练习"><a href="#4-9-章节练习" class="headerlink" title="4.9 章节练习"></a>4.9 章节练习</h2><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdlib.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="keyword">namespace</span> myNum            <span class="comment">//填写命名空间的关键字</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">int</span> x = <span class="number">105</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span><br><span class="line"></span>&#123;</span><br><span class="line">    <span class="comment">// 使用bool类型定义isOdd，作为状态位</span></span><br><span class="line">    <span class="keyword">bool</span> isFlag = <span class="literal">false</span>;       </span><br><span class="line">	</span><br><span class="line">	<span class="keyword">if</span>(myNum::x % <span class="number">2</span> == <span class="number">0</span>)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="comment">//改变状态位的值，使其为false</span></span><br><span class="line">        isFlag = <span class="literal">false</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">else</span></span><br><span class="line">	&#123;</span><br><span class="line">	    <span class="comment">//改变状态位的值，使其为true</span></span><br><span class="line">        isFlag = <span class="literal">true</span>;</span><br><span class="line">	&#125;</span><br><span class="line">    <span class="comment">// 判断状态位的值</span></span><br><span class="line">	<span class="keyword">if</span>(isFlag)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="comment">// 如果状态位的值为true，则打印变量x是奇数</span></span><br><span class="line">        <span class="built_in">cout</span> &lt;&lt; x &lt;&lt; <span class="string">"是奇数"</span> &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">else</span></span><br><span class="line">	&#123;</span><br><span class="line">        <span class="comment">// 如果状态位的值为false，则打印变量x是偶数</span></span><br><span class="line">		<span class="built_in">cout</span> &lt;&lt; x &lt;&lt; <span class="string">"是偶数"</span> &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	return <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h1 id="5-综合练习"><a href="#5-综合练习" class="headerlink" title="5 综合练习"></a>5 综合练习</h1><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/*****************************************</span><br><span class="line">* 知识点：命名空间 输入输出 bool</span><br><span class="line">*******************************************/</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">namespace</span> CommonA</span><br><span class="line">&#123;</span><br><span class="line">    <span class="comment">// 找出一个整型数组中的最大值或最小值</span></span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">getMaxOrMin</span><span class="params">(<span class="keyword">int</span> *arr, <span class="keyword">int</span> count, <span class="keyword">bool</span> isMax)</span></span><br><span class="line">    </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> temp = arr[<span class="number">0</span>];</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">1</span>; i &lt; count; i++) &#123;</span><br><span class="line">            <span class="keyword">if</span>(isMax)</span><br><span class="line">            &#123;</span><br><span class="line">                <span class="keyword">if</span>(temp &lt; arr[i])</span><br><span class="line">                &#123;</span><br><span class="line">                    temp = arr[i];</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">else</span></span><br><span class="line">            &#123;</span><br><span class="line">                <span class="keyword">if</span>(temp &gt; arr[i])</span><br><span class="line">                &#123;</span><br><span class="line">                    temp = arr[i];</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">            </span><br><span class="line">        &#125;</span><br><span class="line">        return temp;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">(<span class="keyword">void</span>)</span></span><br><span class="line"></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> arr1[<span class="number">4</span>] = &#123;<span class="number">3</span>, <span class="number">5</span>, <span class="number">9</span>, <span class="number">2</span>&#125;;</span><br><span class="line">    <span class="keyword">bool</span> isMax = <span class="literal">false</span>;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">// 指定输出最大值还是最小值(0： 最小值， 1:最大值)</span></span><br><span class="line">    <span class="built_in">cin</span> &gt;&gt; isMax;</span><br><span class="line">    </span><br><span class="line">    <span class="built_in">cout</span> &lt;&lt; CommonA::getMaxOrMin(arr1, <span class="number">4</span>, isMax) &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">    return <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/c-语言/" rel="tag">#c++语言</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/02/09/c++远征/c++远征03封装篇（下）/" rel="next" title="c++远征03封装篇（下）">
+                <i class="fa fa-chevron-left"></i> c++远征03封装篇（下）
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/02/09/极客学院/Qt_02 创建第一个 Qt 程序/" rel="prev" title="Qt_02 创建第一个 Qt 程序">
+                Qt_02 创建第一个 Qt 程序 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2017/02/09/c++远征/c++远征01启航篇/"
+           data-title="c++远征01启航篇" data-url="http://laputa-er.github.io/2017/02/09/c++远征/c++远征01启航篇/">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.gif"
+               alt="Sean" />
+          <p class="site-author-name" itemprop="name">Sean</p>
+          <p class="site-description motion-element" itemprop="description">整理了一批过去一段时间ios相关的笔记，其它的笔记也整理下？源码分享出来？再说吧...反正也只有自己会看吧...</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">200</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">22</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">31</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#1-c-简介"><span class="nav-text">1 c++ 简介</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#c-那些事儿"><span class="nav-text">c++那些事儿</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#2-c-IDE-环境搭建"><span class="nav-text">2 c++ IDE 环境搭建</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#3-c-之初体验"><span class="nav-text">3 c++ 之初体验</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#4-c-语言新特性"><span class="nav-text">4 c++ 语言新特性</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#4-1-c-的特性"><span class="nav-text">4.1 c++ 的特性</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#新的数据类型"><span class="nav-text">新的数据类型</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#新的初始化方法"><span class="nav-text">新的初始化方法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#随用随定义"><span class="nav-text">随用随定义</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-2-练习（略）"><span class="nav-text">4.2 练习（略）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-3-c-的输入输出方式"><span class="nav-text">4.3 c++ 的输入输出方式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-4-练习（略）"><span class="nav-text">4.4 练习（略）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-5-c-新特性以及输入输出演示"><span class="nav-text">4.5 c++ 新特性以及输入输出演示</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-6-c-之-namespace"><span class="nav-text">4.6 c++ 之 namespace</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-7-练习（略）"><span class="nav-text">4.7 练习（略）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-8-namespace-的演示"><span class="nav-text">4.8 namespace 的演示</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#指定默认的命名空间"><span class="nav-text">指定默认的命名空间</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#每次调用都指定命名空间"><span class="nav-text">每次调用都指定命名空间</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-9-章节练习"><span class="nav-text">4.9 章节练习</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#5-综合练习"><span class="nav-text">5 综合练习</span></a></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Sean</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"lapuda-er"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+    <script src="/vendors/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
+    <script src="/js/src/hook-duoshuo.js"></script>
+  
+
+
+
+
+
+
+  
+  
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length == 0) {
+       search_path = "search.xml";
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    function proceedsearch() {
+      $("body").append('<div class="popoverlay">').css('overflow', 'hidden');
+      $('.popup').toggle();
+
+    }
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+    'use strict';
+    $.ajax({
+        url: path,
+        dataType: "xml",
+        async: true,
+        success: function( xmlResponse ) {
+            // get the contents from search data
+            isfetched = true;
+            $('.popup').detach().appendTo('.header-inner');
+            var datas = $( "entry", xmlResponse ).map(function() {
+                return {
+                    title: $( "title", this ).text(),
+                    content: $("content",this).text(),
+                    url: $( "url" , this).text()
+                };
+            }).get();
+            var $input = document.getElementById(search_id);
+            var $resultContent = document.getElementById(content_id);
+            $input.addEventListener('input', function(){
+                var matchcounts = 0;
+                var str='<ul class=\"search-result-list\">';
+                var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+                $resultContent.innerHTML = "";
+                if (this.value.trim().length > 1) {
+                // perform local searching
+                datas.forEach(function(data) {
+                    var isMatch = true;
+                    var content_index = [];
+                    var data_title = data.title.trim().toLowerCase();
+                    var data_content = data.content.trim().replace(/<[^>]+>/g,"").toLowerCase();
+                    var data_url = data.url;
+                    var index_title = -1;
+                    var index_content = -1;
+                    var first_occur = -1;
+                    // only match artiles with not empty titles and contents
+                    if(data_title != '' && data_content != '') {
+                        keywords.forEach(function(keyword, i) {
+                            index_title = data_title.indexOf(keyword);
+                            index_content = data_content.indexOf(keyword);
+                            if( index_title < 0 && index_content < 0 ){
+                                isMatch = false;
+                            } else {
+                                if (index_content < 0) {
+                                    index_content = 0;
+                                }
+                                if (i == 0) {
+                                    first_occur = index_content;
+                                }
+                            }
+                        });
+                    }
+                    // show search results
+                    if (isMatch) {
+                        matchcounts += 1;
+                        str += "<li><a href='"+ data_url +"' class='search-result-title'>"+ data_title +"</a>";
+                        var content = data.content.trim().replace(/<[^>]+>/g,"");
+                        if (first_occur >= 0) {
+                            // cut out 100 characters
+                            var start = first_occur - 20;
+                            var end = first_occur + 80;
+                            if(start < 0){
+                                start = 0;
+                            }
+                            if(start == 0){
+                                end = 50;
+                            }
+                            if(end > content.length){
+                                end = content.length;
+                            }
+                            var match_content = content.substring(start, end);
+                            // highlight all keywords
+                            keywords.forEach(function(keyword){
+                                var regS = new RegExp(keyword, "gi");
+                                match_content = match_content.replace(regS, "<b class=\"search-keyword\">"+keyword+"</b>");
+                            });
+
+                            str += "<p class=\"search-result\">" + match_content +"...</p>"
+                        }
+                        str += "</li>";
+                    }
+                })};
+                str += "</ul>";
+                if (matchcounts == 0) { str = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>' }
+                if (keywords == "") { str = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>' }
+                $resultContent.innerHTML = str;
+            });
+            proceedsearch();
+        }
+    });}
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched == false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+
+    });
+
+    $('.popup-btn-close').click(function(e){
+      $('.popup').hide();
+      $(".popoverlay").remove();
+      $('body').css('overflow', '');
+    });
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+  </script>
+
+
+  
+
+  
+
+  
+
+</body>
+</html>

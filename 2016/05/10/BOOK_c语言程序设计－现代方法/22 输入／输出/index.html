@@ -1,0 +1,1705 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="c语言基础," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1" />
+
+
+
+
+
+
+<meta name="description" content="22.1    流说明：在C语言中，术语流意味着任意输入的源或任意输出的目的地。stdio.h中的许多函数不仅可以处理表示成文件的流，还可以处理所有其它形式的流。流：流常常表示为磁盘上的文件，但却可以和其它类型的设备相关联：调制解调器、网络端口、打印机、光盘驱动器等。
+22.1.1    文件指针文件指针（file pointer）：File *(File定义在stdio.h中)用途：C程序中流的">
+<meta property="og:type" content="article">
+<meta property="og:title" content="22 输入/输出">
+<meta property="og:url" content="http://laputa-er.github.io/2016/05/10/BOOK_c语言程序设计－现代方法/22 输入／输出/index.html">
+<meta property="og:site_name" content="Sean">
+<meta property="og:description" content="22.1    流说明：在C语言中，术语流意味着任意输入的源或任意输出的目的地。stdio.h中的许多函数不仅可以处理表示成文件的流，还可以处理所有其它形式的流。流：流常常表示为磁盘上的文件，但却可以和其它类型的设备相关联：调制解调器、网络端口、打印机、光盘驱动器等。
+22.1.1    文件指针文件指针（file pointer）：File *(File定义在stdio.h中)用途：C程序中流的">
+<meta property="og:image" content="http://o6ul1xz4z.bkt.clouddn.com/img/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202015-10-05%20%E4%B8%8B%E5%8D%8811.04.07.png">
+<meta property="og:image" content="http://o6ul1xz4z.bkt.clouddn.com/img/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202015-10-05%20%E4%B8%8B%E5%8D%8811.04.22.png">
+<meta property="og:image" content="http://o6ul1xz4z.bkt.clouddn.com/img/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202015-10-05%20%E4%B8%8B%E5%8D%8811.04.29.png">
+<meta property="og:image" content="http://o6ul1xz4z.bkt.clouddn.com/img/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202015-10-05%20%E4%B8%8B%E5%8D%8811.08.42.png">
+<meta property="og:image" content="http://o6ul1xz4z.bkt.clouddn.com/img/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202015-10-05%20%E4%B8%8B%E5%8D%8811.04.45.png">
+<meta property="og:image" content="http://o6ul1xz4z.bkt.clouddn.com/img/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202015-10-06%20%E4%B8%8B%E5%8D%888.07.10.png">
+<meta property="og:image" content="http://o6ul1xz4z.bkt.clouddn.com/img/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202015-10-06%20%E4%B8%8B%E5%8D%888.07.25.png">
+<meta property="og:image" content="http://o6ul1xz4z.bkt.clouddn.com/img/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202015-10-06%20%E4%B8%8B%E5%8D%888.07.38.png">
+<meta property="og:updated_time" content="2017-02-13T04:26:13.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="22 输入/输出">
+<meta name="twitter:description" content="22.1    流说明：在C语言中，术语流意味着任意输入的源或任意输出的目的地。stdio.h中的许多函数不仅可以处理表示成文件的流，还可以处理所有其它形式的流。流：流常常表示为磁盘上的文件，但却可以和其它类型的设备相关联：调制解调器、网络端口、打印机、光盘驱动器等。
+22.1.1    文件指针文件指针（file pointer）：File *(File定义在stdio.h中)用途：C程序中流的">
+<meta name="twitter:image" content="http://o6ul1xz4z.bkt.clouddn.com/img/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202015-10-05%20%E4%B8%8B%E5%8D%8811.04.07.png">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 0,
+      author: '博主'
+    }
+  };
+</script>
+
+
+
+
+  <link rel="canonical" href="http://laputa-er.github.io/2016/05/10/BOOK_c语言程序设计－现代方法/22 输入／输出/"/>
+
+  <title> 22 输入/输出 | Sean </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//hm.baidu.com/hm.js?898688f51c5a3d6b37dd23e04441e5bd";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">Sean</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">笔记分享</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup">
+ <span class="search-icon fa fa-search"></span>
+ <input type="text" id="local-search-input">
+ <div id="local-search-result"></div>
+ <span class="popup-btn-close">close</span>
+</div>
+
+
+    </div>
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                22 输入/输出
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-05-10T23:01:02+08:00" content="2016-05-10">
+              2016-05-10
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/c语言程序设计－现代方法/" itemprop="url" rel="index">
+                    <span itemprop="name">c语言程序设计－现代方法</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/05/10/BOOK_c语言程序设计－现代方法/22 输入／输出/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/05/10/BOOK_c语言程序设计－现代方法/22 输入／输出/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="22-1-流"><a href="#22-1-流" class="headerlink" title="22.1    流"></a>22.1    流</h2><p><strong>说明：</strong>在C语言中，术语流意味着任意输入的源或任意输出的目的地。<code>stdio.h</code>中的许多函数不仅可以处理表示成文件的流，还可以处理所有其它形式的流。<br><strong>流：</strong>流常常表示为磁盘上的文件，但却可以和其它类型的设备相关联：调制解调器、网络端口、打印机、光盘驱动器等。</p>
+<h3 id="22-1-1-文件指针"><a href="#22-1-1-文件指针" class="headerlink" title="22.1.1    文件指针"></a>22.1.1    文件指针</h3><p><strong>文件指针（file pointer）：</strong><code>File *</code>(<code>File</code>定义在<code>stdio.h</code>中)<br><strong>用途：</strong>C程序中流的访问是通过<code>文件指针</code>实现的<br><strong>限制：</strong>操作系统通常会限制在任意某时刻可以打开的流的数量（但是一个程序中可以声明任意数量的<code>File *</code>型变量）。</p>
+<h3 id="22-1-2-标准流和重定向"><a href="#22-1-2-标准流和重定向" class="headerlink" title="22.1.2    标准流和重定向"></a>22.1.2    标准流和重定向</h3><h4 id="标准流"><a href="#标准流" class="headerlink" title="标准流"></a>标准流</h4><p><strong>说明：</strong>由<code>stdio.h</code>提供，一共3种</p>
+<table>
+<thead>
+<tr>
+<th>文件指针</th>
+<th>流</th>
+<th>默认的含义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>stdin</td>
+<td>标准输入</td>
+<td>键盘</td>
+</tr>
+<tr>
+<td>stdout</td>
+<td>标准输出</td>
+<td>屏幕</td>
+</tr>
+<tr>
+<td>stderr</td>
+<td>标准错误</td>
+<td>屏幕</td>
+</tr>
+</tbody>
+</table>
+<p><strong>相关的函数：</strong><code>printf</code>、<code>scanf</code>、<code>putchar</code>、<code>getchar</code>、<code>puts</code>、<code>gets</code></p>
+<h4 id="重定向"><a href="#重定向" class="headerlink" title="重定向"></a>重定向</h4><p><strong>说明：</strong>某些操作系统（比如UNIX/Linux/DOS）允许通过所谓的<code>重定向（redirextion）</code>机制来改变标准流默认的含义。</p>
+<table>
+<thead>
+<tr>
+<th>分类</th>
+<th>说明</th>
+<th>备注</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>输入重定向(input redirection)</td>
+<td>使<code>stdin流</code>表示为文件(而非键盘)</td>
+<td>程序不回意识到正在从文件读取数据</td>
+</tr>
+<tr>
+<td>输出重定向(output redirection)</td>
+<td>使<code>stdout流</code>和<code>stderr流</code>表示为文件（而飞屏幕）</td>
+<td>程序不会意识到正在向文件中写数据</td>
+</tr>
+</tbody>
+</table>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 输入重定向</span></span><br><span class="line">demo &lt; in.dat</span><br><span class="line"></span><br><span class="line"><span class="comment">// 输出重定向</span></span><br><span class="line">demo &gt; out.dat</span><br><span class="line"></span><br><span class="line"><span class="comment">// 合并</span></span><br><span class="line">demo &lt; in.dat &gt;out.dat</span><br></pre></td></tr></table></figure>
+<h3 id="22-1-3-文本文件与二进制文件"><a href="#22-1-3-文本文件与二进制文件" class="headerlink" title="22.1.3    文本文件与二进制文件"></a>22.1.3    文本文件与二进制文件</h3><p><strong>说明：</strong><code>stdio.h</code>支持两种类型的文件（文本文件和二进制文件）<br><strong>存储方式：</strong>文本文件和二进制文件都是字节的序列，不同点在于存储的数据类型。</p>
+<table>
+<thead>
+<tr>
+<th>分类</th>
+<th>数据类型（假设字符集为ASCII，16位机器）</th>
+<th>空间利用率</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>文本文件(text file)</td>
+<td>字符（占一个字节）</td>
+<td>低</td>
+</tr>
+<tr>
+<td>二进制文件(binary file)</td>
+<td>字符（占一个字节）、整数（两个字节）、浮点数（四个字节）等</td>
+<td>高</td>
+</tr>
+</tbody>
+</table>
+<p><strong>结束符：</strong></p>
+<ul>
+<li><strong>DOS系统：</strong>文本文件和二进制文件不同</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>结束符分类</th>
+<th>文本文件</th>
+<th>二进制文件</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>行的结尾</td>
+<td>回行符＋回车符</td>
+<td>回行符</td>
+</tr>
+<tr>
+<td>文件末尾</td>
+<td>Ctrl+Z(\x1a)，但不是必需的（有的编辑器会加上</td>
+<td>无</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li><strong>UNIX系统：</strong>对文本文件和二进制文件不进行区分</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>结束符分类</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>行的结尾</td>
+<td>换行符</td>
+</tr>
+<tr>
+<td>文件末尾</td>
+<td>无</td>
+</tr>
+</tbody>
+</table>
+<p><strong>注意：</strong></p>
+<ol>
+<li>在屏幕上显示文件内容的程序会假设文件为文本文件</li>
+<li>复制文件时如果设定文件为文本文件，只会复制到出现文件末尾符出现的地方</li>
+</ol>
+<p><strong>技巧：</strong>在无法确定文件是文本文件还是二进制文件时，安全的做法是把文件假设为二进制文件。</p>
+<h2 id="22-2-文件操作"><a href="#22-2-文件操作" class="headerlink" title="22.2    文件操作"></a>22.2    文件操作</h2><h3 id="22-2-1-打开文件"><a href="#22-2-1-打开文件" class="headerlink" title="22.2.1    打开文件"></a>22.2.1    打开文件</h3><h4 id="fopen函数"><a href="#fopen函数" class="headerlink" title="fopen函数"></a>fopen函数</h4><p><strong>说明：</strong>用流的方式打开文件<br><strong>原型：</strong><code>stdio.h</code></p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span><br><span class="line">* @param &#123;char *&#125; filename 含有要大开文件名的字符串（可能包含文件位置的信息，例如驱动号或路径）</span><br><span class="line">* @param &#123;char *&#125; mode 模式字符串，例如"r"代表只读方式</span><br><span class="line">* @return &#123;FILE *&#125; 文件指针（如果文件不存在或未获得打开文件的许可则返回空指针）</span><br><span class="line">*/</span></span><br><span class="line"><span class="function">FILE *<span class="title">fopen</span><span class="params">(<span class="keyword">const</span> <span class="keyword">char</span> *filename, <span class="keyword">const</span> <span class="keyword">char</span> *mode)</span></span>;</span><br></pre></td></tr></table></figure>
+<p><strong>技巧：</strong>在DOS中的文件名中含有”\”字符要用”\替代”<br><strong>注意：</strong>永远不能假设可以打开文件，为了确保不回返回空指针，需要测试<code>fopen</code>函数的返回值。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">FILE *fp = fopen(<span class="string">"c:\\project\\test1.dat"</span>, r); <span class="comment">// 以只读方式打开</span></span><br></pre></td></tr></table></figure>
+<h3 id="22-2-2-模式"><a href="#22-2-2-模式" class="headerlink" title="22.2.2    模式"></a>22.2.2    模式</h3><p><strong>说明：</strong>模式字符串依据文件是文本文件还是二进制文件分为两大类。<br><strong>注意：</strong>可读且可写的模式（包含<code>+</code>）存在如下限制</p>
+<ul>
+<li>调用<code>文件定位函数</code>后，可读才能转换为可写</li>
+<li>调用<code>文件定位函数</code>或<code>fflush函数</code>后，可写才能转换为可读</li>
+</ul>
+<h4 id="文本文件"><a href="#文本文件" class="headerlink" title="文本文件"></a>文本文件</h4><table>
+<thead>
+<tr>
+<th>模式字符串</th>
+<th>含义</th>
+<th>是否需要文件存在</th>
+<th>如果文件存在</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>r</td>
+<td>可读</td>
+<td>是</td>
+<td></td>
+</tr>
+<tr>
+<td>w</td>
+<td>可写</td>
+<td>否</td>
+<td></td>
+</tr>
+<tr>
+<td>a</td>
+<td>追加</td>
+<td>否</td>
+<td></td>
+</tr>
+<tr>
+<td>r+</td>
+<td>读和写</td>
+<td>否</td>
+<td>从文件头开始（追加到头部）</td>
+</tr>
+<tr>
+<td>w+</td>
+<td>读和写</td>
+<td>否</td>
+<td>截去（覆盖）</td>
+</tr>
+<tr>
+<td>a+</td>
+<td>读和写</td>
+<td>否</td>
+<td>追加</td>
+</tr>
+</tbody>
+</table>
+<h4 id="二进制文件"><a href="#二进制文件" class="headerlink" title="二进制文件"></a>二进制文件</h4><table>
+<thead>
+<tr>
+<th>模式字符串</th>
+<th>含义</th>
+<th>是否需要文件存在</th>
+<th>如果文件存在</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>rb</td>
+<td>可读</td>
+<td>是</td>
+<td></td>
+</tr>
+<tr>
+<td>wb</td>
+<td>可写</td>
+<td>否</td>
+<td></td>
+</tr>
+<tr>
+<td>ab</td>
+<td>追加</td>
+<td>否</td>
+<td></td>
+</tr>
+<tr>
+<td>r+b或rb+</td>
+<td>读和写</td>
+<td>否</td>
+<td>从文件头开始（追加到头部）</td>
+</tr>
+<tr>
+<td>w+b或wb+</td>
+<td>读和写</td>
+<td>否</td>
+<td>截去（覆盖）</td>
+</tr>
+<tr>
+<td>a+b或ab+</td>
+<td>读和写</td>
+<td>否</td>
+<td>追加</td>
+</tr>
+</tbody>
+</table>
+<h3 id="22-2-3-关闭文件"><a href="#22-2-3-关闭文件" class="headerlink" title="22.2.3    关闭文件"></a>22.2.3    关闭文件</h3><h4 id="fclose函数"><a href="#fclose函数" class="headerlink" title="fclose函数"></a>fclose函数</h4><p><strong>说明：</strong>关闭不再使用的文件<br><strong>原型：</strong><code>stdio.h</code></p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span><br><span class="line">* @param &#123;FILE *&#125; 文件指针（来自fopen函数或freopen函数）</span><br><span class="line">* @return 0:关闭成功；EOF(stdio.h宏)：关闭失败</span><br><span class="line">*/</span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">fclose</span><span class="params">(FILE *stream)</span></span>;</span><br></pre></td></tr></table></figure>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdlib.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> FILE_NAME <span class="string">"example.dat"</span></span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span> <span class="params">()</span> </span>&#123;</span><br><span class="line">	FILE *fp;</span><br><span class="line"></span><br><span class="line">	<span class="comment">// 1.大开文件</span></span><br><span class="line">	fp = fopen(FILE_NAME, <span class="string">"r"</span>);</span><br><span class="line">	<span class="keyword">if</span> (fp == <span class="literal">NULL</span>) &#123;</span><br><span class="line">		<span class="built_in">printf</span>(<span class="string">"Cant't open %s\n"</span>, FILE_NAME);</span><br><span class="line">		<span class="built_in">exit</span>(EXIT_FAILURE);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">else</span> &#123;</span><br><span class="line">		<span class="built_in">printf</span>(<span class="string">"Opened!\n"</span>);</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="comment">// 2.操作文件</span></span><br><span class="line">	<span class="comment">// ...</span></span><br><span class="line">	<span class="comment">// 3.关闭文件</span></span><br><span class="line">	fclose(fp);</span><br><span class="line">	return <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="22-2-4-为流附加文件"><a href="#22-2-4-为流附加文件" class="headerlink" title="22.2.4    为流附加文件"></a>22.2.4    为流附加文件</h3><h4 id="freopen函数"><a href="#freopen函数" class="headerlink" title="freopen函数"></a>freopen函数</h4><p><strong>说明：</strong>为已经打开的流附加一个不同的文件<br><strong>应用：</strong>把文件和一个标准流相关联<br><strong>原型：</strong><code>stdio.h</code></p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span><br><span class="line">* @param &#123;char *&#125; filename 文件名</span><br><span class="line">* @param &#123;char *&#125; mode 打开模式</span><br><span class="line">* @param &#123;FILE *&#125; stream 标准流（stdin或stdout或stderr）</span><br><span class="line">* @return &#123;FILE *&#125; 附加成功：文件指针；NULL：打开失败</span><br><span class="line">*/</span></span><br><span class="line"><span class="function">FILE *<span class="title">freopen</span><span class="params">(<span class="keyword">const</span> <span class="keyword">char</span> *filename, <span class="keyword">const</span> <span class="keyword">char</span> *mode,  FILE* stream)</span></span>;</span><br></pre></td></tr></table></figure>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 1.如果stdout通过命令行重定向或者freopen函数已经和其它文件关联，则先关闭与stdout相关联的文件</span></span><br><span class="line"><span class="comment">// fclose(frp); // fp指向是和stdout关联的流（文件）</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 2.打开foo文件，并使此文件和stdout相关联</span></span><br><span class="line"><span class="comment">// 如果无法关闭旧的文件，那么freopen函数会忽略掉错误</span></span><br><span class="line">frp = freopen(<span class="string">"foo"</span>, <span class="string">"w"</span>, stdout)</span><br><span class="line"><span class="keyword">if</span> (frp == NULL) &#123;</span><br><span class="line">	<span class="comment">// 打开失败</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="22-2-5-从命令行获取文件名"><a href="#22-2-5-从命令行获取文件名" class="headerlink" title="22.2.5    从命令行获取文件名"></a>22.2.5    从命令行获取文件名</h3><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span><br><span class="line">*</span><br><span class="line">* @param &#123;int&#125; argc 实际参数的数量</span><br><span class="line">* @param &#123;[].(char *)&#125;  一个指针数组，argv[0]指向程序的名字，其余指向实际参数</span><br><span class="line">*/</span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span> <span class="params">(<span class="keyword">int</span> argc, <span class="keyword">char</span> *argv[])</span> </span>&#123;</span><br><span class="line">	...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># argv[0]: demo</span></span><br><span class="line"><span class="comment"># argv[1]: name.dat</span></span><br><span class="line"><span class="comment"># argv[2]: dates.dat.dat</span></span><br><span class="line">$ demo name.dat dates.dat</span><br></pre></td></tr></table></figure>
+<h3 id="22-2-6-程序：检查文件是否可以打开"><a href="#22-2-6-程序：检查文件是否可以打开" class="headerlink" title="22.2.6    程序：检查文件是否可以打开"></a>22.2.6    程序：检查文件是否可以打开</h3><p><strong>说明：</strong>若文件存在就可以打开进行读入，在运行程序时，用户将给出要检测的文件的名字。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span><br><span class="line"> * Checks whether a file can be opened for reading</span><br><span class="line"> */</span></span><br><span class="line"></span><br><span class="line"><span class="meta"># <span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="keyword">int</span> <span class="title">main</span><span class="params">(<span class="keyword">int</span> argc, <span class="keyword">char</span> <span class="keyword">const</span> *argv[])</span></span><br><span class="line"></span>&#123;</span><br><span class="line">	FILE *fp;</span><br><span class="line">	<span class="comment">// 如果没有正确调用，给出使用提示</span></span><br><span class="line">	<span class="keyword">if</span> (argc != <span class="number">2</span>) &#123;</span><br><span class="line">		<span class="built_in">printf</span>(<span class="string">"usage: canopen filanem\n"</span>);</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="comment">// 如果不能以只读方式打开</span></span><br><span class="line">	<span class="keyword">if</span> ((fp = fopen(argv[<span class="number">1</span>], <span class="string">"r"</span>)) == <span class="literal">NULL</span>) &#123;</span><br><span class="line">		<span class="built_in">printf</span>(<span class="string">"%s can't be opened\n"</span>, argv[<span class="number">1</span>]);</span><br><span class="line">		return <span class="number">1</span>;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="comment">// 如果能以只读的方式打开 </span></span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">"%s can be opened\n"</span>, argv[<span class="number">1</span>]);</span><br><span class="line">	fclose(fp);</span><br><span class="line">	return <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ canopen f1.dat</span><br></pre></td></tr></table></figure>
+<h3 id="22-2-7-临时文件"><a href="#22-2-7-临时文件" class="headerlink" title="22.2.7    临时文件"></a>22.2.7    临时文件</h3><p><strong>说明：</strong>只在程序运行时存在的文件。<code>stdio.h</code>提供了两个函数用来处理临时文件，即<code>tmpfile</code>和<code>tmpname</code></p>
+<h4 id="tmpfile函数"><a href="#tmpfile函数" class="headerlink" title="tmpfile函数"></a>tmpfile函数</h4><p><strong>说明：</strong>产生临时文件，这些临时文件将存到文件关闭时或程序终止时。<br><strong>原型：</strong><code>stdio.h</code></p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span><br><span class="line">* @ return &#123;FILE *&#125; 指向临时文件的文件指针(如果创建失败则为NULL)</span><br><span class="line">*/</span></span><br><span class="line"><span class="function">FILE *<span class="title">tmpfile</span><span class="params">(<span class="keyword">void</span>)</span></span>;</span><br></pre></td></tr></table></figure>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">FILE *tmpptr;</span><br><span class="line">Tempptr = tmpfile(); <span class="comment">//</span></span><br></pre></td></tr></table></figure>
+<h4 id="tmpfile函数-1"><a href="#tmpfile函数-1" class="headerlink" title="tmpfile函数"></a>tmpfile函数</h4><p><strong>说明：</strong>为临时文件产生名字。<br><strong>用途：</strong>解决<code>tmpfile函数</code>无法知道临时文件的名字的问题。<br><strong>原型：</strong><code>stdio.h</code></p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span><br><span class="line">*  如果实际参数为NULL，那么tmpnam函数会把文件名存储到静态变量中，并且返回指向此变量的指针；</span><br><span class="line">*  否则，如果提供了字符数组作为参数，函数会把文件名复制到程序员提供的字符数组中。</span><br><span class="line">*</span><br><span class="line">* @param &#123;char *&#125; NULL或者一个字符数组（字符串）</span><br><span class="line">* @return &#123;char *&#125; 指向静态变量（存储着临时文件名）的指针：如果参数为NULL；指向临时文件名的指针（非静态）：如果提供了有效的参数</span><br><span class="line">*/</span></span><br><span class="line"><span class="function"><span class="keyword">char</span> *<span class="title">tmpnam</span><span class="params">(<span class="keyword">const</span> <span class="keyword">char</span> *)</span></span>;</span><br></pre></td></tr></table></figure>
+<p><em>参数为NULL</em></p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">char</span> *filename;</span><br><span class="line">filename = tmpnam(NULL); <span class="comment">// 创建临时文件名</span></span><br></pre></td></tr></table></figure>
+<p><em>参数为字符数组</em><br><strong>说明：</strong><code>tmpnam函数</code>会把声称的临时文件名复制到程序员提供的字符数组中，而且仍然会返回指向临时文件名的指针。<br><strong>注意：</strong>作为参数的字符数组长度至少为<code>L_tmpnam</code>,产生的临时文件名的最大数量不能超过<code>TMP_MAX</code>。</p>
+<ul>
+<li><code>L_tmpnam</code>：在<code>stdio.h</code>中定义的一个宏，保存着临时文件名的字符数组的长度。</li>
+<li><code>TMP_MAX</code>：在<code>stdio.h</code>中定义的一个宏，保存着程序执行期间<code>tmpnam函数</code>产生的临时文件名的最大数量。</li>
+</ul>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">char</span> filename[L_tmpnam];</span><br><span class="line">tmpnam(filename);</span><br></pre></td></tr></table></figure>
+<h3 id="22-2-8-文件缓冲"><a href="#22-2-8-文件缓冲" class="headerlink" title="22.2.8    文件缓冲"></a>22.2.8    文件缓冲</h3><p><strong>说明：</strong>缓冲发生在屏幕的后台，而且通常不用担心它的操作。然而，极少的情况下可能需要我们承担更主动的作用，需要使用<code>fflush函数</code>、<code>setbuf函数</code>和<code>setbuf函数</code>。<br><strong>输入流缓存：</strong>从硬盘或磁盘读取，包含来自输入设备（键盘或磁盘）的数据<br><strong>写入（输出）流缓存：</strong>向输出设备（屏幕或磁盘）写入，包含来自</p>
+<h4 id="fflush函数"><a href="#fflush函数" class="headerlink" title="fflush函数"></a>fflush函数</h4><p><strong>说明：</strong>针对输出（写入）流，把缓冲区的内容传递给磁盘（当缓冲区满了或者关闭文件时，缓冲区会自动“清洗”）<br><strong>原型：</strong><code>stdio.h</code></p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span><br><span class="line">* 把缓冲区的内容传递给磁盘</span><br><span class="line">* 当参数为NULL时，“清洗”所有缓冲区；否则，只清洗和参数指向的文件相关的缓冲区</span><br><span class="line">*</span><br><span class="line">* @param &#123;FILE *&#125; stream 文件指针</span><br><span class="line">* @return &#123;int&#125; 0：成功；EOF：发生错误</span><br><span class="line">*/</span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">fflush</span><span class="params">(FILE *stream)</span></span>;</span><br></pre></td></tr></table></figure>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">fflush(fp); <span class="comment">// 为fp指向的文件</span></span><br><span class="line">fflush(<span class="literal">NULL</span>); <span class="comment">// 清洗全部输出流</span></span><br></pre></td></tr></table></figure>
+<h4 id="setvbuf函数"><a href="#setvbuf函数" class="headerlink" title="setvbuf函数"></a>setvbuf函数</h4><p><strong>说明：</strong>改变缓冲流的方式，控制缓冲区的大小和位置<br><strong>原型：</strong><code>stdio.h</code></p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span><br><span class="line">* @param &#123;FILE *&#125; stream 文件指针</span><br><span class="line">* @param &#123;char *&#125; buf 期望缓冲区的地址</span><br><span class="line">* @param &#123;int&#125; 期望缓冲区的类型&#123;_IOFBF|_IOLBF|IONBF&#125;</span><br><span class="line">* @param &#123;size_t&#125; 缓冲区内字节的数量</span><br><span class="line">* @return &#123;int&#125; 0：成功；非零：要求的缓冲区模式无效或无法提供</span><br><span class="line">*/</span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">setvbuf</span><span class="params">(FILE *stream, <span class="keyword">char</span> *buf, <span class="keyword">int</span> mode, size_t size)</span></span>;</span><br></pre></td></tr></table></figure>
+<p><strong>参数要点：</strong></p>
+<table>
+<thead>
+<tr>
+<th>第N个参数</th>
+<th>含义</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>2</td>
+<td>缓冲区的地址</td>
+<td></td>
+</tr>
+<tr>
+<td>3</td>
+<td>缓冲区的类型</td>
+<td>值为定义在<code>stdio.h</code>中的宏</td>
+</tr>
+<tr>
+<td>4</td>
+<td>缓冲区的大小</td>
+<td>较大的缓冲区可以提供更好的性能，而较小的缓冲区可以节约时间。</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th>缓冲区的类型（宏）</th>
+<th>名字</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>_IOFBF</td>
+<td>满缓冲</td>
+<td>当缓冲区为空时，从流读入数据；活着当缓冲区满时，向流写入数据</td>
+</tr>
+<tr>
+<td>_IONLF</td>
+<td>行缓冲</td>
+<td>每次从流读入数据活着直接向流写入数据</td>
+</tr>
+<tr>
+<td>_IOLBF</td>
+<td>无缓冲</td>
+<td>每次从流读入数据活着直接向流卸乳数据，而没有缓冲区</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th>缓冲区的存储特点</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>静态存储期限</td>
+<td>存在于程序运行的整个过程中</td>
+</tr>
+<tr>
+<td>自动存储期限</td>
+<td>允许在它的空间在块退出时被自动重声明（?）</td>
+</tr>
+<tr>
+<td>动态分配</td>
+<td>在不需要时可以释放缓冲区</td>
+</tr>
+</tbody>
+</table>
+<p><strong>限制：</strong>必需在打开stream之后，在stream上执行任何操作之前调用<code>setvbuf</code>。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 1.创建缓冲区</span></span><br><span class="line"><span class="keyword">char</span> buffer[N];</span><br><span class="line"></span><br><span class="line"><span class="comment">// 2.对缓冲区进行设置（必需在打开stream之后，在stream上执行任何操作之前调用setvbuf）</span></span><br><span class="line">setvbuf(stream, buffer, _IOFBF, N);</span><br></pre></td></tr></table></figure>
+<h3 id="22-2-9-其他文件操作"><a href="#22-2-9-其他文件操作" class="headerlink" title="22.2.9    其他文件操作"></a>22.2.9    其他文件操作</h3><h4 id="remove函数"><a href="#remove函数" class="headerlink" title="remove函数"></a>remove函数</h4><p><strong>说明：</strong>根据文件名删除文件<br><strong>原型：</strong><code>stdio.h</code></p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span><br><span class="line">* @param &#123;char *&#125; filename 文件名</span><br><span class="line">* @return &#123;int&#125; 0：成功；非0：失败</span><br><span class="line">*/</span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">remove</span><span class="params">(<span class="keyword">const</span> <span class="keyword">char</span> *filename)</span></span>;</span><br></pre></td></tr></table></figure>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">remove(<span class="string">"foo"</span>); <span class="comment">// 删除名为foo的文件</span></span><br></pre></td></tr></table></figure>
+<h4 id="rename函数"><a href="#rename函数" class="headerlink" title="rename函数"></a>rename函数</h4><p><strong>说明：</strong>文件重命名<br><strong>原型：</strong><code>stdio.h</code></p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span><br><span class="line">* @param &#123;char *&#125; old 旧文件名</span><br><span class="line">* @param &#123;char *&#125; new 新文件名</span><br><span class="line">* @return &#123;int&#125; 0：成功；非0：失败</span><br><span class="line">*/</span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">rename</span><span class="params">(<span class="keyword">const</span> <span class="keyword">char</span> *old, <span class="keyword">const</span> <span class="keyword">char</span> *new)</span></span>;</span><br></pre></td></tr></table></figure>
+<p><strong>限制：</strong>一定要确保在调用<code>rename函数</code>之前文件是关闭的，否则无法对文件重命名。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">rename(<span class="string">"foo"</span>, <span class="string">"bar"</span>);</span><br></pre></td></tr></table></figure>
+<h2 id="22-3-格式化的输入／输出"><a href="#22-3-格式化的输入／输出" class="headerlink" title="22.3    格式化的输入／输出"></a>22.3    格式化的输入／输出</h2><h3 id="22-3-1-…printf类函数"><a href="#22-3-1-…printf类函数" class="headerlink" title="22.3.1    …printf类函数"></a>22.3.1    …printf类函数</h3><h4 id="printf函数"><a href="#printf函数" class="headerlink" title="printf函数"></a>printf函数</h4><p><strong>说明：</strong>向<code>stdout</code>输出，利用格式串控制输出的形式<br><strong>原型：</strong><code>stdio.h</code></p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span><br><span class="line">* @param &#123;char *&#125; format 格式串</span><br><span class="line">* @param &#123;...*&#125; 对应格式串中的转换说明的参数</span><br><span class="line">* @return &#123;int&#125; 写入的字符数：成功；负值：写入出错</span><br><span class="line">*/</span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">printf</span><span class="params">(<span class="keyword">const</span> <span class="keyword">char</span> *format, ...)</span></span>;</span><br></pre></td></tr></table></figure>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">printf</span>(<span class="string">"Total: %d\n"</span>, total);</span><br></pre></td></tr></table></figure>
+<h4 id="fprintf函数"><a href="#fprintf函数" class="headerlink" title="fprintf函数"></a>fprintf函数</h4><hr>
+<p><strong>说明：</strong>和<code>printf函数</code>唯一的不同就是，<code>printf函数</code>始终向标准输出流<code>stdout</code>向中写入，而<code>fprintf函数</code>则向第一个参数说明的流（任何输出流）中写输出。<br><strong>应用：</strong>向标准错误<code>stderr</code>写出错信息。<br><strong>扩展：</strong><code>stdio.h</code>中还有其他两种函数也可以向流写入格式化的输出，分别是<code>vfprintf函数</code>和<code>vprintf函数</code>,而且它们都还依赖<code>stdarg.h</code>(<a href="">26.1</a>)。<br><strong>原型：</strong><code>stdio.h</code></p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span><br><span class="line">* @param &#123;FILE *&#125; stream 文件指针</span><br><span class="line">* @param &#123;char *&#125; format 格式串</span><br><span class="line">* @param &#123;...*&#125; 对应格式串中的转换说明的参数</span><br><span class="line">* @return &#123;int&#125; 写入的字符数：成功；负值：写入出错</span><br><span class="line">*/</span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">fprintf</span><span class="params">(FILE *stream, <span class="keyword">const</span> <span class="keyword">char</span> *format, ...)</span></span>;</span><br></pre></td></tr></table></figure>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 向磁盘中写入</span></span><br><span class="line"><span class="built_in">fprintf</span>(fp, <span class="string">"Total:%d\n"</span>, total);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 向stderr中写入</span></span><br><span class="line"><span class="built_in">fprintf</span>(<span class="built_in">stderr</span>, <span class="string">"Error: data file can't be opened.\n"</span>)</span><br></pre></td></tr></table></figure>
+<h3 id="22-3-2-…printf类函数的转换说明"><a href="#22-3-2-…printf类函数的转换说明" class="headerlink" title="22.3.2    …printf类函数的转换说明"></a>22.3.2    …printf类函数的转换说明</h3><p><strong>说明：</strong>对已知的转换说明内容进行回顾，并把剩余的内容补充完整。<br><strong>注意：</strong>格式串必需遵守规则编写，许多看似可能的转换说明（<code>%le、%lf、%lg</code>等）实际上是无效的。</p>
+<h4 id="转换说明：-012-5Lg"><a href="#转换说明：-012-5Lg" class="headerlink" title="转换说明：%# 012.5Lg"></a><strong>转换说明：</strong><code>%# 012.5Lg</code></h4><table>
+<thead>
+<tr>
+<th>%</th>
+<th># 0</th>
+<th>12</th>
+<th>.5</th>
+<th>L</th>
+<th>g</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>转换说明提示符</td>
+<td>➊标志</td>
+<td>➋最小字段宽度</td>
+<td>➌精度</td>
+<td>➍长度修饰符</td>
+<td>➎转换说明符</td>
+</tr>
+<tr>
+<td>必需</td>
+<td>可选（可多于一个）</td>
+<td>可选</td>
+<td>可选</td>
+<td>可选</td>
+<td>必需</td>
+</tr>
+</tbody>
+</table>
+<p><strong>转换说明提示符：</strong>标记格式串的开始<br><strong>➊标志：</strong>设置对齐方式、前缀、进制、填充</p>
+<table>
+<thead>
+<tr>
+<th>标志</th>
+<th>含义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>-</code></td>
+<td>左对齐</td>
+</tr>
+<tr>
+<td><code>+</code></td>
+<td>用<code>+</code>作为正数的前缀</td>
+</tr>
+<tr>
+<td><code>空格</code></td>
+<td>用<code>空格</code>作为正数的前缀</td>
+</tr>
+<tr>
+<td><code># 0</code>、<code># 0x(X)</code></td>
+<td><code># 0</code>（8进制）、<code># 0x(X)</code>(16进制)，转换说明<code>g(G)</code>转换出的尾部0不能删除</td>
+</tr>
+<tr>
+<td><code>0</code></td>
+<td>除非转换说明为<code>d、i、o、u、x(X)</code>且制定了精度，否则用前导0在字段宽度内进行填充</td>
+</tr>
+</tbody>
+</table>
+<p><strong>➋最小字段宽度：</strong>值为<code>有效整数</code>或<code>*</code></p>
+<ul>
+<li><code>有效整数</code>：**字符数少于最小字段宽度时对字符填充，默认右对齐（在左侧填充<code>空格</code>）；大于最小字段宽度则完整显示。</li>
+<li><code>*</code>：格式串中的n个<code>*</code>对应<code>参数2</code>~<code>参数n-1</code>，可以是宏</li>
+</ul>
+<p><strong>➌精度：</strong>值为<code>.整数</code>或<code>.*</code>(精度的含义即依赖于转换说明符，也依赖于自身的值)</p>
+<table>
+<thead>
+<tr>
+<th>说明符</th>
+<th>精度值：<code>.整数</code></th>
+<th>精度值：<code>.*</code></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>d、i、o、u、x(X)</code></td>
+<td>最小数字位数（如果数字位数少于精度值，则添加前导0）</td>
+<td>同<code>最小字段宽度</code>❷中<code>*</code>的含义</td>
+</tr>
+<tr>
+<td><code>e(E)、f</code></td>
+<td>小数点后的数字位数</td>
+<td>（同上）</td>
+</tr>
+<tr>
+<td><code>g(G)</code></td>
+<td>最大有效数字位</td>
+<td>（同上）</td>
+</tr>
+<tr>
+<td><code>s</code></td>
+<td>最大字符数</td>
+<td>（同上）</td>
+</tr>
+</tbody>
+</table>
+<p><strong>➍长度修饰符：</strong>共3个，只能和一些转换说明符搭配</p>
+<table>
+<thead>
+<tr>
+<th>长度修饰符</th>
+<th>转换说明</th>
+<th>含义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>h</code></td>
+<td>整数（<code>d、i、o、u、x(X)、n</code>）</td>
+<td>short int</td>
+</tr>
+<tr>
+<td><code>l(L)</code></td>
+<td>整数（<code>d、i、o、u、x(X)、n</code>）</td>
+<td>long int</td>
+</tr>
+<tr>
+<td><code>l(L)</code></td>
+<td><code>e(E)、f、g(G)</code></td>
+<td>long double</td>
+</tr>
+</tbody>
+</table>
+<p><strong>➎转换说明符：</strong>当对带有可变实参的函数（比如<code>printf</code>）传参时，会发生默认的实际参数的提升。<code>float</code>会转换为<code>double</code>，<code>char</code>会转换为<code>int</code>。</p>
+<table>
+<thead>
+<tr>
+<th>转换说明符</th>
+<th>对应实参类型</th>
+<th>格式化后的形式</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>d、i</code></td>
+<td>signed int</td>
+<td>十进制形式</td>
+</tr>
+<tr>
+<td><code>o、u、x(X)</code></td>
+<td>unsigned int</td>
+<td><code>o</code>(8进制)、<code>u</code>(10进制)、<code>x</code>(16进制，a-f来显示)、<code>X</code>(16进制，A-F来显示)</td>
+</tr>
+<tr>
+<td><code>f</code></td>
+<td>double</td>
+<td>十进制形式（默认的精度为小数点后显示6位）</td>
+</tr>
+<tr>
+<td><code>e(E)</code></td>
+<td>double</td>
+<td>科学计数法表示的double，默认精度为小数点后显示6位（<code>e</code>表示指数前为e，<code>E</code>表示指数前为E)</td>
+</tr>
+<tr>
+<td><code>g(G)</code></td>
+<td>double</td>
+<td><code>-4 &gt;= 指数部分 &lt; 精度值</code>则相当于<code>e</code>（对应<code>g</code>）或者<code>E</code>（对应<code>G</code>）；否则相当于<code>f</code></td>
+</tr>
+<tr>
+<td><code>c</code></td>
+<td>unsigned int</td>
+<td>无符号整数</td>
+</tr>
+<tr>
+<td><code>s</code></td>
+<td>指向字符串的指针</td>
+<td>按照<code>void *</code>型显示，达到精度值（如果存在）或空字符(<code>\0</code>)时停止写操作</td>
+</tr>
+<tr>
+<td><code>p</code></td>
+<td>*</td>
+<td>转化为可显示格式的<code>void *</code>型值</td>
+</tr>
+<tr>
+<td><code>n</code></td>
+<td><code>int *</code>(指向int型数的指针)</td>
+<td><code>...printf类函数</code>返回值（不会输出到屏幕，而是存储到所指向的int型数中）</td>
+</tr>
+<tr>
+<td><code>%</code></td>
+<td>无对应参数</td>
+<td>字符串”%”</td>
+</tr>
+</tbody>
+</table>
+<h3 id="22-3-3-…printf类函数的转换说明示例"><a href="#22-3-3-…printf类函数的转换说明示例" class="headerlink" title="22.3.3    …printf类函数的转换说明示例"></a>22.3.3    …printf类函数的转换说明示例</h3><h4 id="标志➊"><a href="#标志➊" class="headerlink" title="标志➊"></a>标志➊</h4><p><img src="http://o6ul1xz4z.bkt.clouddn.com/img/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202015-10-05%20%E4%B8%8B%E5%8D%8811.04.07.png" alt="Alt text"><br><img src="http://o6ul1xz4z.bkt.clouddn.com/img/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202015-10-05%20%E4%B8%8B%E5%8D%8811.04.22.png" alt="Alt text"></p>
+<h4 id="最小字段宽度➋-精度➌"><a href="#最小字段宽度➋-精度➌" class="headerlink" title="最小字段宽度➋ + 精度➌"></a>最小字段宽度➋ + 精度➌</h4><p><img src="http://o6ul1xz4z.bkt.clouddn.com/img/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202015-10-05%20%E4%B8%8B%E5%8D%8811.04.29.png" alt="Alt text"></p>
+<h4 id="转换说明➎"><a href="#转换说明➎" class="headerlink" title="转换说明➎"></a>转换说明➎</h4><p><img src="http://o6ul1xz4z.bkt.clouddn.com/img/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202015-10-05%20%E4%B8%8B%E5%8D%8811.08.42.png" alt="Alt text"><br><img src="http://o6ul1xz4z.bkt.clouddn.com/img/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202015-10-05%20%E4%B8%8B%E5%8D%8811.04.45.png" alt="Alt text"></p>
+<h4 id="最小字符宽度❷和精度❸中"><a href="#最小字符宽度❷和精度❸中" class="headerlink" title="最小字符宽度❷和精度❸中*"></a>最小字符宽度❷和精度❸中*</h4><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 最小字符宽度❷和精度❸中*的用法示例</span></span><br><span class="line"><span class="keyword">int</span> i = <span class="number">12345</span>;</span><br><span class="line"></span><br><span class="line"><span class="built_in">printf</span>(<span class="string">"%6.4d"</span>, i); <span class="comment">// ..1234</span></span><br><span class="line"><span class="built_in">printf</span>(<span class="string">"%*.4d"</span>, <span class="number">6</span>, i); <span class="comment">// ..1234</span></span><br><span class="line"><span class="built_in">printf</span>(<span class="string">"%6.*d"</span>, <span class="number">4</span>, i); <span class="comment">// ..1234</span></span><br><span class="line"><span class="built_in">printf</span>(<span class="string">"%*.*d"</span>, <span class="number">6</span>, <span class="number">4</span>, i); <span class="comment">// ..1234</span></span><br><span class="line"><span class="built_in">printf</span>(<span class="string">"%*.*d"</span>, WIDTH, I, i); <span class="comment">// ..1234</span></span><br><span class="line"><span class="built_in">printf</span>(<span class="string">"%*.*d"</span>, page_width/num_cols, I, i); <span class="comment">// ..1234</span></span><br></pre></td></tr></table></figure>
+<h4 id="转换说明p和n"><a href="#转换说明p和n" class="headerlink" title="转换说明p和n"></a>转换说明<code>p</code>和<code>n</code></h4><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// p</span></span><br><span class="line"><span class="built_in">printf</span>(<span class="string">"%p\n"</span>, (void *)ptr); <span class="comment">// 显示指针ptr的值（可能会以8进制或16进制形式显示）</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// n</span></span><br><span class="line"><span class="keyword">int</span> len;</span><br><span class="line"><span class="built_in">printf</span>(<span class="string">"%d%n"</span>, <span class="number">123</span>, &amp;len); <span class="comment">// 将printf函数显示的字符数存储到len</span></span><br></pre></td></tr></table></figure>
+<h3 id="22-3-4-…scanf类函数"><a href="#22-3-4-…scanf类函数" class="headerlink" title="22.3.4    …scanf类函数"></a>22.3.4    …scanf类函数</h3><h4 id="scanf函数"><a href="#scanf函数" class="headerlink" title="scanf函数"></a>scanf函数</h4><p><strong>说明：</strong>从<code>stdin</code>（键盘）读入内容，根据格式串中的转换说明进行转换并存储在指针指定的位置上。<br><strong>原型：</strong><code>stdio.h</code></p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span><br><span class="line">* @param &#123;char *&#125; format 格式串</span><br><span class="line">* @param &#123;...*&#125; 匹配并转换后的内容对应的存储位置</span><br><span class="line">* return &#123;int&#125; 读入并赋值给实参的数据项数量：成功；EOF：失败</span><br><span class="line">*/</span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">scanf</span><span class="params">(<span class="keyword">const</span> chat *format, ...)</span></span>;</span><br></pre></td></tr></table></figure>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 循环读取一串整数，在首个"?"处停止</span></span><br><span class="line"><span class="keyword">while</span> (<span class="built_in">scanf</span>(<span class="string">"%d"</span>, &amp;I) == <span class="number">1</span>) &#123;</span><br><span class="line">	<span class="comment">// </span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="fscanf函数"><a href="#fscanf函数" class="headerlink" title="fscanf函数"></a>fscanf函数</h4><p><strong>说明：</strong><code>scanf函数</code>从<code>stdin</code>读入数据，而<code>fscanf函数</code>则从它自己的第一个实参所指定的流中妇孺内容。<br><strong>原型：</strong><code>stdio.h</code></p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span><br><span class="line">* @param &#123;FILE *&#125; 指定的流</span><br><span class="line">* @param &#123;char *&#125; format 格式串</span><br><span class="line">* @return &#123;int&#125; 读入并赋值给实参的数据项数量：成功；EOF：失败</span><br><span class="line">*/</span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">scanf</span><span class="params">(FILE *stream, <span class="keyword">const</span> <span class="keyword">char</span> *format, ...)</span></span>;</span><br></pre></td></tr></table></figure>
+<h3 id="22-3-5-…scanf类函数的格式化字符串"><a href="#22-3-5-…scanf类函数的格式化字符串" class="headerlink" title="22.3.5    …scanf类函数的格式化字符串"></a>22.3.5    …scanf类函数的格式化字符串</h3><table>
+<thead>
+<tr>
+<th>比较</th>
+<th><code>...printf类函数</code></th>
+<th><code>...scanf类函数</code></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>格式串的作用</td>
+<td>转换数据形式并拼接</td>
+<td>模式匹配和数据类型转换</td>
+</tr>
+<tr>
+<td>数据源</td>
+<td>指定的实参（不定参数部分）的值</td>
+<td><code>stdin</code>（键盘输入）</td>
+</tr>
+<tr>
+<td>数据源类型</td>
+<td>多种类型</td>
+<td>字符</td>
+</tr>
+</tbody>
+</table>
+<h4 id="格式串"><a href="#格式串" class="headerlink" title="格式串"></a>格式串</h4><p><strong>例子：</strong><code>ISBN %d-%d-%ld-%d</code></p>
+<table>
+<thead>
+<tr>
+<th>ISBN</th>
+<th>空格</th>
+<th>%d</th>
+<th>—</th>
+<th>%d</th>
+<th>—</th>
+<th>%ld</th>
+<th>—</th>
+<th>%d</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>ISBN</td>
+<td>空白字符（0或多个）</td>
+<td>一个整数</td>
+<td>—</td>
+<td>一个整数</td>
+<td>—</td>
+<td>一个长整数</td>
+<td>—</td>
+<td>一个整数</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td>允许整数前存在空白字符</td>
+<td></td>
+<td>允许整数前存在空白字符</td>
+<td></td>
+<td>允许整数前存在空白字符</td>
+<td></td>
+<td>允许整数前存在空白字符</td>
+</tr>
+</tbody>
+</table>
+<h5 id="转换说明"><a href="#转换说明" class="headerlink" title="转换说明"></a>转换说明</h5><p><strong>说明：</strong>类似<code>...printf函数</code>格式串中中的转换说明。<br><strong>特点：</strong></p>
+<ul>
+<li>大多数转换说明会在输入项的开始出跳过空白字符（<code>%[、%c、%n</code>除外）</li>
+<li>转换说明从来不回跳过尾部的空白字符（遇到换行符时，不会读区之并停止匹配返回）</li>
+</ul>
+<h5 id="空白字符"><a href="#空白字符" class="headerlink" title="空白字符"></a>空白字符</h5><p><strong>说明：</strong>格式串中的一个（或多个）空白字符匹配0个或多个输入流中的空白字符。</p>
+<h5 id="非空白字符"><a href="#非空白字符" class="headerlink" title="非空白字符"></a>非空白字符</h5><p><strong>说明：</strong>非空白字符和输入流中相同字符进行匹配（<code>%</code>除外）</p>
+<h3 id="22-3-6-…scanf类函数的转换说明"><a href="#22-3-6-…scanf类函数的转换说明" class="headerlink" title="22.3.6    …scanf类函数的转换说明"></a>22.3.6    …scanf类函数的转换说明</h3><h4 id="转换说明：-12Ld"><a href="#转换说明：-12Ld" class="headerlink" title="转换说明：%*12Ld"></a><strong>转换说明：</strong><code>%*12Ld</code></h4><table>
+<thead>
+<tr>
+<th>%</th>
+<th>＊</th>
+<th>12</th>
+<th>L</th>
+<th>d</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>转换说明提示符</td>
+<td>➊赋值屏蔽</td>
+<td>➋最小字段宽度</td>
+<td>➌长度修饰符</td>
+<td>❹转换说明符</td>
+</tr>
+<tr>
+<td>必需</td>
+<td>可选</td>
+<td>可选</td>
+<td>可选</td>
+<td>必需</td>
+</tr>
+</tbody>
+</table>
+<p><strong>❶赋值屏蔽（assignment suppression）：</strong>使用符号<code>*</code>，匹配空白符之外的连续字符，直到遇到空白符为止。</p>
+<ul>
+<li>匹配的数据项会被读入，但不会被赋值给变量</li>
+<li>用*匹配到的数据相不回包含在<code>...scanf类函数</code>返回的计数中</li>
+</ul>
+<p><strong>❷最大字段宽度：</strong>限制转换说明匹配的输入项的字符数量（不计算跳过的空白符），达到限制的字符数量后便停止当前输入项的转换。<br><strong>❸长度修饰符：</strong>共3个，只能和一些转换说明符搭配，同时长度修饰符的选择取决于要存储为相匹配实参所指向的变量类型。</p>
+<table>
+<thead>
+<tr>
+<th>长度修饰符</th>
+<th>转换说明</th>
+<th>对应实参（指针）的类型</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>h</code></td>
+<td>整数（<code>d、i、o、u、x(X)、n</code>）</td>
+<td>short int</td>
+</tr>
+<tr>
+<td><code>l(L)</code></td>
+<td>整数（<code>d、i、o、u、x(X)、n</code>）</td>
+<td>long int</td>
+</tr>
+<tr>
+<td><code>l</code></td>
+<td><code>e(E)、f、g(G)</code></td>
+<td>double</td>
+</tr>
+<tr>
+<td><code>L</code></td>
+<td><code>e(E)、f、g(G)</code></td>
+<td>long double</td>
+</tr>
+</tbody>
+</table>
+<p><strong>❹转换说明符：</strong></p>
+<table>
+<thead>
+<tr>
+<th>转换说明符</th>
+<th>对应实参指针应当指向类型</th>
+<th>匹配的字符</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>d</td>
+<td>整数</td>
+<td>十进制整数</td>
+</tr>
+<tr>
+<td>i</td>
+<td>整数</td>
+<td>自动判断进制（0打头：8进制；0x(X)打头：16进制；否则十进制）</td>
+</tr>
+<tr>
+<td>o</td>
+<td>unsigned int</td>
+<td>八进制整数</td>
+</tr>
+<tr>
+<td>u</td>
+<td>unsigned int</td>
+<td>十进制整数</td>
+</tr>
+<tr>
+<td>x(X)</td>
+<td>unsigned int</td>
+<td>十六进制整数</td>
+</tr>
+<tr>
+<td>e(E)、f、g(G)</td>
+<td>float</td>
+<td>float型小数</td>
+</tr>
+<tr>
+<td>s</td>
+<td>char *(自动在末尾添加<code>\0</code>)</td>
+<td>一系列非空白字符</td>
+</tr>
+<tr>
+<td>[</td>
+<td>char *(自动在末尾添加<code>\0</code>)</td>
+<td>来自<code>扫描集合</code>的非空字符序列。<code>扫描集合</code>可以包含任何字符集，特别的是如果<code>扫描集合</code>中包含<code>]</code>，则要放在首位，例如<code>[]abc]</code>（<code>[abc]</code>：表示匹配只含有字母<code>a、b、c</code>的字符序列；<code>[^abc]</code>：表示匹配<code>a、b、c</code>都不存在的字符序列）</td>
+</tr>
+<tr>
+<td>c</td>
+<td>char *(指定<code>❷最大字段宽度</code>n，则在末尾添加<code>\0</code>，否则不添加)</td>
+<td>指定<code>❷最大字段宽度</code>n，则匹配n个字符，否则旧就匹配一个字符</td>
+</tr>
+<tr>
+<td>p</td>
+<td>void *</td>
+<td><code>...printf类函数</code>可以打印出的指针值（地址）</td>
+</tr>
+<tr>
+<td>n</td>
+<td>int(不指定<code>❸长度修饰符</code>)、short int(<code>❸长度修饰符</code>为<code>h</code>)、long int(<code>❸长度修饰符</code>为<code>l</code>)</td>
+<td>不匹配任何字符，因而也不回影响<code>...scanf类函数</code>的放回值（对应的变量存储的是到目前为止已经读入的字符数）</td>
+</tr>
+<tr>
+<td>%</td>
+<td>char</td>
+<td>匹配字符%</td>
+</tr>
+</tbody>
+</table>
+<h4 id="strtol函数-26-2-1"><a href="#strtol函数-26-2-1" class="headerlink" title="strtol函数(26.2.1)"></a>strtol函数(<a href="">26.2.1</a>)</h4><p><strong>说明：</strong>将字符串根据参数base来转换成长整型数<br><strong>原型：</strong><code>stdio.h</code></p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span><br><span class="line">* @param &#123;char *&#125; nptr 要转换的字符串</span><br><span class="line">* @param &#123;int&#125; base 基数（0或2~36）</span><br><span class="line">*/</span></span><br><span class="line"><span class="function"><span class="keyword">long</span> <span class="keyword">int</span> <span class="title">strtol</span><span class="params">(<span class="keyword">const</span> <span class="keyword">char</span> *nptr,<span class="keyword">char</span> **endptr,<span class="keyword">int</span> base)</span></span>;</span><br></pre></td></tr></table></figure>
+<p><strong>和<code>...scanf类函数</code>转换说明符之间的对应关系</strong></p>
+<table>
+<thead>
+<tr>
+<th>转换说明符</th>
+<th>strol的参数base的值</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>d</td>
+<td>10</td>
+</tr>
+<tr>
+<td>i</td>
+<td>0</td>
+</tr>
+<tr>
+<td>o</td>
+<td>8</td>
+</tr>
+<tr>
+<td>u</td>
+<td>10</td>
+</tr>
+<tr>
+<td>x(X)</td>
+<td>16</td>
+</tr>
+<tr>
+<td>e(E)、f、g(G)</td>
+<td>10</td>
+</tr>
+</tbody>
+</table>
+<h3 id="22-3-7-…scanf函数的示例"><a href="#22-3-7-…scanf函数的示例" class="headerlink" title="22.3.7    …scanf函数的示例"></a>22.3.7    …scanf函数的示例</h3><h4 id="转换说明、空白字符、非空白字符组合效果"><a href="#转换说明、空白字符、非空白字符组合效果" class="headerlink" title="转换说明、空白字符、非空白字符组合效果"></a>转换说明、空白字符、非空白字符组合效果</h4><p><img src="http://o6ul1xz4z.bkt.clouddn.com/img/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202015-10-06%20%E4%B8%8B%E5%8D%888.07.10.png" alt="Alt text"></p>
+<h4 id="赋值屏蔽和指定字段宽度效果"><a href="#赋值屏蔽和指定字段宽度效果" class="headerlink" title="赋值屏蔽和指定字段宽度效果"></a>赋值屏蔽和指定字段宽度效果</h4><p><img src="http://o6ul1xz4z.bkt.clouddn.com/img/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202015-10-06%20%E4%B8%8B%E5%8D%888.07.25.png" alt="Alt text"></p>
+<h4 id="难懂的转换说明：i、-、n"><a href="#难懂的转换说明：i、-、n" class="headerlink" title="难懂的转换说明：i、[、n"></a>难懂的转换说明：<code>i、[、n</code></h4><p><img src="http://o6ul1xz4z.bkt.clouddn.com/img/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202015-10-06%20%E4%B8%8B%E5%8D%888.07.38.png" alt="Alt text"></p>
+<h3 id="22-3-8-检测文件末尾和错误条件"><a href="#22-3-8-检测文件末尾和错误条件" class="headerlink" title="22.3.8    检测文件末尾和错误条件"></a>22.3.8    检测文件末尾和错误条件</h3><p><strong>错误指示器（error indicator）：</strong>打开流时被清除，遇到错误时会被设置。<br><strong>文件末尾指示器（end of file indicator）：</strong>打开流时被清除，遇到文件末尾时被设置。<br><strong><code>...scanf类函数</code>出错分类：</strong>当<code>...scanf类函数</code>的返回值小于不定参数（要匹配）的数量时，由3中可能</p>
+<ol>
+<li><strong>提前遇到文件末尾：</strong>函数在完全匹配格式串之前遇到了文件末尾</li>
+<li><strong>匹配失败：</strong>数据相的格式错误（比如函数在搜索整数的第一个数字期间遇到了一个字母）</li>
+<li><strong>错误：</strong>错误的发生超出了函数控制的范围</li>
+</ol>
+<h4 id="clearerr函数"><a href="#clearerr函数" class="headerlink" title="clearerr函数"></a>clearerr函数</h4><p><strong>说明：</strong>清除文件末尾指示器和错误指示器<br><strong>注意：</strong><code>Q&amp;A</code>某些其他库函数因为副作用可以清除某种指示器或两种都可以清除，所以不回需要经常使用该函数。<br><strong>原型：</strong><code>stdio.h</code></p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span><br><span class="line">* @param &#123;FILE *&#125; stream 文件指针</span><br><span class="line">*/</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">clearerr</span><span class="params">(FILE *stream)</span></span>;</span><br></pre></td></tr></table></figure>
+<h4 id="feof函数"><a href="#feof函数" class="headerlink" title="feof函数"></a>feof函数</h4><p><strong>说明：</strong>检测<code>末尾指示器</code>，判断是否已经到达输入流（文件或<code>stdin</code>）末尾。<br><strong>原型：</strong><code>stdio.h</code></p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span><br><span class="line">* @param &#123;FILE *&#125; 文件指针</span><br><span class="line">* @ return &#123;int&#125; 如果返回非零值，说明已经到达了输入文件的末尾</span><br><span class="line">*/</span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">feof</span><span class="params">(FILE *stream)</span></span>;</span><br></pre></td></tr></table></figure>
+<h4 id="ferror函数"><a href="#ferror函数" class="headerlink" title="ferror函数"></a>ferror函数</h4><p><strong>说明：</strong>检测<code>错误指示器</code>，判断输入过程是否发生错误<br><strong>原型：</strong><code>stdio.h</code></p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span><br><span class="line">* @param &#123;FILE *&#125; stream 文件指针</span><br><span class="line">* @ return &#123;int&#125; 如果返回非零值，说明已经到达了输入过程发生错误</span><br><span class="line">*/</span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">ferror</span><span class="params">(FILE *stream)</span></span>;</span><br></pre></td></tr></table></figure>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span><br><span class="line">* 搜索文件中以某个整数起始的行并返回行号</span><br><span class="line">* </span><br><span class="line">* @param &#123;char *&#125; filename 文件名</span><br><span class="line">* @param &#123;int *&#125; ptr 指向要将找到的整数存储到变量的指针</span><br><span class="line">* @return &#123;int&#125; 以整数起始的行的行号</span><br><span class="line">*/</span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">find_int</span><span class="params">(<span class="keyword">const</span> <span class="keyword">char</span> *filename, <span class="keyword">int</span> *ptr)</span> </span>&#123;</span><br><span class="line">	<span class="comment">// 1. 打开文件</span></span><br><span class="line">	<span class="function">FILE *fp <span class="title">fopen</span> <span class="params">(filename, <span class="string">"r"</span>)</span></span>;</span><br><span class="line">	<span class="keyword">int</span> line = <span class="number">1</span>;</span><br><span class="line">	<span class="keyword">if</span> (fp == <span class="literal">NULL</span>) &#123;</span><br><span class="line">		return <span class="number">-1</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">while</span> (<span class="built_in">fscanf</span>(fp, <span class="string">"%d"</span>, ptr) != <span class="number">1</span>) &#123;</span><br><span class="line">		<span class="comment">// 如果是输入错误</span></span><br><span class="line">		<span class="keyword">if</span> (ferror (fp)) &#123;</span><br><span class="line">			fclose(fp);</span><br><span class="line">			return <span class="number">-2</span>;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="comment">// 如果是到达文件末尾</span></span><br><span class="line">		<span class="keyword">if</span> (feof(fp)) &#123;</span><br><span class="line">			fclose(fp);</span><br><span class="line">			return <span class="number">-3</span>; <span class="comment">// 整数没找到</span></span><br><span class="line">		&#125;</span><br><span class="line">		<span class="built_in">fscanf</span>(fp, <span class="string">"%*[^\n]"</span>); <span class="comment">// 跳过一行的其余部分</span></span><br><span class="line">		line++;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="comment">// 关闭文件</span></span><br><span class="line">	fclose(fp);</span><br><span class="line">	return line;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 调用</span></span><br><span class="line">n = find_int(<span class="string">"foo"</span>, &amp;i);</span><br></pre></td></tr></table></figure>
+<h2 id="22-4-字符的输入／输出"><a href="#22-4-字符的输入／输出" class="headerlink" title="22.4    字符的输入／输出"></a>22.4    字符的输入／输出</h2><p><strong>说明：</strong>本节的所有函数用于文本流和二进制流是等效的。</p>
+<h3 id="22-4-1-输出函数"><a href="#22-4-1-输出函数" class="headerlink" title="22.4.1    输出函数"></a>22.4.1    输出函数</h3><p><strong>说明：</strong>和<code>...scanf类函数</code>一样，<code>fputc、putc、putchar</code>出现错误都会为流设置<code>错误指示器</code>并返回<code>EOF</code>。</p>
+<h4 id="fputc函数"><a href="#fputc函数" class="headerlink" title="fputc函数"></a>fputc函数</h4><p><strong>说明：</strong>向任意流写字符（<code>putc</code>和<code>putchar</code>更通用的版本）<br><strong>原型：</strong><code>stdio.h</code></p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span><br><span class="line">* @param &#123;int&#125; c 函数会把char作为int型的值来处理</span><br><span class="line">* @param &#123;FILE *&#125; stream 文件指针</span><br><span class="line">* @ return &#123;int&#125; c转换为unsigned int的值：输出正确；EOF（负整数）：输出错误</span><br><span class="line">*/</span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">fputc</span><span class="params">(<span class="keyword">int</span> c, FILE * stream)</span></span>;</span><br></pre></td></tr></table></figure>
+<h4 id="putc宏"><a href="#putc宏" class="headerlink" title="putc宏"></a>putc宏</h4><p><strong>说明：</strong>向任意流写字符(宏实现)<br><strong>优点和缺点：</strong><a href="">14.3</a><br><strong>原型：</strong><code>stdio.h</code></p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span><br><span class="line">* @param &#123;int&#125; c 函数会把char作为int型的值来处理</span><br><span class="line">* @param &#123;FILE *&#125; stream 文件指针</span><br><span class="line">* @ return &#123;int&#125; c转换为unsigned int的值：输出正确；EOF（负整数）：输出错误</span><br><span class="line">*/</span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">putc</span><span class="params">(<span class="keyword">int</span> c, FILE *stream)</span></span>;</span><br></pre></td></tr></table></figure>
+<h4 id="putchar宏"><a href="#putchar宏" class="headerlink" title="putchar宏"></a>putchar宏</h4><p><strong>说明：</strong>向标准输出流<code>stdout</code>（屏幕）写一个字符，通常作为宏来实现（底层是<code>fputc</code>，因此性能不如<code>putc</code>）。<br><strong>原型：</strong><code>stdio.h</code></p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">define</span> putchat(c) putc((c), stdout);</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span><br><span class="line">* @param &#123;int&#125; c 函数会把char作为int型的值来处理</span><br><span class="line">* @return &#123;int&#125; </span><br><span class="line">int putchar(int c);</span></span><br></pre></td></tr></table></figure>
+<h3 id="22-4-2-输入函数"><a href="#22-4-2-输入函数" class="headerlink" title="22.4.2    输入函数"></a>22.4.2    输入函数</h3><p><strong>注意：</strong><code>Q&amp;A</code>把char型变量与<code>EOF</code>比较可能会产生错误的结果。</p>
+<h4 id="getc宏"><a href="#getc宏" class="headerlink" title="getc宏"></a>getc宏</h4><p><strong>说明：</strong>从指定流中读入一个字符（宏实现）。<br><strong>原型：</strong><code>stdio.h</code></p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span><br><span class="line">* @param &#123;FILE *&#125; stream 文件指针</span><br><span class="line">* @return &#123;int&#125; 读如的字符的int型值</span><br><span class="line">*/</span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">getc</span><span class="params">(File *stream)</span></span>;</span><br></pre></td></tr></table></figure>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 从文件读入字符直到遇到文件末尾</span></span><br><span class="line"><span class="keyword">while</span> ((ch = getc(fp)) != EOF) &#123;</span><br><span class="line">	...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="fgetc函数"><a href="#fgetc函数" class="headerlink" title="fgetc函数"></a>fgetc函数</h4><p><strong>说明：</strong>从指定的流中读如一个字符。<br><strong>原型：</strong><code>stdio.h</code></p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span><br><span class="line">* @param &#123;FILE *&#125; stream 文件指针</span><br><span class="line">* @return &#123;int&#125; 读如的字符的int型值</span><br><span class="line">*/</span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">fgetc</span><span class="params">(FILE *stream)</span></span>;</span><br></pre></td></tr></table></figure>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ch = fgetc(fp); <span class="comment">// 从fp中读取一个字符</span></span><br></pre></td></tr></table></figure>
+<h4 id="getchar（宏）"><a href="#getchar（宏）" class="headerlink" title="getchar（宏）"></a>getchar（宏）</h4><p><strong>说明：</strong>从标准输出流<code>stdout</code>（键盘）中获得一个字符（通常是用宏实现）。<br><strong>原型：</strong><code>stdio.h</code></p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">define</span> getchar getc(stdin);</span></span><br></pre></td></tr></table></figure>
+<h3 id="22-4-3-程序：复制文件"><a href="#22-4-3-程序：复制文件" class="headerlink" title="22.4.3    程序：复制文件"></a>22.4.3    程序：复制文件</h3><p><strong>说明：</strong>采用”rb”和”wb”作为文件的模式使<code>fcopy</code>程序既可以复制文本文件也可以复制二进制文件。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span><br><span class="line"> * Copy a file(既可以是文本文件，也可以是二进制文件)</span><br><span class="line"> */</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdlib.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">(<span class="keyword">int</span> argc, <span class="keyword">char</span> <span class="keyword">const</span> *argv[])</span></span><br><span class="line"></span>&#123;</span><br><span class="line">	FILE *source_fp, *dest_fp;</span><br><span class="line">	<span class="keyword">int</span> ch;</span><br><span class="line"></span><br><span class="line">	<span class="comment">// 如果没有给出正确的参数</span></span><br><span class="line">	<span class="keyword">if</span> (argc != <span class="number">3</span>) &#123;</span><br><span class="line">		<span class="built_in">fprintf</span>(<span class="built_in">stderr</span>, <span class="string">"usage: fcopy source dest\n"</span>);</span><br><span class="line">		<span class="built_in">exit</span>(EXIT_FAILURE);</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="comment">// 打开原始文件</span></span><br><span class="line">	<span class="keyword">if</span> ((source_fp = fopen(argv[<span class="number">1</span>], <span class="string">"rb"</span>)) == <span class="literal">NULL</span>) &#123;</span><br><span class="line">		<span class="built_in">fprintf</span>(<span class="built_in">stderr</span>, <span class="string">"can't open %s\n"</span>, argv[<span class="number">1</span>]);</span><br><span class="line">		fclose(source_fp);</span><br><span class="line">		<span class="built_in">exit</span>(EXIT_FAILURE);</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="comment">// 打开目标文件</span></span><br><span class="line">	<span class="keyword">if</span> ((dest_fp = fopen(argv[<span class="number">2</span>], <span class="string">"wb"</span>)) == <span class="literal">NULL</span>) &#123;</span><br><span class="line">		<span class="built_in">fprintf</span>(<span class="built_in">stderr</span>, <span class="string">"can't open %s\n"</span>, argv[<span class="number">2</span>]);</span><br><span class="line">		fclose(source_fp);</span><br><span class="line">		<span class="built_in">exit</span>(EXIT_FAILURE);</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="comment">// 复制内容(一个字符一个字符地)</span></span><br><span class="line">	<span class="keyword">while</span> ((ch = getc(source_fp)) != EOF) &#123;</span><br><span class="line">		putc(ch, dest_fp);</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	fclose(source_fp);</span><br><span class="line">	fclose(dest_fp);</span><br><span class="line">	return <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ ./fcopy source.dat dest.dat</span><br></pre></td></tr></table></figure>
+<h2 id="22-5-行的输入／输出"><a href="#22-5-行的输入／输出" class="headerlink" title="22.5    行的输入／输出"></a>22.5    行的输入／输出</h2><p><strong>说明：</strong>读和写行的苦函数（虽然也可以有效地用于二进制文件流，但多数用于文本流）。</p>
+<h3 id="22-5-1-输出函数"><a href="#22-5-1-输出函数" class="headerlink" title="22.5.1    输出函数"></a>22.5.1    输出函数</h3><h4 id="puts函数-13-3"><a href="#puts函数-13-3" class="headerlink" title="puts函数(13.3)"></a>puts函数(<a href="">13.3</a>)</h4><p><strong>说明：</strong>向标准输出流<code>stdout</code>写入一串字符（总会在后面添加一个换行符）。<br><strong>原型：</strong><code>stdio.h</code></p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span><br><span class="line">* @param &#123;char *&#125; s 要输出的字符串（首地址）</span><br><span class="line">* @return &#123;char *&#125; </span><br><span class="line">*/</span></span><br><span class="line"><span class="function"><span class="keyword">int</span> *<span class="title">puts</span><span class="params">(chat *s)</span></span>;</span><br></pre></td></tr></table></figure>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">puts</span>(<span class="string">"Hi, there!"</span>); <span class="comment">// 向stdout(屏幕)输出"Hi, there!"</span></span><br></pre></td></tr></table></figure>
+<h4 id="fputs函数"><a href="#fputs函数" class="headerlink" title="fputs函数"></a>fputs函数</h4><p><strong>说明：</strong>向指定的流输出一串字符（不会在后面自动添加换行符）<br><strong>原型：</strong><code>stdio.h</code></p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span><br><span class="line">* @param &#123;char *&#125; s 要输出的字符串（首地址）</span><br><span class="line">* @param &#123;FILE *&#125; stream 文件指针</span><br><span class="line">* @return &#123;int&#125; 非负的数：成功输出；`EOF`：出现错误</span><br><span class="line">*/</span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">fput</span><span class="params">(chat *s, FILE *stream)</span></span>;</span><br></pre></td></tr></table></figure>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">fputs</span>(<span class="string">"Hi, there!"</span>, fp); <span class="comment">// 向fp输出"Hi. there!"</span></span><br></pre></td></tr></table></figure>
+<h3 id="22-5-2-输入函数"><a href="#22-5-2-输入函数" class="headerlink" title="22.5.2    输入函数"></a>22.5.2    输入函数</h3><p><strong>返回值：</strong>无论<code>gets</code>还是<code>fgets</code>，如果出现了错误，活着使在存储人和字符之前大道了输入流的末尾，都会返回空指针<code>NULL</code>;否则，返回指向读入字符串的指针。<br><strong>末尾空字符：</strong>两个函数都会在字符串的末尾存储空字符。<br><strong>技巧：</strong>大多数情况下用<code>fgets</code>而不是<code>gets</code>（只有在确保读入的字符正好适合数组大小时才使用），因为后者会超出接收数组范围的可能</p>
+<h4 id="gets函数（13-3）"><a href="#gets函数（13-3）" class="headerlink" title="gets函数（13.3）"></a>gets函数（<a href="">13.3</a>）</h4><p><strong>说明：</strong>从标准输入流<code>stdin</code>中读取一串字符（逐个读取字符，并且把它们存储在字符串中，直到读取到换行符为止，因此不存储换行符）<br><strong>注意：</strong>只有在确保读入的字符正好适合数组大小时才使用，因为会有超出接收数组范围的可能。<br><strong>原型：</strong><code>stdio.h</code></p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span><br><span class="line">* @param &#123;char *&#125; s 存储位置（首地址）</span><br><span class="line">* @return &#123;char *&#125; 非负的数：成功输出；`EOF`：出现错误</span><br><span class="line">*/</span></span><br><span class="line"><span class="function">chat *<span class="title">gets</span><span class="params">(<span class="keyword">char</span> *s)</span></span>;</span><br></pre></td></tr></table></figure>
+<h4 id="fgets函数"><a href="#fgets函数" class="headerlink" title="fgets函数"></a>fgets函数</h4><p><strong>说明：</strong>从指定的流中读取一串字符（有时会存储换行符）<br><strong>原型：</strong><code>stdio.h</code></p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">/**</span><br><span class="line">* @param &#123;char *&#125; s  存储位置（首地址）</span><br><span class="line">* @param &#123;int&#125; n 限制读取字符的数量(保证不回超过s的存储能力)</span><br><span class="line">* @param &#123;FILE *&#125; stream 文件字符（要读取的目标流）</span><br><span class="line">* @return &#123;char *&#125; 读取到的字符串</span><br><span class="line">*/</span><br><span class="line">char *fget(char *s, int n, FILE *stream));</span><br></pre></td></tr></table></figure>
+<p><strong>优点：</strong></p>
+<ul>
+<li>可以从任意流中读取信息</li>
+<li>比<code>gets</code>更加安全，因为可以限制要存储的字符的数量</li>
+</ul>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 逐个读入字符，在遇到首个换行符时或已经读入sizeof(str)-1个字符时结束操作</span></span><br><span class="line">fgets(str, <span class="keyword">sizeof</span>(str), fp);</span><br></pre></td></tr></table></figure>
+<h2 id="22-6-块的输入／输出"><a href="#22-6-块的输入／输出" class="headerlink" title="22.6    块的输入／输出"></a>22.6    块的输入／输出</h2><p><strong>说明：</strong><code>fread</code>和<code>fwrite</code>允许程序在一次读和写大的数据块（任意数据类型）。<br><strong>用途：</strong>当程序在终止之前使用<code>fwrite函数</code>把数据存储到文件中，稍后，程序可以把数据从文件读入到内存。<br><strong>注意：</strong><code>Q&amp;A</code>小心使用<code>fread</code>函数和<code>fwrite</code>函数可以用于文本流，但它们主要还是用于二进制的流。</p>
+<h3 id="fread函数"><a href="#fread函数" class="headerlink" title="fread函数"></a>fread函数</h3><p><strong>说明：</strong>从流读入数据块。<br><strong>原型：</strong><code>stdio.h</code></p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span><br><span class="line">* @param &#123;void *&#125; ptr 读入后数据块存储位置的地址</span><br><span class="line">* @param &#123;size_t&#125; size 数据块的大小（字节）</span><br><span class="line">* @param &#123;size_t&#125; nmemb 数据块的数量</span><br><span class="line">* @param &#123;FILE *&#125; stream 文件指针（要读的文件位置）</span><br><span class="line">* @return &#123;size_t&#125; 实际读入的数据块的数量，如果小于nmemb则说明达到了文件末尾或出现了错误（可用feof和ferror检测）</span><br><span class="line">*/</span></span><br><span class="line">fread(<span class="keyword">void</span> *ptr, <span class="keyword">size_t</span> size, <span class="keyword">size_t</span> nmemb, FILE *stream);</span><br></pre></td></tr></table></figure>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 从fp指向的流位置读出数组并存储到数组a中</span></span><br><span class="line">n = fread(a, sizeof(a[<span class="number">0</span>]), sizeof(a)/sizeof(a[<span class="number">0</span>]), fp);</span><br></pre></td></tr></table></figure>
+<h3 id="fwrite函数"><a href="#fwrite函数" class="headerlink" title="fwrite函数"></a>fwrite函数</h3><p><strong>说明：</strong>把内存中的数据块复制到流。<br><strong>原型：</strong><code>stdio.h</code></p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span><br><span class="line">* @param &#123;void *&#125; ptr 存储数据块的地址</span><br><span class="line">* @param &#123;size_t&#125; size 数据块的大小（字节）</span><br><span class="line">* @param &#123;size_t&#125; nmemb 数据块数量</span><br><span class="line">* @param &#123;FILE *&#125; stream 文件指针（要写入的文件位置）</span><br><span class="line">* @return &#123;size_t&#125; 实际写入的数据块的数量，如果小于nmemb则说明达到了文件末尾或出现了错误（可用feof和ferror检测）</span><br><span class="line">*/</span></span><br><span class="line"><span class="keyword">size_t</span> fwrite(<span class="keyword">const</span> <span class="keyword">void</span> *ptr, <span class="keyword">size_t</span> size, <span class="keyword">size_t</span> nmemb, FILE *stream );</span><br></pre></td></tr></table></figure>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 将内存中数组a复制到fp指向的流（磁盘文件）中</span></span><br><span class="line">fwrite(a, <span class="keyword">sizeof</span>(a[<span class="number">0</span>]), <span class="keyword">sizeof</span>(a)/sizof(a[<span class="number">0</span>]), fp);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 将内存中的结构体（实例）存储到指向的流（磁盘文件）中</span></span><br><span class="line">fwrite(&amp;s, <span class="keyword">sizeof</span>(s), <span class="number">1</span>, fp);</span><br></pre></td></tr></table></figure>
+<h2 id="22-7-文件的定位"><a href="#22-7-文件的定位" class="headerlink" title="22.7    文件的定位"></a>22.7    文件的定位</h2><p><strong>说明：</strong><code>stdio.h</code>提供了5个函数允许程序确定当前的文件位置或者改变文件位置，通过这些函数可以实现文件的随机访问（任意访问）。<br><strong>注意：</strong>文件定为函数最适合二进制文件，处理文本流可能出现操作系统差异。<br><strong>文件位置（file position）：</strong>每个流都由文件位置，可以看作当前访问到的位置。在执行读或者写操作时，文件位置会自动推进。</p>
+<h3 id="fseek函数"><a href="#fseek函数" class="headerlink" title="fseek函数"></a>fseek函数</h3><p><strong>说明：</strong>改变指定流的文件位置，相关的宏有3个</p>
+<ul>
+<li>SEEK_SET：文件的起始处</li>
+<li>SEEK_CUR：文件的当前位置</li>
+<li>SEEK_END：文件的末尾处</li>
+</ul>
+<p><strong>注意：</strong>fseek函数对流是<code>文本型</code>还是<code>二进制型</code>非常敏感</p>
+<ul>
+<li><strong>文本型：</strong>参数必须是以下两种情景之一</li>
+</ul>
+<ol>
+<li>offset必须为0（即只能移动到文件的起始处或末尾）</li>
+<li>whence必须是<code>SEEK_SET</code>，且offset是通过<code>ftell函数</code>获取的（即返回前一次访问到的位置）</li>
+</ol>
+<ul>
+<li><strong>二进制型：</strong>不要求支持whience是SEEK_END<br><strong>原型：</strong><code>stdio.h</code></li>
+</ul>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span><br><span class="line">* @param &#123;FILE *&#125; stream 文件指针</span><br><span class="line">* @param &#123;long int&#125; offset 目标位置距离whence的距离，可以是负值</span><br><span class="line">* @param &#123;int&#125; whence 参照位置，值为SEEK_SET或SEEK_CUR或SEEK_END</span><br><span class="line">* @return &#123;int&#125; 0:成功；非0:产生错误（比如位置不存在）</span><br><span class="line">*/</span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">fseek</span><span class="params">(FILE *stream, <span class="keyword">long</span> <span class="keyword">int</span> offset, <span class="keyword">int</span> whence)</span></span>;</span><br></pre></td></tr></table></figure>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 文件位置移动到文件起始处</span></span><br><span class="line">fseek(fp, <span class="number">0L</span>, SEEK_SET);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 文件位置移动到文件末尾</span></span><br><span class="line">fseek(fp, <span class="number">0L</span>, SEEK_END);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 文件位置基于当前位置向后移动10个字节</span></span><br><span class="line">fseek(fp, <span class="number">-10</span>L, SEEK_CUR);</span><br></pre></td></tr></table></figure>
+<h3 id="ftell函数"><a href="#ftell函数" class="headerlink" title="ftell函数"></a>ftell函数</h3><p><strong>说明：</strong>以长整型返回当前文件位置<br><strong>注意：</strong><code>二进制文件</code>和<code>文本文件</code>的返回值情况有所不同</p>
+<ul>
+<li><strong>二进制文件：</strong>以字节计算返回当前位置</li>
+<li><strong>文本文件：</strong>不一定按照字节计数</li>
+</ul>
+<p><strong>用途：</strong>可能会存储返回的值并且稍后将其提供给<code>fseek函数</code><br><strong>原型：</strong><code>stdio.h</code></p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span><br><span class="line">* @param &#123;FILE *&#125; stream 文件指针</span><br><span class="line">* @patam &#123;long int&#125; 当前文件位置：成功；－1L：发生错误（同时会把错误码存储到errno中）</span><br><span class="line">*/</span></span><br><span class="line"><span class="function"><span class="keyword">long</span> <span class="keyword">int</span> <span class="title">ftell</span><span class="params">(FILE *stream)</span></span>;</span><br><span class="line"></span><br><span class="line">``` </span><br><span class="line"></span><br><span class="line">```c</span><br><span class="line"><span class="keyword">long</span> <span class="keyword">int</span> file_pos;</span><br><span class="line">...</span><br><span class="line">file_pos = ftell(fp); <span class="comment">// 获取当前文件位置</span></span><br><span class="line">...</span><br><span class="line">fseek(fp, file_pos, SEEK_SET); <span class="comment">// 返回到之前存储下的文件位置处</span></span><br></pre></td></tr></table></figure>
+<h3 id="rewind函数"><a href="#rewind函数" class="headerlink" title="rewind函数"></a>rewind函数</h3><p><strong>说明：</strong>把文件位置设置到文件起始处，几乎等价于<code>fseek(fp, 0L, SEEK_SET)</code>,差异是该函数没有返回值，但会为fp清除掉<code>错误指示器</code>。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span><br><span class="line">* @param &#123;FILE *&#125; stream 文件指针</span><br><span class="line">*/</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">rewind</span><span class="params">(FILE *stream)</span></span>;</span><br></pre></td></tr></table></figure>
+<h3 id="fgetpos函数"><a href="#fgetpos函数" class="headerlink" title="fgetpos函数"></a>fgetpos函数</h3><p><strong>说明：</strong>将指定流的文件位置存储到fpos_t型变量中<br><strong>原型：</strong></p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span><br><span class="line">* @param &#123;FILE * restrict&#125; stream 文件指针</span><br><span class="line">* @param &#123;fpos_t * restrict&#125; fpos_t型变量</span><br><span class="line">* @return &#123;int&#125; 0：调用成功；非0：调用失败 （并将错误码存储到errno）</span><br><span class="line">*/</span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">fgetpos</span><span class="params">(FILE *<span class="keyword">restrict</span> stream, fpos_t * <span class="keyword">restrict</span> pos)</span></span>;</span><br></pre></td></tr></table></figure>
+<h3 id="fsetpos函数"><a href="#fsetpos函数" class="headerlink" title="fsetpos函数"></a>fsetpos函数</h3><p><strong>说明：</strong>为指定流设置文件fpos_t型位置<br><strong>原型：</strong><code>stdio.h</code></p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span><br><span class="line">* @param &#123;FILE *&#125; stream 文件指针</span><br><span class="line">* @param &#123;fpos_t&#125; pos 文件位置</span><br><span class="line">* @return &#123;int&#125; 0：调用成功；非0：调用失败 （并将错误码存储到errno）</span><br><span class="line">*/</span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">fsetpos</span><span class="params">(FILE *stream,  <span class="keyword">const</span> fpos_t *pos)</span></span>;</span><br></pre></td></tr></table></figure>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">fpos_t</span> file_pos;</span><br><span class="line">...</span><br><span class="line">fgetpos(fp, &amp;file_pos); <span class="comment">// 获取当前文件位置并保存</span></span><br><span class="line">...</span><br><span class="line">fsetpos(fp, &amp;file_pos); <span class="comment">// 设置文件位置到之前保存的位置</span></span><br></pre></td></tr></table></figure>
+<h3 id="程序：修改零件记录文件"><a href="#程序：修改零件记录文件" class="headerlink" title="程序：修改零件记录文件"></a>程序：修改零件记录文件</h3><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span><br><span class="line"> * modify a file of part records by setting the quantity</span><br><span class="line"> */</span></span><br><span class="line"><span class="meta"># <span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta"># <span class="meta-keyword">include</span> <span class="meta-string">&lt;stdlib.h&gt;</span></span></span><br><span class="line"><span class="meta"># <span class="meta-keyword">define</span> NAME_LEN 25	</span></span><br><span class="line"><span class="meta"># <span class="meta-keyword">define</span> MAX_PARTS 100</span></span><br><span class="line"><span class="keyword">struct</span> part &#123;</span><br><span class="line">	<span class="keyword">int</span> number;</span><br><span class="line">	<span class="keyword">char</span> name[NAME_LEN + <span class="number">1</span>];</span><br><span class="line">	<span class="keyword">int</span> on_hand;</span><br><span class="line">&#125; inventory[MAX_PARTS];</span><br><span class="line"></span><br><span class="line"><span class="keyword">int</span> num_parts;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">	FILE *fp;</span><br><span class="line">	<span class="keyword">int</span> i;</span><br><span class="line"></span><br><span class="line">	<span class="comment">// 打开清单</span></span><br><span class="line">	<span class="keyword">if</span> ((fp = fopen(<span class="string">"invent.dat"</span>, <span class="string">"rb+"</span>)) == <span class="literal">NULL</span>) &#123;</span><br><span class="line">		<span class="built_in">fprintf</span>(<span class="built_in">stderr</span>, <span class="string">"can't open inventory file\n"</span>);</span><br><span class="line">		<span class="built_in">exit</span>(EXIT_FAILURE);</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="comment">// 读取零件(元素为结构体的数组)</span></span><br><span class="line">	num_parts = fread(inventory, sizeof(struct part), MAX_PARTS, fp);</span><br><span class="line">	<span class="keyword">for</span> (i = <span class="number">0</span>; i &lt; num_parts; i++) &#123;</span><br><span class="line">		inventory[i].on_hand = <span class="number">0</span>;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="comment">// 移动到文件开始处</span></span><br><span class="line">	rewind(fp);</span><br><span class="line"></span><br><span class="line">	<span class="comment">// 将修改后的清单数据存储到文件中</span></span><br><span class="line">	fwrite(inventory, <span class="keyword">sizeof</span>(struct part), num_parts, fp);</span><br><span class="line">	fclose(fp);</span><br><span class="line">	return <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="22-8-字符串的输入／输出"><a href="#22-8-字符串的输入／输出" class="headerlink" title="22.8    字符串的输入／输出"></a>22.8    字符串的输入／输出</h2><p><strong>扩展：</strong>还有一个依赖<code>stdarg.h</code>定义<code>va_list</code>的<code>vsprintf函数</code>（<a href="">26.1.2</a>）</p>
+<h4 id="sprintf函数"><a href="#sprintf函数" class="headerlink" title="sprintf函数"></a>sprintf函数</h4><p><strong>说明：</strong>类似<code>printf函数</code>和<code>fprintf函数</code>，唯一的不同是该函数会把输出写入指定字符数组而不是流中（会在末尾添加一个空字符）。<br><strong>原型：</strong><code>stdio.h</code></p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span><br><span class="line">* @param &#123;char *&#125; s 字符数组</span><br><span class="line">* @param &#123;char *&#125; format 格式串</span><br><span class="line">* @param &#123;...*&#125; 对应格式串中的转换说明的参数</span><br><span class="line">* @return &#123;int&#125; 写入的字符数（不包括空字符）：成功；负值：写入出错</span><br><span class="line">*/</span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">sprintf</span><span class="params">(<span class="keyword">char</span> *s, <span class="keyword">const</span> *format, ...)</span></span></span><br></pre></td></tr></table></figure>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">sprintf</span>(str, <span class="string">"%d/%d/%d"</span>, <span class="number">9</span>, <span class="number">20</span>, <span class="number">94</span>); <span class="comment">// str: 9/20/94</span></span><br></pre></td></tr></table></figure>
+<h4 id="sscanf函数"><a href="#sscanf函数" class="headerlink" title="sscanf函数"></a>sscanf函数</h4><p><strong>说明：</strong>类似<code>scanf函数</code>和<code>fscanf函数</code>，唯一的不同是该函数是从字符数组而不是流中读取数据。<br><strong>原型：</strong><code>stdio.h</code></p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span><br><span class="line">* @param &#123;char *&#125; format 格式串</span><br><span class="line">* @param &#123;...*&#125; 匹配并转换后的内容对应的存储位置</span><br><span class="line">* @return &#123;int&#125; 读入并赋值给实参的数据项数量：成功；EOF：失败(找到第一个数据项之前到达)</span><br><span class="line">*/</span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">sscanf</span><span class="params">(<span class="keyword">const</span> <span class="keyword">char</span> *s, <span class="keyword">const</span> <span class="keyword">char</span> *format, ...)</span></span>;</span><br></pre></td></tr></table></figure>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 使用fgets函数来获取一行输入，然后把此行数据传递给scanf函数进一步处理</span></span><br><span class="line">fgets(str, <span class="keyword">sizeof</span>(str));</span><br><span class="line"><span class="built_in">sscanf</span>(str, <span class="string">"%d%d"</span>, &amp;i, &amp;j);</span><br></pre></td></tr></table></figure>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 从字符串中读取日期</span></span><br><span class="line"><span class="keyword">if</span> (<span class="built_in">sscanf</span>(str, <span class="string">"%d/%d/%d"</span>, &amp;month, &amp;day, &amp;year) == <span class="number">3</span>) &#123;</span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">"Month: %d, day: %d, year: %d\n"</span>, month, day, year);</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">else</span> <span class="keyword">if</span> (sscanf(str, <span class="string">"%d-%d-%d"</span>, &amp;month, &amp;day, &amp;year) == <span class="number">3</span>) &#123;</span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">"Month: %d, day: %d, year: %d\n"</span>, month, day, year);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/c语言基础/" rel="tag">#c语言基础</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/05/10/BOOK_c语言程序设计－现代方法/21 标准库/" rel="next" title="21	标准库">
+                <i class="fa fa-chevron-left"></i> 21	标准库
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/05/10/BOOK_c语言程序设计－现代方法/23 库对数值和字符数据的支持/" rel="prev" title="23 库对数值和字符数据的支持">
+                23 库对数值和字符数据的支持 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2016/05/10/BOOK_c语言程序设计－现代方法/22 输入／输出/"
+           data-title="22 输入/输出" data-url="http://laputa-er.github.io/2016/05/10/BOOK_c语言程序设计－现代方法/22 输入／输出/">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.gif"
+               alt="Sean" />
+          <p class="site-author-name" itemprop="name">Sean</p>
+          <p class="site-description motion-element" itemprop="description">整理了一批过去一段时间ios相关的笔记，其它的笔记也整理下？源码分享出来？再说吧...反正也只有自己会看吧...</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">200</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">22</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">31</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#22-1-流"><span class="nav-text">22.1    流</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#22-1-1-文件指针"><span class="nav-text">22.1.1    文件指针</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#22-1-2-标准流和重定向"><span class="nav-text">22.1.2    标准流和重定向</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#标准流"><span class="nav-text">标准流</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#重定向"><span class="nav-text">重定向</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#22-1-3-文本文件与二进制文件"><span class="nav-text">22.1.3    文本文件与二进制文件</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#22-2-文件操作"><span class="nav-text">22.2    文件操作</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#22-2-1-打开文件"><span class="nav-text">22.2.1    打开文件</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#fopen函数"><span class="nav-text">fopen函数</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#22-2-2-模式"><span class="nav-text">22.2.2    模式</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#文本文件"><span class="nav-text">文本文件</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#二进制文件"><span class="nav-text">二进制文件</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#22-2-3-关闭文件"><span class="nav-text">22.2.3    关闭文件</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#fclose函数"><span class="nav-text">fclose函数</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#22-2-4-为流附加文件"><span class="nav-text">22.2.4    为流附加文件</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#freopen函数"><span class="nav-text">freopen函数</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#22-2-5-从命令行获取文件名"><span class="nav-text">22.2.5    从命令行获取文件名</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#22-2-6-程序：检查文件是否可以打开"><span class="nav-text">22.2.6    程序：检查文件是否可以打开</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#22-2-7-临时文件"><span class="nav-text">22.2.7    临时文件</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#tmpfile函数"><span class="nav-text">tmpfile函数</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#tmpfile函数-1"><span class="nav-text">tmpfile函数</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#22-2-8-文件缓冲"><span class="nav-text">22.2.8    文件缓冲</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#fflush函数"><span class="nav-text">fflush函数</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#setvbuf函数"><span class="nav-text">setvbuf函数</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#22-2-9-其他文件操作"><span class="nav-text">22.2.9    其他文件操作</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#remove函数"><span class="nav-text">remove函数</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#rename函数"><span class="nav-text">rename函数</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#22-3-格式化的输入／输出"><span class="nav-text">22.3    格式化的输入／输出</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#22-3-1-…printf类函数"><span class="nav-text">22.3.1    …printf类函数</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#printf函数"><span class="nav-text">printf函数</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#fprintf函数"><span class="nav-text">fprintf函数</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#22-3-2-…printf类函数的转换说明"><span class="nav-text">22.3.2    …printf类函数的转换说明</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#转换说明：-012-5Lg"><span class="nav-text">转换说明：%# 012.5Lg</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#22-3-3-…printf类函数的转换说明示例"><span class="nav-text">22.3.3    …printf类函数的转换说明示例</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#标志➊"><span class="nav-text">标志➊</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#最小字段宽度➋-精度➌"><span class="nav-text">最小字段宽度➋ + 精度➌</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#转换说明➎"><span class="nav-text">转换说明➎</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#最小字符宽度❷和精度❸中"><span class="nav-text">最小字符宽度❷和精度❸中*</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#转换说明p和n"><span class="nav-text">转换说明p和n</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#22-3-4-…scanf类函数"><span class="nav-text">22.3.4    …scanf类函数</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#scanf函数"><span class="nav-text">scanf函数</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#fscanf函数"><span class="nav-text">fscanf函数</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#22-3-5-…scanf类函数的格式化字符串"><span class="nav-text">22.3.5    …scanf类函数的格式化字符串</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#格式串"><span class="nav-text">格式串</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#转换说明"><span class="nav-text">转换说明</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#空白字符"><span class="nav-text">空白字符</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#非空白字符"><span class="nav-text">非空白字符</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#22-3-6-…scanf类函数的转换说明"><span class="nav-text">22.3.6    …scanf类函数的转换说明</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#转换说明：-12Ld"><span class="nav-text">转换说明：%*12Ld</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#strtol函数-26-2-1"><span class="nav-text">strtol函数(26.2.1)</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#22-3-7-…scanf函数的示例"><span class="nav-text">22.3.7    …scanf函数的示例</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#转换说明、空白字符、非空白字符组合效果"><span class="nav-text">转换说明、空白字符、非空白字符组合效果</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#赋值屏蔽和指定字段宽度效果"><span class="nav-text">赋值屏蔽和指定字段宽度效果</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#难懂的转换说明：i、-、n"><span class="nav-text">难懂的转换说明：i、[、n</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#22-3-8-检测文件末尾和错误条件"><span class="nav-text">22.3.8    检测文件末尾和错误条件</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#clearerr函数"><span class="nav-text">clearerr函数</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#feof函数"><span class="nav-text">feof函数</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#ferror函数"><span class="nav-text">ferror函数</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#22-4-字符的输入／输出"><span class="nav-text">22.4    字符的输入／输出</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#22-4-1-输出函数"><span class="nav-text">22.4.1    输出函数</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#fputc函数"><span class="nav-text">fputc函数</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#putc宏"><span class="nav-text">putc宏</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#putchar宏"><span class="nav-text">putchar宏</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#22-4-2-输入函数"><span class="nav-text">22.4.2    输入函数</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#getc宏"><span class="nav-text">getc宏</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#fgetc函数"><span class="nav-text">fgetc函数</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#getchar（宏）"><span class="nav-text">getchar（宏）</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#22-4-3-程序：复制文件"><span class="nav-text">22.4.3    程序：复制文件</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#22-5-行的输入／输出"><span class="nav-text">22.5    行的输入／输出</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#22-5-1-输出函数"><span class="nav-text">22.5.1    输出函数</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#puts函数-13-3"><span class="nav-text">puts函数(13.3)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#fputs函数"><span class="nav-text">fputs函数</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#22-5-2-输入函数"><span class="nav-text">22.5.2    输入函数</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#gets函数（13-3）"><span class="nav-text">gets函数（13.3）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#fgets函数"><span class="nav-text">fgets函数</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#22-6-块的输入／输出"><span class="nav-text">22.6    块的输入／输出</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#fread函数"><span class="nav-text">fread函数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#fwrite函数"><span class="nav-text">fwrite函数</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#22-7-文件的定位"><span class="nav-text">22.7    文件的定位</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#fseek函数"><span class="nav-text">fseek函数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#ftell函数"><span class="nav-text">ftell函数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#rewind函数"><span class="nav-text">rewind函数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#fgetpos函数"><span class="nav-text">fgetpos函数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#fsetpos函数"><span class="nav-text">fsetpos函数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#程序：修改零件记录文件"><span class="nav-text">程序：修改零件记录文件</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#22-8-字符串的输入／输出"><span class="nav-text">22.8    字符串的输入／输出</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#sprintf函数"><span class="nav-text">sprintf函数</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#sscanf函数"><span class="nav-text">sscanf函数</span></a></li></ol></li></ol></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Sean</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"lapuda-er"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+    <script src="/vendors/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
+    <script src="/js/src/hook-duoshuo.js"></script>
+  
+
+
+
+
+
+
+  
+  
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length == 0) {
+       search_path = "search.xml";
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    function proceedsearch() {
+      $("body").append('<div class="popoverlay">').css('overflow', 'hidden');
+      $('.popup').toggle();
+
+    }
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+    'use strict';
+    $.ajax({
+        url: path,
+        dataType: "xml",
+        async: true,
+        success: function( xmlResponse ) {
+            // get the contents from search data
+            isfetched = true;
+            $('.popup').detach().appendTo('.header-inner');
+            var datas = $( "entry", xmlResponse ).map(function() {
+                return {
+                    title: $( "title", this ).text(),
+                    content: $("content",this).text(),
+                    url: $( "url" , this).text()
+                };
+            }).get();
+            var $input = document.getElementById(search_id);
+            var $resultContent = document.getElementById(content_id);
+            $input.addEventListener('input', function(){
+                var matchcounts = 0;
+                var str='<ul class=\"search-result-list\">';
+                var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+                $resultContent.innerHTML = "";
+                if (this.value.trim().length > 1) {
+                // perform local searching
+                datas.forEach(function(data) {
+                    var isMatch = true;
+                    var content_index = [];
+                    var data_title = data.title.trim().toLowerCase();
+                    var data_content = data.content.trim().replace(/<[^>]+>/g,"").toLowerCase();
+                    var data_url = data.url;
+                    var index_title = -1;
+                    var index_content = -1;
+                    var first_occur = -1;
+                    // only match artiles with not empty titles and contents
+                    if(data_title != '' && data_content != '') {
+                        keywords.forEach(function(keyword, i) {
+                            index_title = data_title.indexOf(keyword);
+                            index_content = data_content.indexOf(keyword);
+                            if( index_title < 0 && index_content < 0 ){
+                                isMatch = false;
+                            } else {
+                                if (index_content < 0) {
+                                    index_content = 0;
+                                }
+                                if (i == 0) {
+                                    first_occur = index_content;
+                                }
+                            }
+                        });
+                    }
+                    // show search results
+                    if (isMatch) {
+                        matchcounts += 1;
+                        str += "<li><a href='"+ data_url +"' class='search-result-title'>"+ data_title +"</a>";
+                        var content = data.content.trim().replace(/<[^>]+>/g,"");
+                        if (first_occur >= 0) {
+                            // cut out 100 characters
+                            var start = first_occur - 20;
+                            var end = first_occur + 80;
+                            if(start < 0){
+                                start = 0;
+                            }
+                            if(start == 0){
+                                end = 50;
+                            }
+                            if(end > content.length){
+                                end = content.length;
+                            }
+                            var match_content = content.substring(start, end);
+                            // highlight all keywords
+                            keywords.forEach(function(keyword){
+                                var regS = new RegExp(keyword, "gi");
+                                match_content = match_content.replace(regS, "<b class=\"search-keyword\">"+keyword+"</b>");
+                            });
+
+                            str += "<p class=\"search-result\">" + match_content +"...</p>"
+                        }
+                        str += "</li>";
+                    }
+                })};
+                str += "</ul>";
+                if (matchcounts == 0) { str = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>' }
+                if (keywords == "") { str = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>' }
+                $resultContent.innerHTML = str;
+            });
+            proceedsearch();
+        }
+    });}
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched == false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+
+    });
+
+    $('.popup-btn-close').click(function(e){
+      $('.popup').hide();
+      $(".popoverlay").remove();
+      $('body').css('overflow', '');
+    });
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+  </script>
+
+
+  
+
+  
+
+  
+
+</body>
+</html>

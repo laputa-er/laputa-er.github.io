@@ -1,0 +1,1003 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1" />
+
+
+
+
+
+
+<meta name="description" content="说明：创建对象有两种方式
+
+类名 new
+[[类名 alloc] init]
+
+技巧：Cocoa惯例是使用后一种方式
+
+10.1    分配对象
+说明：就是从操作系统获得一块内存，并将其指定为存放对象的实例变量的位置。语法：像某个类发送alloc消息
+
+alloc实例方法
+说明：为类实例分配一块足够大的内存，并将这块内存区域全部初始化为对应的0值
+
+
+
+
+实例变量类型
+0值
+
+
+
+
+BOOL
+N">
+<meta property="og:type" content="article">
+<meta property="og:title" content="10 对象初始化">
+<meta property="og:url" content="http://laputa-er.github.io/2016/05/13/BOOK_Objective-C基础教程第二版/o-c基础教程第二版_10 对象初始化/index.html">
+<meta property="og:site_name" content="Sean">
+<meta property="og:description" content="说明：创建对象有两种方式
+
+类名 new
+[[类名 alloc] init]
+
+技巧：Cocoa惯例是使用后一种方式
+
+10.1    分配对象
+说明：就是从操作系统获得一块内存，并将其指定为存放对象的实例变量的位置。语法：像某个类发送alloc消息
+
+alloc实例方法
+说明：为类实例分配一块足够大的内存，并将这块内存区域全部初始化为对应的0值
+
+
+
+
+实例变量类型
+0值
+
+
+
+
+BOOL
+N">
+<meta property="og:updated_time" content="2016-09-19T12:06:04.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="10 对象初始化">
+<meta name="twitter:description" content="说明：创建对象有两种方式
+
+类名 new
+[[类名 alloc] init]
+
+技巧：Cocoa惯例是使用后一种方式
+
+10.1    分配对象
+说明：就是从操作系统获得一块内存，并将其指定为存放对象的实例变量的位置。语法：像某个类发送alloc消息
+
+alloc实例方法
+说明：为类实例分配一块足够大的内存，并将这块内存区域全部初始化为对应的0值
+
+
+
+
+实例变量类型
+0值
+
+
+
+
+BOOL
+N">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 0,
+      author: '博主'
+    }
+  };
+</script>
+
+
+
+
+  <link rel="canonical" href="http://laputa-er.github.io/2016/05/13/BOOK_Objective-C基础教程第二版/o-c基础教程第二版_10 对象初始化/"/>
+
+  <title> 10 对象初始化 | Sean </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//hm.baidu.com/hm.js?898688f51c5a3d6b37dd23e04441e5bd";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">Sean</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">笔记分享</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup">
+ <span class="search-icon fa fa-search"></span>
+ <input type="text" id="local-search-input">
+ <div id="local-search-result"></div>
+ <span class="popup-btn-close">close</span>
+</div>
+
+
+    </div>
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                10 对象初始化
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-05-13T10:39:41+08:00" content="2016-05-13">
+              2016-05-13
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/Objective-C基础教程第二版/" itemprop="url" rel="index">
+                    <span itemprop="name">Objective-C基础教程第二版</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/05/13/BOOK_Objective-C基础教程第二版/o-c基础教程第二版_10 对象初始化/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/05/13/BOOK_Objective-C基础教程第二版/o-c基础教程第二版_10 对象初始化/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <blockquote>
+<p><strong>说明：</strong>创建对象有两种方式</p>
+<ul>
+<li><code>类名 new</code></li>
+<li><code>[[类名 alloc] init]</code></li>
+</ul>
+<p><strong>技巧：</strong><code>Cocoa</code>惯例是使用后一种方式</p>
+</blockquote>
+<h2 id="10-1-分配对象"><a href="#10-1-分配对象" class="headerlink" title="10.1    分配对象"></a>10.1    分配对象</h2><blockquote>
+<p><strong>说明：</strong>就是从操作系统获得一块内存，并将其指定为存放对象的实例变量的位置。<br><strong>语法：</strong>像某个类发送<code>alloc</code>消息</p>
+</blockquote>
+<h4 id="alloc实例方法"><a href="#alloc实例方法" class="headerlink" title="alloc实例方法"></a>alloc实例方法</h4><blockquote>
+<p><strong>说明：</strong>为类实例分配一块足够大的内存，并将这块内存区域全部初始化为对应的<code>0</code>值</p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>实例变量类型</th>
+<th><code>0</code>值</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>BOOL</td>
+<td>NO</td>
+</tr>
+<tr>
+<td>int</td>
+<td>0</td>
+</tr>
+<tr>
+<td>float</td>
+<td>0.0</td>
+</tr>
+<tr>
+<td>指针</td>
+<td>nil</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p><strong>注意：</strong>刚刚分配的对象不能立即使用，初始化后才能使用。<code>Objective-C</code>将对象的创建拆分为两个明确的步骤：<code>分配</code>和<code>初始化</code>。<br><strong>扩展：</strong>有些语言（包括<code>c++</code>和<code>java</code>）使用构造函数在一次操作中便执行完对象的分配和初始化。</p>
+</blockquote>
+<figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 分配</span></span><br><span class="line">Car *car = [Car alloc];<span class="comment">// 还需要init，之后才能使用</span></span><br></pre></td></tr></table></figure>
+<h3 id="10-1-1-初始化对象"><a href="#10-1-1-初始化对象" class="headerlink" title="10.1.1    初始化对象"></a>10.1.1    初始化对象</h3><blockquote>
+<p><strong>说明：</strong>从操作系统取得一块内存（不一定是<code>分配</code>的内存）用于存储对象。<br><strong>语法：</strong>通过嵌套方式向<code>分配</code>操作的返回值发送<code>init</code>消息。<br><strong>注意：</strong><code>init</code>方法返回的对象可能与<code>分配</code>的对象不同，因为某些类型底层其实是<code>类蔟</code>。</p>
+</blockquote>
+<p><em>错误示例</em></p>
+<figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Car *car = [Car alloc];</span><br><span class="line"><span class="comment">// 我们需要的是init后的对象，car指向的对象未必和init返回的是一个对象</span></span><br><span class="line">[car init];</span><br></pre></td></tr></table></figure>
+<p><em>正确示例</em></p>
+<figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Car *car = [[Car alloc] init];</span><br></pre></td></tr></table></figure>
+<h3 id="10-1-2-编写初始化方法"><a href="#10-1-2-编写初始化方法" class="headerlink" title="10.1.2    编写初始化方法"></a>10.1.2    编写初始化方法</h3><figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">(<span class="keyword">id</span>) init &#123;</span><br><span class="line">	<span class="comment">// 1. 兼容超类返回nil的情况</span></span><br><span class="line">	<span class="comment">// 2. 更新self表示的内存位置（因为超类的init可能返回另一个位置）</span></span><br><span class="line">	<span class="keyword">if</span> (<span class="keyword">self</span> = [<span class="keyword">super</span> init]) &#123;</span><br><span class="line">		<span class="comment">// ...	</span></span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="10-1-3-初始化时要做些什么"><a href="#10-1-3-初始化时要做些什么" class="headerlink" title="10.1.3    初始化时要做些什么"></a>10.1.3    初始化时要做些什么</h3><blockquote>
+<p><strong>说明：</strong>有两种方式可以选择，取决于灵活性和性能的权衡</p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>是否为实例变量创建对象</th>
+<th>说明</th>
+<th>适用</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>是</td>
+<td>方便，一步到位，出产即用</td>
+<td>实例变量不需要定制</td>
+</tr>
+<tr>
+<td>否</td>
+<td>在某些情况下避免资源的浪费</td>
+<td>实例变量需要定制</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p><strong>扩展：</strong><code>惰性求值</code>，指的是即是目前没有设置自定义属性的值，也等到调用着需要时再创建对象，可以提高程序的性能。</p>
+</blockquote>
+<h2 id="10-2-便利初始化函数"><a href="#10-2-便利初始化函数" class="headerlink" title="10.2    便利初始化函数"></a>10.2    便利初始化函数</h2><blockquote>
+<p><strong>说明：</strong>相比<code>init</code>，完成某些额外的初始化工作，名称以<code>init</code>开头。<br><strong>适用：</strong>加入对象必须要用某些信息进行初始化，那么应该将这些信息作为init方法的一部分添加进来。</p>
+</blockquote>
+<h3 id="initWithContentsofFile便利初始化方法"><a href="#initWithContentsofFile便利初始化方法" class="headerlink" title="initWithContentsofFile便利初始化方法"></a>initWithContentsofFile便利初始化方法</h3><blockquote>
+<p><strong>说明：</strong>打开指定路径上的文本文件，读取文件内容，并即用文件内容初始化为一个字符串。<br><strong>原型：</strong><code>NSString</code></p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&gt;/**</span><br><span class="line">&gt;* @param &#123;nonnull NSString *&#125; 非空字符串</span><br><span class="line">&gt;* @param &#123;nullable NSStringEncoding *&#125; usedEncoding 编码方式</span><br><span class="line">&gt;* @param &#123;NSError * _Nullable __autoreleasing * _Nullable&#125; error 错误对象</span><br><span class="line">&gt;* @return &#123;instancetype _Nullable&#125; 字符串对象（可以为空）</span><br><span class="line">&gt;*/</span><br><span class="line">&gt;- (instancetype _Nullable) initWithContentsOfFile:(nonnull NSString *) usedEncoding: (nullable NSStringEncoding *) error:(NSError * _Nullable __autoreleasing * _Nullable);</span><br></pre></td></tr></table></figure>
+<figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 错误</span></span><br><span class="line"><span class="built_in">NSError</span> *error = <span class="literal">nil</span>;</span><br><span class="line"><span class="comment">// 编码</span></span><br><span class="line"><span class="built_in">NSStringEncoding</span> encoding = <span class="built_in">NSUTF8StringEncoding</span>;</span><br><span class="line"><span class="comment">// 读取文件</span></span><br><span class="line"><span class="built_in">NSString</span> *string = [[<span class="built_in">NSString</span> alloc] initWithContentsOfFile:<span class="string">@"/tmp/words.txt"</span> usedEncoding:&amp;encoding error:&amp;error];</span><br><span class="line"></span><br><span class="line"><span class="comment">// 读取出错</span></span><br><span class="line"><span class="keyword">if</span> (<span class="literal">nil</span> != error) &#123;</span><br><span class="line">    <span class="built_in">NSLog</span>(<span class="string">@"Unable to read data from file, %@"</span>, [error localizedDescription]);</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 读取成功</span></span><br><span class="line"><span class="keyword">else</span> &#123;</span><br><span class="line">    <span class="built_in">NSLog</span>(<span class="string">@"%@"</span>, string);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="10-3-更多部件改进"><a href="#10-3-更多部件改进" class="headerlink" title="10.3    更多部件改进"></a>10.3    更多部件改进</h2><blockquote>
+<p><strong>注意：</strong>如果做<code>iOS</code>开发，由于不支持垃圾回收，必须使用<code>ARC</code>技术。</p>
+</blockquote>
+<h3 id="10-3-1-Tire类的初始化"><a href="#10-3-1-Tire类的初始化" class="headerlink" title="10.3.1    Tire类的初始化"></a>10.3.1    Tire类的初始化</h3><p><em>Tire.h</em></p>
+<figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#import <span class="meta-string">&lt;Foundation/Foundation.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">@interface</span> <span class="title">Tire</span> : <span class="title">NSObject</span></span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="comment">// 轮胎压力</span></span><br><span class="line">    <span class="keyword">float</span> pressure;</span><br><span class="line">    <span class="comment">// 轮胎花纹</span></span><br><span class="line">    <span class="keyword">float</span> treadDepth;</span><br><span class="line">&#125;</span><br><span class="line">- (<span class="keyword">void</span>) setPressure: (<span class="keyword">float</span>) pressure;</span><br><span class="line">- (<span class="keyword">float</span>) pressure;</span><br><span class="line">- (<span class="keyword">void</span>) setTreadDepth: (<span class="keyword">float</span>) treadDepth;</span><br><span class="line">- (<span class="keyword">float</span>)treadDepth;</span><br><span class="line"></span><br><span class="line"><span class="keyword">@end</span></span><br></pre></td></tr></table></figure>
+<p><em>Tire.m</em></p>
+<figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#import <span class="meta-string">"Tire.h"</span></span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">@implementation</span> <span class="title">Tire</span></span></span><br><span class="line"><span class="comment">// 构造器</span></span><br><span class="line">- (<span class="keyword">id</span>) init &#123;</span><br><span class="line">    <span class="keyword">if</span> (<span class="keyword">self</span> = [<span class="keyword">super</span> init]) &#123;</span><br><span class="line">        pressure = <span class="number">34.0</span>;</span><br><span class="line">        treadDepth = <span class="number">20.0</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> (<span class="keyword">self</span>);</span><br><span class="line">&#125;<span class="comment">// init</span></span><br><span class="line"></span><br><span class="line">- (<span class="keyword">void</span>) setPressure:(<span class="keyword">float</span>) p &#123;</span><br><span class="line">    pressure = p;</span><br><span class="line">&#125;<span class="comment">// setPressure</span></span><br><span class="line"></span><br><span class="line">- (<span class="keyword">float</span>) pressure &#123;</span><br><span class="line">    <span class="keyword">return</span> (pressure);</span><br><span class="line">&#125;<span class="comment">// pressure</span></span><br><span class="line"></span><br><span class="line">- (<span class="keyword">void</span>) setTreadDepth:(<span class="keyword">float</span>) td &#123;</span><br><span class="line">    treadDepth = td;</span><br><span class="line">&#125;</span><br><span class="line">- (<span class="keyword">float</span>) treadDepth &#123;</span><br><span class="line">    <span class="keyword">return</span> treadDepth;</span><br><span class="line">&#125;<span class="comment">// treadDepth</span></span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span><br><span class="line"> * @override</span><br><span class="line"> */</span></span><br><span class="line">- (<span class="built_in">NSString</span> *) description &#123;</span><br><span class="line">    <span class="built_in">NSString</span> *desc;</span><br><span class="line">    <span class="comment">// 不是通过alloc、copy、new创建的，按照内存管理规则，不需要做什么（可以认为它被加入到了自动释放池中）</span></span><br><span class="line">    desc = [<span class="built_in">NSString</span> stringWithFormat:<span class="string">@"Tire: Pressure: %.1f TreadDepth: %1f"</span>, pressure, treadDepth];</span><br><span class="line">    <span class="keyword">return</span> (desc);</span><br><span class="line">&#125;<span class="comment">// description</span></span><br><span class="line"><span class="keyword">@end</span></span><br></pre></td></tr></table></figure>
+<h3 id="10-3-2-更新main-函数"><a href="#10-3-2-更新main-函数" class="headerlink" title="10.3.2    更新main()函数"></a>10.3.2    更新main()函数</h3><p><em>既没有启用<code>ARC</code>，也没有启用<code>垃圾回收</code>的情形－手动管理</em></p>
+<figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#import <span class="meta-string">"Tire.h"</span></span></span><br><span class="line"><span class="meta">#import <span class="meta-string">"Car.h"</span></span></span><br><span class="line"><span class="meta">#import <span class="meta-string">"Slant6.h"</span></span></span><br><span class="line"><span class="keyword">int</span> main(<span class="keyword">int</span> argc, <span class="keyword">const</span> <span class="keyword">char</span> * argv[]) &#123;</span><br><span class="line">    <span class="keyword">@autoreleasepool</span> &#123;</span><br><span class="line">        <span class="comment">// 车身</span></span><br><span class="line">        Car *car = [[Car alloc] init];</span><br><span class="line">        <span class="comment">// 安装轮胎</span></span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">4</span>; i++) &#123;</span><br><span class="line">            Tire *tire;</span><br><span class="line">            tire = [[Tire alloc] init];</span><br><span class="line">            [tire setPressure:<span class="number">23</span> + i];</span><br><span class="line">            [tire setTreadDepth:<span class="number">33</span> - i];</span><br><span class="line">            [car setTire:tire atIndex:i];</span><br><span class="line">            <span class="comment">// 按照内存管理规则，应当释放一次，其余交给自动释放池</span></span><br><span class="line">            [tire release];</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">// 安装引擎</span></span><br><span class="line">        Engine *engine = [[Slant6 alloc] init];</span><br><span class="line">        [car setEngine:engine];</span><br><span class="line">        <span class="comment">// 使用Car</span></span><br><span class="line">        [car print];</span><br><span class="line">        <span class="comment">// 按照内存管理规则，应当释放一次，其余交给自动释放池</span></span><br><span class="line">        [car release];</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><em>启用了<code>ARC</code>或<code>垃圾回收</code></em></p>
+<figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#import <span class="meta-string">"Tire.h"</span></span></span><br><span class="line"><span class="meta">#import <span class="meta-string">"Car.h"</span></span></span><br><span class="line"><span class="meta">#import <span class="meta-string">"Slant6.h"</span></span></span><br><span class="line"><span class="keyword">int</span> main(<span class="keyword">int</span> argc, <span class="keyword">const</span> <span class="keyword">char</span> * argv[]) &#123;</span><br><span class="line">    <span class="comment">// 车身</span></span><br><span class="line">    Car *car = [[Car alloc] init];</span><br><span class="line">    <span class="comment">// 安装轮胎</span></span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">4</span>; i++) &#123;</span><br><span class="line">        Tire *tire;</span><br><span class="line">        tire = [[Tire alloc] init];</span><br><span class="line">        [tire setPressure:<span class="number">23</span> + i];</span><br><span class="line">        [tire setTreadDepth:<span class="number">33</span> - i];</span><br><span class="line">        [car setTire:tire atIndex:i];</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">// 安装引擎</span></span><br><span class="line">    Engine *engine = [[Slant6 alloc] init];</span><br><span class="line">    [car setEngine:engine];</span><br><span class="line">    <span class="comment">// 使用Car</span></span><br><span class="line">    [car print];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="10-3-3-清理Car类"><a href="#10-3-3-清理Car类" class="headerlink" title="10.3.3    清理Car类"></a>10.3.3    清理Car类</h3><p><em>Car.h</em></p>
+<figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#import <span class="meta-string">&lt;Cocoa/Cocoa.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">@class</span> <span class="title">Tire</span>;</span></span><br><span class="line"><span class="class"><span class="keyword">@class</span> <span class="title">Engine</span>;</span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">@interface</span> <span class="title">Car</span> : <span class="title">NSObject</span></span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="comment">// 使用可变数组代替C数组（Tire *tires[4]），就不用上限检查了</span></span><br><span class="line">    <span class="built_in">NSMutableArray</span> *tires;</span><br><span class="line">    Engine *engine;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">- (<span class="keyword">void</span>) setEngine: (Engine *) newEngine;</span><br><span class="line">- (Engine *) engine;</span><br><span class="line">- (<span class="keyword">void</span>) setTire: (Tire *) tire atIndex: (<span class="keyword">int</span>) index;</span><br><span class="line">- (Tire *) tireAtIndex: (<span class="keyword">int</span>) index;</span><br><span class="line">- (<span class="keyword">void</span>) print;</span><br><span class="line"><span class="keyword">@end</span> <span class="comment">// Car</span></span><br></pre></td></tr></table></figure>
+<p><em>Car.m</em></p>
+<figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#import <span class="meta-string">"Car.h"</span></span></span><br><span class="line"><span class="meta">#import <span class="meta-string">"Engine.h"</span></span></span><br><span class="line"><span class="meta">#import <span class="meta-string">"Tire.h"</span></span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">@implementation</span> <span class="title">Car</span></span></span><br><span class="line">- (<span class="keyword">id</span>) init</span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">if</span> (<span class="keyword">self</span> = [<span class="keyword">super</span> init]) &#123;</span><br><span class="line">        engine = [Engine new];</span><br><span class="line">        tires = [[<span class="built_in">NSMutableArray</span> alloc] init];</span><br><span class="line">        <span class="comment">// 将每个轮胎初始化为null</span></span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">4</span>; i++) &#123;</span><br><span class="line">            [tires addObject: [<span class="built_in">NSNull</span> null]];</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> (<span class="keyword">self</span>);</span><br><span class="line">&#125; <span class="comment">// init</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">- (Engine *) engine</span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">return</span> (engine);</span><br><span class="line">&#125; <span class="comment">// engine</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">- (<span class="keyword">void</span>) setEngine: (Engine *) newEngine &#123;</span><br><span class="line">    [newEngine retain];</span><br><span class="line">    [engine release];</span><br><span class="line">    engine = newEngine;</span><br><span class="line">&#125; <span class="comment">// setEngine</span></span><br><span class="line"></span><br><span class="line">- (<span class="keyword">void</span>) setTire: (Tire *) tire atIndex: (<span class="keyword">int</span>) index &#123;</span><br><span class="line">    <span class="keyword">if</span> (index &lt; <span class="number">0</span> || index &gt; <span class="number">3</span>) &#123;</span><br><span class="line">        <span class="built_in">NSLog</span> (<span class="string">@"bad index (%d) in setTire:atIndex:"</span>,</span><br><span class="line">               index);</span><br><span class="line">        exit (<span class="number">1</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    [tires replaceObjectAtIndex:index withObject:tire];</span><br><span class="line">    </span><br><span class="line">&#125; <span class="comment">// setTire:atIndex:</span></span><br><span class="line"></span><br><span class="line">- (Tire *) tireAtIndex: (<span class="keyword">int</span>) index &#123;</span><br><span class="line">    <span class="keyword">if</span> (index &lt; <span class="number">0</span> || index &gt; <span class="number">3</span>) &#123;</span><br><span class="line">        <span class="built_in">NSLog</span> (<span class="string">@"bad index (%d) in tireAtIndex:"</span>,</span><br><span class="line">               index);</span><br><span class="line">        exit (<span class="number">1</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    Tire *tire;</span><br><span class="line">    tire = [tires objectAtIndex:index];</span><br><span class="line">    <span class="keyword">return</span> (tire);</span><br><span class="line">    </span><br><span class="line">&#125; <span class="comment">// tireAtIndex:</span></span><br><span class="line"></span><br><span class="line">- (<span class="keyword">void</span>) print &#123;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">4</span>; i++) &#123;</span><br><span class="line">        <span class="comment">// 不直接访问数组，避免代码收到将来更改的影响</span></span><br><span class="line">        <span class="built_in">NSLog</span>(<span class="string">@"%@"</span>, [<span class="keyword">self</span> tireAtIndex: i]);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">NSLog</span> (<span class="string">@"%@"</span>, engine);</span><br><span class="line">&#125; <span class="comment">// print</span></span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span><br><span class="line"> * 确保car对象呗销毁时所有的内存都被回收</span><br><span class="line"> * @override</span><br><span class="line"> */</span></span><br><span class="line">- (<span class="keyword">void</span>) dealloc &#123;</span><br><span class="line">    [tires release];</span><br><span class="line">    [engine release];</span><br><span class="line">    [<span class="keyword">super</span> dealloc];</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">@end</span> <span class="comment">// Car</span></span><br></pre></td></tr></table></figure>
+<h2 id="10-4-Car-类的内存清理（垃圾回收方式和ARC方式）"><a href="#10-4-Car-类的内存清理（垃圾回收方式和ARC方式）" class="headerlink" title="10.4    Car 类的内存清理（垃圾回收方式和ARC方式）"></a>10.4    Car 类的内存清理（垃圾回收方式和ARC方式）</h2><blockquote>
+<p><strong>说明：</strong>启用了<code>垃圾回收</code>或<code>ARC</code>，则不用手动管理内存。</p>
+<ul>
+<li>不再需要手动<code>释放</code>或<code>保留</code></li>
+<li>不需要重写<code>dealloc</code>方法完成内存的清理，如果要销毁时执行一些特别的操作，可以重写<code>-finalize</code>方法</li>
+</ul>
+<p><strong>注意：</strong>启用了<code>垃圾回收</code>则不需要<code>@autoreleasepool</code>；启用<code>ARC</code>，则代码中必要时仍然可以使用<code>@autoreleasepool</code>。</p>
+</blockquote>
+<h3 id="构造便利初始化函数"><a href="#构造便利初始化函数" class="headerlink" title="构造便利初始化函数"></a>构造便利初始化函数</h3><blockquote>
+<p><strong>说明：</strong>构造一个能同时获取轮胎压力和花纹深度的便利初始化函数。</p>
+</blockquote>
+<p><em>Tire.h</em></p>
+<figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">- (<span class="keyword">id</span>) initWithPressure: (<span class="keyword">float</span>) pressure treadDepth: (<span class="keyword">float</span>) treadDepth;</span><br></pre></td></tr></table></figure>
+<p><em>Tire.m</em></p>
+<figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">- (<span class="keyword">id</span>) initWithPressure: (<span class="keyword">float</span>) p treadDepth: (<span class="keyword">float</span>) td &#123;</span><br><span class="line">    <span class="keyword">if</span> (<span class="keyword">self</span> = [<span class="keyword">super</span> init]) &#123;</span><br><span class="line">        pressure = p;</span><br><span class="line">        treadDepth = td;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> (<span class="keyword">self</span>);</span><br><span class="line">&#125;<span class="comment">// initWithPressure: treadDepth</span></span><br></pre></td></tr></table></figure>
+<p><em>main.m</em></p>
+<figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Tire *tire;</span><br><span class="line">tire = [[Tire alloc] initWithPressure: <span class="number">23</span> + i treadDepth: <span class="number">33</span> - i];</span><br></pre></td></tr></table></figure>
+<h2 id="10-5-指定初始化函数"><a href="#10-5-指定初始化函数" class="headerlink" title="10.5    指定初始化函数"></a>10.5    指定初始化函数</h2><blockquote>
+<p><strong>说明：</strong>先增加几个<code>便利初始化函数</code></p>
+</blockquote>
+<p><em>Tire.h</em></p>
+<figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">- (<span class="keyword">id</span>) initWithPressure: (<span class="keyword">float</span>) pressure treadDepth: (<span class="keyword">float</span>) treadDepth;</span><br><span class="line">- (<span class="keyword">id</span>) initWithTreadDepth: (<span class="keyword">float</span>) treadDepth;</span><br><span class="line">- (<span class="keyword">id</span>) initWithPressure:(<span class="keyword">float</span>)pressure;</span><br></pre></td></tr></table></figure>
+<p><em>Tire.m</em></p>
+<figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">- (<span class="keyword">id</span>) initWithPressure: (<span class="keyword">float</span>) p treadDepth: (<span class="keyword">float</span>) td &#123;</span><br><span class="line">    <span class="keyword">if</span> (<span class="keyword">self</span> = [<span class="keyword">super</span> init]) &#123;</span><br><span class="line">        pressure = p;</span><br><span class="line">        treadDepth = td;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> (<span class="keyword">self</span>);</span><br><span class="line">&#125;<span class="comment">// initWithPressure: treadDepth</span></span><br><span class="line"></span><br><span class="line">- (<span class="keyword">id</span>) initWithTreadDepth: (<span class="keyword">float</span>) td &#123;</span><br><span class="line">    <span class="keyword">if</span> (<span class="keyword">self</span> = [<span class="keyword">super</span> init]) &#123;</span><br><span class="line">        treadDepth = td;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> (<span class="keyword">self</span>);</span><br><span class="line">&#125;<span class="comment">// initWithTreadDepth</span></span><br></pre></td></tr></table></figure>
+<h3 id="10-5-1-子类化问题"><a href="#10-5-1-子类化问题" class="headerlink" title="10.5.1    子类化问题"></a>10.5.1    子类化问题</h3><blockquote>
+<p><strong>说明：</strong><code>指定初始化函数</code>，即该中的某个初始化方法被指派为指定初始化函数，该类的所有初始化方法都调用指定初始化函数完成初始化。<br><strong>技巧：</strong>通常，接收参数最多的初始化方法是最终的指定初始化函数。</p>
+</blockquote>
+<h4 id="问题描述"><a href="#问题描述" class="headerlink" title="问题描述"></a>问题描述</h4><blockquote>
+<p><strong>说明：</strong><code>AllWeatherRadial</code>的超类<code>Tire</code>中的构造器都没有使用<code>指定初始化函数</code>，导致<code>AllWeatherRadial</code>需要重写所有<code>Tire</code>的构造器完成对自身实例变量的初始化。</p>
+</blockquote>
+<p><em>AllWeatherRadial.h</em></p>
+<figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#import <span class="meta-string">"Tire.h"</span></span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">@interface</span> <span class="title">AllWeatherRadial</span> : <span class="title">Tire</span></span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="comment">// 轮胎再潮湿的道路上的性能</span></span><br><span class="line">    <span class="keyword">float</span> rainHandling;</span><br><span class="line">    <span class="keyword">float</span> snowHandling;</span><br><span class="line">&#125;</span><br><span class="line">- (<span class="keyword">void</span>) setRainHandling: (<span class="keyword">float</span>) rainHandling;</span><br><span class="line">- (<span class="keyword">float</span>) rainHandling;</span><br><span class="line">- (<span class="keyword">void</span>) setSnowHandling: (<span class="keyword">float</span>) snowHandling;</span><br><span class="line">- (<span class="keyword">float</span>) snowHandling;</span><br><span class="line"><span class="keyword">@end</span><span class="comment">// AllWeatherRadial</span></span><br></pre></td></tr></table></figure>
+<p><em>AllWeatherRadial.m</em></p>
+<figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#import <span class="meta-string">"AllWeatherRadial.h"</span></span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">@implementation</span> <span class="title">AllWeatherRadial</span></span></span><br><span class="line">- (<span class="keyword">void</span>) setRainHandling:(<span class="keyword">float</span>) rh &#123;</span><br><span class="line">    rainHandling = rh;</span><br><span class="line">&#125;<span class="comment">// setRainHandling</span></span><br><span class="line"></span><br><span class="line">- (<span class="keyword">float</span>) rainHandling &#123;</span><br><span class="line">    <span class="keyword">return</span> (rainHandling);</span><br><span class="line">&#125;<span class="comment">// rainHandling</span></span><br><span class="line"></span><br><span class="line">- (<span class="keyword">void</span>) setSnowHandling: (<span class="keyword">float</span>) sh &#123;</span><br><span class="line">    snowHandling = sh;</span><br><span class="line">&#125;<span class="comment">// setSnowHandling</span></span><br><span class="line"></span><br><span class="line">- (<span class="keyword">float</span>) snowHandling &#123;</span><br><span class="line">    <span class="keyword">return</span> (snowHandling);</span><br><span class="line">&#125;<span class="comment">// snowHandling</span></span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span><br><span class="line"> * @override</span><br><span class="line"> */</span></span><br><span class="line">- (<span class="built_in">NSString</span> *) description &#123;</span><br><span class="line">    <span class="built_in">NSString</span> *desc;</span><br><span class="line">    desc = [[<span class="built_in">NSString</span> alloc] initWithFormat:<span class="string">@"AllWeatherRadial: %.1f / %.1f / %.1f / %.1f"</span>, [<span class="keyword">self</span> pressure], [<span class="keyword">self</span> treadDepth], [<span class="keyword">self</span> rainHandling], [<span class="keyword">self</span> snowHandling]];</span><br><span class="line">    <span class="keyword">return</span> (desc);</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">@end</span></span><br></pre></td></tr></table></figure>
+<h3 id="10-5-2-Tire-类的初始化函数改进后的版本"><a href="#10-5-2-Tire-类的初始化函数改进后的版本" class="headerlink" title="10.5.2    Tire 类的初始化函数改进后的版本"></a>10.5.2    Tire 类的初始化函数改进后的版本</h3><blockquote>
+<p><strong>说明：</strong>要解决上述问题，首先需要将<code>Tire</code>改造为使用<code>指定初始化函数</code>的版本。</p>
+</blockquote>
+<p><em>Tire.m</em></p>
+<figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line">- (<span class="keyword">id</span>) init &#123;</span><br><span class="line">    <span class="keyword">if</span> (<span class="keyword">self</span> = [<span class="keyword">self</span> initWithPressure: <span class="number">34.0</span> treadDepth: <span class="number">20.0</span>]) &#123;</span><br><span class="line">        <span class="comment">// ...</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> (<span class="keyword">self</span>);</span><br><span class="line">&#125;<span class="comment">// init</span></span><br><span class="line">- (<span class="keyword">id</span>)initWithPressure: (<span class="keyword">float</span>) p &#123;</span><br><span class="line">    <span class="keyword">if</span> (<span class="keyword">self</span> = [<span class="keyword">self</span> initWithPressure: p treadDepth: <span class="number">20</span>]) &#123;</span><br><span class="line">        <span class="comment">// ...</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> (<span class="keyword">self</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">- (<span class="keyword">id</span>) initWithTreadDepth: (<span class="keyword">float</span>) td &#123;</span><br><span class="line">    <span class="keyword">if</span> (<span class="keyword">self</span> = [<span class="keyword">self</span> initWithPressure: <span class="number">34</span> treadDepth: td]) &#123;</span><br><span class="line">        <span class="comment">// ...</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> (<span class="keyword">self</span>);</span><br><span class="line">&#125;<span class="comment">// initWithTreadDepth</span></span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span><br><span class="line"> * 参数最多的作为指定初始化函数</span><br><span class="line"> */</span></span><br><span class="line">- (<span class="keyword">id</span>) initWithPressure: (<span class="keyword">float</span>) p treadDepth: (<span class="keyword">float</span>) td &#123;</span><br><span class="line">    <span class="keyword">if</span> (<span class="keyword">self</span> = [<span class="keyword">super</span> init]) &#123;</span><br><span class="line">        pressure = p;</span><br><span class="line">        treadDepth = td;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> (<span class="keyword">self</span>);</span><br><span class="line">&#125;<span class="comment">// initWithPressure: treadDepth</span></span><br></pre></td></tr></table></figure>
+<h3 id="10-5-3-添加AllWeatherPressure类的初始化函数"><a href="#10-5-3-添加AllWeatherPressure类的初始化函数" class="headerlink" title="10.5.3    添加AllWeatherPressure类的初始化函数"></a>10.5.3    添加AllWeatherPressure类的初始化函数</h3><blockquote>
+<p><strong>说明：</strong>然后，将<code>AllWeatherPressure</code>改造为使用<code>指定初始化函数</code>的版本。只需要重载父类的<code>指定初始化函数</code>，所有构造器就可以正常使用了（因为其他构造器都调用的<code>指定初始化函数</code>）。<br><em>AllWeatherPressure.m</em></p>
+</blockquote>
+<figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">- (<span class="keyword">id</span>) initWithPressure: (<span class="keyword">float</span>) p treadDepth: (<span class="keyword">float</span>) td &#123;</span><br><span class="line">    <span class="keyword">if</span> (<span class="keyword">self</span> = [<span class="keyword">super</span> initWithPressure: p treadDepth:td]) &#123;</span><br><span class="line">        <span class="comment">// ...</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> (<span class="keyword">self</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="10-6-初始化函数规则"><a href="#10-6-初始化函数规则" class="headerlink" title="10.6    初始化函数规则"></a>10.6    初始化函数规则</h2><blockquote>
+<p><strong>说明：</strong>不是一定要为自己的类创建初始化函数</p>
+<ul>
+<li>如果不需要设置任何状态，或者<code>alloc</code>方法将内存清零的默认行为相当不错，则不可以不设置<code>指定初始化函数</code>。</li>
+<li>如果子类中创建类<code>指定初始化函数</code>，则一定要在这个<code>制定初始化函数</code>中调用超类的<code>指定初始化函数</code>。</li>
+</ul>
+</blockquote>
+<h2 id="10-7-小结"><a href="#10-7-小结" class="headerlink" title="10.7    小结"></a>10.7    小结</h2>
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/05/13/BOOK_Objective-C基础教程第二版/o-c基础教程第二版_09  内存管理/" rel="next" title="9 内存管理">
+                <i class="fa fa-chevron-left"></i> 9 内存管理
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/05/13/BOOK_Objective-C基础教程第二版/o-c基础教程第二版_11 属性/" rel="prev" title="11 属性">
+                11 属性 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2016/05/13/BOOK_Objective-C基础教程第二版/o-c基础教程第二版_10 对象初始化/"
+           data-title="10 对象初始化" data-url="http://laputa-er.github.io/2016/05/13/BOOK_Objective-C基础教程第二版/o-c基础教程第二版_10 对象初始化/">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.gif"
+               alt="Sean" />
+          <p class="site-author-name" itemprop="name">Sean</p>
+          <p class="site-description motion-element" itemprop="description">整理了一批过去一段时间ios相关的笔记，其它的笔记也整理下？源码分享出来？再说吧...反正也只有自己会看吧...</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">200</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">22</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">31</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#10-1-分配对象"><span class="nav-text">10.1    分配对象</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#alloc实例方法"><span class="nav-text">alloc实例方法</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#10-1-1-初始化对象"><span class="nav-text">10.1.1    初始化对象</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#10-1-2-编写初始化方法"><span class="nav-text">10.1.2    编写初始化方法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#10-1-3-初始化时要做些什么"><span class="nav-text">10.1.3    初始化时要做些什么</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#10-2-便利初始化函数"><span class="nav-text">10.2    便利初始化函数</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#initWithContentsofFile便利初始化方法"><span class="nav-text">initWithContentsofFile便利初始化方法</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#10-3-更多部件改进"><span class="nav-text">10.3    更多部件改进</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#10-3-1-Tire类的初始化"><span class="nav-text">10.3.1    Tire类的初始化</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#10-3-2-更新main-函数"><span class="nav-text">10.3.2    更新main()函数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#10-3-3-清理Car类"><span class="nav-text">10.3.3    清理Car类</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#10-4-Car-类的内存清理（垃圾回收方式和ARC方式）"><span class="nav-text">10.4    Car 类的内存清理（垃圾回收方式和ARC方式）</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#构造便利初始化函数"><span class="nav-text">构造便利初始化函数</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#10-5-指定初始化函数"><span class="nav-text">10.5    指定初始化函数</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#10-5-1-子类化问题"><span class="nav-text">10.5.1    子类化问题</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#问题描述"><span class="nav-text">问题描述</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#10-5-2-Tire-类的初始化函数改进后的版本"><span class="nav-text">10.5.2    Tire 类的初始化函数改进后的版本</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#10-5-3-添加AllWeatherPressure类的初始化函数"><span class="nav-text">10.5.3    添加AllWeatherPressure类的初始化函数</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#10-6-初始化函数规则"><span class="nav-text">10.6    初始化函数规则</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#10-7-小结"><span class="nav-text">10.7    小结</span></a></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Sean</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"lapuda-er"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+    <script src="/vendors/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
+    <script src="/js/src/hook-duoshuo.js"></script>
+  
+
+
+
+
+
+
+  
+  
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length == 0) {
+       search_path = "search.xml";
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    function proceedsearch() {
+      $("body").append('<div class="popoverlay">').css('overflow', 'hidden');
+      $('.popup').toggle();
+
+    }
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+    'use strict';
+    $.ajax({
+        url: path,
+        dataType: "xml",
+        async: true,
+        success: function( xmlResponse ) {
+            // get the contents from search data
+            isfetched = true;
+            $('.popup').detach().appendTo('.header-inner');
+            var datas = $( "entry", xmlResponse ).map(function() {
+                return {
+                    title: $( "title", this ).text(),
+                    content: $("content",this).text(),
+                    url: $( "url" , this).text()
+                };
+            }).get();
+            var $input = document.getElementById(search_id);
+            var $resultContent = document.getElementById(content_id);
+            $input.addEventListener('input', function(){
+                var matchcounts = 0;
+                var str='<ul class=\"search-result-list\">';
+                var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+                $resultContent.innerHTML = "";
+                if (this.value.trim().length > 1) {
+                // perform local searching
+                datas.forEach(function(data) {
+                    var isMatch = true;
+                    var content_index = [];
+                    var data_title = data.title.trim().toLowerCase();
+                    var data_content = data.content.trim().replace(/<[^>]+>/g,"").toLowerCase();
+                    var data_url = data.url;
+                    var index_title = -1;
+                    var index_content = -1;
+                    var first_occur = -1;
+                    // only match artiles with not empty titles and contents
+                    if(data_title != '' && data_content != '') {
+                        keywords.forEach(function(keyword, i) {
+                            index_title = data_title.indexOf(keyword);
+                            index_content = data_content.indexOf(keyword);
+                            if( index_title < 0 && index_content < 0 ){
+                                isMatch = false;
+                            } else {
+                                if (index_content < 0) {
+                                    index_content = 0;
+                                }
+                                if (i == 0) {
+                                    first_occur = index_content;
+                                }
+                            }
+                        });
+                    }
+                    // show search results
+                    if (isMatch) {
+                        matchcounts += 1;
+                        str += "<li><a href='"+ data_url +"' class='search-result-title'>"+ data_title +"</a>";
+                        var content = data.content.trim().replace(/<[^>]+>/g,"");
+                        if (first_occur >= 0) {
+                            // cut out 100 characters
+                            var start = first_occur - 20;
+                            var end = first_occur + 80;
+                            if(start < 0){
+                                start = 0;
+                            }
+                            if(start == 0){
+                                end = 50;
+                            }
+                            if(end > content.length){
+                                end = content.length;
+                            }
+                            var match_content = content.substring(start, end);
+                            // highlight all keywords
+                            keywords.forEach(function(keyword){
+                                var regS = new RegExp(keyword, "gi");
+                                match_content = match_content.replace(regS, "<b class=\"search-keyword\">"+keyword+"</b>");
+                            });
+
+                            str += "<p class=\"search-result\">" + match_content +"...</p>"
+                        }
+                        str += "</li>";
+                    }
+                })};
+                str += "</ul>";
+                if (matchcounts == 0) { str = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>' }
+                if (keywords == "") { str = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>' }
+                $resultContent.innerHTML = str;
+            });
+            proceedsearch();
+        }
+    });}
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched == false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+
+    });
+
+    $('.popup-btn-close').click(function(e){
+      $('.popup').hide();
+      $(".popoverlay").remove();
+      $('body').css('overflow', '');
+    });
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+  </script>
+
+
+  
+
+  
+
+  
+
+</body>
+</html>

@@ -1,0 +1,1012 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="swift语言," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1" />
+
+
+
+
+
+
+<meta name="description" content="说明：一个类可以继承另一个类的方法,属性和其它特性
+
+
+
+
+能力
+相关成员
+价值
+
+
+
+
+调用
+超类的方法、属性、下标脚本
+代码重用
+
+
+重写
+超类的方法、属性、下标脚本
+优化或修改它们的行为
+
+
+监视
+继承来的属性（通过添加属性(存储属性或计算属性)观察器）
+当值改变时，类就会被通知到
+
+
+
+
+注意：只有类能够继承
+
+13.1    定义一个基类
+基类：不继承其它类的类（swift的类并不是从">
+<meta property="og:type" content="article">
+<meta property="og:title" content="13 继承">
+<meta property="og:url" content="http://laputa-er.github.io/2016/05/13/BOOK_TheSwiftProgramLanguage2/TSPL2_13 继承/index.html">
+<meta property="og:site_name" content="Sean">
+<meta property="og:description" content="说明：一个类可以继承另一个类的方法,属性和其它特性
+
+
+
+
+能力
+相关成员
+价值
+
+
+
+
+调用
+超类的方法、属性、下标脚本
+代码重用
+
+
+重写
+超类的方法、属性、下标脚本
+优化或修改它们的行为
+
+
+监视
+继承来的属性（通过添加属性(存储属性或计算属性)观察器）
+当值改变时，类就会被通知到
+
+
+
+
+注意：只有类能够继承
+
+13.1    定义一个基类
+基类：不继承其它类的类（swift的类并不是从">
+<meta property="og:updated_time" content="2017-02-13T04:23:03.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="13 继承">
+<meta name="twitter:description" content="说明：一个类可以继承另一个类的方法,属性和其它特性
+
+
+
+
+能力
+相关成员
+价值
+
+
+
+
+调用
+超类的方法、属性、下标脚本
+代码重用
+
+
+重写
+超类的方法、属性、下标脚本
+优化或修改它们的行为
+
+
+监视
+继承来的属性（通过添加属性(存储属性或计算属性)观察器）
+当值改变时，类就会被通知到
+
+
+
+
+注意：只有类能够继承
+
+13.1    定义一个基类
+基类：不继承其它类的类（swift的类并不是从">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 0,
+      author: '博主'
+    }
+  };
+</script>
+
+
+
+
+  <link rel="canonical" href="http://laputa-er.github.io/2016/05/13/BOOK_TheSwiftProgramLanguage2/TSPL2_13 继承/"/>
+
+  <title> 13 继承 | Sean </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//hm.baidu.com/hm.js?898688f51c5a3d6b37dd23e04441e5bd";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">Sean</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">笔记分享</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup">
+ <span class="search-icon fa fa-search"></span>
+ <input type="text" id="local-search-input">
+ <div id="local-search-result"></div>
+ <span class="popup-btn-close">close</span>
+</div>
+
+
+    </div>
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                13 继承
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-05-13T19:46:35+08:00" content="2016-05-13">
+              2016-05-13
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/The-Swift-Program-Language-2/" itemprop="url" rel="index">
+                    <span itemprop="name">The Swift Program Language 2</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/05/13/BOOK_TheSwiftProgramLanguage2/TSPL2_13 继承/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/05/13/BOOK_TheSwiftProgramLanguage2/TSPL2_13 继承/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <blockquote>
+<p><strong>说明</strong>：一个类可以继承另一个类的方法,属性和其它特性</p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>能力</th>
+<th>相关成员</th>
+<th>价值</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>调用</td>
+<td>超类的方法、属性、下标脚本</td>
+<td>代码重用</td>
+</tr>
+<tr>
+<td>重写</td>
+<td>超类的方法、属性、下标脚本</td>
+<td>优化或修改它们的行为</td>
+</tr>
+<tr>
+<td>监视</td>
+<td>继承来的属性（通过添加属性(存储属性或计算属性)观察器）</td>
+<td>当值改变时，类就会被通知到</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p><strong>注意：</strong>只有类能够继承</p>
+</blockquote>
+<h2 id="13-1-定义一个基类"><a href="#13-1-定义一个基类" class="headerlink" title="13.1    定义一个基类"></a>13.1    定义一个基类</h2><blockquote>
+<p><strong>基类：</strong>不继承其它类的类（swift的类并不是从一个通用的基类继承而来）</p>
+</blockquote>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//定义一个基类</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Vehicle</span> </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> currentSpeed = <span class="number">0.0</span></span><br><span class="line">    <span class="keyword">var</span> description:<span class="type">String</span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="string">"traveling at \(currentSpeed) miles per hour"</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">func</span> <span class="title">makeNoise</span><span class="params">()</span></span>&#123;</span><br><span class="line">        <span class="comment">//什么也不做－因为车辆不一定有噪音</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> someVehicle = <span class="type">Vehicle</span>()</span><br><span class="line"><span class="built_in">println</span>(<span class="string">"Vehicle:\(someVehicle.description)"</span>)</span><br></pre></td></tr></table></figure>
+<h2 id="13-2-子类生成"><a href="#13-2-子类生成" class="headerlink" title="13.2    子类生成"></a>13.2    子类生成</h2><blockquote>
+<p><strong>说明</strong>：<code>class 子类:超类 ｛｝</code></p>
+</blockquote>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//继承Vehicle</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Bicycle</span>:<span class="title">Vehicle</span> </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> hasBasket = <span class="literal">false</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">let</span> bicycle = <span class="type">Bicycle</span>()</span><br><span class="line"></span><br><span class="line"><span class="comment">//设置子类自己的实例属性</span></span><br><span class="line">bicycle.hasBasket = <span class="literal">true</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//修改继承来的属性</span></span><br><span class="line">bicycle.currentSpeed = <span class="number">15.0</span></span><br></pre></td></tr></table></figure>
+<h2 id="13-3-重写"><a href="#13-3-重写" class="headerlink" title="13.3    重写"></a>13.3    重写</h2><blockquote>
+<p><strong>关键字：</strong><code>override</code>(会提醒编译器检查该类是否有匹配重写版本的声明)</p>
+<p><strong>说明：</strong>子类可以为继承来的实例方法、类方法、实例属性、下标脚本提供自己定制的实现。</p>
+</blockquote>
+<h3 id="13-3-1-访问超类的方法、属性及下标脚本"><a href="#13-3-1-访问超类的方法、属性及下标脚本" class="headerlink" title="13.3.1    访问超类的方法、属性及下标脚本"></a>13.3.1    访问超类的方法、属性及下标脚本</h3><table>
+<thead>
+<tr>
+<th>成员</th>
+<th>访问方式</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>方法</td>
+<td><code>super.someMethod()</code></td>
+</tr>
+<tr>
+<td>属性</td>
+<td><code>super.someProperty</code></td>
+</tr>
+<tr>
+<td>下标脚本</td>
+<td><code>super[someIndex]</code></td>
+</tr>
+</tbody>
+</table>
+<h3 id="13-3-2-重写方法"><a href="#13-3-2-重写方法" class="headerlink" title="13.3.2    重写方法"></a>13.3.2    重写方法</h3><blockquote>
+<p><strong>关键字</strong>：<code>override</code></p>
+</blockquote>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Train</span>:<span class="title">Vechicle</span> </span>&#123;</span><br><span class="line">    <span class="keyword">override</span> <span class="function"><span class="keyword">func</span> <span class="title">makeNoise</span><span class="params">()</span></span>&#123;</span><br><span class="line">        <span class="built_in">println</span>(<span class="string">"Choo Choo"</span>)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">let</span> train = <span class="type">Train</span>()</span><br><span class="line">train.makeNoise()</span><br></pre></td></tr></table></figure>
+<h3 id="13-3-3-重写属性"><a href="#13-3-3-重写属性" class="headerlink" title="13.3.3     重写属性"></a>13.3.3     重写属性</h3><blockquote>
+<p><strong>说明</strong>：重写什么？</p>
+<ol>
+<li>重写继承来的<code>实例属性</code>或<code>类属性</code></li>
+<li>提供自己定制的<code>getter</code>和<code>setter</code></li>
+<li>重写属性观察器观察被重写的属性的变化（非只读属性不可以设置）</li>
+</ol>
+<p><strong>注意</strong></p>
+<ol>
+<li>存储型或计算型属性都可以被重写（包括<code>getters</code>和<code>setters</code>）</li>
+<li>计算机会根据属性的名字和类型检查重写的属性是否与超累中同名同类型的属性相匹配</li>
+<li>可以将继承来的只读属性重写为一个读写属性（通过重写属性的<code>getters</code>和<code>setters</code>）</li>
+</ol>
+<ul>
+<li>如果重写属性提供了<code>setter</code>,也一定要提供<code>getter</code></li>
+<li><code>setter</code>中可以通过<code>super.someProperty</code>来返回继承来的值</li>
+</ul>
+</blockquote>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Car</span>:<span class="title">Vehicle</span> </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> gear = <span class="number">1</span></span><br><span class="line">    <span class="keyword">override</span> <span class="keyword">var</span> description:<span class="type">String</span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">super</span>.description + <span class="string">" in gear \(gear)"</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> car = <span class="type">Car</span>()</span><br><span class="line">car.currentSpeed = <span class="number">25.0</span></span><br><span class="line">car.gear = <span class="number">3</span></span><br><span class="line"><span class="built_in">println</span>(<span class="string">"Car:\(car.description)"</span>)</span><br><span class="line">+ 重写属性观察器</span><br><span class="line"><span class="number">1</span>. 不可重写属性观察器的继承来的属性：常量存储属性、只读计算属性</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">AutomaticCar</span>:<span class="title">Car</span> </span>&#123;</span><br><span class="line">    <span class="comment">//重写属性及其属性观察器</span></span><br><span class="line">    <span class="keyword">override</span> <span class="keyword">var</span> currentSpeed:<span class="type">Double</span>&#123;</span><br><span class="line">        <span class="keyword">didSet</span>&#123;</span><br><span class="line">            gear = <span class="type">Int</span>(currentSpeed / <span class="number">10.0</span>) + <span class="number">1</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">let</span> automatic = <span class="type">AutomaticCar</span>()</span><br><span class="line">automatic.currentSpeed = <span class="number">35.0</span></span><br><span class="line"><span class="built_in">println</span>(<span class="string">"AutomaticCar:\(automatic.description)"</span>)</span><br></pre></td></tr></table></figure>
+<h2 id="13-4-防止重写"><a href="#13-4-防止重写" class="headerlink" title="13.4    防止重写"></a>13.4    防止重写</h2><blockquote>
+<p><strong>关键字：</strong><code>final</code><br><strong>说明：</strong>可以通过把方法,属性或下标脚本标记为 <code>final</code> 来防止它们被重写,只需要在声明关键字前加上 <code>final</code> 特性即<br>可</p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>类型</th>
+<th><code>final</code>声明方式</th>
+<th>用途</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>属性</td>
+<td><code>final var</code></td>
+<td>不可被重写</td>
+</tr>
+<tr>
+<td>实例方法</td>
+<td><code>final func</code></td>
+<td>不可被重写</td>
+</tr>
+<tr>
+<td>下标脚本</td>
+<td><code>final subscript</code></td>
+<td>不可被重写</td>
+</tr>
+<tr>
+<td>类方法</td>
+<td><code>final class func</code></td>
+<td>不可被重写</td>
+</tr>
+<tr>
+<td>类</td>
+<td><code>final class</code></td>
+<td>不可被继承</td>
+</tr>
+</tbody>
+</table>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/swift语言/" rel="tag">#swift语言</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/05/13/BOOK_TheSwiftProgramLanguage2/TSPL2_12 下标脚本/" rel="next" title="12 下标脚本">
+                <i class="fa fa-chevron-left"></i> 12 下标脚本
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/05/13/BOOK_TheSwiftProgramLanguage2/TSPL2_14  构造过程/" rel="prev" title="14 构造过程">
+                14 构造过程 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2016/05/13/BOOK_TheSwiftProgramLanguage2/TSPL2_13 继承/"
+           data-title="13 继承" data-url="http://laputa-er.github.io/2016/05/13/BOOK_TheSwiftProgramLanguage2/TSPL2_13 继承/">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.gif"
+               alt="Sean" />
+          <p class="site-author-name" itemprop="name">Sean</p>
+          <p class="site-description motion-element" itemprop="description">整理了一批过去一段时间ios相关的笔记，其它的笔记也整理下？源码分享出来？再说吧...反正也只有自己会看吧...</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">200</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">22</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">31</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#13-1-定义一个基类"><span class="nav-text">13.1    定义一个基类</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#13-2-子类生成"><span class="nav-text">13.2    子类生成</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#13-3-重写"><span class="nav-text">13.3    重写</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#13-3-1-访问超类的方法、属性及下标脚本"><span class="nav-text">13.3.1    访问超类的方法、属性及下标脚本</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#13-3-2-重写方法"><span class="nav-text">13.3.2    重写方法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#13-3-3-重写属性"><span class="nav-text">13.3.3     重写属性</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#13-4-防止重写"><span class="nav-text">13.4    防止重写</span></a></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Sean</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"lapuda-er"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+    <script src="/vendors/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
+    <script src="/js/src/hook-duoshuo.js"></script>
+  
+
+
+
+
+
+
+  
+  
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length == 0) {
+       search_path = "search.xml";
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    function proceedsearch() {
+      $("body").append('<div class="popoverlay">').css('overflow', 'hidden');
+      $('.popup').toggle();
+
+    }
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+    'use strict';
+    $.ajax({
+        url: path,
+        dataType: "xml",
+        async: true,
+        success: function( xmlResponse ) {
+            // get the contents from search data
+            isfetched = true;
+            $('.popup').detach().appendTo('.header-inner');
+            var datas = $( "entry", xmlResponse ).map(function() {
+                return {
+                    title: $( "title", this ).text(),
+                    content: $("content",this).text(),
+                    url: $( "url" , this).text()
+                };
+            }).get();
+            var $input = document.getElementById(search_id);
+            var $resultContent = document.getElementById(content_id);
+            $input.addEventListener('input', function(){
+                var matchcounts = 0;
+                var str='<ul class=\"search-result-list\">';
+                var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+                $resultContent.innerHTML = "";
+                if (this.value.trim().length > 1) {
+                // perform local searching
+                datas.forEach(function(data) {
+                    var isMatch = true;
+                    var content_index = [];
+                    var data_title = data.title.trim().toLowerCase();
+                    var data_content = data.content.trim().replace(/<[^>]+>/g,"").toLowerCase();
+                    var data_url = data.url;
+                    var index_title = -1;
+                    var index_content = -1;
+                    var first_occur = -1;
+                    // only match artiles with not empty titles and contents
+                    if(data_title != '' && data_content != '') {
+                        keywords.forEach(function(keyword, i) {
+                            index_title = data_title.indexOf(keyword);
+                            index_content = data_content.indexOf(keyword);
+                            if( index_title < 0 && index_content < 0 ){
+                                isMatch = false;
+                            } else {
+                                if (index_content < 0) {
+                                    index_content = 0;
+                                }
+                                if (i == 0) {
+                                    first_occur = index_content;
+                                }
+                            }
+                        });
+                    }
+                    // show search results
+                    if (isMatch) {
+                        matchcounts += 1;
+                        str += "<li><a href='"+ data_url +"' class='search-result-title'>"+ data_title +"</a>";
+                        var content = data.content.trim().replace(/<[^>]+>/g,"");
+                        if (first_occur >= 0) {
+                            // cut out 100 characters
+                            var start = first_occur - 20;
+                            var end = first_occur + 80;
+                            if(start < 0){
+                                start = 0;
+                            }
+                            if(start == 0){
+                                end = 50;
+                            }
+                            if(end > content.length){
+                                end = content.length;
+                            }
+                            var match_content = content.substring(start, end);
+                            // highlight all keywords
+                            keywords.forEach(function(keyword){
+                                var regS = new RegExp(keyword, "gi");
+                                match_content = match_content.replace(regS, "<b class=\"search-keyword\">"+keyword+"</b>");
+                            });
+
+                            str += "<p class=\"search-result\">" + match_content +"...</p>"
+                        }
+                        str += "</li>";
+                    }
+                })};
+                str += "</ul>";
+                if (matchcounts == 0) { str = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>' }
+                if (keywords == "") { str = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>' }
+                $resultContent.innerHTML = str;
+            });
+            proceedsearch();
+        }
+    });}
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched == false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+
+    });
+
+    $('.popup-btn-close').click(function(e){
+      $('.popup').hide();
+      $(".popoverlay").remove();
+      $('body').css('overflow', '');
+    });
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+  </script>
+
+
+  
+
+  
+
+  
+
+</body>
+</html>

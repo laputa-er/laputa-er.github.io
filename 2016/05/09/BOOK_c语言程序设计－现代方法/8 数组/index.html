@@ -1,0 +1,972 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="c语言基础," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1" />
+
+
+
+
+
+
+<meta name="description" content="变量：变量分为两种
+
+
+
+
+分类
+说明
+
+
+
+
+标量（scalar）
+标亮具有保存单一数据项的能力
+
+
+聚合（aggregate）
+存储数值的集合（数组(array)和结构(structure)）
+
+
+
+8.1    一维数组
+说明：数组是含有多个数据值的数据结构，并且每个数据之具有相同的数据类型。这些数据类型的值被称为元素（element）。声明数组：需要说明数组元素的类型(任何类型)和数量（">
+<meta property="og:type" content="article">
+<meta property="og:title" content="8 数组">
+<meta property="og:url" content="http://laputa-er.github.io/2016/05/09/BOOK_c语言程序设计－现代方法/8 数组/index.html">
+<meta property="og:site_name" content="Sean">
+<meta property="og:description" content="变量：变量分为两种
+
+
+
+
+分类
+说明
+
+
+
+
+标量（scalar）
+标亮具有保存单一数据项的能力
+
+
+聚合（aggregate）
+存储数值的集合（数组(array)和结构(structure)）
+
+
+
+8.1    一维数组
+说明：数组是含有多个数据值的数据结构，并且每个数据之具有相同的数据类型。这些数据类型的值被称为元素（element）。声明数组：需要说明数组元素的类型(任何类型)和数量（">
+<meta property="og:updated_time" content="2017-02-13T04:26:13.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="8 数组">
+<meta name="twitter:description" content="变量：变量分为两种
+
+
+
+
+分类
+说明
+
+
+
+
+标量（scalar）
+标亮具有保存单一数据项的能力
+
+
+聚合（aggregate）
+存储数值的集合（数组(array)和结构(structure)）
+
+
+
+8.1    一维数组
+说明：数组是含有多个数据值的数据结构，并且每个数据之具有相同的数据类型。这些数据类型的值被称为元素（element）。声明数组：需要说明数组元素的类型(任何类型)和数量（">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 0,
+      author: '博主'
+    }
+  };
+</script>
+
+
+
+
+  <link rel="canonical" href="http://laputa-er.github.io/2016/05/09/BOOK_c语言程序设计－现代方法/8 数组/"/>
+
+  <title> 8 数组 | Sean </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//hm.baidu.com/hm.js?898688f51c5a3d6b37dd23e04441e5bd";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">Sean</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">笔记分享</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup">
+ <span class="search-icon fa fa-search"></span>
+ <input type="text" id="local-search-input">
+ <div id="local-search-result"></div>
+ <span class="popup-btn-close">close</span>
+</div>
+
+
+    </div>
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                8 数组
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-05-09T18:48:30+08:00" content="2016-05-09">
+              2016-05-09
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/c语言程序设计－现代方法/" itemprop="url" rel="index">
+                    <span itemprop="name">c语言程序设计－现代方法</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/05/09/BOOK_c语言程序设计－现代方法/8 数组/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/05/09/BOOK_c语言程序设计－现代方法/8 数组/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <blockquote>
+<p><strong>变量：</strong>变量分为两种</p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>分类</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>标量（scalar）</td>
+<td>标亮具有保存单一数据项的能力</td>
+</tr>
+<tr>
+<td>聚合（aggregate）</td>
+<td>存储数值的集合（数组(array)和结构(structure)）</td>
+</tr>
+</tbody>
+</table>
+<h2 id="8-1-一维数组"><a href="#8-1-一维数组" class="headerlink" title="8.1    一维数组"></a>8.1    一维数组</h2><blockquote>
+<p><strong>说明：</strong>数组是含有多个数据值的数据结构，并且每个数据之具有相同的数据类型。这些数据类型的值被称为元素（element）。<br><strong>声明数组：</strong>需要说明数组元素的<code>类型</code>(任何类型)和<code>数量</code>（任何整数常量表达式）。</p>
+</blockquote>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> a[<span class="number">10</span>];</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p><strong>技巧：</strong>因为程序后面变化时可能需要调整数组的长度，所以较好的方法是用宏来定义数组的长度。</p>
+</blockquote>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">define</span> N 10</span></span><br><span class="line"><span class="keyword">int</span> a[N];</span><br></pre></td></tr></table></figure>
+<h3 id="8-1-1-数组下标"><a href="#8-1-1-数组下标" class="headerlink" title="8.1.1    数组下标"></a>8.1.1    数组下标</h3><blockquote>
+<p><strong>说明：</strong>为了存取特定的数组元素，可以在写数组名的同时在后迷呐加上一个用方括号围绕的整数值（称这是对数组进行下标（subsvripting）或索引（indexing））。<br><strong>注意：</strong></p>
+<ul>
+<li><code>a[i]</code>的表达式格式是左值，所以数组元素可以和普通变量一样使用</li>
+<li>在调用scanf函数读取数组元素时，就像对待普通变量一样，必须使用取地址符号<code>&amp;</code>。</li>
+<li>c语言不要求检查下标的范围，当下标超出范围时，程序可能执行不可预知的行为。</li>
+</ul>
+</blockquote>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> a[<span class="number">10</span>], i;</span><br><span class="line"><span class="comment">//对某些编译器来说，这个表面上正确的for语句却产生了一个无限循环</span></span><br><span class="line"><span class="comment">//如果i在内存中的位置在a[9]后面，那么修改a[10]其实是修改了i，使i变为0</span></span><br><span class="line"><span class="keyword">for</span>(i = <span class="number">0</span>; i &lt; <span class="number">10</span>; i++)&#123;</span><br><span class="line">		a[i] = <span class="number">0</span>;	</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p><strong>技巧：</strong>避免数组下标的副作用。</p>
+</blockquote>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//不确定的做法</span></span><br><span class="line"><span class="keyword">while</span>(i &lt; N)&#123;</span><br><span class="line">	a[i] = b[i++];<span class="comment">//i有可能会在复制发生之前就进行自增，导致两个数组错位</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//安全的做法</span></span><br><span class="line"><span class="keyword">for</span>(i = <span class="number">0</span>; i &lt; N; i++)&#123;</span><br><span class="line">	a[i] = b[i];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">a[<span class="number">0</span>] = <span class="number">1</span>;</span><br><span class="line"><span class="built_in">printf</span>(<span class="string">"%d\n"</span>, a[<span class="number">5</span>]);</span><br><span class="line">++a[i];</span><br><span class="line"></span><br><span class="line"><span class="comment">//清空数组</span></span><br><span class="line"><span class="keyword">for</span>(i = <span class="number">0</span>; i &lt; N; i++)&#123;</span><br><span class="line">	a[i] = <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//读取数组元素</span></span><br><span class="line"><span class="keyword">for</span>(i = <span class="number">0</span>; i &lt; N; i++)&#123;</span><br><span class="line">	<span class="built_in">scanf</span>(<span class="string">"%d"</span>, &amp;a[i]);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//求和</span></span><br><span class="line"><span class="keyword">for</span>(i = <span class="number">0</span>; i &lt; N; i++)&#123;</span><br><span class="line">	sun += a[i];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="8-1-2-程序：数列反向"><a href="#8-1-2-程序：数列反向" class="headerlink" title="8.1.2    程序：数列反向"></a>8.1.2    程序：数列反向</h3><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span><br><span class="line"> * Reverse a series of numbers</span><br><span class="line"> */</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"> <span class="meta">#<span class="meta-keyword">define</span> N 10</span></span><br><span class="line"> <span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line"> 	<span class="keyword">int</span> a[N], i;</span><br><span class="line"></span><br><span class="line"> 	<span class="built_in">printf</span>(<span class="string">"Enter %d numbers:"</span>, N);</span><br><span class="line"> 	<span class="keyword">for</span> (i = <span class="number">0</span>; i &lt; N; ++i)&#123;</span><br><span class="line"> 		<span class="built_in">scanf</span>(<span class="string">"%d"</span>, &amp;a[i]);</span><br><span class="line"> 	&#125;</span><br><span class="line"> 	<span class="built_in">printf</span>(<span class="string">"In reverse order:"</span>);</span><br><span class="line"> 	<span class="keyword">for</span>(i = N<span class="number">-1</span>; i &gt;= <span class="number">0</span>; --i)&#123;</span><br><span class="line"></span><br><span class="line"> 		<span class="built_in">printf</span>(<span class="string">" %d"</span>, a[i]);</span><br><span class="line"> 	&#125;</span><br><span class="line"> 	<span class="built_in">printf</span>(<span class="string">"\n"</span>);</span><br><span class="line"></span><br><span class="line"> 	return <span class="number">0</span>;</span><br><span class="line"> &#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">$ ./reverse</span><br><span class="line"> Enter 10 numbers:10</span><br><span class="line"> 9</span><br><span class="line"> 8</span><br><span class="line"> 7</span><br><span class="line"> 6</span><br><span class="line"> 5</span><br><span class="line"> 4</span><br><span class="line"> 3</span><br><span class="line"> 2</span><br><span class="line"> 1</span><br><span class="line"> In reverse order: 1 2 3 4 5 6 7 8 9 10</span><br></pre></td></tr></table></figure>
+<h3 id="8-1-3-数组初始化"><a href="#8-1-3-数组初始化" class="headerlink" title="8.1.3    数组初始化"></a>8.1.3    数组初始化</h3><blockquote>
+<p><strong>常量表达式列表规则：</strong></p>
+<ul>
+<li>列表用<code>{}</code>括起来，内部数值用<code>,</code>分隔</li>
+<li>初始化式完全为空或比数组长度长是非法的，但可以比数组短，此时数组中生育的元素赋值为0</li>
+</ul>
+</blockquote>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//完整的格式</span></span><br><span class="line"><span class="keyword">int</span> a[<span class="number">10</span>] = &#123;<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>,<span class="number">6</span>,<span class="number">7</span>,<span class="number">8</span>,<span class="number">9</span>,<span class="number">10</span>&#125;;</span><br><span class="line"></span><br><span class="line"><span class="comment">//省略数组的长度，此时编译器会利用初始化式的长度确定数组的大小</span></span><br><span class="line"><span class="keyword">int</span> a[] = &#123;<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>,<span class="number">6</span>,<span class="number">7</span>,<span class="number">8</span>,<span class="number">9</span>,<span class="number">10</span>&#125;;</span><br><span class="line"></span><br><span class="line"><span class="comment">//初始化式比数组长度短</span></span><br><span class="line"><span class="keyword">int</span> a[<span class="number">10</span>] = &#123;<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>,<span class="number">6</span>&#125;;<span class="comment">//&#123;1,2,3,4,5,6,0,0,0,0&#125;;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//全部数组元素初始化为0</span></span><br><span class="line"><span class="keyword">int</span> a[<span class="number">10</span>] = &#123;<span class="number">0</span>&#125;;<span class="comment">//&#123;0,0,0,0,0,0,0,0,0,0&#125;</span></span><br></pre></td></tr></table></figure>
+<h3 id="8-1-4-程序：检查数中重复出现的数字"><a href="#8-1-4-程序：检查数中重复出现的数字" class="headerlink" title="8.1.4    程序：检查数中重复出现的数字"></a>8.1.4    程序：检查数中重复出现的数字</h3><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span><br><span class="line"> * Checks numbers for repeated digits</span><br><span class="line"> */</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"> <span class="meta">#<span class="meta-keyword">define</span> TRUE 1</span></span><br><span class="line"> <span class="meta">#<span class="meta-keyword">define</span> FALSE 0</span></span><br><span class="line"></span><br><span class="line"> <span class="keyword">typedef</span> <span class="keyword">int</span> Bool;</span><br><span class="line"></span><br><span class="line"> <span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line"> 	Bool digit_seen[<span class="number">10</span>] = &#123;<span class="number">0</span>&#125;;</span><br><span class="line"> 	<span class="keyword">int</span> digit;</span><br><span class="line"> 	<span class="keyword">long</span> <span class="keyword">int</span> n;</span><br><span class="line"></span><br><span class="line"> 	<span class="built_in">printf</span>(<span class="string">"Enter a number:"</span>);</span><br><span class="line"> 	<span class="built_in">scanf</span>(<span class="string">"%ld"</span>, &amp;n);</span><br><span class="line"></span><br><span class="line"> 	<span class="keyword">while</span>(n &gt; <span class="number">0</span>)&#123;</span><br><span class="line"> 		<span class="comment">//取个位数</span></span><br><span class="line"> 		digit  = n % <span class="number">10</span>;</span><br><span class="line"> 		<span class="comment">//检查个位数是不是已经有过一个了，是的话终止循环</span></span><br><span class="line"> 		<span class="keyword">if</span>(digit_seen[digit])&#123;</span><br><span class="line"> 			<span class="keyword">break</span>;</span><br><span class="line"> 		&#125;</span><br><span class="line"> 		<span class="comment">//以当前个位数作为索引将对应数字元素的值改为TRUE</span></span><br><span class="line"> 		digit_seen[digit] = TRUE;</span><br><span class="line"> 		n /= <span class="number">10</span>;</span><br><span class="line"> 	&#125;</span><br><span class="line"> 	<span class="keyword">if</span>(n&gt;<span class="number">0</span>)&#123;</span><br><span class="line"> 		<span class="comment">//n&gt;0说明至少有一个数字发生了重复</span></span><br><span class="line"> 		<span class="built_in">printf</span>(<span class="string">"Repeated digit\n\n"</span>);</span><br><span class="line"> 	&#125;<span class="keyword">else</span>&#123;</span><br><span class="line"> 		<span class="built_in">printf</span>(<span class="string">"No repeated digit\n\n"</span>);</span><br><span class="line"> 	&#125;</span><br><span class="line"> 	return <span class="number">0</span>;</span><br><span class="line"> &#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">./repdigit </span><br><span class="line">Enter a number:12345677</span><br><span class="line">Repeated digit</span><br></pre></td></tr></table></figure>
+<h3 id="8-1-5-对数组使用sizeof运算符"><a href="#8-1-5-对数组使用sizeof运算符" class="headerlink" title="8.1.5    对数组使用sizeof运算符"></a>8.1.5    对数组使用sizeof运算符</h3><blockquote>
+<p><strong>用途：</strong></p>
+<ul>
+<li>计算数组的字节数</li>
+<li>计算数组中每个元素的字节数</li>
+<li>利用上面的结果计算数组的长度</li>
+</ul>
+</blockquote>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span>(i = <span class="number">0</span>; i &lt; <span class="keyword">sizeof</span>(a) / <span class="keyword">sizeof</span>(a[<span class="number">10</span>]); i++)&#123;</span><br><span class="line">  a[i] = <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p><strong>利用宏：</strong>简化用sizeof计算数组长度。更加有效的方式是使用带参数的宏。</p>
+</blockquote>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">define</span> SIZE (sizeof(a) / sizeof(a[0]))</span></span><br><span class="line"><span class="keyword">for</span>(i = <span class="number">0</span>; i &lt; SIZE; i++)&#123;</span><br><span class="line">  a[i] = <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="8-1-6-程序：计算利息"><a href="#8-1-6-程序：计算利息" class="headerlink" title="8.1.6    程序：计算利息"></a>8.1.6    程序：计算利息</h3><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span><br><span class="line"> * Prints a table of compound interest</span><br><span class="line"> */</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"> <span class="meta">#<span class="meta-keyword">define</span> NUM_RATES (sizeof(value) / sizeof(value[0]))</span></span><br><span class="line"> <span class="meta">#<span class="meta-keyword">define</span> INITIAL_BALANCE 100.00</span></span><br><span class="line"></span><br><span class="line"> <span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line"> 	<span class="keyword">int</span> i, low_rate, num_years, year;</span><br><span class="line"> 	<span class="keyword">float</span> value[<span class="number">5</span>];</span><br><span class="line"></span><br><span class="line"> 	<span class="built_in">printf</span>(<span class="string">"Enter interest rate:"</span>);</span><br><span class="line"> 	<span class="built_in">scanf</span>(<span class="string">"%d"</span>, &amp;low_rate);</span><br><span class="line"> 	<span class="built_in">printf</span>(<span class="string">"Enter number of years:"</span>);</span><br><span class="line"> 	<span class="built_in">scanf</span>(<span class="string">"%d"</span>, &amp;num_years);</span><br><span class="line"></span><br><span class="line"> 	<span class="comment">//表格标题行</span></span><br><span class="line"> 	<span class="built_in">printf</span>(<span class="string">"\nYears"</span>);</span><br><span class="line"> 	<span class="keyword">for</span>(i = <span class="number">0</span>; i &lt; NUM_RATES; i++)&#123;</span><br><span class="line"> 		<span class="built_in">printf</span>(<span class="string">"%6d%%"</span>, low_rate + i);<span class="comment">//两个%%代表要显示%字符串</span></span><br><span class="line"> 		value[i] = INITIAL_BALANCE;</span><br><span class="line"> 	&#125;</span><br><span class="line"> 	<span class="built_in">printf</span>(<span class="string">"\n"</span>);</span><br><span class="line"> 	<span class="comment">//各个利率下逐年100美金的价值</span></span><br><span class="line"> 	<span class="keyword">for</span>(year = <span class="number">1</span>; year &lt;= num_years; year++)&#123;</span><br><span class="line"> 		<span class="built_in">printf</span>(<span class="string">"%3d    "</span>, year);</span><br><span class="line"> 		<span class="keyword">for</span>(i = <span class="number">0</span>; i &lt; NUM_RATES; i++)&#123;</span><br><span class="line"> 			value[i] += (low_rate+i) / <span class="number">100.0</span> * value[i];</span><br><span class="line"> 			<span class="built_in">printf</span>(<span class="string">"%7.2f"</span>, value[i]);</span><br><span class="line"> 		&#125;</span><br><span class="line"> 		<span class="built_in">printf</span>(<span class="string">"\n"</span>);	</span><br><span class="line"> 	&#125;</span><br><span class="line"> 	return <span class="number">0</span>;</span><br><span class="line"> &#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">$ ./interest                            </span><br><span class="line"> Enter interest rate:5</span><br><span class="line"> Enter number of years:6</span><br><span class="line"></span><br><span class="line"> Years     5%     6%     7%     8%     9%</span><br><span class="line">  1     105.00 106.00 107.00 108.00 109.00</span><br><span class="line">  2     110.25 112.36 114.49 116.64 118.81</span><br><span class="line">  3     115.76 119.10 122.50 125.97 129.50</span><br><span class="line">  4     121.55 126.25 131.08 136.05 141.16</span><br><span class="line">  5     127.63 133.82 140.26 146.93 153.86</span><br><span class="line">  6     134.01 141.85 150.07 158.69 167.71</span><br></pre></td></tr></table></figure>
+<h2 id="8-2-多维数组"><a href="#8-2-多维数组" class="headerlink" title="8.2    多维数组"></a>8.2    多维数组</h2><blockquote>
+<p><strong>语法：</strong><code>m[i][j]</code><br><strong>注意：</strong>不能把<code>m[i][j]</code>写为<code>m[i, j]</code>。c语言把逗号看成是逗号运算符，所以<code>m[i,j]</code>等同于<code>m[j]</code>。<br><strong>地位：</strong>和其它编程语言中的多位数组相比， c语言中的多位数组扮演的角色相对较弱，这主要是因为c语言为存储多维数组提供了更加灵活的方法：指针数组。</p>
+</blockquote>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">define</span> N 10</span></span><br><span class="line"><span class="keyword">float</span> ident[N][N];</span><br><span class="line"><span class="keyword">int</span> row, col;</span><br><span class="line"><span class="keyword">for</span>(row = <span class="number">0</span>; row &lt; N; row++)&#123;</span><br><span class="line">	<span class="keyword">for</span>(col = <span class="number">0</span>; col &lt; N; col++)&#123;</span><br><span class="line">		<span class="keyword">if</span>(row == col)&#123;</span><br><span class="line">			ident[row][col] = <span class="number">1.0</span>;</span><br><span class="line">		&#125;<span class="keyword">else</span>&#123;</span><br><span class="line">			ident[row][col] = <span class="number">0.0</span>;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="8-2-1-多为数组的初始化"><a href="#8-2-1-多为数组的初始化" class="headerlink" title="8.2.1    多为数组的初始化"></a>8.2.1    多为数组的初始化</h3><blockquote>
+<p><strong>说明：</strong>通过嵌套一维初始化式的方式可以产生二维数组的初始化式。<br><strong>规则：</strong>c 语言提供了多种方法来缩写初始化式。</p>
+<ul>
+<li>如果初始化式不大到足以填满整个多位数组，那么数组中剩余的元素会被赋值为0。</li>
+<li>如果内层的列表不大到足以填满数组的一行，那么慈航的剩余元素会被初始化为0。</li>
+<li>可以忽略掉内层的大括号<br><strong>注意：</strong>在多维数组中忽略掉内层的大括号可能很危险，此外省略括号会引起某些编译器产生警告信息。</li>
+</ul>
+</blockquote>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//行数不足</span></span><br><span class="line"><span class="keyword">int</span> m[<span class="number">5</span>][<span class="number">9</span>] = &#123;&#123;<span class="number">1</span>,<span class="number">1</span>,<span class="number">1</span>,<span class="number">1</span>,<span class="number">1</span>,<span class="number">1</span>,<span class="number">1</span>,<span class="number">1</span>,<span class="number">1</span>&#125;,</span><br><span class="line">			   &#123;<span class="number">1</span>,<span class="number">1</span>,<span class="number">1</span>,<span class="number">1</span>,<span class="number">1</span>,<span class="number">1</span>,<span class="number">1</span>,<span class="number">1</span>,<span class="number">1</span>&#125;,</span><br><span class="line">			   &#123;<span class="number">1</span>,<span class="number">1</span>,<span class="number">1</span>,<span class="number">1</span>,<span class="number">1</span>,<span class="number">1</span>,<span class="number">1</span>,<span class="number">1</span>,<span class="number">1</span>&#125;,</span><br><span class="line">			   &#123;<span class="number">1</span>,<span class="number">1</span>,<span class="number">1</span>,<span class="number">1</span>,<span class="number">1</span>,<span class="number">1</span>,<span class="number">1</span>,<span class="number">1</span>,<span class="number">1</span>&#125;&#125;;</span><br><span class="line"><span class="comment">//列数不足</span></span><br><span class="line"><span class="keyword">int</span> m[<span class="number">5</span>][<span class="number">9</span>] = &#123;&#123;<span class="number">1</span>,<span class="number">1</span>,<span class="number">1</span>,<span class="number">1</span>,<span class="number">1</span>,<span class="number">1</span>&#125;,</span><br><span class="line">			   &#123;<span class="number">1</span>,<span class="number">1</span>,<span class="number">1</span>,<span class="number">1</span>,<span class="number">1</span>,<span class="number">1</span>&#125;,</span><br><span class="line">			   &#123;<span class="number">1</span>,<span class="number">1</span>,<span class="number">1</span>,<span class="number">1</span>,<span class="number">1</span>,<span class="number">1</span>&#125;,</span><br><span class="line">			   &#123;<span class="number">1</span>,<span class="number">1</span>,<span class="number">1</span>,<span class="number">1</span>,<span class="number">1</span>,<span class="number">1</span>&#125;,</span><br><span class="line">			   &#123;<span class="number">1</span>,<span class="number">1</span>,<span class="number">1</span>,<span class="number">1</span>,<span class="number">1</span>,<span class="number">1</span>&#125;&#125;;</span><br><span class="line"><span class="comment">//忽略内层的大括号</span></span><br><span class="line"><span class="keyword">int</span> m[<span class="number">5</span>][<span class="number">9</span>] = &#123;<span class="number">1</span>,<span class="number">1</span>,<span class="number">1</span>,<span class="number">1</span>,<span class="number">1</span>,<span class="number">1</span>,<span class="number">1</span>,<span class="number">1</span>,<span class="number">1</span>,</span><br><span class="line">			   <span class="number">1</span>,<span class="number">1</span>,<span class="number">1</span>,<span class="number">1</span>,<span class="number">1</span>,<span class="number">1</span>,<span class="number">1</span>,<span class="number">1</span>,<span class="number">1</span>,</span><br><span class="line">			   <span class="number">1</span>,<span class="number">1</span>,<span class="number">1</span>,<span class="number">1</span>,<span class="number">1</span>,<span class="number">1</span>,<span class="number">1</span>,<span class="number">1</span>,<span class="number">1</span>,</span><br><span class="line">			   <span class="number">1</span>,<span class="number">1</span>,<span class="number">1</span>,<span class="number">1</span>,<span class="number">1</span>,<span class="number">1</span>,<span class="number">1</span>,<span class="number">1</span>,<span class="number">1</span>,</span><br><span class="line">			   <span class="number">1</span>,<span class="number">1</span>,<span class="number">1</span>,<span class="number">1</span>,<span class="number">1</span>,<span class="number">1</span>,<span class="number">1</span>,<span class="number">1</span>,<span class="number">1</span>&#125;;</span><br></pre></td></tr></table></figure>
+<h3 id="8-2-2-常量数组"><a href="#8-2-2-常量数组" class="headerlink" title="8.2.2    常量数组"></a>8.2.2    常量数组</h3><blockquote>
+<p><strong>语法：</strong><code>const 类型 数组名[]</code><br><strong>说明：</strong>程序不应对声明为<code>const</code>的数组进行修改。</p>
+<ul>
+<li>表明程序不会修改数组</li>
+<li>告知不打算修改数组对编译器发现错误是很有帮助的</li>
+</ul>
+</blockquote>
+<h3 id="8-2-3-发牌"><a href="#8-2-3-发牌" class="headerlink" title="8.2.3    发牌"></a>8.2.3    发牌</h3><blockquote>
+<p><strong>相关函数：</strong></p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>函数</th>
+<th>所属库</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>time</td>
+<td>time.h</td>
+<td>返回当前的时间，且这个时间是被编码成单独的数。</td>
+</tr>
+<tr>
+<td>srand</td>
+<td>stdlib.h</td>
+<td>初始化c语言的随机数生成器</td>
+</tr>
+<tr>
+<td>rand</td>
+<td>stdlib.h</td>
+<td>在每次调用时会产生一个显然随机的数</td>
+</tr>
+</tbody>
+</table>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span><br><span class="line"> * Deals a random hand of cards</span><br><span class="line"> */</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdlib.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;time.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> NUM_SUITS 4</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> NUM_RANKS 13</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> TRUE 1</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span>	FALSE 0</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">typedef</span> <span class="keyword">int</span> Bool;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">	Bool in_hand[NUM_SUITS][NUM_RANKS] = &#123;&#123;<span class="number">0</span>&#125;&#125;;</span><br><span class="line">	<span class="keyword">int</span> num_cards, rank, suit;</span><br><span class="line">	<span class="keyword">const</span> <span class="keyword">char</span> rank_code[] = &#123;<span class="string">'2'</span>,<span class="string">'3'</span>,<span class="string">'4'</span>,<span class="string">'5'</span>,<span class="string">'6'</span>,<span class="string">'7'</span>,<span class="string">'8'</span>,<span class="string">'9'</span>,<span class="string">'t'</span>,<span class="string">'j'</span>,<span class="string">'q'</span>,<span class="string">'k'</span>,<span class="string">'a'</span>&#125;;</span><br><span class="line">	<span class="keyword">const</span> <span class="keyword">char</span> suit_code[] = &#123;<span class="string">'c'</span>, <span class="string">'d'</span>, <span class="string">'s'</span>, <span class="string">'h'</span>&#125;;</span><br><span class="line">	srand((unsigned)time(NULL));</span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">"Enter number of cards in hand:"</span>);</span><br><span class="line">	<span class="built_in">scanf</span>(<span class="string">"%d"</span>, &amp;num_cards);</span><br><span class="line">	</span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">"Your hand:"</span>);</span><br><span class="line">	<span class="keyword">while</span>(num_cards &gt; <span class="number">0</span>)&#123;</span><br><span class="line">		suit = rand() % NUM_SUITS;<span class="comment">//检出随机的花面</span></span><br><span class="line">		rank = rand() % NUM_RANKS;<span class="comment">//检出随机的纸牌等级</span></span><br><span class="line">		<span class="comment">//如果某张牌已经发出去过，则不能再发同样的牌，应当重新发</span></span><br><span class="line">		<span class="keyword">if</span>(!in_hand[suit][rank] == TRUE)&#123;</span><br><span class="line">			in_hand[suit][rank] = TRUE;</span><br><span class="line">			num_cards--;</span><br><span class="line">			<span class="built_in">printf</span>(<span class="string">" %c%c"</span>, rank_code[rank], suit_code[suit]);</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">"\n"</span>);</span><br><span class="line">	return <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ ./deal                        </span><br><span class="line"> Enter number of cards <span class="keyword">in</span> hand:10</span><br><span class="line"> Your hand: 5s 6d th 9c 6s qs 7c 9d kh 2d</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/c语言基础/" rel="tag">#c语言基础</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/05/09/BOOK_c语言程序设计－现代方法/7 基本类型/" rel="next" title="7 基本类型">
+                <i class="fa fa-chevron-left"></i> 7 基本类型
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/05/09/BOOK_c语言程序设计－现代方法/9 函数/" rel="prev" title="9 函数">
+                9 函数 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2016/05/09/BOOK_c语言程序设计－现代方法/8 数组/"
+           data-title="8 数组" data-url="http://laputa-er.github.io/2016/05/09/BOOK_c语言程序设计－现代方法/8 数组/">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.gif"
+               alt="Sean" />
+          <p class="site-author-name" itemprop="name">Sean</p>
+          <p class="site-description motion-element" itemprop="description">整理了一批过去一段时间ios相关的笔记，其它的笔记也整理下？源码分享出来？再说吧...反正也只有自己会看吧...</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">200</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">22</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">31</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#8-1-一维数组"><span class="nav-text">8.1    一维数组</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#8-1-1-数组下标"><span class="nav-text">8.1.1    数组下标</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#8-1-2-程序：数列反向"><span class="nav-text">8.1.2    程序：数列反向</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#8-1-3-数组初始化"><span class="nav-text">8.1.3    数组初始化</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#8-1-4-程序：检查数中重复出现的数字"><span class="nav-text">8.1.4    程序：检查数中重复出现的数字</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#8-1-5-对数组使用sizeof运算符"><span class="nav-text">8.1.5    对数组使用sizeof运算符</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#8-1-6-程序：计算利息"><span class="nav-text">8.1.6    程序：计算利息</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#8-2-多维数组"><span class="nav-text">8.2    多维数组</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#8-2-1-多为数组的初始化"><span class="nav-text">8.2.1    多为数组的初始化</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#8-2-2-常量数组"><span class="nav-text">8.2.2    常量数组</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#8-2-3-发牌"><span class="nav-text">8.2.3    发牌</span></a></li></ol></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Sean</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"lapuda-er"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+    <script src="/vendors/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
+    <script src="/js/src/hook-duoshuo.js"></script>
+  
+
+
+
+
+
+
+  
+  
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length == 0) {
+       search_path = "search.xml";
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    function proceedsearch() {
+      $("body").append('<div class="popoverlay">').css('overflow', 'hidden');
+      $('.popup').toggle();
+
+    }
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+    'use strict';
+    $.ajax({
+        url: path,
+        dataType: "xml",
+        async: true,
+        success: function( xmlResponse ) {
+            // get the contents from search data
+            isfetched = true;
+            $('.popup').detach().appendTo('.header-inner');
+            var datas = $( "entry", xmlResponse ).map(function() {
+                return {
+                    title: $( "title", this ).text(),
+                    content: $("content",this).text(),
+                    url: $( "url" , this).text()
+                };
+            }).get();
+            var $input = document.getElementById(search_id);
+            var $resultContent = document.getElementById(content_id);
+            $input.addEventListener('input', function(){
+                var matchcounts = 0;
+                var str='<ul class=\"search-result-list\">';
+                var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+                $resultContent.innerHTML = "";
+                if (this.value.trim().length > 1) {
+                // perform local searching
+                datas.forEach(function(data) {
+                    var isMatch = true;
+                    var content_index = [];
+                    var data_title = data.title.trim().toLowerCase();
+                    var data_content = data.content.trim().replace(/<[^>]+>/g,"").toLowerCase();
+                    var data_url = data.url;
+                    var index_title = -1;
+                    var index_content = -1;
+                    var first_occur = -1;
+                    // only match artiles with not empty titles and contents
+                    if(data_title != '' && data_content != '') {
+                        keywords.forEach(function(keyword, i) {
+                            index_title = data_title.indexOf(keyword);
+                            index_content = data_content.indexOf(keyword);
+                            if( index_title < 0 && index_content < 0 ){
+                                isMatch = false;
+                            } else {
+                                if (index_content < 0) {
+                                    index_content = 0;
+                                }
+                                if (i == 0) {
+                                    first_occur = index_content;
+                                }
+                            }
+                        });
+                    }
+                    // show search results
+                    if (isMatch) {
+                        matchcounts += 1;
+                        str += "<li><a href='"+ data_url +"' class='search-result-title'>"+ data_title +"</a>";
+                        var content = data.content.trim().replace(/<[^>]+>/g,"");
+                        if (first_occur >= 0) {
+                            // cut out 100 characters
+                            var start = first_occur - 20;
+                            var end = first_occur + 80;
+                            if(start < 0){
+                                start = 0;
+                            }
+                            if(start == 0){
+                                end = 50;
+                            }
+                            if(end > content.length){
+                                end = content.length;
+                            }
+                            var match_content = content.substring(start, end);
+                            // highlight all keywords
+                            keywords.forEach(function(keyword){
+                                var regS = new RegExp(keyword, "gi");
+                                match_content = match_content.replace(regS, "<b class=\"search-keyword\">"+keyword+"</b>");
+                            });
+
+                            str += "<p class=\"search-result\">" + match_content +"...</p>"
+                        }
+                        str += "</li>";
+                    }
+                })};
+                str += "</ul>";
+                if (matchcounts == 0) { str = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>' }
+                if (keywords == "") { str = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>' }
+                $resultContent.innerHTML = str;
+            });
+            proceedsearch();
+        }
+    });}
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched == false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+
+    });
+
+    $('.popup-btn-close').click(function(e){
+      $('.popup').hide();
+      $(".popoverlay").remove();
+      $('body').css('overflow', '');
+    });
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+  </script>
+
+
+  
+
+  
+
+  
+
+</body>
+</html>

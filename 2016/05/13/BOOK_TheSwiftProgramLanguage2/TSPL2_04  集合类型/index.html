@@ -1,0 +1,1319 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="swift语言," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1" />
+
+
+
+
+
+
+<meta name="description" content="说明：Array、Sets、Dictionary(Swift将这3中类型使纤维范型集合)
+
+
+
+
+集合类型
+说明
+
+
+
+
+数组（Array）
+有序数据集合
+
+
+集合（Sets）
+无序无重复数据的集
+
+
+字典（Dictionaries）
+无序的键值对的值
+
+
+
+
+4.1    集合的可变性
+说明：集合的可变性依赖于声明为常量或变量。
+
+
+
+
+声明
+可变性
+
+
+
+
+常量（let）
+大小不可改变">
+<meta property="og:type" content="article">
+<meta property="og:title" content="4 集合类型">
+<meta property="og:url" content="http://laputa-er.github.io/2016/05/13/BOOK_TheSwiftProgramLanguage2/TSPL2_04  集合类型/index.html">
+<meta property="og:site_name" content="Sean">
+<meta property="og:description" content="说明：Array、Sets、Dictionary(Swift将这3中类型使纤维范型集合)
+
+
+
+
+集合类型
+说明
+
+
+
+
+数组（Array）
+有序数据集合
+
+
+集合（Sets）
+无序无重复数据的集
+
+
+字典（Dictionaries）
+无序的键值对的值
+
+
+
+
+4.1    集合的可变性
+说明：集合的可变性依赖于声明为常量或变量。
+
+
+
+
+声明
+可变性
+
+
+
+
+常量（let）
+大小不可改变">
+<meta property="og:image" content="http://o6ul1xz4z.bkt.clouddn.com/img/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202015-11-25%20%E4%B8%8B%E5%8D%8811.16.16.png">
+<meta property="og:image" content="http://o6ul1xz4z.bkt.clouddn.com/img/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202015-11-29%20%E4%B8%8B%E5%8D%884.04.29.png">
+<meta property="og:updated_time" content="2017-02-13T04:23:03.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="4 集合类型">
+<meta name="twitter:description" content="说明：Array、Sets、Dictionary(Swift将这3中类型使纤维范型集合)
+
+
+
+
+集合类型
+说明
+
+
+
+
+数组（Array）
+有序数据集合
+
+
+集合（Sets）
+无序无重复数据的集
+
+
+字典（Dictionaries）
+无序的键值对的值
+
+
+
+
+4.1    集合的可变性
+说明：集合的可变性依赖于声明为常量或变量。
+
+
+
+
+声明
+可变性
+
+
+
+
+常量（let）
+大小不可改变">
+<meta name="twitter:image" content="http://o6ul1xz4z.bkt.clouddn.com/img/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202015-11-25%20%E4%B8%8B%E5%8D%8811.16.16.png">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 0,
+      author: '博主'
+    }
+  };
+</script>
+
+
+
+
+  <link rel="canonical" href="http://laputa-er.github.io/2016/05/13/BOOK_TheSwiftProgramLanguage2/TSPL2_04  集合类型/"/>
+
+  <title> 4 集合类型 | Sean </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//hm.baidu.com/hm.js?898688f51c5a3d6b37dd23e04441e5bd";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">Sean</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">笔记分享</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup">
+ <span class="search-icon fa fa-search"></span>
+ <input type="text" id="local-search-input">
+ <div id="local-search-result"></div>
+ <span class="popup-btn-close">close</span>
+</div>
+
+
+    </div>
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                4 集合类型
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-05-13T19:33:00+08:00" content="2016-05-13">
+              2016-05-13
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/The-Swift-Program-Language-2/" itemprop="url" rel="index">
+                    <span itemprop="name">The Swift Program Language 2</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/05/13/BOOK_TheSwiftProgramLanguage2/TSPL2_04  集合类型/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/05/13/BOOK_TheSwiftProgramLanguage2/TSPL2_04  集合类型/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <blockquote>
+<p><strong>说明：</strong><code>Array、Sets、Dictionary</code>(Swift将这3中类型使纤维范型集合)</p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>集合类型</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>数组（Array）</td>
+<td>有序数据集合</td>
+</tr>
+<tr>
+<td>集合（Sets）</td>
+<td>无序无重复数据的集</td>
+</tr>
+<tr>
+<td>字典（Dictionaries）</td>
+<td>无序的键值对的值</td>
+</tr>
+</tbody>
+</table>
+<p><img src="http://o6ul1xz4z.bkt.clouddn.com/img/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202015-11-25%20%E4%B8%8B%E5%8D%8811.16.16.png" alt="Alt text"></p>
+<h2 id="4-1-集合的可变性"><a href="#4-1-集合的可变性" class="headerlink" title="4.1    集合的可变性"></a>4.1    集合的可变性</h2><blockquote>
+<p><strong>说明：</strong>集合的可变性依赖于声明为常量或变量。</p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>声明</th>
+<th>可变性</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>常量（<code>let</code>）</td>
+<td>大小不可改变</td>
+</tr>
+<tr>
+<td>变量（<code>var</code>）</td>
+<td>可以添加或移除集合中的项</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p><strong>技巧：</strong>不可变的集合性能更好。</p>
+</blockquote>
+<h2 id="4-2-数组"><a href="#4-2-数组" class="headerlink" title="4.2 数组"></a>4.2 数组</h2><blockquote>
+<p><strong>扩展：</strong>Swift中的<code>Array</code>可以桥接到Foundation中的<code>NSArray</code>。</p>
+</blockquote>
+<h3 id="4-2-1-创建数组"><a href="#4-2-1-创建数组" class="headerlink" title="4.2.1 创建数组"></a>4.2.1 创建数组</h3><blockquote>
+<p><strong>说明：</strong>有3种声明数组的形式</p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>形式</th>
+<th>说明</th>
+<th>备注</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>Array&lt;ElementType&gt;(count: Int, repeatedValue)</code></td>
+<td>调用数组的<code>构造器</code></td>
+<td>如果不提供参数，则会调用另一个构造器（创建空数组）</td>
+</tr>
+</tbody>
+</table>
+<p>|<code>[ElementType]（count: Int, repeatedValue）</code>|调用<code>构造器</code>的方式|另一种调用构造器的方式，和上面等价，更常用|<br>|<code>[Element, ...]</code>|数组字面量|<code>[]</code>表示空数组|</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 声明数组：形式一（构造器，不常用）</span></span><br><span class="line"><span class="keyword">var</span> anotherInts = <span class="type">Array</span>&lt;<span class="type">Int</span>&gt;(<span class="built_in">count</span>: <span class="number">3</span>, repeatedValue: <span class="number">5</span>)</span><br><span class="line"><span class="keyword">var</span> anotherInts2 = <span class="type">Array</span>(<span class="built_in">count</span>: <span class="number">3</span>, repeatedValue: <span class="number">5</span>);</span><br><span class="line"><span class="built_in">print</span>(<span class="string">"someInts is of type [Int] with \(someInts.count) items."</span>)</span><br><span class="line"><span class="comment">// 声明数组：形式二（构造器）</span></span><br><span class="line"><span class="keyword">var</span> someInts = [<span class="type">Int</span>]()</span><br><span class="line"><span class="comment">// 声明数组：形式三（数组字面量）</span></span><br><span class="line"><span class="keyword">var</span> shoppingList1: [<span class="type">String</span>] = [<span class="string">"Eggs"</span>, <span class="string">"Milk"</span>]<span class="comment">// 指定类型</span></span><br><span class="line"><span class="keyword">var</span> shoppingList2 = [<span class="string">"Eggs"</span>, <span class="string">"Milk"</span>]<span class="comment">// 类型推断</span></span><br></pre></td></tr></table></figure>
+<h3 id="4-2-2-空数组"><a href="#4-2-2-空数组" class="headerlink" title="4.2.2 空数组"></a>4.2.2 空数组</h3><blockquote>
+<p><strong>说明：</strong>3种方式（对应数组声明的3种方式）</p>
+<ol>
+<li><code>Array[ElementType]（）</code></li>
+<li><code>[ElementType] ()</code></li>
+<li><code>[]</code>(空数组字面量无法推断类型，声明常量或变量时需指定类型)</li>
+</ol>
+</blockquote>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 空数组</span></span><br><span class="line"><span class="keyword">var</span> emptyArray1 = <span class="type">Array</span>&lt;<span class="type">Int</span>&gt;()</span><br><span class="line"><span class="keyword">var</span> emptyArray2 = [<span class="type">Int</span>]()</span><br><span class="line"><span class="keyword">var</span> emptyArray3: [<span class="type">Int</span>] = []</span><br></pre></td></tr></table></figure>
+<h3 id="4-2-3-数组相加"><a href="#4-2-3-数组相加" class="headerlink" title="4.2.3 数组相加"></a>4.2.3 数组相加</h3><blockquote>
+<p><strong>说明：</strong><code>+</code>、<code>+=</code>在数组之间起到拼接的作用。</p>
+</blockquote>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> threeDoubles = [<span class="type">Double</span>](<span class="built_in">count</span>:<span class="number">3</span>, repeatedValue: <span class="number">0</span>)<span class="comment">// [0.0, 0.0, 0.0]</span></span><br><span class="line"><span class="keyword">let</span> anotherThreeDoubles = <span class="type">Array</span>(<span class="built_in">count</span>: <span class="number">3</span>, repeatedValue: <span class="number">2.5</span>)<span class="comment">// [2.5, 2.5, 2.5]</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// +</span></span><br><span class="line"><span class="keyword">var</span> sixDouble = threeDoubles + anotherThreeDoubles</span><br><span class="line"></span><br><span class="line"><span class="comment">// +=</span></span><br><span class="line">sixDouble += [<span class="number">3</span>, <span class="number">3</span>]<span class="comment">// [0, 0, 0, 2.5, 2.5, 2.5, 3, 3]</span></span><br></pre></td></tr></table></figure>
+<h3 id="4-2-4-数组字面量"><a href="#4-2-4-数组字面量" class="headerlink" title="4.2.4 数组字面量"></a>4.2.4 数组字面量</h3><blockquote>
+<p><strong>语法：</strong>一系列由<code>,</code>分割并由<code>[]</code>包含的数值。</p>
+<ul>
+<li>只能拥有相同类型值</li>
+<li>当数组不为<code>[]</code>的时候，不必把数组的类型定义清楚</li>
+</ul>
+</blockquote>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> shoppingList = [<span class="string">"Eggs"</span>, <span class="string">"Milk"</span>]</span><br></pre></td></tr></table></figure>
+<h3 id="4-2-5-属性和方法（访问和修改数组）"><a href="#4-2-5-属性和方法（访问和修改数组）" class="headerlink" title="4.2.5 属性和方法（访问和修改数组）"></a>4.2.5 属性和方法（访问和修改数组）</h3><h4 id="下标"><a href="#下标" class="headerlink" title="下标"></a>下标</h4><blockquote>
+<p><strong>说明：</strong><code>arr[下标或下标区间]</code></p>
+<ul>
+<li>可以通过<code>下标</code>(<code>下标区间</code>)改变某个(些)已有索引值对应的数据项（<code>下标</code>或<code>下标区间</code>不能超过数组的下标范围）</li>
+<li><code>下标区间</code>中<code>下标</code>的数量可以和用来替换其对应的数据项的新数据项数量不同</li>
+</ul>
+</blockquote>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> shoppingList = [<span class="string">"Eggs"</span>, <span class="string">"Milk"</span>, <span class="string">"Maple Syrup"</span>, <span class="string">"Flour"</span>]<span class="comment">// 0...3</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 将前3项（0, 1, 2）替换为 ["Bananas", "Apples"]</span></span><br><span class="line">shoppingList[<span class="number">0</span>...<span class="number">2</span>] = [<span class="string">"Bananas"</span>, <span class="string">"Apples"</span>]<span class="comment">// ["Bananas", "Apples", "Flour"]</span></span><br></pre></td></tr></table></figure>
+<h4 id="count属性"><a href="#count属性" class="headerlink" title="count属性"></a>count属性</h4><blockquote>
+<p><strong>类型：</strong><code>Int</code><br><strong>说明：</strong>只读属性，用来获取数组中的数据项数量。</p>
+</blockquote>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> shoppingList = [<span class="string">"Eggs"</span>, <span class="string">"Milk"</span>]</span><br><span class="line"><span class="comment">// count</span></span><br><span class="line"><span class="built_in">print</span>(<span class="string">"The shopping list contains \(shoppingList.count) items."</span>)</span><br></pre></td></tr></table></figure>
+<h4 id="isEmpty属性"><a href="#isEmpty属性" class="headerlink" title="isEmpty属性"></a>isEmpty属性</h4><blockquote>
+<p><strong>类型：</strong><code>Bool</code><br><strong>说明：</strong>用来判断数组是否为空。<br><strong>技巧：</strong>可以作为检查<code>count</code>属性的值是否为0的捷径。</p>
+</blockquote>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 字面量</span></span><br><span class="line"><span class="keyword">var</span> shoppingList = [<span class="string">"Eggs"</span>, <span class="string">"Milk"</span>]</span><br><span class="line"><span class="keyword">if</span> shoppingList.isEmpty &#123;</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">"The shopping list is empty."</span>)</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">else</span> &#123;</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">"The shopping list is not empty."</span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="append方法"><a href="#append方法" class="headerlink" title="append方法"></a>append方法</h4><blockquote>
+<p><strong>说明：</strong>在数组后面添加新的数据项。<br><strong>原型：</strong><code>String类型的实例方法</code></p>
+</blockquote>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&gt;<span class="comment">/**</span><br><span class="line">&gt;* @param &#123;ElementType&#125; newElement 要被添加的数据项</span><br><span class="line">&gt;*/</span></span><br><span class="line">&gt;<span class="function"><span class="keyword">func</span> <span class="title">append</span><span class="params">(newElement: ElementType)</span></span> -&gt; <span class="type">Void</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> shoppingList = [<span class="string">"Eggs"</span>, <span class="string">"Milk"</span>]</span><br><span class="line">shoppingList.append(<span class="string">"Flour"</span>)<span class="comment">// ["Eggs", "Milk", "Flour"]</span></span><br></pre></td></tr></table></figure>
+<h4 id="insert方法"><a href="#insert方法" class="headerlink" title="insert方法"></a>insert方法</h4><blockquote>
+<p><strong>说明：</strong>在某个具体索引项之前添加数据项。<br><strong>原型：</strong><code>String类型的实例方法</code></p>
+</blockquote>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&gt;<span class="comment">/**</span><br><span class="line">&gt;* @param &#123;ElementType&#125; newElement 要插入的数据项</span><br><span class="line">&gt;* @param &#123;Int&#125; atIndex 下标（插入的位置）</span><br><span class="line">&gt;*/</span></span><br><span class="line">&gt;<span class="function"><span class="keyword">func</span> <span class="title">insert</span><span class="params">(newElement: String, atIndex: Int)</span></span> -&gt; <span class="type">Void</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">shoppingList.insert(<span class="string">"Flour"</span>, atIndex: <span class="number">0</span>)</span><br></pre></td></tr></table></figure>
+<h4 id="removeAtIndex方法"><a href="#removeAtIndex方法" class="headerlink" title="removeAtIndex方法"></a>removeAtIndex方法</h4><blockquote>
+<p><strong>说明：</strong>移除数组中的某一项。<br><strong>原型：</strong><code>String类型的实例方法</code></p>
+</blockquote>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&gt;<span class="comment">/**</span><br><span class="line">&gt;* @param &#123;Int&#125; index 要删除的数据项的下标</span><br><span class="line">&gt;* @return &#123;ElementType&#125; 要删除的数据项的类型</span><br><span class="line">&gt;*/</span></span><br><span class="line">&gt;<span class="function"><span class="keyword">func</span> <span class="title">removeAtIndex</span><span class="params">(index: Int)</span></span> -&gt;<span class="type">ElementType</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> shoppingList = [<span class="string">"Eggs"</span>, <span class="string">"Milk"</span>, <span class="string">"Maple Syrup"</span>]</span><br><span class="line"><span class="comment">// 删除第一项</span></span><br><span class="line">shoppingList.removeAtIndex(<span class="number">0</span>)<span class="comment">// "flour"</span></span><br></pre></td></tr></table></figure>
+<h4 id="removeFirst函数"><a href="#removeFirst函数" class="headerlink" title="removeFirst函数"></a>removeFirst函数</h4><blockquote>
+<p><strong>说明：</strong>删除第一项<br><strong>原型：</strong><code>String类型的实例方法</code></p>
+</blockquote>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&gt;<span class="comment">/**</span><br><span class="line">&gt;* @return &#123;ElementType&#125; 删除的数组项</span><br><span class="line">&gt;*/</span></span><br><span class="line">&gt;<span class="function"><span class="keyword">func</span> <span class="title">removeFirst</span><span class="params">()</span></span> -&gt; <span class="type">ElementType</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> shoppingList = [<span class="string">"Eggs"</span>, <span class="string">"Milk"</span>, <span class="string">"Maple Syrup"</span>]</span><br><span class="line"><span class="comment">// 删除第一项</span></span><br><span class="line">shoppingList.removeFirst()<span class="comment">// "Eggs"</span></span><br></pre></td></tr></table></figure>
+<h4 id="removeLast函数"><a href="#removeLast函数" class="headerlink" title="removeLast函数"></a>removeLast函数</h4><blockquote>
+<p><strong>说明：</strong>删除最后一项<br><strong>原型：</strong><code>String类型的实例方法</code></p>
+</blockquote>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&gt;<span class="comment">/**</span><br><span class="line">&gt;* @return &#123;ElementType&#125; 删除的数组项</span><br><span class="line">&gt;*/</span></span><br><span class="line">&gt;<span class="function"><span class="keyword">func</span> <span class="title">removeLast</span><span class="params">()</span></span> -&gt; <span class="type">ElementType</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> shoppingList = [<span class="string">"Eggs"</span>, <span class="string">"Milk"</span>, <span class="string">"Maple Syrup"</span>]</span><br><span class="line"><span class="comment">// 删除第一项</span></span><br><span class="line">shoppingList.removeLast()<span class="comment">// "Maple Syrup"</span></span><br></pre></td></tr></table></figure>
+<h3 id="4-2-6-数组遍历"><a href="#4-2-6-数组遍历" class="headerlink" title="4.2.6 数组遍历"></a>4.2.6 数组遍历</h3><blockquote>
+<p><strong>说明：</strong>有两种方式</p>
+<ul>
+<li><code>for-in</code>：只在遍历时获得元素项</li>
+<li><code>for-in</code>配合<code>enumerate</code>：遍历时获得元素项和对应下标</li>
+</ul>
+</blockquote>
+<h4 id="enumerate方法"><a href="#enumerate方法" class="headerlink" title="enumerate方法"></a>enumerate方法</h4><blockquote>
+<p><strong>说明：</strong>配合<code>for-in</code>使用，返回一个由每一个数据项索引和数据值组成的元组。</p>
+</blockquote>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// for-in</span></span><br><span class="line"><span class="keyword">var</span> shoppingList = [<span class="string">"Eggs"</span>, <span class="string">"Milk"</span>, <span class="string">"Maple Syrup"</span>]</span><br><span class="line"><span class="keyword">for</span> item <span class="keyword">in</span> shoppingList &#123;</span><br><span class="line">    <span class="built_in">print</span>(item)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// enumerate属性</span></span><br><span class="line"><span class="keyword">for</span> (index, value) <span class="keyword">in</span> shoppingList.<span class="built_in">enumerate</span>() &#123;</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">"Item \(String(index + 1)): \(value)"</span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="4-3-集合"><a href="#4-3-集合" class="headerlink" title="4.3    集合"></a>4.3    集合</h2><blockquote>
+<p><strong>关键字：</strong><code>Set</code></p>
+<ul>
+<li>元素类型相同</li>
+<li>没有确定顺序</li>
+<li>每个元素只出现一次</li>
+</ul>
+<p><strong>扩展：</strong>Swift中的<code>Set</code>类型被桥接到<code>Foundation</code>中的<code>NSSet</code>类。</p>
+</blockquote>
+<h3 id="4-3-1-集合类型的哈希值"><a href="#4-3-1-集合类型的哈希值" class="headerlink" title="4.3.1    集合类型的哈希值"></a>4.3.1    集合类型的哈希值</h3><blockquote>
+<p><strong>说明：</strong>存储在<code>Set</code>中的类型必须是可<code>哈希化</code>的。</p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>值类型（可哈细化）</th>
+<th>条件</th>
+<th>备注</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>String</code>、<code>Int</code>、<code>Double</code>、<code>Bool</code></td>
+<td>无</td>
+<td>所有基本类型（既可以作为值，也可以作为键）</td>
+</tr>
+<tr>
+<td><code>enum</code>类型值</td>
+<td>没有关联值</td>
+</tr>
+<tr>
+<td>自定义类型</td>
+<td>实现<code>Hashable</code>协议（符合<code>Equatable</code>协议）</td>
+<td><code>1.</code>需要提供一个类型为<code>Int</code>的可读属性<code>hashValue</code>；<code>2.</code>提供一个是否相等运算符<code>==</code>的实现</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p><strong>注意：</strong>Hashable协议的<code>==</code>实现必须满足三种情况</p>
+<ul>
+<li>自反性：<code>a == a</code></li>
+<li>对称性：<code>a == b</code>意味着<code>b == a</code></li>
+<li>传递性：<code>a == b</code> &amp;&amp; <code>b == c</code>意味着<code>a == c</code></li>
+</ul>
+</blockquote>
+<h3 id="4-3-2-声明集合类型"><a href="#4-3-2-声明集合类型" class="headerlink" title="4.3.2    声明集合类型"></a>4.3.2    声明集合类型</h3><blockquote>
+<p><strong>说明：</strong>有2种类型</p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>形式</th>
+<th>说明</th>
+<th>备注</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>Set&lt;ElementType&gt;()</code></td>
+<td>调用构造器</td>
+<td>没有类似<code>[ElementType] ()</code>的简化形式</td>
+</tr>
+<tr>
+<td><code>Set()</code></td>
+<td>调用构造器</td>
+<td>必要条件是声明的变量或常量不仅制定了<code>Set</code>，而且明确了<code>&lt;ElementType&gt;</code></td>
+</tr>
+<tr>
+<td><code>[Element, ...]</code></td>
+<td>字面量</td>
+<td>需要明确指定<code>标记名:Set&lt;ElementType&gt;</code>，其中<code>&lt;ElementType&gt;</code>在集合字面量不是<code>[]</code>的情况下可以省略（类型推断）</td>
+</tr>
+</tbody>
+</table>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 创建空Set（形式1）</span></span><br><span class="line"><span class="keyword">var</span> letters = <span class="type">Set</span>&lt;<span class="type">Character</span>&gt;()</span><br><span class="line"><span class="built_in">print</span>(<span class="string">"letters is of type Set&lt;Character&gt; with \(letters.count) items."</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment">// 字面量（形式2）</span></span><br><span class="line"><span class="keyword">var</span> favoriteGenres: <span class="type">Set</span>&lt;<span class="type">String</span>&gt; = [<span class="string">"Rock"</span>, <span class="string">"Classical"</span>, <span class="string">"Hip hop"</span>]</span><br></pre></td></tr></table></figure>
+<h3 id="4-3-3-创建和构造一个空的集合"><a href="#4-3-3-创建和构造一个空的集合" class="headerlink" title="4.3.3    创建和构造一个空的集合"></a>4.3.3    创建和构造一个空的集合</h3><blockquote>
+<p><strong>说明：</strong>2种形式（对应两种声明方式）</p>
+<ul>
+<li><code>Set&lt;ElementType&gt;()</code></li>
+<li><code>Set()</code></li>
+<li><code>[]</code>(无法进行类型推断，需要指定<code>ElementType</code>)</li>
+</ul>
+</blockquote>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 形式1</span></span><br><span class="line"><span class="keyword">var</span> emptySet1: <span class="type">Set</span>&lt;<span class="type">String</span>&gt; = []</span><br><span class="line"><span class="comment">// 形式2</span></span><br><span class="line"><span class="keyword">var</span> emptySet2: <span class="type">Set</span>&lt;<span class="type">String</span>&gt; = <span class="type">Set</span>()</span><br><span class="line"><span class="comment">// 形式3</span></span><br><span class="line"><span class="keyword">var</span> emptySet3: <span class="type">Set</span> = <span class="type">Set</span>&lt;<span class="type">String</span>&gt;()</span><br></pre></td></tr></table></figure>
+<h3 id="4-3-4-用数组字面量创建集合"><a href="#4-3-4-用数组字面量创建集合" class="headerlink" title="4.3.4    用数组字面量创建集合"></a>4.3.4    用数组字面量创建集合</h3><blockquote>
+<p><strong>注意：</strong>对应的常量或变量必须指定了<code>Set</code>类型，否则会被默认为<code>Array</code>。</p>
+</blockquote>
+<h3 id="4-3-5-属性和方法（访问和修改一个集合）"><a href="#4-3-5-属性和方法（访问和修改一个集合）" class="headerlink" title="4.3.5    属性和方法（访问和修改一个集合）"></a>4.3.5    属性和方法（访问和修改一个集合）</h3><h4 id="count属性-1"><a href="#count属性-1" class="headerlink" title="count属性"></a>count属性</h4><blockquote>
+<p><strong>类型：</strong><code>Int</code><br><strong>说明：</strong>只读属性，用来获取<code>Set</code>中的数据项数量。</p>
+</blockquote>
+<h4 id="isEmpty属性-1"><a href="#isEmpty属性-1" class="headerlink" title="isEmpty属性"></a>isEmpty属性</h4><blockquote>
+<p><strong>类型：</strong><code>Bool</code><br><strong>说明：</strong>用来判断数组是否为空。<br><strong>技巧：</strong>可以作为检查<code>count</code>属性的值是否为0的捷径。</p>
+</blockquote>
+<h4 id="insert方法-1"><a href="#insert方法-1" class="headerlink" title="insert方法"></a>insert方法</h4><blockquote>
+<p><strong>说明：</strong>在<code>Set</code>中插入一个元素。<br><strong>原型：</strong><code>Set类型的实例方法</code></p>
+</blockquote>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&gt;<span class="comment">/**</span><br><span class="line">&gt;* @param &#123;Hashable&#125; member 新数据项</span><br><span class="line">&gt;*/</span></span><br><span class="line">&gt;<span class="function"><span class="keyword">func</span> <span class="title">insert</span><span class="params">(member: Hashable)</span></span> -&gt; <span class="type">Void</span></span><br></pre></td></tr></table></figure>
+<h4 id="remove方法"><a href="#remove方法" class="headerlink" title="remove方法"></a>remove方法</h4><blockquote>
+<p><strong>说明：</strong>移除一个数据项<br><strong>原型：</strong><code>Set类型的实例方法</code></p>
+</blockquote>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&gt;<span class="comment">/**</span><br><span class="line">&gt;* @param &#123;Hashable&#125; member 要移除的数据项的键</span><br><span class="line">&gt;* @return &#123;Hashable?&#125; 移除的数据项</span><br><span class="line">&gt;*/</span></span><br><span class="line">&gt;<span class="function"><span class="keyword">func</span> <span class="title">remove</span><span class="params">(member: Hashable)</span></span> -&gt; <span class="type">Hashable</span>?</span><br></pre></td></tr></table></figure>
+<h4 id="contain方法"><a href="#contain方法" class="headerlink" title="contain方法"></a>contain方法</h4><blockquote>
+<p><strong>说明：</strong>检查<code>Set</code>中是否包含一个特定的值。<br><strong>原型：</strong><code>Set类型的实例方法</code></p>
+</blockquote>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&gt;<span class="comment">/**</span><br><span class="line">&gt;* @param &#123;Hashable&#125; member 数据项值</span><br><span class="line">&gt;* @return &#123;Bool&#125; 是否包含 </span><br><span class="line">&gt;*/</span></span><br><span class="line">&gt;<span class="function"><span class="keyword">func</span> <span class="title">contains</span><span class="params">(member: Hashable)</span></span> -&gt; <span class="type">Bool</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 创建空Set（形式1）</span></span><br><span class="line"><span class="keyword">var</span> letters = <span class="type">Set</span>&lt;<span class="type">Character</span>&gt;()</span><br><span class="line"><span class="built_in">print</span>(<span class="string">"letters is of type Set&lt;Character&gt; with \(letters.count) items."</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment">// 空Set</span></span><br><span class="line"><span class="comment">// 形式1</span></span><br><span class="line"><span class="keyword">var</span> emptySet1: <span class="type">Set</span>&lt;<span class="type">String</span>&gt; = []</span><br><span class="line"><span class="comment">// 形式2</span></span><br><span class="line"><span class="keyword">var</span> emptySet2: <span class="type">Set</span>&lt;<span class="type">String</span>&gt; = <span class="type">Set</span>()</span><br><span class="line"><span class="comment">// 形式3</span></span><br><span class="line"><span class="keyword">var</span> emptySet3: <span class="type">Set</span> = <span class="type">Set</span>&lt;<span class="type">String</span>&gt;()</span><br><span class="line"><span class="comment">// 清空Set</span></span><br><span class="line">letters = []</span><br><span class="line"></span><br><span class="line"><span class="comment">// 字面量（形式2）</span></span><br><span class="line"><span class="keyword">var</span> favoriteGenres: <span class="type">Set</span>&lt;<span class="type">String</span>&gt; = [<span class="string">"Rock"</span>, <span class="string">"Classical"</span>, <span class="string">"Hip hop"</span>]</span><br><span class="line"><span class="comment">// count</span></span><br><span class="line"><span class="built_in">print</span>(<span class="string">"I have \(favoriteGenres.count) favorite music genres."</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment">// isEmpty</span></span><br><span class="line"><span class="keyword">if</span> favoriteGenres.isEmpty &#123;</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">"As far as music goes, I'm not picky."</span>)</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">else</span> &#123;</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">"I have particular music preferences."</span>)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// insert</span></span><br><span class="line">favoriteGenres.insert(<span class="string">"Jazz"</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment">// remove</span></span><br><span class="line"><span class="keyword">if</span> <span class="keyword">let</span> removedGenre = favoriteGenres.remove(<span class="string">"Rock"</span>) &#123;</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">"\(removedGenre) ? I'm over it."</span>)</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">else</span> &#123;</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">"I never much cared for thar."</span>)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// contains</span></span><br><span class="line"><span class="keyword">if</span> favoriteGenres.<span class="built_in">contains</span>(<span class="string">"Funk"</span>) &#123;</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">"I get up on the good foot."</span>)</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">else</span> &#123;</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">"It's too funky here."</span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="4-3-6-遍历一个集合"><a href="#4-3-6-遍历一个集合" class="headerlink" title="4.3.6    遍历一个集合"></a>4.3.6    遍历一个集合</h3><blockquote>
+<p><strong>说明：</strong>如果不做任何处理，使用<code>for-in</code>遍历时<code>Set</code>时并没有确定的顺序。</p>
+</blockquote>
+<h4 id="sort方法"><a href="#sort方法" class="headerlink" title="sort方法"></a>sort方法</h4><blockquote>
+<p><strong>说明：</strong>根据提供的序列返回一个有序<code>Set</code>。<br><strong>原型：</strong><code>Set类型的实例方法</code></p>
+</blockquote>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&gt;<span class="comment">/**</span><br><span class="line">&gt;* @return &#123;Set&#125; 带顺序的Set</span><br><span class="line">&gt;*/</span></span><br><span class="line">&gt;<span class="function"><span class="keyword">func</span> <span class="title">sort</span><span class="params">()</span></span> -&gt; <span class="type">Set</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> favoriteGenres: <span class="type">Set</span>&lt;<span class="type">String</span>&gt; = [<span class="string">"Rock"</span>, <span class="string">"Classical"</span>, <span class="string">"Hip hop"</span>]</span><br><span class="line"><span class="comment">// 遍历</span></span><br><span class="line"><span class="keyword">for</span> genre <span class="keyword">in</span> favoriteGenres &#123;</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">"\(genre)"</span>)</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// sort</span></span><br><span class="line"><span class="keyword">for</span> genre <span class="keyword">in</span> favoriteGenres.<span class="built_in">sort</span>() &#123;</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">"\(genre)"</span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="4-3-7-完成集合操作"><a href="#4-3-7-完成集合操作" class="headerlink" title="4.3.7    完成集合操作"></a>4.3.7    完成集合操作</h3><h4 id="4-3-7-1-基本集合操作"><a href="#4-3-7-1-基本集合操作" class="headerlink" title="4.3.7.1    基本集合操作"></a>4.3.7.1    基本集合操作</h4><blockquote>
+<p><strong>说明：</strong>交、差、并、补</p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>集合操作</th>
+<th>方法</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>交</td>
+<td>intersect</td>
+</tr>
+<tr>
+<td>差</td>
+<td>exclusive</td>
+</tr>
+<tr>
+<td>并</td>
+<td>union</td>
+</tr>
+<tr>
+<td>补</td>
+<td>subtract</td>
+</tr>
+</tbody>
+</table>
+<p><img src="http://o6ul1xz4z.bkt.clouddn.com/img/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202015-11-29%20%E4%B8%8B%E5%8D%884.04.29.png" alt="Alt text"></p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 奇数</span></span><br><span class="line"><span class="keyword">let</span> oddDigits: <span class="type">Set</span> = [<span class="number">1</span>, <span class="number">3</span>, <span class="number">5</span>, <span class="number">7</span>, <span class="number">9</span>]</span><br><span class="line"><span class="comment">// 偶数</span></span><br><span class="line"><span class="keyword">let</span> evenDigits: <span class="type">Set</span> = [<span class="number">0</span> ,<span class="number">2</span> ,<span class="number">4</span> ,<span class="number">6</span>, <span class="number">8</span>]</span><br><span class="line"><span class="comment">// 素数</span></span><br><span class="line"><span class="keyword">let</span> singleDigitPrimeNumbers: <span class="type">Set</span> = [<span class="number">2</span>, <span class="number">3</span>, <span class="number">5</span>, <span class="number">7</span>]</span><br><span class="line"></span><br><span class="line"><span class="comment">// 并</span></span><br><span class="line">oddDigits.union(evenDigits).<span class="built_in">sort</span>()<span class="comment">// [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 交</span></span><br><span class="line">oddDigits.intersect(evenDigits).<span class="built_in">sort</span>()<span class="comment">// []</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 差</span></span><br><span class="line">oddDigits.subtract(singleDigitPrimeNumbers)<span class="comment">// [9, 1]</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 补</span></span><br><span class="line">oddDigits.exclusiveOr(singleDigitPrimeNumbers).<span class="built_in">sort</span>()<span class="comment">// [1, 2, 9]</span></span><br></pre></td></tr></table></figure>
+<h4 id="4-3-7-2-集合成员关系和相等"><a href="#4-3-7-2-集合成员关系和相等" class="headerlink" title="4.3.7.2    集合成员关系和相等"></a>4.3.7.2    集合成员关系和相等</h4><blockquote>
+<p><strong>说明：</strong>集合之间的关系可以分为6中情况</p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>关系</th>
+<th>判定方式</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>相等</td>
+<td><code>==</code></td>
+<td>判断两个集合是否包含全部相同的值</td>
+</tr>
+<tr>
+<td>被包含</td>
+<td><code>isSubsetOf</code></td>
+<td>判断一个集合中的值是否也被包含在另外一个集合中</td>
+</tr>
+<tr>
+<td>包含</td>
+<td><code>isSupersetOf</code></td>
+<td>判断一个集合中包含另一个集合的所有值</td>
+</tr>
+<tr>
+<td>被包含且不想等</td>
+<td><code>isStrucxtSubsetOf</code></td>
+<td>判定一个集合是另外一个集合的真子集</td>
+</tr>
+<tr>
+<td>包含且不想等</td>
+<td><code>isStructSupersetOf</code></td>
+<td>判定一个集合是另外一个集合的父集且不想等</td>
+</tr>
+<tr>
+<td>不相交</td>
+<td><code>isDisjoinWith</code></td>
+<td>判断两个集合不包含相同的值</td>
+</tr>
+</tbody>
+</table>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> houseAnimals: <span class="type">Set</span> = [<span class="string">"dog"</span>, <span class="string">"cat"</span>]</span><br><span class="line"><span class="keyword">let</span> farmAnimals: <span class="type">Set</span> = [<span class="string">"pig"</span>, <span class="string">"chicken"</span>, <span class="string">"sheep"</span>, <span class="string">"dog"</span>, <span class="string">"cat"</span>]</span><br><span class="line"><span class="keyword">let</span> cityAnimal: <span class="type">Set</span> = [<span class="string">"Dove"</span>, <span class="string">"Mouse"</span>]</span><br><span class="line"></span><br><span class="line"><span class="comment">// 被包含</span></span><br><span class="line">houseAnimals.isSubsetOf(farmAnimals)<span class="comment">// true</span></span><br><span class="line"><span class="comment">// 包含</span></span><br><span class="line">farmAnimals.isSupersetOf(houseAnimals)<span class="comment">// true</span></span><br><span class="line"><span class="comment">// 不相交</span></span><br><span class="line">farmAnimals.isDisjointWith(cityAnimal)<span class="comment">// true</span></span><br></pre></td></tr></table></figure>
+<h2 id="4-4-字典"><a href="#4-4-字典" class="headerlink" title="4.4    字典"></a>4.4    字典</h2><blockquote>
+<p><strong>类型关键字：</strong><code>Dictionary</code><br><strong>说明：</strong>其实就是键值对容器。</p>
+<ul>
+<li>每个<code>value</code>都关联唯一的<code>key</code></li>
+<li><code>key</code>作为字典中的这个值数据的标示符</li>
+<li>没有具体顺序</li>
+</ul>
+<p><strong>限制：</strong>对<code>key</code>和<code>value</code>的类型要求有所不同</p>
+<ul>
+<li><code>key</code>：其类型必须遵循<code>Hashable</code>协议</li>
+<li><code>value</code>：所有数据类型</li>
+</ul>
+<p><strong>扩展：</strong>Swift中的<code>Dictionary</code></p>
+</blockquote>
+<h3 id="4-4-1-创建字典"><a href="#4-4-1-创建字典" class="headerlink" title="4.4.1    创建字典"></a>4.4.1    创建字典</h3><blockquote>
+<p><strong>说明：</strong>可划分为<code>3</code>种方式</p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>创建形式</th>
+<th>说明</th>
+<th>是否只能创建空字典</th>
+<th>备注</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>[keyType: valueType] ()</code></td>
+<td>调用构造器的简化形式</td>
+<td>是</td>
+<td></td>
+</tr>
+<tr>
+<td><code>[key1: value1, ...]</code></td>
+<td>字面量</td>
+<td>否，空字典字面量为<code>[:]</code></td>
+<td></td>
+</tr>
+<tr>
+<td><code>Dictionary&lt;Int, String&gt;()</code></td>
+<td>调用构造器</td>
+<td>是</td>
+<td><code>&lt;Int, String&gt;</code>可省略（当变量或常量的键值对类型已指定过时）</td>
+</tr>
+</tbody>
+</table>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 方式1：构造器的简化方式</span></span><br><span class="line"><span class="comment">// 指定键值对类型</span></span><br><span class="line"><span class="keyword">var</span> dictionary1 = [<span class="type">Int</span>: <span class="type">String</span>]()</span><br><span class="line"><span class="comment">// 方式2:字面量形式</span></span><br><span class="line"><span class="keyword">var</span> dictionary2: [<span class="type">Int</span>: <span class="type">String</span>] = [<span class="string">"YYZ"</span>: <span class="string">"Toronto"</span>, <span class="string">"DUB"</span>: <span class="string">"Dublin"</span>];</span><br><span class="line"></span><br><span class="line"><span class="comment">// 方式3：构造器</span></span><br><span class="line"><span class="comment">// 指定键值对类型</span></span><br><span class="line"><span class="keyword">var</span> dictionary3 = <span class="type">Dictionary</span>&lt;<span class="type">Int</span>, <span class="type">String</span>&gt;()</span><br><span class="line"><span class="comment">// 键值对类型已确定</span></span><br><span class="line"><span class="keyword">var</span> dictionary4: [<span class="type">Int</span>: <span class="type">String</span>] = <span class="type">Dictionary</span>()</span><br></pre></td></tr></table></figure>
+<h3 id="4-4-2-访问和修改字典"><a href="#4-4-2-访问和修改字典" class="headerlink" title="4.4.2    访问和修改字典"></a>4.4.2    访问和修改字典</h3><h4 id="下标-1"><a href="#下标-1" class="headerlink" title="下标"></a>下标</h4><blockquote>
+<p><strong>说明：</strong>通过下标可以实现字典中<code>key-value</code>的增删改查。<br><strong>注意：</strong>当通过下标使用<code>key</code>访问字典中的<code>value</code>时，返回的是相应的可选型。</p>
+</blockquote>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> airports: [<span class="type">String</span>: <span class="type">String</span>] = [<span class="string">"YYZ"</span>: <span class="string">"Toronto"</span>, <span class="string">"DUB"</span>: <span class="string">"Dublin"</span>]</span><br><span class="line"><span class="comment">// 添加新key-value</span></span><br><span class="line">airports[<span class="string">"LHR"</span>] = <span class="string">"London"</span></span><br><span class="line"><span class="comment">// 修改value</span></span><br><span class="line">airports[<span class="string">"LHR"</span>] = <span class="string">"London Heathrow"</span></span><br><span class="line"><span class="comment">// 访问</span></span><br><span class="line"><span class="keyword">if</span> <span class="keyword">let</span> airportName = airports[<span class="string">"DUB"</span>] &#123;</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">"The name of the airport is \(airportName)"</span>)</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">else</span> &#123;</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">"The airport is not in the aitpoorts dictionary."</span>)</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 移除</span></span><br><span class="line">airports[<span class="string">"LHR"</span>] = <span class="literal">nil</span></span><br></pre></td></tr></table></figure>
+<h4 id="count属性-2"><a href="#count属性-2" class="headerlink" title="count属性"></a>count属性</h4><blockquote>
+<p><strong>类型说明：</strong><code>Int</code><br><strong>说明：</strong>记录着字典中着键值对的数量的只读属性。</p>
+</blockquote>
+<h4 id="isEmpty属性-2"><a href="#isEmpty属性-2" class="headerlink" title="isEmpty属性"></a>isEmpty属性</h4><blockquote>
+<p><strong>类型说明：</strong><code>Bool</code><br><strong>说明：</strong>判断字典是否为空字典。</p>
+</blockquote>
+<h4 id="keys属性"><a href="#keys属性" class="headerlink" title="keys属性"></a>keys属性</h4><blockquote>
+<p><strong>类型：</strong><code>[key1, key2, ...]</code><br><strong>说明：</strong>字典中所有数据项的<code>key</code>构成的数组。</p>
+</blockquote>
+<h4 id="values属性"><a href="#values属性" class="headerlink" title="values属性"></a>values属性</h4><blockquote>
+<p><strong>类型：</strong><code>[value1, value2, ...]</code><br><strong>说明：</strong>字典中所有数据项的<code>value</code>构成的数组。</p>
+</blockquote>
+<h4 id="removeValueForKey方法"><a href="#removeValueForKey方法" class="headerlink" title="removeValueForKey方法"></a>removeValueForKey方法</h4><blockquote>
+<p><strong>说明：</strong>通过<code>key</code>移除键值对。<br><strong>原型：</strong><code>Dictionary类型的实例方法</code></p>
+</blockquote>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&gt;<span class="comment">/**</span><br><span class="line">&gt;* @param &#123;Hashable&#125; key 要删除的键值对的键</span><br><span class="line">&gt;* @return &#123;ValueType?&#125; 对应value的可选型</span><br><span class="line">&gt;*/</span></span><br><span class="line">&gt;<span class="function"><span class="keyword">func</span> <span class="title">removeValueForKey</span><span class="params">(key: Hashable)</span></span> -&gt; <span class="type">ValueType</span>?</span><br></pre></td></tr></table></figure>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// count</span></span><br><span class="line"><span class="built_in">print</span>(<span class="string">"The dictionary if airports contains \(airports.count) items."</span>)</span><br><span class="line"><span class="comment">// isEmpty</span></span><br><span class="line"><span class="keyword">if</span> airports.isEmpty &#123;</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">"The airports dictionary is empty."</span>)</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">else</span> &#123;</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">"Tge airports dictionary is not empty."</span>)</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// removeValueForKey</span></span><br><span class="line"><span class="keyword">if</span> <span class="keyword">let</span> removedValue = airports.removeValueForKey(<span class="string">"DUB"</span>) &#123;</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">"The airports dictionary does not contain a value for DUB."</span>)</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">else</span> &#123;</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">"The airports dictionary does not contain a value fot DUB."</span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="4-4-3-字典遍历"><a href="#4-4-3-字典遍历" class="headerlink" title="4.4.3    字典遍历"></a>4.4.3    字典遍历</h3><blockquote>
+<p><strong>说明：</strong>通过<code>for-in</code>便利字典时，每一个数据项都以<code>(key, value)</code>元组形式返回。<br><strong>技巧：</strong></p>
+<ul>
+<li>可以通过临时常量或变量分解<code>(key, value)</code></li>
+<li>可以使用<code>keys</code>或<code>values</code>属性获取相应的数组单独进行遍历</li>
+<li>字典是无序的，可以通过对<code>keys</code>或<code>values</code>属性使用<code>sort方法</code>获得特定顺序</li>
+</ul>
+</blockquote>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 遍历字典</span></span><br><span class="line"><span class="keyword">for</span> (airportCode, airportName) <span class="keyword">in</span> airports &#123;</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">"\(airportCode): \(airportName)"</span>)</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 遍历字典的key</span></span><br><span class="line"><span class="keyword">for</span> airportCode <span class="keyword">in</span> airports.keys &#123;</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">"Airport code: \(airportCode)"</span>)</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 遍历字典的value</span></span><br><span class="line"><span class="keyword">for</span> airportName <span class="keyword">in</span> airports.values &#123;</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">"Airport name: \(airportName)"</span>)</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 提取key或value构成的数组</span></span><br><span class="line"><span class="keyword">let</span> airportCodes = [<span class="type">String</span>](airports.keys)</span><br><span class="line"><span class="keyword">let</span> airportNames = [<span class="type">String</span>](airports.values)</span><br></pre></td></tr></table></figure>
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/swift语言/" rel="tag">#swift语言</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/05/13/BOOK_TheSwiftProgramLanguage2/TSPL2_03  字符串和字符/" rel="next" title="3 字符串和字符">
+                <i class="fa fa-chevron-left"></i> 3 字符串和字符
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/05/13/BOOK_TheSwiftProgramLanguage2/TSPL2_05  控制流/" rel="prev" title="5 控制流">
+                5 控制流 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2016/05/13/BOOK_TheSwiftProgramLanguage2/TSPL2_04  集合类型/"
+           data-title="4 集合类型" data-url="http://laputa-er.github.io/2016/05/13/BOOK_TheSwiftProgramLanguage2/TSPL2_04  集合类型/">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.gif"
+               alt="Sean" />
+          <p class="site-author-name" itemprop="name">Sean</p>
+          <p class="site-description motion-element" itemprop="description">整理了一批过去一段时间ios相关的笔记，其它的笔记也整理下？源码分享出来？再说吧...反正也只有自己会看吧...</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">200</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">22</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">31</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#4-1-集合的可变性"><span class="nav-text">4.1    集合的可变性</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-2-数组"><span class="nav-text">4.2 数组</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#4-2-1-创建数组"><span class="nav-text">4.2.1 创建数组</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-2-2-空数组"><span class="nav-text">4.2.2 空数组</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-2-3-数组相加"><span class="nav-text">4.2.3 数组相加</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-2-4-数组字面量"><span class="nav-text">4.2.4 数组字面量</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-2-5-属性和方法（访问和修改数组）"><span class="nav-text">4.2.5 属性和方法（访问和修改数组）</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#下标"><span class="nav-text">下标</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#count属性"><span class="nav-text">count属性</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#isEmpty属性"><span class="nav-text">isEmpty属性</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#append方法"><span class="nav-text">append方法</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#insert方法"><span class="nav-text">insert方法</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#removeAtIndex方法"><span class="nav-text">removeAtIndex方法</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#removeFirst函数"><span class="nav-text">removeFirst函数</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#removeLast函数"><span class="nav-text">removeLast函数</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-2-6-数组遍历"><span class="nav-text">4.2.6 数组遍历</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#enumerate方法"><span class="nav-text">enumerate方法</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-3-集合"><span class="nav-text">4.3    集合</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#4-3-1-集合类型的哈希值"><span class="nav-text">4.3.1    集合类型的哈希值</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-3-2-声明集合类型"><span class="nav-text">4.3.2    声明集合类型</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-3-3-创建和构造一个空的集合"><span class="nav-text">4.3.3    创建和构造一个空的集合</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-3-4-用数组字面量创建集合"><span class="nav-text">4.3.4    用数组字面量创建集合</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-3-5-属性和方法（访问和修改一个集合）"><span class="nav-text">4.3.5    属性和方法（访问和修改一个集合）</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#count属性-1"><span class="nav-text">count属性</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#isEmpty属性-1"><span class="nav-text">isEmpty属性</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#insert方法-1"><span class="nav-text">insert方法</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#remove方法"><span class="nav-text">remove方法</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#contain方法"><span class="nav-text">contain方法</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-3-6-遍历一个集合"><span class="nav-text">4.3.6    遍历一个集合</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#sort方法"><span class="nav-text">sort方法</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-3-7-完成集合操作"><span class="nav-text">4.3.7    完成集合操作</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#4-3-7-1-基本集合操作"><span class="nav-text">4.3.7.1    基本集合操作</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-3-7-2-集合成员关系和相等"><span class="nav-text">4.3.7.2    集合成员关系和相等</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-4-字典"><span class="nav-text">4.4    字典</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#4-4-1-创建字典"><span class="nav-text">4.4.1    创建字典</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-4-2-访问和修改字典"><span class="nav-text">4.4.2    访问和修改字典</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#下标-1"><span class="nav-text">下标</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#count属性-2"><span class="nav-text">count属性</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#isEmpty属性-2"><span class="nav-text">isEmpty属性</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#keys属性"><span class="nav-text">keys属性</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#values属性"><span class="nav-text">values属性</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#removeValueForKey方法"><span class="nav-text">removeValueForKey方法</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-4-3-字典遍历"><span class="nav-text">4.4.3    字典遍历</span></a></li></ol></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Sean</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"lapuda-er"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+    <script src="/vendors/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
+    <script src="/js/src/hook-duoshuo.js"></script>
+  
+
+
+
+
+
+
+  
+  
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length == 0) {
+       search_path = "search.xml";
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    function proceedsearch() {
+      $("body").append('<div class="popoverlay">').css('overflow', 'hidden');
+      $('.popup').toggle();
+
+    }
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+    'use strict';
+    $.ajax({
+        url: path,
+        dataType: "xml",
+        async: true,
+        success: function( xmlResponse ) {
+            // get the contents from search data
+            isfetched = true;
+            $('.popup').detach().appendTo('.header-inner');
+            var datas = $( "entry", xmlResponse ).map(function() {
+                return {
+                    title: $( "title", this ).text(),
+                    content: $("content",this).text(),
+                    url: $( "url" , this).text()
+                };
+            }).get();
+            var $input = document.getElementById(search_id);
+            var $resultContent = document.getElementById(content_id);
+            $input.addEventListener('input', function(){
+                var matchcounts = 0;
+                var str='<ul class=\"search-result-list\">';
+                var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+                $resultContent.innerHTML = "";
+                if (this.value.trim().length > 1) {
+                // perform local searching
+                datas.forEach(function(data) {
+                    var isMatch = true;
+                    var content_index = [];
+                    var data_title = data.title.trim().toLowerCase();
+                    var data_content = data.content.trim().replace(/<[^>]+>/g,"").toLowerCase();
+                    var data_url = data.url;
+                    var index_title = -1;
+                    var index_content = -1;
+                    var first_occur = -1;
+                    // only match artiles with not empty titles and contents
+                    if(data_title != '' && data_content != '') {
+                        keywords.forEach(function(keyword, i) {
+                            index_title = data_title.indexOf(keyword);
+                            index_content = data_content.indexOf(keyword);
+                            if( index_title < 0 && index_content < 0 ){
+                                isMatch = false;
+                            } else {
+                                if (index_content < 0) {
+                                    index_content = 0;
+                                }
+                                if (i == 0) {
+                                    first_occur = index_content;
+                                }
+                            }
+                        });
+                    }
+                    // show search results
+                    if (isMatch) {
+                        matchcounts += 1;
+                        str += "<li><a href='"+ data_url +"' class='search-result-title'>"+ data_title +"</a>";
+                        var content = data.content.trim().replace(/<[^>]+>/g,"");
+                        if (first_occur >= 0) {
+                            // cut out 100 characters
+                            var start = first_occur - 20;
+                            var end = first_occur + 80;
+                            if(start < 0){
+                                start = 0;
+                            }
+                            if(start == 0){
+                                end = 50;
+                            }
+                            if(end > content.length){
+                                end = content.length;
+                            }
+                            var match_content = content.substring(start, end);
+                            // highlight all keywords
+                            keywords.forEach(function(keyword){
+                                var regS = new RegExp(keyword, "gi");
+                                match_content = match_content.replace(regS, "<b class=\"search-keyword\">"+keyword+"</b>");
+                            });
+
+                            str += "<p class=\"search-result\">" + match_content +"...</p>"
+                        }
+                        str += "</li>";
+                    }
+                })};
+                str += "</ul>";
+                if (matchcounts == 0) { str = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>' }
+                if (keywords == "") { str = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>' }
+                $resultContent.innerHTML = str;
+            });
+            proceedsearch();
+        }
+    });}
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched == false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+
+    });
+
+    $('.popup-btn-close').click(function(e){
+      $('.popup').hide();
+      $(".popoverlay").remove();
+      $('body').css('overflow', '');
+    });
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+  </script>
+
+
+  
+
+  
+
+  
+
+</body>
+</html>

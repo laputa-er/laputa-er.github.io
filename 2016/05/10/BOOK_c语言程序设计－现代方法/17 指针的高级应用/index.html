@@ -1,0 +1,1052 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="c语言基础," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1" />
+
+
+
+
+
+
+<meta name="description" content="17.1    动态存储分配背景：c语言的数据结构通常是固定大小的，为了扩大数据结构的容量，必须修改程序并且再次编译。说明（行为）：在程序执行期间分配内存单元用途：可以根据需要设计可以扩大（和缩小）的数据结构
+
+
+
+适用类型
+说明
+
+
+
+
+字符串
+略
+
+
+数组
+略
+
+
+结构
+可以链接成表、树和其它数据结构
+
+
+
+17.1.1    内存分配函数
+
+
+函数
+说明
+库
+备注
+返回值
+
+
+
+
+mallo">
+<meta property="og:type" content="article">
+<meta property="og:title" content="17 指针的高级应用">
+<meta property="og:url" content="http://laputa-er.github.io/2016/05/10/BOOK_c语言程序设计－现代方法/17 指针的高级应用/index.html">
+<meta property="og:site_name" content="Sean">
+<meta property="og:description" content="17.1    动态存储分配背景：c语言的数据结构通常是固定大小的，为了扩大数据结构的容量，必须修改程序并且再次编译。说明（行为）：在程序执行期间分配内存单元用途：可以根据需要设计可以扩大（和缩小）的数据结构
+
+
+
+适用类型
+说明
+
+
+
+
+字符串
+略
+
+
+数组
+略
+
+
+结构
+可以链接成表、树和其它数据结构
+
+
+
+17.1.1    内存分配函数
+
+
+函数
+说明
+库
+备注
+返回值
+
+
+
+
+mallo">
+<meta property="og:updated_time" content="2017-02-13T04:26:13.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="17 指针的高级应用">
+<meta name="twitter:description" content="17.1    动态存储分配背景：c语言的数据结构通常是固定大小的，为了扩大数据结构的容量，必须修改程序并且再次编译。说明（行为）：在程序执行期间分配内存单元用途：可以根据需要设计可以扩大（和缩小）的数据结构
+
+
+
+适用类型
+说明
+
+
+
+
+字符串
+略
+
+
+数组
+略
+
+
+结构
+可以链接成表、树和其它数据结构
+
+
+
+17.1.1    内存分配函数
+
+
+函数
+说明
+库
+备注
+返回值
+
+
+
+
+mallo">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 0,
+      author: '博主'
+    }
+  };
+</script>
+
+
+
+
+  <link rel="canonical" href="http://laputa-er.github.io/2016/05/10/BOOK_c语言程序设计－现代方法/17 指针的高级应用/"/>
+
+  <title> 17 指针的高级应用 | Sean </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//hm.baidu.com/hm.js?898688f51c5a3d6b37dd23e04441e5bd";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">Sean</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">笔记分享</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup">
+ <span class="search-icon fa fa-search"></span>
+ <input type="text" id="local-search-input">
+ <div id="local-search-result"></div>
+ <span class="popup-btn-close">close</span>
+</div>
+
+
+    </div>
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                17 指针的高级应用
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-05-10T19:38:12+08:00" content="2016-05-10">
+              2016-05-10
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/c语言程序设计－现代方法/" itemprop="url" rel="index">
+                    <span itemprop="name">c语言程序设计－现代方法</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/05/10/BOOK_c语言程序设计－现代方法/17 指针的高级应用/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/05/10/BOOK_c语言程序设计－现代方法/17 指针的高级应用/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="17-1-动态存储分配"><a href="#17-1-动态存储分配" class="headerlink" title="17.1    动态存储分配"></a>17.1    动态存储分配</h2><p><strong>背景：</strong>c语言的数据结构通常是固定大小的，为了扩大数据结构的容量，必须修改程序并且再次编译。<br><strong>说明（行为）：</strong>在程序执行期间分配内存单元<br><strong>用途：</strong>可以根据需要设计可以扩大（和缩小）的数据结构</p>
+<table>
+<thead>
+<tr>
+<th>适用类型</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>字符串</td>
+<td>略</td>
+</tr>
+<tr>
+<td>数组</td>
+<td>略</td>
+</tr>
+<tr>
+<td>结构</td>
+<td>可以链接成表、树和其它数据结构</td>
+</tr>
+</tbody>
+</table>
+<h3 id="17-1-1-内存分配函数"><a href="#17-1-1-内存分配函数" class="headerlink" title="17.1.1    内存分配函数"></a>17.1.1    内存分配函数</h3><table>
+<thead>
+<tr>
+<th>函数</th>
+<th>说明</th>
+<th>库</th>
+<th>备注</th>
+<th>返回值</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>malloc</code></td>
+<td>分配内存快，但是不对内存块进行初始化</td>
+<td>stdlib.h</td>
+<td>最常用，不需要对分配的内存块进行清除，所以它比<code>calloc</code>更高效</td>
+<td><code>void *</code>(通用指针，本质上只是内存地址)</td>
+</tr>
+<tr>
+<td><code>calloc</code></td>
+<td>分配内存块，并且对内存块进行清除</td>
+<td>stdlib.h</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><code>realloc</code></td>
+<td>调整先前分配的内存块</td>
+<td>stdlib.h</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h3 id="17-1-2-空指针"><a href="#17-1-2-空指针" class="headerlink" title="17.1.2    空指针"></a>17.1.2    空指针</h3><p><strong>说明：</strong>“指向为空的指针”，这是一个区别于所有有效指针的特殊值。<code>K&amp;R C</code>用<code>NULL</code>（宏）来表示空指针。<br><strong>相关场景：</strong>当调用内存分配函数时，如果无法定位满足我们需要的足够大的内存块，函数会返回空指针（<code>null pointer</code>）。</p>
+<p><strong>定义了<code>NULL</code>的库文件：</strong></p>
+<ol>
+<li>locale.h</li>
+<li>stddef.h</li>
+<li>stdio.h</li>
+<li>stdlib.h</li>
+<li>string.h</li>
+<li>time.h</li>
+</ol>
+<p><strong>真假：</strong>所有非空指针都为真，而只有空指针为假。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> (p == <span class="literal">NULL</span>) ... </span><br><span class="line">&lt;==&gt;</span><br><span class="line"><span class="keyword">if</span> (!p) ...</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> (p != NULL) ...</span><br><span class="line">&lt;==&gt;</span><br><span class="line"><span class="keyword">if</span> (p) ...</span><br></pre></td></tr></table></figure>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">p = <span class="built_in">malloc</span>(<span class="number">10000</span>);</span><br><span class="line"><span class="keyword">if</span> (p == <span class="literal">NULL</span>) &#123;</span><br><span class="line">	<span class="comment">/*分配内存失败，采取合适的措施*/</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><em>更酷的方式</em></p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> ((p = malloc(<span class="number">10000</span>)) == <span class="literal">NULL</span>) &#123;</span><br><span class="line">	<span class="comment">/*分配内存失败，采取合适的措施*/</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="17-2-动态分配字符串"><a href="#17-2-动态分配字符串" class="headerlink" title="17.2    动态分配字符串"></a>17.2    动态分配字符串</h2><h3 id="17-2-1-使用malloc函数为字符串分配内存"><a href="#17-2-1-使用malloc函数为字符串分配内存" class="headerlink" title="17.2.1    使用malloc函数为字符串分配内存"></a>17.2.1    使用malloc函数为字符串分配内存</h3><p><strong>注意：</strong>为字符串分配内存空间时不要忘记包含空字符串的空间。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 动态分配</span></span><br><span class="line"><span class="keyword">char</span> *p = (char *) <span class="built_in">malloc</span>(n + <span class="number">1</span>);<span class="comment">// malloc返回的通用指针会自动转化为char*型变量，因此强制类型转换的部分可以省略</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 赋值</span></span><br><span class="line"><span class="built_in">strcpy</span>(p, <span class="string">"abc"</span>);</span><br></pre></td></tr></table></figure>
+<h3 id="17-2-2-在字符串函数中使用动态存储分配"><a href="#17-2-2-在字符串函数中使用动态存储分配" class="headerlink" title="17.2.2    在字符串函数中使用动态存储分配"></a>17.2.2    在字符串函数中使用动态存储分配</h3><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdlib.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;string.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span><br><span class="line"> * 拼接两个字符串并返回一个“新字符串”（不改变原有的两个字符串）</span><br><span class="line"> * @param  s1 要拼接的字符串的第一部分</span><br><span class="line"> * @param  s2 要拼接的字符串的第二部分</span><br><span class="line"> * @return    新字符串地址</span><br><span class="line"> */</span></span><br><span class="line"><span class="function"><span class="keyword">char</span> *<span class="title">concat</span><span class="params">(<span class="keyword">const</span> <span class="keyword">char</span> *s1, <span class="keyword">const</span> <span class="keyword">char</span> *s2)</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">(<span class="keyword">int</span> argc, <span class="keyword">char</span> <span class="keyword">const</span> *argv[])</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">"%s\n"</span>, concat(<span class="string">"abc"</span>, <span class="string">"def"</span>)); <span class="comment">// abcdef</span></span><br><span class="line"></span><br><span class="line">	return <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">char</span> *<span class="title">concat</span><span class="params">(<span class="keyword">const</span> <span class="keyword">char</span> *s1, <span class="keyword">const</span> <span class="keyword">char</span> *s2)</span> </span>&#123;</span><br><span class="line">	<span class="comment">// 定义指向新字符串的临时指针变量</span></span><br><span class="line">	<span class="keyword">char</span> *result;</span><br><span class="line"></span><br><span class="line">	<span class="comment">// 为新字符串分配空间</span></span><br><span class="line">	result = <span class="built_in">malloc</span>(strlen(s1) + strlen(s2) + <span class="number">1</span>);</span><br><span class="line"></span><br><span class="line">	<span class="comment">// 分配内存失败</span></span><br><span class="line">	<span class="keyword">if</span> (result == <span class="literal">NULL</span>) &#123;</span><br><span class="line">		<span class="built_in">printf</span>(<span class="string">"Error: malloc failed in concat \n"</span>);</span><br><span class="line">		<span class="built_in">exit</span> (EXIT_FAILURE);</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="comment">// 第一部分复制到新字符串的空间中（会有剩余）</span></span><br><span class="line">	<span class="built_in">strcpy</span>(result, s1);</span><br><span class="line"></span><br><span class="line">	<span class="comment">// 第二部分拼接到后面</span></span><br><span class="line">	<span class="built_in">strcat</span>(result, s2);</span><br><span class="line"></span><br><span class="line">	return result;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="17-2-3-动态分配字符串的数组"><a href="#17-2-3-动态分配字符串的数组" class="headerlink" title="17.2.3    动态分配字符串的数组"></a>17.2.3    动态分配字符串的数组</h3><p><strong>说明：</strong>在数组中存储字符串有两种方式。二维字符数组或者字符串字面量指针数组，相比之下，前者可能会浪费空间。</p>
+<h3 id="17-2-4-程序：显示一个月的提示列表（改进版）"><a href="#17-2-4-程序：显示一个月的提示列表（改进版）" class="headerlink" title="17.2.4    程序：显示一个月的提示列表（改进版）"></a>17.2.4    程序：显示一个月的提示列表（改进版）</h3><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span><br><span class="line"> * Prints a one-month reminder list</span><br><span class="line"> * 程序需要读入一系列天和提示的组合，并且按照顺序进行存储（按日期排序）</span><br><span class="line"> * 额外需求：</span><br><span class="line"> * 1. 天在两个字符的域中右对齐</span><br><span class="line"> * 2. 确定用户没有输入两位以上的数字</span><br><span class="line"> */</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdlib.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;string.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> MAX_REMIND 50<span class="comment">//备忘录数量</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> MSG_LEN 60<span class="comment">//每条备忘的最大长度</span></span></span><br><span class="line"></span><br><span class="line"> <span class="function"><span class="keyword">int</span> <span class="title">read_line</span><span class="params">(<span class="keyword">char</span> str[], <span class="keyword">int</span> n)</span></span>;</span><br><span class="line"></span><br><span class="line"> <span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line"> 	<span class="comment">//备忘录列表</span></span><br><span class="line"> 	<span class="keyword">char</span> *reminders[MAX_REMIND];</span><br><span class="line"></span><br><span class="line"> 	<span class="comment">//日期字符串和信息字符串</span></span><br><span class="line"> 	<span class="keyword">char</span> day_str[<span class="number">3</span>], msg_str[MSG_LEN + <span class="number">1</span>];</span><br><span class="line"></span><br><span class="line"> 	<span class="keyword">int</span> day, i, j, num_remind = <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line"> 	<span class="keyword">for</span>(;;)&#123;</span><br><span class="line"> 		<span class="comment">//如果备忘录已满，就停止循环</span></span><br><span class="line"> 		<span class="keyword">if</span>(num_remind == MAX_REMIND)&#123;</span><br><span class="line"> 			<span class="built_in">printf</span>(<span class="string">"-- No space left --\n"</span>);</span><br><span class="line"> 			<span class="keyword">break</span>;</span><br><span class="line"> 		&#125;</span><br><span class="line"> 		<span class="comment">//输入日期和一条备忘清单</span></span><br><span class="line"> 		<span class="built_in">printf</span>(<span class="string">"Enter day and reminder:"</span>);</span><br><span class="line"></span><br><span class="line"> 		<span class="comment">//把日期读入到整型变量day中，即使输入更多的数字，在%与d之间的数2也会通知scanf函数在读入两个数字后停止</span></span><br><span class="line"> 		<span class="built_in">scanf</span>(<span class="string">"%2d"</span>, &amp;day);</span><br><span class="line"></span><br><span class="line"> 		<span class="comment">//如果日期输入0，则停止循环，不在输入任何备忘</span></span><br><span class="line"> 		<span class="keyword">if</span>(day == <span class="number">0</span>)&#123;</span><br><span class="line"> 			<span class="keyword">break</span>;</span><br><span class="line"> 		&#125;</span><br><span class="line"> 		</span><br><span class="line"> 		<span class="comment">//把day的值转换为字符串并写到day_str中</span></span><br><span class="line"> 		<span class="built_in">sprintf</span>(day_str, <span class="string">"%2d"</span>, day);<span class="comment">//day_str会包含一个空字符结尾的合法字符串</span></span><br><span class="line"> 		read_line(msg_str, MSG_LEN);<span class="comment">//读入备忘信息</span></span><br><span class="line"></span><br><span class="line"> 		<span class="comment">//找到备忘录的位置（根据日期从小到大排序的位置）</span></span><br><span class="line"> 		<span class="keyword">for</span>(i = <span class="number">0</span>; i &lt; num_remind; i++)&#123;</span><br><span class="line"> 			<span class="comment">//确定这一天的位置</span></span><br><span class="line"> 			<span class="keyword">if</span>(<span class="built_in">strcmp</span>(day_str, reminders[i]) &lt; <span class="number">0</span>)&#123;</span><br><span class="line"> 				<span class="keyword">break</span>;</span><br><span class="line"> 			&#125;</span><br><span class="line"> 		&#125;</span><br><span class="line">		</span><br><span class="line">		<span class="comment">//将包括该位置之后的备忘信息向后移动</span></span><br><span class="line">		<span class="keyword">for</span>(j = num_remind; j &gt; i; j--)&#123;</span><br><span class="line">			reminders[j], reminders[j<span class="number">-1</span>];</span><br><span class="line">		&#125; 	</span><br><span class="line"></span><br><span class="line">		reminders[i] = <span class="built_in">malloc</span>(<span class="number">2</span> + strlen(msg_str) + <span class="number">1</span>);</span><br><span class="line">		<span class="keyword">if</span> (reminders[i] == <span class="literal">NULL</span>) &#123;</span><br><span class="line">			<span class="built_in">printf</span>(<span class="string">"-- No space left --\n"</span>);</span><br><span class="line">			<span class="keyword">break</span>;</span><br><span class="line">		&#125;</span><br><span class="line"> 		<span class="comment">//将备忘信息放在空出来的位置</span></span><br><span class="line"> 		<span class="built_in">strcpy</span>(reminders[i], day_str);</span><br><span class="line"></span><br><span class="line"> 		<span class="comment">//将备忘信息拼接过去</span></span><br><span class="line"> 		<span class="built_in">strcat</span>(reminders[i], msg_str);</span><br><span class="line"> 		num_remind++;</span><br><span class="line"> 	&#125;</span><br><span class="line"></span><br><span class="line"> 	<span class="comment">//打印出当前所有备忘信息</span></span><br><span class="line"> 	<span class="built_in">printf</span>(<span class="string">"\nDay Reminder\n"</span>);</span><br><span class="line"> 	<span class="keyword">for</span>(i = <span class="number">0</span>; i &lt; num_remind; i++)&#123;</span><br><span class="line"> 		<span class="built_in">printf</span>(<span class="string">"%s\n"</span>, reminders[i]);</span><br><span class="line"> 	&#125;</span><br><span class="line"> 	return <span class="number">0</span>;</span><br><span class="line"> &#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span><br><span class="line"> * 读入一行</span><br><span class="line"> * @param  str 存储字符串的位置</span><br><span class="line"> * @param  n   字符串长度上限</span><br><span class="line"> * @return     该条字符串的长度</span><br><span class="line"> */</span></span><br><span class="line"> <span class="function"><span class="keyword">int</span> <span class="title">read_line</span><span class="params">(<span class="keyword">char</span> str[], <span class="keyword">int</span> n)</span></span>&#123;</span><br><span class="line"> 	<span class="keyword">char</span> ch;</span><br><span class="line"> 	<span class="keyword">int</span> i = <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line"> 	<span class="keyword">while</span>((ch = getchar()) != <span class="string">'\n'</span>)&#123;</span><br><span class="line"> 		<span class="keyword">if</span>(i &lt; n)&#123;</span><br><span class="line"> 			str[i++] = ch;</span><br><span class="line"> 		&#125;</span><br><span class="line"> 	&#125;</span><br><span class="line"> 	str[i] = <span class="string">'\0'</span>;</span><br><span class="line"> 	return i;</span><br><span class="line"> &#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">$ gcc -Wall -o remind remind.c</span><br><span class="line"></span><br><span class="line">$ ./remind</span><br><span class="line">Enter day and reminder:20 take money</span><br><span class="line">Enter day and reminder:21 <span class="built_in">kill</span> <span class="built_in">history</span></span><br><span class="line">Enter day and reminder:19 find fulture</span><br><span class="line">Enter day and reminder:0</span><br><span class="line"></span><br><span class="line">Day Reminder</span><br><span class="line">19 find fulture</span><br><span class="line">20 take money</span><br><span class="line">21 <span class="built_in">kill</span> <span class="built_in">history</span></span><br></pre></td></tr></table></figure>
+<h2 id="17-3-动态分配数组"><a href="#17-3-动态分配数组" class="headerlink" title="17.3    动态分配数组"></a>17.3    动态分配数组</h2><p><strong>原理：</strong>在程序执行期间为数组分配空间，然后通过指向数组第一个元素的指针访问数组。由于c语言中数组和指针的关系紧密，指向动态分配的内存块的指针可以当作数组的名字使用。<br><strong>注意：</strong>计算数组所需的空间要使用 sizeof 运算符，如果分配空间不足，稍后往数组中存储时程序会出现异常。</p>
+<h3 id="17-3-1-使用malloc函数为数组分配存储空间"><a href="#17-3-1-使用malloc函数为数组分配存储空间" class="headerlink" title="17.3.1    使用malloc函数为数组分配存储空间"></a>17.3.1    使用malloc函数为数组分配存储空间</h3><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 创建一个含n个整数的数组</span></span><br><span class="line"><span class="keyword">int</span> *a;</span><br><span class="line">a = <span class="built_in">malloc</span>(n * sizeof(int)); <span class="comment">// 计算数组所需的空间要使用sizeof运算符</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 当作数组使用</span></span><br><span class="line"><span class="keyword">for</span> (i = <span class="number">0</span>; i &lt; n; i++) &#123;</span><br><span class="line">	a[i] = <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="17-3-2-calloc函数"><a href="#17-3-2-calloc函数" class="headerlink" title="17.3.2    calloc函数"></a>17.3.2    calloc函数</h3><p><strong>函数原型（<code>stdlib.h</code>）：</strong>如果要求的空间无效，那么此函数返回空指针。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span><br><span class="line">* 分配内存空间并初始化</span><br><span class="line">* @param &#123;size_t&#125; numeb 数组的长度</span><br><span class="line">* @param &#123;size_t&#125; size 每个元素的大小（字节）</span><br><span class="line">* @return &#123;void *&#125; 数组第一个元素的地址</span><br><span class="line">*/</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> *<span class="title">calloc</span><span class="params">(size_t nmeb, size_t size)</span></span>;</span><br></pre></td></tr></table></figure>
+<p><strong>注意：</strong></p>
+<ul>
+<li>当第一个参数为1时，可以为任何类型的数据项（不仅仅是数组）分配空间</li>
+<li>calloc函数会清除分配的空间中的数据</li>
+</ul>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 声明一个长度为n的int型数组，并将所有项初始化为0</span></span><br><span class="line"><span class="keyword">int</span> *a = <span class="built_in">calloc</span>(n, sizeof(int));</span><br><span class="line"></span><br><span class="line"><span class="comment">// 声明一个指向结构体的指针</span></span><br><span class="line"><span class="keyword">struct</span> point &#123;</span><br><span class="line">	<span class="keyword">int</span> x;</span><br><span class="line">	<span class="keyword">int</span> y;</span><br><span class="line">&#125; *p;</span><br><span class="line">p = <span class="built_in">calloc</span>(<span class="number">1</span>, sizeof(struct point)); <span class="comment">//p将指向新创建的结构体，且结构体的成员x、y都为0</span></span><br></pre></td></tr></table></figure>
+<h3 id="17-3-3-realloc函数"><a href="#17-3-3-realloc函数" class="headerlink" title="17.3.3    realloc函数"></a>17.3.3    realloc函数</h3><p><strong>原型(<code>stdlib.h</code>)：</strong></p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span><br><span class="line">* 调整分配的内存的大小</span><br><span class="line">* @param &#123;void *&#125; ptr 指向内存块（通常是数组）的指针</span><br><span class="line">* @param &#123;size_t&#125; size 内存块的新尺寸</span><br><span class="line">* @return &#123;void *&#125; 新的内存块的地址</span><br><span class="line">*/</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> *<span class="title">realloc</span><span class="params">(<span class="keyword">void</span> *ptr, size_t size)</span></span>;</span><br></pre></td></tr></table></figure>
+<p><strong>用途：</strong>一旦为数组分配完内存，稍后可能会出现数组过大或过小。relloc函数可以调整数组的大小以使它更适合需要。<br><strong>局限：</strong>要确定传递给<code>realloc函数</code>的指针来自于先前<code>malloc函数</code>、<code>calloc函数</code>或<code>realloc函数</code>的调用获得的。否则程序会出现异常。<br><strong>规则：</strong></p>
+<ul>
+<li>如果无法扩大内存（后边内存被占用），会在别处分配新的内存，然后把旧块中的内容复制过去</li>
+<li>当扩展内存块时，    <code>realloc函数</code>不会对添加进内存块的字节进行初始化</li>
+<li>如果<code>realloc函数</code>不能按要求扩大内存块，那么它会返回空指针，并且在原有的内存块中的数据不会发生改变。</li>
+<li>如果<code>realloc函数</code>调用时以空指针作为第一个实际参数，那么它的行为就将像<code>malloc函数</code>一样</li>
+<li>如果<code>realloc函数</code>调用时以0作为第二个实际参数，那么它会释放掉内存块    </li>
+</ul>
+<p><strong>注意：</strong>一旦<code>realloc函数</code>返回，一定要对指向内存块的所有指针进行更新（将新的地址赋值给指针），因为可能realloc函数移动到了其它地方的内存块。</p>
+<h2 id="17-4-释放存储"><a href="#17-4-释放存储" class="headerlink" title="17.4    释放存储"></a>17.4    释放存储</h2><p><strong>堆（heap）：</strong><code>malloc函数</code>和其他内存分配函数所获得的内存块都来自一个称为堆的存储池。调用这些函数经常会耗尽堆，或者要求大的内存块也会耗尽堆，这会导致函数返回空指针。<br><strong>垃圾（garbage）：</strong>对程序而言不再访问到的内存块被称为垃圾。<br><strong>内存泄漏（memroy leak）：</strong>运行中留有垃圾被称为内存泄漏。<br><strong>垃圾收集器（garbage collector）：</strong>用于垃圾的自动定位和回收，但c语言不提供。相反，每个c程序负责回收各自的垃圾（调用<code>free函数</code>）。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/*模拟内存泄漏*/</span></span><br><span class="line">p = <span class="built_in">malloc</span>(...)</span><br><span class="line">q = <span class="built_in">malloc</span>(...)</span><br><span class="line">p = q; <span class="comment">// p原本指向的内存块变成垃圾</span></span><br></pre></td></tr></table></figure>
+<h3 id="17-4-1-free函数"><a href="#17-4-1-free函数" class="headerlink" title="17.4.1    free函数"></a>17.4.1    free函数</h3><p><strong>用途：</strong>调用<code>free函数</code>将内存块释放返回堆。<br><strong>原型：</strong><code>stdlib.h</code><br><strong>限制：</strong><code>free函数</code>的实际参数必须是指针，而且一定是先前<code>内存分配函数</code>返回的。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span><br><span class="line">* 释放内存</span><br><span class="line">* @param &#123;void *&#125; ptr 指向需要释放的内存块的指针</span><br><span class="line">*/</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">free</span><span class="params">(<span class="keyword">void</span> *ptr)</span></span>;</span><br></pre></td></tr></table></figure>
+<h3 id="17-4-2-“悬空指针”问题"><a href="#17-4-2-“悬空指针”问题" class="headerlink" title="17.4.2    “悬空指针”问题"></a>17.4.2    “悬空指针”问题</h3><p><strong>悬空指针（dangling pointer）：</strong>指向被<code>free</code>掉的内存块的指针。<br><strong>注意：</strong>悬空指针很难被发现，而且试图通过“悬空指针”修改被释放掉的内存块会导致程序异常。</p>
+<h2 id="17-5-链表"><a href="#17-5-链表" class="headerlink" title="17.5    链表"></a>17.5    链表</h2><p><strong>链表（linked list）：</strong>是由一连串的结构（节点）组成的，其中每个节点都包含指向下一个链中节点的指针。<br><strong>优点：</strong>更灵活，方便扩大和缩小（插入和删除）。<br><strong>缺点：</strong>没有“随机访问”的能力</p>
+<h3 id="17-5-1-声明节点类型"><a href="#17-5-1-声明节点类型" class="headerlink" title="17.5.1    声明节点类型"></a>17.5.1    声明节点类型</h3><p><strong>注意：</strong>结点类型只能使用标记而不能使用<code>typedef</code>定义结构，因为后者无法在节点内声明指向另一个结点的成员。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 简单的单个节点的结构</span></span><br><span class="line"><span class="keyword">struct</span> node &#123;</span><br><span class="line">	<span class="keyword">int</span> value;</span><br><span class="line">	<span class="keyword">struct</span> node *next; <span class="comment">// 指向下一个节点</span></span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">struct</span> node *first = <span class="literal">NULL</span>; <span class="comment">//链表初始为空</span></span><br></pre></td></tr></table></figure>
+<h3 id="17-5-2-创建节点"><a href="#17-5-2-创建节点" class="headerlink" title="17.5.2    创建节点"></a>17.5.2    创建节点</h3><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 声明节点</span></span><br><span class="line"><span class="keyword">struct</span> node *new_node;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 为节点分配内存</span></span><br><span class="line">new_node = <span class="built_in">malloc</span>(sizeof(struct node));</span><br><span class="line"></span><br><span class="line"><span class="comment">// 为节点初始化值</span></span><br><span class="line">(*new_node).value = <span class="number">0</span>; <span class="comment">// .的优先级高于间接寻址运算符*，所以使用()提升后者优先级</span></span><br></pre></td></tr></table></figure>
+<h3 id="17-5-3-gt-运算符"><a href="#17-5-3-gt-运算符" class="headerlink" title="17.5.3    -&gt;运算符"></a>17.5.3    -&gt;运算符</h3><p><strong>右箭头选择（right arrow selection）：</strong>通过指针访问结构中的成员</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">scanf</span>(<span class="string">"%d"</span>, &amp;new_node-&gt;value); <span class="comment">//scanf("%d", &amp;(*new_node).value)</span></span><br></pre></td></tr></table></figure>
+<h3 id="17-5-4-在链表的开始处插入节点"><a href="#17-5-4-在链表的开始处插入节点" class="headerlink" title="17.5.4    在链表的开始处插入节点"></a>17.5.4    在链表的开始处插入节点</h3><p><strong>步骤</strong></p>
+<ol>
+<li>为节点分配内存单元</li>
+<li>把数据存储在节点中</li>
+<li>把节点插入到链表中</li>
+</ol>
+<p><strong>伏笔：</strong>在17.6节中对<code>add_to_list</code>有进一步优化。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdlib.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> EXIT_FALURE 0</span></span><br><span class="line"><span class="comment">/**</span><br><span class="line"> * @brief 节点</span><br><span class="line"> * @struct</span><br><span class="line"> */</span></span><br><span class="line"><span class="keyword">struct</span> node &#123;</span><br><span class="line">	<span class="keyword">int</span> value;</span><br><span class="line">	<span class="keyword">struct</span> node *next; <span class="comment">// 指向下一个节点</span></span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span><br><span class="line"> * 添加节点到链表头部</span><br><span class="line"> * 需要注意的是，该函数执行后还需要将头部指向该函数返回的新的节点才能完成插入到链表头部的工作</span><br><span class="line"> * @param  list 要插入的链表（指向头部节点的指针）</span><br><span class="line"> * @param  n    要插入的节点存储的值</span><br><span class="line"> * @return      新的链表（指向新的头节点的指针）</span><br><span class="line"> */</span></span><br><span class="line"><span class="function"><span class="keyword">struct</span> node *<span class="title">add_to_list</span> <span class="params">(<span class="keyword">struct</span> node *<span class="built_in">list</span>, <span class="keyword">int</span> n)</span> </span>&#123;</span><br><span class="line">	<span class="comment">// 声明新节点</span></span><br><span class="line">	<span class="keyword">struct</span> node *new_node;</span><br><span class="line"></span><br><span class="line">	<span class="comment">// 为新节点分配内存</span></span><br><span class="line">	new_node = <span class="built_in">malloc</span>(sizeof(struct node));</span><br><span class="line"></span><br><span class="line">	<span class="keyword">if</span> (new_node == <span class="literal">NULL</span>) &#123;</span><br><span class="line">		<span class="built_in">printf</span>(<span class="string">"Error: malloc failed in add_ro list\n"</span>);</span><br><span class="line">		<span class="built_in">exit</span>(EXIT_FALURE);</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	new_node-&gt;value = n;</span><br><span class="line">	new_node-&gt;next = <span class="built_in">list</span>;</span><br><span class="line">	return new_node;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span><br><span class="line"> * 通过命令行完成链表的创建</span><br><span class="line"> * @return  链表的头部</span><br><span class="line"> */</span></span><br><span class="line"><span class="function"><span class="keyword">struct</span> node *<span class="title">read_numbers</span><span class="params">(<span class="keyword">void</span>)</span> </span>&#123;</span><br><span class="line">	<span class="keyword">struct</span> node *first = <span class="literal">NULL</span>;</span><br><span class="line">	<span class="keyword">int</span> n;</span><br><span class="line"></span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">"Enter a series of intergers (0 to terminate):\n"</span>);</span><br><span class="line"></span><br><span class="line">	<span class="keyword">for</span> (;;) &#123;</span><br><span class="line">		<span class="built_in">scanf</span>(<span class="string">"%d"</span>, &amp;n);</span><br><span class="line">		<span class="keyword">if</span> (n == <span class="number">0</span>) &#123;</span><br><span class="line">			return first;</span><br><span class="line">		&#125;</span><br><span class="line">		first = add_to_list(first, n);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span> <span class="params">()</span> </span>&#123;</span><br><span class="line">	<span class="comment">// 创建一个含有用户录入的数字的链表</span></span><br><span class="line">	<span class="keyword">struct</span> node *num_list;</span><br><span class="line">	num_list = read_numbers();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="17-5-5-搜索链表"><a href="#17-5-5-搜索链表" class="headerlink" title="17.5.5    搜索链表"></a>17.5.5    搜索链表</h3><p><strong>惯用法：</strong><code>for (p = first; p != NULL; p = p-&gt;next)</code><br><em>形式一：惯用法</em></p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span><br><span class="line">* 根据存储的值寻找节点</span><br><span class="line">* @param &#123;struct node *&#125; list 链表（头部指针）</span><br><span class="line">* @param &#123;int&#125; n 目标节点存储的值</span><br><span class="line">* @return 目标节点的指针或NULL</span><br><span class="line">*/</span></span><br><span class="line"><span class="function"><span class="keyword">struct</span> node *<span class="title">search_list</span><span class="params">(<span class="keyword">struct</span> node *<span class="built_in">list</span>, <span class="keyword">int</span> n)</span> </span>&#123;</span><br><span class="line">	<span class="keyword">struct</span> node *p;</span><br><span class="line">	<span class="keyword">for</span> (p = <span class="built_in">list</span>; p != <span class="literal">NULL</span>; p = p-&gt;next) &#123;</span><br><span class="line">		<span class="keyword">if</span> (p-&gt;value == n) &#123;</span><br><span class="line">			return p;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	return <span class="literal">NULL</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><em>形式二：省略中间变量</em></p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span><br><span class="line">* 根据存储的值寻找节点</span><br><span class="line">* @param &#123;struct node *&#125; list 链表（头部指针）</span><br><span class="line">* @param &#123;int&#125; n 目标节点存储的值</span><br><span class="line">* @return 目标节点的指针或NULL</span><br><span class="line">*/</span></span><br><span class="line"><span class="function"><span class="keyword">struct</span> node *<span class="title">search_list</span><span class="params">(<span class="keyword">struct</span> node *<span class="built_in">list</span>, <span class="keyword">int</span> n)</span> </span>&#123;</span><br><span class="line">	<span class="keyword">for</span> (; <span class="built_in">list</span> != <span class="literal">NULL</span>; <span class="built_in">list</span> = <span class="built_in">list</span>-&gt;next) &#123;</span><br><span class="line">		<span class="keyword">if</span> (<span class="built_in">list</span>-&gt;value == n) &#123;</span><br><span class="line">			return <span class="built_in">list</span>;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	return <span class="literal">NULL</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><em>形式三：链表到末尾和找到目标判定合并</em></p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span><br><span class="line">* 根据存储的值寻找节点</span><br><span class="line">* @param &#123;struct node *&#125; list 链表（头部指针）</span><br><span class="line">* @param &#123;int&#125; n 目标节点存储的值</span><br><span class="line">* @return 目标节点的指针或NULL</span><br><span class="line">*/</span></span><br><span class="line"><span class="function"><span class="keyword">struct</span> node *<span class="title">search_list</span><span class="params">(<span class="keyword">struct</span> node *<span class="built_in">list</span>, <span class="keyword">int</span> n)</span> </span>&#123;</span><br><span class="line">	<span class="keyword">for</span> (; <span class="built_in">list</span> != <span class="literal">NULL</span> &amp;&amp; <span class="built_in">list</span>-&gt;value != n; <span class="built_in">list</span> = <span class="built_in">list</span>-&gt;next)</span><br><span class="line">		;</span><br><span class="line">	return <span class="built_in">list</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><em>形式四：使用while</em></p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span><br><span class="line">* 根据存储的值寻找节点</span><br><span class="line">* @param &#123;struct node *&#125; list 链表（头部指针）</span><br><span class="line">* @param &#123;int&#125; n 目标节点存储的值</span><br><span class="line">* @return 目标节点的指针或NULL</span><br><span class="line">*/</span></span><br><span class="line"><span class="function"><span class="keyword">struct</span> node *<span class="title">search_list</span><span class="params">(<span class="keyword">struct</span> node *<span class="built_in">list</span>, <span class="keyword">int</span> n)</span> </span>&#123;</span><br><span class="line">	wile (<span class="built_in">list</span> != <span class="literal">NULL</span> &amp;&amp; <span class="built_in">list</span>-&gt;value != n) &#123;</span><br><span class="line">		<span class="built_in">list</span> = <span class="built_in">list</span>-&gt;next</span><br><span class="line">	&#125;</span><br><span class="line">	return <span class="built_in">list</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="17-5-6-从链表中删除节点"><a href="#17-5-6-从链表中删除节点" class="headerlink" title="17.5.6    从链表中删除节点"></a>17.5.6    从链表中删除节点</h3><p><strong>步骤</strong></p>
+<ol>
+<li>定位要删除的节点</li>
+<li>改变前一个节点，从而使它“绕过”删除节点</li>
+<li>调用<code>free函数</code>从而收回删除节点占用的内存空间</li>
+</ol>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span><br><span class="line">* 根据节点的值找到节点并删除之</span><br><span class="line">* @param &#123;struct node*&#125; list 所在的链表</span><br><span class="line">* @param &#123;int&#125; n 要删除的节点存储的值</span><br><span class="line">* @return &#123;struct node*&#125; 链表的头节点</span><br><span class="line">*/</span></span><br><span class="line"><span class="function"><span class="keyword">struct</span> node *<span class="title">delete_from_list</span> <span class="params">(<span class="keyword">struct</span> node *<span class="built_in">list</span>, <span class="keyword">int</span> n)</span> </span>&#123;</span><br><span class="line">	<span class="keyword">struct</span> node *cur, *prev;</span><br><span class="line">	<span class="comment">// 定位要删除的节点</span></span><br><span class="line">	<span class="keyword">for</span> (cur = <span class="built_in">list</span>, prev = <span class="literal">NULL</span>; cur != <span class="literal">NULL</span> &amp;&amp; cur-&gt;value != n; prev = cur, cur = cur-&gt;next)</span><br><span class="line">		;</span><br><span class="line">	<span class="comment">// 没有找到要删除的节点</span></span><br><span class="line">	<span class="keyword">if</span> (cur == <span class="literal">NULL</span>) &#123;</span><br><span class="line">		return <span class="built_in">list</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="comment">// 找到了，要删除的节点是第一个节点</span></span><br><span class="line">	<span class="keyword">if</span> (prev == NUL) &#123;</span><br><span class="line">		<span class="built_in">list</span> = <span class="built_in">list</span>-&gt;next;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="comment">// 找到了， 要删除的节点不是第一个几点</span></span><br><span class="line">	<span class="keyword">else</span> &#123;</span><br><span class="line">		prev-&gt;next = cur-&gt;next;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="built_in">free</span>(cur);</span><br><span class="line">	return <span class="built_in">list</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="17-5-8-程序：维护零件数据库（改进版）"><a href="#17-5-8-程序：维护零件数据库（改进版）" class="headerlink" title="17.5.8    程序：维护零件数据库（改进版）"></a>17.5.8    程序：维护零件数据库（改进版）</h3><p><strong>说明：</strong>使用链表代替数组有两个主要的好处</p>
+<ol>
+<li>不需要事先限制数据库的大小，数据库可以扩大到没有更多内存空间存储零件为止</li>
+<li>可以很容易保持用零件编号排序的数据库，当往数据库中添加新零件时，只是简单把它插入链表中的适当位置就可以了</li>
+</ol>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">$ make</span><br><span class="line">$ tree -L 2</span><br><span class="line"> .</span><br><span class="line"> ├── invent2</span><br><span class="line"> ├── invent2.c</span><br><span class="line"> ├── invent2.o</span><br><span class="line"> ├── makefile</span><br><span class="line"> ├── readline.c</span><br><span class="line"> ├── readline.h</span><br><span class="line"> └── readline.o   └── readline.o</span><br></pre></td></tr></table></figure>
+<h4 id="readline-h"><a href="#readline-h" class="headerlink" title="readline.h"></a>readline.h</h4><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">ifndef</span> READLINE_H</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> READLINE_H</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">endif</span></span></span><br><span class="line"><span class="comment">/**</span><br><span class="line"> * 读入一行</span><br><span class="line"> * 会跳过开头的空白符</span><br><span class="line"> *</span><br><span class="line"> * @param  str 读入的内容</span><br><span class="line"> * @param  n   字符串的内容</span><br><span class="line"> * @return     读入字符的个数</span><br><span class="line"> */</span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">read_line</span><span class="params">(<span class="keyword">char</span> str[], <span class="keyword">int</span> n)</span></span>;</span><br></pre></td></tr></table></figure>
+<h4 id="readline-c"><a href="#readline-c" class="headerlink" title="readline.c"></a>readline.c</h4><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;ctype.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="string">"readline.h"</span></span></span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span><br><span class="line"> * 读入一行</span><br><span class="line"> * 会跳过开头的空白符</span><br><span class="line"> *</span><br><span class="line"> * @param  str 读入的内容</span><br><span class="line"> * @param  n   字符串的内容</span><br><span class="line"> * @return     读入字符的个数</span><br><span class="line"> */</span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">read_line</span><span class="params">(<span class="keyword">char</span> str[], <span class="keyword">int</span> n)</span> </span>&#123;</span><br><span class="line">	<span class="comment">// ch的类型为int而不是char，便于判定EOF</span></span><br><span class="line">	<span class="keyword">int</span> ch, i =<span class="number">0</span>;</span><br><span class="line">	<span class="comment">// 跳过所有空白符</span></span><br><span class="line">	<span class="keyword">while</span> (<span class="built_in">isspace</span>(ch = getchar()))</span><br><span class="line">		;</span><br><span class="line">	<span class="keyword">while</span> (ch != <span class="string">'\n'</span> &amp;&amp; ch != EOF) &#123;</span><br><span class="line">		<span class="keyword">if</span> (i &lt; n) &#123;</span><br><span class="line">			str[i++] = ch;</span><br><span class="line">		&#125;</span><br><span class="line">		ch = getchar();</span><br><span class="line">	&#125;</span><br><span class="line">	str[i] = <span class="string">'\0'</span>;</span><br><span class="line">	return i;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="invent2-c"><a href="#invent2-c" class="headerlink" title="invent2.c"></a>invent2.c</h4><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span><br><span class="line"> * Maintains a parts database (linked list version)</span><br><span class="line"> */</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdlib.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="string">"readline.h"</span></span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> NAME_LEN 25</span></span><br><span class="line"> <span class="comment">/**</span><br><span class="line">  * 定义零件</span><br><span class="line">  */</span></span><br><span class="line"> <span class="keyword">struct</span> part &#123;</span><br><span class="line"> 	<span class="keyword">int</span> number; <span class="comment">// 编号</span></span><br><span class="line"> 	<span class="keyword">char</span> name[NAME_LEN + <span class="number">1</span>]; <span class="comment">// 名字长度</span></span><br><span class="line"> 	<span class="keyword">int</span> on_hand; <span class="comment">// 当前库存</span></span><br><span class="line"> 	<span class="keyword">struct</span> part *next; <span class="comment">// 指向下一个零件</span></span><br><span class="line"> &#125;;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 链表（头节点）</span></span><br><span class="line"> <span class="keyword">struct</span> part *inventory = <span class="literal">NULL</span>;</span><br><span class="line"></span><br><span class="line"> <span class="function"><span class="keyword">struct</span> part *<span class="title">find_part</span> <span class="params">(<span class="keyword">int</span> number)</span></span>;</span><br><span class="line"> <span class="function"><span class="keyword">void</span> <span class="title">insert</span> <span class="params">(<span class="keyword">void</span>)</span></span>;</span><br><span class="line"> <span class="function"><span class="keyword">void</span> <span class="title">search</span> <span class="params">(<span class="keyword">void</span>)</span></span>;</span><br><span class="line"> <span class="function"><span class="keyword">void</span> <span class="title">update</span> <span class="params">(<span class="keyword">void</span>)</span></span>;</span><br><span class="line"> <span class="function"><span class="keyword">void</span> <span class="title">print</span> <span class="params">(<span class="keyword">void</span>)</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line"> 	<span class="keyword">char</span> code;</span><br><span class="line"> 	<span class="keyword">for</span> (;;) &#123;</span><br><span class="line"> 		<span class="built_in">printf</span>(<span class="string">"Enter operation code:"</span>);</span><br><span class="line"> 		<span class="built_in">scanf</span>(<span class="string">" %c"</span>, &amp;code);</span><br><span class="line"> 		<span class="comment">// 跳过换行符</span></span><br><span class="line"> 		<span class="keyword">while</span> (getchar() != <span class="string">'\n'</span>)</span><br><span class="line"> 			;</span><br><span class="line"> 		<span class="keyword">switch</span> (code) &#123;</span><br><span class="line"> 			<span class="keyword">case</span> <span class="string">'i'</span>: insert();</span><br><span class="line"> 				<span class="keyword">break</span>;</span><br><span class="line"> 			<span class="keyword">case</span> <span class="string">'s'</span>: search();</span><br><span class="line"> 				<span class="keyword">break</span>;</span><br><span class="line"> 			<span class="keyword">case</span> <span class="string">'u'</span>: update();</span><br><span class="line"> 				<span class="keyword">break</span>;</span><br><span class="line"> 			<span class="keyword">case</span> <span class="string">'p'</span>: print();</span><br><span class="line"> 				<span class="keyword">break</span>;</span><br><span class="line"> 			<span class="keyword">case</span> <span class="string">'q'</span>: return <span class="number">0</span>;</span><br><span class="line"> 			<span class="keyword">default</span>: <span class="built_in">printf</span>(<span class="string">"Illegal code\n"</span>);</span><br><span class="line"> 		&#125;</span><br><span class="line"> 		<span class="built_in">printf</span>(<span class="string">"\n"</span>);</span><br><span class="line"> 	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span><br><span class="line"> * 搜索零件</span><br><span class="line"> * @param  number 零件包含的值</span><br><span class="line"> * @return        对应零件节点的地址（没找到返回NULL）</span><br><span class="line"> */</span></span><br><span class="line"> <span class="function"><span class="keyword">struct</span> part *<span class="title">find_part</span> <span class="params">(<span class="keyword">int</span> number)</span> </span>&#123;</span><br><span class="line"> 	<span class="keyword">struct</span> part *p;</span><br><span class="line"> 	<span class="keyword">for</span> (p = inventory; p != <span class="literal">NULL</span> &amp;&amp; number &gt; p-&gt;number; p = p -&gt;next)</span><br><span class="line"> 		;</span><br><span class="line"> 	<span class="keyword">if</span> (p != <span class="literal">NULL</span> &amp;&amp; number == p-&gt;number) &#123;</span><br><span class="line"> 		return p;</span><br><span class="line"> 	&#125;</span><br><span class="line"> 	return <span class="literal">NULL</span>;</span><br><span class="line"> &#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span><br><span class="line"> * 插入一种零件</span><br><span class="line"> */</span></span><br><span class="line"> <span class="function"><span class="keyword">void</span> <span class="title">insert</span> <span class="params">(<span class="keyword">void</span>)</span> </span>&#123;</span><br><span class="line"> 	<span class="keyword">struct</span> part *cur, *prev, *new_node;</span><br><span class="line"> 	<span class="comment">// 为新节点分配空间</span></span><br><span class="line"> 	new_node = <span class="built_in">malloc</span>(sizeof(struct part));</span><br><span class="line"> 	<span class="keyword">if</span> (new_node == <span class="literal">NULL</span>) &#123;</span><br><span class="line"> 		<span class="built_in">printf</span>(<span class="string">"Database is full; can't add more parts.\n"</span>);</span><br><span class="line"> 		return;</span><br><span class="line"> 	&#125;</span><br><span class="line"> 	<span class="comment">// 零件编号</span></span><br><span class="line"> 	<span class="built_in">printf</span>(<span class="string">"Enter part number:"</span>);</span><br><span class="line"> 	<span class="built_in">scanf</span>(<span class="string">"%d"</span>, &amp;new_node-&gt;number);</span><br><span class="line"></span><br><span class="line"> 	<span class="comment">// 根据编号寻找插入位置(按从小到大的顺序排列)</span></span><br><span class="line"> 	<span class="keyword">for</span> (cur = inventory, prev = <span class="literal">NULL</span>; cur != <span class="literal">NULL</span> &amp;&amp; new_node-&gt;number &gt; cur-&gt;number; prev = cur, cur = cur-&gt;next)</span><br><span class="line"> 		;</span><br><span class="line"></span><br><span class="line"> 	<span class="comment">// 发现编号相同的节点</span></span><br><span class="line"> 	<span class="keyword">if</span> (cur != <span class="literal">NULL</span> &amp;&amp; new_node-&gt;number == cur-&gt;number) &#123;</span><br><span class="line"> 		<span class="built_in">printf</span>(<span class="string">"Part already exits.\n"</span>);</span><br><span class="line"> 		<span class="built_in">free</span>(new_node);</span><br><span class="line"> 		return;</span><br><span class="line"> 	&#125;</span><br><span class="line"></span><br><span class="line"> 	<span class="comment">// 零件名</span></span><br><span class="line"> 	<span class="built_in">printf</span>(<span class="string">"Enter part name:"</span>);</span><br><span class="line"> 	read_line(new_node-&gt;name, NAME_LEN);</span><br><span class="line"></span><br><span class="line"> 	<span class="comment">// 零件数量</span></span><br><span class="line"> 	<span class="built_in">printf</span>(<span class="string">"Enter quantity on hand:"</span>);</span><br><span class="line"> 	<span class="built_in">scanf</span>(<span class="string">"%d"</span>, &amp;new_node-&gt;on_hand);</span><br><span class="line"></span><br><span class="line"> 	<span class="comment">// 插入进去</span></span><br><span class="line"> 	new_node-&gt;next = cur;</span><br><span class="line"> 	<span class="keyword">if</span> (prev == <span class="literal">NULL</span>) &#123;</span><br><span class="line"> 		inventory = new_node;</span><br><span class="line"> 	&#125;</span><br><span class="line"> 	<span class="keyword">else</span> &#123;</span><br><span class="line"> 		prev-&gt;next = new_node;</span><br><span class="line"> 	&#125;</span><br><span class="line"> &#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span><br><span class="line"> * 以交互的方式根据编号搜索并显示目标零件</span><br><span class="line"> */</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">search</span> <span class="params">(<span class="keyword">void</span>)</span> </span>&#123;</span><br><span class="line">	<span class="keyword">int</span> number;</span><br><span class="line">	<span class="keyword">struct</span> part *p;</span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">"Enter part number:"</span>);</span><br><span class="line">	<span class="built_in">scanf</span>(<span class="string">"%d"</span>, &amp;number);</span><br><span class="line">	p = find_part(number);</span><br><span class="line">	<span class="keyword">if</span> (p != <span class="literal">NULL</span>) &#123;</span><br><span class="line">		<span class="built_in">printf</span>(<span class="string">"Part name: %s\n"</span>, p-&gt;name);</span><br><span class="line">		<span class="built_in">printf</span>(<span class="string">"Quantity on hand: %d\n"</span>, p-&gt;on_hand);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">else</span> &#123;</span><br><span class="line">		<span class="built_in">printf</span>(<span class="string">"Part not found.\n"</span>);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span><br><span class="line"> * 修改零件</span><br><span class="line"> */</span></span><br><span class="line"> <span class="function"><span class="keyword">void</span> <span class="title">update</span> <span class="params">(<span class="keyword">void</span>)</span> </span>&#123;</span><br><span class="line"> 	<span class="keyword">int</span> number, change;</span><br><span class="line"> 	<span class="keyword">struct</span> part *p;</span><br><span class="line"></span><br><span class="line"> 	<span class="built_in">printf</span>(<span class="string">"Enter part number:"</span>);</span><br><span class="line"> 	<span class="built_in">scanf</span>(<span class="string">"%d"</span>, &amp;number);</span><br><span class="line"> 	p = find_part(number);</span><br><span class="line"> 	<span class="keyword">if</span> (p != <span class="literal">NULL</span>) &#123;</span><br><span class="line"> 		<span class="built_in">printf</span>(<span class="string">"Enter change in quantity on hand:"</span>);</span><br><span class="line"> 		<span class="built_in">scanf</span>(<span class="string">"%d"</span>, &amp;change);</span><br><span class="line"> 		p-&gt;on_hand += change;</span><br><span class="line"> 	&#125;</span><br><span class="line"> 	<span class="keyword">else</span> &#123;</span><br><span class="line"> 		<span class="built_in">printf</span>(<span class="string">"Part not found.\n"</span>);</span><br><span class="line"> 	&#125;</span><br><span class="line"> &#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span><br><span class="line"> * 打印所有零件</span><br><span class="line"> */</span></span><br><span class="line"> <span class="function"><span class="keyword">void</span> <span class="title">print</span> <span class="params">(<span class="keyword">void</span>)</span> </span>&#123;</span><br><span class="line"> 	<span class="keyword">struct</span> part *p;</span><br><span class="line"> 	<span class="built_in">printf</span>(<span class="string">"Part number    Part Name   Quantity on hand\n"</span>);</span><br><span class="line"> 	<span class="keyword">for</span> (p = inventory; p != <span class="literal">NULL</span>; p = p-&gt;next) &#123;</span><br><span class="line"> 		<span class="built_in">printf</span>(<span class="string">"%7d      %-25s%11d\n"</span>, p-&gt;number, p-&gt;name, p-&gt;on_hand);</span><br><span class="line"> 	&#125;</span><br><span class="line"> &#125;</span><br></pre></td></tr></table></figure>
+<h2 id="17-6-指向指针的指针"><a href="#17-6-指向指针的指针" class="headerlink" title="17.6    指向指针的指针"></a>17.6    指向指针的指针</h2><p><strong>说明：</strong>对17.5.4中的<code>add_to_list</code>进行优化，优化后插入链表的功能将完全由该函数提供。<br><strong>原理：</strong>通过指针的指针的副本，达到修改指针指向的目的。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span><br><span class="line">* 向链表中插入节点</span><br><span class="line">* @param &#123;struct node **&#125; node 指向链表的头节点的指针的指针</span><br><span class="line">* @param &#123;int&#125; n 节点存储的值</span><br><span class="line">*/</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">add_to_list</span> <span class="params">(<span class="keyword">struct</span> node **<span class="built_in">list</span>,  <span class="keyword">int</span> n)</span> </span>&#123;</span><br><span class="line">	<span class="keyword">struct</span> node *new_node;</span><br><span class="line">	new_node = <span class="built_in">malloc</span>(sizeof(struct node));</span><br><span class="line">	<span class="keyword">if</span> (new_node == <span class="literal">NULL</span>) &#123;</span><br><span class="line">		<span class="built_in">printf</span>(<span class="string">"Error: malloc failed in add_to_list\n"</span>);</span><br><span class="line">		<span class="built_in">exit</span> (EXIT_FAILURES);</span><br><span class="line">	&#125;</span><br><span class="line">	new_node-&gt;value = n;</span><br><span class="line">	<span class="comment">// 新节点的下一个节点指向链表头节点</span></span><br><span class="line">	new_node-&gt;next = *<span class="built_in">list</span>;</span><br><span class="line"></span><br><span class="line">	<span class="comment">// 原本指向头节点的指针指向新节点</span></span><br><span class="line">	<span class="comment">// 详解：list的值是first这个指针本身的地址，通过*list便可以访问到first这个指针</span></span><br><span class="line">	*<span class="built_in">list</span> = new_node;</span><br><span class="line">&#125;</span><br><span class="line">...</span><br><span class="line">add_to_list(&amp;first, <span class="number">10</span>);</span><br></pre></td></tr></table></figure>
+<h2 id="17-7-指向函数的指针"><a href="#17-7-指向函数的指针" class="headerlink" title="17.7    指向函数的指针"></a>17.7    指向函数的指针</h2><p><strong>说明：</strong>毕竟函数占用内存单元，所以每个函数都有地址，就像每个变量都有地址一样。</p>
+<h3 id="17-7-1-函数指针作为实际参数"><a href="#17-7-1-函数指针作为实际参数" class="headerlink" title="17.7.1    函数指针作为实际参数"></a>17.7.1    函数指针作为实际参数</h3><p><strong>声明：</strong>声明为指向函数的指针有两种方式，从编译器的角度看是完全一样的。</p>
+<blockquote>
+<p>方式一：<strong>返回值 函数名(<code>返回值 (*函数名)(参数1, 参数2, ...)</code>, 参数)</strong></p>
+</blockquote>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">double integrate (double (*f)(double), double a, double b)  &#123;</span><br><span class="line">    ...</span><br><span class="line">    sum += (*f)(x); // 或者sum += f(x)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>方式二：<strong>返回值 函数名(<code>返回值 (函数名)(参数1, 参数2, ...)</code>, 参数)</strong></p>
+</blockquote>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">double integrate (double f(double), double a, double b) &#123;</span><br><span class="line">    ...</span><br><span class="line">    sum += (*f)(x);// 或者sum += f(x)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="17-7-2-qsort函数"><a href="#17-7-2-qsort函数" class="headerlink" title="17.7.2    qsort函数"></a>17.7.2    qsort函数</h3><p><strong>原型：</strong><code>stdlib.h</code></p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">/**</span><br><span class="line">* 为数组排序</span><br><span class="line">* @param &#123;void *&#125; base 指向数组需要排序的部分的第一个元素</span><br><span class="line">* @param &#123;size_t&#125; nmemb 要排序的元素的数量</span><br><span class="line">* @param &#123;int (*)&#125; compare 指向排序函数的指针</span><br><span class="line">*/</span><br><span class="line">void qsort (void *base, size_t nmemb, size_t size,  int (*compar) (const void *, const void *));</span><br></pre></td></tr></table></figure>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span><br><span class="line"> * 比较函数（提供给qsort函数排序规则）</span><br><span class="line"> * @param &#123;void *&#125; p 第一个零件</span><br><span class="line"> * @param &#123;void *&#125; q 第二个零件</span><br><span class="line"> * @return   正数（1）：*p &gt; *q;负数（-1）：*p &lt; *q;零（0）：*p = *q</span><br><span class="line"> */</span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">compare_parts</span> <span class="params">(<span class="keyword">const</span> <span class="keyword">void</span> *p, <span class="keyword">const</span> <span class="keyword">void</span> *q)</span> </span>&#123;</span><br><span class="line">	return ((struct part *) p)-&gt;number - ((struct part *) q)-&gt;number;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 使用比较函数进行排序</span></span><br><span class="line">qsort(inventory, num_parts, <span class="keyword">sizeof</span>(struct part), compare_parts);</span><br></pre></td></tr></table></figure>
+<h3 id="17-7-3-函数指针的其他用途"><a href="#17-7-3-函数指针的其他用途" class="headerlink" title="17.7.3    函数指针的其他用途"></a>17.7.3    函数指针的其他用途</h3><p><strong>说明：</strong>c语言对待指向函数的指针就像对待指向数据的指针一样。我们可以把函数存储在变量中，或者用做数组的元素，再或者用做结构或联合的成员，甚至可以编写返回函数指针的函数，</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/*存储函数的变量*/</span></span><br><span class="line"><span class="keyword">void</span> (*pf) (<span class="keyword">int</span>); <span class="comment">//声明一个可以存储指向函数的指针的变量（pf可以指向任何带有int型实际参数，且返回值为void的函数）</span></span><br><span class="line"></span><br><span class="line">pf = f; <span class="comment">// 指向函数f</span></span><br><span class="line"></span><br><span class="line">(*pf)(i); <span class="comment">// pf(i)</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">/*存储函数的数组*/</span></span><br><span class="line"><span class="keyword">void</span> (*file_cmd[])(<span class="keyword">void</span>) = &#123;</span><br><span class="line">	new_cmd,</span><br><span class="line">	open_cmd,</span><br><span class="line">	close_cmd,</span><br><span class="line">	close_all_cmd,</span><br><span class="line">	save_cmd,</span><br><span class="line">	ext_cmd</span><br><span class="line">&#125;;</span><br><span class="line">(*file_cmd[n])(); <span class="comment">// 或者file_cmd[n]();</span></span><br></pre></td></tr></table></figure>
+<h3 id="17-7-4-程序：列三角函数表"><a href="#17-7-4-程序：列三角函数表" class="headerlink" title="17.7.4    程序：列三角函数表"></a>17.7.4    程序：列三角函数表</h3><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line">/**</span><br><span class="line"> * Tabulates values of trigonometric functions</span><br><span class="line"> */</span><br><span class="line">#include &lt;math.h&gt;</span><br><span class="line">#include &lt;stdio.h&gt;</span><br><span class="line"></span><br><span class="line">void tabulate (double (*f)double, double first, double last, double incr);</span><br><span class="line"></span><br><span class="line">int main () &#123;</span><br><span class="line">	double final, increament, initial;</span><br><span class="line">	printf("Enter initial value: ");</span><br><span class="line">	scanf("%lf", &amp;initial);</span><br><span class="line"></span><br><span class="line">	printf("Enter final value:");</span><br><span class="line">	scanf("%lf", &amp;final);</span><br><span class="line"></span><br><span class="line">	printf("Enter increament:");</span><br><span class="line">	scanf("%lf", &amp;increament);</span><br><span class="line"></span><br><span class="line">	printf("\n     x     cos(x)\n   -------    -------\n");</span><br><span class="line">	tabulate(cos, initial, final, increament);</span><br><span class="line">	</span><br><span class="line">	printf("\n     x     sin(x)\n   -------    -------\n");</span><br><span class="line">	tabulate(sin, initial, final, increament);</span><br><span class="line">	</span><br><span class="line">	printf("\n     x     tan(x)\n   -------    -------\n");</span><br><span class="line">	tabulate(tan, initial, final, increament);</span><br><span class="line"></span><br><span class="line">	return 0;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">void tabulate (double (*f)(double), double first, double last, double incr) &#123;</span><br><span class="line">	double x;</span><br><span class="line">	int i, num_intervals;</span><br><span class="line">	num_intervals = cell((last - first) / incr);</span><br><span class="line">	for (i = 0; i &lt;= num_intervals; i++) &#123;</span><br><span class="line">		x = first + i * incr;</span><br><span class="line">		printf("%10.5f %10.5f\n", x, (*f)[x]);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/c语言基础/" rel="tag">#c语言基础</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/05/10/BOOK_c语言程序设计－现代方法/16 结构、联合和枚举/" rel="next" title="16 结构、联合和枚举">
+                <i class="fa fa-chevron-left"></i> 16 结构、联合和枚举
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/05/10/BOOK_c语言程序设计－现代方法/18 声明/" rel="prev" title="18 声明">
+                18 声明 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2016/05/10/BOOK_c语言程序设计－现代方法/17 指针的高级应用/"
+           data-title="17 指针的高级应用" data-url="http://laputa-er.github.io/2016/05/10/BOOK_c语言程序设计－现代方法/17 指针的高级应用/">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.gif"
+               alt="Sean" />
+          <p class="site-author-name" itemprop="name">Sean</p>
+          <p class="site-description motion-element" itemprop="description">整理了一批过去一段时间ios相关的笔记，其它的笔记也整理下？源码分享出来？再说吧...反正也只有自己会看吧...</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">200</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">22</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">31</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#17-1-动态存储分配"><span class="nav-text">17.1    动态存储分配</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#17-1-1-内存分配函数"><span class="nav-text">17.1.1    内存分配函数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#17-1-2-空指针"><span class="nav-text">17.1.2    空指针</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#17-2-动态分配字符串"><span class="nav-text">17.2    动态分配字符串</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#17-2-1-使用malloc函数为字符串分配内存"><span class="nav-text">17.2.1    使用malloc函数为字符串分配内存</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#17-2-2-在字符串函数中使用动态存储分配"><span class="nav-text">17.2.2    在字符串函数中使用动态存储分配</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#17-2-3-动态分配字符串的数组"><span class="nav-text">17.2.3    动态分配字符串的数组</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#17-2-4-程序：显示一个月的提示列表（改进版）"><span class="nav-text">17.2.4    程序：显示一个月的提示列表（改进版）</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#17-3-动态分配数组"><span class="nav-text">17.3    动态分配数组</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#17-3-1-使用malloc函数为数组分配存储空间"><span class="nav-text">17.3.1    使用malloc函数为数组分配存储空间</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#17-3-2-calloc函数"><span class="nav-text">17.3.2    calloc函数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#17-3-3-realloc函数"><span class="nav-text">17.3.3    realloc函数</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#17-4-释放存储"><span class="nav-text">17.4    释放存储</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#17-4-1-free函数"><span class="nav-text">17.4.1    free函数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#17-4-2-“悬空指针”问题"><span class="nav-text">17.4.2    “悬空指针”问题</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#17-5-链表"><span class="nav-text">17.5    链表</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#17-5-1-声明节点类型"><span class="nav-text">17.5.1    声明节点类型</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#17-5-2-创建节点"><span class="nav-text">17.5.2    创建节点</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#17-5-3-gt-运算符"><span class="nav-text">17.5.3    ->运算符</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#17-5-4-在链表的开始处插入节点"><span class="nav-text">17.5.4    在链表的开始处插入节点</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#17-5-5-搜索链表"><span class="nav-text">17.5.5    搜索链表</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#17-5-6-从链表中删除节点"><span class="nav-text">17.5.6    从链表中删除节点</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#17-5-8-程序：维护零件数据库（改进版）"><span class="nav-text">17.5.8    程序：维护零件数据库（改进版）</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#readline-h"><span class="nav-text">readline.h</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#readline-c"><span class="nav-text">readline.c</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#invent2-c"><span class="nav-text">invent2.c</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#17-6-指向指针的指针"><span class="nav-text">17.6    指向指针的指针</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#17-7-指向函数的指针"><span class="nav-text">17.7    指向函数的指针</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#17-7-1-函数指针作为实际参数"><span class="nav-text">17.7.1    函数指针作为实际参数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#17-7-2-qsort函数"><span class="nav-text">17.7.2    qsort函数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#17-7-3-函数指针的其他用途"><span class="nav-text">17.7.3    函数指针的其他用途</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#17-7-4-程序：列三角函数表"><span class="nav-text">17.7.4    程序：列三角函数表</span></a></li></ol></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Sean</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"lapuda-er"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+    <script src="/vendors/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
+    <script src="/js/src/hook-duoshuo.js"></script>
+  
+
+
+
+
+
+
+  
+  
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length == 0) {
+       search_path = "search.xml";
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    function proceedsearch() {
+      $("body").append('<div class="popoverlay">').css('overflow', 'hidden');
+      $('.popup').toggle();
+
+    }
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+    'use strict';
+    $.ajax({
+        url: path,
+        dataType: "xml",
+        async: true,
+        success: function( xmlResponse ) {
+            // get the contents from search data
+            isfetched = true;
+            $('.popup').detach().appendTo('.header-inner');
+            var datas = $( "entry", xmlResponse ).map(function() {
+                return {
+                    title: $( "title", this ).text(),
+                    content: $("content",this).text(),
+                    url: $( "url" , this).text()
+                };
+            }).get();
+            var $input = document.getElementById(search_id);
+            var $resultContent = document.getElementById(content_id);
+            $input.addEventListener('input', function(){
+                var matchcounts = 0;
+                var str='<ul class=\"search-result-list\">';
+                var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+                $resultContent.innerHTML = "";
+                if (this.value.trim().length > 1) {
+                // perform local searching
+                datas.forEach(function(data) {
+                    var isMatch = true;
+                    var content_index = [];
+                    var data_title = data.title.trim().toLowerCase();
+                    var data_content = data.content.trim().replace(/<[^>]+>/g,"").toLowerCase();
+                    var data_url = data.url;
+                    var index_title = -1;
+                    var index_content = -1;
+                    var first_occur = -1;
+                    // only match artiles with not empty titles and contents
+                    if(data_title != '' && data_content != '') {
+                        keywords.forEach(function(keyword, i) {
+                            index_title = data_title.indexOf(keyword);
+                            index_content = data_content.indexOf(keyword);
+                            if( index_title < 0 && index_content < 0 ){
+                                isMatch = false;
+                            } else {
+                                if (index_content < 0) {
+                                    index_content = 0;
+                                }
+                                if (i == 0) {
+                                    first_occur = index_content;
+                                }
+                            }
+                        });
+                    }
+                    // show search results
+                    if (isMatch) {
+                        matchcounts += 1;
+                        str += "<li><a href='"+ data_url +"' class='search-result-title'>"+ data_title +"</a>";
+                        var content = data.content.trim().replace(/<[^>]+>/g,"");
+                        if (first_occur >= 0) {
+                            // cut out 100 characters
+                            var start = first_occur - 20;
+                            var end = first_occur + 80;
+                            if(start < 0){
+                                start = 0;
+                            }
+                            if(start == 0){
+                                end = 50;
+                            }
+                            if(end > content.length){
+                                end = content.length;
+                            }
+                            var match_content = content.substring(start, end);
+                            // highlight all keywords
+                            keywords.forEach(function(keyword){
+                                var regS = new RegExp(keyword, "gi");
+                                match_content = match_content.replace(regS, "<b class=\"search-keyword\">"+keyword+"</b>");
+                            });
+
+                            str += "<p class=\"search-result\">" + match_content +"...</p>"
+                        }
+                        str += "</li>";
+                    }
+                })};
+                str += "</ul>";
+                if (matchcounts == 0) { str = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>' }
+                if (keywords == "") { str = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>' }
+                $resultContent.innerHTML = str;
+            });
+            proceedsearch();
+        }
+    });}
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched == false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+
+    });
+
+    $('.popup-btn-close').click(function(e){
+      $('.popup').hide();
+      $(".popoverlay").remove();
+      $('body').css('overflow', '');
+    });
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+  </script>
+
+
+  
+
+  
+
+  
+
+</body>
+</html>
