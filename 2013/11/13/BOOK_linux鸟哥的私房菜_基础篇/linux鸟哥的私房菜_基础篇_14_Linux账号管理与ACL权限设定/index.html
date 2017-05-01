@@ -1,0 +1,1006 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="shell,linux," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1" />
+
+
+
+
+
+
+<meta name="description" content="123456789101112/etc/passwd/etc/group/etc/shadow/etc/gshadow/etc/default/useradd/etc/login.defs/etc/kel/*/etc/pam.d/passwd  # PAM密码管理机制所在的位置/etc/skel          # home目录基准参考目录/etc/sudoers        # 该档案中记录">
+<meta property="og:type" content="article">
+<meta property="og:title" content="14 Linux 账号管理与 ACL 权限设定">
+<meta property="og:url" content="http://laputa-er.github.io/2013/11/13/BOOK_linux鸟哥的私房菜_基础篇/linux鸟哥的私房菜_基础篇_14_Linux账号管理与ACL权限设定/index.html">
+<meta property="og:site_name" content="Sean">
+<meta property="og:description" content="123456789101112/etc/passwd/etc/group/etc/shadow/etc/gshadow/etc/default/useradd/etc/login.defs/etc/kel/*/etc/pam.d/passwd  # PAM密码管理机制所在的位置/etc/skel          # home目录基准参考目录/etc/sudoers        # 该档案中记录">
+<meta property="og:image" content="http://o6ul1xz4z.bkt.clouddn.com/2017-04-21-0C2B36EE-892B-4015-9C48-94CC8B3B0F96.png">
+<meta property="og:image" content="http://o6ul1xz4z.bkt.clouddn.com/2017-04-21-B3B403F4-B85D-4F01-B3F8-A744B904FF97.png">
+<meta property="og:image" content="http://o6ul1xz4z.bkt.clouddn.com/2017-04-21-C187449A-BD80-42BE-B19A-CC015189480C.png">
+<meta property="og:image" content="http://o6ul1xz4z.bkt.clouddn.com/2017-04-21-4AF8EA21-281D-4410-8122-4E7C95FD0A27.png">
+<meta property="og:image" content="http://o6ul1xz4z.bkt.clouddn.com/2017-04-21-41ADC233-E4D6-4FE1-BAAA-66AA46E59734.png">
+<meta property="og:image" content="http://o6ul1xz4z.bkt.clouddn.com/2017-04-21-4D06D232-DC7E-442A-9BE3-4EB790C03732.png">
+<meta property="og:image" content="http://o6ul1xz4z.bkt.clouddn.com/2017-04-21-C2355F13-6CFA-4600-8209-793FC5E5C02F.png">
+<meta property="og:image" content="http://o6ul1xz4z.bkt.clouddn.com/2017-04-21-1C1DEC0B-A048-48E8-A8F1-BBDAA1D50781.png">
+<meta property="og:image" content="http://o6ul1xz4z.bkt.clouddn.com/2017-04-21-BE41DC14-1FF2-4227-9E74-79EB5B2E80F8.png">
+<meta property="og:image" content="http://o6ul1xz4z.bkt.clouddn.com/2017-04-21-62A6A107-D3C8-433F-9BCF-D06991BBF9E0.png">
+<meta property="og:image" content="http://o6ul1xz4z.bkt.clouddn.com/2017-04-21-1F45EE06-677C-4702-A678-20B75DA9AD73.png">
+<meta property="og:image" content="http://o6ul1xz4z.bkt.clouddn.com/2017-04-21-E37231C6-1C72-4300-B1D8-8501D3AA5E7B.png">
+<meta property="og:image" content="http://o6ul1xz4z.bkt.clouddn.com/2017-04-21-00C22494-F641-4F8A-8759-93F11BA4D8D9.png">
+<meta property="og:image" content="http://o6ul1xz4z.bkt.clouddn.com/2017-04-21-6B065755-B4F5-4B7A-9C4D-BCC9D1295CD3.png">
+<meta property="og:image" content="http://o6ul1xz4z.bkt.clouddn.com/2017-04-21-D9F62C51-2C09-4342-A448-2794D3AAE392.png">
+<meta property="og:image" content="http://o6ul1xz4z.bkt.clouddn.com/2017-04-21-83479858-21B6-4F64-A157-733AD7BF70DD.png">
+<meta property="og:image" content="http://o6ul1xz4z.bkt.clouddn.com/2017-04-21-0E372DCD-3F35-46C4-80BF-9F67F1A4D2F7.png">
+<meta property="og:image" content="http://o6ul1xz4z.bkt.clouddn.com/2017-04-21-1AC96545-A23D-4D96-AC7F-9625F4D221BC.png">
+<meta property="og:image" content="http://o6ul1xz4z.bkt.clouddn.com/2017-04-21-3AF64043-2EC7-4163-8828-AF924FD4358C.png">
+<meta property="og:image" content="http://o6ul1xz4z.bkt.clouddn.com/2017-04-21-64C5B158-6C77-4981-961F-E3058C9595DA.png">
+<meta property="og:image" content="http://o6ul1xz4z.bkt.clouddn.com/2017-04-21-4C0A45BA-615E-4B83-910C-A0A7D311908A.png">
+<meta property="og:image" content="http://o6ul1xz4z.bkt.clouddn.com/2017-04-21-EDB11C6A-7F64-4570-970C-E9EA30B93AD7.png">
+<meta property="og:image" content="http://o6ul1xz4z.bkt.clouddn.com/2017-04-21-A1D7EE37-F0CA-4094-AEA1-E0B7B8630812.png">
+<meta property="og:image" content="http://o6ul1xz4z.bkt.clouddn.com/2017-04-21-2E16B4A0-AD06-43D9-B9A5-7251C76D33DA.png">
+<meta property="og:image" content="http://o6ul1xz4z.bkt.clouddn.com/2017-04-21-AAE51217-F441-4A91-825D-6E4DAC4B1C5B.png">
+<meta property="og:image" content="http://o6ul1xz4z.bkt.clouddn.com/2017-04-21-0E1903FC-C609-4615-8FF1-AEE5735024C5.png">
+<meta property="og:image" content="http://o6ul1xz4z.bkt.clouddn.com/2017-04-21-FC4B8898-2421-489B-9E08-AD9641CD4C62.png">
+<meta property="og:image" content="http://o6ul1xz4z.bkt.clouddn.com/2017-04-21-9AAF82B7-4E27-41FF-AFF4-5BCED362A3A7.png">
+<meta property="og:image" content="http://o6ul1xz4z.bkt.clouddn.com/2017-04-21-DC216841-F268-4F11-A36B-D98E875054E6.png">
+<meta property="og:image" content="http://o6ul1xz4z.bkt.clouddn.com/2017-04-21-47ABA6C2-B19A-4EF9-8B5B-EF5E539F69E0.png">
+<meta property="og:updated_time" content="2017-04-21T14:23:46.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="14 Linux 账号管理与 ACL 权限设定">
+<meta name="twitter:description" content="123456789101112/etc/passwd/etc/group/etc/shadow/etc/gshadow/etc/default/useradd/etc/login.defs/etc/kel/*/etc/pam.d/passwd  # PAM密码管理机制所在的位置/etc/skel          # home目录基准参考目录/etc/sudoers        # 该档案中记录">
+<meta name="twitter:image" content="http://o6ul1xz4z.bkt.clouddn.com/2017-04-21-0C2B36EE-892B-4015-9C48-94CC8B3B0F96.png">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 0,
+      author: '博主'
+    }
+  };
+</script>
+
+
+
+
+  <link rel="canonical" href="http://laputa-er.github.io/2013/11/13/BOOK_linux鸟哥的私房菜_基础篇/linux鸟哥的私房菜_基础篇_14_Linux账号管理与ACL权限设定/"/>
+
+  <title> 14 Linux 账号管理与 ACL 权限设定 | Sean </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//hm.baidu.com/hm.js?898688f51c5a3d6b37dd23e04441e5bd";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">Sean</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">笔记分享</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup">
+ <span class="search-icon fa fa-search"></span>
+ <input type="text" id="local-search-input">
+ <div id="local-search-result"></div>
+ <span class="popup-btn-close">close</span>
+</div>
+
+
+    </div>
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                14 Linux 账号管理与 ACL 权限设定
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2013-11-13T19:21:59+08:00" content="2013-11-13">
+              2013-11-13
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/linux鸟哥的私房菜-基础篇/" itemprop="url" rel="index">
+                    <span itemprop="name">linux鸟哥的私房菜_基础篇</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2013/11/13/BOOK_linux鸟哥的私房菜_基础篇/linux鸟哥的私房菜_基础篇_14_Linux账号管理与ACL权限设定/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2013/11/13/BOOK_linux鸟哥的私房菜_基础篇/linux鸟哥的私房菜_基础篇_14_Linux账号管理与ACL权限设定/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">/etc/passwd</span><br><span class="line">/etc/group</span><br><span class="line">/etc/shadow</span><br><span class="line">/etc/gshadow</span><br><span class="line">/etc/default/useradd</span><br><span class="line">/etc/login.defs</span><br><span class="line">/etc/kel/*</span><br><span class="line">/etc/pam.d/passwd  <span class="comment"># PAM密码管理机制所在的位置</span></span><br><span class="line">/etc/skel          <span class="comment"># home目录基准参考目录</span></span><br><span class="line">/etc/sudoers        <span class="comment"># 该档案中记录着可以执行sudo命令的帐号</span></span><br><span class="line">/var/spool/mail/       <span class="comment"># 用户邮箱位置</span></span><br><span class="line">/etc/default/useradd</span><br></pre></td></tr></table></figure>
+<h1 id="1-etc-passwd-和-etc-shadow"><a href="#1-etc-passwd-和-etc-shadow" class="headerlink" title="1 /etc/passwd 和 /etc/shadow"></a>1 /etc/passwd 和 /etc/shadow</h1><p>☑ 注意: 修改<code>/etc/passwd</code>中的帐号信息会导致文档属性无法显示拥有者的姓名，取而代之的是UID。</p>
+<h2 id="1-1-etc-passwd"><a href="#1-1-etc-passwd" class="headerlink" title="1.1 /etc/passwd"></a>1.1 /etc/passwd</h2><p><img src="http://o6ul1xz4z.bkt.clouddn.com/2017-04-21-0C2B36EE-892B-4015-9C48-94CC8B3B0F96.png" alt="0C2B36EE-892B-4015-9C48-94CC8B3B0F96"></p>
+<p><img src="http://o6ul1xz4z.bkt.clouddn.com/2017-04-21-B3B403F4-B85D-4F01-B3F8-A744B904FF97.png" alt="B3B403F4-B85D-4F01-B3F8-A744B904FF97"></p>
+<p><img src="http://o6ul1xz4z.bkt.clouddn.com/2017-04-21-C187449A-BD80-42BE-B19A-CC015189480C.png" alt="C187449A-BD80-42BE-B19A-CC015189480C"></p>
+<h2 id="1-2-etc-shadow"><a href="#1-2-etc-shadow" class="headerlink" title="1.2 /etc/shadow"></a>1.2 /etc/shadow</h2><p><img src="http://o6ul1xz4z.bkt.clouddn.com/2017-04-21-4AF8EA21-281D-4410-8122-4E7C95FD0A27.png" alt="4AF8EA21-281D-4410-8122-4E7C95FD0A27"></p>
+<p><img src="http://o6ul1xz4z.bkt.clouddn.com/2017-04-21-41ADC233-E4D6-4FE1-BAAA-66AA46E59734.png" alt="41ADC233-E4D6-4FE1-BAAA-66AA46E59734"></p>
+<h2 id="1-3-找回丢失的密码"><a href="#1-3-找回丢失的密码" class="headerlink" title="1.3  找回丢失的密码"></a>1.3  找回丢失的密码</h2><p><img src="http://o6ul1xz4z.bkt.clouddn.com/2017-04-21-4D06D232-DC7E-442A-9BE3-4EB790C03732.png" alt="4D06D232-DC7E-442A-9BE3-4EB790C03732"></p>
+<h1 id="2-改变默认-home-目录"><a href="#2-改变默认-home-目录" class="headerlink" title="2 改变默认 home 目录"></a>2 改变默认 home 目录</h1><p>通过修改<code>/etc/passwd</code>第7栏的信息来改变默认home目录(usermod)，对我个人很实用;或者通过修改第8栏给用户一个登录后的默认sheel。</p>
+<h1 id="3-sbin-nologin"><a href="#3-sbin-nologin" class="headerlink" title="3 /sbin/nologin"></a>3 /sbin/nologin</h1><p><code>/sbin/nologin</code>这个sheel可以让用户在不获得sheel环境，可以用来做为纯pop邮件帐号<br><img src="http://o6ul1xz4z.bkt.clouddn.com/2017-04-21-C2355F13-6CFA-4600-8209-793FC5E5C02F.png" alt="C2355F13-6CFA-4600-8209-793FC5E5C02F"></p>
+<p><img src="http://o6ul1xz4z.bkt.clouddn.com/2017-04-21-1C1DEC0B-A048-48E8-A8F1-BBDAA1D50781.png" alt="1C1DEC0B-A048-48E8-A8F1-BBDAA1D50781"></p>
+<p><img src="http://o6ul1xz4z.bkt.clouddn.com/2017-04-21-BE41DC14-1FF2-4227-9E74-79EB5B2E80F8.png" alt="BE41DC14-1FF2-4227-9E74-79EB5B2E80F8"></p>
+<h1 id="4-关于群组"><a href="#4-关于群组" class="headerlink" title="4 关于群组"></a>4 关于群组</h1><p>有效群组，与初始群组，groups,newgrp</p>
+<h2 id="4-1-etc-group"><a href="#4-1-etc-group" class="headerlink" title="4.1 /etc/group"></a>4.1 /etc/group</h2><p><img src="http://o6ul1xz4z.bkt.clouddn.com/2017-04-21-62A6A107-D3C8-433F-9BCF-D06991BBF9E0.png" alt="62A6A107-D3C8-433F-9BCF-D06991BBF9E0"></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">$ useradd -m  yxl   <span class="comment"># 创建行用户yxl并自动生成主目录/home/yxl(普通用户)</span></span><br><span class="line">$ sudo passwd yxl truman<span class="comment"># 创建帐号密码</span></span><br><span class="line">$ sudo usermod <span class="_">-s</span> /bin/bash yxl <span class="comment"># 修改yxl的登录sheel为/bin/bash(默认是/bin/sh)   </span></span><br><span class="line">$ sudo grep yxl /etc/passwd /etc/group /etc/shadow</span><br><span class="line">     /etc/passwd:yxl:x:999:999::/home/yxl:/bin/bash</span><br><span class="line">     /etc/group:yxl:x:999:</span><br><span class="line">     /etc/shadow:yxl:<span class="variable">$6</span><span class="variable">$oVhKiz3G</span><span class="variable">$AWIETaQnyPd4pKME</span>/XYfOBWlHJSBDJLjFLCc.01Jd8zx4xreNnlYTkvK8</span><br><span class="line">     B.OJHx6QdItzTis1p/4LYhx7EhFx.:16023::::::</span><br><span class="line">$ sudo  usermod -G  anderson yxl <span class="comment"># 将yxl加到anderson组中</span></span><br><span class="line">$ sudo  usermod -G  sudo yxl  <span class="comment"># 将yxl附加到sudo组中 </span></span><br><span class="line">$ groups <span class="comment"># 查看当前用户支持的群组（第一个是有效群组）</span></span><br><span class="line">$ newgrp  adm <span class="comment"># 切换到adm这个群组为有效群组(现在创建的新文档将属于当前用户，并属于当前有效群组)</span></span><br></pre></td></tr></table></figure>
+<h2 id="4-2-实战"><a href="#4-2-实战" class="headerlink" title="4.2 实战"></a>4.2 实战</h2><p><strong>默认方式建立用户</strong></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ useradd vbird1</span><br><span class="line">$ sudo passwd vbird1 <span class="comment"># 设置密码</span></span><br></pre></td></tr></table></figure>
+<p><img src="http://o6ul1xz4z.bkt.clouddn.com/2017-04-21-1F45EE06-677C-4702-A678-20B75DA9AD73.png" alt="1F45EE06-677C-4702-A678-20B75DA9AD73"></p>
+<p><strong>-u /-g</strong></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ useradd -u 700 -g users vbird2    <span class="comment"># 初始群组为users，初始UID为700,建立用户vird2</span></span><br></pre></td></tr></table></figure>
+<p><strong>-c，-r</strong></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ useadd -r bird3   <span class="comment"># 创建系统账号，不会主动建立家目录</span></span><br></pre></td></tr></table></figure>
+<p><strong>4.useradd参考档</strong><br>查看useradd的默认情况</p>
+<p><img src="http://o6ul1xz4z.bkt.clouddn.com/2017-04-21-E37231C6-1C72-4300-B1D8-8501D3AA5E7B.png" alt="E37231C6-1C72-4300-B1D8-8501D3AA5E7B"></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">GROUP=100</span><br><span class="line">HOME=/home</span><br><span class="line">INACTIVE=-1</span><br><span class="line">EXPIRE=</span><br><span class="line">SHELL=/bin/sh</span><br><span class="line">SKEL=/etc/skel</span><br><span class="line">CREATE_MAIL_SPOOL=no     <span class="comment"># ==no时不会在/var/spool/mail下建立文档</span></span><br></pre></td></tr></table></figure>
+<p><strong>5.UID/GID默认参考档:/etc/login.defs</strong></p>
+<p><img src="http://o6ul1xz4z.bkt.clouddn.com/2017-04-21-00C22494-F641-4F8A-8759-93F11BA4D8D9.png" alt="00C22494-F641-4F8A-8759-93F11BA4D8D9"></p>
+<p><img src="http://o6ul1xz4z.bkt.clouddn.com/2017-04-21-6B065755-B4F5-4B7A-9C4D-BCC9D1295CD3.png" alt="6B065755-B4F5-4B7A-9C4D-BCC9D1295CD3"></p>
+<p><img src="http://o6ul1xz4z.bkt.clouddn.com/2017-04-21-D9F62C51-2C09-4342-A448-2794D3AAE392.png" alt="D9F62C51-2C09-4342-A448-2794D3AAE392"></p>
+<h1 id="5-使用standard-input建立用户的密码"><a href="#5-使用standard-input建立用户的密码" class="headerlink" title="5.使用standard input建立用户的密码"></a>5.使用standard input建立用户的密码</h1><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ sudo <span class="built_in">echo</span> <span class="string">"truman"</span>  | passwd --stdin vbird1</span><br></pre></td></tr></table></figure>
+<p><img src="http://o6ul1xz4z.bkt.clouddn.com/2017-04-21-83479858-21B6-4F64-A157-733AD7BF70DD.png" alt="83479858-21B6-4F64-A157-733AD7BF70DD"></p>
+<h1 id="6-passwd命令"><a href="#6-passwd命令" class="headerlink" title="6. passwd命令"></a>6. passwd命令</h1><figure class="highlight dts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta-keyword">/etc/</span>passwd</span><br><span class="line"><span class="meta-keyword">/etc/</span>pam.d/passwd</span><br><span class="line"><span class="meta-keyword">/etc/</span>shadow</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">$ sudo passwd -S yxl       <span class="comment"># 查看yxl的帐号情况</span></span><br><span class="line">$ sudo passwd -x 60  -i 10 yxl<span class="comment"># 60天变更，10天失效密码过期设置</span></span><br><span class="line">$ sudo passwd <span class="_">-l</span> yxl <span class="comment"># 将yxl这个账户锁定(会因为系统无法正确读取shadow中的密码字段而无法登录)        </span></span><br><span class="line">$ sudo grep yxl /etc/shadow     <span class="comment"># 查看什么发生了变化</span></span><br><span class="line">    yxl:!<span class="variable">$6</span><span class="variable">$oVhKiz3G</span><span class="variable">$AWIETaQnyPd4pKME</span>/XYfOBWlHJSBDJLjFLCc.01Jd8zx4xreNnlYTkvK</span><br><span class="line">    8B.OJHx6QdItzTis1p/4LYhx7EhFx.:16023::60::10::</span><br><span class="line">$ sudo passwd -u yxl    </span><br><span class="line">    passwd：密码过期信息已更改。</span><br><span class="line">$ sudo grep yxl /etc/shadow</span><br><span class="line">    yxl:<span class="variable">$6</span><span class="variable">$oVhKiz3G</span><span class="variable">$AWIETaQnyPd4pKME</span>/XYfOBWlHJSBDJLjFLCc.01Jd8zx4xreNnlYTkvK</span><br><span class="line">    8B.OJHx6QdItzTis1p/4LYhx7EhFx.:16023::60::10::</span><br></pre></td></tr></table></figure>
+<h1 id="7-chage命令"><a href="#7-chage命令" class="headerlink" title="7.chage命令"></a>7.chage命令</h1><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ sudo chage <span class="_">-l</span> yxl <span class="comment"># 查看yxl的详细密码属性信息（比passwd -S好用多了）</span></span><br></pre></td></tr></table></figure>
+<p><img src="http://o6ul1xz4z.bkt.clouddn.com/2017-04-21-0E372DCD-3F35-46C4-80BF-9F67F1A4D2F7.png" alt="0E372DCD-3F35-46C4-80BF-9F67F1A4D2F7"></p>
+<h2 id="案例1"><a href="#案例1" class="headerlink" title="案例1"></a>案例1</h2><p>给别人一个初始密码，当该用户登录时必须修改密码，否则无法登录</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ sudo useradd nemo</span><br><span class="line">$ sudo <span class="built_in">echo</span> <span class="string">"yxl694852"</span> | passwd --stdin nemo(ubuntu不支持)    or $ sudo passwd nemo</span><br><span class="line">$ sudo sudo chage <span class="_">-d</span> 0 nemo</span><br></pre></td></tr></table></figure>
+<h1 id="8-usermod"><a href="#8-usermod" class="headerlink" title="8.usermod"></a>8.usermod</h1><p><img src="http://o6ul1xz4z.bkt.clouddn.com/2017-04-21-1AC96545-A23D-4D96-AC7F-9625F4D221BC.png" alt="1AC96545-A23D-4D96-AC7F-9625F4D221BC"></p>
+<p><strong>案例一: 修改yxl的说明栏</strong></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ sudo usermod -c <span class="string">"MyGirl"</span> yxl</span><br><span class="line">$ grep yxl /etc/passwd</span><br></pre></td></tr></table></figure>
+<p><strong>案例二：设置yxl的密码在2100年失效</strong></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ sudo usermod <span class="_">-e</span> <span class="string">"2100-01-01"</span> yxl</span><br></pre></td></tr></table></figure>
+<p><strong>案例三：给已经创建的nemo账户一个home目录</strong></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">$ ll <span class="_">-d</span> ~nemo</span><br><span class="line">$ sudo cp <span class="_">-a</span> /etc/skel/  /home/nemo <span class="comment"># 将/etc/skel复制过来作为/home/nemo</span></span><br><span class="line">$ sudo chown -R nemo:nemo  /home/nemo <span class="comment"># 改变其拥有者和所属组</span></span><br><span class="line">$ sudo chmod 700 /home/nemo    <span class="comment"># 改变目录的权限</span></span><br></pre></td></tr></table></figure>
+<h1 id="9-userdel"><a href="#9-userdel" class="headerlink" title="9 userdel"></a>9 userdel</h1><p><img src="http://o6ul1xz4z.bkt.clouddn.com/2017-04-21-3AF64043-2EC7-4163-8828-AF924FD4358C.png" alt="3AF64043-2EC7-4163-8828-AF924FD4358C"></p>
+<p>☑ 注意：如果只是暂时不想让该用户存在，可以考虑将密码帐号有效剩余天数（<code>/etc/shadow</code>）设为0或者<code>passwd -d username</code>删掉密码。只有确定可以完全清楚哦某个账户时 才考虑userdel.</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ find / -user vbird1 <span class="comment"># 全盘查找属于vbird1的档案</span></span><br><span class="line">$ sudo userdel -r vbird1 <span class="comment"># 连同vbird1的home目录一起清除</span></span><br></pre></td></tr></table></figure>
+<h1 id="10-finger"><a href="#10-finger" class="headerlink" title="10 finger"></a>10 finger</h1><p><img src="http://o6ul1xz4z.bkt.clouddn.com/2017-04-21-64C5B158-6C77-4981-961F-E3058C9595DA.png" alt="64C5B158-6C77-4981-961F-E3058C9595DA"></p>
+<h2 id="案例一"><a href="#案例一" class="headerlink" title="案例一"></a>案例一</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">$ finger anderson  <span class="comment"># 观察anderson帐号相关属性</span></span><br><span class="line"> Login: anderson      Name: anderson</span><br><span class="line">  Directory: /home/anderson          Shell: /bin/bash</span><br><span class="line">  On since Fri Nov 15 00:54 (CST) on tty7 from :0</span><br><span class="line">      1 hour 4 minutes idle</span><br><span class="line">  On since Fri Nov 15 00:54 (CST) on pts/1 from :0</span><br><span class="line">     1 second idle</span><br><span class="line">  No mail.</span><br><span class="line">  No Plan.</span><br></pre></td></tr></table></figure>
+<h2 id="案例二"><a href="#案例二" class="headerlink" title="案例二"></a>案例二</h2><p>建立自己的计划档</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ <span class="built_in">echo</span>   <span class="string">"I will go to BeiJIng the day after tomorrow."</span> &gt; ~.plan <span class="comment"># 不知道为什么我的机器上没有~/.plan   ~./project   ~/.pgpkey</span></span><br></pre></td></tr></table></figure>
+<h2 id="案例三"><a href="#案例三" class="headerlink" title="案例三"></a>案例三</h2><p>目前登录的用户与登录时间</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ finger</span><br></pre></td></tr></table></figure>
+<h1 id="11-chfn-修改-添加个人属性信息"><a href="#11-chfn-修改-添加个人属性信息" class="headerlink" title="11 chfn: 修改/添加个人属性信息"></a>11 chfn: 修改/添加个人属性信息</h1><h1 id="12-chsh-change-sheel"><a href="#12-chsh-change-sheel" class="headerlink" title="12 chsh :change sheel"></a>12 chsh :change sheel</h1><h2 id="案例一-1"><a href="#案例一-1" class="headerlink" title="案例一"></a>案例一</h2><p>用anderson的身份列出系统上所有合法的sheel,并制定/bin/sh为自己的sheel       </p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ chsh <span class="_">-l</span>        &lt;==&gt;     $ cat /etc/shells  <span class="comment"># ubuntu上没有-l 参数</span></span><br></pre></td></tr></table></figure>
+<h2 id="案例二-1"><a href="#案例二-1" class="headerlink" title="案例二"></a>案例二</h2><p>修改当前用户的shell</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ chsh <span class="_">-s</span> /bin/rbash;grep anderson /etc/passwd                </span><br><span class="line"><span class="comment"># &lt;==&gt; </span></span><br><span class="line"><span class="comment"># $ sudo usermod -s /bin/rbash anderson</span></span><br></pre></td></tr></table></figure>
+<h1 id="13-id"><a href="#13-id" class="headerlink" title="13 id"></a>13 id</h1><p>查看某人或自己的UID/GID等信息，还可以用来判断有没有某个用户</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ id      &lt;==&gt;    $ who am i | id <span class="comment"># 查看当前用户的信息</span></span><br><span class="line">$ id yxl <span class="comment"># 查看yxl的UID/GID等信息</span></span><br></pre></td></tr></table></figure>
+<h1 id="14-groupadd-groupmod-groupdel-gpaasswd"><a href="#14-groupadd-groupmod-groupdel-gpaasswd" class="headerlink" title="14.groupadd, groupmod, groupdel, gpaasswd"></a>14.groupadd, groupmod, groupdel, gpaasswd</h1><h2 id="groupadd"><a href="#groupadd" class="headerlink" title="groupadd"></a>groupadd</h2><p><strong>案例一: 新建一个群组</strong></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$sudo</span>  groupadd webteam</span><br><span class="line"><span class="variable">$sudo</span>  grep webteam /etc/group  /etc/shadow</span><br><span class="line">            /etc/group:webteam:x:1002:</span><br><span class="line">            /etc/gshadow:webteam:!::</span><br></pre></td></tr></table></figure>
+<h2 id="groupmod"><a href="#groupmod" class="headerlink" title="groupmod"></a>groupmod</h2><p>☑ 注意：不要随便更改GID</p>
+<p><strong>案例二：将案例一新建的webeam组名改为myteam,GID改为</strong></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">$ sudo groupmod -g 139 -n myteam webteam </span><br><span class="line">$ sudo grep myteam /etc/group  /etc/gshadow</span><br><span class="line">            /etc/group:myteam:x:139:</span><br><span class="line">            /etc/gshadow:myteam:!::</span><br></pre></td></tr></table></figure>
+<h2 id="groupdel"><a href="#groupdel" class="headerlink" title="groupdel"></a>groupdel</h2><p>☑ 注意：如果该组中还有其他帐号则无法顺利删除（可以先更改帐号的GID或者删除那个帐号）</p>
+<p><strong>案例三：删除刚刚建立的群组</strong></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ sudo groupdel myteam</span><br></pre></td></tr></table></figure>
+<h2 id="gpasswd"><a href="#gpasswd" class="headerlink" title="gpasswd"></a>gpasswd</h2><p><strong>案例四：建立一个新的群组myteam，交给yxl管理（群组管理员）</strong></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">$ sudo groupadd -g 139 myteam    <span class="comment"># 建立群组myteam,GID为139（勤人坡）</span></span><br><span class="line">$ sudo gpasswd myteam        <span class="comment"># 设置群组密码（truman）</span></span><br><span class="line">$ sudo gpasswd -A yxl myteam     <span class="comment"># 将yxl添加为myteam的群组管理员</span></span><br><span class="line">$ su yxl      <span class="comment"># 却换到yxl</span></span><br><span class="line">$ gpasswd <span class="_">-a</span> anderson myteam       <span class="comment"># 用易小丽的身份将anderson加为myteam的群组组员</span></span><br><span class="line">$ grep myteam /etc/group    <span class="comment"># 查看</span></span><br></pre></td></tr></table></figure>
+<h2 id="帐号管理实战"><a href="#帐号管理实战" class="headerlink" title="帐号管理实战"></a>帐号管理实战</h2><h3 id="案例一-2"><a href="#案例一-2" class="headerlink" title="案例一"></a>案例一</h3><p>新建一个群组mathwebteam,然后提供一个项目的开发目录，帐号信息如下</p>
+<table>
+<thead>
+<tr>
+<th>帐号</th>
+<th>帐号备注</th>
+<th>支援次要群组</th>
+<th>是否可以登录主机</th>
+<th>passwd</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>neo</td>
+<td>the boss</td>
+<td>mathwebteam</td>
+<td>yes</td>
+<td>truman</td>
+</tr>
+<tr>
+<td>xk</td>
+<td>the crew</td>
+<td>mathwebteam</td>
+<td>yes</td>
+<td>truman</td>
+</tr>
+<tr>
+<td>yl</td>
+<td>the crew</td>
+<td>no</td>
+<td>no</td>
+<td>truman</td>
+</tr>
+</tbody>
+</table>
+<p>一：建立群组</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ sudo groupadd mathwebteam</span><br></pre></td></tr></table></figure>
+<p>二：建立帐号</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$  sudo useradd -G mathwebteam -c <span class="string">"the caption"</span> neo</span><br><span class="line">$  sudo useradd -G mathwebteam -c <span class="string">"the crew"</span> xk</span><br><span class="line">$  sudo useradd -c <span class="string">"the crew"</span> <span class="_">-s</span> /sbin/nologin yl</span><br></pre></td></tr></table></figure>
+<p>三：给帐号设置密码</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$  sudo passwd neo</span><br><span class="line">$  sudo passwd yxl</span><br><span class="line">$  sudo passwd xk</span><br></pre></td></tr></table></figure>
+<p>四：建立项目目录</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">$ sudo mkdir /srv/project</span><br><span class="line">$ sudo chgrp mathwebteam /srv/project</span><br><span class="line">$ sudo chmod  2770 /srv/project</span><br><span class="line">$ ll <span class="_">-d</span> /srv/project</span><br></pre></td></tr></table></figure>
+<p>五：让anderson具备对/srv/project rx的权限（acl应用）<br>测试yl能否进入/srv/project</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">$ su anderson    <span class="comment"># 切换</span></span><br><span class="line">$ <span class="built_in">cd</span>  /srv/project     <span class="comment"># 不行</span></span><br><span class="line">         bash: <span class="built_in">cd</span>: /srv/project/: 权限不够</span><br><span class="line">$ sudo setfacl -m u:anderson:rx   /srv/project     <span class="comment"># 让anderson对/srv/project具备rx的权限</span></span><br><span class="line">$ sudo setfacl -m d:u:anderson:rx   /srv/project     <span class="comment"># 让anderson对/srv/project及其地下的所有文件都具备rx的权限</span></span><br><span class="line">$ <span class="built_in">cd</span> /srv/priject             <span class="comment"># 现在anderson已经可以进入/srv/project中了</span></span><br><span class="line">$ touch te  <span class="comment"># anderson仍然不具备w的权限</span></span><br><span class="line">$ getfacl /srv/project</span><br><span class="line">        <span class="comment"># file: srv/project/</span></span><br><span class="line">        <span class="comment"># owner: root</span></span><br><span class="line">        <span class="comment"># group: mathwebteam</span></span><br><span class="line">        <span class="comment"># flags: -s-</span></span><br><span class="line">        user::rwx</span><br><span class="line">        user:anderson:r-x    <span class="comment"># 增加了anderson的权限</span></span><br><span class="line">        group::rwx</span><br><span class="line">        mask::rwx</span><br><span class="line">        other::---</span><br></pre></td></tr></table></figure>
+<h1 id="15-acl-access-control-list"><a href="#15-acl-access-control-list" class="headerlink" title="15 acl(access control list)"></a>15 acl(access control list)</h1><h2 id="15-1-查看我的机器是否支持acl"><a href="#15-1-查看我的机器是否支持acl" class="headerlink" title="15.1 查看我的机器是否支持acl"></a>15.1 查看我的机器是否支持acl</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">$ mount | grep acl <span class="comment"># 我的ubuntu没有查到任何信息</span></span><br><span class="line">$ sudo dumpe2fs -h /dev/sda9 | grep acl <span class="comment"># 通过产看根目录（我的ubuntu的根目录在/dev/sda9）的超级块来看看有没有acl的信息</span></span><br><span class="line">             dumpe2fs 1.42.8 (20-Jun-2013)</span><br><span class="line">             Default mount options:    user_xattr acl <span class="comment"># 看来我的ubuntu默认支持acl</span></span><br></pre></td></tr></table></figure>
+<p>如果不支持可以执行以下命令使系统的文件系统支持：</p>
+<figure class="highlight vim"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">$ sudo mount -<span class="keyword">o</span> remount,acl /</span><br><span class="line">[sudo] password <span class="keyword">for</span> anderson: </span><br><span class="line">$ mount |<span class="keyword">grep</span> acl</span><br><span class="line">  /dev/sda9 <span class="keyword">on</span> / <span class="built_in">type</span> ext4 (rw,errors=remount-ro,acl)</span><br></pre></td></tr></table></figure>
+<h2 id="15-2-acl的使用技巧"><a href="#15-2-acl的使用技巧" class="headerlink" title="15.2 acl的使用技巧"></a>15.2 acl的使用技巧</h2><p><img src="http://o6ul1xz4z.bkt.clouddn.com/2017-04-21-4C0A45BA-615E-4B83-910C-A0A7D311908A.png" alt="4C0A45BA-615E-4B83-910C-A0A7D311908A"></p>
+<h3 id="案例一-3"><a href="#案例一-3" class="headerlink" title="案例一"></a>案例一</h3><p>在 test 中创建一个文档 acl_test1 并使用 setfacl对acl_test1 的权限进行设置</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line">$ mkdir /home/anderson/<span class="built_in">test</span></span><br><span class="line">$ touch /home/anderson/<span class="built_in">test</span>/acl_<span class="built_in">test</span>1</span><br><span class="line">$ setfacl -m u:yxl:rwx acl_<span class="built_in">test</span>1 <span class="comment"># 使yxl具备rwx权限</span></span><br><span class="line">$ ll <span class="_">-d</span> acl_<span class="built_in">test</span>1 </span><br><span class="line">    -rw-rwxr--+ 1 anderson anderson 0 11月 16 14:14 acl_<span class="built_in">test</span>1*</span><br><span class="line">$ setfacl -m u::rwx acl_<span class="built_in">test</span>1 </span><br><span class="line">$ ll <span class="_">-d</span> acl_<span class="built_in">test</span>1 </span><br><span class="line">    -rwxrwxr--+ 1 anderson anderson 0 11月 16 14:14 acl_<span class="built_in">test</span>1*</span><br><span class="line"></span><br><span class="line">$ getfacl acl_<span class="built_in">test</span>1 <span class="comment"># 查看acl_test1档案的acl属性</span></span><br><span class="line">            <span class="comment"># file: acl_test1</span></span><br><span class="line">            <span class="comment"># owner: anderson</span></span><br><span class="line">            <span class="comment"># group: anderson</span></span><br><span class="line">            user::rwx</span><br><span class="line">            user:yxl:rwx</span><br><span class="line">            group::r--</span><br><span class="line">            mask::rwx</span><br><span class="line">            other::r--</span><br><span class="line">$ setfacl -m g:myteam:rx acl_tes <span class="comment"># 给myteam这个群组rx权限</span></span><br><span class="line">$ getfacl acl_<span class="built_in">test</span>1                       <span class="comment"># 查看acl_text1这个的档案的acl权限设置</span></span><br><span class="line">            <span class="comment"># file: acl_test1</span></span><br><span class="line">            <span class="comment"># owner: anderson</span></span><br><span class="line">            <span class="comment"># group: anderson</span></span><br><span class="line">            user::rwx</span><br><span class="line">            user:yxl:rwx</span><br><span class="line">            group::r--</span><br><span class="line">            group:myteam:r-x            <span class="comment"># 多了这个群组的权限设定</span></span><br><span class="line">            mask::rwx</span><br><span class="line">            other::r--</span><br></pre></td></tr></table></figure>
+<p><strong>针对有效权限mask的设置</strong></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ setf -m m:r  acl_<span class="built_in">test</span>1 <span class="comment"># 针对acl_test1设置mask（权限上限）为r,这样acl设置最高权限只有r</span></span><br></pre></td></tr></table></figure>
+<h2 id="15-3-帐号的切换"><a href="#15-3-帐号的切换" class="headerlink" title="15.3 帐号的切换"></a>15.3 帐号的切换</h2><h3 id="15-3-1-su"><a href="#15-3-1-su" class="headerlink" title="15.3.1 su"></a>15.3.1 su</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">$ su     <span class="comment"># 切换为root账户，变量设定方式为no-login shell，环境变量不会改变(还是原来的用户的变量环境)</span></span><br><span class="line">$ su -  <span class="comment"># 以login shell的方式切换为root（变量环境是root的）</span></span><br><span class="line">$ su -c <span class="string">"head -n 3 /etc/shadow"</span>     <span class="comment"># 切换为root执行一条命令，执行完毕后马上切换回来</span></span><br><span class="line">$ su <span class="_">-l</span> yxl</span><br><span class="line"><span class="comment"># or</span></span><br><span class="line"><span class="comment"># $ su yxl  # 切换到yxl这个普通用户</span></span><br></pre></td></tr></table></figure>
+<h3 id="15-3-2-sudo"><a href="#15-3-2-sudo" class="headerlink" title="15.3.2 sudo"></a>15.3.2 sudo</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ sudo -u yxl touch /home/yxl/sudotest  <span class="comment"># 使用yxl帐号建立sudotest</span></span><br><span class="line">$ sudo -u yxl sh -c <span class="string">"mkdir ~yxl/www;cd ~yxl/www; echo 'This is index.html file' "</span>  <span class="comment"># 一串指令</span></span><br></pre></td></tr></table></figure>
+<h3 id="15-3-3-visudo和-etc-sudoers"><a href="#15-3-3-visudo和-etc-sudoers" class="headerlink" title="15.3.3 visudo和/etc/sudoers"></a>15.3.3 visudo和/etc/sudoers</h3><p><img src="http://o6ul1xz4z.bkt.clouddn.com/2017-04-21-EDB11C6A-7F64-4570-970C-E9EA30B93AD7.png" alt="EDB11C6A-7F64-4570-970C-E9EA30B93AD7"></p>
+<p><strong>案例一</strong>：让 yxl 可以通过 sudo 切换为 root ，限制仅可以使用 passwd 帮助 anderson 修改帐号的密码，但不能修改 anderson 的密码</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ sudo visudo </span><br><span class="line"></span><br><span class="line">        yxl ALL=(root) !/usr/bin/passwd,/usr/bin/passwd [a-zA-Z]*,!/usr/bin/passwd anderson,!/usr/bin/passwd root</span><br></pre></td></tr></table></figure>
+<p><strong>案例二</strong>：针对案例一优化，以一种更加有弹性更易扩展维护的方式设置[1-23]</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">$ sudo visudo</span><br><span class="line">        <span class="comment">#User_Alias and Cmnd_Alias</span></span><br><span class="line">        User_Alias ADMPW =yxl,yl   <span class="comment">#这次添加两个助手</span></span><br><span class="line">        Cmnd_Alias ADMPWCOM=!/usr/bin/passwd,/usr/bin/passwd [a-zA-Z]*,!/usr/bin/passwd anderson,!/usr/bin/passwd root </span><br><span class="line">        ADMPW  ALL=(root) ADMPWCOM</span><br></pre></td></tr></table></figure>
+<p><strong>案例三</strong>：sudo 搭配 su 实现普通帐号在不知道 root 密码的情况下使用 root 身份进行工作(sudo su -)</p>
+<p>☑ 注意：仅在这些帐号您都十分信任的情况下</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ sudo visudo</span><br><span class="line">  User_Alias ADMINS=user1,user2,user3</span><br><span class="line">  ADMINS ALL=(root) /bin/su -</span><br></pre></td></tr></table></figure>
+<h2 id="15-4-用户的特殊shell与PAM模块"><a href="#15-4-用户的特殊shell与PAM模块" class="headerlink" title="15.4  用户的特殊shell与PAM模块"></a>15.4  用户的特殊shell与PAM模块</h2><h3 id="15-4-1-nologin-shell"><a href="#15-4-1-nologin-shell" class="headerlink" title="15.4.1 nologin shell"></a>15.4.1 nologin shell</h3><p>   我的 ubuntu 的 nologin shell 为 /usr/sbin/nologin，而且我没在 /etc/下找到 nologin.txt ，新建了一个也不起作用。</p>
+<h3 id="15-4-2-passwd呼叫PAM接口的过程"><a href="#15-4-2-passwd呼叫PAM接口的过程" class="headerlink" title="15.4.2  passwd呼叫PAM接口的过程"></a>15.4.2  passwd呼叫PAM接口的过程</h3><p>   <img src="http://o6ul1xz4z.bkt.clouddn.com/2017-04-21-A1D7EE37-F0CA-4094-AEA1-E0B7B8630812.png" alt="A1D7EE37-F0CA-4094-AEA1-E0B7B8630812"></p>
+<hr>
+<h2 id="以下的学习平台更换为centos-6-4-on-vmware-10-0-1"><a href="#以下的学习平台更换为centos-6-4-on-vmware-10-0-1" class="headerlink" title="以下的学习平台更换为centos 6.4 on vmware 10.0.1"></a><strong>以下的学习平台更换为centos 6.4 on vmware 10.0.1</strong></h2><h3 id="15-4-3-PAM控制旗标所造成的回报流程"><a href="#15-4-3-PAM控制旗标所造成的回报流程" class="headerlink" title="15.4.3 PAM控制旗标所造成的回报流程"></a>15.4.3 PAM控制旗标所造成的回报流程</h3><h3 id="15-4-4-centos-6的PAM预设档案（相关配置文件）"><a href="#15-4-4-centos-6的PAM预设档案（相关配置文件）" class="headerlink" title="15.4.4 centos 6的PAM预设档案（相关配置文件）"></a>15.4.4 centos 6的PAM预设档案（相关配置文件）</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">/etc/pam.d/login       <span class="comment"># 登入系统执行的pam验证流程</span></span><br><span class="line">/etc/pam.d/ststem-auth  <span class="comment"># 被多次呼叫</span></span><br><span class="line">/etc/pam.d/*                    <span class="comment"># 各个程序的pam配置文件</span></span><br><span class="line">/etc/security/*           <span class="comment"># 其它环境的pam配置文件</span></span><br><span class="line">/usr/share/doc/pam-*/<span class="comment"># 详细的pam说明文档，可能有多个版本</span></span><br><span class="line">/lib/security/            <span class="comment"># 模块实际位置</span></span><br></pre></td></tr></table></figure>
+<h3 id="15-4-5-pam模块"><a href="#15-4-5-pam模块" class="headerlink" title="15.4.5 pam模块"></a>15.4.5 pam模块</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ ll /usr/share/doc/pam-1.1.1/txts/  <span class="comment"># txts底下每个README文件对应一个模块</span></span><br></pre></td></tr></table></figure>
+<p><strong>常用模块介绍</strong></p>
+<p>pam_security.so<br>pam_nologin.so<br>pam_selinux.so<br>pam_console.so<br>pam_loginuid.so<br>pam_env.so<br>pam_unix.so<br>pam_cracklib.so<br>pam_limits.so</p>
+<p><img src="http://o6ul1xz4z.bkt.clouddn.com/2017-04-21-2E16B4A0-AD06-43D9-B9A5-7251C76D33DA.png" alt="2E16B4A0-AD06-43D9-B9A5-7251C76D33DA"></p>
+<p><img src="http://o6ul1xz4z.bkt.clouddn.com/2017-04-21-AAE51217-F441-4A91-825D-6E4DAC4B1C5B.png" alt="AAE51217-F441-4A91-825D-6E4DAC4B1C5B"></p>
+<h4 id="案例"><a href="#案例" class="headerlink" title="案例"></a>案例</h4><p>为什么root无法以telnet远程登录系统，但是却可以使用ssh直接登入？<br><img src="http://o6ul1xz4z.bkt.clouddn.com/2017-04-21-0E1903FC-C609-4615-8FF1-AEE5735024C5.png" alt="0E1903FC-C609-4615-8FF1-AEE5735024C5"></p>
+<h3 id="15-4-5-pam验证机制流程"><a href="#15-4-5-pam验证机制流程" class="headerlink" title="15.4.5 pam验证机制流程"></a>15.4.5 pam验证机制流程</h3><p>   <img src="http://o6ul1xz4z.bkt.clouddn.com/2017-04-21-FC4B8898-2421-489B-9E08-AD9641CD4C62.png" alt="FC4B8898-2421-489B-9E08-AD9641CD4C62"></p>
+<h3 id="15-4-6-其它pam相关档案及其设定"><a href="#15-4-6-其它pam相关档案及其设定" class="headerlink" title="15.4.6 其它pam相关档案及其设定"></a>15.4.6 其它pam相关档案及其设定</h3><p><strong>/etc/security/limits.conf</strong></p>
+<p>通过对该档案的设置实现对用户的限制（ulimit）</p>
+<p>案例一：用户user1只能建立的档案总大小100m以内，而且大于90时会警告[1-30]</p>
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">$ sudo vim  /etc/security/limits.conf</span><br><span class="line">user1   soft  fsize   <span class="number">90000</span></span><br><span class="line">user1   hard fsize   <span class="number">100000</span></span><br><span class="line">测试：</span><br><span class="line">$ su user1</span><br><span class="line">$ dd <span class="keyword">if</span>=<span class="regexp">/dev/zero</span> of =test bs =<span class="number">1</span>m count=<span class="number">110</span>  <span class="comment"># 将/dev/zero复制到当前目录的test下，分割成110个个小 档案，每个1M </span></span><br><span class="line">$ ulimit -a <span class="comment"># 查看当前用户收到的限制</span></span><br></pre></td></tr></table></figure>
+<p>案例二：限制pro1这个群组，每次仅能有一个用户登入系统(maxlogins)</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ sudo vim /etc/security/limits.conf</span><br><span class="line">           @pro1  hard maxlogins 1 <span class="comment"># 只有对初始群组才有效，第二个用户试图登录会使/var/log/secure档案出现如下信息......</span></span><br></pre></td></tr></table></figure>
+<p>☑ 注意</p>
+<ol>
+<li>设定完成即生效</li>
+<li>程序呼叫pam是才会设定，因此对已经登录的用户无效</li>
+</ol>
+<p><strong>/var/log/secure</strong><br>无法登陆等错误会被记录在这个档案，当发生各种登陆错误时可以到这里看看问题点。</p>
+<h2 id="以下的学习平台更换为ubuntu13-10"><a href="#以下的学习平台更换为ubuntu13-10" class="headerlink" title="以下的学习平台更换为ubuntu13.10"></a>以下的学习平台更换为ubuntu13.10</h2><h2 id="15-5-linux主机上的用户信息传递"><a href="#15-5-linux主机上的用户信息传递" class="headerlink" title="15.5 linux主机上的用户信息传递"></a>15.5 linux主机上的用户信息传递</h2><h3 id="15-5-1-查询使用者-w-who-last-laslog"><a href="#15-5-1-查询使用者-w-who-last-laslog" class="headerlink" title="15.5.1 查询使用者  w,who,last,laslog"></a>15.5.1 查询使用者  w,who,last,laslog</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">$ w     <span class="comment"># 查看已经登入系统的用户(信息更加详细，可读性稍差)</span></span><br><span class="line">$ who <span class="comment"># 同w,当信息简洁，可读性好</span></span><br><span class="line">$ last  <span class="comment"># 查最近一个月的登录记录</span></span><br><span class="line">$ lastlog <span class="comment"># 查看所有账号最近一次的登陆</span></span><br></pre></td></tr></table></figure>
+<p><img src="http://o6ul1xz4z.bkt.clouddn.com/2017-04-21-9AAF82B7-4E27-41FF-AFF4-5BCED362A3A7.png" alt="9AAF82B7-4E27-41FF-AFF4-5BCED362A3A7"></p>
+<h3 id="15-5-2-不同账号之间对话-write-mesg-wall"><a href="#15-5-2-不同账号之间对话-write-mesg-wall" class="headerlink" title="15.5.2 不同账号之间对话 write,mesg,wall"></a>15.5.2 不同账号之间对话 write,mesg,wall</h3><p>案例一：打开两个终端，向另一个终端上的自己发送信息：hi,don’t do anything stuipid!</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">$ who <span class="comment"># 查看当前所在登录的用户及其登录的终端    </span></span><br><span class="line"><span class="comment"># or</span></span><br><span class="line"><span class="comment"># $ finger</span></span><br><span class="line">$ write anderson pts/3     <span class="comment"># 想anderson所在的pts/3发送信息</span></span><br><span class="line">hi,dong/t <span class="keyword">do</span> anything stupid!  <span class="comment"># ^d结束输入</span></span><br><span class="line">（此时在另一个终端立即收到了这个信息）</span><br><span class="line">$ mesg n   <span class="comment"># 这样可以拒绝收到其帐号（终端）发来的消息，但对root除外</span></span><br><span class="line">$ mesg y   <span class="comment"># 解除上面的锁定</span></span><br><span class="line">$ wall <span class="string">"I will shutdown linux later......"</span>  <span class="comment"># 向所有账户广播</span></span><br></pre></td></tr></table></figure>
+<h3 id="15-5-3-邮件信箱-mail"><a href="#15-5-3-邮件信箱-mail" class="headerlink" title="15.5.3 邮件信箱 mail"></a>15.5.3 邮件信箱 mail</h3><p>☑ 注意：理论上应该有/home/anderson/mbox(阅读后q退出的邮件的位置)</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ user -D      <span class="comment"># 发现我的系统建立用户帐号时不会自动创建邮箱   </span></span><br><span class="line">​</span><br></pre></td></tr></table></figure>
+<p><strong>案例一</strong>：向yxl发邮件信息，主题：nice to meet you<br>第一种方式：终端输入stdin</p>
+<p>​<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">$ mail yxl <span class="_">-s</span> <span class="string">"nice to meet you"</span></span><br><span class="line">    Hello,Ms Yi.Nice to meet you.YOu are so nice.</span><br><span class="line">    .                <span class="comment"># 最后一行输入小数点代表结束输入</span></span><br><span class="line">    Cc:       <span class="comment"># 抄送    不需要的话直接Enter</span></span><br></pre></td></tr></table></figure></p>
+<p>第二种方式：数据流重导向</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ mail yxl     <span class="_">-s</span> <span class="string">"nice to meet you"</span> &lt; ~.bashrc      ----将~.bashrc发给yxl</span><br></pre></td></tr></table></figure>
+<p><strong>案例二</strong>：写一封邮件~/mailtest重导向发给自己并查阅后离开</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">$ mail <span class="_">-s</span> <span class="string">"what's up"</span>   anderson  &lt;  ~.bashrc</span><br><span class="line">$ mail    &lt;==&gt;  $ mail <span class="_">-f</span> /var/mail/anderson     </span><br><span class="line">  ??       <span class="comment"># 查看命令选项</span></span><br><span class="line">  ?t5 <span class="comment"># 查看第5封信的信息</span></span><br><span class="line">  ？x    <span class="comment"># 不做任何改变离开</span></span><br></pre></td></tr></table></figure>
+<p>几个常见的指令：h d s x q</p>
+<p><img src="http://o6ul1xz4z.bkt.clouddn.com/2017-04-21-DC216841-F268-4F11-A36B-D98E875054E6.png" alt="DC216841-F268-4F11-A36B-D98E875054E6"></p>
+<h2 id="15-6-手动建立帐号"><a href="#15-6-手动建立帐号" class="headerlink" title="15.6 手动建立帐号"></a>15.6 手动建立帐号</h2><h3 id="15-6-1-帐号检查工具"><a href="#15-6-1-帐号检查工具" class="headerlink" title="15.6.1 帐号检查工具"></a>15.6.1 帐号检查工具</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">$ sudo pwck      <span class="comment"># 检查/etc/passwd ，/etc/shadow的字段错误以及帐号家目录是否存在等</span></span><br><span class="line">$ sudo pwconv  <span class="comment"># 检查/etc/passwd对应的/etc/shadow中的密码，如果缺少对应密码，则想shadow添加信息（login.defs），                                                        若/etc/passwd中有passwd字段在则转移到/etc/shadow中，将/etc/passwd中的密码字段置为x</span></span><br><span class="line">$ sudo pwunconv   <span class="comment"># 会删除/etc/shadow，最好别用</span></span><br><span class="line">$ <span class="built_in">echo</span> <span class="string">"yxl:truman"</span>  | chpasswd  -m <span class="comment"># 将“truman”加密并添加到/etc/shadow中 （为已经存在的账户yxl设置密码）</span></span><br><span class="line"><span class="comment"># &lt;==&gt;</span></span><br><span class="line"><span class="comment"># $ sudo echo "truman"| passwd  --stdin   yxl</span></span><br></pre></td></tr></table></figure>
+<h3 id="15-6-2-帐号建立"><a href="#15-6-2-帐号建立" class="headerlink" title="15.6.2 帐号建立"></a>15.6.2 帐号建立</h3><p>以下的学习平台更换为centos 6 on vmware10.0.1<br><strong>案例一：手动建立帐号nobody,所在群组nobodyteam</strong></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 一：建立群组并同步</span></span><br><span class="line">$ sudo vim /etc/group</span><br><span class="line"> nobodygroup:x:520:</span><br><span class="line">$ grpconv</span><br><span class="line"><span class="variable">$grep</span> <span class="string">"nobodyteam"</span>  /etc/group /etc/gshadow</span><br><span class="line"><span class="comment"># 二：建立帐号并同步</span></span><br><span class="line">$ sudo vim /etc/passwd</span><br><span class="line">  nobody:x:700:520::/home/nobodyteam:/bin/bash</span><br><span class="line">$ sudo pwconv</span><br><span class="line">$ grep <span class="string">'nobody'</span>  /etc/passwd /etc/gshadow</span><br><span class="line">$ passwd nobody</span><br><span class="line"><span class="comment"># 三：建立家目录，修订权限</span></span><br><span class="line">$ cp <span class="_">-a</span>  /etc/skel   /home/nobody</span><br><span class="line">$ sudo chown -R nobody:nobodyteam   /home/nobody</span><br><span class="line">$ sudo chmod 700 /home/nobody</span><br></pre></td></tr></table></figure>
+<p><img src="http://o6ul1xz4z.bkt.clouddn.com/2017-04-21-47ABA6C2-B19A-4EF9-8B5B-EF5E539F69E0.png" alt="47ABA6C2-B19A-4EF9-8B5B-EF5E539F69E0"></p>
+<p>案例二：大量建立账号脚本</p>
+<p>第一种：通过编辑好的记录账号名文件结合脚本创建（适合没有规律的账户名）   </p>
+<p>第二种：通过脚本自动生成账号内容并建立 （适合有规律的账号名）</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#/bin/bash</span></span><br><span class="line"><span class="comment">#Program:这只程序主要帮助建立大量帐号</span></span><br><span class="line"><span class="comment">#History:</span></span><br><span class="line"><span class="comment"># 2013/11/22  anderson  1th release</span></span><br><span class="line"><span class="built_in">export</span> PATH=/sbin:/usr/sbin:/bin:/usr/bin</span><br><span class="line">accountfile=<span class="string">"user.passwd"</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#1.先进行帐号相关的输入先！</span></span><br><span class="line"><span class="built_in">echo</span> <span class="string">""</span></span><br><span class="line"><span class="built_in">echo</span> <span class="string">"例如我们昆山四技的学好为：4960c001到4960c060，那么："</span></span><br><span class="line"><span class="built_in">echo</span> <span class="string">"帐号开头代码为 ：4"</span></span><br><span class="line"><span class="built_in">echo</span> <span class="string">"帐号层级或年级为  ：960c"</span></span><br><span class="line"><span class="built_in">echo</span> <span class="string">"号码数字位为（001～060） ：3"</span></span><br><span class="line"><span class="built_in">echo</span> <span class="string">"帐号开始帐号为 ：1"</span></span><br><span class="line"><span class="built_in">echo</span> <span class="string">"帐号数量为 ：60"</span></span><br><span class="line"><span class="built_in">echo</span> <span class="string">""</span></span><br><span class="line"><span class="built_in">read</span> -p <span class="string">"帐号开头代码（Input title name,ex&gt;std）=====&gt;"</span></span><br><span class="line">username_start</span><br><span class="line"><span class="built_in">read</span> -p <span class="string">"帐号层级或年级（Input degree,ex&gt;1 or enter）=&gt;"</span></span><br><span class="line">username_degree</span><br><span class="line"><span class="built_in">read</span> -p <span class="string">"号码起始部位的数字位（Input\# of digital）=====&gt;"</span> nu_nu</span><br><span class="line"><span class="built_in">read</span> -p <span class="string">"起始号码（Input start number,ex&gt;520）=====&gt;"</span> nu_start</span><br><span class="line"><span class="built_in">read</span> -p <span class="string">"帐号数量（Input the amount of users,ex&gt;100)=====&gt;"</span> nu_amount</span><br><span class="line"><span class="built_in">read</span> -p <span class="string">"密码标准:1）与帐号相同;2）随机数自定义===========&gt;"</span> pwm</span><br><span class="line"><span class="keyword">if</span> [ <span class="string">"<span class="variable">$username_start</span>"</span> == <span class="string">""</span> ];<span class="keyword">then</span></span><br><span class="line">  <span class="built_in">echo</span> <span class="string">"没有输入开头的代码，终止程序！"</span>; <span class="built_in">exit</span> 1</span><br><span class="line"><span class="keyword">fi</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#判断数字系统</span></span><br><span class="line">testing0=$(<span class="built_in">echo</span> <span class="variable">$nu_nu</span> | grep <span class="string">'[^0-9]'</span>)</span><br><span class="line">testing1=$(<span class="built_in">echo</span> <span class="variable">$nu_amount</span>| grep <span class="string">'[^0-9]'</span>)</span><br><span class="line">testing2=$(<span class="built_in">echo</span> <span class="variable">$nu_start</span> | grep <span class="string">'[^0-9]'</span>)</span><br><span class="line"><span class="keyword">if</span> [ <span class="string">"<span class="variable">$tesing0</span>"</span> != <span class="string">""</span> -o <span class="string">"<span class="variable">$testing1</span>"</span> != <span class="string">""</span> -o <span class="string">"<span class="variable">$testing2</span>"</span> !=<span class="string">""</span> ];<span class="keyword">then</span></span><br><span class="line">  <span class="built_in">echo</span> <span class="string">"输入的号码不对！有非数字的内容！"</span> </span><br><span class="line">  <span class="built_in">exit</span> 1</span><br><span class="line"><span class="keyword">fi</span></span><br><span class="line"><span class="keyword">if</span> [ <span class="string">"<span class="variable">$pwm</span>"</span> != <span class="string">"1"</span> ];<span class="keyword">then</span></span><br><span class="line">  pwm=<span class="string">"2"</span></span><br><span class="line"><span class="keyword">fi</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#2.开始输出帐号和密码档案！</span></span><br><span class="line">[ <span class="_">-f</span> <span class="string">"<span class="variable">$accountfile</span>"</span>] $$ mv <span class="string">"<span class="variable">$accountfile</span>"</span> <span class="string">"<span class="variable">$accountfile</span>"</span>$(date +%Y%m%d)    <span class="comment">#如果指定的user.passwd存在,修改名称为"user.passwd日期"</span></span><br><span class="line">nu_end=$((<span class="variable">$nu_start</span>+<span class="variable">$nu_amount</span>-1))       <span class="comment">#号码数字位最大值</span></span><br><span class="line"><span class="keyword">for</span> ((i=<span class="variable">$nu_start</span>;i&lt;=nu_end;i++))</span><br><span class="line"><span class="keyword">do</span></span><br><span class="line">  nu_len=<span class="variable">$&#123;#i&#125;</span>  <span class="comment">#$i是nu_len位数（如果i是个位数，nu_len=1,如果是十位数，nu_len=2...）</span></span><br><span class="line">  <span class="keyword">if</span> [<span class="variable">$nu_nu</span> <span class="_">-lt</span> <span class="variable">$nu_len</span> ];<span class="keyword">then</span></span><br><span class="line">    <span class="built_in">echo</span> <span class="string">"数值的位数(<span class="variable">$i</span>-&gt;<span class="variable">$nu_len</span>已经比你设定的位数还要大！)"</span></span><br><span class="line">    <span class="built_in">echo</span> <span class="string">"程序无法继续"</span></span><br><span class="line">    <span class="built_in">exit</span> 1</span><br><span class="line">  <span class="keyword">fi</span></span><br><span class="line">  nu_diff=$((<span class="variable">$nu_nu</span>-$<span class="variable">$nu_len</span>))</span><br><span class="line">  <span class="keyword">if</span> [ <span class="string">"<span class="variable">$nu_diff</span>"</span> != 0];<span class="keyword">then</span></span><br><span class="line">    nu_nn=0000000000</span><br><span class="line">    nu_nn=<span class="variable">$&#123;nu_nn:1:$nu_diff&#125;</span></span><br><span class="line">  <span class="keyword">fi</span></span><br><span class="line">  account=<span class="variable">$&#123;username_start&#125;</span><span class="variable">$&#123;username_degree&#125;</span><span class="variable">$&#123;nu_nn&#125;</span><span class="variable">$&#123;i&#125;</span></span><br><span class="line">  <span class="keyword">if</span> [ <span class="string">"pwm"</span> == <span class="string">"1"</span>];<span class="keyword">then</span></span><br><span class="line">    password=<span class="string">"<span class="variable">$account</span>"</span></span><br><span class="line">  <span class="keyword">else</span></span><br><span class="line">    password=$(openssl rand -base64 6)    <span class="comment">#系统随机生成密码并用openssl加密</span></span><br><span class="line">  <span class="keyword">fi</span></span><br><span class="line">  <span class="built_in">echo</span> <span class="string">"<span class="variable">$account</span>"</span>:<span class="string">"<span class="variable">$password</span>"</span>| tee <span class="_">-a</span> <span class="string">"accountfile"</span></span><br><span class="line"><span class="keyword">done</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#3.开始建立帐号</span></span><br><span class="line">cat <span class="string">"<span class="variable">$accountfile</span>"</span> | cut <span class="_">-d</span> <span class="string">':'</span> <span class="_">-f</span>1| xargs -n 1 useradd -m   <span class="comment">#useradd -m 执行时每次只用一个参数</span></span><br><span class="line">chpasswd &lt; <span class="string">"<span class="variable">$accountfile</span>"</span>   <span class="comment">#从$accountfile文件中读入键值对（username:passwd）,加密后写入/etc/shadow</span></span><br><span class="line">pwconv    <span class="comment">#将/etc/passwd张的密码字段移动到/etc/shadow(这里实际上是比对后对没有对应账号的/etc/shadow进行初始添加操作)</span></span><br><span class="line"><span class="built_in">echo</span> <span class="string">"OK!建立完成！"</span></span><br></pre></td></tr></table></figure>
+<p>案例三：将服务器账号分开管理，分为单纯邮件使用与可登入系统账号两种。其中若为纯邮件使用者，将该账号加入mail为初始群组，切此账号不可使用bash等sheel登入系统。若为可登入账号，将该账号加入youcan这个次要群组。<br>第一步：查看群组是否已经存在</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ grep mail /etc/group</span><br><span class="line">$ grep youcan /etc/group</span><br><span class="line">$ grepadd youcan    ----发现youcan没有被建立</span><br></pre></td></tr></table></figure>
+<p>第二步：简历三个纯邮件账号</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">$ vim popuser.sh</span><br><span class="line">    <span class="comment">#!/bin/bash</span></span><br><span class="line">    <span class="keyword">for</span> username <span class="keyword">in</span> pro1 pro2 pro3 </span><br><span class="line">    <span class="keyword">do</span></span><br><span class="line">        useradd -g mail <span class="_">-s</span> /sbin/nologin -M <span class="variable">$username</span></span><br><span class="line">        <span class="built_in">echo</span> <span class="variable">$username</span>| passwd --stdin <span class="variable">$username</span></span><br><span class="line">    <span class="keyword">done</span></span><br></pre></td></tr></table></figure>
+<p>第三步：建立一般登陆账号</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">$ vim loginuser.sh</span><br><span class="line">    <span class="comment">#！/bin/bash</span></span><br><span class="line">    <span class="keyword">for</span> username <span class="keyword">in</span> youlog1 youlog2 youlog3</span><br><span class="line">    <span class="keyword">do</span></span><br><span class="line">        useradd -G youcan <span class="_">-s</span> -m <span class="variable">$username</span></span><br><span class="line">        <span class="built_in">echo</span> <span class="variable">$username</span> | passwd --stdin <span class="variable">$username</span></span><br><span class="line">    <span class="keyword">done</span></span><br></pre></td></tr></table></figure>
+<p>第四步：执行</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ sh popuser.sh;sh loginuser.sh</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/shell/" rel="tag">#shell</a>
+          
+            <a href="/tags/linux/" rel="tag">#linux</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2013/11/11/BOOK_linux鸟哥的私房菜_基础篇/linux鸟哥的私房菜_基础篇_10_VIM 程序编辑器/" rel="next" title="10 VIM 程序编辑器">
+                <i class="fa fa-chevron-left"></i> 10 VIM 程序编辑器
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2013/11/13/BOOK_linux鸟哥的私房菜_基础篇/linux鸟哥的私房菜_基础篇_0-10/" rel="prev" title="1-10 章">
+                1-10 章 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2013/11/13/BOOK_linux鸟哥的私房菜_基础篇/linux鸟哥的私房菜_基础篇_14_Linux账号管理与ACL权限设定/"
+           data-title="14 Linux 账号管理与 ACL 权限设定" data-url="http://laputa-er.github.io/2013/11/13/BOOK_linux鸟哥的私房菜_基础篇/linux鸟哥的私房菜_基础篇_14_Linux账号管理与ACL权限设定/">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.gif"
+               alt="Sean" />
+          <p class="site-author-name" itemprop="name">Sean</p>
+          <p class="site-description motion-element" itemprop="description">整理了一批过去一段时间ios相关的笔记，其它的笔记也整理下？源码分享出来？再说吧...反正也只有自己会看吧...</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">214</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">26</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">35</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#1-etc-passwd-和-etc-shadow"><span class="nav-text">1 /etc/passwd 和 /etc/shadow</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-1-etc-passwd"><span class="nav-text">1.1 /etc/passwd</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-2-etc-shadow"><span class="nav-text">1.2 /etc/shadow</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-3-找回丢失的密码"><span class="nav-text">1.3  找回丢失的密码</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#2-改变默认-home-目录"><span class="nav-text">2 改变默认 home 目录</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#3-sbin-nologin"><span class="nav-text">3 /sbin/nologin</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#4-关于群组"><span class="nav-text">4 关于群组</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#4-1-etc-group"><span class="nav-text">4.1 /etc/group</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-2-实战"><span class="nav-text">4.2 实战</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#5-使用standard-input建立用户的密码"><span class="nav-text">5.使用standard input建立用户的密码</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#6-passwd命令"><span class="nav-text">6. passwd命令</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#7-chage命令"><span class="nav-text">7.chage命令</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#案例1"><span class="nav-text">案例1</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#8-usermod"><span class="nav-text">8.usermod</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#9-userdel"><span class="nav-text">9 userdel</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#10-finger"><span class="nav-text">10 finger</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#案例一"><span class="nav-text">案例一</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#案例二"><span class="nav-text">案例二</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#案例三"><span class="nav-text">案例三</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#11-chfn-修改-添加个人属性信息"><span class="nav-text">11 chfn: 修改/添加个人属性信息</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#12-chsh-change-sheel"><span class="nav-text">12 chsh :change sheel</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#案例一-1"><span class="nav-text">案例一</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#案例二-1"><span class="nav-text">案例二</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#13-id"><span class="nav-text">13 id</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#14-groupadd-groupmod-groupdel-gpaasswd"><span class="nav-text">14.groupadd, groupmod, groupdel, gpaasswd</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#groupadd"><span class="nav-text">groupadd</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#groupmod"><span class="nav-text">groupmod</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#groupdel"><span class="nav-text">groupdel</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#gpasswd"><span class="nav-text">gpasswd</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#帐号管理实战"><span class="nav-text">帐号管理实战</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#案例一-2"><span class="nav-text">案例一</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#15-acl-access-control-list"><span class="nav-text">15 acl(access control list)</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#15-1-查看我的机器是否支持acl"><span class="nav-text">15.1 查看我的机器是否支持acl</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#15-2-acl的使用技巧"><span class="nav-text">15.2 acl的使用技巧</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#案例一-3"><span class="nav-text">案例一</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#15-3-帐号的切换"><span class="nav-text">15.3 帐号的切换</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#15-3-1-su"><span class="nav-text">15.3.1 su</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#15-3-2-sudo"><span class="nav-text">15.3.2 sudo</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#15-3-3-visudo和-etc-sudoers"><span class="nav-text">15.3.3 visudo和/etc/sudoers</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#15-4-用户的特殊shell与PAM模块"><span class="nav-text">15.4  用户的特殊shell与PAM模块</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#15-4-1-nologin-shell"><span class="nav-text">15.4.1 nologin shell</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#15-4-2-passwd呼叫PAM接口的过程"><span class="nav-text">15.4.2  passwd呼叫PAM接口的过程</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#以下的学习平台更换为centos-6-4-on-vmware-10-0-1"><span class="nav-text">以下的学习平台更换为centos 6.4 on vmware 10.0.1</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#15-4-3-PAM控制旗标所造成的回报流程"><span class="nav-text">15.4.3 PAM控制旗标所造成的回报流程</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#15-4-4-centos-6的PAM预设档案（相关配置文件）"><span class="nav-text">15.4.4 centos 6的PAM预设档案（相关配置文件）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#15-4-5-pam模块"><span class="nav-text">15.4.5 pam模块</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#案例"><span class="nav-text">案例</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#15-4-5-pam验证机制流程"><span class="nav-text">15.4.5 pam验证机制流程</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#15-4-6-其它pam相关档案及其设定"><span class="nav-text">15.4.6 其它pam相关档案及其设定</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#以下的学习平台更换为ubuntu13-10"><span class="nav-text">以下的学习平台更换为ubuntu13.10</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#15-5-linux主机上的用户信息传递"><span class="nav-text">15.5 linux主机上的用户信息传递</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#15-5-1-查询使用者-w-who-last-laslog"><span class="nav-text">15.5.1 查询使用者  w,who,last,laslog</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#15-5-2-不同账号之间对话-write-mesg-wall"><span class="nav-text">15.5.2 不同账号之间对话 write,mesg,wall</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#15-5-3-邮件信箱-mail"><span class="nav-text">15.5.3 邮件信箱 mail</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#15-6-手动建立帐号"><span class="nav-text">15.6 手动建立帐号</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#15-6-1-帐号检查工具"><span class="nav-text">15.6.1 帐号检查工具</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#15-6-2-帐号建立"><span class="nav-text">15.6.2 帐号建立</span></a></li></ol></li></ol></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Sean</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"lapuda-er"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+    <script src="/vendors/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
+    <script src="/js/src/hook-duoshuo.js"></script>
+  
+
+
+
+
+
+
+  
+  
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length == 0) {
+       search_path = "search.xml";
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    function proceedsearch() {
+      $("body").append('<div class="popoverlay">').css('overflow', 'hidden');
+      $('.popup').toggle();
+
+    }
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+    'use strict';
+    $.ajax({
+        url: path,
+        dataType: "xml",
+        async: true,
+        success: function( xmlResponse ) {
+            // get the contents from search data
+            isfetched = true;
+            $('.popup').detach().appendTo('.header-inner');
+            var datas = $( "entry", xmlResponse ).map(function() {
+                return {
+                    title: $( "title", this ).text(),
+                    content: $("content",this).text(),
+                    url: $( "url" , this).text()
+                };
+            }).get();
+            var $input = document.getElementById(search_id);
+            var $resultContent = document.getElementById(content_id);
+            $input.addEventListener('input', function(){
+                var matchcounts = 0;
+                var str='<ul class=\"search-result-list\">';
+                var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+                $resultContent.innerHTML = "";
+                if (this.value.trim().length > 1) {
+                // perform local searching
+                datas.forEach(function(data) {
+                    var isMatch = true;
+                    var content_index = [];
+                    var data_title = data.title.trim().toLowerCase();
+                    var data_content = data.content.trim().replace(/<[^>]+>/g,"").toLowerCase();
+                    var data_url = data.url;
+                    var index_title = -1;
+                    var index_content = -1;
+                    var first_occur = -1;
+                    // only match artiles with not empty titles and contents
+                    if(data_title != '' && data_content != '') {
+                        keywords.forEach(function(keyword, i) {
+                            index_title = data_title.indexOf(keyword);
+                            index_content = data_content.indexOf(keyword);
+                            if( index_title < 0 && index_content < 0 ){
+                                isMatch = false;
+                            } else {
+                                if (index_content < 0) {
+                                    index_content = 0;
+                                }
+                                if (i == 0) {
+                                    first_occur = index_content;
+                                }
+                            }
+                        });
+                    }
+                    // show search results
+                    if (isMatch) {
+                        matchcounts += 1;
+                        str += "<li><a href='"+ data_url +"' class='search-result-title'>"+ data_title +"</a>";
+                        var content = data.content.trim().replace(/<[^>]+>/g,"");
+                        if (first_occur >= 0) {
+                            // cut out 100 characters
+                            var start = first_occur - 20;
+                            var end = first_occur + 80;
+                            if(start < 0){
+                                start = 0;
+                            }
+                            if(start == 0){
+                                end = 50;
+                            }
+                            if(end > content.length){
+                                end = content.length;
+                            }
+                            var match_content = content.substring(start, end);
+                            // highlight all keywords
+                            keywords.forEach(function(keyword){
+                                var regS = new RegExp(keyword, "gi");
+                                match_content = match_content.replace(regS, "<b class=\"search-keyword\">"+keyword+"</b>");
+                            });
+
+                            str += "<p class=\"search-result\">" + match_content +"...</p>"
+                        }
+                        str += "</li>";
+                    }
+                })};
+                str += "</ul>";
+                if (matchcounts == 0) { str = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>' }
+                if (keywords == "") { str = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>' }
+                $resultContent.innerHTML = str;
+            });
+            proceedsearch();
+        }
+    });}
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched == false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+
+    });
+
+    $('.popup-btn-close').click(function(e){
+      $('.popup').hide();
+      $(".popoverlay").remove();
+      $('body').css('overflow', '');
+    });
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+  </script>
+
+
+  
+
+  
+
+  
+
+</body>
+</html>

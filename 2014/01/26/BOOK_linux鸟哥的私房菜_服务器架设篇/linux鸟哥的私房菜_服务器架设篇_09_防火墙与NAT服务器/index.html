@@ -1,0 +1,1167 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="shell,linux," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1" />
+
+
+
+
+
+
+<meta name="description" content="1    认识防火墙1.1 开始之前来个提醒事项1.2 为何需要防火墙防火墙外最基本的安全防护
+关闭不需要且危险的服务；
+将系统所有软件保持在最新的状态
+权限设定妥当且定时进行备份
+教育用户具有良好的网络、系统操作习惯 
+
+防火墙的作用实例
+限制文件传输服务，只在子域的主机才能使用，不对整个Internet开放
+限制主机仅可以接受客户端的WWW请求，其它服务关闭 
+限制主机仅能主动对外联机，即如果">
+<meta property="og:type" content="article">
+<meta property="og:title" content="9 防火墙与 NAT 服务器">
+<meta property="og:url" content="http://laputa-er.github.io/2014/01/26/BOOK_linux鸟哥的私房菜_服务器架设篇/linux鸟哥的私房菜_服务器架设篇_09_防火墙与NAT服务器/index.html">
+<meta property="og:site_name" content="Sean">
+<meta property="og:description" content="1    认识防火墙1.1 开始之前来个提醒事项1.2 为何需要防火墙防火墙外最基本的安全防护
+关闭不需要且危险的服务；
+将系统所有软件保持在最新的状态
+权限设定妥当且定时进行备份
+教育用户具有良好的网络、系统操作习惯 
+
+防火墙的作用实例
+限制文件传输服务，只在子域的主机才能使用，不对整个Internet开放
+限制主机仅可以接受客户端的WWW请求，其它服务关闭 
+限制主机仅能主动对外联机，即如果">
+<meta property="og:image" content="http://o6ul1xz4z.bkt.clouddn.com/2017-04-30-2177B981-C6B6-4A85-995A-108C53E071F6.png">
+<meta property="og:image" content="http://o6ul1xz4z.bkt.clouddn.com/2017-04-30-5F5990E5-2D62-4AB1-BC99-1CDE53DC71E3.png">
+<meta property="og:image" content="http://o6ul1xz4z.bkt.clouddn.com/2017-04-30-7CD55EC1-2DC0-4BA9-8150-0C15D3373C0A.png">
+<meta property="og:image" content="http://o6ul1xz4z.bkt.clouddn.com/2017-04-30-FD376D93-3290-4B66-AEDC-506F32AE3025.png">
+<meta property="og:updated_time" content="2017-04-30T10:55:29.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="9 防火墙与 NAT 服务器">
+<meta name="twitter:description" content="1    认识防火墙1.1 开始之前来个提醒事项1.2 为何需要防火墙防火墙外最基本的安全防护
+关闭不需要且危险的服务；
+将系统所有软件保持在最新的状态
+权限设定妥当且定时进行备份
+教育用户具有良好的网络、系统操作习惯 
+
+防火墙的作用实例
+限制文件传输服务，只在子域的主机才能使用，不对整个Internet开放
+限制主机仅可以接受客户端的WWW请求，其它服务关闭 
+限制主机仅能主动对外联机，即如果">
+<meta name="twitter:image" content="http://o6ul1xz4z.bkt.clouddn.com/2017-04-30-2177B981-C6B6-4A85-995A-108C53E071F6.png">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 0,
+      author: '博主'
+    }
+  };
+</script>
+
+
+
+
+  <link rel="canonical" href="http://laputa-er.github.io/2014/01/26/BOOK_linux鸟哥的私房菜_服务器架设篇/linux鸟哥的私房菜_服务器架设篇_09_防火墙与NAT服务器/"/>
+
+  <title> 9 防火墙与 NAT 服务器 | Sean </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//hm.baidu.com/hm.js?898688f51c5a3d6b37dd23e04441e5bd";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">Sean</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">笔记分享</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup">
+ <span class="search-icon fa fa-search"></span>
+ <input type="text" id="local-search-input">
+ <div id="local-search-result"></div>
+ <span class="popup-btn-close">close</span>
+</div>
+
+
+    </div>
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                9 防火墙与 NAT 服务器
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2014-01-26T10:57:24+08:00" content="2014-01-26">
+              2014-01-26
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/linux鸟哥的私房菜-基础篇/" itemprop="url" rel="index">
+                    <span itemprop="name">linux鸟哥的私房菜_基础篇</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2014/01/26/BOOK_linux鸟哥的私房菜_服务器架设篇/linux鸟哥的私房菜_服务器架设篇_09_防火墙与NAT服务器/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2014/01/26/BOOK_linux鸟哥的私房菜_服务器架设篇/linux鸟哥的私房菜_服务器架设篇_09_防火墙与NAT服务器/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="1-认识防火墙"><a href="#1-认识防火墙" class="headerlink" title="1    认识防火墙"></a>1    认识防火墙</h1><h2 id="1-1-开始之前来个提醒事项"><a href="#1-1-开始之前来个提醒事项" class="headerlink" title="1.1 开始之前来个提醒事项"></a>1.1 开始之前来个提醒事项</h2><h2 id="1-2-为何需要防火墙"><a href="#1-2-为何需要防火墙" class="headerlink" title="1.2 为何需要防火墙"></a>1.2 为何需要防火墙</h2><h3 id="防火墙外最基本的安全防护"><a href="#防火墙外最基本的安全防护" class="headerlink" title="防火墙外最基本的安全防护"></a>防火墙外最基本的安全防护</h3><ul>
+<li>关闭不需要且危险的服务；</li>
+<li>将系统所有软件保持在最新的状态</li>
+<li>权限设定妥当且定时进行备份</li>
+<li>教育用户具有良好的网络、系统操作习惯 </li>
+</ul>
+<h3 id="防火墙的作用实例"><a href="#防火墙的作用实例" class="headerlink" title="防火墙的作用实例"></a>防火墙的作用实例</h3><ul>
+<li>限制文件传输服务，只在子域的主机才能使用，不对整个Internet开放</li>
+<li>限制主机仅可以接受客户端的WWW请求，其它服务关闭 </li>
+<li>限制主机仅能主动对外联机，即如果客户端对主机发送主动联机的封包（TCP封包的SYN flag）就予以抵挡 </li>
+</ul>
+<h3 id="防火墙任务总结"><a href="#防火墙任务总结" class="headerlink" title="防火墙任务总结"></a>防火墙任务总结</h3><ul>
+<li>切割被信任（如子域）与不被信任（如Internet）的网段  </li>
+<li>划分出可提供 Internet 的服务与必须受保护的服务 </li>
+<li>分析出可接受与不可接受的封包状态 </li>
+<li>更加细部深入的NAT设定</li>
+<li>更弹性的IP封包伪装功能    </li>
+</ul>
+<h2 id="1-3-Linux系统上防火墙的主要类别"><a href="#1-3-Linux系统上防火墙的主要类别" class="headerlink" title="1.3 Linux系统上防火墙的主要类别"></a>1.3 Linux系统上防火墙的主要类别</h2><p>依据防火墙管理的范围分类:</p>
+<p>☑ 单一主机型控管</p>
+<ul>
+<li>Netfilter(封包过滤类型)；</li>
+<li>TCP Wrappers(依据服务软件作为分析);</li>
+</ul>
+<p>☑ 区域性防火墙</p>
+<ul>
+<li>Netfilter;</li>
+<li>proxy server;   </li>
+</ul>
+<h3 id="Netfilter-封包过滤机制，OSI的2-3-4层"><a href="#Netfilter-封包过滤机制，OSI的2-3-4层" class="headerlink" title="Netfilter(封包过滤机制，OSI的2,3,4层)"></a>Netfilter(封包过滤机制，OSI的2,3,4层)</h3><p>☑ 重点：将风暴表头的数据捉出来，直接分析封包表头数据，包括硬件地址（MAC），软件地址（IP）,TCP,UDP,ICMP等信息进行过滤分析。     </p>
+<h3 id="TCP-Wrappers-程序控管"><a href="#TCP-Wrappers-程序控管" class="headerlink" title="TCP Wrappers(程序控管)"></a>TCP Wrappers(程序控管)</h3><p>☑ 重点：分析谁对某程序进行存取，透过规则分析该服务器程序谁能够联机，谁不能联机。</p>
+<h3 id="Proxy-代理服务器"><a href="#Proxy-代理服务器" class="headerlink" title="Proxy(代理服务器)"></a>Proxy(代理服务器)</h3><p>☑ 重点：client 并没有直接连上 Interent，而是 proxy server，因此想要攻击主机必须先攻破代理服务器    </p>
+<h2 id="1-4-防火墙的一般网络布线示意图"><a href="#1-4-防火墙的一般网络布线示意图" class="headerlink" title="1.4 防火墙的一般网络布线示意图"></a>1.4 防火墙的一般网络布线示意图</h2><p>☑ 1 单一网域，仅有一个路由器</p>
+<p><img src="http://o6ul1xz4z.bkt.clouddn.com/2017-04-30-2177B981-C6B6-4A85-995A-108C53E071F6.png" alt="2177B981-C6B6-4A85-995A-108C53E071F6"></p>
+<p>☑ 2 内部网络包含安全性更高的子网，需内部防火墙切开子网</p>
+<p><img src="http://o6ul1xz4z.bkt.clouddn.com/2017-04-30-5F5990E5-2D62-4AB1-BC99-1CDE53DC71E3.png" alt="5F5990E5-2D62-4AB1-BC99-1CDE53DC71E3"></p>
+<p>☑ 3 在防火墙的后面架设网络服务器主机（在两个防火墙中间）</p>
+<p><img src="http://o6ul1xz4z.bkt.clouddn.com/2017-04-30-7CD55EC1-2DC0-4BA9-8150-0C15D3373C0A.png" alt="7CD55EC1-2DC0-4BA9-8150-0C15D3373C0A"></p>
+<h2 id="1-5-防火墙的使用限制"><a href="#1-5-防火墙的使用限制" class="headerlink" title="1.5 防火墙的使用限制"></a>1.5 防火墙的使用限制</h2><p>☑ 1. 拒绝让Internet的封包进入主机的某些端口<br>☑ 2. 拒绝让某些来源IP的封包进入<br>☑ 3. 拒绝让带有某些特殊旗标的封包进入<br>☑ 4. 分析硬件地址（MAC）来决定联机与否<br>☑ 5. 防火墙并不能很有效的抵挡病毒或木马程序<br>☑ 6. 防火墙对于来自内部LAN的攻击较五承受力</p>
+<h1 id="2-TCP-Wrappers"><a href="#2-TCP-Wrappers" class="headerlink" title="2 TCP Wrappers"></a>2 TCP Wrappers</h1><h2 id="2-1-哪些服务有支持：ldd"><a href="#2-1-哪些服务有支持：ldd" class="headerlink" title="2.1 哪些服务有支持：ldd"></a>2.1 哪些服务有支持：ldd</h2><p>☑ TCP Wrappers使用的配置文件</p>
+<ul>
+<li>/etc/hosts.allow</li>
+<li>/etc/hosts.deny</li>
+</ul>
+<h3 id="由super-daemon（xinetd）所管理的服务"><a href="#由super-daemon（xinetd）所管理的服务" class="headerlink" title="由super daemon（xinetd）所管理的服务"></a>由super daemon（xinetd）所管理的服务</h3><h3 id="有支持libwrap-so模块的服务"><a href="#有支持libwrap-so模块的服务" class="headerlink" title="有支持libwrap.so模块的服务"></a>有支持libwrap.so模块的服务</h3><p>范例一：查询xinted管理的服务有哪些</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ yum install xinted  <span class="comment"># 安装xinted</span></span><br><span class="line">$ chkconfig xinted on  <span class="comment"># 启动xinted</span></span><br><span class="line">$ chkconfig --list  <span class="comment"># 查看xinted管理的服务</span></span><br></pre></td></tr></table></figure>
+<p>范例二：rsyslogd, sshd, xinetd, httpd有没有支持tcp wrappers的抵挡功能</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">$ ldd $(<span class="built_in">which</span> rsyslogd sshd xined httpd)  <span class="comment"># 将所有动态函式库取出来查阅</span></span><br><span class="line">$ <span class="keyword">for</span> name <span class="keyword">in</span> rsyslogd sshd xinted httpd; \                       </span><br><span class="line">  <span class="keyword">do</span>    \                        </span><br><span class="line">    <span class="built_in">echo</span> <span class="variable">$name</span>    \                        </span><br><span class="line">    ldd $(<span class="built_in">which</span> <span class="variable">$name</span>) | grep libwrap; \  <span class="comment"># 查得到代表支持（rsyslogd,httpd不支持）                    </span></span><br><span class="line">  <span class="keyword">done</span></span><br></pre></td></tr></table></figure>
+<h2 id="2-2-etc-hosts-allow-deny-的设定方式"><a href="#2-2-etc-hosts-allow-deny-的设定方式" class="headerlink" title="2.2 /etc/hosts.{allow|deny}的设定方式"></a>2.2 /etc/hosts.{allow|deny}的设定方式</h2><p>范例一：先开放本机的127.0.0.1可以进行任何本机的服务，然后让区网（192.168.1.0/24）可以使用rsync,同事是10.0.0.100也能够使用rsync,但其它来源则不允许使用rsync。 </p>
+<p><strong>首先需要知道rsync的服务启动的档名</strong><br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ cat /etc/xinietd.d/rsync</span><br></pre></td></tr></table></figure></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">service rsync</span><br><span class="line">&#123;</span><br><span class="line">  <span class="built_in">disable</span>=yes</span><br><span class="line">  flags=IPv6</span><br><span class="line">  socket_<span class="built_in">type</span>=stream</span><br><span class="line">  <span class="built_in">wait</span>=no</span><br><span class="line">  user=root</span><br><span class="line">  service=/usr/bin/rsync <span class="comment"># 档名叫做rsync</span></span><br><span class="line">  service_args=--daemon</span><br><span class="line">  <span class="built_in">log</span>_on_failure++USERID </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><strong>配置抵挡规则</strong><br>/etc/hosts.allow</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">ALL:    127.0.0.1 <span class="comment">#  本机全部去的服务都接受</span></span><br><span class="line">rsysnc:192.168.1.0/255.255.255.0 10.0.0.100</span><br></pre></td></tr></table></figure>
+<p>/etc/hosts.deny<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">rsync:ALL</span><br></pre></td></tr></table></figure></p>
+<h1 id="3-Linux的封包过滤软件：iptables"><a href="#3-Linux的封包过滤软件：iptables" class="headerlink" title="3 Linux的封包过滤软件：iptables"></a>3 Linux的封包过滤软件：iptables</h1><h2 id="3-1-不同Linux核心版本的防火墙软件"><a href="#3-1-不同Linux核心版本的防火墙软件" class="headerlink" title="3.1 不同Linux核心版本的防火墙软件"></a>3.1 不同Linux核心版本的防火墙软件</h2><p>☑ <strong>version2.0</strong>:    ipfwadm<br>☑ <strong>version2.2</strong>:    ipchains<br>☑ <strong>version2.4/2.6</strong>:    iptables(主要)</p>
+<h2 id="3-2-封包进入流程：规则顺序的重要性"><a href="#3-2-封包进入流程：规则顺序的重要性" class="headerlink" title="3.2 封包进入流程：规则顺序的重要性"></a>3.2 封包进入流程：规则顺序的重要性</h2><p><img src="http://o6ul1xz4z.bkt.clouddn.com/2017-04-30-FD376D93-3290-4B66-AEDC-506F32AE3025.png" alt="FD376D93-3290-4B66-AEDC-506F32AE3025"></p>
+<h2 id="3-3-iptables的表格-table-与链（chain）"><a href="#3-3-iptables的表格-table-与链（chain）" class="headerlink" title="3.3 iptables的表格(table)与链（chain）"></a>3.3 iptables的表格(table)与链（chain）</h2><p>☑ 注意：Linux的iptables至少有三个表格     </p>
+<ul>
+<li>管理本机进出的Filter</li>
+<li>管理后端主机（防火墙内部计算机）的nat</li>
+<li>管理特殊旗标使用managle(较少使用) </li>
+</ul>
+<h3 id="iptables内建各表格与链的相关性（三种流向）"><a href="#iptables内建各表格与链的相关性（三种流向）" class="headerlink" title="iptables内建各表格与链的相关性（三种流向）"></a>iptables内建各表格与链的相关性（三种流向）</h3><p>（1）封包进入Linux使用资源;</p>
+<p>（2）封包经Linux主机转递，不使用主机资源；<br>（3）封包由Linux主机发出；</p>
+<h2 id="3-4-本机的iptables语法"><a href="#3-4-本机的iptables语法" class="headerlink" title="3.4 本机的iptables语法"></a>3.4 本机的iptables语法</h2><h2 id="3-4-1-规则的观察与清除"><a href="#3-4-1-规则的观察与清除" class="headerlink" title="3.4.1 规则的观察与清除"></a>3.4.1 规则的观察与清除</h2><h3 id="观察"><a href="#观察" class="headerlink" title="观察"></a>观察</h3><h4 id="iptables"><a href="#iptables" class="headerlink" title="iptables"></a>iptables</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 防火墙规则的设定</span></span><br><span class="line">$ iptables [-t tables][-L] [-nv]</span><br></pre></td></tr></table></figure>
+<p>注意：不显示针对那些接口<br>|选项与参数|说明|<br>|—|—|<br>|-t|后面接table,例如nat或filter,若省略此项目，则使用默认的filter|<br>|-L|列出目前的table规则|<br>|-n|不进行IP或HOSTNAME的反查，显示讯息的速度会快很多            |<br>|-v|列出更多的信息，包括通过该规则的封包总位数，相关的网络接口等|</p>
+<table>
+<thead>
+<tr>
+<th>显示格式</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>target</td>
+<td>要进行的动作（ACCEPT是放行；REJECT是拒绝；DROP是丢弃）</td>
+</tr>
+<tr>
+<td>prot</td>
+<td>所使用的封包协议，主要有tcp，udp及icmp三种封包格式</td>
+</tr>
+<tr>
+<td>opt</td>
+<td>额外的选项说明</td>
+</tr>
+<tr>
+<td>source</td>
+<td>针对哪个来源IP进行限制</td>
+</tr>
+<tr>
+<td>destionation</td>
+<td>针对那些目标IP进行限制</td>
+</tr>
+</tbody>
+</table>
+<p>范例一：列出filter table三条链的规则   </p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ iptables -L -n   <span class="comment"># 列出目前的table规则</span></span><br></pre></td></tr></table></figure>
+<p>范例二：列出net table三条链的规则   </p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ iptables -t nat -L -n</span><br></pre></td></tr></table></figure>
+<h4 id="iptables-save"><a href="#iptables-save" class="headerlink" title="iptables-save"></a>iptables-save</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 列出完整的防火墙规则，包括每条规则针对的接口</span></span><br><span class="line">$ iptables-save [-t table]</span><br></pre></td></tr></table></figure>
+<table>
+<thead>
+<tr>
+<th>选项</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>-t</td>
+<td>可以针对某些表格来输出，例如针对NAT或Filter等等</td>
+</tr>
+</tbody>
+</table>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ iptables-save</span><br></pre></td></tr></table></figure>
+<h3 id="清除"><a href="#清除" class="headerlink" title="清除"></a>清除</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ iptables [-t tables][-FXZ]</span><br></pre></td></tr></table></figure>
+<table>
+<thead>
+<tr>
+<th>选项与参数</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>-F</td>
+<td>清除所有的已订定的规则</td>
+</tr>
+<tr>
+<td>-X</td>
+<td>杀掉所有使用者自定义的chain</td>
+</tr>
+<tr>
+<td>-Z</td>
+<td>将所有的chain的技术与流量统计归零</td>
+</tr>
+</tbody>
+</table>
+<p>范例一：清除本机防火墙所有规则(清除所有规则，不改变预设政策)  </p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ iptables -F  </span><br><span class="line">$ iptables -X  </span><br><span class="line">$ iptables -Z</span><br></pre></td></tr></table></figure>
+<h2 id="3-4-2-定义预设规则（policy）"><a href="#3-4-2-定义预设规则（policy）" class="headerlink" title="3.4.2 定义预设规则（policy）"></a>3.4.2 定义预设规则（policy）</h2><p><code>iptables [-t net] -P [INPUT,OUTPUT,FORWARD][ACCEPT,DROP]</code></p>
+<table>
+<thead>
+<tr>
+<th>选项与参数</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>-P</td>
+<td>定义政策（Policy）</td>
+</tr>
+<tr>
+<td>ACCEPT</td>
+<td>该封包可接受</td>
+</tr>
+<tr>
+<td>DROP</td>
+<td>该封包直接丢弃，不让client端知道为何被丢弃</td>
+</tr>
+</tbody>
+</table>
+<p>范例一：将本机的INPUT设定为DROP,其它设定为ACCEPT，注意到这是不通的防火墙设定 </p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">$ iptables -P INPUR DROP  <span class="comment"># 针对进入主机的封包政策（因为还没设定任何规则，因此任何封包都不会符合任何规则，直接根据政策被被丢弃） </span></span><br><span class="line">$ iptables -P OUTPUT ACCEPT  <span class="comment"># 针对发出的封包政策 </span></span><br><span class="line">$ iptables -P FORWARD ACCEPT  <span class="comment"># 针对转发的封包的政策 </span></span><br><span class="line">$ iptables -t nat -P PREROUTING ACCEPT  <span class="comment"># 设定net table的PREROUTING链为可接受 </span></span><br><span class="line">$ iptables-save  <span class="comment"># 查看防火墙规则</span></span><br></pre></td></tr></table></figure>
+<h2 id="3-4-3-封包的基础比对：IP-网域及接口装置：新人装置，信任网域"><a href="#3-4-3-封包的基础比对：IP-网域及接口装置：新人装置，信任网域" class="headerlink" title="3.4.3 封包的基础比对：IP,网域及接口装置：新人装置，信任网域"></a>3.4.3 封包的基础比对：IP,网域及接口装置：新人装置，信任网域</h2><p><code>iptables [-AI 链名][-io 网络接口] [-p 协议][-s 来源IP/网域] [-d 目标IP/网域] -j [ACCEPT|DROP|REJECT|LOG]</code></p>
+<table>
+<thead>
+<tr>
+<th>选项与参数</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>-AI</td>
+<td>链名, 针对某条链进行规则的“插入”或“累加”</td>
+</tr>
+<tr>
+<td>-A</td>
+<td>在链末尾加入一条规则</td>
+</tr>
+<tr>
+<td>-I</td>
+<td>插入一条规则，如果没有指定默认插入第一条</td>
+<td>链名：INPUT,OUTPUT,FORWORD等</td>
+</tr>
+<tr>
+<td>-io</td>
+<td>网络接口：设定封包进出的接口规范</td>
+</tr>
+<tr>
+<td>-i</td>
+<td>封包所进入的那个网络接口，需与INPPUT链配合</td>
+</tr>
+<tr>
+<td>-o</td>
+<td>封包所传出的那个网络接口，需要与OUTPUT配合</td>
+</tr>
+<tr>
+<td>-p 协定：设定此规则适用于那种封包格式（tcp/udp/icmp及all）</td>
+</tr>
+<tr>
+<td>-s 来源IP/网域</td>
+<td>设定此规则此封包的来源项目，可指定单纯的IP(比如192.168.1.100)或包括网域(192.168.0.0/24或192.168.0.0/255.255.255.0)</td>
+</tr>
+<tr>
+<td>!</td>
+<td>表示不许</td>
+</tr>
+<tr>
+<td>-d 目标 IP/网域</td>
+<td>设定封包的目标IP或网域</td>
+</tr>
+<tr>
+<td>-j</td>
+<td>接动作，主要动作有接受（ACCEPT）、丢弃（DROP）、拒绝（REJECT）及记录（LOG）</td>
+</tr>
+</tbody>
+</table>
+<p>范例一：设定lo成为受信任的装置，亦即进出lo的额封包都予以接受                </p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ iptables -A INPUT -i lo -j ACCEPT</span><br></pre></td></tr></table></figure>
+<p>范例二：只要来自内网（192.168.100.0/24）的封包通通接受                </p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ iptables -A INPUT -i eth1 <span class="_">-s</span> 192.168.100.0/24 -j ACCEPT</span><br></pre></td></tr></table></figure>
+<p>范例三：来自192.168.100.10接受，但192.168.100.230就丢弃                </p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ iptables -A INPUT -i eth1 192.168.100.10 -j ACCEPT <span class="comment"># 192.168.100.10接受                </span></span><br><span class="line">$ iptables -A INPUT -i eth1 192.168.100.230 -j DROP <span class="comment"># 192.168.100.230就丢弃                </span></span><br><span class="line">$ iptables-save <span class="comment"># 查看目前的防火墙设定</span></span><br></pre></td></tr></table></figure>
+<p>范例四：记录某条规则运行记录，写入/var/log/messages                </p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ iptables -A INPUT <span class="_">-s</span> 192.168.1.200 -j LOG <span class="comment"># 只要是来自192.168。2.200这个IP是，该封包的先关信息就会被写入核心讯息                </span></span><br><span class="line">$ iptables -L -n <span class="comment"># 查看防火墙记录</span></span><br></pre></td></tr></table></figure>
+<h2 id="3-4-4-TCP-UDP的规则比对：针对端口设定"><a href="#3-4-4-TCP-UDP的规则比对：针对端口设定" class="headerlink" title="3.4.4 TCP,UDP的规则比对：针对端口设定"></a>3.4.4 TCP,UDP的规则比对：针对端口设定</h2><p><code>iptables [-AL 链][-io 网络接口] [-p tcp,udp][-s 来源IP/网域] [--sport 端口范围][-d 目标IP/网域] [--dport 端口范围] -j [ACCEPT|DROP|REJECT]</code></p>
+<table>
+<thead>
+<tr>
+<th>选项与参数</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>–sport</td>
+<td>端口范围, 限制来源封包的端口号，端口号可以是连续的，例如1024:65535</td>
+</tr>
+<tr>
+<td>–dprot</td>
+<td>端口范围, 限制目标端口号</td>
+</tr>
+</tbody>
+</table>
+<p>☑ 注意：只有TCP或者UDP封包才有端口，所以指定端口必然指定-p [tcp|udp]            </p>
+<p>范例一：想要联机进入本机port 21的封包都抵挡 </p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ iptables -A INPUT -i eth0 -p tcp --dport 21 -j DROP</span><br></pre></td></tr></table></figure>
+<p>范例二：相连接我的主机的网上邻居（sasmba,udp port:137,138,tcp port:139,445）都放行 </p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ iptables -A INPUT -i eth0 -p udp --dport 137:138 -j ACCEPT </span><br><span class="line">$ iptables -A INPUT -i eth0 -p tcp --dport 139 -j ACCEPT </span><br><span class="line">$ iptables -A INPUT -i eth0 -p tcp --dport 445 -j ACCEPT</span><br></pre></td></tr></table></figure>
+<p>范例三：抵挡了来自192.168.1.0/24的1024:65535端口且想连接ssh port的封包 </p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ iptables -A INPUT -i eth0 -p tcp <span class="_">-s</span> 192.168.1.0/24 --sport 1024:65535 --dport ssh -j DROP  <span class="comment"># 必须制定-p tcp，否则会出错</span></span><br></pre></td></tr></table></figure>
+<p>范例四：将任何来源port 1:L1023的制动联机本地端1:1023的封包丢弃 </p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ iptables -A INPUT -i eth0 -p tcp --sport 1:1023 --dport 1:1023 --syn -j DROP  <span class="comment"># 客户端的主动联机封包一般会1024端口以上</span></span><br></pre></td></tr></table></figure>
+<h2 id="3-4-5-iptables-外挂模块：mac与state"><a href="#3-4-5-iptables-外挂模块：mac与state" class="headerlink" title="3.4.5 iptables 外挂模块：mac与state"></a>3.4.5 iptables 外挂模块：mac与state</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ iptables -A INPUT [-m state][--state 状态]</span><br></pre></td></tr></table></figure>
+<table>
+<thead>
+<tr>
+<th>选项与参数</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>-m</td>
+<td>一些iptables的外挂模块（常见的有state: 状态模块；mac: 网络卡硬件地址）</td>
+</tr>
+<tr>
+<td>–state</td>
+<td>一些封包的状态(INVALID 无效的封包（例如数据破损）, ESTABLISHED 已经联机成功的联机状态, NEW 想要新建立联机的封包状态, REALTED 表示这个封包是我们的主机发送出去的</td>
+</tr>
+<tr>
+<td>–mac-source</td>
+<td>来源主机的MAC</td>
+</tr>
+</tbody>
+</table>
+<p>范例一：只要已建立或响应封包就予以通过，丢弃不合法封包 </p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ iptables -A INPUT -m state --state RELATED,ESTABLIEHED -j ACCEPT</span><br></pre></td></tr></table></figure>
+<p>范例二：针对局域网内的aa:bb:cc:dd:ee:ff主机开放联机(mac不能跨路由) </p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ iptables  -A INPUT -m mac --mac-source aa:bb:cc:dd:ee:ff -j ACCEPT</span><br></pre></td></tr></table></figure>
+<h2 id="3-4-6-IMCP封包规则的比对：针对是否响应ping来设计"><a href="#3-4-6-IMCP封包规则的比对：针对是否响应ping来设计" class="headerlink" title="3.4.6 IMCP封包规则的比对：针对是否响应ping来设计"></a>3.4.6 IMCP封包规则的比对：针对是否响应ping来设计</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">iptables -A INPUT [-p icmp][--icmp-type 类型] -j ACCEPT</span><br></pre></td></tr></table></figure>
+<table>
+<thead>
+<tr>
+<th>选项与参数</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>–icmp-type</td>
+<td>后面跟ICMP的封包类型，可以使用代号（例如8代表echo request）</td>
+</tr>
+</tbody>
+</table>
+<p>☑ 注意：如果主机作为区网的路由器，建议icmp封包通通放行，因为客户端要用ping监测网络                </p>
+<p>范例一：让0,3,4,11,12,14,16,18,的ICMP type可以进入主机 </p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ vim icmpFirewall.sh <span class="comment"># [SHEEL 10]</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#!/bin/bash</span></span><br><span class="line">icmp_<span class="built_in">type</span>=<span class="string">"0 3 4 11 12 14 16 18"</span> </span><br><span class="line"><span class="keyword">for</span> typeicmp <span class="keyword">in</span> <span class="variable">$icmp_type</span></span><br><span class="line"><span class="keyword">do</span></span><br><span class="line">  iptables -A INPUT -i eth0 -p icmp --icmp-type <span class="variable">$typeicmp</span> -j ACCEPT</span><br><span class="line"><span class="keyword">done</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ sh icmpFirewall.sh</span><br></pre></td></tr></table></figure>
+<h2 id="3-4-7-超阳春客户端防火墙设计与防火墙规则存储"><a href="#3-4-7-超阳春客户端防火墙设计与防火墙规则存储" class="headerlink" title="3.4.7 超阳春客户端防火墙设计与防火墙规则存储"></a>3.4.7 超阳春客户端防火墙设计与防火墙规则存储</h2><h3 id="1-主机作为客户端的基本防火墙设置"><a href="#1-主机作为客户端的基本防火墙设置" class="headerlink" title="1. 主机作为客户端的基本防火墙设置"></a>1. 主机作为客户端的基本防火墙设置</h3><p>（1）规则清零：清除所有已经存在的规则<br>（2）预设政策：除了INPUT这个自定义链设定为DROP外，其它为预设ACCEPT<br>（3）信任本机：由于lo对本机来说相当重要，因此lo必须设定为信任装置<br>（4）回应封包：让本机主动向外要求二响应的封包进入本机<br>（5）信任用户：这是非必要的，如果你想要让区网的来源可用你的主机资源时         </p>
+<h3 id="2-实作基本防火墙（有点弱）"><a href="#2-实作基本防火墙（有点弱）" class="headerlink" title="2. 实作基本防火墙（有点弱）"></a>2. 实作基本防火墙（有点弱）</h3><p>方式一：将命令写成脚本执行</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ vim bin/firewall.sh</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#!/bin/bash</span></span><br><span class="line"><span class="built_in">export</span> PATH=/sbin;/bin;/usr/<span class="comment">### sbin;/usr/bin                        </span></span><br><span class="line"><span class="comment">#1. 清除规则                        </span></span><br><span class="line"></span><br><span class="line">iptables -F                        </span><br><span class="line">iptables -X                        </span><br><span class="line">iptables -Z                        </span><br><span class="line"><span class="comment">#2.设定政策                        </span></span><br><span class="line">iptables -P INPUT DROP                        </span><br><span class="line">iptables -P OUTPUT ACCEPT                        </span><br><span class="line">iptables -P FORWARD ACCEPT                        </span><br><span class="line"><span class="comment">#3-5.指定各项规则                        </span></span><br><span class="line">iptables -A INPUT -i lo -j ACCEPT                        </span><br><span class="line">iptables -A INPUT -i eth0 -m state --state RELATED,ESTABLISHED -j ACCEPT                        </span><br><span class="line"><span class="comment">#iptables -A INPUT -i eth0 -s 192.168.1.0/24 -j ACCEPT                        #6.写入防火墙规则配置文件                        </span></span><br><span class="line">/etc/init.d/iptables save <span class="comment"># 储存到/etc/sysconfig/iptables,这样才会在下次启动后依然生效</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ sh bin/firewall.sh </span><br><span class="line">$ chkconfig --list iptables   <span class="comment"># 查看防火墙服务</span></span><br></pre></td></tr></table></figure>
+<p>方式二：直接修改配置文件 </p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ vim /etc/sysconfig/iptables  <span class="comment"># 将规则写入配置文件                    </span></span><br><span class="line">$ /etc/init.d/iptables restart</span><br></pre></td></tr></table></figure>
+<h2 id="3-5-IPv4的核心管理功能：-proc-sys-net-ipv4"><a href="#3-5-IPv4的核心管理功能：-proc-sys-net-ipv4" class="headerlink" title="3.5 IPv4的核心管理功能：/proc/sys/net/ipv4/*"></a>3.5 IPv4的核心管理功能：/proc/sys/net/ipv4/*</h2><p>☑ 注意：查看核心的说明文件需要安装kernel-doc软件（/usr/share/doc/kernel-doc-2.6.32/Documentation/networking/ip-sysctl.txt）<br>下面给出几个核定预设的攻击低档模块的设置档案： </p>
+<h3 id="SYN-Cookie模块：-proc-sys-net-ipv4-tcp-syncookies"><a href="#SYN-Cookie模块：-proc-sys-net-ipv4-tcp-syncookies" class="headerlink" title="SYN Cookie模块：/proc/sys/net/ipv4/tcp_syncookies"></a>SYN Cookie模块：/proc/sys/net/ipv4/tcp_syncookies</h3><p>☑ 功能：三次握手过程中，服务器端发送SYN/ACK确认封包前会要求客户端短时间内恢复一个序号，客户端能正确回应才发送SYN.ACK封包<br>☑ 应对攻击类型：SYN Flooding<br>☑ 启动方式： 档系统的1024-65535端口即将用完时启动 </p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ <span class="built_in">echo</span> <span class="string">"1"</span> &gt; /proc/sys/net/ipv4/tcp_syncookies</span><br></pre></td></tr></table></figure>
+<p>☑ 参数</p>
+<ul>
+<li>tcp_max_syn_backlog</li>
+<li>tcp_synack_retries</li>
+<li>tcp_abort_on_overflow </li>
+</ul>
+<h3 id="proc-sys-net-ipv4-icmp-echo-ignore-broadcasts"><a href="#proc-sys-net-ipv4-icmp-echo-ignore-broadcasts" class="headerlink" title="/proc/sys/net/ipv4/icmp_echo_ignore_broadcasts"></a>/proc/sys/net/ipv4/icmp_echo_ignore_broadcasts</h3><p>☑ 功能：取消ping回应<br>☑ 应对攻击类型</p>
+<ul>
+<li>ping flooding(不断发ping)</li>
+<li>ping death(发送大的ping 封包)   </li>
+</ul>
+<p>☑ 启动方式               </p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ <span class="built_in">echo</span> <span class="string">"1"</span>  /proc/sys/net/ipv4/icmp_<span class="built_in">echo</span>_ignore_broadcasts</span><br></pre></td></tr></table></figure>
+<p>（4）参数</p>
+<ul>
+<li>icmp_echo_ignore_broadcasts（仅ping broadcast地址时才取消回应）</li>
+<li>icmp_echo_ignore_all(全部ping 都不予回应)。 </li>
+</ul>
+<h3 id="对不同网络接口个别设置：-proc-sys-net-ipv4-conf-网络接口"><a href="#对不同网络接口个别设置：-proc-sys-net-ipv4-conf-网络接口" class="headerlink" title="对不同网络接口个别设置： /proc/sys/net/ipv4/conf/网络接口/*"></a>对不同网络接口个别设置： /proc/sys/net/ipv4/conf/网络接口/*</h3><p>☑ 功能：</p>
+<ul>
+<li>rp_filter:逆向路径过滤，藉由网络接口的路由信息配合封包的来源地址，过滤不合理封包；</li>
+<li>log_martians: 启动记录不合法的IP来源</li>
+<li>accept_source_route:何绍路由采用，建议取消这个设定值</li>
+<li>send_redirects:会发送一个ICMP redirect封包，建议关闭<br>☑ 应对攻击类型：过滤杂七杂八的封包<br>☑ 启动方式</li>
+</ul>
+<p>方式一：一般方式</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ <span class="built_in">echo</span> <span class="string">"1"</span> &gt; /proc/sys/net/ipv4/conf/eth0/rp_filter  <span class="comment"># 启动eth0的rp_filter功能</span></span><br></pre></td></tr></table></figure>
+<p>方式二：修改系统设定值（推荐） </p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ vim /etc/sysctl.conf  <span class="comment"># 将上面那几个功能通通启动</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># added by nemo 2014/1/27                    </span></span><br><span class="line">net.ipv4.tcp_syncookies=1</span><br><span class="line">net.ipv4.icmp_<span class="built_in">echo</span>_ignore_broadcasts=1</span><br><span class="line">net.ipv4.conf.all.rp_filter=1</span><br><span class="line">net.ipv4.confdefault.rp_filter=1</span><br><span class="line">net.ipv4.conf.eth0.rp_filter=1</span><br><span class="line">net.ipv4.conf.lo.rp_filter=1</span><br><span class="line">......</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ sysctl -p  <span class="comment"># 重启防火墙</span></span><br></pre></td></tr></table></figure>
+<h1 id="4-单机防火墙的一个实例"><a href="#4-单机防火墙的一个实例" class="headerlink" title="4 单机防火墙的一个实例"></a>4 单机防火墙的一个实例</h1><h2 id="4-1-规则草拟"><a href="#4-1-规则草拟" class="headerlink" title="4.1 规则草拟"></a>4.1 规则草拟</h2><h2 id="4-2-实际设定"><a href="#4-2-实际设定" class="headerlink" title="4.2 实际设定"></a>4.2 实际设定</h2><h1 id="5-NAT服务器的设定"><a href="#5-NAT服务器的设定" class="headerlink" title="5 NAT服务器的设定"></a>5 NAT服务器的设定</h1><h2 id="5-1-什么是NAT-SNAT-DNAT"><a href="#5-1-什么是NAT-SNAT-DNAT" class="headerlink" title="5.1 什么是NAT?SNAT?DNAT?"></a>5.1 什么是NAT?SNAT?DNAT?</h2><h2 id="5-2-最阳春NAT服务器：IP分享功能"><a href="#5-2-最阳春NAT服务器：IP分享功能" class="headerlink" title="5.2 最阳春NAT服务器：IP分享功能"></a>5.2 最阳春NAT服务器：IP分享功能</h2><h2 id="5-3-iptables的额外核心模块功能"><a href="#5-3-iptables的额外核心模块功能" class="headerlink" title="5.3 iptables的额外核心模块功能"></a>5.3 iptables的额外核心模块功能</h2><h2 id="5-4-在防火墙后端之网络服务器DNDAT设定"><a href="#5-4-在防火墙后端之网络服务器DNDAT设定" class="headerlink" title="5.4 在防火墙后端之网络服务器DNDAT设定"></a>5.4 在防火墙后端之网络服务器DNDAT设定</h2><h1 id="6-重点回顾"><a href="#6-重点回顾" class="headerlink" title="6 重点回顾"></a>6 重点回顾</h1><h1 id="7-本章习题"><a href="#7-本章习题" class="headerlink" title="7 本章习题"></a>7 本章习题</h1>
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/shell/" rel="tag">#shell</a>
+          
+            <a href="/tags/linux/" rel="tag">#linux</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2013/12/08/BOOK_linux鸟哥的私房菜_基础篇/linux鸟哥的私房菜_基础篇_18_认识系统服务/" rel="next" title="18 认识系统服务">
+                <i class="fa fa-chevron-left"></i> 18 认识系统服务
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2014/08/26/BOOK_JS高级程序设计(第三版)/JSHPD_3rd_01_JavaScript简介/" rel="prev" title="01 JavaScript简介">
+                01 JavaScript简介 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2014/01/26/BOOK_linux鸟哥的私房菜_服务器架设篇/linux鸟哥的私房菜_服务器架设篇_09_防火墙与NAT服务器/"
+           data-title="9 防火墙与 NAT 服务器" data-url="http://laputa-er.github.io/2014/01/26/BOOK_linux鸟哥的私房菜_服务器架设篇/linux鸟哥的私房菜_服务器架设篇_09_防火墙与NAT服务器/">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.gif"
+               alt="Sean" />
+          <p class="site-author-name" itemprop="name">Sean</p>
+          <p class="site-description motion-element" itemprop="description">整理了一批过去一段时间ios相关的笔记，其它的笔记也整理下？源码分享出来？再说吧...反正也只有自己会看吧...</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">214</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">26</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">35</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#1-认识防火墙"><span class="nav-text">1    认识防火墙</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-1-开始之前来个提醒事项"><span class="nav-text">1.1 开始之前来个提醒事项</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-2-为何需要防火墙"><span class="nav-text">1.2 为何需要防火墙</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#防火墙外最基本的安全防护"><span class="nav-text">防火墙外最基本的安全防护</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#防火墙的作用实例"><span class="nav-text">防火墙的作用实例</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#防火墙任务总结"><span class="nav-text">防火墙任务总结</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-3-Linux系统上防火墙的主要类别"><span class="nav-text">1.3 Linux系统上防火墙的主要类别</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Netfilter-封包过滤机制，OSI的2-3-4层"><span class="nav-text">Netfilter(封包过滤机制，OSI的2,3,4层)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#TCP-Wrappers-程序控管"><span class="nav-text">TCP Wrappers(程序控管)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Proxy-代理服务器"><span class="nav-text">Proxy(代理服务器)</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-4-防火墙的一般网络布线示意图"><span class="nav-text">1.4 防火墙的一般网络布线示意图</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-5-防火墙的使用限制"><span class="nav-text">1.5 防火墙的使用限制</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#2-TCP-Wrappers"><span class="nav-text">2 TCP Wrappers</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#2-1-哪些服务有支持：ldd"><span class="nav-text">2.1 哪些服务有支持：ldd</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#由super-daemon（xinetd）所管理的服务"><span class="nav-text">由super daemon（xinetd）所管理的服务</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#有支持libwrap-so模块的服务"><span class="nav-text">有支持libwrap.so模块的服务</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-2-etc-hosts-allow-deny-的设定方式"><span class="nav-text">2.2 /etc/hosts.{allow|deny}的设定方式</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#3-Linux的封包过滤软件：iptables"><span class="nav-text">3 Linux的封包过滤软件：iptables</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#3-1-不同Linux核心版本的防火墙软件"><span class="nav-text">3.1 不同Linux核心版本的防火墙软件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-2-封包进入流程：规则顺序的重要性"><span class="nav-text">3.2 封包进入流程：规则顺序的重要性</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-3-iptables的表格-table-与链（chain）"><span class="nav-text">3.3 iptables的表格(table)与链（chain）</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#iptables内建各表格与链的相关性（三种流向）"><span class="nav-text">iptables内建各表格与链的相关性（三种流向）</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-4-本机的iptables语法"><span class="nav-text">3.4 本机的iptables语法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-4-1-规则的观察与清除"><span class="nav-text">3.4.1 规则的观察与清除</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#观察"><span class="nav-text">观察</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#iptables"><span class="nav-text">iptables</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#iptables-save"><span class="nav-text">iptables-save</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#清除"><span class="nav-text">清除</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-4-2-定义预设规则（policy）"><span class="nav-text">3.4.2 定义预设规则（policy）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-4-3-封包的基础比对：IP-网域及接口装置：新人装置，信任网域"><span class="nav-text">3.4.3 封包的基础比对：IP,网域及接口装置：新人装置，信任网域</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-4-4-TCP-UDP的规则比对：针对端口设定"><span class="nav-text">3.4.4 TCP,UDP的规则比对：针对端口设定</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-4-5-iptables-外挂模块：mac与state"><span class="nav-text">3.4.5 iptables 外挂模块：mac与state</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-4-6-IMCP封包规则的比对：针对是否响应ping来设计"><span class="nav-text">3.4.6 IMCP封包规则的比对：针对是否响应ping来设计</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-4-7-超阳春客户端防火墙设计与防火墙规则存储"><span class="nav-text">3.4.7 超阳春客户端防火墙设计与防火墙规则存储</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-主机作为客户端的基本防火墙设置"><span class="nav-text">1. 主机作为客户端的基本防火墙设置</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-实作基本防火墙（有点弱）"><span class="nav-text">2. 实作基本防火墙（有点弱）</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-5-IPv4的核心管理功能：-proc-sys-net-ipv4"><span class="nav-text">3.5 IPv4的核心管理功能：/proc/sys/net/ipv4/*</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#SYN-Cookie模块：-proc-sys-net-ipv4-tcp-syncookies"><span class="nav-text">SYN Cookie模块：/proc/sys/net/ipv4/tcp_syncookies</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#proc-sys-net-ipv4-icmp-echo-ignore-broadcasts"><span class="nav-text">/proc/sys/net/ipv4/icmp_echo_ignore_broadcasts</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#对不同网络接口个别设置：-proc-sys-net-ipv4-conf-网络接口"><span class="nav-text">对不同网络接口个别设置： /proc/sys/net/ipv4/conf/网络接口/*</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#4-单机防火墙的一个实例"><span class="nav-text">4 单机防火墙的一个实例</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#4-1-规则草拟"><span class="nav-text">4.1 规则草拟</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-2-实际设定"><span class="nav-text">4.2 实际设定</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#5-NAT服务器的设定"><span class="nav-text">5 NAT服务器的设定</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#5-1-什么是NAT-SNAT-DNAT"><span class="nav-text">5.1 什么是NAT?SNAT?DNAT?</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5-2-最阳春NAT服务器：IP分享功能"><span class="nav-text">5.2 最阳春NAT服务器：IP分享功能</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5-3-iptables的额外核心模块功能"><span class="nav-text">5.3 iptables的额外核心模块功能</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5-4-在防火墙后端之网络服务器DNDAT设定"><span class="nav-text">5.4 在防火墙后端之网络服务器DNDAT设定</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#6-重点回顾"><span class="nav-text">6 重点回顾</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#7-本章习题"><span class="nav-text">7 本章习题</span></a></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Sean</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"lapuda-er"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+    <script src="/vendors/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
+    <script src="/js/src/hook-duoshuo.js"></script>
+  
+
+
+
+
+
+
+  
+  
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length == 0) {
+       search_path = "search.xml";
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    function proceedsearch() {
+      $("body").append('<div class="popoverlay">').css('overflow', 'hidden');
+      $('.popup').toggle();
+
+    }
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+    'use strict';
+    $.ajax({
+        url: path,
+        dataType: "xml",
+        async: true,
+        success: function( xmlResponse ) {
+            // get the contents from search data
+            isfetched = true;
+            $('.popup').detach().appendTo('.header-inner');
+            var datas = $( "entry", xmlResponse ).map(function() {
+                return {
+                    title: $( "title", this ).text(),
+                    content: $("content",this).text(),
+                    url: $( "url" , this).text()
+                };
+            }).get();
+            var $input = document.getElementById(search_id);
+            var $resultContent = document.getElementById(content_id);
+            $input.addEventListener('input', function(){
+                var matchcounts = 0;
+                var str='<ul class=\"search-result-list\">';
+                var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+                $resultContent.innerHTML = "";
+                if (this.value.trim().length > 1) {
+                // perform local searching
+                datas.forEach(function(data) {
+                    var isMatch = true;
+                    var content_index = [];
+                    var data_title = data.title.trim().toLowerCase();
+                    var data_content = data.content.trim().replace(/<[^>]+>/g,"").toLowerCase();
+                    var data_url = data.url;
+                    var index_title = -1;
+                    var index_content = -1;
+                    var first_occur = -1;
+                    // only match artiles with not empty titles and contents
+                    if(data_title != '' && data_content != '') {
+                        keywords.forEach(function(keyword, i) {
+                            index_title = data_title.indexOf(keyword);
+                            index_content = data_content.indexOf(keyword);
+                            if( index_title < 0 && index_content < 0 ){
+                                isMatch = false;
+                            } else {
+                                if (index_content < 0) {
+                                    index_content = 0;
+                                }
+                                if (i == 0) {
+                                    first_occur = index_content;
+                                }
+                            }
+                        });
+                    }
+                    // show search results
+                    if (isMatch) {
+                        matchcounts += 1;
+                        str += "<li><a href='"+ data_url +"' class='search-result-title'>"+ data_title +"</a>";
+                        var content = data.content.trim().replace(/<[^>]+>/g,"");
+                        if (first_occur >= 0) {
+                            // cut out 100 characters
+                            var start = first_occur - 20;
+                            var end = first_occur + 80;
+                            if(start < 0){
+                                start = 0;
+                            }
+                            if(start == 0){
+                                end = 50;
+                            }
+                            if(end > content.length){
+                                end = content.length;
+                            }
+                            var match_content = content.substring(start, end);
+                            // highlight all keywords
+                            keywords.forEach(function(keyword){
+                                var regS = new RegExp(keyword, "gi");
+                                match_content = match_content.replace(regS, "<b class=\"search-keyword\">"+keyword+"</b>");
+                            });
+
+                            str += "<p class=\"search-result\">" + match_content +"...</p>"
+                        }
+                        str += "</li>";
+                    }
+                })};
+                str += "</ul>";
+                if (matchcounts == 0) { str = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>' }
+                if (keywords == "") { str = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>' }
+                $resultContent.innerHTML = str;
+            });
+            proceedsearch();
+        }
+    });}
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched == false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+
+    });
+
+    $('.popup-btn-close').click(function(e){
+      $('.popup').hide();
+      $(".popoverlay").remove();
+      $('body').css('overflow', '');
+    });
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+  </script>
+
+
+  
+
+  
+
+  
+
+</body>
+</html>

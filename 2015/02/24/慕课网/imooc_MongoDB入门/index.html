@@ -1,0 +1,815 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="MongoDB,nodejs," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1" />
+
+
+
+
+
+
+<meta name="description" content="1 简介1.1 mongoDB现状☑ 国外：ebay、sourceforge、github等☑ 国内：淘宝、京东、360、大众点评、天天动听、百度等
+1.3 相关网站☑ 官网：www.mongodb.org☑ 中文官网：http://www.mongoing.com/☑ 中文文档地址：docs.mongoing.com☑ github(源码):https://github.com/mongodb/">
+<meta property="og:type" content="article">
+<meta property="og:title" content="MongoDB入门">
+<meta property="og:url" content="http://laputa-er.github.io/2015/02/24/慕课网/imooc_MongoDB入门/index.html">
+<meta property="og:site_name" content="Sean">
+<meta property="og:description" content="1 简介1.1 mongoDB现状☑ 国外：ebay、sourceforge、github等☑ 国内：淘宝、京东、360、大众点评、天天动听、百度等
+1.3 相关网站☑ 官网：www.mongodb.org☑ 中文官网：http://www.mongoing.com/☑ 中文文档地址：docs.mongoing.com☑ github(源码):https://github.com/mongodb/">
+<meta property="og:updated_time" content="2017-04-22T10:40:00.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="MongoDB入门">
+<meta name="twitter:description" content="1 简介1.1 mongoDB现状☑ 国外：ebay、sourceforge、github等☑ 国内：淘宝、京东、360、大众点评、天天动听、百度等
+1.3 相关网站☑ 官网：www.mongodb.org☑ 中文官网：http://www.mongoing.com/☑ 中文文档地址：docs.mongoing.com☑ github(源码):https://github.com/mongodb/">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 0,
+      author: '博主'
+    }
+  };
+</script>
+
+
+
+
+  <link rel="canonical" href="http://laputa-er.github.io/2015/02/24/慕课网/imooc_MongoDB入门/"/>
+
+  <title> MongoDB入门 | Sean </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//hm.baidu.com/hm.js?898688f51c5a3d6b37dd23e04441e5bd";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">Sean</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">笔记分享</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup">
+ <span class="search-icon fa fa-search"></span>
+ <input type="text" id="local-search-input">
+ <div id="local-search-result"></div>
+ <span class="popup-btn-close">close</span>
+</div>
+
+
+    </div>
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                MongoDB入门
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2015-02-24T17:09:54+08:00" content="2015-02-24">
+              2015-02-24
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/慕课网学习笔记/" itemprop="url" rel="index">
+                    <span itemprop="name">慕课网学习笔记</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2015/02/24/慕课网/imooc_MongoDB入门/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2015/02/24/慕课网/imooc_MongoDB入门/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="1-简介"><a href="#1-简介" class="headerlink" title="1 简介"></a>1 简介</h1><h2 id="1-1-mongoDB现状"><a href="#1-1-mongoDB现状" class="headerlink" title="1.1 mongoDB现状"></a>1.1 mongoDB现状</h2><p>☑ 国外：ebay、sourceforge、github等<br>☑ 国内：淘宝、京东、360、大众点评、天天动听、百度等</p>
+<h2 id="1-3-相关网站"><a href="#1-3-相关网站" class="headerlink" title="1.3 相关网站"></a>1.3 相关网站</h2><p>☑ 官网：www.mongodb.org<br>☑ 中文官网：<a href="http://www.mongoing.com/" target="_blank" rel="external">http://www.mongoing.com/</a><br>☑ 中文文档地址：docs.mongoing.com<br>☑ github(源码):<a href="https://github.com/mongodb/" target="_blank" rel="external">https://github.com/mongodb/</a><br>☑ jira(BUG提交及回复):<a href="https://jira.mongodb.org/" target="_blank" rel="external">https://jira.mongodb.org/</a><br>☑ 两个google groups:<code>mongodb-user</code>与<code>mongo-cn</code></p>
+<h2 id="1-4-关于数据库"><a href="#1-4-关于数据库" class="headerlink" title="1.4 关于数据库"></a>1.4 关于数据库</h2><h2 id="SQL数据库"><a href="#SQL数据库" class="headerlink" title="SQL数据库"></a>SQL数据库</h2><p>☑ 实时一致性<br>☑ 事务<br>☑ 多表联合查询</p>
+<h2 id="NOSQL数据库"><a href="#NOSQL数据库" class="headerlink" title="NOSQL数据库"></a>NOSQL数据库</h2><p>☑ 简单便捷<br>☑ 方便扩展<br>☑ 更好的性能</p>
+<h2 id="1-5-为什么选择MongoDB"><a href="#1-5-为什么选择MongoDB" class="headerlink" title="1.5 为什么选择MongoDB"></a>1.5 为什么选择MongoDB</h2><h2 id="1-无数据结构的限制"><a href="#1-无数据结构的限制" class="headerlink" title="1. 无数据结构的限制"></a>1. 无数据结构的限制</h2><p>☑ 没有表结构的概念，每条记录可以有完全不同的结构<br>☑ 业务开发方便快捷</p>
+<p>相比其它：<br>☑ SQL数据库需要先定义表结构再使用</p>
+<h2 id="2-完全的索引支持"><a href="#2-完全的索引支持" class="headerlink" title="2. 完全的索引支持"></a>2. 完全的索引支持</h2><p>单键索引、多键索引、数组索引、全文索引(不支持中文)、地理位置索引</p>
+<p><strong>和其它数据库对比其它</strong></p>
+<ul>
+<li>redis 的 key-value</li>
+<li>hbase 的单索引，二级索引需要自己实现</li>
+</ul>
+<h2 id="3-方便的冗余和扩展"><a href="#3-方便的冗余和扩展" class="headerlink" title="3. 方便的冗余和扩展"></a>3. 方便的冗余和扩展</h2><p>☑ 复制集保证数据安全<br>☑ 分片扩展数据规模</p>
+<h2 id="4-良好的支持"><a href="#4-良好的支持" class="headerlink" title="4. 良好的支持"></a>4. 良好的支持</h2><p>☑ 完善的文档<br>☑ 齐全的驱动支持</p>
+<h1 id="2-环境与运行"><a href="#2-环境与运行" class="headerlink" title="2 环境与运行"></a>2 环境与运行</h1><h2 id="2-1-运行环境"><a href="#2-1-运行环境" class="headerlink" title="2.1 运行环境"></a>2.1 运行环境</h2><p>☑ 操作系统：64 位 linux<br>☑ 版本：2(大版本).6(偶数为稳定版).5(小版本)<br>☑ ssh：xshell<br>☑ 编辑器：vim 与 notepad++</p>
+<h2 id="2-2-编译MongoDB"><a href="#2-2-编译MongoDB" class="headerlink" title="2.2 编译MongoDB"></a>2.2 编译MongoDB</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ <span class="built_in">cd</span> mongo-r2.6.5</span><br><span class="line">$ scons all -j [cpu核数]</span><br></pre></td></tr></table></figure>
+<p>mongod: 数据库服务<br>mongo: 自带的客户端<br>mongoimport: 数据导入（非二进制）<br>mongoexport: 数据导出（二进制）<br>mongodump: 备份（二级制）<br>mongorestore: 恢复（二进制）<br>mongooplog: 记录复制集操作的日志服务<br>mongostat: 查看服务运行状态</p>
+<h2 id="2-3-搭建简单的mongoDB服务器"><a href="#2-3-搭建简单的mongoDB服务器" class="headerlink" title="2.3 搭建简单的mongoDB服务器"></a>2.3 搭建简单的mongoDB服务器</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ mkdir mongodb_sample &amp;&amp; <span class="built_in">cd</span> mongodb_sample <span class="comment"># 创建mongodb根目录</span></span><br><span class="line">$ mkdir &#123;data,<span class="built_in">log</span>,bin,conf&#125;</span><br></pre></td></tr></table></figure>
+<p>data:用来存储数据文件<br>log:存储日志文件<br>bin:可执行文件<br>log:日志文件<br>conf:配置文件</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">$ cp ../mongo-r2.6.5/mongod bin/ </span><br><span class="line">$ vim conf/mongod.conf <span class="comment"># 创建配置文件</span></span><br><span class="line">port=12345<span class="comment">#监听的端口</span></span><br><span class="line">dbpath=data<span class="comment">#数据库文件存储位置（相对路径或绝对路径）</span></span><br><span class="line">logpath=<span class="built_in">log</span>/mongod.log<span class="comment">#日志文件</span></span><br><span class="line">fork=<span class="literal">true</span><span class="comment">#启动为后台进程</span></span><br><span class="line">$ ./bin/mongod <span class="_">-f</span> conf/mongod.conf</span><br><span class="line">$ ll data/* <span class="comment"># 查看mongod初始化的数据文件</span></span><br><span class="line">$ tail  <span class="_">-f</span> <span class="built_in">log</span>/mongod.log <span class="comment"># 查看日志</span></span><br></pre></td></tr></table></figure>
+<h2 id="2-4-连接mongoDB服务器"><a href="#2-4-连接mongoDB服务器" class="headerlink" title="2.4 连接mongoDB服务器"></a>2.4 连接mongoDB服务器</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">$ cp ../mongo-r2.6.5/mongo bin/ <span class="comment"># 将编译好的客户端复制过来</span></span><br><span class="line">$ ./bin/mongo 127.0.0.1:12345/<span class="built_in">test</span> <span class="comment"># 连接到test数据库(会warning)</span></span><br><span class="line">&gt;use admin <span class="comment"># 只有在admin中才能关闭数据库</span></span><br><span class="line">&gt;db.shutdownServer() <span class="comment"># 或者使用kill</span></span><br><span class="line">$ numactl --interleave=all  bin/mongod <span class="_">-f</span> conf/mongod.conf <span class="comment"># 使用numactl的方式重新启动,这样就不会出现警告</span></span><br></pre></td></tr></table></figure>
+<h1 id="3-基本操作"><a href="#3-基本操作" class="headerlink" title="3 基本操作"></a>3 基本操作</h1><h2 id="3-1-查看"><a href="#3-1-查看" class="headerlink" title="3.1 查看"></a>3.1 查看</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">$ ./bin/mongo 127.0.0.1:12345</span><br><span class="line">&gt;show dbs  <span class="comment"># 查看所有已有的数据库</span></span><br><span class="line">&gt;use imooc  <span class="comment"># 切换数据库（如果没有则会创建）</span></span><br><span class="line">&gt;db.dropDatabase()  <span class="comment"># 删除当前数据库</span></span><br><span class="line">&gt;db.imooc_collection.insert(&#123;x:1&#125;)  <span class="comment"># 插入一条文档到imooc_collection集合（没有则创建）</span></span><br><span class="line">&gt;show collections  <span class="comment"># 查看当前数据库的所有集合</span></span><br><span class="line">&gt;db.imooc_collection.find()  <span class="comment"># 查看所有imooc_collection的所有文档</span></span><br><span class="line">&gt;<span class="keyword">for</span>(i=3;i&lt;100;i++)db.imooc_collection.insert(&#123;x:i&#125;)  <span class="comment"># 使用js语法批量插入</span></span><br><span class="line">&gt;db.imooc_collection.find().count()  <span class="comment"># 查看imooc_collection的文档数量</span></span><br><span class="line">&gt;db.imooc_collection.find().skip(3).limit(2).sort(&#123;x:1&#125;)  <span class="comment"># 从第4条文档开始返回两条，并以x排序</span></span><br></pre></td></tr></table></figure>
+<h2 id="3-2-更新"><a href="#3-2-更新" class="headerlink" title="3.2 更新"></a>3.2 更新</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&gt;db.imooc_collection.update(&#123;x:1&#125;,&#123;x:999&#125;)  <span class="comment"># 将imooc_collection的x为1的文档修改为&#123;x:999&#125;(全部更新)</span></span><br><span class="line">&gt;db.imooc_collection.insert(&#123;x:100,y:100,z:100&#125;)  <span class="comment"># 插入一条</span></span><br><span class="line">&gt;db.imooc_collection.update(&#123;z:100&#125;,<span class="variable">$set</span>:&#123;y:99&#125;)  <span class="comment"># 使用$set实现部分更新</span></span><br><span class="line">&gt;db.imooc_xollection.update(&#123;z:101&#125;,&#123;z:999&#125;,<span class="literal">true</span>)  <span class="comment"># 如果查找的数据不存在则使用第二个参数创建之</span></span><br></pre></td></tr></table></figure>
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/MongoDB/" rel="tag">#MongoDB</a>
+          
+            <a href="/tags/nodejs/" rel="tag">#nodejs</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2015/02/08/BOOK_nodejs开发指南/nodejs开发指南_6_nodejs进阶话题/" rel="next" title="6 nodejs进阶话题">
+                <i class="fa fa-chevron-left"></i> 6 nodejs进阶话题
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2015/03/16/慕课网/imooc_svg/" rel="prev" title="svg 入门">
+                svg 入门 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2015/02/24/慕课网/imooc_MongoDB入门/"
+           data-title="MongoDB入门" data-url="http://laputa-er.github.io/2015/02/24/慕课网/imooc_MongoDB入门/">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.gif"
+               alt="Sean" />
+          <p class="site-author-name" itemprop="name">Sean</p>
+          <p class="site-description motion-element" itemprop="description">整理了一批过去一段时间ios相关的笔记，其它的笔记也整理下？源码分享出来？再说吧...反正也只有自己会看吧...</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">214</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">26</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">35</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#1-简介"><span class="nav-text">1 简介</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-1-mongoDB现状"><span class="nav-text">1.1 mongoDB现状</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-3-相关网站"><span class="nav-text">1.3 相关网站</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-4-关于数据库"><span class="nav-text">1.4 关于数据库</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#SQL数据库"><span class="nav-text">SQL数据库</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#NOSQL数据库"><span class="nav-text">NOSQL数据库</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-5-为什么选择MongoDB"><span class="nav-text">1.5 为什么选择MongoDB</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-无数据结构的限制"><span class="nav-text">1. 无数据结构的限制</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-完全的索引支持"><span class="nav-text">2. 完全的索引支持</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-方便的冗余和扩展"><span class="nav-text">3. 方便的冗余和扩展</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-良好的支持"><span class="nav-text">4. 良好的支持</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#2-环境与运行"><span class="nav-text">2 环境与运行</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#2-1-运行环境"><span class="nav-text">2.1 运行环境</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-2-编译MongoDB"><span class="nav-text">2.2 编译MongoDB</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-3-搭建简单的mongoDB服务器"><span class="nav-text">2.3 搭建简单的mongoDB服务器</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-4-连接mongoDB服务器"><span class="nav-text">2.4 连接mongoDB服务器</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#3-基本操作"><span class="nav-text">3 基本操作</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#3-1-查看"><span class="nav-text">3.1 查看</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-2-更新"><span class="nav-text">3.2 更新</span></a></li></ol></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Sean</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"lapuda-er"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+    <script src="/vendors/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
+    <script src="/js/src/hook-duoshuo.js"></script>
+  
+
+
+
+
+
+
+  
+  
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length == 0) {
+       search_path = "search.xml";
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    function proceedsearch() {
+      $("body").append('<div class="popoverlay">').css('overflow', 'hidden');
+      $('.popup').toggle();
+
+    }
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+    'use strict';
+    $.ajax({
+        url: path,
+        dataType: "xml",
+        async: true,
+        success: function( xmlResponse ) {
+            // get the contents from search data
+            isfetched = true;
+            $('.popup').detach().appendTo('.header-inner');
+            var datas = $( "entry", xmlResponse ).map(function() {
+                return {
+                    title: $( "title", this ).text(),
+                    content: $("content",this).text(),
+                    url: $( "url" , this).text()
+                };
+            }).get();
+            var $input = document.getElementById(search_id);
+            var $resultContent = document.getElementById(content_id);
+            $input.addEventListener('input', function(){
+                var matchcounts = 0;
+                var str='<ul class=\"search-result-list\">';
+                var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+                $resultContent.innerHTML = "";
+                if (this.value.trim().length > 1) {
+                // perform local searching
+                datas.forEach(function(data) {
+                    var isMatch = true;
+                    var content_index = [];
+                    var data_title = data.title.trim().toLowerCase();
+                    var data_content = data.content.trim().replace(/<[^>]+>/g,"").toLowerCase();
+                    var data_url = data.url;
+                    var index_title = -1;
+                    var index_content = -1;
+                    var first_occur = -1;
+                    // only match artiles with not empty titles and contents
+                    if(data_title != '' && data_content != '') {
+                        keywords.forEach(function(keyword, i) {
+                            index_title = data_title.indexOf(keyword);
+                            index_content = data_content.indexOf(keyword);
+                            if( index_title < 0 && index_content < 0 ){
+                                isMatch = false;
+                            } else {
+                                if (index_content < 0) {
+                                    index_content = 0;
+                                }
+                                if (i == 0) {
+                                    first_occur = index_content;
+                                }
+                            }
+                        });
+                    }
+                    // show search results
+                    if (isMatch) {
+                        matchcounts += 1;
+                        str += "<li><a href='"+ data_url +"' class='search-result-title'>"+ data_title +"</a>";
+                        var content = data.content.trim().replace(/<[^>]+>/g,"");
+                        if (first_occur >= 0) {
+                            // cut out 100 characters
+                            var start = first_occur - 20;
+                            var end = first_occur + 80;
+                            if(start < 0){
+                                start = 0;
+                            }
+                            if(start == 0){
+                                end = 50;
+                            }
+                            if(end > content.length){
+                                end = content.length;
+                            }
+                            var match_content = content.substring(start, end);
+                            // highlight all keywords
+                            keywords.forEach(function(keyword){
+                                var regS = new RegExp(keyword, "gi");
+                                match_content = match_content.replace(regS, "<b class=\"search-keyword\">"+keyword+"</b>");
+                            });
+
+                            str += "<p class=\"search-result\">" + match_content +"...</p>"
+                        }
+                        str += "</li>";
+                    }
+                })};
+                str += "</ul>";
+                if (matchcounts == 0) { str = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>' }
+                if (keywords == "") { str = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>' }
+                $resultContent.innerHTML = str;
+            });
+            proceedsearch();
+        }
+    });}
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched == false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+
+    });
+
+    $('.popup-btn-close').click(function(e){
+      $('.popup').hide();
+      $(".popoverlay").remove();
+      $('body').css('overflow', '');
+    });
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+  </script>
+
+
+  
+
+  
+
+  
+
+</body>
+</html>

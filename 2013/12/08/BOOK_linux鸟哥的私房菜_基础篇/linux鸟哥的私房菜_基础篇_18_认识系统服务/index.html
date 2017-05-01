@@ -1,0 +1,911 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="linux," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1" />
+
+
+
+
+
+
+<meta name="description" content="123/etc/hosts.deny/etc/hosts.allow/usr/sbin/tcpd   # 分析进入系统的TCP网络封包
+1 daemon基本介绍1.1 daemon与sevice的区别
+1.2 daemon的分类按线程处理方式划分☑ stand alone: 自行单独启动☑ super daemon: 由一只特殊的daemon管理
+
+
+multi-threaded(多重线程)
+si">
+<meta property="og:type" content="article">
+<meta property="og:title" content="18 认识系统服务">
+<meta property="og:url" content="http://laputa-er.github.io/2013/12/08/BOOK_linux鸟哥的私房菜_基础篇/linux鸟哥的私房菜_基础篇_18_认识系统服务/index.html">
+<meta property="og:site_name" content="Sean">
+<meta property="og:description" content="123/etc/hosts.deny/etc/hosts.allow/usr/sbin/tcpd   # 分析进入系统的TCP网络封包
+1 daemon基本介绍1.1 daemon与sevice的区别
+1.2 daemon的分类按线程处理方式划分☑ stand alone: 自行单独启动☑ super daemon: 由一只特殊的daemon管理
+
+
+multi-threaded(多重线程)
+si">
+<meta property="og:image" content="http://o6ul1xz4z.bkt.clouddn.com/2017-04-22-36C6EA0D-B63A-40C1-83BF-4352BE78A6F9.png">
+<meta property="og:image" content="http://o6ul1xz4z.bkt.clouddn.com/2017-04-22-66C18705-F480-4A09-9D02-7F7F6FA02C79.png">
+<meta property="og:image" content="http://o6ul1xz4z.bkt.clouddn.com/2017-04-22-B2A66C2F-B986-46CE-B28E-06B59A4E0230.png">
+<meta property="og:image" content="http://o6ul1xz4z.bkt.clouddn.com/2017-04-22-F0FEE94B-D303-4AE8-A55A-4787FA6ABE93.png">
+<meta property="og:image" content="http://o6ul1xz4z.bkt.clouddn.com/2017-04-22-395BA54E-995F-408C-89A3-F148F4FC8CBC.png">
+<meta property="og:image" content="http://o6ul1xz4z.bkt.clouddn.com/2017-04-22-5637DBC4-53FA-4BD2-8036-067AEE673FCF.png">
+<meta property="og:image" content="http://o6ul1xz4z.bkt.clouddn.com/2017-04-22-DFB4B764-9CD9-4CE1-BE40-384C0FC8965C.png">
+<meta property="og:image" content="http://o6ul1xz4z.bkt.clouddn.com/2017-04-22-5E7C2395-A5C0-438A-BF94-9FD4E32E6FC8.png">
+<meta property="og:image" content="http://o6ul1xz4z.bkt.clouddn.com/2017-04-22-064AA05F-5606-48FE-8C7F-D5ED93CC240A.png">
+<meta property="og:image" content="http://o6ul1xz4z.bkt.clouddn.com/2017-04-22-5E2325FE-9E38-4DA5-9D67-5774BEB64EDB.png">
+<meta property="og:image" content="http://o6ul1xz4z.bkt.clouddn.com/2017-04-22-A093C11A-6C10-41D6-A8E6-9615F74DD113.png">
+<meta property="og:image" content="http://o6ul1xz4z.bkt.clouddn.com/2017-04-22-2C8EE69F-A3CB-42D1-A34A-83C49A2E9E61.png">
+<meta property="og:image" content="http://o6ul1xz4z.bkt.clouddn.com/2017-04-22-64F66592-031A-4B04-9C18-5657627D6136.png">
+<meta property="og:image" content="http://o6ul1xz4z.bkt.clouddn.com/2017-04-22-883EAE56-8D17-44A8-9771-D77D021A9FF0.png">
+<meta property="og:image" content="http://o6ul1xz4z.bkt.clouddn.com/2017-04-22-71E03E04-7D3C-49EB-B5D4-2C7CC8247B1E.png">
+<meta property="og:image" content="http://o6ul1xz4z.bkt.clouddn.com/2017-04-22-F9400128-215E-4A40-881F-8A32C8965BD0.png">
+<meta property="og:image" content="http://o6ul1xz4z.bkt.clouddn.com/2017-04-22-26ADA42B-FD7F-4244-893C-16B973590437.png">
+<meta property="og:image" content="http://o6ul1xz4z.bkt.clouddn.com/2017-04-22-A678F144-3A5A-4C1D-B9B6-3E3F243EE602.png">
+<meta property="og:image" content="http://o6ul1xz4z.bkt.clouddn.com/2017-04-22-5774EAC0-7268-49A3-9138-BC9B809BE576.png">
+<meta property="og:image" content="http://o6ul1xz4z.bkt.clouddn.com/2017-04-22-D7580D53-1447-413E-983F-398A2B161537.png">
+<meta property="og:image" content="http://o6ul1xz4z.bkt.clouddn.com/2017-04-22-713BB125-6162-4B81-B9E9-B3AD7464EAEE.png">
+<meta property="og:image" content="http://o6ul1xz4z.bkt.clouddn.com/2017-04-22-9DDE5DE6-87BE-415E-A266-77EE4807DD6C.png">
+<meta property="og:image" content="http://o6ul1xz4z.bkt.clouddn.com/2017-04-22-9F2F61C4-62B0-43F9-83D8-E262B6E922F5.png">
+<meta property="og:image" content="http://o6ul1xz4z.bkt.clouddn.com/2017-04-22-89DAEB7F-A243-4419-9CB5-81E1E37BBA75.png">
+<meta property="og:image" content="http://o6ul1xz4z.bkt.clouddn.com/2017-04-22-4A958E57-20A6-4F51-A525-1C71DB4B94A1.png">
+<meta property="og:image" content="http://o6ul1xz4z.bkt.clouddn.com/2017-04-22-473202C3-8BD3-4E05-9A50-EF4E819412F7.png">
+<meta property="og:image" content="http://o6ul1xz4z.bkt.clouddn.com/2017-04-22-F4FECB04-78DF-485C-A6F7-9B93961F286A.png">
+<meta property="og:image" content="http://o6ul1xz4z.bkt.clouddn.com/2017-04-22-7283E9DD-5246-433F-B473-177E5F91939F.png">
+<meta property="og:image" content="http://o6ul1xz4z.bkt.clouddn.com/2017-04-22-B86812B1-AD4D-4B56-AD12-C2565733E51F.png">
+<meta property="og:image" content="http://o6ul1xz4z.bkt.clouddn.com/2017-04-22-969E198C-D834-4FF0-AF8F-3DD4D0AB6B7E.png">
+<meta property="og:image" content="http://o6ul1xz4z.bkt.clouddn.com/2017-04-22-4DAB56FB-D950-47BC-9257-16C6C686488D.png">
+<meta property="og:updated_time" content="2017-04-23T05:52:00.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="18 认识系统服务">
+<meta name="twitter:description" content="123/etc/hosts.deny/etc/hosts.allow/usr/sbin/tcpd   # 分析进入系统的TCP网络封包
+1 daemon基本介绍1.1 daemon与sevice的区别
+1.2 daemon的分类按线程处理方式划分☑ stand alone: 自行单独启动☑ super daemon: 由一只特殊的daemon管理
+
+
+multi-threaded(多重线程)
+si">
+<meta name="twitter:image" content="http://o6ul1xz4z.bkt.clouddn.com/2017-04-22-36C6EA0D-B63A-40C1-83BF-4352BE78A6F9.png">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 0,
+      author: '博主'
+    }
+  };
+</script>
+
+
+
+
+  <link rel="canonical" href="http://laputa-er.github.io/2013/12/08/BOOK_linux鸟哥的私房菜_基础篇/linux鸟哥的私房菜_基础篇_18_认识系统服务/"/>
+
+  <title> 18 认识系统服务 | Sean </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//hm.baidu.com/hm.js?898688f51c5a3d6b37dd23e04441e5bd";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">Sean</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">笔记分享</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup">
+ <span class="search-icon fa fa-search"></span>
+ <input type="text" id="local-search-input">
+ <div id="local-search-result"></div>
+ <span class="popup-btn-close">close</span>
+</div>
+
+
+    </div>
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                18 认识系统服务
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2013-12-08T18:20:07+08:00" content="2013-12-08">
+              2013-12-08
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/linux鸟哥的私房菜-基础篇/" itemprop="url" rel="index">
+                    <span itemprop="name">linux鸟哥的私房菜_基础篇</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2013/12/08/BOOK_linux鸟哥的私房菜_基础篇/linux鸟哥的私房菜_基础篇_18_认识系统服务/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2013/12/08/BOOK_linux鸟哥的私房菜_基础篇/linux鸟哥的私房菜_基础篇_18_认识系统服务/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">/etc/hosts.deny</span><br><span class="line">/etc/hosts.allow</span><br><span class="line">/usr/sbin/tcpd   <span class="comment"># 分析进入系统的TCP网络封包</span></span><br></pre></td></tr></table></figure>
+<h1 id="1-daemon基本介绍"><a href="#1-daemon基本介绍" class="headerlink" title="1 daemon基本介绍"></a>1 daemon基本介绍</h1><h2 id="1-1-daemon与sevice的区别"><a href="#1-1-daemon与sevice的区别" class="headerlink" title="1.1 daemon与sevice的区别"></a>1.1 daemon与sevice的区别</h2><p><img src="http://o6ul1xz4z.bkt.clouddn.com/2017-04-22-36C6EA0D-B63A-40C1-83BF-4352BE78A6F9.png" alt="36C6EA0D-B63A-40C1-83BF-4352BE78A6F9"></p>
+<h2 id="1-2-daemon的分类"><a href="#1-2-daemon的分类" class="headerlink" title="1.2 daemon的分类"></a>1.2 daemon的分类</h2><h3 id="按线程处理方式划分"><a href="#按线程处理方式划分" class="headerlink" title="按线程处理方式划分"></a>按线程处理方式划分</h3><p>☑ stand alone: 自行单独启动<br>☑ super daemon: 由一只特殊的daemon管理</p>
+<p><img src="http://o6ul1xz4z.bkt.clouddn.com/2017-04-22-66C18705-F480-4A09-9D02-7F7F6FA02C79.png" alt="66C18705-F480-4A09-9D02-7F7F6FA02C79"></p>
+<ul>
+<li>multi-threaded(多重线程)</li>
+<li>single-threaded(单线程)</li>
+</ul>
+<h3 id="按工作形态-响应方式-分"><a href="#按工作形态-响应方式-分" class="headerlink" title="按工作形态(响应方式)分"></a>按工作形态(响应方式)分</h3><p>☑ signal-control<br>☑ interval-control</p>
+<h2 id="1-3-daemon的命名规则"><a href="#1-3-daemon的命名规则" class="headerlink" title="1.3 daemon的命名规则"></a>1.3 daemon的命名规则</h2><h2 id="1-4-服务与端口的对应"><a href="#1-4-服务与端口的对应" class="headerlink" title="1.4 服务与端口的对应"></a>1.4 服务与端口的对应</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ cat /etc/services  <span class="comment"># 查看daemon对应的端口&lt;daemon port&gt; &lt;port/封包协议&gt; &lt;该服务的说明&gt;</span></span><br></pre></td></tr></table></figure>
+<p>☑ 注意：尽量避免修改这个文件</p>
+<h2 id="1-5-daemon的启动脚本与启动方式"><a href="#1-5-daemon的启动脚本与启动方式" class="headerlink" title="1.5 daemon的启动脚本与启动方式"></a>1.5 daemon的启动脚本与启动方式</h2><p><img src="http://o6ul1xz4z.bkt.clouddn.com/2017-04-22-B2A66C2F-B986-46CE-B28E-06B59A4E0230.png" alt="B2A66C2F-B986-46CE-B28E-06B59A4E0230"></p>
+<p><strong>Stand alone启动方式</strong><br>方式1: <code>/etc/init.d/* [status|stop|restart|restart|condreatart]</code></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ /etc/init.d/syslog <span class="comment"># 不加参数会给出关于参数的提示</span></span><br><span class="line">$ /etc/init.d/syslog status  <span class="comment"># 查看syslog的启动状态</span></span><br><span class="line">$ /etc/init.d/syslog restart <span class="comment"># 重新读取配置文件</span></span><br></pre></td></tr></table></figure>
+<p>方式2: <code>/sbin/service</code></p>
+<p><img src="http://o6ul1xz4z.bkt.clouddn.com/2017-04-22-F0FEE94B-D303-4AE8-A55A-4787FA6ABE93.png" alt="F0FEE94B-D303-4AE8-A55A-4787FA6ABE93"></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">$ service crond restart</span><br><span class="line"><span class="comment"># &lt;==&gt;</span></span><br><span class="line"><span class="comment"># /etc/init.d/crond restart # 重新启动crond这支daemon</span></span><br><span class="line">$ service --status-all  <span class="comment"># 列出目前系统所有服务的运行状态</span></span><br></pre></td></tr></table></figure>
+<h3 id="利用-Super-daemon-启动的方式"><a href="#利用-Super-daemon-启动的方式" class="headerlink" title="利用 Super daemon 启动的方式"></a>利用 Super daemon 启动的方式</h3><p>☑ 注意: xinetd 本身是 stand alone 的启动方式。<br>☑ 用途: 适合那些开放较多权限或本身不具备防火墙等管理机制的服务。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">$ grep -i <span class="string">'disable'</span> /etc/xinetd.d/*  <span class="comment"># 查看super daemon管理的程序是否启动（disable=yes代表取消）</span></span><br><span class="line">$ vi /etc/xinetd.d/rsync  <span class="comment"># 编辑文件使rsync启动（改为disable=no）</span></span><br><span class="line"></span><br><span class="line">$ /etc/init.d/xinetd restart <span class="comment"># 重启super service</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ grep  <span class="string">'rsync'</span> /etc/services  <span class="comment"># 观察服务使用的端口</span></span><br><span class="line">$ vim /etc/xintd.conf    <span class="comment"># super daemon的默认配置文件</span></span><br><span class="line">$ vim /etc/xintd.d  <span class="comment"># super daemon 的服务参数档（上面的配置文件为默认值，这里为实际设置的位置）</span></span><br></pre></td></tr></table></figure>
+<p><img src="http://o6ul1xz4z.bkt.clouddn.com/2017-04-22-395BA54E-995F-408C-89A3-F148F4FC8CBC.png" alt="395BA54E-995F-408C-89A3-F148F4FC8CBC"></p>
+<p><img src="http://o6ul1xz4z.bkt.clouddn.com/2017-04-22-5637DBC4-53FA-4BD2-8036-067AEE673FCF.png" alt="5637DBC4-53FA-4BD2-8036-067AEE673FCF"></p>
+<p><img src="http://o6ul1xz4z.bkt.clouddn.com/2017-04-22-DFB4B764-9CD9-4CE1-BE40-384C0FC8965C.png" alt="DFB4B764-9CD9-4CE1-BE40-384C0FC8965C"></p>
+<p><img src="http://o6ul1xz4z.bkt.clouddn.com/2017-04-22-5E7C2395-A5C0-438A-BF94-9FD4E32E6FC8.png" alt="5E7C2395-A5C0-438A-BF94-9FD4E32E6FC8"></p>
+<p><img src="http://o6ul1xz4z.bkt.clouddn.com/2017-04-22-064AA05F-5606-48FE-8C7F-D5ED93CC240A.png" alt="064AA05F-5606-48FE-8C7F-D5ED93CC240A"></p>
+<p><img src="http://o6ul1xz4z.bkt.clouddn.com/2017-04-22-5E2325FE-9E38-4DA5-9D67-5774BEB64EDB.png" alt="5E2325FE-9E38-4DA5-9D67-5774BEB64EDB"></p>
+<h2 id="1-6-通过-server-的管理使-daemon-对不同-client-拥有不同权限"><a href="#1-6-通过-server-的管理使-daemon-对不同-client-拥有不同权限" class="headerlink" title="1.6 通过 server 的管理使 daemon 对不同 client 拥有不同权限"></a>1.6 通过 server 的管理使 daemon 对不同 client 拥有不同权限</h2><h3 id="案例一：一个简单的rsync（提供同步文件夹服务）案例"><a href="#案例一：一个简单的rsync（提供同步文件夹服务）案例" class="headerlink" title="案例一：一个简单的rsync（提供同步文件夹服务）案例"></a>案例一：一个简单的rsync（提供同步文件夹服务）案例</h3><p><img src="http://o6ul1xz4z.bkt.clouddn.com/2017-04-22-A093C11A-6C10-41D6-A8E6-9615F74DD113.png" alt="A093C11A-6C10-41D6-A8E6-9615F74DD113"></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">$ cat /etc/xinetd.d/rsync  <span class="comment"># 查看一下原来的设置</span></span><br><span class="line">service rsync&#123;</span><br><span class="line">    <span class="built_in">disable</span> = no  <span class="comment"># 预设是关闭的，这里已经被打开了</span></span><br><span class="line">    socket_<span class="built_in">type</span> = stream    <span class="comment"># 使用tcp封包协议</span></span><br><span class="line">    <span class="built_in">wait</span> = no    <span class="comment"># 可以同时进行大量联机</span></span><br><span class="line">    user = root    <span class="comment"># 用root这个身份启动服务(rysnc的默认端口为873，root身份才能启动这种小于1024的端口)</span></span><br><span class="line">    server = /usr/bin/rsync    <span class="comment"># 就是这支程序启动服务</span></span><br><span class="line">    server_args = --daemon    <span class="comment"># 必选项</span></span><br><span class="line">    <span class="built_in">log</span>_on_failure +=USERID    <span class="comment"># 登陆错误时额外记录用户ID</span></span><br><span class="line">&#125;</span><br><span class="line">$ vim /etc/xinetd.d/rsync    <span class="comment"># 重新设置进行权限的控制</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#针对内部王网域进行限制</span></span><br><span class="line">service rsync&#123;</span><br><span class="line">    <span class="built_in">disable</span> = no        </span><br><span class="line">    <span class="built_in">bind</span> = 127.0.0.1    <span class="comment"># 服务绑定在这个接口上</span></span><br><span class="line">    only_from = 127.0.0.1/8    <span class="comment"># 只开放这个网域的来源</span></span><br><span class="line">    no_access = 127.0.0.&#123;100,200&#125;    <span class="comment"># 限制这两个不可登入</span></span><br><span class="line">    instances =  UNLIMITED    <span class="comment"># 取代/etc/xined.conf的设定值</span></span><br><span class="line">    socket_<span class="built_in">type</span> = stream    <span class="comment"># 底下设定保留            wait = no        ----可以同时进行大量联机</span></span><br><span class="line">    user = root  </span><br><span class="line">    server = /usr/bin/rsync       </span><br><span class="line">    server_args = --daemon       </span><br><span class="line">    <span class="built_in">log</span>_on_failure +=USERID        </span><br><span class="line">&#125;</span><br><span class="line"><span class="comment"># 再针对外部的联机     进行限制</span></span><br><span class="line">service rsync</span><br><span class="line">&#123;</span><br><span class="line">    <span class="built_in">disable</span> = no</span><br><span class="line">    bink = 192.168.0.100</span><br><span class="line">    only_from = 140.166.0.0/16     <span class="comment"># </span></span><br><span class="line">    only_from = .edu.tw     <span class="comment"># +=代表累加</span></span><br><span class="line">    access_<span class="built_in">times</span> = 01:00-9:00 20:00-23:00      <span class="comment"># 两个时间段用空格隔开</span></span><br><span class="line">    instances = 10     <span class="comment"># 只有十条联机</span></span><br><span class="line">    socket_<span class="built_in">type</span> = stream     <span class="comment"># 底下设定保留</span></span><br><span class="line">    <span class="built_in">wait</span> = no     <span class="comment"># 可以同时进行大量联机</span></span><br><span class="line">    user = root  </span><br><span class="line">    server = /usr/bin/rsync       </span><br><span class="line">    server_args = --daemon       </span><br><span class="line">    <span class="built_in">log</span>_on_failure +=USERID</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ netstat -tnlp | grep 873     <span class="comment"># 配置完后看一下873端口的状态</span></span><br><span class="line">$ /etc/init.d/xinetd restart     <span class="comment"># 重启xinetd</span></span><br><span class="line">$ netstat -tnlp | grep 873     <span class="comment"># 再观察</span></span><br></pre></td></tr></table></figure>
+<h1 id="2-服务的防火墙管理-xinetd-TCP-Wrappers"><a href="#2-服务的防火墙管理-xinetd-TCP-Wrappers" class="headerlink" title="2 服务的防火墙管理 xinetd,TCP Wrappers"></a>2 服务的防火墙管理 xinetd,TCP Wrappers</h1><h1 id="2-1-etc-hosts-allow-etc-hosts-deny的管理"><a href="#2-1-etc-hosts-allow-etc-hosts-deny的管理" class="headerlink" title="2.1 /etc/hosts.allow,/etc/hosts.deny的管理"></a>2.1 /etc/hosts.allow,/etc/hosts.deny的管理</h1><p>☑ 注意：一个服务受xinetd管理或者支持TCP Wrappers就可以使用这两个配置文件</p>
+<p><strong>范例一</strong>：测试一下sshd和httpd这两支程序是否支持TCP Wrapper套件</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ ldd $(<span class="built_in">which</span> sshd httpd)   <span class="comment"># 查看sshd和httpd支持的动态链接库，如果有libwrap.so说明支持TCP Wrapper(发现sshd有而httpd没有)</span></span><br></pre></td></tr></table></figure>
+<p><strong>范例二</strong>：只允许 <code>140.116.0.0/255.255.0.0</code> 与<code>140.116.0.0/255.255.0.0</code>这两个网域及<code>203.71.38.123</code>这个主机可以进入我们的 rsync 服务器，其它的 IP 全部挡掉</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">$ vim /etc/hosts.allow</span><br><span class="line"></span><br><span class="line">rsync:140.116.0.0/255.255.0.0</span><br><span class="line">rsync:140.116.0.0/255.255.0.0</span><br><span class="line">rsync:203.71.38.123</span><br><span class="line">rsync:LOCAL</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ vim /etc/host.deny</span><br><span class="line"></span><br><span class="line">rsync:ALL</span><br></pre></td></tr></table></figure>
+<p><img src="http://o6ul1xz4z.bkt.clouddn.com/2017-04-22-2C8EE69F-A3CB-42D1-A34A-83C49A2E9E61.png" alt="2C8EE69F-A3CB-42D1-A34A-83C49A2E9E61"></p>
+<p><img src="http://o6ul1xz4z.bkt.clouddn.com/2017-04-22-64F66592-031A-4B04-9C18-5657627D6136.png" alt="64F66592-031A-4B04-9C18-5657627D6136"></p>
+<h1 id="2-2-TCP-Wrapper的特殊功能"><a href="#2-2-TCP-Wrapper的特殊功能" class="headerlink" title="2.2 TCP Wrapper的特殊功能"></a>2.2 TCP Wrapper的特殊功能</h1><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ rpm -q tcp_wrapper  <span class="comment"># 查看是否安装了tcp_wrapper</span></span><br></pre></td></tr></table></figure>
+<p><strong>案例一</strong></p>
+<p><img src="http://o6ul1xz4z.bkt.clouddn.com/2017-04-22-883EAE56-8D17-44A8-9771-D77D021A9FF0.png" alt="883EAE56-8D17-44A8-9771-D77D021A9FF0"></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ vim /etc/hosts.deny</span><br></pre></td></tr></table></figure>
+<p><img src="http://o6ul1xz4z.bkt.clouddn.com/2017-04-22-71E03E04-7D3C-49EB-B5D4-2C7CC8247B1E.png" alt="71E03E04-7D3C-49EB-B5D4-2C7CC8247B1E"></p>
+<p><img src="http://o6ul1xz4z.bkt.clouddn.com/2017-04-22-F9400128-215E-4A40-881F-8A32C8965BD0.png" alt="F9400128-215E-4A40-881F-8A32C8965BD0"></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># spawn指令，在自己的屏幕上显示"security notice from 自己的主机名"</span></span><br><span class="line">raync:ALL:spawn (<span class="built_in">echo</span> <span class="string">"security notice from host <span class="variable">$(/bin/hotname)</span>"</span>;\</span><br><span class="line"></span><br><span class="line">      <span class="comment"># 对方发起请求时追踪对方的主机名称并交给管道</span></span><br><span class="line">      <span class="built_in">echo</span>;/usr/sbin/safe_finger @%h) | \</span><br><span class="line">      </span><br><span class="line">      <span class="comment"># 将管道的信息（请求连接的主机名信息）mail给root</span></span><br><span class="line">      /bin/mail <span class="_">-s</span> <span class="string">"%d-%h security"</span> root&amp;\</span><br><span class="line"></span><br><span class="line">      <span class="comment"># 向对方屏幕发送警告信息，然后终止联机</span></span><br><span class="line">      :twist(/bin/<span class="built_in">echo</span> <span class="_">-e</span> <span class="string">"\nWARNING connection not allowed.\n\n"</span>)</span><br></pre></td></tr></table></figure>
+<h1 id="3-系统开机启动服务设定"><a href="#3-系统开机启动服务设定" class="headerlink" title="3 系统开机启动服务设定"></a>3 系统开机启动服务设定</h1><h2 id="3-1-观察系统启动的服务"><a href="#3-1-观察系统启动的服务" class="headerlink" title="3.1 观察系统启动的服务"></a>3.1 观察系统启动的服务</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ netstat -tulp <span class="comment"># 找出目前系统启动的网络服务有哪些</span></span><br><span class="line">$ netstat -lnp      <span class="comment"># 找出所有有监听网络的服务(包括socket状态)</span></span><br><span class="line">$ netstat --status-all  <span class="comment"># 观察所有的服务状态</span></span><br></pre></td></tr></table></figure>
+<h2 id="3-2-设定开机启动的方法"><a href="#3-2-设定开机启动的方法" class="headerlink" title="3.2 设定开机启动的方法"></a>3.2 设定开机启动的方法</h2><h3 id="系统开机流程"><a href="#系统开机流程" class="headerlink" title="系统开机流程"></a>系统开机流程</h3><p><img src="http://o6ul1xz4z.bkt.clouddn.com/2017-04-22-26ADA42B-FD7F-4244-893C-16B973590437.png" alt="26ADA42B-FD7F-4244-893C-16B973590437"></p>
+<h3 id="chkconfig-管理系统服务默认开机启动与否"><a href="#chkconfig-管理系统服务默认开机启动与否" class="headerlink" title="chkconfig: 管理系统服务默认开机启动与否"></a>chkconfig: 管理系统服务默认开机启动与否</h3><p><img src="http://o6ul1xz4z.bkt.clouddn.com/2017-04-22-A678F144-3A5A-4C1D-B9B6-3E3F243EE602.png" alt="A678F144-3A5A-4C1D-B9B6-3E3F243EE602"></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ chkconfig --list | more  <span class="comment"># 列出目前系统上所有被chkconfig管理的服务</span></span><br><span class="line">$ chkconfig --list | grep <span class="string">'3:on'</span>  <span class="comment"># 显示出目前runlevel 3开启的服务</span></span><br><span class="line">$ chkconfig --level 345 atd on  <span class="comment"># 让atd这个服务在3,4,5runlevel开启</span></span><br></pre></td></tr></table></figure>
+<p>案例一:先观察httpd这个服务是否启动，然后设定预设开机启动（并不会立即启动哦）</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">$ /etc/init.d/httpd status  <span class="comment"># 观察httpd这个服务的运行状态 </span></span><br><span class="line">$ chkconfig --list | grep httpd <span class="comment"># 观察是否预设开机启动</span></span><br><span class="line">$ chkcnffig httpd on;chkconfig --list | grep httpd  <span class="comment"># 设定开机启动</span></span><br><span class="line">$ /etc/init.d/httpd status <span class="comment"># 再观察一次还是没有启动</span></span><br></pre></td></tr></table></figure>
+<p>案例二：查看rsync是否启动，是则将其关闭</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">$ /etc/init.d/rsync status      <span class="comment"># 发现不行，因为rsync不是stand alone的启动方式</span></span><br><span class="line">$ netstat -tlnp | grep rsync      <span class="comment"># 因为rsync是一个网络服务，因此可以这样看</span></span><br><span class="line">$ chkconfig --list | grep rsync      <span class="comment"># 查看是否是开机预设启动的</span></span><br><span class="line">$ chkconfig rsync off;chkconfig --list | grep rsync      <span class="comment"># 设置开机关闭</span></span><br><span class="line">$ /etc/init.d/xinetd restart;netstat -tlup| grep rsync      <span class="comment"># 重启xinetd对super daemon管理的服务相当于重启计算机呢</span></span><br></pre></td></tr></table></figure>
+<h3 id="chkconfig-设定自定义系统服务"><a href="#chkconfig-设定自定义系统服务" class="headerlink" title="chkconfig:  设定自定义系统服务"></a>chkconfig:  设定自定义系统服务</h3><p><img src="http://o6ul1xz4z.bkt.clouddn.com/2017-04-22-5774EAC0-7268-49A3-9138-BC9B809BE576.png" alt="5774EAC0-7268-49A3-9138-BC9B809BE576"></p>
+<p>案例一</p>
+<p><img src="http://o6ul1xz4z.bkt.clouddn.com/2017-04-22-D7580D53-1447-413E-983F-398A2B161537.png" alt="D7580D53-1447-413E-983F-398A2B161537"></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ vim /etc/init.d/mySystemService</span><br></pre></td></tr></table></figure>
+<p><img src="http://o6ul1xz4z.bkt.clouddn.com/2017-04-22-713BB125-6162-4B81-B9E9-B3AD7464EAEE.png" alt="713BB125-6162-4B81-B9E9-B3AD7464EAEE"></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#!/bin/bash</span></span><br><span class="line"><span class="comment"># chkconfig: 35 80 70 </span></span><br><span class="line"><span class="comment"># description:用来练习的一个简单自定义系统服务脚本</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">echo</span> <span class="string">"nothing"</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">$ chkconfig --list mySystemService  <span class="comment"># 这个时候还没有加入ckconfig管理</span></span><br><span class="line">$ chkconfig --add mySystemService;chkconfig --list mySystemService <span class="comment"># 此时已经加入chkconfig管理</span></span><br><span class="line">$ chkconfig --del mySystemService  <span class="comment"># 删除对这个服务自定义服务的管理</span></span><br><span class="line">$ rm /etc/init.d/mySystemService  <span class="comment"># 删除那个脚本</span></span><br></pre></td></tr></table></figure>
+<h3 id="ntsysv-类图型接口管理模式（redhat系列发行版特有）"><a href="#ntsysv-类图型接口管理模式（redhat系列发行版特有）" class="headerlink" title="ntsysv: 类图型接口管理模式（redhat系列发行版特有）"></a>ntsysv: 类图型接口管理模式（redhat系列发行版特有）</h3><p><img src="http://o6ul1xz4z.bkt.clouddn.com/2017-04-22-9DDE5DE6-87BE-415E-A266-77EE4807DD6C.png" alt="9DDE5DE6-87BE-415E-A266-77EE4807DD6C"></p>
+<p><img src="http://o6ul1xz4z.bkt.clouddn.com/2017-04-22-9F2F61C4-62B0-43F9-83D8-E262B6E922F5.png" alt="9F2F61C4-62B0-43F9-83D8-E262B6E922F5"></p>
+<h1 id="4-centos5-x预设启动的服务列表"><a href="#4-centos5-x预设启动的服务列表" class="headerlink" title="4 centos5.x预设启动的服务列表"></a>4 centos5.x预设启动的服务列表</h1><p><img src="http://o6ul1xz4z.bkt.clouddn.com/2017-04-22-89DAEB7F-A243-4419-9CB5-81E1E37BBA75.png" alt="89DAEB7F-A243-4419-9CB5-81E1E37BBA75"></p>
+<p><img src="http://o6ul1xz4z.bkt.clouddn.com/2017-04-22-4A958E57-20A6-4F51-A525-1C71DB4B94A1.png" alt="4A958E57-20A6-4F51-A525-1C71DB4B94A1"></p>
+<p><img src="http://o6ul1xz4z.bkt.clouddn.com/2017-04-22-473202C3-8BD3-4E05-9A50-EF4E819412F7.png" alt="473202C3-8BD3-4E05-9A50-EF4E819412F7"></p>
+<p><img src="http://o6ul1xz4z.bkt.clouddn.com/2017-04-22-F4FECB04-78DF-485C-A6F7-9B93961F286A.png" alt="F4FECB04-78DF-485C-A6F7-9B93961F286A"></p>
+<p><img src="http://o6ul1xz4z.bkt.clouddn.com/2017-04-22-7283E9DD-5246-433F-B473-177E5F91939F.png" alt="7283E9DD-5246-433F-B473-177E5F91939F"></p>
+<h1 id="5-重点回顾"><a href="#5-重点回顾" class="headerlink" title="5 重点回顾"></a>5 重点回顾</h1><p><img src="http://o6ul1xz4z.bkt.clouddn.com/2017-04-22-B86812B1-AD4D-4B56-AD12-C2565733E51F.png" alt="B86812B1-AD4D-4B56-AD12-C2565733E51F"></p>
+<h1 id="6-习题"><a href="#6-习题" class="headerlink" title="6 习题"></a>6 习题</h1><p><strong>案例</strong></p>
+<p><img src="http://o6ul1xz4z.bkt.clouddn.com/2017-04-22-969E198C-D834-4FF0-AF8F-3DD4D0AB6B7E.png" alt="969E198C-D834-4FF0-AF8F-3DD4D0AB6B7E"></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">$ rpm -q telnet-server  <span class="comment"># 查看telnet服务程序是否启动</span></span><br><span class="line">$ yum install telnet-server  <span class="comment"># 如果没安装的话就安装</span></span><br><span class="line">$ chkconfig --list telnet  <span class="comment"># 查看开机启动情况（发现时super daemon启动方式）</span></span><br><span class="line">$ ll /etc/xinetd.d/telnet  <span class="comment"># 如果有有这个文件说明真的是super daemon管理的</span></span><br><span class="line">$ grep <span class="string">'^telnet'</span> /etc/services  <span class="comment"># 开头是telnet的那些行（可以看到端口信息）</span></span><br><span class="line">$ chkconfig telnet on;chkconfig --list telnet  <span class="comment"># 设置telnet预设开机启动</span></span><br><span class="line">$ /etc/init.d/xinetd restart  <span class="comment"># 这样telnet就启动了呢</span></span><br><span class="line">$ netstat -tlnp| grep xinetd  <span class="comment"># 看看是不是启动的23号端口</span></span><br><span class="line">$ grep server /etc/xinetd.d/telnet  <span class="comment"># 这个文件中记录着telnet的主程序绝对路径（server=/usr/sbin/in.telnetd）</span></span><br><span class="line">$ vim /etc/hosts.allow  <span class="comment"># 设置允许的网域</span></span><br><span class="line">in.telnetd:.edu.tw        </span><br><span class="line">$ vim /etc/hosts.deny  <span class="comment"># 设置阻止的网域</span></span><br><span class="line">in.telnetd:ALL</span><br></pre></td></tr></table></figure>
+<p><strong>简答题</strong></p>
+<p><img src="http://o6ul1xz4z.bkt.clouddn.com/2017-04-22-4DAB56FB-D950-47BC-9257-16C6C686488D.png" alt="4DAB56FB-D950-47BC-9257-16C6C686488D"></p>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/linux/" rel="tag">#linux</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2013/11/13/BOOK_linux鸟哥的私房菜_基础篇/linux鸟哥的私房菜_基础篇_0-10/" rel="next" title="1-10 章">
+                <i class="fa fa-chevron-left"></i> 1-10 章
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2014/01/26/BOOK_linux鸟哥的私房菜_服务器架设篇/linux鸟哥的私房菜_服务器架设篇_09_防火墙与NAT服务器/" rel="prev" title="9 防火墙与 NAT 服务器">
+                9 防火墙与 NAT 服务器 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2013/12/08/BOOK_linux鸟哥的私房菜_基础篇/linux鸟哥的私房菜_基础篇_18_认识系统服务/"
+           data-title="18 认识系统服务" data-url="http://laputa-er.github.io/2013/12/08/BOOK_linux鸟哥的私房菜_基础篇/linux鸟哥的私房菜_基础篇_18_认识系统服务/">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.gif"
+               alt="Sean" />
+          <p class="site-author-name" itemprop="name">Sean</p>
+          <p class="site-description motion-element" itemprop="description">整理了一批过去一段时间ios相关的笔记，其它的笔记也整理下？源码分享出来？再说吧...反正也只有自己会看吧...</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">214</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">26</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">35</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#1-daemon基本介绍"><span class="nav-text">1 daemon基本介绍</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-1-daemon与sevice的区别"><span class="nav-text">1.1 daemon与sevice的区别</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-2-daemon的分类"><span class="nav-text">1.2 daemon的分类</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#按线程处理方式划分"><span class="nav-text">按线程处理方式划分</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#按工作形态-响应方式-分"><span class="nav-text">按工作形态(响应方式)分</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-3-daemon的命名规则"><span class="nav-text">1.3 daemon的命名规则</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-4-服务与端口的对应"><span class="nav-text">1.4 服务与端口的对应</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-5-daemon的启动脚本与启动方式"><span class="nav-text">1.5 daemon的启动脚本与启动方式</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#利用-Super-daemon-启动的方式"><span class="nav-text">利用 Super daemon 启动的方式</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-6-通过-server-的管理使-daemon-对不同-client-拥有不同权限"><span class="nav-text">1.6 通过 server 的管理使 daemon 对不同 client 拥有不同权限</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#案例一：一个简单的rsync（提供同步文件夹服务）案例"><span class="nav-text">案例一：一个简单的rsync（提供同步文件夹服务）案例</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#2-服务的防火墙管理-xinetd-TCP-Wrappers"><span class="nav-text">2 服务的防火墙管理 xinetd,TCP Wrappers</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#2-1-etc-hosts-allow-etc-hosts-deny的管理"><span class="nav-text">2.1 /etc/hosts.allow,/etc/hosts.deny的管理</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#2-2-TCP-Wrapper的特殊功能"><span class="nav-text">2.2 TCP Wrapper的特殊功能</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#3-系统开机启动服务设定"><span class="nav-text">3 系统开机启动服务设定</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#3-1-观察系统启动的服务"><span class="nav-text">3.1 观察系统启动的服务</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-2-设定开机启动的方法"><span class="nav-text">3.2 设定开机启动的方法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#系统开机流程"><span class="nav-text">系统开机流程</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#chkconfig-管理系统服务默认开机启动与否"><span class="nav-text">chkconfig: 管理系统服务默认开机启动与否</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#chkconfig-设定自定义系统服务"><span class="nav-text">chkconfig:  设定自定义系统服务</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#ntsysv-类图型接口管理模式（redhat系列发行版特有）"><span class="nav-text">ntsysv: 类图型接口管理模式（redhat系列发行版特有）</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#4-centos5-x预设启动的服务列表"><span class="nav-text">4 centos5.x预设启动的服务列表</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#5-重点回顾"><span class="nav-text">5 重点回顾</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#6-习题"><span class="nav-text">6 习题</span></a></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Sean</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"lapuda-er"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+    <script src="/vendors/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
+    <script src="/js/src/hook-duoshuo.js"></script>
+  
+
+
+
+
+
+
+  
+  
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length == 0) {
+       search_path = "search.xml";
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    function proceedsearch() {
+      $("body").append('<div class="popoverlay">').css('overflow', 'hidden');
+      $('.popup').toggle();
+
+    }
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+    'use strict';
+    $.ajax({
+        url: path,
+        dataType: "xml",
+        async: true,
+        success: function( xmlResponse ) {
+            // get the contents from search data
+            isfetched = true;
+            $('.popup').detach().appendTo('.header-inner');
+            var datas = $( "entry", xmlResponse ).map(function() {
+                return {
+                    title: $( "title", this ).text(),
+                    content: $("content",this).text(),
+                    url: $( "url" , this).text()
+                };
+            }).get();
+            var $input = document.getElementById(search_id);
+            var $resultContent = document.getElementById(content_id);
+            $input.addEventListener('input', function(){
+                var matchcounts = 0;
+                var str='<ul class=\"search-result-list\">';
+                var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+                $resultContent.innerHTML = "";
+                if (this.value.trim().length > 1) {
+                // perform local searching
+                datas.forEach(function(data) {
+                    var isMatch = true;
+                    var content_index = [];
+                    var data_title = data.title.trim().toLowerCase();
+                    var data_content = data.content.trim().replace(/<[^>]+>/g,"").toLowerCase();
+                    var data_url = data.url;
+                    var index_title = -1;
+                    var index_content = -1;
+                    var first_occur = -1;
+                    // only match artiles with not empty titles and contents
+                    if(data_title != '' && data_content != '') {
+                        keywords.forEach(function(keyword, i) {
+                            index_title = data_title.indexOf(keyword);
+                            index_content = data_content.indexOf(keyword);
+                            if( index_title < 0 && index_content < 0 ){
+                                isMatch = false;
+                            } else {
+                                if (index_content < 0) {
+                                    index_content = 0;
+                                }
+                                if (i == 0) {
+                                    first_occur = index_content;
+                                }
+                            }
+                        });
+                    }
+                    // show search results
+                    if (isMatch) {
+                        matchcounts += 1;
+                        str += "<li><a href='"+ data_url +"' class='search-result-title'>"+ data_title +"</a>";
+                        var content = data.content.trim().replace(/<[^>]+>/g,"");
+                        if (first_occur >= 0) {
+                            // cut out 100 characters
+                            var start = first_occur - 20;
+                            var end = first_occur + 80;
+                            if(start < 0){
+                                start = 0;
+                            }
+                            if(start == 0){
+                                end = 50;
+                            }
+                            if(end > content.length){
+                                end = content.length;
+                            }
+                            var match_content = content.substring(start, end);
+                            // highlight all keywords
+                            keywords.forEach(function(keyword){
+                                var regS = new RegExp(keyword, "gi");
+                                match_content = match_content.replace(regS, "<b class=\"search-keyword\">"+keyword+"</b>");
+                            });
+
+                            str += "<p class=\"search-result\">" + match_content +"...</p>"
+                        }
+                        str += "</li>";
+                    }
+                })};
+                str += "</ul>";
+                if (matchcounts == 0) { str = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>' }
+                if (keywords == "") { str = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>' }
+                $resultContent.innerHTML = str;
+            });
+            proceedsearch();
+        }
+    });}
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched == false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+
+    });
+
+    $('.popup-btn-close').click(function(e){
+      $('.popup').hide();
+      $(".popoverlay").remove();
+      $('body').css('overflow', '');
+    });
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+  </script>
+
+
+  
+
+  
+
+  
+
+</body>
+</html>

@@ -151,7 +151,7 @@ C">
 <meta property="og:image" content="http://o6ul1xz4z.bkt.clouddn.com/2017-04-11-C8E4D61B-9AE3-48A2-9BFD-D6D3907A1DE5.png">
 <meta property="og:image" content="http://o6ul1xz4z.bkt.clouddn.com/2017-04-11-CE9F1E79-0245-4A66-BEBF-3B83927813DD.png">
 <meta property="og:image" content="http://o6ul1xz4z.bkt.clouddn.com/2017-04-11-2D7C17AF-ABB5-45AE-9CEE-AD6E7EC1105F.png">
-<meta property="og:updated_time" content="2017-04-18T07:48:05.000Z">
+<meta property="og:updated_time" content="2017-05-01T05:55:50.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="10 Dom">
 <meta name="twitter:description" content="1 节点层次文档元素：文档的最外层元素，文档中所有其它元素都包含在文档元素中，一个文档中只能有一个文档元素。HTML文档的文档元素始终是&amp;lt;html&amp;gt;。DOM树：总共有12种节点类型
@@ -604,7 +604,7 @@ C">
 <figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">☑︎ 用途：移除节点</span><br><span class="line">☑︎ 参数：要移除的节点</span><br><span class="line">☑︎ 返回值：被移除的节点</span><br><span class="line">☑︎ 注意：被替换的节点仍然是文档的一部分，只是没有自己的位置</span><br></pre></td></tr></table></figure>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//移除第一个子节点</span></span><br><span class="line"><span class="keyword">var</span> formerFirstChild = someNode.removeChild(someNode.firstCihld);</span><br></pre></td></tr></table></figure>
 <h3 id="其它方法（所有类型节点都有）"><a href="#其它方法（所有类型节点都有）" class="headerlink" title="其它方法（所有类型节点都有）"></a>其它方法（所有类型节点都有）</h3><p><strong>cloneNode()</strong></p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">☑︎ 用途：创建一个节点的副本</span><br><span class="line">☑︎ 参数：<span class="literal">true</span>表示深拷贝（递归子节点）；<span class="literal">false</span>表示浅拷贝（不拷贝子节点）</span><br><span class="line">☑︎ 返回值：节点副本</span><br><span class="line">☑︎ 注意：返回的节点贵文档所有，但是是没有父节点的孤儿；IE9之前的版本会为空白创建节点；IE会同时复制事件处理程序/</span><br></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">☑︎ 用途：创建一个节点的副本</span><br><span class="line">☑︎ 参数：<span class="literal">true</span>表示深拷贝（递归子节点）；<span class="literal">false</span>表示浅拷贝（不拷贝子节点）</span><br><span class="line">☑︎ 返回值：节点副本</span><br><span class="line">☑︎ 注意：返回的节点贵文档所有，但是是没有父节点的孤儿；IE9之前的版本会为空白创建节点；IE会同时复制事件处理程序/</span><br></pre></td></tr></table></figure>
 <figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">ul</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">li</span>&gt;</span>item 1<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">li</span>&gt;</span>item 2<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">li</span>&gt;</span>item 3<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">ul</span>&gt;</span></span><br></pre></td></tr></table></figure>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> deepList = myList.cloneNode(<span class="literal">true</span>);</span><br><span class="line"><span class="built_in">console</span>.log(deepList.childNodes.length);    <span class="comment">//3(IE&lt;9)或 7（其它浏览器）</span></span><br><span class="line"><span class="keyword">var</span> shallowList = myList.cloneNode(<span class="literal">false</span>);</span><br><span class="line"><span class="built_in">console</span>.log(shallowList.childNodes.length);    <span class="comment">//0</span></span><br></pre></td></tr></table></figure>
 <p><strong>normalize()方法</strong></p>
@@ -752,7 +752,7 @@ C">
 <h3 id="1-2-4-特殊集合（HTMLCollection）"><a href="#1-2-4-特殊集合（HTMLCollection）" class="headerlink" title="1.2.4 特殊集合（HTMLCollection）"></a>1.2.4 特殊集合（HTMLCollection）</h3><p>特点：会随着文档的更新而更新<br>| 集合               | 说明               | 备注                                       |<br>| —————- | —————- | —————————————- |<br>| document.anchors | 文档中所有带name特性的a元素 |                                          |<br>| document.applets | 文档中所有applet元素    | 不建议使用                                    |<br>| document.forms   | 文档中所有form元素      | document.getElementByTagName(“form”)得到相同结果 |<br>| document.images  | 文档中所有img元素       | document.getElementByTagName(“img”)得到相同结果 |<br>| document.lnks    | 文档中所有带href特性的a元素 |                                          |</p>
 <h3 id="1-2-5-DOM一致性检测"><a href="#1-2-5-DOM一致性检测" class="headerlink" title="1.2.5 DOM一致性检测"></a>1.2.5 DOM一致性检测</h3><h4 id="document-implementation属性"><a href="#document-implementation属性" class="headerlink" title="document.implementation属性"></a>document.implementation属性</h4><p>可用于检测浏览器实现了DOM的哪些部分</p>
 <p><strong>document.implementation.hasFeature()</strong></p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">☑︎ 参数（2）：要检测的DOM功能的名称、版本号</span><br><span class="line">☑︎ 返回值：支持返回<span class="literal">true</span>；否则返回<span class="literal">false</span></span><br><span class="line">☑︎ 问题：返回<span class="literal">true</span>并不意味着实现和规范完全一致</span><br><span class="line">☑︎ 注意：同时使用能力检测</span><br></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">☑︎ 参数（<span class="number">2</span>）：要检测的DOM功能的名称、版本号</span><br><span class="line">☑︎ 返回值：支持返回<span class="literal">true</span>；否则返回<span class="literal">false</span></span><br><span class="line">☑︎ 问题：返回<span class="literal">true</span>并不意味着实现和规范完全一致</span><br><span class="line">☑︎ 注意：同时使用能力检测</span><br></pre></td></tr></table></figure>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> hasXmlDom = <span class="built_in">document</span>.implementation.hasFeature(<span class="string">"XML"</span>,<span class="string">"1.0"</span>);</span><br></pre></td></tr></table></figure>
 <p><img src="http://o6ul1xz4z.bkt.clouddn.com/2017-04-11-C8E4D61B-9AE3-48A2-9BFD-D6D3907A1DE5.png" alt="C8E4D61B-9AE3-48A2-9BFD-D6D3907A1DE5"></p>
 <h3 id="1-2-6-文档写入"><a href="#1-2-6-文档写入" class="headerlink" title="1.2.6 文档写入"></a>1.2.6 文档写入</h3><figure class="highlight applescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">不支持文档写入的情况</span><br><span class="line">☑︎ 严格型 XHTML 文档</span><br><span class="line">☑︎ 按照 <span class="built_in">application</span>/xml+xhtml 内容类型提供的页面</span><br></pre></td></tr></table></figure>
@@ -1366,7 +1366,7 @@ C">
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">200</span>
+              <span class="site-state-item-count">214</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -1374,7 +1374,7 @@ C">
           
             <div class="site-state-item site-state-categories">
               <a href="/categories">
-                <span class="site-state-item-count">22</span>
+                <span class="site-state-item-count">26</span>
                 <span class="site-state-item-name">分类</span>
               </a>
             </div>
@@ -1383,7 +1383,7 @@ C">
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">31</span>
+                <span class="site-state-item-count">35</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>

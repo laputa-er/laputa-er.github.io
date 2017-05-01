@@ -1,0 +1,1069 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="MongoDB,nodejs," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1" />
+
+
+
+
+
+
+<meta name="description" content="网址
+0 课程介绍实战项目
+
+环境和工具
+课程步骤
+
+重要知识点☑ 域名和服务器选购备案
+☑ 域名 IP 解析指向
+☑ 服务器远程链接与系统权限
+☑ NodeJS 生产环境搭建
+☑ MongoDB 数据库安装配置备份前一
+☑ 单主机 Nginx 多端口映射多个应用
+☑ 项目仓库代码从本地到线上同步
+☑Nodejs 项目更新发布与进程守护
+☑ …
+最终效果
+1 课程预热1.1 为什么是全栈最后一公里">
+<meta property="og:type" content="article">
+<meta property="og:title" content="NodeJS线上服务器部署与发布">
+<meta property="og:url" content="http://laputa-er.github.io/2017/04/22/慕课网/imooc_NodeJS 线上服务器部署与发布/index.html">
+<meta property="og:site_name" content="Sean">
+<meta property="og:description" content="网址
+0 课程介绍实战项目
+
+环境和工具
+课程步骤
+
+重要知识点☑ 域名和服务器选购备案
+☑ 域名 IP 解析指向
+☑ 服务器远程链接与系统权限
+☑ NodeJS 生产环境搭建
+☑ MongoDB 数据库安装配置备份前一
+☑ 单主机 Nginx 多端口映射多个应用
+☑ 项目仓库代码从本地到线上同步
+☑Nodejs 项目更新发布与进程守护
+☑ …
+最终效果
+1 课程预热1.1 为什么是全栈最后一公里">
+<meta property="og:image" content="http://o6ul1xz4z.bkt.clouddn.com/2017-04-22-3FD89E7B-FC0E-4B84-89B7-502E642CB745.png">
+<meta property="og:image" content="http://o6ul1xz4z.bkt.clouddn.com/2017-04-22-0BD1730A-1F74-4203-A5EB-A9BFF8BCB92E.png">
+<meta property="og:image" content="http://o6ul1xz4z.bkt.clouddn.com/2017-04-22-3A533661-987A-443A-8F7A-9BE227D19B8F.png">
+<meta property="og:image" content="http://o6ul1xz4z.bkt.clouddn.com/2017-04-22-AA7D06D7-76C7-4058-B593-3ECE38FC6C24.png">
+<meta property="og:image" content="http://o6ul1xz4z.bkt.clouddn.com/2017-04-22-947E24CE-F03B-4CDD-8519-5D4EE7EFCAC1.png">
+<meta property="og:image" content="http://o6ul1xz4z.bkt.clouddn.com/2017-04-22-65CB39FB-0290-47F9-A838-03FF523FCAC2.png">
+<meta property="og:image" content="http://o6ul1xz4z.bkt.clouddn.com/2017-04-23-0B4E68B4-15DB-4845-A430-B445A0753AD2.png">
+<meta property="og:image" content="http://o6ul1xz4z.bkt.clouddn.com/2017-04-23-A77C3832-A33F-4071-B632-6F356E426F82.png">
+<meta property="og:image" content="http://o6ul1xz4z.bkt.clouddn.com/2017-04-23-6FD47491-4730-4E0D-881D-C0E2A5CEF8A0.png">
+<meta property="og:image" content="http://o6ul1xz4z.bkt.clouddn.com/2017-04-23-88DC5498-2EA6-49DB-BE68-3E0B3EE6977F.png">
+<meta property="og:image" content="http://o6ul1xz4z.bkt.clouddn.com/2017-04-23-2873AE79-479D-467F-8FFF-90F87AC33C87.png">
+<meta property="og:image" content="http://o6ul1xz4z.bkt.clouddn.com/2017-04-23-0FDFDC79-8AAE-42F3-93E5-6748F2F0AFE0.png">
+<meta property="og:image" content="http://o6ul1xz4z.bkt.clouddn.com/2017-04-24-7A834090-215B-421E-89F4-9D8D2221407B.png">
+<meta property="og:image" content="http://o6ul1xz4z.bkt.clouddn.com/2017-04-24-9187181B-E182-482B-BE3C-69022E8E34B1.png">
+<meta property="og:image" content="http://o6ul1xz4z.bkt.clouddn.com/2017-04-26-FD361328-37D6-41F4-81DD-EFD7B1775F3A.png">
+<meta property="og:image" content="http://o6ul1xz4z.bkt.clouddn.com/2017-04-30-8782E41E-3983-4F69-A558-820E5D7B90CE.png">
+<meta property="og:image" content="http://o6ul1xz4z.bkt.clouddn.com/2017-04-30-D77D9188-AC9B-4A2E-AB09-1481B359BB5B.png">
+<meta property="og:image" content="http://o6ul1xz4z.bkt.clouddn.com/2017-05-01-77C5FC78-04E7-42EB-93A4-94BF00F698C0.png">
+<meta property="og:image" content="http://o6ul1xz4z.bkt.clouddn.com/2017-05-01-D8174179-AE4F-4C2A-8097-9752AB6FB211.png">
+<meta property="og:updated_time" content="2017-05-01T10:52:57.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="NodeJS线上服务器部署与发布">
+<meta name="twitter:description" content="网址
+0 课程介绍实战项目
+
+环境和工具
+课程步骤
+
+重要知识点☑ 域名和服务器选购备案
+☑ 域名 IP 解析指向
+☑ 服务器远程链接与系统权限
+☑ NodeJS 生产环境搭建
+☑ MongoDB 数据库安装配置备份前一
+☑ 单主机 Nginx 多端口映射多个应用
+☑ 项目仓库代码从本地到线上同步
+☑Nodejs 项目更新发布与进程守护
+☑ …
+最终效果
+1 课程预热1.1 为什么是全栈最后一公里">
+<meta name="twitter:image" content="http://o6ul1xz4z.bkt.clouddn.com/2017-04-22-3FD89E7B-FC0E-4B84-89B7-502E642CB745.png">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 0,
+      author: '博主'
+    }
+  };
+</script>
+
+
+
+
+  <link rel="canonical" href="http://laputa-er.github.io/2017/04/22/慕课网/imooc_NodeJS 线上服务器部署与发布/"/>
+
+  <title> NodeJS线上服务器部署与发布 | Sean </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//hm.baidu.com/hm.js?898688f51c5a3d6b37dd23e04441e5bd";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">Sean</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">笔记分享</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup">
+ <span class="search-icon fa fa-search"></span>
+ <input type="text" id="local-search-input">
+ <div id="local-search-result"></div>
+ <span class="popup-btn-close">close</span>
+</div>
+
+
+    </div>
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                NodeJS线上服务器部署与发布
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2017-04-22T10:52:35+08:00" content="2017-04-22">
+              2017-04-22
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/慕课网学习笔记/" itemprop="url" rel="index">
+                    <span itemprop="name">慕课网学习笔记</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2017/04/22/慕课网/imooc_NodeJS 线上服务器部署与发布/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2017/04/22/慕课网/imooc_NodeJS 线上服务器部署与发布/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p><a href="http://coding.imooc.com/class/95.html" target="_blank" rel="external">网址</a></p>
+<h1 id="0-课程介绍"><a href="#0-课程介绍" class="headerlink" title="0 课程介绍"></a>0 课程介绍</h1><h2 id="实战项目"><a href="#实战项目" class="headerlink" title="实战项目"></a>实战项目</h2><p><img src="http://o6ul1xz4z.bkt.clouddn.com/2017-04-22-3FD89E7B-FC0E-4B84-89B7-502E642CB745.png" alt="3FD89E7B-FC0E-4B84-89B7-502E642CB745"></p>
+<p><img src="http://o6ul1xz4z.bkt.clouddn.com/2017-04-22-0BD1730A-1F74-4203-A5EB-A9BFF8BCB92E.png" alt="0BD1730A-1F74-4203-A5EB-A9BFF8BCB92E"></p>
+<h2 id="环境和工具"><a href="#环境和工具" class="headerlink" title="环境和工具"></a>环境和工具</h2><p><img src="http://o6ul1xz4z.bkt.clouddn.com/2017-04-22-3A533661-987A-443A-8F7A-9BE227D19B8F.png" alt="3A533661-987A-443A-8F7A-9BE227D19B8F"></p>
+<h2 id="课程步骤"><a href="#课程步骤" class="headerlink" title="课程步骤"></a>课程步骤</h2><p><img src="http://o6ul1xz4z.bkt.clouddn.com/2017-04-22-AA7D06D7-76C7-4058-B593-3ECE38FC6C24.png" alt="AA7D06D7-76C7-4058-B593-3ECE38FC6C24"></p>
+<hr>
+<h2 id="重要知识点"><a href="#重要知识点" class="headerlink" title="重要知识点"></a>重要知识点</h2><p>☑ 域名和服务器选购备案</p>
+<p>☑ 域名 IP 解析指向</p>
+<p>☑ 服务器远程链接与系统权限</p>
+<p>☑ NodeJS 生产环境搭建</p>
+<p>☑ MongoDB 数据库安装配置备份前一</p>
+<p>☑ 单主机 Nginx 多端口映射多个应用</p>
+<p>☑ 项目仓库代码从本地到线上同步</p>
+<p>☑Nodejs 项目更新发布与进程守护</p>
+<p>☑ …</p>
+<h2 id="最终效果"><a href="#最终效果" class="headerlink" title="最终效果"></a>最终效果</h2><p><img src="http://o6ul1xz4z.bkt.clouddn.com/2017-04-22-947E24CE-F03B-4CDD-8519-5D4EE7EFCAC1.png" alt="947E24CE-F03B-4CDD-8519-5D4EE7EFCAC1"></p>
+<h1 id="1-课程预热"><a href="#1-课程预热" class="headerlink" title="1 课程预热"></a>1 课程预热</h1><h2 id="1-1-为什么是全栈最后一公里"><a href="#1-1-为什么是全栈最后一公里" class="headerlink" title="1.1 为什么是全栈最后一公里"></a>1.1 为什么是全栈最后一公里</h2><h2 id="1-2-搭建线上生产环境需要做什么"><a href="#1-2-搭建线上生产环境需要做什么" class="headerlink" title="1.2 搭建线上生产环境需要做什么"></a>1.2 搭建线上生产环境需要做什么</h2><p>☑ 购买自己的域名</p>
+<p>☑ 购买自己的服务器</p>
+<p>☑ 域名备案</p>
+<p>☑ 配置服务器应用环境</p>
+<p>☑ 安装配置数据库</p>
+<p>☑ 项目远程部署发布与更新</p>
+<h1 id="2-待部署的-5-个本地-Nodejs-项目"><a href="#2-待部署的-5-个本地-Nodejs-项目" class="headerlink" title="2 待部署的 5 个本地 Nodejs 项目"></a>2 待部署的 5 个本地 Nodejs 项目</h1><h2 id="2-1-快速搭建一个纯静态简易站点"><a href="#2-1-快速搭建一个纯静态简易站点" class="headerlink" title="2.1 快速搭建一个纯静态简易站点"></a>2.1 快速搭建一个纯静态简易站点</h2><p><a href="https://coding.net/u/eli01/p/imooc_nodejs_deploy/git/tree/master/website" target="_blank" rel="external">https://coding.net/u/eli01/p/imooc_nodejs_deploy/git/tree/master/website</a></p>
+<p>/app.js</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> http = <span class="built_in">require</span>(<span class="string">'http'</span>)</span><br><span class="line"><span class="keyword">const</span> homePage = <span class="string">`</span><br><span class="line">&lt;!DOCTYPE html&gt;</span><br><span class="line">&lt;html&gt;</span><br><span class="line">  &lt;head&gt;</span><br><span class="line">    &lt;meta charset='utf-8'&gt;</span><br><span class="line">    &lt;title&gt;Nodejs 部署上线示例&lt;/title&gt;</span><br><span class="line">    &lt;style type="text/css"&gt;</span><br><span class="line">      * &#123;</span><br><span class="line">        padding: 0;</span><br><span class="line">        margin: 0;</span><br><span class="line">      &#125;</span><br><span class="line">      body &#123;</span><br><span class="line">        padding: 30px 0;</span><br><span class="line">        text-align: center;</span><br><span class="line">        font-size: 16px;</span><br><span class="line">        background-color: #333;</span><br><span class="line">      &#125;</span><br><span class="line">      h1, h2 &#123;</span><br><span class="line">        color: #fff;</span><br><span class="line">      &#125;</span><br><span class="line">      nav &#123;</span><br><span class="line">        margin-top: 20px;</span><br><span class="line">      &#125;</span><br><span class="line">      a &#123;</span><br><span class="line">        color: #ccc;</span><br><span class="line">        text-decoration: none;</span><br><span class="line">      &#125;</span><br><span class="line">      a:hover &#123;</span><br><span class="line">        text-decoration: underline;</span><br><span class="line">      &#125;</span><br><span class="line">    &lt;/style&gt;</span><br><span class="line">  &lt;/head&gt;</span><br><span class="line">  &lt;body&gt;</span><br><span class="line">    &lt;h1&gt;慕课网 Nodejs 高级课程&lt;/h1&gt;</span><br><span class="line">    &lt;h2&gt;项目部署上线示例&lt;/h2&gt;</span><br><span class="line">    &lt;nav&gt;</span><br><span class="line">      &lt;ul&gt;</span><br><span class="line">        &lt;li&gt;&lt;a href="" target="_blank",href="/a"&gt;Nodejs 电影网站&lt;/a&gt;&lt;/li&gt;</span><br><span class="line">        &lt;li&gt;&lt;a href="" target="_blank",href="/a"&gt;狗狗说 App 后台&lt;/a&gt;&lt;/li&gt;</span><br><span class="line">        &lt;li&gt;&lt;a href="" target="_blank",href="/a"&gt;微信小程序后台&lt;/a&gt;&lt;/li&gt;</span><br><span class="line">        &lt;li&gt;&lt;a href="" target="_blank",href="/a"&gt;微信公众号后台&lt;/a&gt;&lt;/li&gt;</span><br><span class="line">      &lt;/ul&gt;</span><br><span class="line">    &lt;/nav&gt;</span><br><span class="line">  &lt;/body&gt;</span><br><span class="line">&lt;/html&gt;</span><br><span class="line">`</span></span><br><span class="line">http.createServer((req, res) =&gt; &#123;</span><br><span class="line">  res.statusCode =</span><br><span class="line">  $  res.setHeader(<span class="string">'Content-Type'</span>, <span class="string">'text/html'</span>)</span><br><span class="line">  res.end(homePage)</span><br><span class="line">&#125;)</span><br><span class="line">.listen(<span class="number">3000</span>, () =&gt; &#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">'Server Running At 3000'</span>)</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<p><strong>启动服务</strong></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ node app.js</span><br></pre></td></tr></table></figure>
+<p><strong>浏览</strong></p>
+<p><img src="http://o6ul1xz4z.bkt.clouddn.com/2017-04-22-65CB39FB-0290-47F9-A838-03FF523FCAC2.png" alt="65CB39FB-0290-47F9-A838-03FF523FCAC2"></p>
+<h2 id="2-2-Nodejs-电影网站项目上线准备"><a href="#2-2-Nodejs-电影网站项目上线准备" class="headerlink" title="2.2 Nodejs 电影网站项目上线准备"></a>2.2 Nodejs 电影网站项目上线准备</h2><p><strong>使用老课程里的一个项目-电影网站项目</strong></p>
+<p><a href="http://www.imooc.com/learn/197" target="_blank" rel="external">课程地址</a></p>
+<p><a href="https://coding.net/u/eli01/p/imooc_nodejs_deploy/git/tree/master/movie" target="_blank" rel="external">源码</a></p>
+<h3 id="2-2-1-升级下老旧的模块"><a href="#2-2-1-升级下老旧的模块" class="headerlink" title="2.2.1 升级下老旧的模块"></a>2.2.1 升级下老旧的模块</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 先升级个别模块</span></span><br><span class="line">$ npm --registry=https://registry.npm.taobao.org install bcrypt@0.8.7 --save</span><br><span class="line">$ npm --registry=https://registry.npm.taobao.org install jade@1.11.0 --save</span><br><span class="line">$ npm --registry=https://registry.npm.taobao.org install mongoose@4.8.2 --save</span><br><span class="line"></span><br><span class="line"><span class="comment"># 再安装其它模块</span></span><br><span class="line">$ npm --registry=https://registry.npm.taobao.org install</span><br></pre></td></tr></table></figure>
+<h3 id="2-2-2-mongodb"><a href="#2-2-2-mongodb" class="headerlink" title="2.2.2 mongodb"></a>2.2.2 mongodb</h3><p>一言难尽，瞎折腾了一下，废了一整天的时间。</p>
+<p>☑ 树莓派上尝试安装别人编译的，结果会报错。</p>
+<p>☑ 我的 vps (centos 6.7 32位)上尝试安装 monggoDB，结果 mongoDB 官方没提供 32 位版本。</p>
+<p>最后在本地机器上安装了 Archlinux 虚拟机，使用 pacman 安装 mongoDB。</p>
+<h4 id="安装-mongoDB"><a href="#安装-mongoDB" class="headerlink" title="安装 mongoDB"></a>安装 mongoDB</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ sudo pacman -S mongodb</span><br><span class="line">$ sudo pacman -S mongodb-tools</span><br><span class="line">$ sudo systemctl <span class="built_in">enable</span> mongodb</span><br></pre></td></tr></table></figure>
+<h4 id="设置-mongoDB"><a href="#设置-mongoDB" class="headerlink" title="设置 mongoDB"></a>设置 mongoDB</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">$ sudo vim /etc/mongodb.conf</span><br><span class="line"></span><br><span class="line"><span class="comment"># See http://www.mongodb.org/display/DOCS/File+Based+Configuration for format details</span></span><br><span class="line"><span class="comment"># Run mongod --help to see a list of options</span></span><br><span class="line"><span class="comment">#auth = true</span></span><br><span class="line"><span class="comment">#bind_ip = 192.168.11.169 </span></span><br><span class="line">quiet = <span class="literal">true</span></span><br><span class="line">dbpath = /var/lib/mongodb</span><br><span class="line">logpath = /var/<span class="built_in">log</span>/mongodb/mongod.log</span><br><span class="line">logappend = <span class="literal">true</span></span><br></pre></td></tr></table></figure>
+<h4 id="设置用户"><a href="#设置用户" class="headerlink" title="设置用户"></a>设置用户</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">$ mongo</span><br><span class="line"><span class="comment"># 切换到 movies 数据库</span></span><br><span class="line">&gt; use movies</span><br><span class="line">switched to db movies</span><br><span class="line"></span><br><span class="line"><span class="comment"># 给 movies 数据库创建一个新用户</span></span><br><span class="line">&gt; db.createUser(&#123;user:<span class="string">"neo"</span>, <span class="built_in">pwd</span>:<span class="string">"xxx"</span>,roles:[&#123;role:<span class="string">"dbAdmin"</span>,db:<span class="string">"movies"</span>&#125;]&#125;)</span><br></pre></td></tr></table></figure>
+<h4 id="启动-amp-amp-关闭-amp-amp-远程登录"><a href="#启动-amp-amp-关闭-amp-amp-远程登录" class="headerlink" title="启动 &amp;&amp; 关闭 &amp;&amp; 远程登录"></a>启动 &amp;&amp; 关闭 &amp;&amp; 远程登录</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 启动</span></span><br><span class="line">$ sudo systemctl start mongodb</span><br><span class="line"></span><br><span class="line"><span class="comment"># 关闭</span></span><br><span class="line">$ sudo systemctl stop mongodb</span><br><span class="line"></span><br><span class="line"><span class="comment"># 远程登录</span></span><br><span class="line">$ mongo -u neo -p xxx --authenticationDatabase movies --host [IP 地址]</span><br></pre></td></tr></table></figure>
+<h3 id="2-2-3-项目修改并测试"><a href="#2-2-3-项目修改并测试" class="headerlink" title="2.2.3 项目修改并测试"></a>2.2.3 项目修改并测试</h3><h4 id="本地启动"><a href="#本地启动" class="headerlink" title="本地启动"></a>本地启动</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ <span class="built_in">cd</span> imooc_nodejs_deploy/movie</span><br><span class="line">$ grunt</span><br></pre></td></tr></table></figure>
+<h4 id="浏览"><a href="#浏览" class="headerlink" title="浏览"></a>浏览</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">/ <span class="comment"># 首页</span></span><br><span class="line">/admin/user/list <span class="comment"># 用户列表页(只有超级用户能够进入这个页面)</span></span><br><span class="line">/admin/movie/new <span class="comment"># 后台录入页</span></span><br><span class="line">/movie/[ID] <span class="comment"># 详情页, 比如 http://localhost:3000/movie/58fcce8faf5c603f4c3e77b5</span></span><br></pre></td></tr></table></figure>
+<p><strong>首页</strong></p>
+<p><img src="http://o6ul1xz4z.bkt.clouddn.com/2017-04-23-0B4E68B4-15DB-4845-A430-B445A0753AD2.png" alt="0B4E68B4-15DB-4845-A430-B445A0753AD2"></p>
+<p><img src="http://o6ul1xz4z.bkt.clouddn.com/2017-04-23-A77C3832-A33F-4071-B632-6F356E426F82.png" alt="A77C3832-A33F-4071-B632-6F356E426F82"></p>
+<p><strong>用户列表页</strong></p>
+<ol>
+<li>注册一个新用户，然后设置这个用户为<strong>超级用户</strong>。</li>
+</ol>
+<p><img src="http://o6ul1xz4z.bkt.clouddn.com/2017-04-23-6FD47491-4730-4E0D-881D-C0E2A5CEF8A0.png" alt="6FD47491-4730-4E0D-881D-C0E2A5CEF8A0"></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">$ mongo -u neo -p xxx --authenticationDatabase movies --host [mongoDB IP 地址]</span><br><span class="line">MongoDB shell version v3.4.3</span><br><span class="line">connecting to: mongodb://172.16.16.144:27017/</span><br><span class="line">MongoDB server version: 3.4.1</span><br><span class="line">&gt; use movies</span><br><span class="line">switched to db movies</span><br><span class="line">&#123; <span class="string">"_id"</span> : ObjectId(<span class="string">"58fcb193ba823d06b2c78ffe"</span>), <span class="string">"name"</span> : <span class="string">"孟庆申"</span>, <span class="string">"password"</span> : <span class="string">"<span class="variable">$2a</span><span class="variable">$10</span><span class="variable">$yaf1RLwE</span>/aIncrWzyaiEb.ZMZqrF9HHDjr/VFJIVbKdx4rFZzB2sC"</span>, <span class="string">"meta"</span> : &#123; <span class="string">"updateAt"</span> : ISODate(<span class="string">"2017-04-23T13:52:19.949Z"</span>), <span class="string">"createAt"</span> : ISODate(<span class="string">"2017-04-23T13:52:19.949Z"</span>) &#125;, <span class="string">"role"</span> : 0, <span class="string">"__v"</span> : 0 &#125;</span><br><span class="line">&gt; db.users.update(&#123;name: <span class="string">'孟庆申'</span>&#125;, &#123;<span class="variable">$set</span>: &#123;role: 51&#125;&#125;)</span><br><span class="line">WriteResult(&#123; <span class="string">"nMatched"</span> : 1, <span class="string">"nUpserted"</span> : 0, <span class="string">"nModified"</span> : 1 &#125;)</span><br></pre></td></tr></table></figure>
+<ol>
+<li><p>用该<strong>超级用户</strong>用户登陆，并查看用户列表。</p>
+<p><img src="http://o6ul1xz4z.bkt.clouddn.com/2017-04-23-88DC5498-2EA6-49DB-BE68-3E0B3EE6977F.png" alt="88DC5498-2EA6-49DB-BE68-3E0B3EE6977F"></p>
+</li>
+</ol>
+<p><strong>后台录入页</strong></p>
+<p>☑ 简介: 在<strong>豆瓣同步</strong>中输入 ID(比如<code>7054604</code>) ，可以自动获取豆瓣相应电影并完成填充。</p>
+<p><img src="http://o6ul1xz4z.bkt.clouddn.com/2017-04-23-2873AE79-479D-467F-8FFF-90F87AC33C87.png" alt="2873AE79-479D-467F-8FFF-90F87AC33C87"></p>
+<p><strong>详情页</strong></p>
+<p><img src="http://o6ul1xz4z.bkt.clouddn.com/2017-04-23-0FDFDC79-8AAE-42F3-93E5-6748F2F0AFE0.png" alt="0FDFDC79-8AAE-42F3-93E5-6748F2F0AFE0"></p>
+<h2 id="2-3-狗狗说-React-Native-开发的-App-后台项目分析"><a href="#2-3-狗狗说-React-Native-开发的-App-后台项目分析" class="headerlink" title="2.3 狗狗说 React Native 开发的 App 后台项目分析"></a>2.3 狗狗说 React Native 开发的 App 后台项目分析</h2><p><a href="http://coding.imooc.com/class/56.html" target="_blank" rel="external">慕课网-React Native 贯穿全栈开发 App</a></p>
+<p>该项目是一个ios app项目的后台，采用 <code>koa</code> 框架，给 App 提供 API 接口，并提供面向运营的管理后台。支持基于 SSL 的 HTTPS 协议。</p>
+<h2 id="2-4-微信小程序的项目介绍"><a href="#2-4-微信小程序的项目介绍" class="headerlink" title="2.4 微信小程序的项目介绍"></a>2.4 微信小程序的项目介绍</h2><p>☑ 后端采用 koa </p>
+<p>☑ 支持采用 HTTPS 协议</p>
+<h2 id="2-5-电影微信公众号的项目概况"><a href="#2-5-电影微信公众号的项目概况" class="headerlink" title="2.5 电影微信公众号的项目概况"></a>2.5 电影微信公众号的项目概况</h2><p><a href="http://coding.imooc.com/class/38.html" target="_blank" rel="external">慕课网-Node.js 7天搞定微信公众号</a></p>
+<h2 id="2-6-从一个故事理解整个部署思路"><a href="#2-6-从一个故事理解整个部署思路" class="headerlink" title="2.6 从一个故事理解整个部署思路"></a>2.6 从一个故事理解整个部署思路</h2><p><img src="http://o6ul1xz4z.bkt.clouddn.com/2017-04-24-7A834090-215B-421E-89F4-9D8D2221407B.png" alt="7A834090-215B-421E-89F4-9D8D2221407B"></p>
+<h1 id="3-选购域名服务器及备案"><a href="#3-选购域名服务器及备案" class="headerlink" title="3 选购域名服务器及备案"></a>3 选购域名服务器及备案</h1><h2 id="3-1-选购域名的经验分享"><a href="#3-1-选购域名的经验分享" class="headerlink" title="3.1 选购域名的经验分享"></a>3.1 选购域名的经验分享</h2><h3 id="相关网站"><a href="#相关网站" class="headerlink" title="相关网站"></a>相关网站</h3><ul>
+<li><a href="http://www.22.cn/" target="_blank" rel="external">爱名网</a></li>
+<li><a href="https://www.aliyun.com/" target="_blank" rel="external">阿里云(推荐)</a></li>
+<li><a href="https://sg.godaddy.com/zh/" target="_blank" rel="external">godaddy</a></li>
+</ul>
+<h3 id="注意事项"><a href="#注意事项" class="headerlink" title="注意事项"></a>注意事项</h3><ul>
+<li>传播效果:(纯英文 &gt; 纯数字 &gt; 英文数字混合)</li>
+</ul>
+<ul>
+<li>不要使用过于冷僻的后缀名(不好备案)</li>
+<li>cn 后缀比 com 域名更便宜</li>
+<li>godaddy 的域名国家会不会有一天阻拦备案？</li>
+<li>SSL 整数可以通过 JS 来生成，不一定非要购买。</li>
+<li>无论在哪里购买的域名，都需要到<a href="https://www.dnspod.cn/" target="_blank" rel="external">DNSPOD</a>这个网站设置域名解析指向。</li>
+</ul>
+<h2 id="3-2-主机选择"><a href="#3-2-主机选择" class="headerlink" title="3.2 主机选择"></a>3.2 主机选择</h2><p>☑ 相关运营商</p>
+<table>
+<thead>
+<tr>
+<th>国外</th>
+<th>国内</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>亚马逊 AWS</td>
+<td>阿里云 ECS（推荐）</td>
+</tr>
+<tr>
+<td>Linode</td>
+<td>青云/UCloud/百度云</td>
+</tr>
+<tr>
+<td>DigitOcean/Heroku</td>
+</tr>
+</tbody>
+</table>
+<p>☑ 注意</p>
+<ul>
+<li>尽量选择大厂商，不要图便宜</li>
+<li>尽量选择国内的主机运营商（政策风险小，容易备案，速度快）</li>
+</ul>
+<p><img src="http://o6ul1xz4z.bkt.clouddn.com/2017-04-24-9187181B-E182-482B-BE3C-69022E8E34B1.png" alt="9187181B-E182-482B-BE3C-69022E8E34B1"></p>
+<p>讲师提供了一个优惠码: 1abqbf</p>
+<h2 id="3-3-域名备案流程走起来"><a href="#3-3-域名备案流程走起来" class="headerlink" title="3.3 域名备案流程走起来"></a>3.3 域名备案流程走起来</h2><h3 id="注意事项-1"><a href="#注意事项-1" class="headerlink" title="注意事项"></a>注意事项</h3><p>☑ 不要图快，争取一次通过。</p>
+<p>☑ 推荐阿里云提供的<strong>购买域名</strong>、<strong>购买云服务</strong>、<strong>备案</strong>一条龙服务，省心，快捷。</p>
+<p>☑ 备案需要材料</p>
+<ul>
+<li>身份证(个人备案)</li>
+<li>单位证件+ 备案负责人证件(单位备案)</li>
+<li>清晰的电子版照片</li>
+</ul>
+<p>☑ 域名首次备案前不允许线上访问（备案期间不要使用这个域名）</p>
+<h3 id="在阿里云官网进行备案"><a href="#在阿里云官网进行备案" class="headerlink" title="在阿里云官网进行备案"></a>在阿里云官网进行备案</h3><ol>
+<li>备案服务号申请。</li>
+<li>在 ICP 代备案管理系统中进行备案。</li>
+<li>等 3 周左右在阿里云查看备案是否通过。</li>
+</ol>
+<h1 id="4-远程登录服务器"><a href="#4-远程登录服务器" class="headerlink" title="4 远程登录服务器"></a>4 远程登录服务器</h1><h2 id="4-1-第一次-ssh-远程登录服务器"><a href="#4-1-第一次-ssh-远程登录服务器" class="headerlink" title="4.1 第一次 ssh 远程登录服务器"></a>4.1 第一次 ssh 远程登录服务器</h2><ol>
+<li>设置密码</li>
+<li>登录</li>
+</ol>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ ssh root@[IP ID地址]</span><br></pre></td></tr></table></figure>
+<h2 id="4-2-配置-root-及应用账号权限"><a href="#4-2-配置-root-及应用账号权限" class="headerlink" title="4.2 配置 root 及应用账号权限"></a>4.2 配置 root 及应用账号权限</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">$ adduser imooc_manager <span class="comment"># 自动加入群组 imooc_manager，生成 /home/imooc_manager</span></span><br><span class="line">$ gpasswd <span class="_">-a</span> imooc_manager sudo <span class="comment"># 将 imooc_manager 加入到 群组 sudo</span></span><br><span class="line">$ sudo visudo <span class="comment"># 设置</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># User privilege specification</span></span><br><span class="line">imooc_manager ALL=(ALL:ALL) ALL</span><br></pre></td></tr></table></figure>
+<p>用新账号远程联机</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ ssh imooc_manager@[外网 IP]</span><br></pre></td></tr></table></figure>
+<h2 id="4-3-配置本地无密码-SSH-登录"><a href="#4-3-配置本地无密码-SSH-登录" class="headerlink" title="4.3 配置本地无密码 SSH 登录"></a>4.3 配置本地无密码 SSH 登录</h2><p><img src="http://o6ul1xz4z.bkt.clouddn.com/2017-04-26-FD361328-37D6-41F4-81DD-EFD7B1775F3A.png" alt="FD361328-37D6-41F4-81DD-EFD7B1775F3A"></p>
+<p>(1) 客户端配置</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 确保还没有创建过（没有 id_rsa）</span></span><br><span class="line">$ ls ~/.ssh</span><br><span class="line"></span><br><span class="line"><span class="comment"># 新建公钥和私钥</span></span><br><span class="line">$ ssh-keygen -t rsa -b 4096 -C <span class="string">"[电子邮件地址]"</span> <span class="comment"># 会生成 id_rsa 和 id_rsa.pub 两个文件</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># </span></span><br><span class="line">$ <span class="built_in">eval</span> <span class="string">"<span class="variable">$(ssh-agent -s)</span>"</span></span><br><span class="line">$ ssh-add ~/.ssh/id_rsa</span><br></pre></td></tr></table></figure>
+<p>(2) 服务端配置 <code>~/.ssh/authorized_keys</code> 文件</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 将客户端的 id_rsa.pub 中的公钥信息复制到这个文件</span></span><br><span class="line">$ vi ~/.ssh/authorized_keys</span><br><span class="line"></span><br><span class="line"><span class="comment"># 文件权限设置</span></span><br><span class="line">$ sudo chmod 600 ~/.ssh/authorized_keys</span><br><span class="line"></span><br><span class="line">$ sudo service ssh restart</span><br></pre></td></tr></table></figure>
+<p>(3) 然后就可以通过 ssh登录服务器而不需要密码了</p>
+<h1 id="5-增强服务安全等级"><a href="#5-增强服务安全等级" class="headerlink" title="5 增强服务安全等级"></a>5 增强服务安全等级</h1><h2 id="5-1-修改服务器默认ssh登录端口"><a href="#5-1-修改服务器默认ssh登录端口" class="headerlink" title="5.1 修改服务器默认ssh登录端口"></a>5.1 修改服务器默认ssh登录端口</h2><p>注意：远程修改 ssh 的配置文件有可能不小心就导致当前 ssh 连接断线，再也不能用 ssh 远程登录。因此可以多开一个 ssh 登录服务器。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">$ sudo vim /etc/ssh/sshd_config</span><br><span class="line"></span><br><span class="line"><span class="comment"># 可以是 0-65536，其中 0-1024 通常会被系统程序使用，而且必须占用这个端口的程序用 root 身份才能启动，因此最好别用 0-1024</span></span><br><span class="line">Port 12345</span><br><span class="line">PermitRootLogin no</span><br><span class="line">UseDNS no</span><br><span class="line">PasswordAuthentication no</span><br><span class="line">PermitEmptyPasswords no</span><br><span class="line">AllowUsers [允许 ssh 远程登录的用户名]</span><br><span class="line"></span><br><span class="line">$ sudo service ssh restart</span><br></pre></td></tr></table></figure>
+<h2 id="5-2-配置-iptables-和-Fall2Ban-增强安全等级"><a href="#5-2-配置-iptables-和-Fall2Ban-增强安全等级" class="headerlink" title="5.2 配置 iptables 和 Fall2Ban 增强安全等级"></a>5.2 配置 iptables 和 Fall2Ban 增强安全等级</h2><h3 id="iptables"><a href="#iptables" class="headerlink" title="iptables"></a>iptables</h3><hr>
+<p>☑ 注意: 为了防止 iptables 设置不当导致远程无法登陆，额外开一个 ssh 远程登录。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 清空当前所有 iptables 规则</span></span><br><span class="line">$ sudo iptables -F</span><br><span class="line"></span><br><span class="line"><span class="comment"># 编写 iptables 规则的配置文件</span></span><br><span class="line">$ sudo vim /etc/iptables.up.rules</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line">*filter</span><br><span class="line"><span class="comment"># allow all input</span></span><br><span class="line">-A INPUT -m state --state ESTABLISHED,RELATED -j ACCEPT</span><br><span class="line"></span><br><span class="line"><span class="comment"># allow all output</span></span><br><span class="line">-A OUTPUT -j ACCEPT</span><br><span class="line"></span><br><span class="line"><span class="comment"># allow http(s)</span></span><br><span class="line">-A INPUT -p tcp --dport 443 -j ACCEPT</span><br><span class="line">-A INPUT -p tcp --dport 80 -j ACCEPT</span><br><span class="line"></span><br><span class="line"><span class="comment"># allow ssh port login</span></span><br><span class="line">-A INPUT -p tcp -m state --state NEW --dport 12345 -j ACCEPT</span><br><span class="line"></span><br><span class="line"><span class="comment"># allow ping</span></span><br><span class="line">-A INPUT -p icmp -m icmp --icmp-type 8 -j ACCEPT</span><br><span class="line"></span><br><span class="line"><span class="comment"># log denied calls</span></span><br><span class="line">-A INPUT -m <span class="built_in">limit</span> --limit 5/min -j LOG --log-prefix <span class="string">"iptables denied:"</span> --log-level 7</span><br><span class="line"></span><br><span class="line"><span class="comment"># drop incoming sensitive connections</span></span><br><span class="line">-A INPUT -p tcp --dport 80 -i eth0 -m state --state NEW -m recent --set</span><br><span class="line">-A INPUT -p tcp --dport 80 -i eth0 -m state --state NEW -m recent --update --seconds 60 --hitcount 150 -j DROP</span><br><span class="line"></span><br><span class="line"><span class="comment"># reject all other inbound</span></span><br><span class="line">-A INPUT -j REJECT</span><br><span class="line">-A FORWARD -j REJECT</span><br><span class="line"></span><br><span class="line">COMMIT</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 应用防火墙规则</span></span><br><span class="line">$ sudo iptables-restore &lt; /etc/iptables.up.rules</span><br><span class="line"></span><br><span class="line"><span class="comment"># 查看防火墙是否开启</span></span><br><span class="line">$ sudo ufw status</span><br><span class="line"></span><br><span class="line"><span class="comment"># 开启防火墙</span></span><br><span class="line">$ sudo ufw <span class="built_in">enable</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 设置 iptables 在网络服务启动时自动启动</span></span><br><span class="line">$ vim /etc/network/<span class="keyword">if</span>-up.d/iptables</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#!/bin/sh</span></span><br><span class="line">iptables-restore /etc/iptables.up.rules</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ sudo chmod +x /etc/network/<span class="keyword">if</span>-up.d/iptables</span><br></pre></td></tr></table></figure>
+<h3 id="Fail2Ban"><a href="#Fail2Ban" class="headerlink" title="Fail2Ban"></a>Fail2Ban</h3><hr>
+<p>☑ 说明： 一个安防模块，可以看作一个防御性的动作库，通过监控系统的日志文件，根据检测到任意可疑的行为，出发不同的环境动作，比如对可疑的目标执行 ip 锁定等。</p>
+<h4 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ sudo apt-get install fail2ban</span><br></pre></td></tr></table></figure>
+<h4 id="配置"><a href="#配置" class="headerlink" title="配置"></a>配置</h4><p>/etc/fail2ban/jail.conf</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">bantime = 3600</span><br><span class="line">destemail = mengqingshen_sean@outlook.com</span><br><span class="line">action = %(action_mw)s</span><br></pre></td></tr></table></figure>
+<h4 id="运行状态"><a href="#运行状态" class="headerlink" title="运行状态"></a>运行状态</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ sudo service fail2ban status</span><br></pre></td></tr></table></figure>
+<h4 id="开启与关闭"><a href="#开启与关闭" class="headerlink" title="开启与关闭"></a>开启与关闭</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ sudo servive fail2ban start</span><br><span class="line">$ sudo servive fail2ban stop</span><br></pre></td></tr></table></figure>
+<h1 id="6-搭建-Nodejs-生产环境"><a href="#6-搭建-Nodejs-生产环境" class="headerlink" title="6 搭建 Nodejs 生产环境"></a>6 搭建 Nodejs 生产环境</h1><h2 id="6-1-搭建服务器的-Nodejs-环境"><a href="#6-1-搭建服务器的-Nodejs-环境" class="headerlink" title="6.1 搭建服务器的 Nodejs 环境"></a>6.1 搭建服务器的 Nodejs 环境</h2><h3 id="依赖环境"><a href="#依赖环境" class="headerlink" title="依赖环境"></a>依赖环境</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ sudo apt-get install vim openssl build-essential libssl-dev wget curl git</span><br></pre></td></tr></table></figure>
+<h3 id="nvm"><a href="#nvm" class="headerlink" title="nvm"></a>nvm</h3><p><a href="https://github.com/creationix/nvm" target="_blank" rel="external">GitHub 地址</a></p>
+<p>☑ 注意: 安装后，需要重新登入终端，从而载入 nvm 相关的环境变量。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ wget -qO- https://raw.githubusercontent.com/creationix/nvm/v0.33.2/install.sh | bash</span><br></pre></td></tr></table></figure>
+<h3 id="nodejs"><a href="#nodejs" class="headerlink" title="nodejs"></a>nodejs</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">$ nvm ls-remote</span><br><span class="line">$ nvm install v7.9.0</span><br><span class="line">$ nvm use v7.9.0</span><br><span class="line">$ nvm <span class="built_in">alias</span> default v7.9.0</span><br></pre></td></tr></table></figure>
+<h3 id="升级-npm"><a href="#升级-npm" class="headerlink" title="升级 npm"></a>升级 npm</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 国内网速慢的话，可以考虑用淘宝的源</span></span><br><span class="line">$ npm install --registry=https://registry.npm.taobao.org install -g npm</span><br></pre></td></tr></table></figure>
+<h3 id="设置系统文件监控数目"><a href="#设置系统文件监控数目" class="headerlink" title="设置系统文件监控数目"></a>设置系统文件监控数目</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ <span class="built_in">echo</span> fs.inotify.max_user_watches=524288 | sudo tee <span class="_">-a</span> /etc/sysctl.conf &amp;&amp; sudo sysctl -p</span><br></pre></td></tr></table></figure>
+<h3 id="使用-cnpm-取代-npm"><a href="#使用-cnpm-取代-npm" class="headerlink" title="使用 cnpm 取代 npm"></a>使用 cnpm 取代 npm</h3><p>☑ 注意: 只要网络不是太糟糕，建议始终使用 npm 而不是 cnpm。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ npm install --registry=https://registry.npm.taobao.org install -g cnpm</span><br><span class="line">$ cnpm sync koa <span class="comment"># 即使使用 npm， 也会强制从国内源安装 koa</span></span><br></pre></td></tr></table></figure>
+<h3 id="常用-nodejs-包"><a href="#常用-nodejs-包" class="headerlink" title="常用 nodejs 包"></a>常用 nodejs 包</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ npm i pm2 webpack gulp grunt-cli -g</span><br></pre></td></tr></table></figure>
+<h2 id="6-2-借助-pm2-让-Nodejs-服务常驻"><a href="#6-2-借助-pm2-让-Nodejs-服务常驻" class="headerlink" title="6.2 借助 pm2 让 Nodejs 服务常驻"></a>6.2 借助 pm2 让 Nodejs 服务常驻</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 启动 nodejs 程序</span></span><br><span class="line">$ pm2 start app.js</span><br><span class="line"></span><br><span class="line"><span class="comment"># 当前 pm2 管理的 nodejs 程序列表</span></span><br><span class="line">$ pm2 list</span><br><span class="line"></span><br><span class="line"><span class="comment"># 查看某个程序的详细信息</span></span><br><span class="line">$ pm2 show app</span><br><span class="line"></span><br><span class="line"><span class="comment"># 查看实时日志</span></span><br><span class="line">$ pm2 logs</span><br></pre></td></tr></table></figure>
+<h1 id="7-配置-nginx-实现反向代理"><a href="#7-配置-nginx-实现反向代理" class="headerlink" title="7 配置 nginx 实现反向代理"></a>7 配置 nginx 实现反向代理</h1><h2 id="删除-apache2"><a href="#删除-apache2" class="headerlink" title="删除 apache2"></a>删除 apache2</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">$ sudo service apache2 stop</span><br><span class="line">$ sudo service apache stop</span><br><span class="line">$ update-rc.d <span class="_">-f</span> apache2 remove</span><br><span class="line">$ sudo apt-get remove apache2</span><br></pre></td></tr></table></figure>
+<h2 id="安装-nginx"><a href="#安装-nginx" class="headerlink" title="安装 nginx"></a>安装 nginx</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ sudo apt-get update</span><br><span class="line">$ sudo apt-get install nginx</span><br></pre></td></tr></table></figure>
+<h2 id="配置-nginx"><a href="#配置-nginx" class="headerlink" title="配置 nginx"></a>配置 nginx</h2><p><strong>/etc/nginx/conf.d/webappbook-8081.conf</strong></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">upstream imooc &#123;</span><br><span class="line">  server 127.0.0.1:8081;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">server &#123;</span><br><span class="line">  listen 80;</span><br><span class="line">  server_name [服务器外网 IP 地址];</span><br><span class="line">  location / &#123;</span><br><span class="line">    proxy_<span class="built_in">set</span>_header X-Real-IP <span class="variable">$remote_addr</span>;</span><br><span class="line">    proxy_<span class="built_in">set</span>_header X-Forward-For <span class="variable">$proxy_add_x_forwarded_for</span>;</span><br><span class="line">    proxy_<span class="built_in">set</span>_header Host <span class="variable">$http_host</span>;</span><br><span class="line">    proxy_<span class="built_in">set</span>_header X-Nginx-Proxy <span class="literal">true</span>;</span><br><span class="line">    proxy_pass http://imooc;</span><br><span class="line">    proxy_redirect off;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><strong>/etc/nginx/nginx.conf</strong></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">...</span><br><span class="line">http &#123;</span><br><span class="line">  ...</span><br><span class="line">  <span class="comment"># 响应头中隐藏 nginx 版本信息</span></span><br><span class="line">  server_tokens off;</span><br><span class="line">  include /etc/nginx/conf.d/*.conf;</span><br><span class="line">  ...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 测试 nginx 有没有问题</span></span><br><span class="line">$ sudo nginx -t</span><br><span class="line"></span><br><span class="line"><span class="comment"># 启动 nginx</span></span><br><span class="line">$ sudo nginx start</span><br><span class="line"></span><br><span class="line"><span class="comment"># 重新载入配置</span></span><br><span class="line">$ sudo nginx <span class="_">-s</span> reload</span><br></pre></td></tr></table></figure>
+<h1 id="8-利用-DNSPod-管理域名解析"><a href="#8-利用-DNSPod-管理域名解析" class="headerlink" title="8 利用 DNSPod 管理域名解析"></a>8 利用 DNSPod 管理域名解析</h1><h2 id="8-1-更改域名的-DNS-根服务器"><a href="#8-1-更改域名的-DNS-根服务器" class="headerlink" title="8.1 更改域名的 DNS 根服务器"></a>8.1 更改域名的 DNS 根服务器</h2><h3 id="8-1-1-为什么要更改-DNS-根服务器？"><a href="#8-1-1-为什么要更改-DNS-根服务器？" class="headerlink" title="8.1.1 为什么要更改 DNS 根服务器？"></a>8.1.1 为什么要更改 DNS 根服务器？</h3><p><strong>阿里云的云解析 vs DNSPod</strong></p>
+<ul>
+<li>NDSPod 技术更加成熟，预案更加全面</li>
+<li>域名可能并不是在阿里云购买的，因此无法使用阿里云的云解析。统一在 DNSPod 管理更加效率。</li>
+</ul>
+<h3 id="8-1-2-步骤"><a href="#8-1-2-步骤" class="headerlink" title="8.1.2 步骤"></a>8.1.2 步骤</h3><p>(1) 在 <a href="https://www.dnspod.cn" target="_blank" rel="external">DNSPod</a> 拿到 DNS 根服务器</p>
+<p>首页 &gt; 常见问题 &gt; 功能介绍及使用教程 &gt; 哥哥注册商修改域名 DNS 地址的方法 &gt; <a href="https://support.dnspod.cn/Kb/showarticle/tsid/40/" target="_blank" rel="external">万网注册商域名修改DNS地址</a></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">f1g1ns1.dnspod.net</span><br><span class="line">f1g1ns2.dnspod.net</span><br></pre></td></tr></table></figure>
+<p>(2) 在<a href="https://aliyun.com/" target="_blank" rel="external">阿里云</a>更改 DNS 根服务器</p>
+<p>管理控制台 &gt; 域名 &gt; 域名列表 &gt; (某个域名的) 管理 &gt; DNS 修改</p>
+<p><img src="http://o6ul1xz4z.bkt.clouddn.com/2017-04-30-8782E41E-3983-4F69-A558-820E5D7B90CE.png" alt="8782E41E-3983-4F69-A558-820E5D7B90CE"></p>
+<p>(3) 使用 DNSPod 的域名解析功能，解析在阿里云买的域名</p>
+<h2 id="8-2-配置解析项目的域名-A-记录和-CNAME"><a href="#8-2-配置解析项目的域名-A-记录和-CNAME" class="headerlink" title="8.2 配置解析项目的域名 A 记录和 CNAME"></a>8.2 配置解析项目的域名 A 记录和 CNAME</h2><p><img src="http://o6ul1xz4z.bkt.clouddn.com/2017-04-30-D77D9188-AC9B-4A2E-AB09-1481B359BB5B.png" alt="D77D9188-AC9B-4A2E-AB09-1481B359BB5B"></p>
+<p><strong>扩展</strong></p>
+<p>DNSPod 的域名解析服务不但可以解析到具体的 ip ，也可以解析到其它服务。比如配合<a href="https://www.qiniu.com" target="_blank" rel="external">七牛</a>的对象存储提供的<code>融合 CDN 加速域名</code>就可以解析到图床中的图片地址。</p>
+<h1 id="9-服务器配置安装-MongoDB"><a href="#9-服务器配置安装-MongoDB" class="headerlink" title="9 服务器配置安装 MongoDB"></a>9 服务器配置安装 MongoDB</h1><p>注意： 因为成本原因，MongoDB 和 Web 服务在同一个 ECS 实例上，在商业实践中，为了解耦，应当放在不同的实例中。或者有条件的话，可以购买阿里云专门的 MongoDB 数据库服务。</p>
+<h2 id="9-1-在-Ubuntu-14-04-上安装-MongoDB"><a href="#9-1-在-Ubuntu-14-04-上安装-MongoDB" class="headerlink" title="9.1 在 Ubuntu 14.04 上安装 MongoDB"></a>9.1 在 Ubuntu 14.04 上安装 MongoDB</h2><h3 id="9-1-1-安装"><a href="#9-1-1-安装" class="headerlink" title="9.1.1 安装"></a>9.1.1 安装</h3><p>参考 MongoDB 官网 <a href="https://docs.mongodb.com/manual/tutorial/install-mongodb-on-ubuntu/" target="_blank" rel="external">Install on Ubuntu</a></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">$ sudo apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv 0C49F3730359A14518585931BC711F9BA15703C6</span><br><span class="line"></span><br><span class="line">$ <span class="built_in">echo</span> <span class="string">"deb [ arch=amd64,arm64 ] http://repo.mongodb.org/apt/ubuntu xenial/mongodb-org/3.4 multiverse"</span> | sudo tee /etc/apt/sources.list.d/mongodb-org-3.4.list</span><br><span class="line"></span><br><span class="line">$ sudo apt-get update</span><br><span class="line"></span><br><span class="line">$ sudo apt-get install -y mongodb-org</span><br><span class="line"></span><br><span class="line"><span class="comment"># 如果上一步提示找不到 mongodb-org，则将 aliyun 的源注释掉，使用 ubuntu 官方的源。</span></span><br><span class="line"><span class="comment"># $ sudo vim /etc/apt/apt.conf</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 然后，如果要加快加快下载速度，可以将 mongodb 的源改为 aliyun</span></span><br><span class="line"><span class="comment"># $ sudo vim /etc/apt/sources.list.d/mongodb-org-3.4.list </span></span><br><span class="line"><span class="comment"># deb [ arch=amd64,arm64 ] http://mirrors.aliyun.com/apt/ubuntu trusty/mongodb-org/3.4 multiverse</span></span><br></pre></td></tr></table></figure>
+<h3 id="9-1-2-配置"><a href="#9-1-2-配置" class="headerlink" title="9.1.2 配置"></a>9.1.2 配置</h3><h4 id="MongoDB-配置"><a href="#MongoDB-配置" class="headerlink" title="MongoDB 配置"></a>MongoDB 配置</h4><p><strong>/etc/mongod.conf</strong></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">net:</span><br><span class="line">	port 27018 <span class="comment"># 为了安全起见，不使用默认端口</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ sudo service mongod restart</span><br></pre></td></tr></table></figure>
+<h4 id="防火墙配置"><a href="#防火墙配置" class="headerlink" title="防火墙配置"></a>防火墙配置</h4><p><strong>/etc/iptables.up.rules</strong></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># mongodb connect</span></span><br><span class="line">-A INPUT <span class="_">-s</span> 127.0.1 -p tcp --destination-port 27017 -m state --state NEW,ESTABLISHED -j ACCEPT</span><br><span class="line">-A OUTPUT <span class="_">-s</span> 127.0.1 -p tcp --source-port 27017 -m state --state ESTABLISHED -j ACCEPT</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ sudo iptables-restore &lt; /etc/iptables.up.rules</span><br></pre></td></tr></table></figure>
+<h3 id="9-1-3-启动-amp-关闭"><a href="#9-1-3-启动-amp-关闭" class="headerlink" title="9.1.3 启动&amp;关闭"></a>9.1.3 启动&amp;关闭</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># mongodb 的日志文件</span></span><br><span class="line">$ cat /var/<span class="built_in">log</span>/mongodb/mongod.log</span><br><span class="line"></span><br><span class="line"><span class="comment"># 启动 mongodb 服务</span></span><br><span class="line">$ sudo service mongod start</span><br><span class="line"></span><br><span class="line"><span class="comment"># 重启 mongodb 服务</span></span><br><span class="line">$ sudo service mongod restart</span><br><span class="line"></span><br><span class="line"><span class="comment"># 查看 mongodb 服务的状态</span></span><br><span class="line">$ sudo service mongod status</span><br></pre></td></tr></table></figure>
+<h3 id="9-1-4-连接"><a href="#9-1-4-连接" class="headerlink" title="9.1.4 连接"></a>9.1.4 连接</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ mongo --port 27018</span><br></pre></td></tr></table></figure>
+<h2 id="9-2-往线上-MongoDB-导入单表数据或数据库"><a href="#9-2-往线上-MongoDB-导入单表数据或数据库" class="headerlink" title="9.2 往线上 MongoDB 导入单表数据或数据库"></a>9.2 往线上 MongoDB 导入单表数据或数据库</h2><h3 id="9-2-1-项目预览"><a href="#9-2-1-项目预览" class="headerlink" title="9.2.1 项目预览"></a>9.2.1 项目预览</h3><p>讲师以自己的微信小程序为例，钥匙往线上 MongoDB 导数据，该小程序没有课程出来，通过下面的启动过程一窥微信小程序面貌。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 项目根目录</span></span><br><span class="line">$ <span class="built_in">cd</span> indust-app</span><br><span class="line"></span><br><span class="line"><span class="comment"># 通过微信模拟器在本地启动(在 chrome 中预览)</span></span><br><span class="line">$ wept</span><br></pre></td></tr></table></figure>
+<p><img src="http://o6ul1xz4z.bkt.clouddn.com/2017-05-01-77C5FC78-04E7-42EB-93A4-94BF00F698C0.png" alt="77C5FC78-04E7-42EB-93A4-94BF00F698C0"></p>
+<h3 id="9-2-2-整个数据库"><a href="#9-2-2-整个数据库" class="headerlink" title="9.2.2 整个数据库"></a>9.2.2 整个数据库</h3><p><strong>本地导出、打包、上传</strong></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 存放项目备份数据的文件夹</span></span><br><span class="line">$ <span class="built_in">cd</span> deploy-projects</span><br><span class="line"></span><br><span class="line"><span class="comment"># 将本地 MongoDB 中的名为indust-app的数据库导出到当前目录下的 indust-app-backup 文件夹下</span></span><br><span class="line">$ mongodump -h 127.0.0.1:27017 <span class="_">-d</span> indust-app -o indust-app-backup</span><br></pre></td></tr></table></figure>
+<p><img src="http://o6ul1xz4z.bkt.clouddn.com/2017-05-01-D8174179-AE4F-4C2A-8097-9752AB6FB211.png" alt="D8174179-AE4F-4C2A-8097-9752AB6FB211"></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 打包 MongoDB 数据库数据并压缩</span></span><br><span class="line">$ tar zcvf indust-app.tar.gz indust-app-backup</span><br><span class="line"></span><br><span class="line"><span class="comment"># 上传到服务器</span></span><br><span class="line">$ scp -P [ssh端口] ./indust-app-backup.tar.gz [远程服务器用户名]@[远程服务器 IP]:[远程服务器目录]</span><br></pre></td></tr></table></figure>
+<p><strong>服务器解压、导入</strong></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">$ tar xvf indust-app-backup.tar.gz</span><br><span class="line">$ <span class="built_in">cd</span> indust-app-backup</span><br><span class="line"></span><br><span class="line"><span class="comment"># 将解压的数据导入当前机器中的 MongoDB 的 indust-app 数据库</span></span><br><span class="line">$ mongorestore --host 127.0.0.1:[mongoDB 服务端口] <span class="_">-d</span> indust-app ./indust-app/</span><br><span class="line"></span><br><span class="line"><span class="comment"># 查看导入的数据</span></span><br><span class="line">$ mongo --port [mongoDB 服务端口]</span><br><span class="line">&gt; use indust-app</span><br><span class="line">&gt; show tables</span><br></pre></td></tr></table></figure>
+<h3 id="9-2-3-单表"><a href="#9-2-3-单表" class="headerlink" title="9.2.3 单表"></a>9.2.3 单表</h3><p><strong>本地导出、打包、上传</strong></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">$ <span class="built_in">cd</span> deploy-projects</span><br><span class="line"></span><br><span class="line"><span class="comment"># 导出 imooc_movie 库下的 users 表</span></span><br><span class="line">$ mongoexport <span class="_">-d</span> imooc_movie -c users -q <span class="string">'&#123;"name": &#123;$ne: null&#125;&#125;'</span> -o ./movie-users.json</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/MongoDB/" rel="tag">#MongoDB</a>
+          
+            <a href="/tags/nodejs/" rel="tag">#nodejs</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/04/21/BOOK_高性能网站建设指南_WEB开发者性能优化最佳实践/01_理解Ajax性能/" rel="next" title="01 理解 Ajax 性能">
+                <i class="fa fa-chevron-left"></i> 01 理解 Ajax 性能
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/05/01/慕课网/imooc_React-Native-贯穿全栈开发-APP/" rel="prev" title="React Native 贯穿全栈开发 APP">
+                React Native 贯穿全栈开发 APP <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2017/04/22/慕课网/imooc_NodeJS 线上服务器部署与发布/"
+           data-title="NodeJS线上服务器部署与发布" data-url="http://laputa-er.github.io/2017/04/22/慕课网/imooc_NodeJS 线上服务器部署与发布/">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.gif"
+               alt="Sean" />
+          <p class="site-author-name" itemprop="name">Sean</p>
+          <p class="site-description motion-element" itemprop="description">整理了一批过去一段时间ios相关的笔记，其它的笔记也整理下？源码分享出来？再说吧...反正也只有自己会看吧...</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">214</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">26</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">35</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#0-课程介绍"><span class="nav-text">0 课程介绍</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#实战项目"><span class="nav-text">实战项目</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#环境和工具"><span class="nav-text">环境和工具</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#课程步骤"><span class="nav-text">课程步骤</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#重要知识点"><span class="nav-text">重要知识点</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#最终效果"><span class="nav-text">最终效果</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#1-课程预热"><span class="nav-text">1 课程预热</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-1-为什么是全栈最后一公里"><span class="nav-text">1.1 为什么是全栈最后一公里</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-2-搭建线上生产环境需要做什么"><span class="nav-text">1.2 搭建线上生产环境需要做什么</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#2-待部署的-5-个本地-Nodejs-项目"><span class="nav-text">2 待部署的 5 个本地 Nodejs 项目</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#2-1-快速搭建一个纯静态简易站点"><span class="nav-text">2.1 快速搭建一个纯静态简易站点</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-2-Nodejs-电影网站项目上线准备"><span class="nav-text">2.2 Nodejs 电影网站项目上线准备</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#2-2-1-升级下老旧的模块"><span class="nav-text">2.2.1 升级下老旧的模块</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-2-2-mongodb"><span class="nav-text">2.2.2 mongodb</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#安装-mongoDB"><span class="nav-text">安装 mongoDB</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#设置-mongoDB"><span class="nav-text">设置 mongoDB</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#设置用户"><span class="nav-text">设置用户</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#启动-amp-amp-关闭-amp-amp-远程登录"><span class="nav-text">启动 && 关闭 && 远程登录</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-2-3-项目修改并测试"><span class="nav-text">2.2.3 项目修改并测试</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#本地启动"><span class="nav-text">本地启动</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#浏览"><span class="nav-text">浏览</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-3-狗狗说-React-Native-开发的-App-后台项目分析"><span class="nav-text">2.3 狗狗说 React Native 开发的 App 后台项目分析</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-4-微信小程序的项目介绍"><span class="nav-text">2.4 微信小程序的项目介绍</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-5-电影微信公众号的项目概况"><span class="nav-text">2.5 电影微信公众号的项目概况</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-6-从一个故事理解整个部署思路"><span class="nav-text">2.6 从一个故事理解整个部署思路</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#3-选购域名服务器及备案"><span class="nav-text">3 选购域名服务器及备案</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#3-1-选购域名的经验分享"><span class="nav-text">3.1 选购域名的经验分享</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#相关网站"><span class="nav-text">相关网站</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#注意事项"><span class="nav-text">注意事项</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-2-主机选择"><span class="nav-text">3.2 主机选择</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-3-域名备案流程走起来"><span class="nav-text">3.3 域名备案流程走起来</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#注意事项-1"><span class="nav-text">注意事项</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#在阿里云官网进行备案"><span class="nav-text">在阿里云官网进行备案</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#4-远程登录服务器"><span class="nav-text">4 远程登录服务器</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#4-1-第一次-ssh-远程登录服务器"><span class="nav-text">4.1 第一次 ssh 远程登录服务器</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-2-配置-root-及应用账号权限"><span class="nav-text">4.2 配置 root 及应用账号权限</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-3-配置本地无密码-SSH-登录"><span class="nav-text">4.3 配置本地无密码 SSH 登录</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#5-增强服务安全等级"><span class="nav-text">5 增强服务安全等级</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#5-1-修改服务器默认ssh登录端口"><span class="nav-text">5.1 修改服务器默认ssh登录端口</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5-2-配置-iptables-和-Fall2Ban-增强安全等级"><span class="nav-text">5.2 配置 iptables 和 Fall2Ban 增强安全等级</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#iptables"><span class="nav-text">iptables</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Fail2Ban"><span class="nav-text">Fail2Ban</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#安装"><span class="nav-text">安装</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#配置"><span class="nav-text">配置</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#运行状态"><span class="nav-text">运行状态</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#开启与关闭"><span class="nav-text">开启与关闭</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#6-搭建-Nodejs-生产环境"><span class="nav-text">6 搭建 Nodejs 生产环境</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#6-1-搭建服务器的-Nodejs-环境"><span class="nav-text">6.1 搭建服务器的 Nodejs 环境</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#依赖环境"><span class="nav-text">依赖环境</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#nvm"><span class="nav-text">nvm</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#nodejs"><span class="nav-text">nodejs</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#升级-npm"><span class="nav-text">升级 npm</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#设置系统文件监控数目"><span class="nav-text">设置系统文件监控数目</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#使用-cnpm-取代-npm"><span class="nav-text">使用 cnpm 取代 npm</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#常用-nodejs-包"><span class="nav-text">常用 nodejs 包</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#6-2-借助-pm2-让-Nodejs-服务常驻"><span class="nav-text">6.2 借助 pm2 让 Nodejs 服务常驻</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#7-配置-nginx-实现反向代理"><span class="nav-text">7 配置 nginx 实现反向代理</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#删除-apache2"><span class="nav-text">删除 apache2</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#安装-nginx"><span class="nav-text">安装 nginx</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#配置-nginx"><span class="nav-text">配置 nginx</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#8-利用-DNSPod-管理域名解析"><span class="nav-text">8 利用 DNSPod 管理域名解析</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#8-1-更改域名的-DNS-根服务器"><span class="nav-text">8.1 更改域名的 DNS 根服务器</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#8-1-1-为什么要更改-DNS-根服务器？"><span class="nav-text">8.1.1 为什么要更改 DNS 根服务器？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#8-1-2-步骤"><span class="nav-text">8.1.2 步骤</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#8-2-配置解析项目的域名-A-记录和-CNAME"><span class="nav-text">8.2 配置解析项目的域名 A 记录和 CNAME</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#9-服务器配置安装-MongoDB"><span class="nav-text">9 服务器配置安装 MongoDB</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#9-1-在-Ubuntu-14-04-上安装-MongoDB"><span class="nav-text">9.1 在 Ubuntu 14.04 上安装 MongoDB</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#9-1-1-安装"><span class="nav-text">9.1.1 安装</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#9-1-2-配置"><span class="nav-text">9.1.2 配置</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#MongoDB-配置"><span class="nav-text">MongoDB 配置</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#防火墙配置"><span class="nav-text">防火墙配置</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#9-1-3-启动-amp-关闭"><span class="nav-text">9.1.3 启动&关闭</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#9-1-4-连接"><span class="nav-text">9.1.4 连接</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#9-2-往线上-MongoDB-导入单表数据或数据库"><span class="nav-text">9.2 往线上 MongoDB 导入单表数据或数据库</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#9-2-1-项目预览"><span class="nav-text">9.2.1 项目预览</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#9-2-2-整个数据库"><span class="nav-text">9.2.2 整个数据库</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#9-2-3-单表"><span class="nav-text">9.2.3 单表</span></a></li></ol></li></ol></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Sean</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"lapuda-er"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+    <script src="/vendors/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
+    <script src="/js/src/hook-duoshuo.js"></script>
+  
+
+
+
+
+
+
+  
+  
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length == 0) {
+       search_path = "search.xml";
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    function proceedsearch() {
+      $("body").append('<div class="popoverlay">').css('overflow', 'hidden');
+      $('.popup').toggle();
+
+    }
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+    'use strict';
+    $.ajax({
+        url: path,
+        dataType: "xml",
+        async: true,
+        success: function( xmlResponse ) {
+            // get the contents from search data
+            isfetched = true;
+            $('.popup').detach().appendTo('.header-inner');
+            var datas = $( "entry", xmlResponse ).map(function() {
+                return {
+                    title: $( "title", this ).text(),
+                    content: $("content",this).text(),
+                    url: $( "url" , this).text()
+                };
+            }).get();
+            var $input = document.getElementById(search_id);
+            var $resultContent = document.getElementById(content_id);
+            $input.addEventListener('input', function(){
+                var matchcounts = 0;
+                var str='<ul class=\"search-result-list\">';
+                var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+                $resultContent.innerHTML = "";
+                if (this.value.trim().length > 1) {
+                // perform local searching
+                datas.forEach(function(data) {
+                    var isMatch = true;
+                    var content_index = [];
+                    var data_title = data.title.trim().toLowerCase();
+                    var data_content = data.content.trim().replace(/<[^>]+>/g,"").toLowerCase();
+                    var data_url = data.url;
+                    var index_title = -1;
+                    var index_content = -1;
+                    var first_occur = -1;
+                    // only match artiles with not empty titles and contents
+                    if(data_title != '' && data_content != '') {
+                        keywords.forEach(function(keyword, i) {
+                            index_title = data_title.indexOf(keyword);
+                            index_content = data_content.indexOf(keyword);
+                            if( index_title < 0 && index_content < 0 ){
+                                isMatch = false;
+                            } else {
+                                if (index_content < 0) {
+                                    index_content = 0;
+                                }
+                                if (i == 0) {
+                                    first_occur = index_content;
+                                }
+                            }
+                        });
+                    }
+                    // show search results
+                    if (isMatch) {
+                        matchcounts += 1;
+                        str += "<li><a href='"+ data_url +"' class='search-result-title'>"+ data_title +"</a>";
+                        var content = data.content.trim().replace(/<[^>]+>/g,"");
+                        if (first_occur >= 0) {
+                            // cut out 100 characters
+                            var start = first_occur - 20;
+                            var end = first_occur + 80;
+                            if(start < 0){
+                                start = 0;
+                            }
+                            if(start == 0){
+                                end = 50;
+                            }
+                            if(end > content.length){
+                                end = content.length;
+                            }
+                            var match_content = content.substring(start, end);
+                            // highlight all keywords
+                            keywords.forEach(function(keyword){
+                                var regS = new RegExp(keyword, "gi");
+                                match_content = match_content.replace(regS, "<b class=\"search-keyword\">"+keyword+"</b>");
+                            });
+
+                            str += "<p class=\"search-result\">" + match_content +"...</p>"
+                        }
+                        str += "</li>";
+                    }
+                })};
+                str += "</ul>";
+                if (matchcounts == 0) { str = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>' }
+                if (keywords == "") { str = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>' }
+                $resultContent.innerHTML = str;
+            });
+            proceedsearch();
+        }
+    });}
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched == false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+
+    });
+
+    $('.popup-btn-close').click(function(e){
+      $('.popup').hide();
+      $(".popoverlay").remove();
+      $('body').css('overflow', '');
+    });
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+  </script>
+
+
+  
+
+  
+
+  
+
+</body>
+</html>

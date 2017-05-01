@@ -1,0 +1,927 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="MongoDB,ReactNative,nodejs," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1" />
+
+
+
+
+
+
+<meta name="description" content="0 课程介绍0.1 谁需要这门课程？课程价值
+即将工作，需要一个足够打动面试官的求职作品。
+职业发展遇到瓶颈，需要一个打通前后端任督二脉的超车技术栈。
+想独立创业，但公司技术人员有限，需要一种能力通吃前后端开发。
+
+适用人群
+
+0.2 实战项目介绍完整的 APP 开发流程
+
+0.3 APP 功能介绍桌面图标和启动画面
+过度页面和轮播效果
+注册登录和账户管理  
+视频的配音制作页面">
+<meta property="og:type" content="article">
+<meta property="og:title" content="React Native 贯穿全栈开发 APP">
+<meta property="og:url" content="http://laputa-er.github.io/2017/05/01/慕课网/imooc_React-Native-贯穿全栈开发-APP/index.html">
+<meta property="og:site_name" content="Sean">
+<meta property="og:description" content="0 课程介绍0.1 谁需要这门课程？课程价值
+即将工作，需要一个足够打动面试官的求职作品。
+职业发展遇到瓶颈，需要一个打通前后端任督二脉的超车技术栈。
+想独立创业，但公司技术人员有限，需要一种能力通吃前后端开发。
+
+适用人群
+
+0.2 实战项目介绍完整的 APP 开发流程
+
+0.3 APP 功能介绍桌面图标和启动画面
+过度页面和轮播效果
+注册登录和账户管理  
+视频的配音制作页面">
+<meta property="og:image" content="http://o6ul1xz4z.bkt.clouddn.com/2017-05-01-882D0CDB-DB4D-4AC5-B1A1-92C80B1CFB19.png">
+<meta property="og:image" content="http://o6ul1xz4z.bkt.clouddn.com/2017-05-01-AED8B097-DB89-4C53-8CB2-E3139B18D44A.png">
+<meta property="og:image" content="http://o6ul1xz4z.bkt.clouddn.com/2017-05-01-570D9EFE-A0CC-469F-BCA4-91C211CA3979.png">
+<meta property="og:image" content="http://o6ul1xz4z.bkt.clouddn.com/2017-05-01-2F3BB186-3327-4570-9A2E-E5A045F7B577.png">
+<meta property="og:image" content="http://o6ul1xz4z.bkt.clouddn.com/2017-05-01-18A3986C-D085-4AB6-9ADF-840A6F430F78.png">
+<meta property="og:image" content="http://o6ul1xz4z.bkt.clouddn.com/2017-05-01-130F9764-04B8-4F04-9ED5-AF3AB490607C.png">
+<meta property="og:image" content="http://o6ul1xz4z.bkt.clouddn.com/2017-05-01-52A268EC-E64E-4474-9165-F49A79918AAD.png">
+<meta property="og:image" content="http://o6ul1xz4z.bkt.clouddn.com/2017-05-01-F9E03C12-AB29-4BC0-85DD-39C1CD318FCD.png">
+<meta property="og:image" content="http://laputa-er.github.io/var/folders/q4/q5g0qg7n3yv6tylnbzmcltk80000gn/T/abnerworks.Typora/74A0E553-4592-4159-A8F6-A32FA9CDF115.png">
+<meta property="og:image" content="http://o6ul1xz4z.bkt.clouddn.com/2017-05-01-FB55C162-8EEB-4D53-BFBF-84D8088EB6D5.png">
+<meta property="og:image" content="http://o6ul1xz4z.bkt.clouddn.com/2017-05-01-673134D8-1109-491F-8847-F350D1C15D21.png">
+<meta property="og:image" content="http://laputa-er.github.io/var/folders/q4/q5g0qg7n3yv6tylnbzmcltk80000gn/T/abnerworks.Typora/B1A01179-A9E7-40AC-ABD1-B62572C4B759.png">
+<meta property="og:image" content="http://o6ul1xz4z.bkt.clouddn.com/2017-05-01-DDB6085D-A10F-4F77-B3DD-88CA39E4B307.png">
+<meta property="og:image" content="http://o6ul1xz4z.bkt.clouddn.com/2017-05-01-1AC37DB1-5952-4F98-948A-652E76AA26F1.png">
+<meta property="og:image" content="http://o6ul1xz4z.bkt.clouddn.com/2017-05-01-9D5AE200-A2A3-493F-98F7-E556D9A0E7F6.png">
+<meta property="og:image" content="http://o6ul1xz4z.bkt.clouddn.com/2017-05-01-F5A2E11D-8BCE-41F9-910B-ED6ED175665A.png">
+<meta property="og:image" content="http://o6ul1xz4z.bkt.clouddn.com/2017-05-01-CAE44957-D7E2-49C9-9AFF-C62A01C947BD.png">
+<meta property="og:image" content="http://o6ul1xz4z.bkt.clouddn.com/2017-05-01-A91AFC02-5CD0-4503-9F50-0D7FD254E490.png">
+<meta property="og:image" content="http://o6ul1xz4z.bkt.clouddn.com/2017-05-01-557CE284-84C8-48C0-912E-B785D565264F.png">
+<meta property="og:image" content="http://o6ul1xz4z.bkt.clouddn.com/2017-05-01-17B2329A-63D9-4F63-B913-719BD59CFE20.png">
+<meta property="og:image" content="http://o6ul1xz4z.bkt.clouddn.com/2017-05-01-5B6CDA95-0E79-4BA9-923F-71673D97C9F9.png">
+<meta property="og:image" content="http://o6ul1xz4z.bkt.clouddn.com/2017-05-01-B37DFE6F-B67F-4087-B827-0BD00621E4EA.png">
+<meta property="og:image" content="http://o6ul1xz4z.bkt.clouddn.com/2017-05-01-5A927112-FBB2-4237-87DA-552ED6984037.png">
+<meta property="og:image" content="http://o6ul1xz4z.bkt.clouddn.com/2017-05-01-535E8284-335C-4DB4-9652-BDA122A9F6EB.png">
+<meta property="og:image" content="http://o6ul1xz4z.bkt.clouddn.com/2017-05-01-FFAA5529-FE25-4BD1-AC20-0A77ECD232E4.png">
+<meta property="og:image" content="http://o6ul1xz4z.bkt.clouddn.com/2017-05-01-9598C18F-AC6B-4711-BD81-CE085B720691.png">
+<meta property="og:image" content="http://o6ul1xz4z.bkt.clouddn.com/2017-05-01-DBAAAD84-B012-49AD-A19A-D3CE9237EEE3.png">
+<meta property="og:updated_time" content="2017-05-01T13:41:16.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="React Native 贯穿全栈开发 APP">
+<meta name="twitter:description" content="0 课程介绍0.1 谁需要这门课程？课程价值
+即将工作，需要一个足够打动面试官的求职作品。
+职业发展遇到瓶颈，需要一个打通前后端任督二脉的超车技术栈。
+想独立创业，但公司技术人员有限，需要一种能力通吃前后端开发。
+
+适用人群
+
+0.2 实战项目介绍完整的 APP 开发流程
+
+0.3 APP 功能介绍桌面图标和启动画面
+过度页面和轮播效果
+注册登录和账户管理  
+视频的配音制作页面">
+<meta name="twitter:image" content="http://o6ul1xz4z.bkt.clouddn.com/2017-05-01-882D0CDB-DB4D-4AC5-B1A1-92C80B1CFB19.png">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 0,
+      author: '博主'
+    }
+  };
+</script>
+
+
+
+
+  <link rel="canonical" href="http://laputa-er.github.io/2017/05/01/慕课网/imooc_React-Native-贯穿全栈开发-APP/"/>
+
+  <title> React Native 贯穿全栈开发 APP | Sean </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//hm.baidu.com/hm.js?898688f51c5a3d6b37dd23e04441e5bd";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">Sean</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">笔记分享</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup">
+ <span class="search-icon fa fa-search"></span>
+ <input type="text" id="local-search-input">
+ <div id="local-search-result"></div>
+ <span class="popup-btn-close">close</span>
+</div>
+
+
+    </div>
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                React Native 贯穿全栈开发 APP
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2017-05-01T19:40:00+08:00" content="2017-05-01">
+              2017-05-01
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/慕课网学习笔记/" itemprop="url" rel="index">
+                    <span itemprop="name">慕课网学习笔记</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2017/05/01/慕课网/imooc_React-Native-贯穿全栈开发-APP/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2017/05/01/慕课网/imooc_React-Native-贯穿全栈开发-APP/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="0-课程介绍"><a href="#0-课程介绍" class="headerlink" title="0 课程介绍"></a>0 课程介绍</h1><h2 id="0-1-谁需要这门课程？"><a href="#0-1-谁需要这门课程？" class="headerlink" title="0.1 谁需要这门课程？"></a>0.1 谁需要这门课程？</h2><p><strong>课程价值</strong></p>
+<p>即将工作，需要一个足够打动面试官的求职作品。</p>
+<p>职业发展遇到瓶颈，需要一个打通前后端任督二脉的超车技术栈。</p>
+<p>想独立创业，但公司技术人员有限，需要一种能力通吃前后端开发。</p>
+<p><img src="http://o6ul1xz4z.bkt.clouddn.com/2017-05-01-882D0CDB-DB4D-4AC5-B1A1-92C80B1CFB19.png" alt="882D0CDB-DB4D-4AC5-B1A1-92C80B1CFB19"></p>
+<p><strong>适用人群</strong></p>
+<p><img src="http://o6ul1xz4z.bkt.clouddn.com/2017-05-01-AED8B097-DB89-4C53-8CB2-E3139B18D44A.png" alt="AED8B097-DB89-4C53-8CB2-E3139B18D44A"></p>
+<h2 id="0-2-实战项目介绍"><a href="#0-2-实战项目介绍" class="headerlink" title="0.2 实战项目介绍"></a>0.2 实战项目介绍</h2><p><strong>完整的 APP 开发流程</strong></p>
+<p><img src="http://o6ul1xz4z.bkt.clouddn.com/2017-05-01-570D9EFE-A0CC-469F-BCA4-91C211CA3979.png" alt="570D9EFE-A0CC-469F-BCA4-91C211CA3979"></p>
+<h2 id="0-3-APP-功能介绍"><a href="#0-3-APP-功能介绍" class="headerlink" title="0.3 APP 功能介绍"></a>0.3 APP 功能介绍</h2><h3 id="桌面图标和启动画面"><a href="#桌面图标和启动画面" class="headerlink" title="桌面图标和启动画面"></a>桌面图标和启动画面</h3><p><img src="http://o6ul1xz4z.bkt.clouddn.com/2017-05-01-2F3BB186-3327-4570-9A2E-E5A045F7B577.png" alt="2F3BB186-3327-4570-9A2E-E5A045F7B577"></p>
+<h3 id="过度页面和轮播效果"><a href="#过度页面和轮播效果" class="headerlink" title="过度页面和轮播效果"></a>过度页面和轮播效果</h3><p><img src="http://o6ul1xz4z.bkt.clouddn.com/2017-05-01-18A3986C-D085-4AB6-9ADF-840A6F430F78.png" alt="18A3986C-D085-4AB6-9ADF-840A6F430F78"></p>
+<h3 id="注册登录和账户管理"><a href="#注册登录和账户管理" class="headerlink" title="注册登录和账户管理"></a>注册登录和账户管理</h3><p><img src="http://o6ul1xz4z.bkt.clouddn.com/2017-05-01-130F9764-04B8-4F04-9ED5-AF3AB490607C.png" alt="130F9764-04B8-4F04-9ED5-AF3AB490607C"><img src="http://o6ul1xz4z.bkt.clouddn.com/2017-05-01-52A268EC-E64E-4474-9165-F49A79918AAD.png" alt="52A268EC-E64E-4474-9165-F49A79918AAD"><img src="http://o6ul1xz4z.bkt.clouddn.com/2017-05-01-F9E03C12-AB29-4BC0-85DD-39C1CD318FCD.png" alt="F9E03C12-AB29-4BC0-85DD-39C1CD318FCD">  </p>
+<h3 id="视频的配音制作页面"><a href="#视频的配音制作页面" class="headerlink" title="视频的配音制作页面"></a>视频的配音制作页面</h3><p><img src="/var/folders/q4/q5g0qg7n3yv6tylnbzmcltk80000gn/T/abnerworks.Typora/74A0E553-4592-4159-A8F6-A32FA9CDF115.png" alt="74A0E553-4592-4159-A8F6-A32FA9CDF115"><img src="http://o6ul1xz4z.bkt.clouddn.com/2017-05-01-FB55C162-8EEB-4D53-BFBF-84D8088EB6D5.png" alt="FB55C162-8EEB-4D53-BFBF-84D8088EB6D5"><img src="http://o6ul1xz4z.bkt.clouddn.com/2017-05-01-673134D8-1109-491F-8847-F350D1C15D21.png" alt="673134D8-1109-491F-8847-F350D1C15D21"></p>
+<p><img src="/var/folders/q4/q5g0qg7n3yv6tylnbzmcltk80000gn/T/abnerworks.Typora/B1A01179-A9E7-40AC-ABD1-B62572C4B759.png" alt="327663DD-A172-4CBB-8A1A-FED08BAF7BC7">    <img src="http://o6ul1xz4z.bkt.clouddn.com/2017-05-01-DDB6085D-A10F-4F77-B3DD-88CA39E4B307.png" alt="DDB6085D-A10F-4F77-B3DD-88CA39E4B307">  <img src="http://o6ul1xz4z.bkt.clouddn.com/2017-05-01-1AC37DB1-5952-4F98-948A-652E76AA26F1.png" alt="1AC37DB1-5952-4F98-948A-652E76AA26F1"> </p>
+<h3 id="展现所有制作完毕的创意视频列表"><a href="#展现所有制作完毕的创意视频列表" class="headerlink" title="展现所有制作完毕的创意视频列表"></a>展现所有制作完毕的创意视频列表</h3><p><img src="http://o6ul1xz4z.bkt.clouddn.com/2017-05-01-9D5AE200-A2A3-493F-98F7-E556D9A0E7F6.png" alt="9D5AE200-A2A3-493F-98F7-E556D9A0E7F6"><img src="http://o6ul1xz4z.bkt.clouddn.com/2017-05-01-F5A2E11D-8BCE-41F9-910B-ED6ED175665A.png" alt="F5A2E11D-8BCE-41F9-910B-ED6ED175665A"><img src="http://o6ul1xz4z.bkt.clouddn.com/2017-05-01-CAE44957-D7E2-49C9-9AFF-C62A01C947BD.png" alt="CAE44957-D7E2-49C9-9AFF-C62A01C947BD"></p>
+<h2 id="0-4-APP-后台"><a href="#0-4-APP-后台" class="headerlink" title="0.4 APP 后台"></a>0.4 APP 后台</h2><p><img src="http://o6ul1xz4z.bkt.clouddn.com/2017-05-01-A91AFC02-5CD0-4503-9F50-0D7FD254E490.png" alt="A91AFC02-5CD0-4503-9F50-0D7FD254E490">  </p>
+<h2 id="0-5-要点"><a href="#0-5-要点" class="headerlink" title="0.5 要点"></a>0.5 要点</h2><h3 id="环境搭建"><a href="#环境搭建" class="headerlink" title="环境搭建"></a>环境搭建</h3><p><img src="http://o6ul1xz4z.bkt.clouddn.com/2017-05-01-557CE284-84C8-48C0-912E-B785D565264F.png" alt="557CE284-84C8-48C0-912E-B785D565264F"></p>
+<h3 id="服务器端"><a href="#服务器端" class="headerlink" title="服务器端"></a>服务器端</h3><p><img src="http://o6ul1xz4z.bkt.clouddn.com/2017-05-01-17B2329A-63D9-4F63-B913-719BD59CFE20.png" alt="17B2329A-63D9-4F63-B913-719BD59CFE20"></p>
+<h3 id="前后端连调"><a href="#前后端连调" class="headerlink" title="前后端连调"></a>前后端连调</h3><p><img src="http://o6ul1xz4z.bkt.clouddn.com/2017-05-01-5B6CDA95-0E79-4BA9-923F-71673D97C9F9.png" alt="5B6CDA95-0E79-4BA9-923F-71673D97C9F9"></p>
+<h1 id="1-课程预热"><a href="#1-课程预热" class="headerlink" title="1 课程预热"></a>1 课程预热</h1><h2 id="1-1-React-与-React-Native"><a href="#1-1-React-与-React-Native" class="headerlink" title="1.1 React 与 React Native"></a>1.1 React 与 React Native</h2><p>React 是 Facebook 推出的一种解决页面组建的抽象和形态的技术方案。它有两个工程上的实现</p>
+<p>☑ <a href="https://github.com/facebook/react" target="_blank" rel="external">Reactjs</a>, 也就是我们通常说的 React，用在 Web 网页端，也就是用在浏览器中。</p>
+<p>☑ <a href="https://github.com/facebook/react-native" target="_blank" rel="external">React Native</a>, 我们俗称 RN， React Native 用在移动客户端，也就是 iOS 或者 android 手机 APP。看看市面上使用了 React Native 的 <a href="http://facebook.github.io/react-native/showcase.html" target="_blank" rel="external">showcase</a>。</p>
+<h3 id="React-Native-的性能"><a href="#React-Native-的性能" class="headerlink" title="React Native 的性能"></a>React Native 的性能</h3><p><img src="http://o6ul1xz4z.bkt.clouddn.com/2017-05-01-B37DFE6F-B67F-4087-B827-0BD00621E4EA.png" alt="B37DFE6F-B67F-4087-B827-0BD00621E4EA"></p>
+<p><strong>Hybrid 混合应用</strong></p>
+<p>原生的应用中利用 webview 装入一些 HTML 界面。</p>
+<p><strong>codava “包皮” 应用</strong></p>
+<p>原生的部分只是一个壳子，开发用的全是 WEB 技术，比如 PhoneGap ，一次编写，到处使用。相比原生应用，一些复杂的页面有明显的性能问题。</p>
+<p><img src="http://o6ul1xz4z.bkt.clouddn.com/2017-05-01-5A927112-FBB2-4237-87DA-552ED6984037.png" alt="5A927112-FBB2-4237-87DA-552ED6984037"></p>
+<p><strong>React Native</strong></p>
+<p>RN 可以看作是基于 React 之上的一种针对特定平台的技术开发方案，其内在依然是 React。用开发WEB的方式开发 APP，利用原生 API 渲染界面，从而获得接近原生 APP 的性能。</p>
+<h2 id="1-2-为何选择-React-Native"><a href="#1-2-为何选择-React-Native" class="headerlink" title="1.2 为何选择 React Native"></a>1.2 为何选择 React Native</h2><p>☑ 职业发展</p>
+<p><img src="http://o6ul1xz4z.bkt.clouddn.com/2017-05-01-535E8284-335C-4DB4-9652-BDA122A9F6EB.png" alt="535E8284-335C-4DB4-9652-BDA122A9F6EB"></p>
+<p>☑ 优秀的核心思想</p>
+<p><img src="http://o6ul1xz4z.bkt.clouddn.com/2017-05-01-FFAA5529-FE25-4BD1-AC20-0A77ECD232E4.png" alt="FFAA5529-FE25-4BD1-AC20-0A77ECD232E4"></p>
+<p>☑ 刚毕业或刚入行的新人，会感觉跟不上市场对前端技术的需求。因为你们可能没有兼容过 IE6、7、8、火狐那个年代，每一行代码都断点调试，对 JS 的内部机制，DOM 的性能等细小的技术点没有那么多时间实践和研究，也没有经历过打包、组件抽象和构建，各种异步加载起的折腾，如果现在花时间重新走一遍，反而跟不上市场的脚步。预期为这个历史买单，到不如投资未来，直接切入到 React 和 React Native 的中，反而没有历史包袱。利用这个机会可以弯道超车，直接进入前端开发或者 APP 开发这个职业。职业发展是阶段性的，技术学习是终身的，现在市场上活下来，再沉淀，直到切入到更细分的技术选型。</p>
+<p><img src="http://o6ul1xz4z.bkt.clouddn.com/2017-05-01-9598C18F-AC6B-4711-BD81-CE085B720691.png" alt="9598C18F-AC6B-4711-BD81-CE085B720691"></p>
+<p>☑ 在语法这个技术层面 RN 的优势</p>
+<ul>
+<li>RN 是纯的 JavaScript 组件化，不掺和不同的语言形态。</li>
+<li>RN 的技术框架，允许你很方便的介入和调用到各个平台下的 API。</li>
+<li>RN 的布局用到的是 flex 布局，上手成本很小。</li>
+<li>渲染原生视图的能力，性能有保障。</li>
+<li>组件化开发，快速开发原型，在交互上混，唯快不破！</li>
+</ul>
+<p><strong>总而言之，学会 React 的基本语法以后，可以去开发网页，可以去开发 iOS APP ,可以去开发 Android APP，一招走遍天下。</strong></p>
+<h2 id="1-3-RN-适合你吗？"><a href="#1-3-RN-适合你吗？" class="headerlink" title="1.3 RN 适合你吗？"></a>1.3 RN 适合你吗？</h2><p><img src="http://o6ul1xz4z.bkt.clouddn.com/2017-05-01-DBAAAD84-B012-49AD-A19A-D3CE9237EEE3.png" alt="DBAAAD84-B012-49AD-A19A-D3CE9237EEE3"></p>
+<h1 id="2-初识-React-Native"><a href="#2-初识-React-Native" class="headerlink" title="2 初识 React Native"></a>2 初识 React Native</h1><h2 id="2-1-本地环境搭建"><a href="#2-1-本地环境搭建" class="headerlink" title="2.1 本地环境搭建"></a>2.1 本地环境搭建</h2><p><strong>参考</strong></p>
+<p>Facebook React Native</p>
+<ol>
+<li>MAC OS X 系统</li>
+<li>系统升级到最新</li>
+<li>下载最新版的 Xcode</li>
+</ol>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ xcode-select --install</span><br></pre></td></tr></table></figure>
+<ol>
+<li>安装 <a href="https://brew.sh/" target="_blank" rel="external">homebrew</a></li>
+</ol>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ /usr/bin/ruby <span class="_">-e</span> <span class="string">"<span class="variable">$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)</span>"</span></span><br></pre></td></tr></table></figure>
+<ol>
+<li><p>安装 watchman 和 flow</p>
+<ul>
+<li>watchman 是 faceboook 的一个开源项目，它用来监视文件并且记录文件的改动情况。</li>
+<li>Flow 是一个 JavaScript 的静态类型检查器，用于找出 JavaScript 代码中的类型错误。</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ brew install watchman flow git gcc pkg-config cairo libpng jpeg gitlib mongodb</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>安装 Nodejs，建议用 <a href="https://github.com/creationix/nvm" target="_blank" rel="external">nvm</a> 来装</p>
+</li>
+</ol>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">$ curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.33.2/install.sh | bash</span><br><span class="line">$ nvm install v7.9.0</span><br><span class="line">$ nvm use v7.9.0</span><br><span class="line">$ nvm <span class="built_in">alias</span> default v7.9.0</span><br><span class="line">$ npm install cnpm -g</span><br></pre></td></tr></table></figure>
+<ol>
+<li>确保 8081 端口没有被占用</li>
+</ol>
+<p>☑ 确保没有本地服务占用 8081 端口。</p>
+<p>☑ chrome 的一些本地插件有可能使用了 websocket 占用了 8081，有的话关闭。</p>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/MongoDB/" rel="tag">#MongoDB</a>
+          
+            <a href="/tags/ReactNative/" rel="tag">#ReactNative</a>
+          
+            <a href="/tags/nodejs/" rel="tag">#nodejs</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/04/22/慕课网/imooc_NodeJS 线上服务器部署与发布/" rel="next" title="NodeJS线上服务器部署与发布">
+                <i class="fa fa-chevron-left"></i> NodeJS线上服务器部署与发布
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2017/05/01/慕课网/imooc_React-Native-贯穿全栈开发-APP/"
+           data-title="React Native 贯穿全栈开发 APP" data-url="http://laputa-er.github.io/2017/05/01/慕课网/imooc_React-Native-贯穿全栈开发-APP/">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.gif"
+               alt="Sean" />
+          <p class="site-author-name" itemprop="name">Sean</p>
+          <p class="site-description motion-element" itemprop="description">整理了一批过去一段时间ios相关的笔记，其它的笔记也整理下？源码分享出来？再说吧...反正也只有自己会看吧...</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">214</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">26</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">35</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#0-课程介绍"><span class="nav-text">0 课程介绍</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#0-1-谁需要这门课程？"><span class="nav-text">0.1 谁需要这门课程？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#0-2-实战项目介绍"><span class="nav-text">0.2 实战项目介绍</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#0-3-APP-功能介绍"><span class="nav-text">0.3 APP 功能介绍</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#桌面图标和启动画面"><span class="nav-text">桌面图标和启动画面</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#过度页面和轮播效果"><span class="nav-text">过度页面和轮播效果</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#注册登录和账户管理"><span class="nav-text">注册登录和账户管理</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#视频的配音制作页面"><span class="nav-text">视频的配音制作页面</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#展现所有制作完毕的创意视频列表"><span class="nav-text">展现所有制作完毕的创意视频列表</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#0-4-APP-后台"><span class="nav-text">0.4 APP 后台</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#0-5-要点"><span class="nav-text">0.5 要点</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#环境搭建"><span class="nav-text">环境搭建</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#服务器端"><span class="nav-text">服务器端</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#前后端连调"><span class="nav-text">前后端连调</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#1-课程预热"><span class="nav-text">1 课程预热</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-1-React-与-React-Native"><span class="nav-text">1.1 React 与 React Native</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#React-Native-的性能"><span class="nav-text">React Native 的性能</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-2-为何选择-React-Native"><span class="nav-text">1.2 为何选择 React Native</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-3-RN-适合你吗？"><span class="nav-text">1.3 RN 适合你吗？</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#2-初识-React-Native"><span class="nav-text">2 初识 React Native</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#2-1-本地环境搭建"><span class="nav-text">2.1 本地环境搭建</span></a></li></ol></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Sean</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"lapuda-er"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+    <script src="/vendors/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
+    <script src="/js/src/hook-duoshuo.js"></script>
+  
+
+
+
+
+
+
+  
+  
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length == 0) {
+       search_path = "search.xml";
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    function proceedsearch() {
+      $("body").append('<div class="popoverlay">').css('overflow', 'hidden');
+      $('.popup').toggle();
+
+    }
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+    'use strict';
+    $.ajax({
+        url: path,
+        dataType: "xml",
+        async: true,
+        success: function( xmlResponse ) {
+            // get the contents from search data
+            isfetched = true;
+            $('.popup').detach().appendTo('.header-inner');
+            var datas = $( "entry", xmlResponse ).map(function() {
+                return {
+                    title: $( "title", this ).text(),
+                    content: $("content",this).text(),
+                    url: $( "url" , this).text()
+                };
+            }).get();
+            var $input = document.getElementById(search_id);
+            var $resultContent = document.getElementById(content_id);
+            $input.addEventListener('input', function(){
+                var matchcounts = 0;
+                var str='<ul class=\"search-result-list\">';
+                var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+                $resultContent.innerHTML = "";
+                if (this.value.trim().length > 1) {
+                // perform local searching
+                datas.forEach(function(data) {
+                    var isMatch = true;
+                    var content_index = [];
+                    var data_title = data.title.trim().toLowerCase();
+                    var data_content = data.content.trim().replace(/<[^>]+>/g,"").toLowerCase();
+                    var data_url = data.url;
+                    var index_title = -1;
+                    var index_content = -1;
+                    var first_occur = -1;
+                    // only match artiles with not empty titles and contents
+                    if(data_title != '' && data_content != '') {
+                        keywords.forEach(function(keyword, i) {
+                            index_title = data_title.indexOf(keyword);
+                            index_content = data_content.indexOf(keyword);
+                            if( index_title < 0 && index_content < 0 ){
+                                isMatch = false;
+                            } else {
+                                if (index_content < 0) {
+                                    index_content = 0;
+                                }
+                                if (i == 0) {
+                                    first_occur = index_content;
+                                }
+                            }
+                        });
+                    }
+                    // show search results
+                    if (isMatch) {
+                        matchcounts += 1;
+                        str += "<li><a href='"+ data_url +"' class='search-result-title'>"+ data_title +"</a>";
+                        var content = data.content.trim().replace(/<[^>]+>/g,"");
+                        if (first_occur >= 0) {
+                            // cut out 100 characters
+                            var start = first_occur - 20;
+                            var end = first_occur + 80;
+                            if(start < 0){
+                                start = 0;
+                            }
+                            if(start == 0){
+                                end = 50;
+                            }
+                            if(end > content.length){
+                                end = content.length;
+                            }
+                            var match_content = content.substring(start, end);
+                            // highlight all keywords
+                            keywords.forEach(function(keyword){
+                                var regS = new RegExp(keyword, "gi");
+                                match_content = match_content.replace(regS, "<b class=\"search-keyword\">"+keyword+"</b>");
+                            });
+
+                            str += "<p class=\"search-result\">" + match_content +"...</p>"
+                        }
+                        str += "</li>";
+                    }
+                })};
+                str += "</ul>";
+                if (matchcounts == 0) { str = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>' }
+                if (keywords == "") { str = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>' }
+                $resultContent.innerHTML = str;
+            });
+            proceedsearch();
+        }
+    });}
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched == false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+
+    });
+
+    $('.popup-btn-close').click(function(e){
+      $('.popup').hide();
+      $(".popoverlay").remove();
+      $('body').css('overflow', '');
+    });
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+  </script>
+
+
+  
+
+  
+
+  
+
+</body>
+</html>
