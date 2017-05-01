@@ -882,7 +882,7 @@
 <p>所以在平时实际应用中, 我们经常需要给元素缓存一些数据，并且这些数据往往和 DOM 元素紧密相关。由于 DOM 元素(节点)也是对象, 所以我们可以直接扩展 DOM 元素的属性，但是如果给 DOM 元素添加自定义的属性和过多的数据可能会引起内存泄漏，所以应该要尽量避免这样做。 因此更好的解决方法是使用一种低耦合的方式让 DOM 和缓存数据能够联系起来。</p>
 <p>所以我们必须有一种机制，避免引用数据直接依附在 DOM 对象上，这样尽量避免内存泄漏的产生。jQuery 的缓存系统就很好的解决了这一问题。</p>
 <h2 id="4-2-jQuery的缓存系统"><a href="#4-2-jQuery的缓存系统" class="headerlink" title="4.2 jQuery的缓存系统"></a>4.2 jQuery的缓存系统</h2><p>jQuery 从 1.2.3 版本引入数据缓存系统，主要的原因就是早期的事件系统 Dean Edwards 的 addEvent.js代码带来的问题：</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">1.</span>没有一个系统的缓存机制，它把事件的回调都放到 EventTarget 之上，这会引发循环引用</span><br><span class="line"><span class="number">2.</span>如果 EventTarget 是 <span class="built_in">window</span> 对象，又会引发全局污染不同模块之间用不同缓存变量</span><br></pre></td></tr></table></figure>
+<figure class="highlight basic"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">1.</span>没有一个系统的缓存机制，它把事件的回调都放到 EventTarget 之上，这会引发循环引用</span><br><span class="line"><span class="number">2.</span>如果 EventTarget 是 <span class="keyword">window</span> 对象，又会引发全局污染不同模块之间用不同缓存变量</span><br></pre></td></tr></table></figure>
 <p>一般 jQuery 开发，我们都喜欢便捷式的把很多属性，比如状态标志都写到 dom 节点中,也就是 HTMLElement。</p>
 <p><strong>好处 : </strong></p>
 <figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">直观，便捷。</span><br></pre></td></tr></table></figure>
@@ -975,7 +975,7 @@
 <p><strong>我们一直习惯于“线性”地编写代码逻辑，但是大量异步操作所带来的回调函数，会把我们的算法分解地支离破碎。</strong></p>
 <p>此时我们不能用<code>if</code>来实现逻辑分支，也不能用<code>while/for/do</code>来实现循环，更不用说异步操作之间的组合、错误处理以及取消操作了。因此也就诞生了如<code>jQuery Deferred</code>这样的辅助类库。</p>
 <p>我们常见的异步操作：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">定时器<span class="built_in">set</span>Timeout</span><br><span class="line">postmessage</span><br><span class="line">WebWorkor</span><br><span class="line">CSS3 动画</span><br><span class="line">XMLHttpRequest</span><br><span class="line">HTML5的本地数据</span><br><span class="line">等等…</span><br></pre></td></tr></table></figure>
+<figure class="highlight arduino"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">定时器<span class="built_in">setTimeout</span></span><br><span class="line">postmessage</span><br><span class="line">WebWorkor</span><br><span class="line">CSS3 动画</span><br><span class="line">XMLHttpRequest</span><br><span class="line">HTML5的本地数据</span><br><span class="line">等等…</span><br></pre></td></tr></table></figure>
 <p>JavaScript 要求在与服务器进行交互时要用异步通信，如同 AJAX 一样。因为是异步模型，所以在调用流览器提供的本地数据接口时候类似 AJAX （这里我是假设），浏览器自己有内部的 XHR 方法异步处理，但是此时的 JS 代码还是会同步往下执行，其实就是无阻塞的代码。</p>
 <p><strong>问题：</strong>因为无阻塞，代码在发送AJAX这个请求后会继续执行，那么后续的操作如果依赖这个数据的就会出错了，所以这里就需要等待AJAX返回，才能执行后续操作。</p>
 <p>因为异步而导致流程不正确，或者说我们的应用在某个程度上依赖第三方API的数据，那么就会面临一个共同的问题：</p>
