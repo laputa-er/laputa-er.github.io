@@ -417,7 +417,7 @@
 </table>
 <figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//具备读写能力的附属脚本</span></span><br><span class="line"><span class="keyword">subscript</span>(index:<span class="type">Int</span>)-&gt;<span class="type">Int</span>&#123;</span><br><span class="line">    <span class="keyword">get</span>&#123;</span><br><span class="line">        <span class="comment">//返回与入參匹配的Int类型的值</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">set</span>(newValue)&#123;</span><br><span class="line">        <span class="comment">//执行赋值操作</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//只读的附属脚本（简写形式）</span></span><br><span class="line"><span class="keyword">subscript</span>(index:<span class="type">Int</span>)-&gt;<span class="type">Int</span>&#123;</span><br><span class="line">    <span class="comment">//返回与入參匹配的Int类型的值</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p><strong>案例</strong>：展示传入整数的n倍数（结构体中使用只读下标脚本）</p>
-<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">TimesTable</span> </span>&#123;</span><br><span class="line">    <span class="keyword">let</span> multiplier:<span class="type">Int</span></span><br><span class="line">    <span class="keyword">subscript</span>(index:<span class="type">Int</span>)-&gt;<span class="type">Int</span>&#123;</span><br><span class="line">        <span class="keyword">return</span> multiplier * index</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">let</span> threeTimesTable = <span class="type">TimesTable</span>(multiplier: <span class="number">3</span>)</span><br><span class="line"><span class="built_in">println</span>(<span class="string">"3的6倍是<span class="subst">\(threeTimesTable[<span class="number">6</span>])</span>"</span>)</span><br></pre></td></tr></table></figure>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">TimesTable</span> </span>&#123;</span><br><span class="line">    <span class="keyword">let</span> multiplier:<span class="type">Int</span></span><br><span class="line">    <span class="keyword">subscript</span>(index:<span class="type">Int</span>)-&gt;<span class="type">Int</span>&#123;</span><br><span class="line">        <span class="keyword">return</span> multiplier * index</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">let</span> threeTimesTable = <span class="type">TimesTable</span>(multiplier: <span class="number">3</span>)</span><br><span class="line"><span class="built_in">println</span>(<span class="string">"3的6倍是\(threeTimesTable[6])"</span>)</span><br></pre></td></tr></table></figure>
 <h2 id="12-2-用法（以字典为例）"><a href="#12-2-用法（以字典为例）" class="headerlink" title="12.2    用法（以字典为例）"></a>12.2    用法（以字典为例）</h2><blockquote>
 <p><strong>说明：</strong>字典本身是由结构体实现的，通过下标脚本来对其实例来进行存取操作。<br><strong>特点：</strong></p>
 <ol>
@@ -553,7 +553,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">214</span>
+              <span class="site-state-item-count">218</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -561,7 +561,7 @@
           
             <div class="site-state-item site-state-categories">
               <a href="/categories">
-                <span class="site-state-item-count">26</span>
+                <span class="site-state-item-count">27</span>
                 <span class="site-state-item-name">分类</span>
               </a>
             </div>
@@ -570,7 +570,7 @@
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">35</span>
+                <span class="site-state-item-count">36</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>

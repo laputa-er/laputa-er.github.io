@@ -1,0 +1,976 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="webkit," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1" />
+
+
+
+
+
+
+<meta name="description" content="1 浏览器1.1 浏览器简介一些浏览器 ☑ WorldWideWeb, 20世纪80年代后期90年代初期(后改名Nexus)缔造者: Berners-Lee(W3C组织理事)功能: 支持早期的 HTML 标记语言，只支持文本、简单的样式表、电影、声音和图片等。大事记
+
+1991，公布了源代码。
+
+☑ Mosaic, 1995(后来发展为 Netscape)缔造者: Marc Andreessen">
+<meta property="og:type" content="article">
+<meta property="og:title" content="01 浏览器和浏览器内核">
+<meta property="og:url" content="http://laputa-er.github.io/2017/05/04/BOOK_Webkit技术内幕/01_浏览器和浏览器内核/index.html">
+<meta property="og:site_name" content="Sean">
+<meta property="og:description" content="1 浏览器1.1 浏览器简介一些浏览器 ☑ WorldWideWeb, 20世纪80年代后期90年代初期(后改名Nexus)缔造者: Berners-Lee(W3C组织理事)功能: 支持早期的 HTML 标记语言，只支持文本、简单的样式表、电影、声音和图片等。大事记
+
+1991，公布了源代码。
+
+☑ Mosaic, 1995(后来发展为 Netscape)缔造者: Marc Andreessen">
+<meta property="og:image" content="http://laputa-er.github.io/./_image/2017-05-04-11-44-55.jpg">
+<meta property="og:image" content="http://laputa-er.github.io/./_image/2017-05-04-12-09-06.jpg">
+<meta property="og:image" content="http://laputa-er.github.io/./_image/2017-05-04-15-36-05.jpg">
+<meta property="og:image" content="http://laputa-er.github.io/./_image/2017-05-04-16-25-05.jpg">
+<meta property="og:image" content="http://laputa-er.github.io/./_image/2017-05-04-16-25-55.jpg">
+<meta property="og:image" content="http://laputa-er.github.io/./_image/2017-05-04-18-11-34.jpg">
+<meta property="og:image" content="http://laputa-er.github.io/./_image/2017-05-04-18-20-43.jpg">
+<meta property="og:image" content="http://laputa-er.github.io/./_image/2017-05-04-20-12-45.jpg">
+<meta property="og:updated_time" content="2017-05-04T12:27:21.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="01 浏览器和浏览器内核">
+<meta name="twitter:description" content="1 浏览器1.1 浏览器简介一些浏览器 ☑ WorldWideWeb, 20世纪80年代后期90年代初期(后改名Nexus)缔造者: Berners-Lee(W3C组织理事)功能: 支持早期的 HTML 标记语言，只支持文本、简单的样式表、电影、声音和图片等。大事记
+
+1991，公布了源代码。
+
+☑ Mosaic, 1995(后来发展为 Netscape)缔造者: Marc Andreessen">
+<meta name="twitter:image" content="http://laputa-er.github.io/./_image/2017-05-04-11-44-55.jpg">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 0,
+      author: '博主'
+    }
+  };
+</script>
+
+
+
+
+  <link rel="canonical" href="http://laputa-er.github.io/2017/05/04/BOOK_Webkit技术内幕/01_浏览器和浏览器内核/"/>
+
+  <title> 01 浏览器和浏览器内核 | Sean </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//hm.baidu.com/hm.js?898688f51c5a3d6b37dd23e04441e5bd";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">Sean</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">笔记分享</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup">
+ <span class="search-icon fa fa-search"></span>
+ <input type="text" id="local-search-input">
+ <div id="local-search-result"></div>
+ <span class="popup-btn-close">close</span>
+</div>
+
+
+    </div>
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                01 浏览器和浏览器内核
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2017-05-04T10:53:24+08:00" content="2017-05-04">
+              2017-05-04
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/WebKit-技术内幕/" itemprop="url" rel="index">
+                    <span itemprop="name">WebKit 技术内幕</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2017/05/04/BOOK_Webkit技术内幕/01_浏览器和浏览器内核/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2017/05/04/BOOK_Webkit技术内幕/01_浏览器和浏览器内核/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="1-浏览器"><a href="#1-浏览器" class="headerlink" title="1 浏览器"></a>1 浏览器</h1><h2 id="1-1-浏览器简介"><a href="#1-1-浏览器简介" class="headerlink" title="1.1 浏览器简介"></a>1.1 浏览器简介</h2><h3 id="一些浏览器"><a href="#一些浏览器" class="headerlink" title="一些浏览器"></a>一些浏览器</h3><p><strong> ☑ WorldWideWeb, 20世纪80年代后期90年代初期(后改名Nexus)</strong><br><strong>缔造者</strong>: Berners-Lee(W3C组织理事)<br><strong>功能</strong>: 支持早期的 HTML 标记语言，只支持文本、简单的样式表、电影、声音和图片等。<br><strong>大事记</strong></p>
+<ul>
+<li>1991，公布了源代码。</li>
+</ul>
+<p><strong>☑ Mosaic, 1995(后来发展为 Netscape)</strong><br><strong>缔造者</strong>: Marc Andreessen 领导的团队<br><strong>功能</strong>: 只能显示简单的静态 HTML 元素，没有 JavaScript ，没有 CSS。</p>
+<p><strong>☑ Internet Explorer, 1995</strong><br><strong>缔造者</strong>: 微软</p>
+<p><strong>☑ Firefox(2004)</strong><br><strong>缔造者</strong>: 网景公司成立的 Mozilla 基金会</p>
+<p><strong>Safari(桌面和移动), 2003</strong><br><strong>缔造者</strong>: 苹果<br><strong>大事记</strong></p>
+<ul>
+<li>2005年，发起了一个新的开源项目 WebKit(Safari 浏览器的内核)</li>
+</ul>
+<p><strong>☑ Chromium(Chrome 的开源版本), 2008</strong><br><strong>缔造者</strong>: Google<br><strong>内核</strong>: 基于 WebKit</p>
+<p><strong>☑ Chrome(桌面和移动), 2008</strong><br><strong>缔造者</strong>: Google<br><strong>相比 Chromium</strong></p>
+<ul>
+<li>加如了一些私有的编码解码器以支持音视频等；</li>
+<li>Chrome 整合了 Google 众多的网络服务；</li>
+<li>Chrome 还有自动更新的功能(Windows版本)</li>
+</ul>
+<p><strong>☑ 安卓浏览器</strong><br><strong>缔造者</strong>: Google</p>
+<h3 id="浏览器现状"><a href="#浏览器现状" class="headerlink" title="浏览器现状"></a>浏览器现状</h3><p>桌面端和移动端占据绝大多数市场份额的浏览器<br><img src="./_image/2017-05-04-11-44-55.jpg" alt=""><br>主流浏览器支持的操作系统<br><img src="./_image/2017-05-04-12-09-06.jpg" alt=""></p>
+<h2 id="1-2-浏览器特性"><a href="#1-2-浏览器特性" class="headerlink" title="1.2 浏览器特性"></a>1.2 浏览器特性</h2><p>☑ 网络<br>☑ 资源管理<br>☑ 网页浏览<br>☑ 多页面管理<br>☑ 插件(NPAPI、PPAPI、ActiveX等)和扩展(Firefox 扩展、Chrome 扩展、Safari 扩展)<br>☑ 书签管理<br>☑ 历史记录管理<br>☑ 设置管理<br>☑ 下载管理<br>☑ 账号和同步<br>☑ 安全机制<br>☑ 隐私管理<br>☑ 外观主题<br>☑ 开发者工具</p>
+<h2 id="1-3-HTML"><a href="#1-3-HTML" class="headerlink" title="1.3 HTML"></a>1.3 HTML</h2><h3 id="重要版本"><a href="#重要版本" class="headerlink" title="重要版本"></a>重要版本</h3><ul>
+<li><code>HTML1.0</code>, 1991, Berners-Lee 提出。</li>
+<li><code>HTML4.0</code>, 1997</li>
+<li><code>HTML4.1</code>, 1999</li>
+<li><code>HTML5</code>, 2012, WHATWG 和 W3C 共同提出。</li>
+</ul>
+<h3 id="HTML5"><a href="#HTML5" class="headerlink" title="HTML5"></a>HTML5</h3><p><strong>说明</strong>: 包括一系列标准，一共10个大类，每个大类都由众多技术或者是规范组成。<br><strong>HTML5 测试网站</strong>: <a href="http://html5test.com/" target="_blank" rel="external">http://html5test.com/</a><br><strong>浏览器支持情况</strong>: 四种浏览器在 Windows 7 上的 HTML5 支持得分</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>IE</th>
+<th>Firefox</th>
+<th>Chrome</th>
+<th>Safari</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>版本</td>
+<td>10</td>
+<td>20</td>
+<td>26</td>
+<td>6.0(Mac OS)</td>
+</tr>
+<tr>
+<td>得分(满分500)</td>
+<td>320</td>
+<td>394</td>
+<td>468</td>
+<td>378</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th>HTML5标准分类</th>
+<th>说明</th>
+<th>具体规范</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>offline</td>
+<td>离线</td>
+<td>Application cache, Local storage, Indexed DB, 在线/离线事件</td>
+</tr>
+<tr>
+<td>storage</td>
+<td>存储</td>
+<td>Application cache, Local storage, Indexed DB等</td>
+</tr>
+<tr>
+<td>connectivity</td>
+<td>连接</td>
+<td>Web Sockets, Server-sent 事件</td>
+</tr>
+<tr>
+<td>file access</td>
+<td>文件访问</td>
+<td>File API, File System, FileWriter, ProgressEvents</td>
+</tr>
+<tr>
+<td>semantics</td>
+<td>语义</td>
+<td>各种新的元素，包括 Media, structural, 国际化，Link relation, 属性，form 类型，microdata等方面</td>
+</tr>
+<tr>
+<td>audio/video</td>
+<td>音频和视频</td>
+<td>HTML5 Video, Web Audio, WebRTC, Video track 等</td>
+</tr>
+<tr>
+<td>3D/graphics</td>
+<td>3D和图形</td>
+<td>Canvas 2D, 3D CSS 变换，WebGL, SVG 等</td>
+</tr>
+<tr>
+<td>presentation</td>
+<td>展示</td>
+<td>CSS3 2D/3D 变换，转换(transition), WebFonts等</td>
+</tr>
+<tr>
+<td>performance</td>
+<td>性能</td>
+<td>WebSorker, HTTP caching 等</td>
+</tr>
+<tr>
+<td>Nuts and bolts</td>
+<td>其他</td>
+<td>触控和鼠标，Shadow DOM, CSS masking 等</td>
+</tr>
+</tbody>
+</table>
+<h2 id="1-4-用户代理和浏览器行为"><a href="#1-4-用户代理和浏览器行为" class="headerlink" title="1.4 用户代理和浏览器行为"></a>1.4 用户代理和浏览器行为</h2><h3 id="用户代理"><a href="#用户代理" class="headerlink" title="用户代理"></a>用户代理</h3><p><strong>用途</strong>: 用户代理(User Agent)的作用是用来表明浏览器的身份，因而互联网的内容提供商能够直到发送请求的浏览器身份，浏览器能够支持什么样的功能。</p>
+<p><strong>越来越长的 User Agent</strong></p>
+<ol>
+<li>最初是 Mozilla Firefox 设置了自己的 User Agent;</li>
+<li>IE 为了表达更丰富的信息，在自己的的 User Agent 加入了 Mozilla 相关的信息；</li>
+<li>评估的 Safari 浏览器也设置了类似的代理，并加入了更多信息；</li>
+<li>随着 Safari 的流行，Chrome 等浏览器除了包含 Mozilla 之外，还添加了 Safari 浏览器的哪些标志信息。</li>
+</ol>
+<h2 id="1-5-实践-浏览器用户代理"><a href="#1-5-实践-浏览器用户代理" class="headerlink" title="1.5 实践: 浏览器用户代理"></a>1.5 实践: 浏览器用户代理</h2><p><img src="./_image/2017-05-04-15-36-05.jpg" alt=""></p>
+<h1 id="2-浏览器内核及特性"><a href="#2-浏览器内核及特性" class="headerlink" title="2 浏览器内核及特性"></a>2 浏览器内核及特性</h1><h2 id="2-1-内核和主流内核"><a href="#2-1-内核和主流内核" class="headerlink" title="2.1 内核和主流内核"></a>2.1 内核和主流内核</h2><p><img src="./_image/2017-05-04-16-25-05.jpg" alt=""></p>
+<h3 id="浏览器和-Web-平台及其渲染引擎"><a href="#浏览器和-Web-平台及其渲染引擎" class="headerlink" title="浏览器和 Web 平台及其渲染引擎"></a>浏览器和 Web 平台及其渲染引擎</h3><table>
+<thead>
+<tr>
+<th></th>
+<th>Trident</th>
+<th>Gecko</th>
+<th>WebKit</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>基于渲染引擎的浏览器或者 Web 平台</td>
+<td>IE</td>
+<td>Firefox</td>
+<td>Safari, Chromium/Chrome, Android 浏览器, ChromeOS, WebOS 等</td>
+</tr>
+</tbody>
+</table>
+<h3 id="WebKit"><a href="#WebKit" class="headerlink" title="WebKit"></a>WebKit</h3><p><strong>开源</strong>: 由苹果发起的 WebKit 开源项目最受业界关注。<br><strong>官网源码</strong>: www.webkit.org<br><strong>基于 WebKit 的 浏览器和Web 平台</strong></p>
+<ul>
+<li>浏览器: 有超过30种浏览器</li>
+<li>web平台： Chrome OS 和 WebOS</li>
+</ul>
+<h2 id="2-2-内核特征"><a href="#2-2-内核特征" class="headerlink" title="2.2 内核特征"></a>2.2 内核特征</h2><p><strong>渲染引擎模块及其依赖的模块</strong><br><img src="./_image/2017-05-04-16-25-55.jpg" alt=""><br>渲染引擎组成|说明<br>—|—<br>HTML 解释器|解释 HTML 文本的解释器，主要作用是将 HTML 文本解释成 DOM(文档对象模型)树，DOM 是一种文档的表示方法。<br>CSS 解释器|级联样式表的解释器，它的作用是为 DOM 中的各个元素对象计算出样式信息，从而为计算最后网页的布局提供基础设施。<br>布局|在 DOM 创建之后，WebKit 需要将其中的元素对象同样式信息结合起来，计算它们的大小位置等布局信息，形成一个能够表示这所有信息的内部表示模型。<br>JavaScript 引擎|使用 JavaScript 代码可以修改网页的内容，也能修改 CSS 的信息，JavaScript 引擎能够解释 JavaScript 代码并通过 DOM 接口和 CSSOM 接口来修改网页内容和样式信息，从而改变渲染的结果。<br>绘图|使用图形库将布局计算后的各个网页的节点绘制成图像结果。</p>
+<p><strong>渲染引擎的一般渲染过程及各阶段依赖的其它模块</strong><br><img src="./_image/2017-05-04-18-11-34.jpg" alt=""></p>
+<p>在渲染完成之后，用户可能需要跟渲染的结果进行交互，或者网页自身有动画操作，一般而言，这需要持续的重复渲染过程。</p>
+<h1 id="3-Webkit-内核"><a href="#3-Webkit-内核" class="headerlink" title="3 Webkit 内核"></a>3 Webkit 内核</h1><h2 id="3-1-Webkit介绍"><a href="#3-1-Webkit介绍" class="headerlink" title="3.1 Webkit介绍"></a>3.1 Webkit介绍</h2><p><strong>WebKit 的历史</strong></p>
+<ul>
+<li>1998 年，苹果公司参与了由 KDE 开源社区发起的网页渲染引擎 KHTML 的开源项目开发。</li>
+<li>2001 年，苹果公司宣布从 KHTML 的源代码树中复制代码出来，成立一个新的项目，即 WebKit。</li>
+<li>2005 年，苹果决定将 WebKit 项目开源，这一举动极大地推动了该项目发展。</li>
+</ul>
+<p><img src="./_image/2017-05-04-18-20-43.jpg" alt=""><br><strong>WebKit 的众多移植</strong><br>由于需求不同，或者操作系统不同，或者依赖的模块(如 2D 图形库，有 CG、skia、cairo、Qt 等)，操作系统的开发者必然需要 WebKit 设计和定义一套灵活的框架结构，而不同的厂商基于框架结构，完成基于自身操作系统和依赖模块的实现，这里我们称之为 WebKit 移植(Port)。</p>
+<p><strong>WebKit 在分裂</strong><br>比如 Chromium 新内核——Blink。</p>
+<h2 id="3-2-WebKit-和-WebKit2"><a href="#3-2-WebKit-和-WebKit2" class="headerlink" title="3.2 WebKit 和 WebKit2"></a>3.2 WebKit 和 WebKit2</h2><p><strong>历史</strong>: 在 2010 年 4 月，苹果宣布了 WebKit2，目标是抽象出一组新的编程接口，该接口和调用者代码与网页的渲染工作代码不在同一个进程，这显然有了 Chromium 多进程的优点。<br><strong>WebKit2 进程结构</strong><br><img src="./_image/2017-05-04-20-12-45.jpg" alt=""></p>
+<h2 id="3-3-Chromium-内核-Blink"><a href="#3-3-Chromium-内核-Blink" class="headerlink" title="3.3 Chromium 内核: Blink"></a>3.3 Chromium 内核: Blink</h2><p><strong>历史</strong>: 2013 年 4 月，Google 宣布从 WebKit 复制出来并独立运作 Blink 项目。<br><strong>相比 WebKit</strong><br>☑ Blink 将除 Chromium 浏览器需要之外的其他移植的代码都删除了。<br>☑ Google 希望在未来加入很多新技术。</p>
+<ul>
+<li>实现跨进程的 iframe。</li>
+<li>重新整理和修改 WebKIt 关于网络方面的架构和接口。</li>
+<li>将 DOM 树引入 JavaScript 引擎中。</li>
+</ul>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/webkit/" rel="tag">#webkit</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/05/03/BOOK_Webkit技术内幕/0/" rel="next" title="">
+                <i class="fa fa-chevron-left"></i> 
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/05/04/BOOK_Webkit技术内幕/02_HTML网页和结构/" rel="prev" title="02 HTML 网页和结构">
+                02 HTML 网页和结构 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2017/05/04/BOOK_Webkit技术内幕/01_浏览器和浏览器内核/"
+           data-title="01 浏览器和浏览器内核" data-url="http://laputa-er.github.io/2017/05/04/BOOK_Webkit技术内幕/01_浏览器和浏览器内核/">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.gif"
+               alt="Sean" />
+          <p class="site-author-name" itemprop="name">Sean</p>
+          <p class="site-description motion-element" itemprop="description">整理了一批过去一段时间ios相关的笔记，其它的笔记也整理下？源码分享出来？再说吧...反正也只有自己会看吧...</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">218</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">27</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">36</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#1-浏览器"><span class="nav-text">1 浏览器</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-1-浏览器简介"><span class="nav-text">1.1 浏览器简介</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#一些浏览器"><span class="nav-text">一些浏览器</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#浏览器现状"><span class="nav-text">浏览器现状</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-2-浏览器特性"><span class="nav-text">1.2 浏览器特性</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-3-HTML"><span class="nav-text">1.3 HTML</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#重要版本"><span class="nav-text">重要版本</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#HTML5"><span class="nav-text">HTML5</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-4-用户代理和浏览器行为"><span class="nav-text">1.4 用户代理和浏览器行为</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#用户代理"><span class="nav-text">用户代理</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-5-实践-浏览器用户代理"><span class="nav-text">1.5 实践: 浏览器用户代理</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#2-浏览器内核及特性"><span class="nav-text">2 浏览器内核及特性</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#2-1-内核和主流内核"><span class="nav-text">2.1 内核和主流内核</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#浏览器和-Web-平台及其渲染引擎"><span class="nav-text">浏览器和 Web 平台及其渲染引擎</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#WebKit"><span class="nav-text">WebKit</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-2-内核特征"><span class="nav-text">2.2 内核特征</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#3-Webkit-内核"><span class="nav-text">3 Webkit 内核</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#3-1-Webkit介绍"><span class="nav-text">3.1 Webkit介绍</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-2-WebKit-和-WebKit2"><span class="nav-text">3.2 WebKit 和 WebKit2</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-3-Chromium-内核-Blink"><span class="nav-text">3.3 Chromium 内核: Blink</span></a></li></ol></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Sean</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"lapuda-er"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+    <script src="/vendors/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
+    <script src="/js/src/hook-duoshuo.js"></script>
+  
+
+
+
+
+
+
+  
+  
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length == 0) {
+       search_path = "search.xml";
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    function proceedsearch() {
+      $("body").append('<div class="popoverlay">').css('overflow', 'hidden');
+      $('.popup').toggle();
+
+    }
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+    'use strict';
+    $.ajax({
+        url: path,
+        dataType: "xml",
+        async: true,
+        success: function( xmlResponse ) {
+            // get the contents from search data
+            isfetched = true;
+            $('.popup').detach().appendTo('.header-inner');
+            var datas = $( "entry", xmlResponse ).map(function() {
+                return {
+                    title: $( "title", this ).text(),
+                    content: $("content",this).text(),
+                    url: $( "url" , this).text()
+                };
+            }).get();
+            var $input = document.getElementById(search_id);
+            var $resultContent = document.getElementById(content_id);
+            $input.addEventListener('input', function(){
+                var matchcounts = 0;
+                var str='<ul class=\"search-result-list\">';
+                var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+                $resultContent.innerHTML = "";
+                if (this.value.trim().length > 1) {
+                // perform local searching
+                datas.forEach(function(data) {
+                    var isMatch = true;
+                    var content_index = [];
+                    var data_title = data.title.trim().toLowerCase();
+                    var data_content = data.content.trim().replace(/<[^>]+>/g,"").toLowerCase();
+                    var data_url = data.url;
+                    var index_title = -1;
+                    var index_content = -1;
+                    var first_occur = -1;
+                    // only match artiles with not empty titles and contents
+                    if(data_title != '' && data_content != '') {
+                        keywords.forEach(function(keyword, i) {
+                            index_title = data_title.indexOf(keyword);
+                            index_content = data_content.indexOf(keyword);
+                            if( index_title < 0 && index_content < 0 ){
+                                isMatch = false;
+                            } else {
+                                if (index_content < 0) {
+                                    index_content = 0;
+                                }
+                                if (i == 0) {
+                                    first_occur = index_content;
+                                }
+                            }
+                        });
+                    }
+                    // show search results
+                    if (isMatch) {
+                        matchcounts += 1;
+                        str += "<li><a href='"+ data_url +"' class='search-result-title'>"+ data_title +"</a>";
+                        var content = data.content.trim().replace(/<[^>]+>/g,"");
+                        if (first_occur >= 0) {
+                            // cut out 100 characters
+                            var start = first_occur - 20;
+                            var end = first_occur + 80;
+                            if(start < 0){
+                                start = 0;
+                            }
+                            if(start == 0){
+                                end = 50;
+                            }
+                            if(end > content.length){
+                                end = content.length;
+                            }
+                            var match_content = content.substring(start, end);
+                            // highlight all keywords
+                            keywords.forEach(function(keyword){
+                                var regS = new RegExp(keyword, "gi");
+                                match_content = match_content.replace(regS, "<b class=\"search-keyword\">"+keyword+"</b>");
+                            });
+
+                            str += "<p class=\"search-result\">" + match_content +"...</p>"
+                        }
+                        str += "</li>";
+                    }
+                })};
+                str += "</ul>";
+                if (matchcounts == 0) { str = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>' }
+                if (keywords == "") { str = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>' }
+                $resultContent.innerHTML = str;
+            });
+            proceedsearch();
+        }
+    });}
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched == false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+
+    });
+
+    $('.popup-btn-close').click(function(e){
+      $('.popup').hide();
+      $(".popoverlay").remove();
+      $('body').css('overflow', '');
+    });
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+  </script>
+
+
+  
+
+  
+
+  
+
+</body>
+</html>

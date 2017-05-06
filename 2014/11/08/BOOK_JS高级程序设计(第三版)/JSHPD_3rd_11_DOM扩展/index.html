@@ -425,7 +425,7 @@
 <p>☑︎ 返回：带有指定  class 名的所有元素的 NodeList。</p>
 <p>☑︎ 兼容性：<code>IE9+</code> <code>Firefox3+</code> <code>Safari3.1+</code> <code>Chrome</code> <code>Opera9.5+</code></p>
 <p>☑︎ 价值：可以更方便地为带有某些类的元素添加事件处理程序，不在局限于使用 ID 或标签名。</p>
-<figure class="highlight cal"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">// 取得所有类中包含 <span class="string">'username'</span> 和 <span class="string">'current'</span> 的元素，类名的先后顺序无所谓</span><br><span class="line"><span class="keyword">var</span> allCurrentUsernames = document.getElementsByClassName(<span class="string">'username current'</span>)</span><br><span class="line"></span><br><span class="line">// 取得 ID 为 <span class="string">'myDiv'</span> 的元素中带有类名 <span class="string">'selected'</span> 的所有元素</span><br><span class="line"><span class="keyword">var</span> selected = document.getElementById(<span class="string">'myDiv'</span>).getElementsByClassName(<span class="string">'selected'</span>)</span><br></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 取得所有类中包含 'username' 和 'current' 的元素，类名的先后顺序无所谓</span></span><br><span class="line"><span class="keyword">var</span> allCurrentUsernames = <span class="built_in">document</span>.getElementsByClassName(<span class="string">'username current'</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment">// 取得 ID 为 'myDiv' 的元素中带有类名 'selected' 的所有元素</span></span><br><span class="line"><span class="keyword">var</span> selected = <span class="built_in">document</span>.getElementById(<span class="string">'myDiv'</span>).getElementsByClassName(<span class="string">'selected'</span>)</span><br></pre></td></tr></table></figure>
 <h3 id="classList-属性"><a href="#classList-属性" class="headerlink" title="classList 属性"></a>classList 属性</h3><p>该属性是新集合类型 <code>DOMTokenList</code> 的实例。</p>
 <table>
 <thead>
@@ -466,7 +466,7 @@
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">div.classList,remove(<span class="string">'user'</span>)</span><br></pre></td></tr></table></figure>
 <h2 id="3-2-焦点管理"><a href="#3-2-焦点管理" class="headerlink" title="3.2 焦点管理"></a>3.2 焦点管理</h2><h3 id="document-activeElement-属性"><a href="#document-activeElement-属性" class="headerlink" title="document.activeElement 属性"></a>document.activeElement 属性</h3><p>☑︎ 读：这个属性始终会引用 DOM 中当前获得了焦点的元素。</p>
 <p>☑︎ 用途：查询文档是否获得了焦点，以及确定文档是否获得了焦点，这两个功能是最重要的用途是提供 Web 应用的无障碍性。</p>
-<figure class="highlight coffeescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">元素获得焦点的方式</span><br><span class="line">☑︎ 页面加载（文档加载期间，<span class="built_in">document</span>.activeElement 为 <span class="literal">null</span>；文档加载完成时，<span class="built_in">document</span>.activeElement 中保存的是 <span class="built_in">document</span>.body）</span><br><span class="line">☑︎ 用户输入（通常是通过按 Tab 键）</span><br><span class="line">☑︎ 在代码中调用 focus() 方法</span><br></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">元素获得焦点的方式</span><br><span class="line">☑︎ 页面加载（文档加载期间，<span class="built_in">document</span>.activeElement 为 <span class="literal">null</span>；文档加载完成时，<span class="built_in">document</span>.activeElement 中保存的是 <span class="built_in">document</span>.body）</span><br><span class="line">☑︎ 用户输入（通常是通过按 Tab 键）</span><br><span class="line">☑︎ 在代码中调用 focus() 方法</span><br></pre></td></tr></table></figure>
 <p>☑︎ 兼容性：<code>IE4+</code> <code>Firefox3+</code> <code>Safari4+</code> <code>Chrome</code> 和 <code>Opera8+</code></p>
 <h2 id="3-3-HTMLDocument-的变化"><a href="#3-3-HTMLDocument-的变化" class="headerlink" title="3.3 HTMLDocument 的变化"></a>3.3 HTMLDocument 的变化</h2><h3 id="document-readState"><a href="#document-readState" class="headerlink" title="document.readState"></a>document.readState</h3><p>☑︎ 读： <code>loading</code>  正在加载文档，<code>complete</code> 已经加载完文档</p>
 <p>☑︎ 用途：通过它来实现一个指示文档已经加载完成的指示器。</p>
@@ -883,7 +883,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">214</span>
+              <span class="site-state-item-count">218</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -891,7 +891,7 @@
           
             <div class="site-state-item site-state-categories">
               <a href="/categories">
-                <span class="site-state-item-count">26</span>
+                <span class="site-state-item-count">27</span>
                 <span class="site-state-item-name">分类</span>
               </a>
             </div>
@@ -900,7 +900,7 @@
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">35</span>
+                <span class="site-state-item-count">36</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
